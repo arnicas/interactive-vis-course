@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- This was one of Scott Murray's Knight D3 course files, modified a bit. -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Loading CSV Data with D3</title>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	</head>
+	<body>
+
+		<h1>Loading CSV and JSON with D3.</h1>
+		<p>Not much to see here; try looking in the console!</p>
+
+		<script type="text/javascript">
+
+
+			//Load in contents of CSV file
+			d3.csv("test_data.csv", function(data) {
+
+				//Now CSV contents have been transformed into
+				//an array of JSON objects.
+				console.log("The first file is csv...")
+				//Log 'data' to the console, for verification.
+				console.log(data);
+
+			});
+
+			d3.json("test_data.json", function(data2) {
+
+				//Now CSV contents have been transformed into
+				//an array of JSON objects.
+
+				console.log("This file is json!")
+				//Log 'data' to the console, for verification.
+				console.log(data2);
+
+			});
+
+			// Notice that the objects look the same. d3.csv() parses rows as objects.
+			// Also this is a good point to talk about scope and breakpoints.
+
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,32 @@
+[
+	{
+		"Name": "Alice",
+		"Age": 25,
+		"Title": "Graduate Student"
+	},
+	{
+		"Name": "Bob",
+		"Age": 34,
+		"Title": "Associate Editor"
+	},
+	{
+		"Name": "Carmen",
+		"Age": 42,
+		"Title": "Senior Editor"
+	},
+	{
+		"Name": "Dan",
+		"Age": 19,
+		"Title": "Production Intern"
+	},
+	{
+		"Name": "Esmerelda",
+		"Age": 29,
+		"Title": "Freelance Reporter"
+	},
+	{
+		"Name": "Frank",
+		"Age": 51,
+		"Title": "Photographer"
+	}
+]

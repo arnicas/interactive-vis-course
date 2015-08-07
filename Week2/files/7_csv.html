@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Loading CSV Data with D3</title>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	</head>
+	<body>
+
+		<p>Not much to see here; try looking in the console!</p>
+
+		<script type="text/javascript">
+
+
+			//Load in contents of CSV file
+			d3.csv("data.csv", function(data) {
+
+				//Now CSV contents have been transformed into
+				//an array of JSON objects.
+
+				//Log 'data' to the console, for verification.
+				console.log(data);
+
+			});
+
+
+		</script>
+
+	</body>
+</html>
