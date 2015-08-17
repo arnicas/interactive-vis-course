@@ -13,12 +13,15 @@ Repo for U of Miami course on interactive vis by Lynn Cherny.
     * Tooltips
 * Animation
 * Small multiples in code
+* Making interactive tables
 * Interactive storytelling techniques
     * Steppers
     * Scrollytelling
 * Linked interactive charts (brushing)
 * APIs / ajax
+* Useful libs (not just raw d3)
 * Maybe maps? / class requests, overflow
+
 
 ### 2. Programming Techniques
 

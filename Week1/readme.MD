@@ -6,7 +6,8 @@ Lots of getting set up and some basics covered and everyone at same speed.
 
 ## Data Formatting in Excel:
 
-* Read: http://kbroman.org/dataorg/
+* Read for general good advice: http://kbroman.org/dataorg/
+
 **Homework**: Download a data set and format in Excel for use in visualization. You will load this into javascript and send me your object output, using the model in [files/load_csv_json.html](files/load_csv_json.html).
 
 

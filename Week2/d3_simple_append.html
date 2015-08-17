@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Creating HTML Elements</title>
+		<script type="text/javascript" src="../d3.v3.js"></script>
+	</head>
+	<body>
+
+		<script type="text/javascript">		
+		
+
+			d3.select("body")
+				.append("p")
+				.text("This is my first paragraph!");
+			
+			d3.select("body")
+				.append("p")
+				.text("This is my second paragraph!");
+			
+			d3.select("body")
+				.append("p")
+				.text("This is my third paragraph!");
+
+			//Store the selection in a variable,
+			//so we can easily reference it later
+			var body = d3.select("body");
+
+			//Reference that selection
+			body.append("p")
+				.text("This is my fourth paragraph!");
+
+			body.append("p")
+				.text("This is my fifth paragraph!");
+
+			body.append("p")
+				.text("This is my sixth paragraph!");
+
+
+		</script>
+
+	</body>
+</html>

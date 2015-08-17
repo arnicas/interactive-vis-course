@@ -19,12 +19,10 @@ Look at the source code, too.
 * Tutorial for first bar chart: http://www.highcharts.com/docs/getting-started/your-first-chart
 * Barchart example with jquery: http://jsfiddle.net/highcharts/kh5jY/
 * Trellis Chart example: http://jsfiddle.net/highcharts/VqruM/
-* Using data in csv's: http://www.highcharts.com/docs/working-with-data/data-module
+* Scatterplot example: http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/scatter/
+* Using data in csv's: http://www.highcharts.com/docs/working-with-data/data-module (but this is super mysterious to me - hard to tell what controls what.)
 
-### High Charts Homework:
-* Make a line chart or bar chart with your data in HC using their tutorial above.
-* Make a slope graph with data of your choice in HC using my example.
-* Make a dot plot using my example.
+**Homework**:Make a line chart or bar chart with your data in HC using their tutorial or any of the examples. Check it in as a gist and send me the link.
 
 ## D3 Intro:
 

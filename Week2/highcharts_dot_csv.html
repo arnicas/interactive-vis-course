@@ -1,0 +1,82 @@
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Highcharts Example DotPlot</title>
+
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/modules/data.js"></script>
+
+<script type="text/javascript">
+
+
+$.get('water_improvement_data_wide.csv', function(csv) {
+    $('#container').highcharts({
+
+        data: {
+                csv: csv
+            },
+        chart: {
+            type: 'area',
+            inverted: true
+        },
+        title: {
+            text: 'Change in Access to Safe Water '
+        },
+        subtitle: {
+            style: {
+                position: 'absolute',
+                right: '0px',
+                bottom: '10px'
+            },
+            text: 'source: UNICEF Data'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -150,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+        },
+        xAxis: {
+        },
+        yAxis: {
+            title: {
+                text: '% Improved Access to Safe Water'
+            },
+            labels: {
+                formatter: function () {
+                    return this.Region;
+                }
+            },
+            min: 0
+        },
+        plotOptions: {
+            area: {
+                fillOpacity: 0
+            },
+            series: {
+                lineWidth: 0,
+                marker: {
+                    symbol: 'circle'
+                }
+            }
+        }
+    });
+});
+
+</script>
+</head>
+
+<body>
+
+<div id="container" style="min-width: 500px; height: 600px; margin: 0 auto"></div>
+
+  </body>
+</html>
+

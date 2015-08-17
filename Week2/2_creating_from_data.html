@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Creating HTML Elements from Data</title>
+		<script type="text/javascript" src="../d3.v3.js"></script>
+	</head>
+	<body>
+
+		<script type="text/javascript">		
+
+
+			d3.csv("betterlifeindex.csv", function(data) {
+
+				d3.select("body")
+					.selectAll("p")
+					.data(data)
+					.enter()
+					.append("p")
+					.text(function(d) {
+						return d.country;
+					});
+
+			});
+
+
+		</script>
+
+	</body>
+</html>
