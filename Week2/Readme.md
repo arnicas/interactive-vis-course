@@ -25,16 +25,21 @@ Look at the source code, too.
 
 **Homework**:Make a line chart or bar chart with your data in HC using their tutorial or any of the examples. Check it in as a gist and send me the link to the gist.
 
-## D3 Intro:
+## Very Simple D3 Intro:
 
-* Read in data with d3 and verify it's there.
-* Create <p> tags for your data, using the template in TODO file.
+* Read in data with d3 and verify it's there in the console: d3_load_csv_json.html
+* Create <p> tags for each row of your data, using the template in the create_p_from_data.html file.
+
+d3_simple_append.html
+
+Here is the Jquery doc on append: http://api.jquery.com/append/
 
 
 ### Homeworks
-Read in one of your data files and verify your objects are there as expected.
 
 **Homework**:Make a line chart or bar chart with your data in HC using their tutorial or any of the examples. Check it in as a gist and send me the link to the gist.
+
+**Homework**: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating <p>'s on the page using d3 in a forEach loop (you can remove the jquery approach).  Make a gist, and send me your gist link.
 
 **Homework**: Pick a static graphic you think could be improved as an interactive.  Email me the link by Monday end of the day with subject: "Static for Redesign." We will discuss some of them in class.
 

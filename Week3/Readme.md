@@ -3,10 +3,16 @@
 
 ##Homework Review
 
-* Review the static graphics you chose for critique.
+* Talk about some of the static graphs you'd like to redesign.
+
+* Homework issues
 
 ##Interactive Tables
 
+Examples:
+*
+*
+*
 
 
 

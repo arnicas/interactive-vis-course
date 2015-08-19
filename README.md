@@ -7,20 +7,23 @@ Repo for U of Miami course on interactive vis by Lynn Cherny, fall 2015.
 
 ### 1. Interactive data vis: Design Principles, Techniques, Best-Practices...
 
-* Making interactive tables
-    * Sorting
-    * (Filtering)
-* Making bar charts, lines charts, scatterplots with code.
+(Not actually the order we'll cover things and content subject to change)
+
+* Making bar charts, lines charts, scatterplots with code
 * Adding interactivity:
     * Rollovers
     * Tooltips
+* Making interactive tables
+    * Sorting
+    * (Filtering)
 * Animation
 * Small multiples in code
 * Interactive storytelling techniques
     * Steppers
     * Scrollytelling
 * Linked interactive charts (brushing)
-* APIs / AJAX and servers
+    * Exploratory vs. Explanatory "tools" and "presentations"
+* APIs / AJAX and server code
 * Some other useful libs (not just "raw" D3)
 * Maybe maps? / class requests, overflow topics
 
@@ -49,6 +52,22 @@ Other resources on child mortality:
 Weekly homeworks (50%), and a final project (50%) that uses many of the techniques in a storytelling project using the client data (supplemented as you like).  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
 
 
+## D3 Books and Tutorial Materials
+
+* **Interactive Data Visualization for the Web** ("IDVW"), Scott Murray’s book: http://alignedleft.com/work/d3-book
+Online version: http://chimera.labs.oreilly.com/books/1230000000345
+
+* **D3 Tips and Tricks** book by Malcolm MacLean, and http://www.d3noob.org/
+
+* **D3.js in Action** ("D3IA"), by Elijah Meeks.  If you want ebook, order via Manning: http://www.manning.com/
+
+* **Developing a D3 Edge** by By Chris Viau, Andrew Thornton, Ger Hobbelt, and Roland Dunn -- Intermediate (I.e., more advanced than the ones above http://bleedingedgepress.com/our-books/developing-a-d3-js-edge/
+
+* **Learn JS Data** from Bocoup.com: http://learnjsdata.com/index.html
+
+* **D3 FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
+
+
 ## Resources for Vis Examples
 
 * Pinterest: some boards to poke at - crawl out for more, including newspapers:
@@ -73,22 +92,3 @@ Weekly homeworks (50%), and a final project (50%) that uses many of the techniqu
 * Guardian and NYT graphics site: http://collection.marijerooze.nl/
 * Visualoop: http://visualoop.com/
     * Article with pointers from Visualoop: http://visualoop.com/blog/11044/30-amazing-data-viz-galleries-everyone-should-follow
-
-
-## D3 Books and Tutorial Materials
-
-* **Interactive Data Visualization** for the Web, Scott Murray’s book: http://alignedleft.com/work/d3-book
-Online version: http://chimera.labs.oreilly.com/books/1230000000345
-
-* **D3 Tips and Tricks** book by Malcolm MacLean, and http://www.d3noob.org/
-
-* **D3.js in Action** by Elijah Meeks.  If you want ebook, order via Manning: http://www.manning.com/
-
-* **Developing a D3 Edge** by By Chris Viau, Andrew Thornton, Ger Hobbelt, and Roland Dunn -- Intermediate (I.e., more advanced than the ones above http://bleedingedgepress.com/our-books/developing-a-d3-js-edge/
-
-* **Learn JS Data** from Bocoup.com: http://learnjsdata.com/index.html
-
-* **D3 FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
-
-
-

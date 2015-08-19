@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Creating HTML Elements from Data</title>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    </head>
+
+    <style>
+    </style>
+    <body>
+
+        <script type="text/javascript">
+
+        d3.select("body").append("h1").text("My Data");
+
+            var body = d3.select("body");
+
+            // Open the console to see this. You may need to reload if you
+            // didn't have it open when you first loaded the page.
+            console.log("D3 Selection of body:", body);
+
+            // The selection via jquery returns something different:
+            console.log("Jquery selection:", $("body"));
+
+            d3.csv("data/water_improvement_data.csv", function(mydata) {
+
+                console.log("My first object:", mydata[0]);
+
+                // This is not the real D3 'way.' This is a javascript
+                // loop that will add p elements for each item in the data set
+                // manually.
+
+                mydata.forEach(function (d) {
+                    body.append("p").text(d.name + " " + d.year1990 + " " + d.year2015);
+                });
+
+                // The jquery approach:
+                mydata.forEach(function (d) {
+                    $("body").append("<p>" + d.name + "</p>");
+                });
+            });
+
+
+        </script>
+
+    </body>
+</html>
