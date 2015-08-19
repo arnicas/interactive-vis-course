@@ -1,14 +1,18 @@
 
-Week 1:
+##Week 1:
 
-Lots of getting set up and some basics covered and everyone at same speed.
+Lots of getting set up and review exercises.
+
+## What This Class Covers, the General Plan...
+
+Review repo [README](../README.md).
 
 
-## Data Formatting in Excel:
+## Data Formatting in Excel
 
 * Read for general good advice: http://kbroman.org/dataorg/
 
-**Homework**: Download a data set and format in Excel for use in visualization. You will load this into javascript and send me your object output, using the model in [files/load_csv_json.html](files/load_csv_json.html).
+**Homework**: Download a data set and format in Excel for use in visualization. You will load this into javascript and send me your object output, using the model in [files/load_csv_json.html](files/load_csv_json.html).  See below for how to send me the result in a gist.
 
 
 ## Chrome Tools, the Console
@@ -46,7 +50,7 @@ If you want to edit or delete it, click on the header for one from the list.
 **Homework: Make your first gist with a js program that loads your data. You will need to upload the csv file, and the index.html that contains it.  Give it a description'Week1: Load data.' Send me the link.**
 
 
-### Javascript
+### Javascript Review
 
 I sent you some stuff over the summer, and here is a list of teaching references again: https://www.javascript.com/resources.
 
@@ -55,10 +59,26 @@ You should review everything in it except for the last part on callbacks now.
 
 We'll play with [files/console_javascript.html](files/console_javascript.html) now.
 
+**Homework:** TODO js exercises
 
-**Homework: Pick an example of a static graphic you'd like to discuss for a redesign as interactive. Take some notes on what/why you'd make different.  We'll discuss them in class next time.**
+### Loading Data with JS/D3:
+
+**Recommended Reading**: Loading data with D3, at http://learnjsdata.com/read_data.html.
 
 
+TODO: stuff on loading data here.
+
+
+**Homework**: Make your first gist with a js program that loads your data. You will need to upload the csv file, and the index.html that contains it.  Use the model in [files/load_csv_json.html](files/load_csv_json.html). Give it a description 'Week1: Load data.' Send me the link to your gist.
+
+
+### Homeworks Collected Up
+
+**Homework**:  Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Don't get out of control - just headlines, byline, paragraph/body text, and images.
+
+**Homework**: Download a UNICEF data set and format in Excel for use in visualization.  Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. You won't send me this directly (unless you can't do the next problem, which is making the gist.)
+
+**Homework**: Make your first gist with a JS program that loads your data. You will need to upload the csv file, and the index.html that contains it.  Use the model in [files/load_csv_json.html](files/load_csv_json.html). Give it a description 'Week1: Load data.' Send me the link to your gist.
 
 
 

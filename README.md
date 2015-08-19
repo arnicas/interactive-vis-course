@@ -1,33 +1,36 @@
 # interactive-vis-course
 
-Repo for U of Miami course on interactive vis by Lynn Cherny.
+Repo for U of Miami course on interactive vis by Lynn Cherny, fall 2015.
 
 
 ## What the Course Covers
 
 ### 1. Interactive data vis: Design Principles, Techniques, Best-Practices...
 
-* Making bar charts, lines charts, scatterplots out of code.
+* Making interactive tables
+    * Sorting
+    * (Filtering)
+* Making bar charts, lines charts, scatterplots with code.
 * Adding interactivity:
     * Rollovers
     * Tooltips
 * Animation
 * Small multiples in code
-* Making interactive tables
 * Interactive storytelling techniques
     * Steppers
     * Scrollytelling
 * Linked interactive charts (brushing)
-* APIs / ajax
-* Useful libs (not just raw d3)
-* Maybe maps? / class requests, overflow
+* APIs / AJAX and servers
+* Some other useful libs (not just "raw" D3)
+* Maybe maps? / class requests, overflow topics
 
 
 ### 2. Programming Techniques
 
 * Javascript and useful libraries like JQuery, lowdash
+* Good practices with D3
 * Charting libs like High Charts, D3, libs on top of D3
-* Git
+* GitHub use
 * Debugging how-to's
 
 
@@ -40,6 +43,10 @@ Other resources on child mortality:
 
 * Max Roser: http://ourworldindata.org/data/health/maternal-mortality/
 * http://childmortality.org/ - UN Inter-agency Group for Child Mortality Estimation (IGME), of which UNICEF is a member (new data coming in September)
+
+### 4. Evaluation
+
+Weekly homeworks (50%), and a final project (50%) that uses many of the techniques in a storytelling project using the client data (supplemented as you like).  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
 
 
 ## Resources for Vis Examples
@@ -66,4 +73,22 @@ Other resources on child mortality:
 * Guardian and NYT graphics site: http://collection.marijerooze.nl/
 * Visualoop: http://visualoop.com/
     * Article with pointers from Visualoop: http://visualoop.com/blog/11044/30-amazing-data-viz-galleries-everyone-should-follow
+
+
+## D3 Books and Tutorial Materials
+
+* **Interactive Data Visualization** for the Web, Scott Murray’s book: http://alignedleft.com/work/d3-book
+Online version: http://chimera.labs.oreilly.com/books/1230000000345
+
+* **D3 Tips and Tricks** book by Malcolm MacLean, and http://www.d3noob.org/
+
+* **D3.js in Action** by Elijah Meeks.  If you want ebook, order via Manning: http://www.manning.com/
+
+* **Developing a D3 Edge** by By Chris Viau, Andrew Thornton, Ger Hobbelt, and Roland Dunn -- Intermediate (I.e., more advanced than the ones above http://bleedingedgepress.com/our-books/developing-a-d3-js-edge/
+
+* **Learn JS Data** from Bocoup.com: http://learnjsdata.com/index.html
+
+* **D3 FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
+
+
 

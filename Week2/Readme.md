@@ -1,14 +1,15 @@
 ##Week 2:
 
 
-* Intro to Git
+##Reading
 
-* Chrome Dev Tools
+The Eyes Have It (1996), Ben Shneiderman
 
+## Review Homework
 
-## Intro to JS:
-* TODO: Resources links
-* Homework problems:
+* Styling project
+* JS problems.
+* Data issues.
 
 ## Intro to High Charts
 
@@ -22,20 +23,20 @@ Look at the source code, too.
 * Scatterplot example: http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/scatter/
 * Using data in csv's: http://www.highcharts.com/docs/working-with-data/data-module (but this is super mysterious to me - hard to tell what controls what.)
 
-**Homework**:Make a line chart or bar chart with your data in HC using their tutorial or any of the examples. Check it in as a gist and send me the link.
+**Homework**:Make a line chart or bar chart with your data in HC using their tutorial or any of the examples. Check it in as a gist and send me the link to the gist.
 
 ## D3 Intro:
 
-* Reading in data with d3 and verifying it's there.
+* Read in data with d3 and verify it's there.
+* Create <p> tags for your data, using the template in TODO file.
 
-* Taucharts and other libraries built on top of d3 - TODO link to libs.
 
-* reproducible workflows - links
+### Homeworks
+Read in one of your data files and verify your objects are there as expected.
 
-### Homework:
-Read in one of your data files and verify your objects.
+**Homework**:Make a line chart or bar chart with your data in HC using their tutorial or any of the examples. Check it in as a gist and send me the link to the gist.
 
-### Review the static graphics you chose for critique.
+**Homework**: Pick a static graphic you think could be improved as an interactive.  Email me the link by Monday end of the day with subject: "Static for Redesign." We will discuss some of them in class.
 
 
 
