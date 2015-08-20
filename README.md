@@ -67,6 +67,16 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345
 
 * **D3 FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
 
+## JS Refreshers
+
+* https://www.javascript.com/resources. 
+
+* http://learnxinyminutes.com/docs/javascript/.
+
+* A super simple intro with gif demos is JS For Cats: http://jsforcats.com/
+
+* Not D3, but useful for your code style: **[Airbnb JS Style Guide](https://github.com/airbnb/javascript/tree/master/es5)**
+
 
 ## Resources for Vis Examples
 
@@ -92,3 +102,4 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345
 * Guardian and NYT graphics site: http://collection.marijerooze.nl/
 * Visualoop: http://visualoop.com/
     * Article with pointers from Visualoop: http://visualoop.com/blog/11044/30-amazing-data-viz-galleries-everyone-should-follow
+
