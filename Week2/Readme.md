@@ -1,10 +1,6 @@
 ##Week 2:
 
 
-##Reading
-
-The Eyes Have It (1996), Ben Shneiderman
-
 ## Review Homework
 
 * Styling project
@@ -27,12 +23,18 @@ Look at the source code, too.
 
 ## Very Simple D3 Intro:
 
+
 * Read in data with d3 and verify it's there in the console: d3_load_csv_json.html
 * Create <p> tags for each row of your data, using the template in the create_p_from_data.html file.
 
 d3_simple_append.html
 
 Here is the Jquery doc on append: http://api.jquery.com/append/
+
+##Reading
+
+* [The Eyes Have It (1996)](shneidermanEyesHaveIt.pdf], Ben Shneiderman
+* IDVW Chapter 5: http://chimera.labs.oreilly.com/books/1230000000345/ch05.html
 
 
 ### Homeworks

@@ -33,11 +33,13 @@ Set up your servers. Depending on time, we'll do it in class. Use this to help: 
 ### Github and Gists:
 
 Github is how you should get and keep the course files up to date.
-Make an account, if you haven't.  I recommend you clone my repo, so you can repull it as I add stuff.
+Make an account, if you haven't.
 
 * Make sure you have git installed: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-* Gists how-to:  https://help.github.com/articles/creating-gists/
+* Read: Gists how-to:  https://help.github.com/articles/creating-gists/
 * Command line tool info (optional): https://github.com/mbostock/gistup
+
+I recommend you clone my repo, so you can repull it as I add stuff. You will do `git clone [copied path]`.  I'll show you in class.
 
 You'll be doing homework in gists.  This makes it easier for me to review and check it and find issues.  Make a directory for your files for a gist and upload those by hand from the web page, or using the command line tool gistup.
 
@@ -45,7 +47,7 @@ You can see all your gists by looking here - where you fill in your own user nam
 
 If you want to edit or delete it, click on the header for one from the list.
 
-**Homework: Make your first gist with a js program that loads your data. You will need to upload the csv file, and the index.html that contains it.  Give it a description 'Week1: Load data.' Send me the link.**
+**Homework: Make your first gist with a js program that loads your data. You will need to upload the CSV file, and the index.html that contains it.  Give it a description 'Week1: Loading data.'  Send me the link.**
 
 
 ### Intro to HTML/CSS:
@@ -54,19 +56,19 @@ Have a look at this fun project, Tufte CSS: http://www.daveliepmann.com/tufte-cs
 
 A refresher on HTML and CSS is necessary -- you can't afford to NOT be good at CSS with interactive graphics.  It's as important as Javascript.
 
-**Homework:  Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Make a gist and send it to me.**
+**Homework: Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Make a gist and send it to me.**
 
 
 ### Javascript Review
 
-I sent you some stuff over the summer, and here is a list of teaching references again: https://www.javascript.com/resources.
+I sent you some stuff over the summer, and here is a list of teaching references again: https://www.javascript.com/resources. And http://learnxinyminutes.com/docs/javascript/.
 
 A super simple intro with gif demos is JS For Cats: http://jsforcats.com/
 You should review everything in it except for the last part on callbacks now.
 
 We'll play with [files/console_javascript.html](files/console_javascript.html) now.
 
-**Homework:** TODO js exercises
+**Homework:** fix js_errors.html so it displays correctly.
 
 
 ### Loading Data with JS/D3:
@@ -86,7 +88,9 @@ Readings:
 
 * Loading data with D3, at http://learnjsdata.com/read_data.html.
 
-**Homework**:  Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Don't get out of control - just headlines, byline, paragraph/body text, and images.  Make a gist and send it to me.
+**Homework:** fix js_errors.html so it displays correctly.  Send me a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, js errors".  If you can't do it all, send me as far as you got.
+
+**Homework**:  Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Don't get out of control - just headlines, byline, paragraph/body text, and images.  Make a gist and send me the link: "Week 1: style."
 
 **Homework**: Download a UNICEF data set and format in Excel for use in visualization.  Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. You won't send me this directly (unless you can't do the next problem, which is making the gist.)
 
