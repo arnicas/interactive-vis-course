@@ -49,7 +49,27 @@ Other resources on child mortality:
 
 ### 4. Evaluation
 
-Weekly homeworks (50%), and a final project (50%) that uses many of the techniques in a storytelling project using the client data (supplemented as you like).  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
+Grading based on weekly homeworks (50%) and a final project (50%) that uses many of the techniques in a storytelling project using the client data (supplemented as you like).  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
+
+Primary emphasis is on end user experience and data honesty; secondary consideration will be good coding practices.
+
+### 5. Planned TOC (Subject to Change/Update)
+
+[Week1](Week1/README.md): Intro to Tools, Client Project, CSVs
+[Week2](Week2/README.md): Loading CSV Data, Highcharts
+[Week3](Week3/README.md): Selections/Binding and Tables in D3 & JQuery
+[Week4](Week4/README.md): SVG and D3 bar charts
+[Week5](Week5/README.md): Tooltips and Events
+[Week6](Week6/README.md): (Crowded) Linecharts and Scatterplots; Voronoi; 
+[Week7](Week7/README.md): Animation
+[Week8](Week8/README.md): Small Multiples
+[Week9](Week9/README.md):  Cross-Linking and Brushing
+[Week10](Week10/README.md): Storytelling Techniques: Steppers
+[Week11](Week11/README.md): Storytelling Techniques: Scrollytelling
+[Week12](Week12/README.md): APIs, Ajax, Servers
+[Week13](Week13/README.md): Class requests (Maybe Maps)
+[Week14](Week14/README.md): Project & Overflow
+[Week15](Week15/README.md): Project & Overflow
 
 
 ## D3 Books and Tutorial Materials

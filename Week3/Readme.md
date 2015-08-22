@@ -101,6 +101,7 @@ Even independent of the rest of D3, the scales are incredibly powerful and usefu
 
 
 
+
 ## Helpful Stuff
 
 * Debugging with Dev Tools and D3: https://egghead.io/lessons/debugging-with-dev-tools
