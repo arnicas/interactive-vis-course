@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- This was one of Scott Murray's Knight D3 course files, modified a bit. -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Loading CSV Data with D3</title>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	</head>
+	<body>
+
+		<h1>Loading CSV and processing the data.</h1>
+		<p>Not much to see here; try looking in the console!</p>
+		<p>If you open the console after loading, you'll need to reload the page.</p>
+
+		<script type="text/javascript">
+
+			//Load in contents of CSV file, and do things to the data.
+
+			d3.csv("data/Angola_water_access.csv", function(data) {
+
+				// let's do things to the data here.  This is VERY COMMON in d3 code.
+
+				// We're telling the parser what the input string format is:
+				var dateParser = d3.time.format("%Y");
+
+				var outputDate = d3.time.format("'%y");
+
+				// Your arguments for forEach are the item and it's number in the array:
+				data.forEach(function(d, i){
+
+					// Here we parse the string year as a date and get a JS date object.
+
+					d.water_access = +d.water_access;
+
+					// you apply the function with parse, to read it in:
+					d.year = dateParser.parse(d.year);
+
+					console.log(i, d);
+
+					// if you wanted to print it in a short format, instead:
+					console.log("output string", i, outputDate(d.year));
+				});
+
+
+			});
+
+
+		</script>
+
+	</body>
+</html>

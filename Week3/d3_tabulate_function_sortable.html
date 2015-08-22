@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Sortable Table with D3 and JQuery</title>
+
+	</head>
+
+	<style>
+		th {
+			cursor: pointer;
+		}
+	</style>
+
+	<body>
+
+		<h1>Loading CSV and making a table!</h1>
+		<p>This version uses a D3 function and then a jquery plugin to add sorting.</p>
+		<div id="table"></div>
+
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+		<!-- load the function file you need before you call it... -->
+		<script type="text/javascript" src="tabulate.js"></script>
+		<script type="text/javascript" src="stupidtable.js"></script>
+
+		<script type="text/javascript">
+
+			//Load in contents of CSV file, and do things to the data.
+
+			d3.csv("data/water_improvement_data.csv", function(data) {
+
+				data.forEach(function(d, i){
+
+					// now we add another data object value, a calculated value.
+					d.Difference = d.year2015 - d.year1990;
+					if (d.name === "Developing regions") {
+						d.name = "Developing Regions";
+					}
+					if (d.name === "Developed regions") {
+						d.name = "Deveoloped Regions";
+					}
+
+					// I'm adding attributes with the names I want as column headers,
+					// because of how the tabulate function works.
+					d["1990"] = d.year1990; // you can't use dot notation with a number
+					d["2015"] = d.year2015;
+					d.Region = d.name;
+				});
+
+				console.log(data);
+
+				var regionTable = tabulate(data,
+					                        ["Region", "1990", "2015", "Difference"],
+					                        "#table");
+
+				// We are adding attributes to the existing header cells here, for use
+				// in the jquery function below.
+				d3.selectAll("th")
+					.data(["string", "int", "int", "int"])
+					.attr("data-sort", function(d) {return d;});
+
+				// Now that the table exists - we can use it with JQuery functions!
+				$("table").stupidtable();
+
+				// Notice that we had to add a CSS rule for this to be discoverable.
+
+			});
+
+		</script>
+
+</body>
+</html>

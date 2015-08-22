@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- This was one of Scott Murray's Knight D3 course files, modified a bit. -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Loading CSV Data with D3</title>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	</head>
+	<body>
+
+		<h1>Loading CSV and processing the data.</h1>
+		<p>Not much to see here; try looking in the console!</p>
+		<p>If you open the console after loading, you'll need to reload the page.</p>
+
+		<script type="text/javascript">
+
+			//Load in contents of CSV file, and do things to the data.
+
+			var total1990 = 0;
+			var total2015 = 0;
+
+			d3.csv("data/water_improvement_data.csv", function(data) {
+
+				// let's do things to the data here.  This is VERY COMMON in d3 code.
+
+				// Your arguments for forEach are the item and it's number in the array:
+				data.forEach(function(data_item, index){
+
+					// NB: it's much more common to see (d, i) as shorthand in D3 code.
+
+					console.log(index, data_item);
+
+					// here we are making strings into numbers:
+					data_item.year1990 = +data_item.year1990;
+					data_item.year2015 = +data_item.year2015;
+
+					// now we add another data object value, a calculated value.
+					data_item.difference = data_item.year2015 - data_item.year1990;
+					total1990 += data_item.year1990;
+					total2015 += data_item.year2015;
+					console.log(index, data_item);
+				});
+
+				console.log(data);
+				console.log("total 1990", total1990);
+				console.log("total 2015", total2015);
+
+			});
+
+		// Notice this below doesn't work.  It's outside the scope of the function that loaded the data.  You need to keep your operations on data inside the loading callback.
+
+		//console.log(data);
+
+		// what do you expect these values to be now?
+		console.log("totals", total1990, total2015);
+
+		</script>
+
+	</body>
+</html>

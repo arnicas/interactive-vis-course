@@ -30,13 +30,19 @@
 
                 // This is not the real D3 'way.' This is a javascript
                 // loop that will add p elements for each item in the data set
-                // manually.
+                // manually. In D3, you will use enter() eventually for this.
 
                 mydata.forEach(function (d) {
                     body.append("p").text(d.name + " " + d.year1990 + " " + d.year2015);
+                // another option for that string is:
+                // [d.name, d.year1990, d.year2015].join(" ")
+
                 });
 
-                // The jquery approach:
+                // The jquery approach -- you don't need to do this in homework.
+
+                body.append("h2").text("JQuery is below:");
+
                 mydata.forEach(function (d) {
                     $("body").append("<p>" + d.name + "</p>");
                 });

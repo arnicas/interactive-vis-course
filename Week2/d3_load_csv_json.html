@@ -10,9 +10,9 @@
 
 		<h1>Loading CSV and JSON with D3.</h1>
 		<p>Not much to see here; try looking in the console!</p>
+		<p>If you open the console after loading, you'll need to reload the page.</p>
 
 		<script type="text/javascript">
-
 
 			//Load in contents of CSV file
 			d3.csv("data/test_data.csv", function(data) {
@@ -27,7 +27,7 @@
 
 			d3.json("data/test_data.json", function(data2) {
 
-				//Now CSV contents have been transformed into
+				//Now json contents have been loaded into
 				//an array of JSON objects.
 
 				console.log("This file is json!")

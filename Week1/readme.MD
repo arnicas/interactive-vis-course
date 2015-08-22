@@ -33,6 +33,8 @@ Set up your servers. Depending on time, we'll do it in class. Use this to help: 
 
 ### Github and Gists:
 
+#### Github
+
 Github is how you should get and keep the course files up to date.
 Make an account, if you haven't.
 
@@ -42,7 +44,11 @@ Make an account, if you haven't.
 
 I recommend you clone my repo, so you can repull it as I add stuff. You will do `git clone [copied path]`.  I'll show you in class.
 
-You'll be doing homework in gists.  This makes it easier for me to review and check it and find issues.  Make a directory for your files for a gist and upload those by hand from the web page, or using the command line tool gistup. If you use the command line, make a directory for each gist, NOT INSIDE THE CLASS REPO YOU CLONED. (It can't be inside another repo.)  
+#### Gists
+
+You'll be doing homework in gists.  This makes it easier for me to review and check it and find issues. Also, the bl.ocks.org site makes things easy for visual display of gists.  See: http://bl.ocks.org/
+
+Make a directory for your files for a gist and upload those by hand from the web page, or using the command line tool gistup. If you use the command line, make a directory for each gist, NOT INSIDE THE CLASS REPO YOU CLONED. (It can't be inside another repo.)
 
 * If you want your d3 visual code to show up in bl.ocks.org, you need to name your html file index.html.
 * And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the `<script>` tag, you want to reference: `<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>` instead of a local path.

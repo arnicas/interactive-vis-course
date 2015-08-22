@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Loading CSV Data with D3</title>
+
+	</head>
+	<body>
+
+		<h1>Loading CSV and making a table!</h1>
+		<div id="table"></div>
+
+	</body>
+
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<!-- load the function file you need before you call it... -->
+		<script type="text/javascript" src="tabulate.js"></script>
+
+		<script type="text/javascript">
+
+			//Load in contents of CSV file, and do things to the data.
+
+			d3.csv("data/water_improvement_data.csv", function(myData) {
+
+				// We'll be using simpler data as values, not objects.
+				myArray = [];
+
+				myData.forEach(function(d, i){
+
+					// now we add another data object value, a calculated value.
+					d.difference = d.year2015 - d.year1990;
+					if (d.name === "Developing regions") {
+						d.name = "Developing Regions";
+					}
+					if (d.name === "Developed regions") {
+						d.name = "Deveoloped Regions";
+					}
+
+				 // Add an array to the empty array with the values of each:
+			 	 myArray.push([d.name, d.year1990, d.year2015, d.difference]);
+
+				});
+
+				console.log(myData);
+				console.log(myArray);
+
+				var table = d3.select("#table").append("table");
+
+				var header = table.append("thead").append("tr");
+
+				header
+					.selectAll("th")
+					.data(["Region", "1990", "2015", "Difference"])
+					.enter()
+					.append("th")
+          .text(function(d) { return d; });
+
+        var tablebody = table.append("tbody");
+
+        rows = tablebody
+        	.selectAll("tr")
+        	.data(myArray)
+        	.enter()
+        	.append("tr");
+
+        // We built the rows using the nested array - now each row has its own array.
+
+        cells = rows.selectAll("td")
+        	// each row has data associated; we get it and enter it for the cells.
+        	.data(function(d) {
+        		console.log(d);
+        		return d;
+        	})
+        	.enter()
+        	.append("td")
+        	.text(function(d) {
+        		return d;
+        	});
+			});
+
+		</script>
+
+</html>

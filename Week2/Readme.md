@@ -6,6 +6,7 @@
 * Styling project
 * JS problems.
 * Data issues.
+* Geeral 
 
 ## Presentation on Interactive Vis Techniques
 

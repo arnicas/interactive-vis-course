@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- This was one of Scott Murray's Knight D3 course files, modified a bit. -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Loading CSV Data with D3</title>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	</head>
+	<body>
+
+		<h1>Loading CSV and processing the data into new objects.</h1>
+		<p>Not much to see here; try looking in the console!</p>
+		<p>If you open the console after loading, you'll need to reload the page.</p>
+
+		<script type="text/javascript">
+
+			//Load in contents of CSV file, and do things to the data.
+
+			var total1990 = 0;
+			var total2015 = 0;
+
+			d3.csv("data/water_improvement_data.csv", function(data) {
+
+				// Here we set up an array that's empty.  We will put objects into it.
+				var myobjs = [];
+
+
+				// Your arguments for forEach are the item and it's number in the array:
+				data.forEach(function(d, i){
+
+					// NB: it's much more common to see (d, i) as shorthand in D3 code.
+
+					console.log("source data", i, d);
+
+					// here we are putting in values only for the items we care about.
+					myobjs.push({
+					  region: d.name,
+					  difference: d.year2015 - d.year1990
+					});
+					console.log("my obj", i, myobjs[i]);
+				});
+
+				console.log("original data", data);
+				console.log("new data objects", myobjs);
+
+				// let's also fix some capitals -- we could do this in the CSV of course.
+
+				myobjs.forEach(function(d) {
+					if (d.region === "Developing regions") {
+						d.region = "Developing Regions";
+					}
+					if (d.region === "Developed regions") {
+						d.region = "Deveoloped Regions";
+					}
+				});
+
+				console.log("fixed myobjs", myobjs[12], myobjs[11]);
+
+			});
+
+		</script>
+
+	</body>
+</html>

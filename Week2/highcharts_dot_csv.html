@@ -11,12 +11,13 @@
 
 <script type="text/javascript">
 
+// Note: this is the jquery method of loading a file!
 
-$.get('water_improvement_data_wide.csv', function(csv) {
+$.get('data/water_improvement_data.csv', function(data) {
     $('#container').highcharts({
 
         data: {
-                csv: csv
+                csv: data
             },
         chart: {
             type: 'area',
