@@ -56,7 +56,7 @@ Primary emphasis is on end user experience and data honesty; secondary considera
 ### 5. Planned TOC (Subject to Change/Update)
 
 * [Week1](Week1): Intro to Tools, Client Project, CSVs
-* [Week2](Week2/README.md): Loading CSV Data, Highcharts
+* [Week2](Week2): Loading CSV Data, Highcharts
 * [Week3](Week3/README.md): Selections/Binding and Tables in D3 & JQuery
 * [Week4](Week4/README.md): SVG and D3 bar charts
 * [Week5](Week5/README.md): Tooltips and Events
