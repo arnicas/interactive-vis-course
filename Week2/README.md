@@ -49,8 +49,7 @@ Resources:
 
 Some of the reading for this week will motivate the interactive vis techniques we are going to cover in this class.
 
-* [When Telling Data Driven Stories, Let Readers Ask Questions Too](http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/) (Tableau examples that motivate interaction and data sharing)
-* [A Tour Through The Visualization Zoo](http://queue.acm.org/detail.cfm?id=1805128)- some examples of less common visualization techniques, possible in D3.
+* [When Telling Data Driven Stories, Let Readers Ask Questions Too](http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/) (Tableau examples that motivate interaction and data sharing; we won't make our final projects in Tableau, but you're welcome to prototype with it.)
 * [The Eyes Have It (1996)](shneidermanEyesHaveIt.pdf), Ben Shneiderman - a classic article that features the mantra everyone must memorize:
 
     *Overview first, zoom and filter, then details on demand.
@@ -60,13 +59,14 @@ Some of the reading for this week will motivate the interactive vis techniques w
     Overview first, zoom and filter, then details on demand.
     Overview first, zoom and filter, then details on demand.*
 
+* Video by Scott Murray [introducing D3](https://www.youtube.com/watch?v=DRIlogs5vzw&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F&index=5) for his course, not all of which applies (we aren't using his files)-- but which reviews selections. And reviews the console use.
+
 
 ### Homeworks
 
-See the readings list just above.  Plus these:
+See the readings/videos list just above.  Plus these:
 
 **Homework**: Make a line chart or bar chart with your data in HighCharts using their tutorial or any of the examples. Check it in as a gist and send me the link to the gist, "Week2: High Charts." (20pt, Extra credit: Make 2 graph types, 10pt)
 
 **Homework**: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach).  Make a gist, and send me your gist link, "Week2: Data load." (15pt)
-
 

@@ -28,9 +28,9 @@ Dates should be turned into Javascript date objects.  D3 has tools for this. A l
 
 ## Selections and Data Binding in D3
 
-To do the "right" thing with data in D3, the basic concept required is binding data to DOM elements.
+To do the "right" thing with data in D3, you need to understand binding data to DOM elements.  This concept works with the "selectAll, data, enter, append" pattern.
 
-Readings:
+**Important Readings**:
 
 * [Interactive Data Visualization for the Web (IDVW) Chapter 5](http://chimera.labs.oreilly.com/books/1230000000345/ch05.html) introducing D3 binding and loading data.
 * Three Little Circles, By Mike Bostock: http://bost.ocks.org/mike/circles/
@@ -42,6 +42,7 @@ If You Remain Confused:
 * Thinking with Joins: by Mike Bostock: http://bost.ocks.org/mike/join/
 * Another intro article: http://code.hazzens.com/d3tut/lesson_1.html
 * Another review of selections: http://www.jeromecukier.net/blog/2013/03/05/d3-tutorial-at-strata-redux
+* Scott Murray's video: 
 
 
 ##Tables as an Intro to Deep D3 Thinking
@@ -66,8 +67,6 @@ data.sort(function(a,b) {
             return b.difference-a.difference;
 });
 ````
-
-
 
 
 ## Examples of Interactive Tables
