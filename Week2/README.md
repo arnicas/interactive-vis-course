@@ -37,7 +37,7 @@ Read in data with D3 and verify it's there in the console: [d3_load_csv_json.htm
 
 Let's look at [d3_simple_append.html](d3_simple_append.html) and how that works.
 
-Create <p> tags for each row of your data, using the template in the [create_p_from_data.html](create_p_from_data.html) file.
+Create `<p>` tags for each row of your data, using the template in the [create_p_from_data.html](create_p_from_data.html) file.
 
 Resources:
 
@@ -49,16 +49,17 @@ Resources:
 
 Some of the reading for this week will motivate the interactive vis techniques we are going to cover in this class.
 
-* Reading: http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/ (Tableau examples that motivate interaction and data sharing)
+* [When Telling Data Driven Stories, Let Readers Ask Questions Too](http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/) (Tableau examples that motivate interaction and data sharing)
 * [A Tour Through The Visualization Zoo](http://queue.acm.org/detail.cfm?id=1805128)- some examples of less common visualization techniques, possible in D3.
 * [The Eyes Have It (1996)](shneidermanEyesHaveIt.pdf), Ben Shneiderman - a classic article that features the mantra everyone must memorize:
 
+    *Overview first, zoom and filter, then details on demand.
     Overview first, zoom and filter, then details on demand.
     Overview first, zoom and filter, then details on demand.
     Overview first, zoom and filter, then details on demand.
     Overview first, zoom and filter, then details on demand.
-    Overview first, zoom and filter, then details on demand.
-    Overview first, zoom and filter, then details on demand.
+    Overview first, zoom and filter, then details on demand.*
+
 
 ### Homeworks
 

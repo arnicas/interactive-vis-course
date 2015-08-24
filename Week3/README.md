@@ -48,6 +48,8 @@ If You Remain Confused:
 
 We're starting with tables, because in my opinion they are an often overlooked part of the interactive vis landscape, and one of my favorites. Building them illustrate some key aspects of D3 DOM manipulation, they allow us to use JQuery and D3 together if we want; they transition nicely to heatmaps, an excellent visual display method for some types of data.
 
+Reading: [IDVW Chapter 5](http://chimera.labs.oreilly.com/books/1230000000345/ch05.html#_binding_data)
+
 In increasing order of complexity:
 
 * d3_table.html
@@ -58,6 +60,9 @@ In increasing order of complexity:
 
 * A more advanced approach by Gregor Aisch: https://vis4.net/blog/posts/making-html-tables-in-d3-doesnt-need-to-be-a-pain/
 
+
+## An Aside on Useful Javascript Techniques
+
 Useful javascript for sorting, by the way:
 
 ````
@@ -66,8 +71,10 @@ data.sort(function(a,b) {
 });
 ````
 
+Very useful ways to iterate through data include `dataset.forEach(function (d,i) {...})` and map: `dataset.map(function (d,i) {...})`.  Have a look at http://learnjsdata.com/iterate_data.html.
 
-## More On Interactive Tables
+
+## Examples of Interactive Tables
 
 ### JQuery
 
@@ -93,7 +100,7 @@ com/blog/2014/02/12/inline-visualization-d3-js/?utm_content=buffer980a1&utm_medi
 * Table UI Patterns - styling, interaction: http://www.jankoatwarpspeed.com/ultimate-guide-to-table-ui-patterns/
 
 
-## D3 Scales
+## If We Get to It Today -- D3 Scales
 
 Even independent of the rest of D3, the scales are incredibly powerful and useful tools.  Scales map numbers from a domain into a range. In particular, we need to turn numbers that are in our input data into pixel locations on the screen.  Or into colors.
 
@@ -115,18 +122,17 @@ Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color ran
 * [Interactive Data Visualization for the Web (IDVW) Chapter 5](http://chimera.labs.oreilly.com/books/1230000000345/ch05.html) introducing D3 binding and loading data.
 * Three Little Circles, By Mike Bostock: http://bost.ocks.org/mike/circles/
 * Nested Selections and Tables: http://bost.ocks.org/mike/nest/
+* Read: http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale
 
 
 ## Homeworks
 
 
-**Homework:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop.
+**Homework:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop. Send me the gist, "Week 3: P's the D3 Way." (10pt)
 
-**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT) d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good. Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc.
+**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT) d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good. Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc. (25pts)
 
-**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Send it to me as "Week2: How do I do this."  I'll try to find out for you!
+**Homework**: Add a color heatmap to your table. (20pts)
 
-
-
-
+**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Send it to me as "Week3: How do I do this."  I'll try to find out for you! (5pt)
 
