@@ -5,10 +5,9 @@ Lots of getting set up and review exercises.
 
 ## What This Class Covers, the General Plan...
 
-Review repo [README](../README.md).
+Review repo's [README](../README.md).
 
-**Homework Reading**: The client brief.  Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
-
+**Homework Reading**: The [client brief](../APromiseRenewed_Brief_March2015.pdf). Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
 
 ## Data Formatting in Excel
 
@@ -16,7 +15,7 @@ Review repo [README](../README.md).
 
 We'll go through a download and csv formatting example in class.  You'll need to do the same, so take notes!
 
-**Homework**: Download a data set and format in Excel for use in visualization. Try to mimic the simple style in my csv examples. See below for how to send me the result in a gist.
+**Homework**: Download a data set from data.unicef.org and format a CSV in Excel for use in visualization. Try to mimic the simple style in my csv examples (see [data](data). See below for how to send me the result in a gist.
 
 
 ## Your Local Server
@@ -27,8 +26,8 @@ Set up your servers. Depending on time, we'll do it in class. Use this to help: 
 ## Intro to Chrome Tools, the Console
 
 * View Source. Let's do it. First at childmortality.org...
-* Look at a newspaper site too, and view the styling on an article. You'll need this for a homework project.
-* Read a bit here about the console and trying stuff in it: http://jsforcats.com/#basics
+* Look at a newspaper site too, and view the styling on an article. You'll need this for a homework project. Remember news online includes newspapers as well as sites like Slate, Buzzfeed, etc.
+* Chrome Tools: Read a bit here about the console and trying stuff in it: http://jsforcats.com/#basics
 
 
 ### Github and Gists:
@@ -42,7 +41,7 @@ Make an account, if you haven't.
 * Read: Gists how-to:  https://help.github.com/articles/creating-gists/
 * Command line tool info (optional): https://github.com/mbostock/gistup
 
-I recommend you clone my repo, so you can repull it as I add stuff. You will do `git clone [copied path]`.  I'll show you in class.
+I recommend you clone my repo, so you can repull it as I add stuff. You will do `git clone [copied path]` (https is fine for now).  I'll show you in class.
 
 #### Gists
 
@@ -56,13 +55,13 @@ Make a directory for your files for a gist and upload those by hand from the web
 You can see all your gists by looking here - where you fill in your own user name where mine is: `https://gist.github.com/arnicas`. If you want to edit or delete it, click on the header for one from the list.
 
 
-### Intro to HTML/CSS:
+### Review of HTML/CSS:
 
 Have a look at this fun project, Tufte CSS: http://www.daveliepmann.com/tufte-css/.
 
 A refresher on HTML and CSS is necessary -- you can't afford to NOT be good at CSS with interactive graphics.  It's as important as Javascript. There's a refresher in Ch 3 of IDVW.
 
-**Homework**: Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Make a gist (index.html for the file name!) and send it to me.  You can keep the styles in the page or in a file you load.
+**Homework**: Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Make a gist (index.html for the file name!) and send it to me.  You can keep the styles in the page or in a file you load. Send me the gist link, subject 'Weeek1: Style article.'
 
 
 ### Javascript Review
@@ -94,9 +93,9 @@ Readings:
 
 * Loading data with D3, at http://learnjsdata.com/read_data.html.
 
-**Homework:** fix js_errors.html so it displays correctly.  Send me a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, js errors".  If you can't do it all, send me as far as you got.
+**Homework**:  Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Don't get out of control - just headlines, byline, paragraph/body text, and images.  Make a gist and send me the link: "Week 1: Style article."
 
-**Homework**:  Style [this page](files/wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Don't get out of control - just headlines, byline, paragraph/body text, and images.  Make a gist and send me the link: "Week 1: style."
+**Homework:** fix js_errors.html so it displays correctly.  Send me a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, js errors".  If you can't do it all, send me as far as you got.
 
 **Homework**: Download a UNICEF data set and format in Excel for use in visualization.  Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.'
 

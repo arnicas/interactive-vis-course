@@ -3,8 +3,7 @@
 
 ##Homework Review
 
-* Talk about some of the static graphs you'd like to redesign, interactives you'd like to make.
-* Homework issues.
+Discuss issues we had with the homeworks.
 
 
 ## Data Processing on Load
@@ -56,12 +55,12 @@ data.sort(function(a,b) {
 ````
 
 
-**Homework:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 enter approach in place of the forEach loop.
+**Homework:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop.
 
-**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT) d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good. Make the
-header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc.
+**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT) d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good. Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc.
 
 Examples:
+
 * Understanding Selections: http://prcweb.co.uk/lab/selection/
 * Mike's article on d3 nested selections: http://bost.ocks.org/mike/nest/
 
@@ -97,17 +96,24 @@ com/blog/2014/02/12/inline-visualization-d3-js/?utm_content=buffer980a1&utm_medi
 
 ## D3 Scales
 
-Even independent of the rest of D3, the scales are incredibly powerful and useful tools.
+Even independent of the rest of D3, the scales are incredibly powerful and useful tools.  Scales map numbers from a domain into a range. In particular, we need to turn numbers that are in our input data into pixel locations on the screen.  Or into colors.
+
+* Read: http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale
+* Supplementary: http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/
+
+Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color range to one column of numbers.
+
+**Homework**: Add a color heatmap to your sorted table.
 
 
-
-
-## Helpful Stuff
+## Helpful Dev Stuff
 
 * Debugging with Dev Tools and D3: https://egghead.io/lessons/debugging-with-dev-tools
 
 ## Homeworks
 
+
+**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Send it to me as "Week2: How do I do this."  I'll try to find out for you!
 
 
 

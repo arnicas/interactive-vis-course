@@ -7,25 +7,23 @@ Repo for U of Miami course on interactive vis by Lynn Cherny, fall 2015.
 
 ### 1. Interactive data vis: Design Principles, Techniques, Best-Practices...
 
-(Not actually the order we'll cover things and content subject to change)
+Subject to change!
 
-* Making bar charts, lines charts, scatterplots with code
-* Adding interactivity:
-    * Rollovers
-    * Tooltips
-* Making interactive tables
-    * Sorting
-    * (Filtering)
-* Animation
-* Small multiples in code
-* Interactive storytelling techniques
-    * Steppers
-    * Scrollytelling
-* Linked interactive charts (brushing)
-    * Exploratory vs. Explanatory "tools" and "presentations"
-* APIs / AJAX and server code
-* Some other useful libs (not just "raw" D3)
-* Maybe maps? / class requests, overflow topics
+* [Week1](Week1): Intro to Tools, Client Project, CSVs
+* [Week2](Week2): Loading CSV Data, Highcharts
+* [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
+* [Week4](Week4): SVG and D3 bar charts
+* [Week5](Week5): Tooltips and Events
+* [Week6](Week6): (Crowded) Linecharts and Scatterplots; Voronoi
+* [Week7](Week7): Animation
+* [Week8](Week8): Small Multiples
+* [Week9](Week9):  Cross-Linking and Brushing
+* [Week10](Week10): Storytelling Techniques: Steppers
+* [Week11](Week11): Storytelling Techniques: Scrollytelling
+* [Week12](Week12): APIs, Ajax, Servers
+* [Week13](Week13): Class requests (Maybe Maps)
+* [Week14](Week14): Project & Overflow
+* [Week15](Week15): Project & Overflow
 
 
 ### 2. Programming Techniques
@@ -39,7 +37,7 @@ Repo for U of Miami course on interactive vis by Lynn Cherny, fall 2015.
 
 ### 3. A Client Project: UNICEF: http://www.unicef.org/
 
-* [The client brief](../APromiseRenewed_Brief_March2015.pdf)
+* [The client brief](APromiseRenewed_Brief_March2015.pdf)
 * Their data sites: http://data.unicef.org/index.php, http://mics.unicef.org
 
 Other resources on child mortality:
@@ -52,24 +50,6 @@ Other resources on child mortality:
 Grading based on weekly homeworks (50%) and a final project (50%) that uses many of the techniques in a storytelling project using the client data (supplemented as you like).  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
 
 Primary emphasis is on end user experience and data honesty; secondary consideration will be good coding practices.
-
-### 5. Planned TOC (Subject to Change/Update)
-
-* [Week1](Week1): Intro to Tools, Client Project, CSVs
-* [Week2](Week2): Loading CSV Data, Highcharts
-* [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
-* [Week4](Week4): SVG and D3 bar charts
-* [Week5](Week5): Tooltips and Events
-* [Week6](Week6): (Crowded) Linecharts and Scatterplots; Voronoi; 
-* [Week7](Week7): Animation
-* [Week8](Week8): Small Multiples
-* [Week9](Week9):  Cross-Linking and Brushing
-* [Week10](Week10): Storytelling Techniques: Steppers
-* [Week11](Week11): Storytelling Techniques: Scrollytelling
-* [Week12](Week12): APIs, Ajax, Servers
-* [Week13](Week13): Class requests (Maybe Maps)
-* [Week14](Week14): Project & Overflow
-* [Week15](Week15): Project & Overflow
 
 
 ## D3 Books and Tutorial Materials

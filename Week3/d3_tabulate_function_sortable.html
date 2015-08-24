@@ -16,6 +16,8 @@
 
 		<h1>Loading CSV and making a table!</h1>
 		<p>This version uses a D3 function and then a jquery plugin to add sorting.</p>
+		<p>This table shows regional access to improved water over 15 years. </p>
+    <p>Source: data.unicef.org </p>
 		<div id="table"></div>
 
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
@@ -60,6 +62,7 @@
 				d3.selectAll("th")
 					.data(["string", "int", "int", "int"])
 					.attr("data-sort", function(d) {return d;});
+
 
 				// Now that the table exists - we can use it with JQuery functions!
 				$("table").stupidtable();
