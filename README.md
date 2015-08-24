@@ -26,7 +26,7 @@ Subject to change!
 * [Week15](Week15): Project & Overflow
 
 
-### 2. Programming Techniques
+### 2. Programming Techniques and Tools
 
 * Javascript and useful libraries like JQuery, lowdash
 * Good practices with D3
@@ -75,13 +75,15 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345
 
 ## JS Refreshers
 
-* https://www.javascript.com/resources.
+* These books on HTML/CSS and JS/JQuery are good: http://www.amazon.com/Web-Design-HTML-JavaScript-jQuery/dp/1118907442/ref=sr_1_1?ie=UTF8&qid=1440438330&sr=8-1&keywords=jon+duckett
 
-* http://learnxinyminutes.com/docs/javascript/.
+* A short recap: http://learnxinyminutes.com/docs/javascript/
 
 * A super simple intro with gif demos is JS For Cats: http://jsforcats.com/
 
-* Not D3, but useful for your code style: **[Airbnb JS Style Guide](https://github.com/airbnb/javascript/tree/master/es5)**
+* Useful for your code style: **[Airbnb JS Style Guide](https://github.com/airbnb/javascript/tree/master/es5)**
+
+* More online courses: https://www.javascript.com/resources.
 
 
 ## Resources for Vis Examples

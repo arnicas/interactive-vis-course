@@ -38,19 +38,19 @@ console.log("Welcome to the problems in Javascript that you should fix.);
 
 var mydata = [
   {
-    "Name": "Alice",
-    "Experience": 20,
-    "Title": "Data Journalist"
+    Name: "Alice",
+    Experience: 20,
+    Title: "Data Journalist"
   },
   {
-    "Name": "Bob",
-    "Experience": "10",
-    "Title": "Associate Editor"
+    Name: "Bob",
+    Experience: "10",
+    Title: "Associate Editor"
   },
   {
-    "Name": "Carmen",
-    "Experience": NaN,
-    "Title": "Senior Editor"
+    Name: "Carmen",
+    Experience: NaN,
+    Title: "Senior Editor"
   }
 ];
 
@@ -78,6 +78,16 @@ console.log("Your page should now display the last h2 element...");
 var child = document.createElement("h2");
 child.innerHTML = "You did it!";
 document.getElementById("content").appendChild(child);
+
+// Extra credit (10pt):
+
+// Create another list of data objects expressing these estimates from 2014:
+// Florida's population is 19,893,297, and it has 27 seats in the US House of Reps.
+// California's population is 38,802,500, and it has 53 seats in the US House.
+// Texas's pop is 26,956,958, and it has 36 seats in the US House.
+//
+// Create a function that calculates the population per house seat for any object.
+// Console.log the output for all 3 states.
 
 </script>
 </html>
