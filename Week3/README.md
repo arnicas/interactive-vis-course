@@ -125,9 +125,9 @@ Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color ran
 
 **Homework:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop. Send me the gist, "Week 3: P's the D3 Way." (10pt)
 
-**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT) d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good. Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc. (25pts)
+**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT, 5pt) using d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good. Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc. (25pts, extra credit 5pt)  Send me the gist, "Week 3: Basic Table."
 
-**Homework**: Add a color heatmap to your table. (20pts)
+**Homework**: Add a color heatmap to your table. (20pts) Extra credit (10pt): Do it on a version with a default sort order that's interesting and make the table sortable using the jquery plugin.  Be sure to identify data source on the page! Gist: "Week 3: Heatmap table"
 
-**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Send it to me as "Week3: How do I do this."  I'll try to find out for you! (5pt)
+**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Send it to me as "Week 3: How do I do this."  I'll try to find out for you! (5pt)
 
