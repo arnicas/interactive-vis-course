@@ -11,7 +11,6 @@ Discuss issues we had with the homeworks.
 It's quite common to do things to your data right after you load it.
 
 * [d3_process_data.html](d3_process_data.html)
-
 * [d3_new_obj_data.html](d3_new_obj_data.html)
 
 For some other utility functions to make working with data easier, I recommend lodash.js: https://lodash.com/docs.
@@ -30,7 +29,8 @@ Dates should be turned into Javascript date objects.  D3 has tools for this.
 
 * How selections work demo: selectAll vs. select: http://prcweb.co.uk/lab/selection/
 
-* Overview of D3 key concepts by Mike Bostock: http://d3js.org/ (scroll down under graphic)
+* [Interactive Data Visualization for the Web (IDVW) Chapter 5](http://chimera.labs.oreilly.com/books/1230000000345/ch05.html) introducing D3 binding and loading data.
+
 * Three Little Circles, By Mike Bostock: http://bost.ocks.org/mike/circles/
 * How Selections Work in more detail: http://bost.ocks.org/mike/selection/
 * [D3 Data Binding by Kristw](http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
