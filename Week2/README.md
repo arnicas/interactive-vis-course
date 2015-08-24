@@ -42,15 +42,16 @@ Have a look at this on wide vs long data: https://en.wikipedia.org/wiki/Wide_and
 
 **Homework**: Make a line chart or bar chart with your data in High Charts using their tutorial or any of the examples. Check it in as a gist and send me the link to the gist.
 
-## Very Simple D3 Intro:
+## Loading Data, and Very Simple D3 Intro
 
-Read in data with D3 and verify it's there in the console: [d3_load_csv_json.html](d3_load_csv_json.html).
+Read in data with D3 and verify it's there in the console: [d3_load_csv_json.html](d3_load_csv_json.html).  JSON objects (javascript object notation) should be there for each row of your data set.
 
 Let's look at [d3_simple_append.html](d3_simple_append.html) and how that works.
 
 Create <p> tags for each row of your data, using the template in the [create_p_from_data.html](create_p_from_data.html) file.
 
-* Here is the Jquery doc on append, if you want it: http://api.jquery.com/append/
+* Here is the JQuery doc on append, if you want it: http://api.jquery.com/append/
+* A [video from Scott Murray explaining d3.csv loading of objects](https://www.youtube.com/watch?v=KqEm-3tofBA&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F&index=6)
 
 
 ### Homeworks

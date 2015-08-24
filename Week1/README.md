@@ -45,7 +45,7 @@ I recommend you clone my repo, so you can repull it as I add stuff. You will do 
 
 #### Gists
 
-You'll be doing homework in gists.  This makes it easier for me to review and check it and find issues. Also, the bl.ocks.org site makes things easy for visual display of gists.  See: http://bl.ocks.org/
+You'll be doing homework in gists.  This makes it easier for me to review and check it and find issues. Also, the bl.ocks.org site makes things easy for visual display of gists.  See: http://bl.ocks.org/.
 
 Make a directory for your files for a gist and upload those by hand from the web page, or using the command line tool gistup. If you use the command line, make a directory for each gist, NOT INSIDE THE CLASS REPO YOU CLONED. (It can't be inside another repo.)
 
@@ -53,6 +53,8 @@ Make a directory for your files for a gist and upload those by hand from the web
 * And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the `<script>` tag, you want to reference: `<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>` instead of a local path.
 
 You can see all your gists by looking here - where you fill in your own user name where mine is: `https://gist.github.com/arnicas`. If you want to edit or delete it, click on the header for one from the list.
+
+* Optional: Watch [this video](https://www.youtube.com/watch?v=4WteFeHzkNQ&feature=youtu.be&list=PL0tDk-f4v1ujDIGTpXjsTxCnMdR5JBGyQ) from Scott Murray on using gists - but when you upload files (like your CSV), DON'T copy and paste it into a file -- you want to actually upload the CSV file.  (You won't be following his directions for his homework, so you can stop there.)
 
 
 ### Review of HTML/CSS:
@@ -72,6 +74,8 @@ A super simple intro with gif demos is JS For Cats: http://jsforcats.com/
 You should review everything in it except for the last part on callbacks now.
 
 We'll play with [files/console_javascript.html](files/console_javascript.html) now.
+
+* Optional [video by Scott Murray](https://www.youtube.com/watch?v=3g1061kFrCs&index=4&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F) reviewing some Javascript concepts.
 
 **Homework:** Fix js_errors.html so it displays correctly.  Send me a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, js errors".  If you can't do it all, send me as far as you got.
 
@@ -98,5 +102,3 @@ Readings:
 **Homework:** fix js_errors.html so it displays correctly.  Send me a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, js errors".  If you can't do it all, send me as far as you got.
 
 **Homework**: Download a UNICEF data set and format in Excel for use in visualization.  Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.'
-
-
