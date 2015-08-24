@@ -14,10 +14,10 @@ It's quite common to do things to your data right after you load it.
 * [d3_process_data.html](d3_process_data.html)
 * [d3_new_obj_data.html](d3_new_obj_data.html)
 
-For some other utility functions to make working with data easier, I recommend lodash.js: https://lodash.com/docs.
+Very useful ways to iterate through data include `dataset.forEach(function (d,i) {...})` and map: `dataset.map(function (d,i) {...})`.  Have a look at http://learnjsdata.com/iterate_data.html.  For some other utility functions to make working with data easier, I recommend lodash.js: https://lodash.com/docs.
 
 
-###Dates in Your Data**:
+###Dates in Your Data
 
 Dates should be turned into Javascript date objects.  D3 has tools for this. A lot of the data we will work with from UNICEF includes dates (years, anyway).
 
@@ -57,11 +57,7 @@ In increasing order of complexity:
     * How selections work demo: selectAll vs. select: http://prcweb.co.uk/lab/selection/
 * d3_tabulate_function.html
 * d3_tabulate_function_sortable.html - using a JQuery function with D3!
-
 * A more advanced approach by Gregor Aisch: https://vis4.net/blog/posts/making-html-tables-in-d3-doesnt-need-to-be-a-pain/
-
-
-## An Aside on Useful Javascript Techniques
 
 Useful javascript for sorting, by the way:
 
@@ -71,7 +67,7 @@ data.sort(function(a,b) {
 });
 ````
 
-Very useful ways to iterate through data include `dataset.forEach(function (d,i) {...})` and map: `dataset.map(function (d,i) {...})`.  Have a look at http://learnjsdata.com/iterate_data.html.
+
 
 
 ## Examples of Interactive Tables
