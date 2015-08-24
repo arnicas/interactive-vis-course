@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- This was one of Scott Murray's Knight D3 course files, modified a bit. -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -19,8 +18,11 @@
 			var total1990 = 0;
 			var total2015 = 0;
 
-			d3.csv("data/water_improvement_data.csv", function(data) {
+			d3.csv("data/water_improvement_data.csv", function(error, data) {
 
+				if (error) {
+					console.log("Had an error loading file.");
+				}
 				// let's do things to the data here.  This is VERY COMMON in d3 code.
 
 				// Your arguments for forEach are the item and it's number in the array:

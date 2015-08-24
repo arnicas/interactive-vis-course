@@ -1,9 +1,10 @@
-##Week 3
+##Week 3: Data Loading, Tables
 
 
 ##Homework Review
 
-Discuss issues we had with the homeworks.
+Discuss issues we had with the homeworks, High Charts, and/or data loading.
+How about the readings?
 
 
 ## Data Processing on Load
@@ -16,35 +17,46 @@ It's quite common to do things to your data right after you load it.
 For some other utility functions to make working with data easier, I recommend lodash.js: https://lodash.com/docs.
 
 
-**Dates in Your Data**:
+###Dates in Your Data**:
 
-Dates should be turned into Javascript date objects.  D3 has tools for this.
+Dates should be turned into Javascript date objects.  D3 has tools for this. A lot of the data we will work with from UNICEF includes dates (years, anyway).
 
 * Dates example: [d3_process_data_dates.html](d3_process_data_dates.html)
 * For input date handling, see: http://learnjsdata.com/time.html
 * Help with format strings from @zanarmstrong: http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95
 
 
-### Selections and Data Binding in D3:
+## Selections and Data Binding in D3
 
-* How selections work demo: selectAll vs. select: http://prcweb.co.uk/lab/selection/
+To do the "right" thing with data in D3, the basic concept required is binding data to DOM elements.
+
+Readings:
 
 * [Interactive Data Visualization for the Web (IDVW) Chapter 5](http://chimera.labs.oreilly.com/books/1230000000345/ch05.html) introducing D3 binding and loading data.
-
 * Three Little Circles, By Mike Bostock: http://bost.ocks.org/mike/circles/
+
+If You Remain Confused:
+
 * How Selections Work in more detail: http://bost.ocks.org/mike/selection/
 * [D3 Data Binding by Kristw](http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
-* Thinking with Joins, by Mike Bostock: http://bost.ocks.org/mike/join/
+* Thinking with Joins: by Mike Bostock: http://bost.ocks.org/mike/join/
 * Another intro article: http://code.hazzens.com/d3tut/lesson_1.html
-* Another review of selections: http://www.jeromecukier.net/blog/2013/03/05/d3-tutorial-at-strata-redux/
+* Another review of selections: http://www.jeromecukier.net/blog/2013/03/05/d3-tutorial-at-strata-redux
 
 
+##Tables as an Intro to Deep D3 Thinking
 
-##Tables as an Intro to D3 Thinking
+We're starting with tables, because in my opinion they are an often overlooked part of the interactive vis landscape, and one of my favorites. Building them illustrate some key aspects of D3 DOM manipulation, they allow us to use JQuery and D3 together if we want; they transition nicely to heatmaps, an excellent visual display method for some types of data.
 
-We're starting with tables, because in my opinion they are an often overlooked part of the interactive vis landscape, and one of my favorites. Building them illustrate some key aspects of D3 DOM manipulation, they allow us to use JQuery and D3 together if we want, and they are closely related to heatmaps, an excellent visual display method for some types of data.
+In increasing order of complexity:
 
-d3_table.html
+* d3_table.html
+    * You should review: http://bost.ocks.org/mike/nest/
+    * How selections work demo: selectAll vs. select: http://prcweb.co.uk/lab/selection/
+* d3_tabulate_function.html
+* d3_tabulate_function_sortable.html - using a JQuery function with D3!
+
+* A more advanced approach by Gregor Aisch: https://vis4.net/blog/posts/making-html-tables-in-d3-doesnt-need-to-be-a-pain/
 
 Useful javascript for sorting, by the way:
 
@@ -53,19 +65,6 @@ data.sort(function(a,b) {
             return b.difference-a.difference;
 });
 ````
-
-
-**Homework:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop.
-
-**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT) d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good. Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc.
-
-Examples:
-
-* Understanding Selections: http://prcweb.co.uk/lab/selection/
-* Mike's article on d3 nested selections: http://bost.ocks.org/mike/nest/
-
-
-* Gregor Aisch's more advanced maneuvers: https://vis4.net/blog/posts/making-html-tables-in-d3-doesnt-need-to-be-a-pain/
 
 
 ## More On Interactive Tables
@@ -110,8 +109,20 @@ Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color ran
 
 * Debugging with Dev Tools and D3: https://egghead.io/lessons/debugging-with-dev-tools
 
+
+## Readings
+
+* [Interactive Data Visualization for the Web (IDVW) Chapter 5](http://chimera.labs.oreilly.com/books/1230000000345/ch05.html) introducing D3 binding and loading data.
+* Three Little Circles, By Mike Bostock: http://bost.ocks.org/mike/circles/
+* Nested Selections and Tables: http://bost.ocks.org/mike/nest/
+
+
 ## Homeworks
 
+
+**Homework:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop.
+
+**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT) d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good. Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc.
 
 **Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Send it to me as "Week2: How do I do this."  I'll try to find out for you!
 

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- This was one of Scott Murray's Knight D3 course files, modified a bit. -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -9,7 +8,7 @@
 	<body>
 
 		<h1>Loading CSV and processing the data into new objects.</h1>
-		<p>Not much to see here; try looking in the console!</p>
+		<p>Look in the console!</p>
 		<p>If you open the console after loading, you'll need to reload the page.</p>
 
 		<script type="text/javascript">
@@ -19,7 +18,11 @@
 			var total1990 = 0;
 			var total2015 = 0;
 
-			d3.csv("data/water_improvement_data.csv", function(data) {
+			d3.csv("data/water_improvement_data.csv", function(error, data) {
+
+				if (error) {
+					console.log("Had an error loading file.");
+				}
 
 				// Here we set up an array that's empty.  We will put objects into it.
 				var myobjs = [];

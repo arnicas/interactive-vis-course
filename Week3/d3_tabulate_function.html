@@ -7,7 +7,8 @@
 	</head>
 	<body>
 
-		<h1>Loading CSV and making a table!</h1>
+		<h1>Loading CSV and making a table with a function!</h1>
+		<p>Source: WHO/UNICEF (2015) Progress on Sanitation and Drinking Water: 2015 Update</p>
 		<div id="table"></div>
 
 	</body>
@@ -21,7 +22,11 @@
 
 			//Load in contents of CSV file, and do things to the data.
 
-			d3.csv("data/water_improvement_data.csv", function(data) {
+			d3.csv("data/water_improvement_data.csv", function(error, data) {
+
+				if (error) {
+					console.log("Had an error loading file.");
+				}
 
 				data.forEach(function(d, i){
 

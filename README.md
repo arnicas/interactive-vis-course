@@ -42,6 +42,7 @@ Subject to change!
 
 Other resources on child mortality:
 
+* World Health Org (WHO): http://www.who.int/research/en/
 * Max Roser: http://ourworldindata.org/data/health/maternal-mortality/
 * http://childmortality.org/ - UN Inter-agency Group for Child Mortality Estimation (IGME), of which UNICEF is a member (new data coming in September)
 

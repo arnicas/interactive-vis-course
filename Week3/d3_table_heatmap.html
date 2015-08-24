@@ -17,7 +17,7 @@
 
 		<h1>My Table with Heatmap!</h1>
 		<p>This table shows regional access to improved water over 15 years. </p>
-		<p>Source: data.unicef.org </p>
+		<p>Source: WHO/UNICEF (2015) Progress on Sanitation and Drinking Water: 2015 Update</p>
 		<div id="table"></div>
 
 	</body>
@@ -33,7 +33,11 @@
 
 			//Load in contents of CSV file, and do things to the data.
 
-			d3.csv("data/water_improvement_data.csv", function(myData) {
+			d3.csv("data/water_improvement_data.csv", function(error, myData) {
+
+				if (error) {
+					console.log("Had an error loading file.");
+				}
 
 				// We'll be using simpler data as values, not objects.
 				var myArray = [];

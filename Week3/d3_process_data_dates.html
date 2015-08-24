@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- This was one of Scott Murray's Knight D3 course files, modified a bit. -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -16,7 +15,11 @@
 
 			//Load in contents of CSV file, and do things to the data.
 
-			d3.csv("data/Angola_water_access.csv", function(data) {
+			d3.csv("data/Angola_water_access.csv", function(error, data) {
+
+				if (error) {
+					console.log("Had an error loading file.");
+				}
 
 				// let's do things to the data here.  This is VERY COMMON in d3 code.
 

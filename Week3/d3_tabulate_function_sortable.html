@@ -17,7 +17,7 @@
 		<h1>Loading CSV and making a table!</h1>
 		<p>This version uses a D3 function and then a jquery plugin to add sorting.</p>
 		<p>This table shows regional access to improved water over 15 years. </p>
-    <p>Source: data.unicef.org </p>
+    <p>Source: WHO/UNICEF (2015) Progress on Sanitation and Drinking Water: 2015 Update</p>
 		<div id="table"></div>
 
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
@@ -31,7 +31,11 @@
 
 			//Load in contents of CSV file, and do things to the data.
 
-			d3.csv("data/water_improvement_data.csv", function(data) {
+			d3.csv("data/water_improvement_data.csv", function(error, data) {
+
+				if (error) {
+					console.log("Had an error loading file.");
+				}
 
 				data.forEach(function(d, i){
 
