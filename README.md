@@ -15,7 +15,7 @@ Subject to change!
 * [Week1](Week1): Intro to Tools, Client Project, CSVs
 * [Week2](Week2): Loading CSV Data, Highcharts
 * [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
-* [Week4](Week4): SVG and D3 bar charts
+* [Week4](Week4): SVG and D3 bar/line charts
 * [Week5](Week5): Tooltips and Events
 * [Week6](Week6): (Crowded) Linecharts and Scatterplots; Voronoi
 * [Week7](Week7): Animation
@@ -68,7 +68,7 @@ Primary emphasis is on end user experience and data honesty; secondary considera
 ## D3 Books and Tutorial Materials
 
 * **Interactive Data Visualization for the Web** ("IDVW"), Scott Murray’s book: http://alignedleft.com/work/d3-book
-Online version: http://chimera.labs.oreilly.com/books/1230000000345.  *This is the book I'll assign most intro D3 readings from.*
+Online version: http://chimera.labs.oreilly.com/books/1230000000345.  [Code samples here](https://github.com/alignedleft/d3-book). *This is the book I'll assign most intro D3 readings from.*
 
 * **D3 Tips and Tricks** book by Malcolm MacLean, and http://www.d3noob.org/
 
@@ -87,7 +87,7 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345.  *This is t
 * **D3 Newbie FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
 
 * Videos:
-    * Knight Center D3 Course video playlists: I'll recommend some of Scott Murray's videos as backup or weekend viewing. (They don't seem to be well-indexed on YouTube, but start [here](https://www.youtube.com/user/KnightCenterMOOC/playlists).
+    * Knight Center D3 Course video playlists: I'll recommend some of Scott Murray's videos as backup or weekend viewing. (They don't seem to be well-indexed on YouTube, but start [here](https://www.youtube.com/user/KnightCenterMOOC/playlists).  The code examples are [here](https://github.com/alignedleft/data-vis-d3).
     * These intro videos seem good too: https://www.youtube.com/user/d3Vienno/videos
 
 

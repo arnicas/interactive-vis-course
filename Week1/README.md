@@ -43,6 +43,8 @@ Make an account, if you haven't.
 
 I recommend you clone my repo, so you can repull it as I add stuff. You will do `git clone [copied path]` (https is fine for now).  I'll show you in class.
 
+Every week you should do `git pull` to get my updates. Do this from inside the directory made by cloning.  **If you want to make changes to class files, save them with new names.**
+
 ### Gists
 
 You'll be doing homework in gists.  This makes it easier for me to review and check it and find issues. Also, the bl.ocks.org site makes things easy for visual display of gists.  See: http://bl.ocks.org/.
