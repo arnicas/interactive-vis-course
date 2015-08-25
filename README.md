@@ -38,7 +38,11 @@ Subject to change!
 ### 3. A Client Project: UNICEF: http://www.unicef.org/
 
 * [The client brief](APromiseRenewed_Brief_March2015.pdf)
+* The 2014 Key Findings Report on http://www.apromiserenewed.org/: [pdf](http://www.apromiserenewed.org/wp-content/uploads/2015/07/A-Promise-Renewed-2014-Key-Findings.pdf) (plus other publications that may be useful!)
 * Their data sites: http://data.unicef.org/index.php, http://mics.unicef.org
+
+* Note: [UNICEF Style Guide](UNICEF Brand Toolkit ENG Sept 2012.pdf) - important
+
 
 Other resources on child mortality:
 

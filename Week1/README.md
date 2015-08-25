@@ -7,7 +7,7 @@ Lots of getting set up and review exercises.
 
 Review repo's [README](../README.md).
 
-**Homework Reading**: The [client brief](../APromiseRenewed_Brief_March2015.pdf). Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
+ Readings: The [client brief](../APromiseRenewed_Brief_March2015.pdf). And their 1024 Key Findings Report. Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
 
 ## Data Formatting in Excel
 
@@ -63,7 +63,7 @@ Have a look at this fun project, Tufte CSS: http://www.daveliepmann.com/tufte-cs
 
 A refresher on HTML and CSS is necessary -- you can't afford to NOT be good at CSS with interactive graphics.  It's as important as Javascript. There's a refresher in Ch 3 of IDVW.
 
-**Homework**: Style [this page](wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Make a gist (index.html for the file name!) and send it to me.  You can keep the styles in the page or in a file you load. Send me the gist link, subject 'Weeek1: Style article.'
+**Homework**: Style [this page](wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Make a gist (index.html for the file name!) and send it to me.  You can keep the styles in the page or in a file you load. Send me the gist link, subject "Weeek1: Style article."
 
 
 ## Javascript Review
@@ -95,7 +95,7 @@ Readings:
 
 * Read Chapter 3 of IDVW: http://chimera.labs.oreilly.com/books/1230000000345/ch02.html. You can stop at the SVG part at the end of chapter 3, for now. (Chapter 2 may be nice background but is optional.)
 
-* [The client brief](../APromiseRenewed_Brief_March2015.pdf): Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
+* [The client brief](../APromiseRenewed_Brief_March2015.pdf) and Key Findings from 2014: Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
 
 * Loading data with D3, at http://learnjsdata.com/read_data.html.
 
