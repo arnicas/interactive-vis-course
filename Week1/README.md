@@ -38,8 +38,6 @@ Github is how you should get and keep the course files up to date.
 Make an account, if you haven't.
 
 * Make sure you have git installed: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-* Read: Gists how-to:  https://help.github.com/articles/creating-gists/
-* Command line tool info (optional): https://github.com/mbostock/gistup
 
 I recommend you clone my repo, so you can repull it as I add stuff. You will do `git clone [copied path]` (https is fine for now).  I'll show you in class.
 
@@ -51,12 +49,18 @@ You'll be doing homework in gists.  This makes it easier for me to review and ch
 
 Make a directory for your files for a gist and upload those by hand from the web page, or using the command line tool gistup. If you use the command line, make a directory for each gist, NOT INSIDE THE CLASS REPO YOU CLONED. (It can't be inside another repo.)
 
-* If you want your d3 visual code to show up in bl.ocks.org, you need to name your html file index.html.
-* And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the `<script>` tag, you want to reference: `<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>` instead of a local path.
+Resources and tips on using gists:
+
+* Read: Gists how-to:  https://help.github.com/articles/creating-gists/
+* Command line tool info (optional): https://github.com/mbostock/gistup
+* Optional: Watch [this video](https://www.youtube.com/watch?v=4WteFeHzkNQ&feature=youtu.be&list=PL0tDk-f4v1ujDIGTpXjsTxCnMdR5JBGyQ) from Scott Murray on using gists - but when you upload files (like your CSV), DON'T copy and paste it into a file -- you want to actually upload the CSV file.  (You won't be following his directions for his homework, so you can stop there.)
 
 You can see all your gists by looking here - where you fill in your own user name where mine is: https://gist.github.com/arnicas. If you want to edit or delete it, click on the header for one from the list.
 
-* Optional: Watch [this video](https://www.youtube.com/watch?v=4WteFeHzkNQ&feature=youtu.be&list=PL0tDk-f4v1ujDIGTpXjsTxCnMdR5JBGyQ) from Scott Murray on using gists - but when you upload files (like your CSV), DON'T copy and paste it into a file -- you want to actually upload the CSV file.  (You won't be following his directions for his homework, so you can stop there.)
+**Important Tips**:
+
+* If you want your d3 visual code to show up in bl.ocks.org, you need to name your html file index.html.
+* And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the `<script>` tag, you want to reference: `<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>` instead of a local path.
 
 
 ## Review of HTML/CSS
