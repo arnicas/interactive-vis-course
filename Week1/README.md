@@ -38,6 +38,7 @@ Github is how you should get and keep the course files up to date.
 Make an account, if you haven't.
 
 * Make sure you have git installed: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+* If you are new to using the command line, read up here: http://cli.learncodethehardway.org/book/ (thanks Luis)
 
 I recommend you clone my repo, so you can repull it as I add stuff. You will do `git clone [copied path]` (https is fine for now).  I'll show you in class.
 
@@ -47,12 +48,12 @@ Every week you should do `git pull` to get my updates. Do this from inside the d
 
 You'll be doing homework in gists.  This makes it easier for me to review and check it and find issues. Also, the bl.ocks.org site makes things easy for visual display of gists.  See: http://bl.ocks.org/.
 
-Make a directory for your files for a gist and upload those by hand from the web page, or using the command line tool gistup. If you use the command line, make a directory for each gist, NOT INSIDE THE CLASS REPO YOU CLONED. (It can't be inside another repo.)
+Make a directory for your files for a gist **NOT INSIDE THE COURSE FILES REPO DIRECTORY** and upload those by hand from the web page, or using the command line tool gistup. If you use the command line, make a directory for each gist, NOT INSIDE THE CLASS REPO YOU CLONED. (Your gists can't be inside another repo.)
 
 Resources and tips on using gists:
 
 * Read: Gists how-to:  https://help.github.com/articles/creating-gists/
-* Command line tool info (optional): https://github.com/mbostock/gistup
+* Command line gist tool info (optional): https://github.com/mbostock/gistup
 * Optional: Watch [this video](https://www.youtube.com/watch?v=4WteFeHzkNQ&feature=youtu.be&list=PL0tDk-f4v1ujDIGTpXjsTxCnMdR5JBGyQ) from Scott Murray on using gists - but when you upload files (like your CSV), DON'T copy and paste it into a file -- you want to actually upload the CSV file.  (You won't be following his directions for his homework, so you can stop there.)
 
 You can see all your gists by looking here - where you fill in your own user name where mine is: https://gist.github.com/arnicas. If you want to edit or delete it, click on the header for one from the list.

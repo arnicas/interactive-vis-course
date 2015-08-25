@@ -34,7 +34,7 @@ Subject to change!
 * Javascript and useful libraries like JQuery, lowdash
 * Good practices with D3
 * Charting libs like High Charts, D3, libs on top of D3
-* GitHub use
+* GitHub use (and some command line stuff)
 * Debugging how-to's
 
 
