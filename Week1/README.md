@@ -62,6 +62,7 @@ You can see all your gists by looking here - where you fill in your own user nam
 * If you want your d3 visual code to show up in bl.ocks.org, you need to name your html file index.html.
 * And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the `<script>` tag, you want to reference: `<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>` instead of a local path.
 
+*Demo making a gist for a CSV file...*
 
 ## Review of HTML/CSS
 
