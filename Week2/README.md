@@ -8,7 +8,7 @@
 
 ## Client Project Brief
 
-What problems did we find of interest in the brief?  Let's discuss.
+What problems did we find of interest in the brief and other data sources?  Let's discuss.
 
 ## Intro to High Charts
 

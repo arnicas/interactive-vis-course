@@ -7,7 +7,13 @@ Lots of getting set up and review exercises.
 
 Review repo's [README](../README.md).
 
- Readings: The [client brief](../APromiseRenewed_Brief_March2015.pdf). And their 1024 Key Findings Report. Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
+## The Client Project: UNICEF (Child and Maternal Mortality)
+
+ * Readings: The [client brief](../APromiseRenewed_Brief_March2015.pdf). And their 1024 Key Findings Report. Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
+
+* A storytelling interactive by JanWillem Tulp: http://www.apromiserenewed.org/infographics/
+ * Play with their Dashboard for more data insights and questions: http://www.apromiserenewed.org/dashboard/
+
 
 ## Data Formatting in Excel
 
@@ -15,7 +21,9 @@ Review repo's [README](../README.md).
 
 We'll go through a download and csv formatting example in class.  You'll need to do the same, so take notes!
 
-**Homework**: Download a data set from data.unicef.org and format a CSV in Excel for use in visualization. Try to mimic the simple style in my csv examples (see [data](data)). See below for how to send me the result in a gist.
+Let's look at the infant_deaths data set from WHO first. (Walkthrough how I formatted it for use in javascript.)
+
+**Homework**: See below.
 
 
 ## Your Local Server
@@ -63,7 +71,7 @@ Have a look at this fun project, Tufte CSS: http://www.daveliepmann.com/tufte-cs
 
 A refresher on HTML and CSS is necessary -- you can't afford to NOT be good at CSS with interactive graphics.  It's as important as Javascript. There's a refresher in Ch 3 of IDVW.
 
-**Homework**: Style [this page](wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Make a gist (index.html for the file name!) and send it to me.  You can keep the styles in the page or in a file you load. Send me the gist link, subject "Weeek1: Style article."
+**Homework**: See below.
 
 
 ## Javascript Review
@@ -73,11 +81,11 @@ I sent you some stuff over the summer, and here is a list of teaching references
 A super simple intro with gif demos is JS For Cats: http://jsforcats.com/
 You should review everything in it except for the last part on callbacks now.
 
-We'll play with [console_javascript.html](console_javascript.html) now.
+If we have time, we'll play with [console_javascript.html](console_javascript.html) now.
 
 * Optional [video by Scott Murray](https://www.youtube.com/watch?v=3g1061kFrCs&index=4&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F) reviewing some Javascript concepts.
 
-**Homework:** Fix js_errors.html so it displays correctly.  Send me a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, js errors".  If you can't do it all, send me as far as you got.
+**Homework:** See below.
 
 
 ## Loading Data with JS/D3
@@ -103,4 +111,4 @@ Readings:
 
 **Homework:** Fix [js_errors.html](js_errors.html) so it displays correctly.  Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, JS errors".  If you can't do it all, send me as far as you got. (20pt, Extra credit 10pt see end of the file. Partial credit given!)
 
-**Homework**: Download a UNICEF data set and format in Excel for use in visualization.  Be sure you have at least 2 numeric data columns in it.  Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.' (10pt, Extra credit: Add a calculated value column, 5pt)
+**Homework**: Download a UNICEF data set (or related one on child/maternal mortality) of interest to you and format in Excel for use in visualization. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.' (10pt, Extra credit: Add a calculated value column, 5pt)

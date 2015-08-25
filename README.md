@@ -2,6 +2,9 @@
 
 Repo for U of Miami course on interactive vis by Lynn Cherny, fall 2015.
 
+    Office Hours: Wolfson 1020A, M & Th 1.30-3.
+    Emails for homework: arnicas@gmail.com
+
 
 ## What the Course Covers
 
@@ -49,6 +52,7 @@ Other resources on child mortality:
 * World Health Org (WHO): http://www.who.int/research/en/
 * Max Roser: http://ourworldindata.org/data/health/maternal-mortality/
 * http://childmortality.org/ - UN Inter-agency Group for Child Mortality Estimation (IGME), of which UNICEF is a member (new data coming in September)
+* More in my delicious links: https://delicious.com/arnicas/unicef
 
 ### 4. Evaluation
 
