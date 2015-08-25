@@ -110,3 +110,5 @@ Readings:
 **Homework:** Fix [js_errors.html](js_errors.html) so it displays correctly.  Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, JS errors".  If you can't do it all, send me as far as you got. (20pt, Extra credit 10pt see end of the file. Partial credit given!)
 
 **Homework**: Download a UNICEF data set (or related one on child/maternal mortality) of interest to you and format in Excel for use in visualization. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.' (10pt, Extra credit: Add a calculated value column, 5pt)
+
+**Homework**: Set up your server, github accounts, etc!

@@ -62,6 +62,8 @@ Primary emphasis is on end user experience and data honesty; secondary considera
 
 **Extra Credit**: Grad students must do the extra credit (unless noted otherwise). Anyone else can do them for extra credit!  I'd suggest doing as many as you can.
 
+**Due Dates**: Due by 5pm on Monday before class day, unless I decide otherwise... You will be submitting links by email (arnicas@gmail.com).
+
 
 ## D3 Books and Tutorial Materials
 
