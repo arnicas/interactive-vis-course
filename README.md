@@ -60,27 +60,30 @@ Grading based on weekly homeworks (50%) and a final project (50%) that uses many
 
 Primary emphasis is on end user experience and data honesty; secondary consideration will be good coding practices.
 
+**Extra Credit**: Grad students must do the extra credit (unless noted otherwise). Anyone else can do them for extra credit!  I'd suggest doing as many as you can.
+
 
 ## D3 Books and Tutorial Materials
 
 * **Interactive Data Visualization for the Web** ("IDVW"), Scott Murray’s book: http://alignedleft.com/work/d3-book
-Online version: http://chimera.labs.oreilly.com/books/1230000000345
+Online version: http://chimera.labs.oreilly.com/books/1230000000345.  *This is the book I'll assign most intro D3 readings from.*
 
 * **D3 Tips and Tricks** book by Malcolm MacLean, and http://www.d3noob.org/
 
-* **D3.js in Action** ("D3IA"), by Elijah Meeks.  If you want ebook, order via Manning: http://www.manning.com/
+* **D3.js in Action** ("D3IA"), by Elijah Meeks.  If you want ebook, order via Manning: http://www.manning.com/.  This is a more advanced book than Scott's, and covers many D3 layouts we won't get to in class.  Recommended for going further.
 
-* **Developing a D3 Edge** by By Chris Viau, Andrew Thornton, Ger Hobbelt, and Roland Dunn: http://bleedingedgepress.com/our-books/developing-a-d3-js-edge/ (intermediate (i.e., more advanced than the ones above)
+* **Developing a D3 Edge** by By Chris Viau, Andrew Thornton, Ger Hobbelt, and Roland Dunn: http://bleedingedgepress.com/our-books/developing-a-d3-js-edge/ (intermediate (i.e., more advanced than the ones above; covers good coding patterns too.)
 
-* Tutorials by **Mike Bostock**, primary author of D3: https://github.com/mbostock/d3/wiki/Tutorials
-
-* **Blocksplorer**: search for code examples in D3 blocks! http://bl.ocksplorer.org/
+* Tutorials by **Mike Bostock**, primary author of D3: https://github.com/mbostock/d3/wiki/Tutorials (and some others listed).
 
 * **Learn JS Data** from Bocoup.com: http://learnjsdata.com/index.html
 
-* Great tips: https://northlandia.wordpress.com/2014/10/23/ten-best-practices-for-coding-with-d3/
+* **Blocksplorer**: search for code examples in D3 blocks! http://bl.ocksplorer.org/
+
+* Great overall tips: https://northlandia.wordpress.com/2014/10/23/ten-best-practices-for-coding-with-d3/
 
 * **D3 Newbie FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
+
 
 ## JS Refreshers
 
