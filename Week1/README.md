@@ -9,10 +9,9 @@ Review repo's [README](../README.md).
 
 ## The Client Project: UNICEF (Child and Maternal Mortality)
 
- * Readings: The [client brief](../APromiseRenewed_Brief_March2015.pdf). And their 1024 Key Findings Report. Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
-
-* A storytelling interactive by JanWillem Tulp: http://www.apromiserenewed.org/infographics/
- * Play with their Dashboard for more data insights and questions: http://www.apromiserenewed.org/dashboard/
+* Readings: The [client brief](../APromiseRenewed_Brief_March2015.pdf). And their 1024 Key Findings Report. Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
+* A storytelling interactive by JanWillem Tulp (http://tulpinteractive.com/): http://www.apromiserenewed.org/infographics/
+* Play with their Dashboard for more data insights and questions: http://www.apromiserenewed.org/dashboard/
 
 
 ## Data Formatting in Excel
@@ -25,18 +24,11 @@ Let's look at the infant_deaths data set from WHO first. (Walkthrough how I form
 
 **Homework**: See below.
 
-
-## Your Local Server
-
-Set up your servers. Depending on time, we'll do it in class. Use this to help: https://github.com/arnicas/d3-faq#running-a-server
-
-
 ## Intro to Chrome Tools, the Console
 
 * View Source. Let's do it. First at childmortality.org...
 * Look at a newspaper site too, and view the styling on an article. You'll need this for a homework project. Remember news online includes newspapers as well as sites like Slate, Buzzfeed, etc.
 * Chrome Tools: Read a bit here about the console and trying stuff in it: http://jsforcats.com/#basics
-
 
 ## Github and Gists
 
@@ -63,6 +55,11 @@ Make a directory for your files for a gist and upload those by hand from the web
 You can see all your gists by looking here - where you fill in your own user name where mine is: https://gist.github.com/arnicas. If you want to edit or delete it, click on the header for one from the list.
 
 * Optional: Watch [this video](https://www.youtube.com/watch?v=4WteFeHzkNQ&feature=youtu.be&list=PL0tDk-f4v1ujDIGTpXjsTxCnMdR5JBGyQ) from Scott Murray on using gists - but when you upload files (like your CSV), DON'T copy and paste it into a file -- you want to actually upload the CSV file.  (You won't be following his directions for his homework, so you can stop there.)
+
+## You and Your Local Server
+
+You need one.  Otherwise Javascript code won't execute on your pages. So
+set up your servers. Depending on time, we'll do it in class. Use this to help: https://github.com/arnicas/d3-faq#running-a-server.
 
 
 ## Review of HTML/CSS

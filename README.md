@@ -82,11 +82,11 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345.  *This is t
 
 * Great overall tips: https://northlandia.wordpress.com/2014/10/23/ten-best-practices-for-coding-with-d3/
 
+* **D3 Newbie FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
+
 * Videos:
     * Knight Center D3 Course video playlists: I'll recommend some of Scott Murray's videos as backup or weekend viewing. (They don't seem to be well-indexed on YouTube, but start [here](https://www.youtube.com/user/KnightCenterMOOC/playlists).
     * These intro videos seem good too: https://www.youtube.com/user/d3Vienno/videos
-
-* **D3 Newbie FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
 
 
 ## JS Refreshers
