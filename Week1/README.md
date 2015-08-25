@@ -56,11 +56,6 @@ You can see all your gists by looking here - where you fill in your own user nam
 
 * Optional: Watch [this video](https://www.youtube.com/watch?v=4WteFeHzkNQ&feature=youtu.be&list=PL0tDk-f4v1ujDIGTpXjsTxCnMdR5JBGyQ) from Scott Murray on using gists - but when you upload files (like your CSV), DON'T copy and paste it into a file -- you want to actually upload the CSV file.  (You won't be following his directions for his homework, so you can stop there.)
 
-## You and Your Local Server
-
-You need one.  Otherwise Javascript code won't execute on your pages. So
-set up your servers. Depending on time, we'll do it in class. Use this to help: https://github.com/arnicas/d3-faq#running-a-server.
-
 
 ## Review of HTML/CSS
 
@@ -90,6 +85,12 @@ If we have time, we'll play with [console_javascript.html](console_javascript.ht
 You will use the data you downloaded and formatted in D3 next week.
 
 **Recommended Reading**: Loading data with D3, at http://learnjsdata.com/read_data.html.
+
+
+## You and Your Local Server
+
+You need one.  Otherwise Javascript code won't execute on your pages. So
+set up your servers. Depending on time, we'll do it in class. Use this to help: https://github.com/arnicas/d3-faq#running-a-server.
 
 
 ## Homeworks Collected Up
