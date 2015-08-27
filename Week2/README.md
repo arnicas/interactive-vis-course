@@ -98,8 +98,8 @@ For your gist: Be sure the html page is called index.html.  Be sure your path to
 
 **Homework**: Reproduce one of the charts you made with Highcharts in another JS charting library. It must have tooltips. Include a "Readme.md" file with your gist that explains what it was like to work with this library in comparison to Highcharts.  Gist link by email: "Week 2: Another JS library."  Be sure to use a CND path to the library again. (12pt)
 
-**Homework**: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, "Week 2: Paragraph Data load.". (15pt)  Name the web page itself index.html so it will work in a blocks example!
+**Homework**: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, "Week 2: Paragraph Data load." (15pt)  *Name the web page itself index.html so it will work in a blocks example!* 
 
-**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Send it to me by email with a link and what you like about it: "Week 3: How do I do this?"  I'll try to find out for you! (5pt)
+**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Remember I gave you resources on the home page of this repo...  Send it to me by email with a link and what you like about it: "Week 3: How do I do this?"  I'll try to find out for you! (5pt)
 
 
