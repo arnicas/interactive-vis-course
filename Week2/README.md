@@ -96,7 +96,7 @@ Points:
 
 For your gist: Be sure the html page is called index.html.  Be sure your path to highcharts is a CDN, not local, link.  Check it in as a gist and send me the link to the gist, "Week2: High Charts."
 
-**Homework**: Reproduce one of the charts you made with Highcharts in another JS charting library. It must have tooltips. Include a "Readme.md" file with your gist that explains what it was like to work with this library in comparison to Highcharts.  Gist link by email: "Week 2: Another JS library."  Be sure to use a CND path to the library again. (12pt)
+**Homework**: Reproduce one of the charts you made with Highcharts in another JS charting library. It must have tooltips. Include a "Readme.md" file with your gist that explains what it was like to work with this library in comparison to Highcharts.  Gist link by email: "Week 2: Another JS library."  Be sure to use a CDN path to the library again. (12pt)
 
 **Homework**: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, "Week 2: Paragraph Data load." (15pt)  *Name the web page itself index.html so it will work in a blocks example!* 
 
