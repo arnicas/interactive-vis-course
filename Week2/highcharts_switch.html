@@ -1,0 +1,423 @@
+
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>Highcharts Extract Example</title>
+
+<!-- Code example for class extracted from http://datatools.urban.org/Features/wealth-inequality-charts/ with code from Tim Meko and Ben Chartoff -->
+
+<style>
+    body {
+        font: 16px/24px'Lato', Helvetica, Helvetica Neue, Arial;
+        width: 90%;
+    }
+    .aside-content {
+        background: #f9f9f9;
+        margin: 20px;
+        width: 600px;
+    }
+    .btn {
+        display: inline;
+        font-size: 14px;
+        padding: 14px;
+        cursor: pointer;
+        border: none;
+        color: white;
+        background-color: #1696d2;
+        display: block;
+        line-height: 12px;
+        text-transform: uppercase;
+        text-align: center;
+        float: left;
+        margin-right: 1px;
+    }
+    .chart {
+        margin: 0 auto;
+        margin-top: 0px;
+        position: relative;
+        width: 600px;
+        height: 70%;
+    }
+    .btn:hover {
+        background-color: #000;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        content: ' ';
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
+    .clearfix {
+        *zoom: 1;
+    }
+    .hide {
+        display: none;
+    }
+    .show {
+        display: block;
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+    <div class='aside-content'>
+        <div id='racial-wealth-gap-mean' class='chart show'></div>
+        <div id='racial-wealth-gap-median' class='chart hide'></div>
+        <div class='btn-group clearfix'>
+            <button id='racegap' class='btn autocompare'>Show Median</button>
+        </div>
+        <p class='chart-notes'><b>Source:</b> Survey of Consumer Finances 1983&ndash;2013. <b>Example Code Source:</b> <a href='http://datatools.urban.org/Features/wealth-inequality-charts/'>Urban Institute</a></p>
+        <p class='chart-notes'><b>Notes:</b> 2013 dollars. Hispanic sample size too small to show. Age is defined as the age of the household head. In 2013, these people were age 62&ndash;70. In 1983, ages 32&ndash;40.</p>
+    </div>
+
+</body>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
+<script type='text/javascript' src='http://code.highcharts.com/highcharts.js'></script>
+
+<script type='text/javascript'>
+
+// style theme
+
+Highcharts.theme = {
+    colors: ['#0096d2', '#00578b', '#fcb918', '#f47d20', '#6d6d6d', '#c6c6c6', '#ec008c',
+      '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+    chart: {
+        backgroundColor: null,
+        style: {
+            fontFamily: 'Lato, sans-serif'
+        },
+        marginTop: 0,
+        marginBottom: 40
+    },
+    title: {
+        style: {
+            fontSize: '18px',
+            color: '#5a5a5a'
+        },
+        align: 'left'
+    },
+    tooltip: {
+        backgroundColor: '#000000',
+        borderWidth: 0,
+        shape: 'square',
+        style: {
+            color: '#ffffff',
+            fontWeight: 'bold'
+        }
+    },
+    subtitle: {
+        align: 'left'
+    },
+    legend: {
+        itemStyle: {
+            fontWeight: 'bold',
+            fontSize: '13px'
+        }
+    },
+    exporting: {
+        enabled: false
+    },
+    credits: {
+        enabled: false
+    },
+    xAxis: {
+        gridLineWidth: 0,
+        gridLineColor: 'rgba(219,219,216,0.5)',
+        labels: {
+            style: {
+                fontSize: '12px'
+            }
+        },
+        tickmarkPlacement: 'on'
+    },
+    yAxis: {
+        minorTickInterval: 'none',
+        gridLineColor: 'rgba(219,219,216,0.5)',
+
+        title: {
+
+        },
+        labels: {
+            style: {
+                fontSize: '12px'
+            }
+        }
+    },
+    plotOptions: {
+        candlestick: {
+            lineColor: '#404048'
+        },
+        area: {
+            fillOpacity: 0.5
+        },
+        series: {
+            marker: {
+                enabled: false,
+                radius: 3,
+                lineWidth: 2,
+                symbol: 'circle',
+                fillColor: '#ffffff',
+                lineColor: null
+            },
+            connectNulls: true
+
+        }
+
+    },
+};
+
+// Apply the theme
+Highcharts.setOptions(Highcharts.theme);
+
+
+$(function() {
+
+    // 2 charts created
+
+        //chart5-mean
+        $('#racial-wealth-gap-mean').highcharts({
+            chart: {
+                marginTop: 100,
+                marginBottom: 40
+
+            },
+            plotOptions: {
+                series: {
+                    marker: {
+                        enabled: true
+                    },
+
+                    dataLabels: {
+                        enabled: false,
+                        align: 'right',
+                        x: 0,
+                        y: -5,
+                        formatter: function () {
+                            if ((this.point.x == this.series.data.length - 1) || (this.point.x == 0)) {
+                                return '$' + Highcharts.numberFormat(this.y, 0, ',');
+                            } else {
+                                return null;
+                            }
+                        }
+
+                    }
+                }
+            },
+            title: {
+                text: 'Average Family Wealth for Those Born 1943-51'
+            },
+            subtitle: {
+                text: '',
+                x: 0,
+                y: 35
+            },
+            xAxis: {
+                gridLineWidth: '0',
+                lineWidth: 2,
+                tickInterval: 4,
+                categories: ['30s and 40s', '30s and 40s', '30s and 40s', '40s and 50s', '40s and 50s', '40s and 50s', '50s and 60s', '50s and 60s', '50s and 60s'],
+                plotLines: [{
+                    value: 0,
+                    width: 0
+                        }],
+                labels: {
+                    step: 0,
+                    x: 0,
+                    y: 20
+                }
+
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                },
+                min: 0,
+                startOnTick: false,
+                labels: {
+                    format: '${value:,.0f}'
+                }
+            },
+            tooltip: {
+                shared: true,
+                formatter: function () {
+                    var s = '';
+
+                    $.each(this.points, function () {
+                        s += '<b>' + this.series.name + ', ages ' + this.series.options.cohortAges[this.point.x] + ':</b> $' +
+                            Highcharts.numberFormat(this.y, 0, ',') + '<br>';
+                    });
+
+                    return s;
+                }
+            },
+            credits: {
+                enabled: false,
+                text: '',
+                href: 'http://www.neighborhoodinfodc.org'
+            },
+            legend: {
+                enabled: true,
+                floating: 'true',
+                align: 'center',
+                verticalAlign: 'left',
+                layout: 'horizontal',
+                borderWidth: 0,
+                itemDistance: 9,
+                y: 40
+            },
+            series: [
+                {
+                    name: 'White',
+                    data: [204130.93, 383043.64, 410386.43, 493450.35, 671449.03, 974449.18, 1155156.3, 1261739.3, 1203205, 1217942.5],
+                    cohortAges: ['32-40', '38-46', '41-49', '44-52', '47-55', '50-58', '53-61', '56-64', '59-67', '62-70']
+                    },
+                {
+                    name: 'African American',
+                    color: '#ec008c',
+                    data: [61454.078, 122756.27, 99313.841, 109144.06, 137073.24, 171990.58, 265305.89, 249652.44, 172400.03, 115238.17],
+                    cohortAges: ['32-40', '38-46', '41-49', '44-52', '47-55', '50-58', '53-61', '56-64', '59-67', '62-70']
+                    }]
+
+        }); //end chart racial weawlth gap
+
+
+
+// this one is hidden by default:
+
+        //chart5-median
+        $('#racial-wealth-gap-median').highcharts({
+            chart: {
+                marginTop: 100,
+                marginBottom: 40
+
+            },
+            plotOptions: {
+                series: {
+                    marker: {
+                        enabled: true
+                    },
+
+                    dataLabels: {
+                        enabled: false,
+                        align: 'right',
+                        x: 0,
+                        y: -5,
+                        formatter: function () {
+                            if ((this.point.x == this.series.data.length - 1) || (this.point.x == 0)) {
+                                return '$' + Highcharts.numberFormat(this.y, 0, ',');
+                            } else {
+                                return null;
+                            }
+                        }
+
+                    }
+                }
+            },
+            title: {
+                text: 'Median Family Wealth for Those Born 1943-51'
+            },
+            subtitle: {
+                text: '',
+                x: 0,
+                y: 35
+            },
+            xAxis: {
+                gridLineWidth: '0',
+                lineWidth: 2,
+                tickInterval: 4,
+                categories: ['30s and 40s', '30s and 40s', '30s and 40s', '40s and 50s', '40s and 50s', '40s and 50s', '50s and 60s', '50s and 60s', '50s and 60s'],
+                plotLines: [{
+                    value: 0,
+                    width: 0
+                        }],
+                labels: {
+                    step: 0,
+                    x: 0,
+                    y: 20
+                }
+
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                },
+                min: 0,
+                startOnTick: false,
+                labels: {
+                    format: '${value:,.0f}'
+                }
+            },
+            tooltip: {
+                shared: true,
+                formatter: function () {
+                    var s = '';
+
+                    $.each(this.points, function () {
+                        s += '<b>' + this.series.name + ', age ' + this.series.options.cohortAges[this.point.x] + ':</b> $' +
+                            Highcharts.numberFormat(this.y, 0, ',') + '<br>';
+                    });
+
+                    return s;
+                }
+            },
+            credits: {
+                enabled: false,
+                text: '',
+                href: 'http://www.neighborhoodinfodc.org'
+            },
+            legend: {
+                enabled: true,
+                floating: 'true',
+                align: 'center',
+                verticalAlign: 'left',
+                layout: 'horizontal',
+                borderWidth: 0,
+                itemDistance: 9,
+                y: 40
+            },
+            series: [
+                {
+                    name: 'White',
+                    data: [98138.984, 158343.22, 132093.3, 174025.03, 213520.53, 265532.31, 397195.06, 353568.31, 302539.72, 331700],
+                    cohortAges: ['32-40', '38-46', '41-49', '44-52', '47-55', '50-58', '53-61', '56-64', '59-67', '62-70']
+                    },
+                {
+                    name: 'African American',
+                    color: '#ec008c',
+                    data: [13439.467, 4862.3657, 40196.652, 54734.781, 25688.508, 62180.785, 50854.777, 120925.08, 38795.387, 46200],
+                    cohortAges: ['32-40', '38-46', '41-49', '44-52', '47-55', '50-58', '53-61', '56-64', '59-67', '62-70']
+                    }]
+
+        }); //end chart racial weawlth gap
+
+// Handle the toggle button with class setting:
+
+    document.getElementById('racial-wealth-gap-median').className = 'chart hide';
+
+        $('#racegap').click(function () {
+
+            var racegap = document.getElementById('racial-wealth-gap-mean');
+
+            if (racegap.className === 'chart show') {
+                document.getElementById('racial-wealth-gap-mean').className = 'chart hide';
+                document.getElementById('racial-wealth-gap-median').className = 'chart show';
+                document.getElementById('racegap').innerHTML = 'Show Average'
+            } else {
+                document.getElementById('racegap').innerHTML = 'Show Median'
+                document.getElementById('racial-wealth-gap-median').className = 'chart hide';
+                document.getElementById('racial-wealth-gap-mean').className = 'chart show';
+            }
+        });
+});
+
+</script>
+
+</html>
+

@@ -131,5 +131,4 @@ Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color ran
 
 **Homework**: Add a color heatmap to your table, paying attention to readability and also the [UNICEF style guide](../UNICEF Brand Toolkit ENG Sept 2012.pdf). (20pts) Extra credit (10pt): Do it on a version with a default sort order that's interesting and make the table sortable using the jquery plugin.  Be sure to identify data source on the page! Gist: "Week 3: Heatmap table"
 
-**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Send it to me as "Week 3: How do I do this."  I'll try to find out for you! (5pt)
 

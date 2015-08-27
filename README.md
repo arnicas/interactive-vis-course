@@ -124,8 +124,10 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345.  [Code samp
     * https://delicious.com/arnicas/infovis
     * https://delicious.com/arnicas/javascript
 
-* News graphics: http://newsvis.org/
-* Guardian and NYT graphics site: http://collection.marijerooze.nl/
+* News graphics:
+    * http://newsvis.org/
+    * Financial Times's use of D3 (examples): http://johnburnmurdoch.github.io/d3-london/
+    * Guardian and NYT graphics site: http://collection.marijerooze.nl/
 * Visualoop: http://visualoop.com/
     * Article with pointers from Visualoop: http://visualoop.com/blog/11044/30-amazing-data-viz-galleries-everyone-should-follow
 
