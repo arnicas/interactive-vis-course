@@ -1,26 +1,57 @@
-##Week 4
+##Week 4: Bar and Line Charts in D3
 
+## Homework Review
 
 ## SVG
 
 SVG stands for "scaleable vector graphics."  D3 can create DOM elements that can be manipulated like you've been manipulating other HTML elements, such as `<p>` and `<table>`.  SVG elements include shapes like circles and rectangles, which is why it's useful for creating charts.
 
-Resources:
+D3 can manipulate and draw SVG, which is how many interactive data graphics are created. (An alternative is to use canvas for drawing shapes, but things drawn on canvas can't be manipulated as DOM elements like SVG items can, leading to some downsides.)
+
+A Few Resources:
+
 * Here's a [video introduction to SVG by Scott Murray](https://www.youtube.com/watch?v=qwiRkXnbLtU&feature=youtu.be&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F)
+* Basics on SVG shapes in D3: https://www.dashingd3js.com/svg-basic-shapes-and-d3js
 
 
+### Some Resources
+* [Pocket Guide to Writing SVG](http://svgpocketguide.com/book/)
+* [SVG2D3 tool](http://billautomata.github.io/svg2d3/) by Bill Automata - not good looking D3, but will give you an idea of the relationship and how D3 "builds" SVG.
+* A tool to clean up SVG exported from Inkscape or Illustrator: http://codedread.com/scour/
 
-## Bar Charts
+## Bar Charts in D3
 
+### Scales Again
 
-Basic:
+Scales with SVG sizes:
+
+This is a common pattern in D3:
+
+````
+    // set up the size of the SVG container for the graph (later we'll add margins)
+    var height = 350;
+    var width = 300;
+
+    var widthScale = d3.scale.linear().range([ 0, width ]);
+
+    // load the data file
+
+    d3.csv("data/water_improvement_data.csv", function(error, data) {
+
+    // set the domain of the scale, based on the data in the file:
+
+        widthScale.domain([ 0, d3.max(data, function(d) {
+            return +d.year2015;
+    }) ]);
+````
+
+Look at the file and result in [d3_dynamic_domain.html](d3_dynamic_domain.html).
 
 Using nested data:
 Grouped Bar Charts: http://bl.ocks.org/mbostock/3887051
 
 
 ## Line Charts
-
 
 
 

@@ -1,4 +1,4 @@
-##Week 2:
+##Week 2: High Charts, Intro to D3
 
 ## Review Homework
 
@@ -13,14 +13,12 @@ Gists reminders: Upload files with the add button; name your web pages index.htm
 What problems did we find of interest in the brief and other data sources?  Let's discuss interesting data questions.
 
 
-## There Are So Many Charting Libraries Out There
+## Look at a Fun Interactive
 
-See, e.g.,
+This is a trick you get with interactives -- the "recast" the problem in a new way, or "switch" the view of the data.  This can mean scale change, or annotation/highlighting different data.  Here's a couple examples:
 
-* https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks
-* http://www.sitepoint.com/15-best-javascript-charting-libraries/
-
-**Homework**: See below.
+* A scale switch: log vs. normal
+* [How Democrats vs Republicans See Friday's Job Numbers](http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html?_r=2&), NYT Graphics
 
 
 ## Intro to High Charts
@@ -39,11 +37,20 @@ Resources:
 
 Trying to use data in CSV's with High Charts required me to reformat the CSV data into different structures.  Long, wide, and somewhere in between. Be aware that how you structure your data will impact how easily you can use it in your Javascript without having to do rewriting of objects after you load it.  (Have a look at this on wide vs long data: https://en.wikipedia.org/wiki/Wide_and_narrow_data.)
 
-
 More of my local examples:
-* [highcharts_dot.html](highcharts_dot.html) and [highcharts_dot_csv.html](highcharts_dot_csv.html]
+* [highcharts_dot.html](highcharts_dot.html) and [highcharts_dot_csv.html](highcharts_dot_csv.html)
 * [highcharts_slope.html](highcharts_slope.html) - my attempt at a slopegraph! Not using CSV data, but embedded data.
 
+
+**Homework**: See below.
+
+
+## There Are So Many Charting Libraries Out There
+
+See, e.g.,
+
+* https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks
+* http://www.sitepoint.com/15-best-javascript-charting-libraries/
 
 **Homework**: See below.
 
@@ -63,6 +70,7 @@ Resources:
 
 **Homework**: See below.
 
+
 ## Interactive Vis Techniques - Readings
 
 Some of the reading for this week will motivate the interactive vis techniques we are going to cover in this class.
@@ -81,9 +89,9 @@ Some of the reading for this week will motivate the interactive vis techniques w
 
 ## Homeworks
 
-Do the readings/videos list just above.  Plus these:
+Do the readings/videos list just above.  Memorize the mantra. Plus these:
 
-**Homework**: Using the structure and switch button functionality in [highcharts_switch.html](highcharts_switch.html), plug in 2 of your own related charts, using UNICEF data. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has tooltips.  Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.
+**Homework 1**: Using the structure and switch button functionality in [highcharts_switch.html](highcharts_switch.html), plug in 2 of your own related charts, using UNICEF data. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has useful tooltips.  Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.
 
 Change the style to use style attributes from the [UNICEF style guide]("../UNICEF Brand Toolkit ENG Sept 2012.pdf").
 
@@ -96,10 +104,10 @@ Points:
 
 For your gist: Be sure the html page is called index.html.  Be sure your path to highcharts is a CDN, not local, link.  Check it in as a gist and send me the link to the gist, "Week2: High Charts."
 
-**Homework**: Reproduce one of the charts you made with Highcharts in another JS charting library. It must have tooltips. Include a "Readme.md" file with your gist that explains what it was like to work with this library in comparison to Highcharts.  Gist link by email: "Week 2: Another JS library."  Be sure to use a CDN path to the library again. (12pt)
+**EXTRA CREDIT Homework**: Reproduce one of the charts you made with Highcharts in another JS charting library. It must have tooltips. Include a "Readme.md" file with your gist that explains what it was like to work with this library in comparison to Highcharts.  Gist link by email: "Week 2: Another JS library."  Be sure to use a CDN path to the library again, if you can find one! (12pt)
 
-**Homework**: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, "Week 2: Paragraph Data load." (15pt)  *Name the web page itself index.html so it will work in a blocks example!* 
+**Homework 2**: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, "Week 2: Paragraph Data load." (15pt)  *Name the web page itself index.html so it will work in a blocks example!*
 
-**Homework**: Pick an interactive graphic somewhere that you'd like to know how to make. Remember I gave you resources on the home page of this repo...  Send it to me by email with a link and what you like about it: "Week 3: How do I do this?"  I'll try to find out for you! (5pt)
+**Homework 3**: Pick an interactive graphic somewhere that you'd like to know how to make. Remember I gave you resources on the home page of this repo...  Send it to me by email with a link and what you like about it: "Week 3: How do I do this?"  I'll try to find out for you! (5pt)
 
 

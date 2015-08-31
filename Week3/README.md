@@ -4,7 +4,8 @@
 ##Homework Review
 
 Discuss issues we had with the homeworks, High Charts, and/or data loading.
-How about the readings?
+
+The readings? What's Shneiderman's matra?
 
 
 ## Data Processing on Load
@@ -70,15 +71,11 @@ data.sort(function(a,b) {
 ````
 
 
-## Examples of Interactive Tables
+## Examples of Interactive Tables and Style Advice
 
-### JQuery
+### D3 Table Examples
 
-* An article on styling in JQuery: http://code.tutsplus.com/tutorials/using-jquery-to-manipulate-and-filter-data--net-5351
-* More JQuery tables: http://www.datatables.net/, http://www.dynatable.com/?sorts%5Bus-%24%5D=1, filtering and sorting UI options: http://www.unheap.com/section/user-interface/filter-sort/
-
-### D3
-
+* A live NYT project ([Chicago Public Schools](http://www.nytimes.com/interactive/2012/09/14/us/how-the-chicago-public-school-district-compares.html)) with bars in a table
 * D3 Sortable Table with bars http://bl.ocks.org/mbostock/3719724
 * D3 Tablesort plugin https://github.com/ile/d3-tablesort
 * Sorting and styling in D3: http://www.d3noob.org/2013/02/more-d3js-table-madness-sorting.html
@@ -89,12 +86,19 @@ data.sort(function(a,b) {
 com/blog/2014/02/12/inline-visualization-d3-js/?utm_content=buffer980a1&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 * A live project with this technique: http://stateofobesity.org/adult-obesity/
 
-
 ### Table UI
 
-* A cool interactive UI proposal: Data Comb, http://www.bytemuse.com/post/data-comb-visualization/
+* Nice style tips (visual): https://darkhorseanalytics.com/blog/clear-off-the-table/
 * Table UI Patterns - styling, interaction: http://www.jankoatwarpspeed.com/ultimate-guide-to-table-ui-patterns/
 
+### JQuery Table Refs
+
+* An article on styling in JQuery: http://code.tutsplus.com/tutorials/using-jquery-to-manipulate-and-filter-data--net-5351
+* More JQuery tables: http://www.datatables.net/, http://www.dynatable.com/?sorts%5Bus-%24%5D=1, filtering and sorting UI options: http://www.unheap.com/section/user-interface/filter-sort/
+
+## Just Cool
+
+* Data Comb, http://www.bytemuse.com/post/data-comb-visualization/
 
 ## If We Get to It Today -- D3 Scales
 
@@ -124,11 +128,14 @@ Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color ran
 
 ## Homeworks
 
+Readings above.
 
-**Homework:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop. Send me the gist, "Week 3: P's the D3 Way." (10pt)
+**Homework 1:** Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop. Send me the gist, "Week 3: P's the D3 Way." (10pt)
 
-**Homework**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT, 5pt) using d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good (start using colors and styles from the [UNICEF style guide](../UNICEF Brand Toolkit ENG Sept 2012.pdf).) Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc. (25pts, extra credit 5pt)  Send me the gist, "Week 3: Basic Table."
+**Homework 2**: Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, or (EXTRA CREDIT, 5pt) using d3_tabulate_function_sortable.html. Sort the data in a reasonable default way for display.  Style it so it looks good, with tips from the articles and links above on style ideas (start using colors and styles from the [UNICEF style guide](../UNICEF Brand Toolkit ENG Sept 2012.pdf).) Make the header on the page appropriately explain your data table.  Add more text to the page to help explicate, identifying your source, etc. (25pts, extra credit 5pts)  Send me the gist, "Week 3: Basic Table."
 
-**Homework**: Add a color heatmap to your table, paying attention to readability and also the [UNICEF style guide](../UNICEF Brand Toolkit ENG Sept 2012.pdf). (20pts) Extra credit (10pt): Do it on a version with a default sort order that's interesting and make the table sortable using the jquery plugin.  Be sure to identify data source on the page! Gist: "Week 3: Heatmap table"
+**Homework 3**: Add a color heatmap to one or more of your table columns, paying attention to text readability and also the [UNICEF style guide](../UNICEF Brand Toolkit ENG Sept 2012.pdf). (15pts) Be sure to identify data source on the page! Gist: "Week 3: Heatmap table"
+
+NOTE: You can combine 2 and 3 in one if you prefer.
 
 

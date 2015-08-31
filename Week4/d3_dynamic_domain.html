@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- Modified version of Scott Murray's file from Knight D3 course -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Horizontal Bar - Dynamic Domain</title>
+		<script type="text/javascript" src="../js/d3.v3.js"></script>
+		<style type="text/css">
+
+			body {
+				background-color: #ddddff;
+			}
+
+			svg {
+				background-color: white;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<script type="text/javascript">
+
+
+			var height = 350;
+			var width = 300;
+
+			var widthScale = d3.scale.linear()
+								.range([ 0, width ]);
+
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+
+
+			d3.csv("data/water_improvement_data.csv", function(error, data) {
+
+				if (error) {
+					console.log(error);
+				}
+
+				data.sort(function(a, b) {
+					return d3.descending(+a.year2015, +b.year2015);
+				});
+
+				widthScale.domain([ 0, d3.max(data, function(d) {
+					return +d.year2015;
+				}) ]);
+
+				var rects = svg.selectAll("rect")
+						.data(data)
+						.enter()
+						.append("rect");
+
+				rects.attr("x", 0)
+					.attr("y", function(d, i) {
+						return i * 10;
+					})
+					.attr("width", function(d) {
+						return widthScale(d.year2015);
+					})
+					.attr("height", 8)
+					.append("title")
+					.text(function(d) {
+						return d.country + "'s access to good water: " + d.year2015 + "%";
+					});
+
+			});
+
+
+		</script>
+
+	</body>
+</html>
