@@ -47,9 +47,13 @@ This is a common pattern in D3:
 
 Look at the file and result in [d3_dynamic_domain.html](d3_dynamic_domain.html).
 
-Using nested data:
-Grouped Bar Charts: http://bl.ocks.org/mbostock/3887051
+Note that with chaining, you can put your domain and range in any order on your scale function.  d3.scale.linear().domain([]).range([]) is fine, and so is d3.scale.linear.range([]).domain([]).
 
+
+Using nested data/ resources:
+
+* Grouped Bar Charts: http://bl.ocks.org/mbostock/3887051
+* Nathan's great post on 0 baseline: http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/
 
 ## Line Charts
 

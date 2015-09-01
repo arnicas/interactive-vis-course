@@ -2,22 +2,55 @@
 
 ## Review Homework
 
-* Styling project examples.
-* JS problems?
-* Data download and formatting issues?
+### Styling project examples
 
-Gists reminders: Upload files with the add button; name your web pages index.html so they will work in bl.ocks.org.  Use of a CDN.
+* Halina: https://bl.ocks.org/hmader/raw/90153b9ce62daaff0ce6/
+* Luis: http://bl.ocks.org/lmelgar/9282a5f5535471f99070
+* Jo: https://bl.ocks.org/jowang0319/d8cdb723350bbca3efa6
+* Jiaxin: https://bl.ocks.org/theopenwindow/raw/5a30931358d083631a60/
+* Barabara: https://bl.ocks.org/DimsumPanda/raw/763cfe24b91242a7dcf2/
+
+Take a little care with how formatted your CSS sheets are. In future it will matter more.
+
+Gists reminders: Upload files with the add button; name your web pages index.html so they will work in bl.ocks.org.
+
+
+### Javascript errors
+
+Discuss the whole thing...
+
+````
+    var popperseat = function(x){
+        return data2014[x].population/data2014[x].seat
+    };
+````
+
+````
+    function population_per_seat(population, seat) {
+      return population/seat;
+    }
+````
+
+## Data Files You Picked
+
+A few illustrative data files...
+
+* Luis: https://gist.github.com/lmelgar/c7241e5b22c2746fa2a7
+* Halina: https://gist.github.com/hmader/58abdfe667c97666a414
+* Jo: https://gist.github.com/jowang0319/de07deb25b1c80b5de68
+
 
 ## Client Project Brief
 
 What problems did we find of interest in the brief and other data sources?  Let's discuss interesting data questions.
 
 
-## Look at a Fun Interactive
+## Look Fun Interactive for Useful Things
 
 This is a trick you get with interactives -- the "recast" the problem in a new way, or "switch" the view of the data.  This can mean scale change, or annotation/highlighting different data.  Here's a couple examples:
 
-* A scale switch: log vs. normal
+* A log scale switch: log vs. normal (Exoplanets interactive from NatGeo link is broken, so let's use this now: http://bl.ocks.org/phoebebright/4124200)
+* [A Surge in Asylum Applications](http://www.nytimes.com/interactive/2015/08/28/world/europe/countries-under-strain-from-european-migration-crisis.html?smid=tw-nytimes&_r=0) - Total vs. Population switch
 * [How Democrats vs Republicans See Friday's Job Numbers](http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html?_r=2&), NYT Graphics
 
 

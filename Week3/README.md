@@ -110,6 +110,9 @@ Even independent of the rest of D3, the scales are incredibly powerful and usefu
 
 Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color range to one column of numbers.
 
+Here's a cool related recent vis in NYT: http://www.nytimes.com/interactive/2015/08/06/upshot/2016-republican-presidential-candidates-dashboard.html?smid=tw-share&_r=0
+
+
 **Homework**: See below.
 
 
