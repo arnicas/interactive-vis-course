@@ -7,7 +7,7 @@
 * Halina: https://bl.ocks.org/hmader/raw/90153b9ce62daaff0ce6/
 * Luis: http://bl.ocks.org/lmelgar/9282a5f5535471f99070
 * Jiaxin: https://bl.ocks.org/theopenwindow/raw/5a30931358d083631a60/
-* Barabara: https://bl.ocks.org/DimsumPanda/raw/763cfe24b91242a7dcf2/
+* Barbara: https://bl.ocks.org/DimsumPanda/raw/763cfe24b91242a7dcf2/
 
 Take a little care with how formatted your CSS sheets are. In future it will matter more.
 
@@ -126,7 +126,7 @@ Do the readings/videos list just above.  Memorize the mantra. Plus these:
 
 **Homework 1**: Using the structure and switch button functionality in [highcharts_switch.html](highcharts_switch.html), plug in 2 of your own related High Charts charts, using UNICEF data. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has useful tooltips.  Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.
 
-Change the style to use style attributes from the [UNICEF style guide]("../UNICEF Brand Toolkit ENG Sept 2012.pdf").
+Change the style to use style attributes from the [UNICEF style guide](https://github.com/arnicas/interactive-vis-course/blob/master/UNICEF%20Brand%20Toolkit%20ENG%20Sept%202012.pdf).
 
 Points:
 
