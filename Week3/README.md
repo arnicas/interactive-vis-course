@@ -139,6 +139,9 @@ Readings above.
 
 **Homework 3**: Add a color heatmap to one or more of your table columns, paying attention to text readability and also the [UNICEF style guide](../UNICEF Brand Toolkit ENG Sept 2012.pdf). (15pts) Be sure to identify data source on the page! Gist: "Week 3: Heatmap table"
 
+
+**Homework 4**: Pick an interactive graphic somewhere that you'd like to know how to make. Remember I gave you resources on the home page of this repo...  Send it to me by email with a link and what you like about it: "Week 3: How do I do this?"  I'll try to find out for you! (5pt)
+
 NOTE: You can combine 2 and 3 in one if you prefer.
 
 

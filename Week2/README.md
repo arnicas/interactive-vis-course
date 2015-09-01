@@ -1,4 +1,4 @@
-##Week 2: High Charts, Intro to D3
+##Week 2: High Charts, Intro to D3 Data Loading
 
 ## Review Homework
 
@@ -6,7 +6,6 @@
 
 * Halina: https://bl.ocks.org/hmader/raw/90153b9ce62daaff0ce6/
 * Luis: http://bl.ocks.org/lmelgar/9282a5f5535471f99070
-* Jo: https://bl.ocks.org/jowang0319/d8cdb723350bbca3efa6
 * Jiaxin: https://bl.ocks.org/theopenwindow/raw/5a30931358d083631a60/
 * Barabara: https://bl.ocks.org/DimsumPanda/raw/763cfe24b91242a7dcf2/
 
@@ -18,6 +17,8 @@ Gists reminders: Upload files with the add button; name your web pages index.htm
 ### Javascript errors
 
 Discuss the whole thing...
+
+For the extra credit, what are the pros and cons of these 2 approaches to the problem? I said: `Create a function that calculates the population per house seat for any object.`
 
 ````
     var popperseat = function(x){
@@ -35,9 +36,8 @@ Discuss the whole thing...
 
 A few illustrative data files...
 
-* Luis: https://gist.github.com/lmelgar/c7241e5b22c2746fa2a7
-* Halina: https://gist.github.com/hmader/58abdfe667c97666a414
 * Jo: https://gist.github.com/jowang0319/de07deb25b1c80b5de68
+* Louise: https://gist.github.com/lwhitaker3/5b9358fb79e6848c032b
 
 
 ## Client Project Brief
@@ -58,8 +58,6 @@ This is a trick you get with interactives -- the "recast" the problem in a new w
 
 Let's look at this project in some detail: http://datatools.urban.org/Features/wealth-inequality-charts/. Look at the source code, too.
 
-Looking at how it's made -- an excerpt is in [highcharts_switch.html](highcharts_switch.html).
-
 Resources:
 
 * Install the JQuery way: http://www.highcharts.com/docs/getting-started/installation
@@ -74,6 +72,7 @@ More of my local examples:
 * [highcharts_dot.html](highcharts_dot.html) and [highcharts_dot_csv.html](highcharts_dot_csv.html)
 * [highcharts_slope.html](highcharts_slope.html) - my attempt at a slopegraph! Not using CSV data, but embedded data.
 
+Here is a useful excerpt you can use in the homework in [highcharts_switch.html](highcharts_switch.html).
 
 **Homework**: See below.
 
@@ -85,7 +84,7 @@ See, e.g.,
 * https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks
 * http://www.sitepoint.com/15-best-javascript-charting-libraries/
 
-**Homework**: See below.
+**Extra Credit Homework**: See below.
 
 
 ## Loading Data, and Very Simple D3 Intro
@@ -108,7 +107,7 @@ Resources:
 
 Some of the reading for this week will motivate the interactive vis techniques we are going to cover in this class.
 
-* [When Telling Data Driven Stories, Let Readers Ask Questions Too](http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/) (Tableau examples that motivate interaction and data sharing; we won't make our final projects in Tableau, but you're welcome to prototype with it.)
+* Skim this - [When Telling Data Driven Stories, Let Readers Ask Questions Too](http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/) (Tableau examples that motivate interaction and data sharing; we won't make our final projects in Tableau, but you're welcome to prototype with it.)
 * [The Eyes Have It (1996)](shneidermanEyesHaveIt.pdf), Ben Shneiderman - a classic article that features the mantra everyone must memorize:
 
     *Overview first, zoom and filter, then details on demand.
@@ -124,23 +123,21 @@ Some of the reading for this week will motivate the interactive vis techniques w
 
 Do the readings/videos list just above.  Memorize the mantra. Plus these:
 
-**Homework 1**: Using the structure and switch button functionality in [highcharts_switch.html](highcharts_switch.html), plug in 2 of your own related charts, using UNICEF data. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has useful tooltips.  Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.
+**Homework 1**: Using the structure and switch button functionality in [highcharts_switch.html](highcharts_switch.html), plug in 2 of your own related High Charts charts, using UNICEF data. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has useful tooltips.  Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.
 
 Change the style to use style attributes from the [UNICEF style guide]("../UNICEF Brand Toolkit ENG Sept 2012.pdf").
 
 Points:
 
-* 30pts for charts and styling and your own (UNICEF) data, points included for originality (not just mean/median) in the data you chart.
+* 30pts for charts and styling and your own (UNICEF) data, points included for originality (not just mean/median) in the data you chart and compare.
 * Extra credit (6pt): Use at least one other type of chart, aside from the line charts in the example.
 * Extra credit (5pt): Load your data from variables in a separate JS included file, instead of inlining the data values in the highcharts code directly. Use variables in the Highcharts code instead.
-* OR Extra-Extra credit (not required of grad students, but 10pt): Use CSV input data, instead of inline data. You may be asked to present how you did this.
+* OR Extra-Extra credit (not required of grad students, but 10pt): Use CSV input data, instead of inline data. You may be asked to present how you did this.  I think it's hard.
 
-For your gist: Be sure the html page is called index.html.  Be sure your path to highcharts is a CDN, not local, link.  Check it in as a gist and send me the link to the gist, "Week2: High Charts."
+For your gist: Be sure the html page is called index.html.  Be sure your path to highcharts is a CDN, not local, link.  Check it in as a gist and send me the link to the gist, "Week2: High Charts."  My gist examples show the CDN path you should use in your code.
 
-**EXTRA CREDIT Homework**: Reproduce one of the charts you made with Highcharts in another JS charting library. It must have tooltips. Include a "Readme.md" file with your gist that explains what it was like to work with this library in comparison to Highcharts.  Gist link by email: "Week 2: Another JS library."  Be sure to use a CDN path to the library again, if you can find one! (12pt)
+**EXTRA CREDIT Homework**: Reproduce one of the charts you made with Highcharts in another JS charting library (not the switch part). It must have tooltips. Include a "Readme.md" file with your gist that explains what it was like to work with this library in comparison to Highcharts.  Send gist link by email: "Week 2: Another JS library."  Be sure to use a CDN path to the library again, if you can find one! If you can't, let me know. (12pt)
 
 **Homework 2**: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, "Week 2: Paragraph Data load." (15pt)  *Name the web page itself index.html so it will work in a blocks example!*
-
-**Homework 3**: Pick an interactive graphic somewhere that you'd like to know how to make. Remember I gave you resources on the home page of this repo...  Send it to me by email with a link and what you like about it: "Week 3: How do I do this?"  I'll try to find out for you! (5pt)
 
 
