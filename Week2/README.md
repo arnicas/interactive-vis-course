@@ -42,7 +42,7 @@ A few illustrative data files...
 
 ## Client Project Brief
 
-What problems did we find of interest in the brief and other data sources?  Let's discuss interesting data questions.
+What problems did we find of interest in the brief and other data sources?  Let's discuss interesting data questions.  Seems that data.unicef.org is still down...
 
 
 ## Look Fun Interactive for Useful Things
@@ -83,6 +83,7 @@ See, e.g.,
 
 * https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks
 * http://www.sitepoint.com/15-best-javascript-charting-libraries/
+* And now this epic tool/book browser: http://keshif.me/demo/VisTools
 
 **Extra Credit Homework**: See below.
 
