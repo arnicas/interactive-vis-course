@@ -130,7 +130,7 @@ Change the style to use style attributes from the [UNICEF style guide]("../UNICE
 
 Points:
 
-* 30pts for charts and styling and your own (UNICEF) data, points included for originality (not just mean/median) in the data you chart and compare.
+* 35pts for charts and styling and your own (UNICEF) data, points included for originality (not just mean/median) in the data you chart and compare.
 * Extra credit (6pt): Use at least one other type of chart, aside from the line charts in the example.
 * Extra credit (5pt): Load your data from variables in a separate JS included file, instead of inlining the data values in the highcharts code directly. Use variables in the Highcharts code instead.
 * OR Extra-Extra credit (not required of grad students, but 10pt): Use CSV input data, instead of inline data. You may be asked to present how you did this.  I think it's hard.
