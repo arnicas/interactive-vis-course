@@ -5,13 +5,14 @@
 
 Discuss issues we had with the homeworks, High Charts, and/or data loading.
 
+**First, server: You Must Use Your Server with Javascript.**
+
 High Charts examples:
 
 * Louise: http://bl.ocks.org/lwhitaker3/raw/8fb150421ff2ca7251be/
 * Jo: http://bl.ocks.org/jowang0319/raw/0991b58b29039bfcbb56/
 * Luis: http://bl.ocks.org/lmelgar/raw/7e3a21a905cae284cab8/
 * Halina: http://bl.ocks.org/hmader/raw/7473839d1bbbedb7b291/
-
 
 **Other charting libraries:**
 
@@ -41,12 +42,10 @@ The readings? What's Shneiderman's matra?
 
 ## Data Processing on Load
 
-It's quite common to do things to your data right after you load it.
+It's quite common to do things to your data right after you load it. Very useful ways to iterate through data include `dataset.forEach(function (d,i) {...})` and map: `dataset.map(function (d,i) {...})`.  Have a look at http://learnjsdata.com/iterate_data.html.
 
 * Important: [d3_process_data.html](d3_process_data.html)
 * Alternately, with new arrays: [d3_new_obj_data.html](d3_new_obj_data.html)
-
-Very useful ways to iterate through data include `dataset.forEach(function (d,i) {...})` and map: `dataset.map(function (d,i) {...})`.  Have a look at http://learnjsdata.com/iterate_data.html.
 
 
 ###Sorting Data
@@ -76,7 +75,6 @@ data.sort(function (a, b) {
     d3.ascending(+a.value, +b.value);
 }
 ````
-
 
 ###Dates in Your Data
 
@@ -197,7 +195,7 @@ Send me the gist, "Week 3: Cleaned data file"
 
 Send me the gist, "Week 3: My Data the D3 Way." (10pt, extra 4pt)
 
-**Homework 3**: (25pt, Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, (or EXTRA EXTRA CREDIT, 8pt using d3_tabulate_function_sortable.html). Sort the data in a reasonable default way for display before it goes into the table.  Style it so it looks good, with tips from the articles and links above on style ideas (start using colors and styles from the UNICEF Style Guide.) Make the header on the page appropriately explain your data table.  Add more text to the page to help explain, identifying your source, etc. (25pts, XXCredit 8pts)  
+**Homework 3**: (25pt, Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, (or EXTRA EXTRA CREDIT, 8pt using d3_tabulate_function_sortable.html). Sort the data in a reasonable default way for display before it goes into the table.  Style it so it looks good, with tips from the articles and links above on style ideas (start using colors and styles from the UNICEF Style Guide.) Make the header on the page appropriately explain your data table.  Add more text to the page to help explain, identifying your source, etc. (25pts, XXCredit 8pts)
 
 Send me the gist, "Week 3: Basic D3 Table."
 
