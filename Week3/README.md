@@ -186,8 +186,8 @@ Readings above.
 * add a property to the data set in javascript that is the sum of the years' values for each
 * add a property to the data set in javascript that is the difference between 2010 and 2013
 * sort the data by the new value that is the sum of the refugees
-* draw your <p>'s for each row of the fixed data set, using the sort order for sum of refugees (largest at the top)
-* extra credit (6pts): draw your <p>'s using d3's enter().append() approach.
+* draw your `<p>`'s for each row of the fixed data set, using the sort order for sum of refugees (largest at the top)
+* extra credit (6pts): draw your `<p>`'s using d3's enter().append() approach.
 
 Send me the gist, "Week 3: Cleaned data file"
 

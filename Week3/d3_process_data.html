@@ -25,6 +25,8 @@
 				}
 				// let's do things to the data here.  This is VERY COMMON in d3 code.
 
+				console.log(data);
+
 				// Your arguments for forEach are the item and it's number in the array:
 				data.forEach(function(data_item, index){
 
@@ -51,7 +53,7 @@
 				// Sorting:
 
 				data.sort(function (a, b) {
-					return a.difference-b.difference;
+					return b.difference-a.difference;
 				});
 
 				// Suppose you wanted it sorted the other way?  How would you do that?
@@ -62,7 +64,7 @@
 
 		// Notice this below doesn't work.  It's outside the scope of the function that loaded the data.  You need to keep your operations on data inside the loading callback.
 
-		//console.log(data);
+		//console.log("my data now", data);
 
 		// what do you expect these values to be now?  what's going on?
 		console.log("totals", total1990, total2015);
