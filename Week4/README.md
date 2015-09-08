@@ -21,7 +21,19 @@ A Few Resources:
 
 ## Bar Charts in D3
 
-### Scales Again
+## D3 Scales
+
+Even independent of the rest of D3, the scales are incredibly powerful and useful tools.  Scales map numbers from a domain into a range. In particular, we need to turn numbers that are in our input data into pixel locations on the screen.  Or into colors.
+
+* Read: http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale
+* Supplementary: http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/
+* Videos: [Scott Murray's linear scales](https://www.youtube.com/watch?v=5EZSOsBXdS0&list=PL0tDk-f4v1uh4s33k1qJ7Xl96cOySkLnt), [ordinal scales](https://www.youtube.com/watch?v=WxtJ7VfP_VE&list=PL0tDk-f4v1uh4s33k1qJ7Xl96cOySkLnt&index=2)
+
+Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color range to one column of numbers.
+
+Here's a cool related recent vis in NYT: http://www.nytimes.com/interactive/2015/08/06/upshot/2016-republican-presidential-candidates-dashboard.html?smid=tw-share&_r=0
+
+Here's a nice heatmap: http://www.washingtonpost.com/graphics/business/jobs-report/
 
 Scales with SVG sizes:
 
@@ -64,10 +76,9 @@ Using nested data/ resources:
 * [A Tour Through The Visualization Zoo](http://queue.acm.org/detail.cfm?id=1805128)- some examples of less common visualization techniques, possible in D3.
 
 
+**Homework 1**: Add a color heatmap to one or more of your table columns, paying attention to text readability and also the [UNICEF style guide](https://github.com/arnicas/interactive-vis-course/blob/master/UNICEF%20Brand%20Toolkit%20ENG%20Sept%202012.pdf). (15pts) Be sure to identify data source on the page! Gist: "Week 3: Heatmap table"
 
 **Homework**: Make a bar chart
 
 **Homework**: Make a line chart
-
-**Homework**: Pick a static graphic you think could be improved as an interactive.  Email me the link by Monday end of the day with subject: "Week4: Static for Redesign." We will discuss some of them in class.
 

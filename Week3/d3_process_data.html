@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Loading CSV Data with D3</title>
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 	</head>
 	<body>
 
@@ -32,14 +32,15 @@
 
 					console.log(index, data_item);
 
-					// here we are making strings into numbers:
+					// here we are making strings into numbers using type coercion:
 					data_item.year1990 = +data_item.year1990;
 					data_item.year2015 = +data_item.year2015;
 
 					// now we add another data object value, a calculated value.
 					data_item.difference = data_item.year2015 - data_item.year1990;
-					total1990 += data_item.year1990;
-					total2015 += data_item.year2015;
+					total1990 = total1990 + data_item.year1990;
+					total2015 = total2015 + data_item.year2015;
+
 					console.log(index, data_item);
 				});
 
@@ -47,13 +48,23 @@
 				console.log("total 1990", total1990);
 				console.log("total 2015", total2015);
 
+				// Sorting:
+
+				data.sort(function (a, b) {
+					return a.difference-b.difference;
+				});
+
+				// Suppose you wanted it sorted the other way?  How would you do that?
+
+				console.log("sorted", data);
+
 			});
 
 		// Notice this below doesn't work.  It's outside the scope of the function that loaded the data.  You need to keep your operations on data inside the loading callback.
 
 		//console.log(data);
 
-		// what do you expect these values to be now?
+		// what do you expect these values to be now?  what's going on?
 		console.log("totals", total1990, total2015);
 
 		</script>
