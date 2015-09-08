@@ -1,4 +1,4 @@
-##Week 4: Bar and Line Charts in D3
+##Week 4: Scales, Bar and Line Charts in D3
 
 ## Homework Review
 
@@ -20,6 +20,9 @@ A Few Resources:
 * A tool to clean up SVG exported from Inkscape or Illustrator: http://codedread.com/scour/
 
 ## Bar Charts in D3
+
+A reminder on binding data:
+http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 
 ## D3 Scales
 

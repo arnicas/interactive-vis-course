@@ -106,8 +106,9 @@ To do the "right" thing with data in D3, you need to understand binding data to 
 
 If You Remain Confused, try these till you get a grip:
 
-* Thinking with Joins: by Mike Bostock: http://bost.ocks.org/mike/join/
+
 * Another intro article: http://code.hazzens.com/d3tut/lesson_1.html
+* Thinking with Joins: by Mike Bostock: http://bost.ocks.org/mike/join/
 * A nice overview on joins: http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffera16c8&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 * Another review of selections: http://www.jeromecukier.net/blog/2013/03/05/d3-tutorial-at-strata-redux
 * How Selections Work in more detail: http://bost.ocks.org/mike/selection/
@@ -180,10 +181,10 @@ Plus anything else that I referenced above that helps you better understand d3 d
 
 Readings above.
 
-**Homework 1** (30pts): Using the data in data/UN_RefugeesByOrigin_1990-2013.csv, 
+**Homework 1** (30pts): Using the data in data/UN_RefugeesByOrigin_1990-2013.csv,
 
-* fix any column names you think should/could be improved
-* load your data in d3 using d3.csv
+* fix any column names you think should/could be improved in the csv (and give it a new name)
+* load your data in d3 using d3.csv, and in the function in d3.csv:
 * add a property to the data set in javascript that is the sum of the years' values for each
 * add a property to the data set in javascript that is the difference between 2010 and 2013
 * sort the data by the new value that is the sum of the refugees
@@ -196,7 +197,9 @@ Send me the gist, "Week 3: Cleaned data file"
 
 Send me the gist, "Week 3: My Data the D3 Way." (10pt, extra 4pt)
 
-**Homework 3**: (25pt, Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, (or EXTRA EXTRA CREDIT, 8pt using d3_tabulate_function_sortable.html). Sort the data in a reasonable default way for display before it goes into the table.  Style it so it looks good, with tips from the articles and links above on style ideas (start using colors and styles from the UNICEF Style Guide.) Make the header on the page appropriately explain your data table.  Add more text to the page to help explain, identifying your source, etc. (25pts, XX Credit 8pts)  Send me the gist, "Week 3: Basic D3 Table."
+**Homework 3**: (25pt, Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, (or EXTRA EXTRA CREDIT, 8pt using d3_tabulate_function_sortable.html). Sort the data in a reasonable default way for display before it goes into the table.  Style it so it looks good, with tips from the articles and links above on style ideas (start using colors and styles from the UNICEF Style Guide.) Make the header on the page appropriately explain your data table.  Add more text to the page to help explain, identifying your source, etc. (25pts, XXCredit 8pts)  
+
+Send me the gist, "Week 3: Basic D3 Table."
 
 **Homework 4**: Pick an interactive graphic somewhere that you'd like to know how to make. Remember I gave you resources on the home page of this repo...  Send it to me by email with a link and what you like about it: "Week 3: How do I do this?"  I'll try to find out for you! (5pt)
 

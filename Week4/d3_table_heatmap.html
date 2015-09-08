@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CSV Data in a Table with D3</title>
+	</head>
+	<style>
+	table {
+		margin-left: 40px;
+		padding: 10px;
+	}
+	th {
+		cursor: pointer;
+	}
+	</style>
+	<body>
+
+		<h1>My Table with Heatmap!</h1>
+		<p>This table shows regional access to improved water over 15 years. </p>
+		<p>Source: WHO/UNICEF (2015) Progress on Sanitation and Drinking Water: 2015 Update</p>
+		<div id="table"></div>
+
+	</body>
+
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+		<!-- load the function file you need before you call it... -->
+		<script type="text/javascript" src="tabulate.js"></script>
+		<script type="text/javascript" src="stupidtable.js"></script>
+
+		<script type="text/javascript">
+
+			//Load in contents of CSV file, and do things to the data.
+
+			d3.csv("data/water_improvement_data.csv", function(error, myData) {
+
+				if (error) {
+					console.log("Had an error loading file.");
+				}
+
+				// We'll be using simpler data as values, not objects.
+				var myArray = [];
+
+				// this is a new variable, to make it easier to do a color scale.
+				// alternately, you could extract these values with a map function.
+				var allDifferences = [];
+
+				myData.forEach(function(d, i){
+
+					// now we add another data object value, a calculated value.
+					d.difference = d.year2015 - d.year1990;
+					if (d.name === "Developing regions") {
+						d.name = "Developing Regions";
+					}
+					if (d.name === "Developed regions") {
+						d.name = "Deveoloped Regions";
+					}
+
+				 // Add an array to the empty array with the values of each:
+			 	 myArray.push([d.name, d.year1990, d.year2015, d.difference]);
+
+			 	 allDifferences.push(d.difference);
+
+				});
+
+				console.log(allDifferences);
+
+				var table = d3.select("#table").append("table");
+
+				var header = table.append("thead").append("tr");
+
+				// Made some objects to construct the header in code:
+				// The sort_type is for the Jquery sorting function.
+				var headerObjs = [
+					{ label: "Region", sort_type: "string" },
+					{ label: "1990", sort_type: "int" },
+					{ label: "2015", sort_type: "int" },
+					{ label: "Difference", sort_type: "int" },
+				];
+
+				header
+					.selectAll("th")
+					.data(headerObjs)
+					.enter()
+					.append("th")
+					.attr("data-sort", function (d) { return d.sort_type; })
+          .text(function(d) { return d.label; });
+
+        var tablebody = table.append("tbody");
+
+        rows = tablebody
+        	.selectAll("tr")
+        	.data(myArray)
+        	.enter()
+        	.append("tr");
+
+        // We built the rows using the nested array - now each row has its own array.
+
+        // let's talk about the scale - start at 0 or at lowest number?
+        console.log('Extent is ', d3.extent(allDifferences));
+
+      	var colorScale = d3.scale.linear()
+      		.domain(d3.extent(allDifferences))
+      		.range(["#E6F5FF", "#0099FF"]);
+
+        cells = rows.selectAll("td")
+        	// each row has data associated; we get it and enter it for the cells.
+        	.data(function(d) {
+        		console.log(d);
+        		return d;
+        	})
+        	.enter()
+        	.append("td")
+        	.style("background-color", function(d,i) {
+        		// for the last element in the row, we color the background:
+        		if (i === 3) {
+        			return colorScale(d);
+        		}
+        	})
+        	.text(function(d) {
+        		return d;
+        	});
+
+      // jquery sorting applied to it - could be done with d3 and events.
+      $("table").stupidtable();
+
+			});
+
+		</script>
+
+</html>
