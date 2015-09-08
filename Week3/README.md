@@ -146,7 +146,7 @@ Plus anything else that I referenced above that helps you better understand d3 d
 
 Readings above.
 
-**Homework 1** (30pts): Using the data in data/UN_RefugeesByOrigin_1990-2013.csv,
+**Homework 1** (30pts): Using the data in data/UN_RefugeesByOrigin_1990-2013.csv, and using my examples in d3_process_data.html...
 
 * fix any column names you think should/could be improved in the csv (and give it a new name)
 * load your data in d3 using d3.csv, and in the function in d3.csv:
@@ -158,11 +158,11 @@ Readings above.
 
 Send me the gist, "Week 3: Cleaned data file"
 
-**Homework 2:** (10pt) Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "data().enter().append()" approach in place of the forEach loop. Extra credit (4pt): Sort your data by one of the columns in the data before you make the `<p>` tags. (10, extra 4).
+**Homework 2:** (12pt) Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "data().enter().append()" approach in place of the forEach loop. Extra credit (4pt): Sort your data by one of the columns in the data before you make the `<p>` tags. (12pt, extra 4).
 
-Send me the gist, "Week 3: My Data the D3 Way." (10pt, extra 4pt)
+Send me the gist, "Week 3: My Data the D3 Way."
 
-**Homework 3**: (25pt), Build your own styled table from your CSV data, using the model in d3_table.html. Sort the data in a reasonable default way for display before it goes into the table.  Style it so it doesn't look plain, with tips from the articles and links above on style ideas (start using colors and fonts from the UNICEF Style Guide.) Make the header on the page appropriately explain your data table.  Add more text to the page to help explain, identifying your source, etc. (25pts)
+**Homework 3**: (25pt), Build your own styled table from your CSV data, using the model in d3_table.html. Sort the data in a reasonable default way for display before it goes into the table.  Style it so it doesn't look plain (start using colors and fonts from the UNICEF Style Guide). Make the title header on the page appropriately explain your data table.  Add more text to the page to help explain, identifying your source, etc. (25pts)
 
 Send me the gist, "Week 3: Basic D3 Table."
 
