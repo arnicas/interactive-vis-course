@@ -120,45 +120,12 @@ We're starting with tables, because in my opinion they are an often overlooked p
 
 Reading: [IDVW Chapter 5](http://chimera.labs.oreilly.com/books/1230000000345/ch05.html#_binding_data)
 
-In increasing order of complexity:
 
-* d3_table.html
-    * You should review: http://bost.ocks.org/mike/nest/
-    * How selections work demo: selectAll vs. select: http://prcweb.co.uk/lab/selection/
-* d3_tabulate_function.html
-* d3_tabulate_function_sortable.html - using a JQuery function with D3!
-* A more advanced approach by Gregor Aisch: https://vis4.net/blog/posts/making-html-tables-in-d3-doesnt-need-to-be-a-pain/
+* Review d3_table.html.  Try to use breakpoints and logging to understand it.
+* You should review: http://bost.ocks.org/mike/nest/
+* How selections work demo: selectAll vs. select: http://prcweb.co.uk/lab/selection/
 
 **Homework**: See below.
-
-## Examples of Interactive Tables and Style Advice
-
-### D3 Table Examples
-
-* A live NYT project ([Chicago Public Schools](http://www.nytimes.com/interactive/2012/09/14/us/how-the-chicago-public-school-district-compares.html)) with bars in a table
-* D3 Sortable Table with bars http://bl.ocks.org/mbostock/3719724
-* D3 Tablesort plugin https://github.com/ile/d3-tablesort
-* Sorting and styling in D3: http://www.d3noob.org/2013/02/more-d3js-table-madness-sorting.html
-
-### Live Examples
-
-* Inline sparklines and graphs: https://www.safaribooksonline.
-com/blog/2014/02/12/inline-visualization-d3-js/?utm_content=buffer980a1&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-* A live project with this technique: http://stateofobesity.org/adult-obesity/
-
-### Table UI
-
-* Nice style tips (visual): https://darkhorseanalytics.com/blog/clear-off-the-table/
-* Table UI Patterns - styling, interaction: http://www.jankoatwarpspeed.com/ultimate-guide-to-table-ui-patterns/
-
-### JQuery Table Refs
-
-* An article on styling in JQuery: http://code.tutsplus.com/tutorials/using-jquery-to-manipulate-and-filter-data--net-5351
-* More JQuery tables: http://www.datatables.net/, http://www.dynatable.com/?sorts%5Bus-%24%5D=1, filtering and sorting UI options: http://www.unheap.com/section/user-interface/filter-sort/
-
-## Just Cool
-
-* Data Comb, http://www.bytemuse.com/post/data-comb-visualization/
 
 
 ## Helpful Dev Stuff
@@ -191,11 +158,11 @@ Readings above.
 
 Send me the gist, "Week 3: Cleaned data file"
 
-**Homework 2:** (10pt) Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "enter" approach in place of the forEach loop. Extra credit: Sort your data by one of the columns in the data before you make the `<p>` tags. (4pt)
+**Homework 2:** (10pt) Based on what you know about data binding now, how would you make your `<p>` creation from last week's homework the D3 way?  Redo the example in [create_p_from_data.html](../Week2/create_p_from_data.html) using a d3 "data().enter().append()" approach in place of the forEach loop. Extra credit (4pt): Sort your data by one of the columns in the data before you make the `<p>` tags. (10, extra 4).
 
 Send me the gist, "Week 3: My Data the D3 Way." (10pt, extra 4pt)
 
-**Homework 3**: (25pt, Build your own styled table from your CSV data, using the model in d3_tabulate_function.html, (or EXTRA EXTRA CREDIT, 8pt using d3_tabulate_function_sortable.html). Sort the data in a reasonable default way for display before it goes into the table.  Style it so it looks good, with tips from the articles and links above on style ideas (start using colors and styles from the UNICEF Style Guide.) Make the header on the page appropriately explain your data table.  Add more text to the page to help explain, identifying your source, etc. (25pts, XXCredit 8pts)
+**Homework 3**: (25pt), Build your own styled table from your CSV data, using the model in d3_table.html. Sort the data in a reasonable default way for display before it goes into the table.  Style it so it doesn't look plain, with tips from the articles and links above on style ideas (start using colors and fonts from the UNICEF Style Guide.) Make the header on the page appropriately explain your data table.  Add more text to the page to help explain, identifying your source, etc. (25pts)
 
 Send me the gist, "Week 3: Basic D3 Table."
 

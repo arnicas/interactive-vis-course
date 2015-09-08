@@ -2,6 +2,43 @@
 
 ## Homework Review
 
+
+## More Tables
+
+* d3_tabulate_function.html
+* d3_tabulate_function_sortable.html - using a JQuery function with D3!
+* A more advanced approach by Gregor Aisch: https://vis4.net/blog/posts/making-html-tables-in-d3-doesnt-need-to-be-a-pain/
+
+## Examples of Interactive Tables and Style Advice
+
+### D3 Table Examples
+
+* A live NYT project ([Chicago Public Schools](http://www.nytimes.com/interactive/2012/09/14/us/how-the-chicago-public-school-district-compares.html)) with bars in a table
+* D3 Sortable Table with bars http://bl.ocks.org/mbostock/3719724
+* D3 Tablesort plugin https://github.com/ile/d3-tablesort
+* Sorting and styling in D3: http://www.d3noob.org/2013/02/more-d3js-table-madness-sorting.html
+
+### Live Examples
+
+* Inline sparklines and graphs: https://www.safaribooksonline.
+com/blog/2014/02/12/inline-visualization-d3-js/?utm_content=buffer980a1&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+* A live project with this technique: http://stateofobesity.org/adult-obesity/
+
+
+### Table UI
+
+* Nice style tips (visual): https://darkhorseanalytics.com/blog/clear-off-the-table/
+* Table UI Patterns - styling, interaction: http://www.jankoatwarpspeed.com/ultimate-guide-to-table-ui-patterns/
+
+### JQuery Table Refs
+
+* An article on styling in JQuery: http://code.tutsplus.com/tutorials/using-jquery-to-manipulate-and-filter-data--net-5351
+* More JQuery tables: http://www.datatables.net/, http://www.dynatable.com/?sorts%5Bus-%24%5D=1, filtering and sorting UI options: http://www.unheap.com/section/user-interface/filter-sort/
+
+### Just Cool
+
+* Data Comb, http://www.bytemuse.com/post/data-comb-visualization/
+
 ## SVG
 
 SVG stands for "scaleable vector graphics."  D3 can create DOM elements that can be manipulated like you've been manipulating other HTML elements, such as `<p>` and `<table>`.  SVG elements include shapes like circles and rectangles, which is why it's useful for creating charts.
