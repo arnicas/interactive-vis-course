@@ -19,6 +19,8 @@
 	</head>
 	<body>
 
+		<h1>Water Access in 2015 by Region</h1>
+
 		<script type="text/javascript">
 
 
@@ -57,13 +59,13 @@
 
 				rects.attr("x", 0)
 					.attr("y", function(d, i) {
-						return i * 20;
+						return i * 20;   // just spacing the bars - notice from the top
 					})
 					.attr("width", function(d) {
 						return widthScale(d.year2015);
 					})
-					.attr("height", 8)
-					.append("title")
+					.attr("height", 10)
+					.append("title")  // this is a simple (bad) tooltip
 					.text(function(d) {
 						return d.name + "'s access to good water: " + d.year2015 + "%";
 					});
