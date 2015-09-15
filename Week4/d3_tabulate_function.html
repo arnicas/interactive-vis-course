@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 
 		<!-- load the function file you need before you call it... -->
-		<script type="text/javascript" src="tabulate.js"></script>
+		<script type="text/javascript" src="js/tabulate.js"></script>
 
 		<script type="text/javascript">
 
@@ -29,21 +29,14 @@
 				}
 
 				data.forEach(function(d, i){
-
-					// NB: it's much more common to see (d, i) as shorthand in D3 code.
-
 					// now we add another data object value, a calculated value.
 					d.difference = d.year2015 - d.year1990;
-					if (d.name === "Developing regions") {
-						d.name = "Developing Regions";
-					}
-					if (d.name === "Developed regions") {
-						d.name = "Deveoloped Regions";
-					}
 				});
 
 				console.log(data);
 
+				// the tabulate function wants the second argument to be your columns in your data that will be in the table.
+				// third argument is the element to put it into on the page
 				var regionTable = tabulate(data,
 					                        ["name", "year1990", "year2015", "difference"],
 					                        "#table");

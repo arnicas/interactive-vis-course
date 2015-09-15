@@ -17,6 +17,7 @@ Review repo's [README](../README.md).
 ## Data Formatting in Excel
 
 * Recommended read for general good advice: http://kbroman.org/dataorg/
+* A good article arguing for "tidy" data in long format, with R code examples: http://vita.had.co.nz/papers/tidy-data.pdf (Note that D3 usually wants "wide" instead)
 
 We'll go through a download and csv formatting example in class.  You'll need to do the same, so take notes!
 

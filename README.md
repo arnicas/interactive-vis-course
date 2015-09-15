@@ -125,6 +125,7 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345.  [Code samp
     * https://delicious.com/arnicas/javascript
 
 * News graphics:
+    * A spreadsheet: https://docs.google.com/spreadsheets/d/1sSWytfD1N1nuXkry7IZyscahj9M8lX04XJWeqrdgDZk/pubhtml
     * http://newsvis.org/
     * Financial Times's use of D3 (examples): http://johnburnmurdoch.github.io/d3-london/
     * Guardian and NYT graphics site: http://collection.marijerooze.nl/

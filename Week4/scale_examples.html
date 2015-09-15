@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Scales in D3</title>
+
+        <style>
+        body {
+          padding: 50px;
+          font-family: Verdana, sans-serif;
+          font-size: 12pt;
+        }
+        p {
+          margin-left: 20px;
+          color: orange;
+        }
+
+        </style>
+    </head>
+    <body>
+
+        <h1>Playing with Scales in D3</h1>
+
+        <div id="linearScale">
+        First scale, mapping values to new values:
+        </div>
+
+        <div id="colorScale1">
+        Linear Color scale:
+        </div>
+
+        <div id="colorScale2">
+        Ordinal color scale:
+        <p>Apple
+          <p>Orange
+            <p>Pineapple
+              <p>Cherry
+                <p>Kumquat
+                  <p>China
+                    <p>Russia
+                      <p>Japan
+                        <p>India
+                          <p>France
+                            <p>Syria
+                              <p>Madagascar
+                                <p>SUV
+        </div>
+
+    </body>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+<script type="text/javascript">
+
+  // this example is from Dashing D3:https://www.dashingd3js.com/d3js-scales
+
+    var myData = [0, 1000, 3000, 2000, 5000, 4000, 7000, 6000, 9000, 8000, 10000];
+
+    var newScaledData = [];
+    var minDataPoint = d3.min(myData);
+    var maxDataPoint = d3.max(myData);
+
+    // Notice that domain and range take ARRAYS.
+
+    var linearScale = d3.scale.linear()
+                      .domain([minDataPoint,maxDataPoint])
+                      .range([0,100]);
+
+    // a shortcut for the max and min operation is:
+    console.log(d3.extent(myData));
+
+    myData.forEach(function(d, i){
+        // we call the scale function with each element,
+        // and put the result onto the new array:
+        newScaledData.push(linearScale(d));
+    });
+
+    // we print the results in the div element
+     // the join function just joins all the strings with the separator!
+    d3.select("#linearScale").append("p").text(newScaledData.join(", "));
+
+    var newData = [24, 54, 65, 100, 23, 43, 2, 35, 76, 47];
+
+    var colorScale = d3.scale.linear().domain(d3.extent(newData)).range(['red','blue']);  // note - this is a bad color scale. a single color would be better.
+
+    // draw actual paragraphs with the colors:
+    d3.select("#colorScale1")
+      .selectAll("p")
+      .data(newData)
+      .enter()
+      .append("p")
+      .text(function (d) {
+        return d;
+      })
+      .style("color", function(d) {
+        return colorScale(d);
+      });
+
+    var colors = d3.scale.category10();
+
+    // this is still a function: it returns the colors by count:
+    console.log(colors(0));
+
+    // in this example, we select existing p's and restyle them!
+    d3.select("#colorScale2")
+      .selectAll("p")
+      .style("color", function(d, i) {
+        return colors(i);
+      });
+
+</script>

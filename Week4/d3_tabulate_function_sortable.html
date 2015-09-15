@@ -24,8 +24,8 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 		<!-- load the function file you need before you call it... -->
-		<script type="text/javascript" src="tabulate.js"></script>
-		<script type="text/javascript" src="stupidtable.js"></script>
+		<script type="text/javascript" src="js/tabulate.js"></script>
+		<script type="text/javascript" src="js/stupidtable.js"></script>
 
 		<script type="text/javascript">
 
@@ -41,15 +41,8 @@
 
 					// now we add another data object value, a calculated value.
 					d.Difference = d.year2015 - d.year1990;
-					if (d.name === "Developing regions") {
-						d.name = "Developing Regions";
-					}
-					if (d.name === "Developed regions") {
-						d.name = "Deveoloped Regions";
-					}
-
 					// I'm adding attributes with the names I want as column headers,
-					// because of how the tabulate function works.
+					// because of how the tabulate function works, and because I want prettier column names.
 					d["1990"] = d.year1990; // you can't use dot notation with a number
 					d["2015"] = d.year2015;
 					d.Region = d.name;
@@ -57,16 +50,17 @@
 
 				console.log(data);
 
+				// Notice here I am giving it prettier column names:
+
 				var regionTable = tabulate(data,
 					                        ["Region", "1990", "2015", "Difference"],
 					                        "#table");
 
-				// We are adding attributes to the existing header cells here, for use
+				// Now we are adding attributes to the existing header cells here, for use
 				// in the jquery function below.
 				d3.selectAll("th")
 					.data(["string", "int", "int", "int"])
 					.attr("data-sort", function(d) {return d;});
-
 
 				// Now that the table exists - we can use it with JQuery functions!
 				$("table").stupidtable();

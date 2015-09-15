@@ -18,6 +18,7 @@
 		<h1>My Table with Heatmap!</h1>
 		<p>This table shows regional access to improved water over 15 years. </p>
 		<p>Source: WHO/UNICEF (2015) Progress on Sanitation and Drinking Water: 2015 Update</p>
+    <p>This is a pretty inadequate description, by the way. I expect better from you folks.</p>
 		<div id="table"></div>
 
 	</body>
@@ -26,8 +27,8 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 		<!-- load the function file you need before you call it... -->
-		<script type="text/javascript" src="tabulate.js"></script>
-		<script type="text/javascript" src="stupidtable.js"></script>
+		<script type="text/javascript" src="js/tabulate.js"></script>
+		<script type="text/javascript" src="js/stupidtable.js"></script>
 
 		<script type="text/javascript">
 
@@ -50,16 +51,11 @@
 
 					// now we add another data object value, a calculated value.
 					d.difference = d.year2015 - d.year1990;
-					if (d.name === "Developing regions") {
-						d.name = "Developing Regions";
-					}
-					if (d.name === "Developed regions") {
-						d.name = "Deveoloped Regions";
-					}
 
 				 // Add an array to the empty array with the values of each:
 			 	 myArray.push([d.name, d.year1990, d.year2015, d.difference]);
 
+         // this is just a convenience, another way would be to use a function to get the values in the d3 scale.
 			 	 allDifferences.push(d.difference);
 
 				});
@@ -107,7 +103,6 @@
         cells = rows.selectAll("td")
         	// each row has data associated; we get it and enter it for the cells.
         	.data(function(d) {
-        		console.log(d);
         		return d;
         	})
         	.enter()
