@@ -30,7 +30,7 @@ If you have an array of numbers or strings, not objects, your sort needs to work
 
 Alphabetic sorting:  If you sort strings, you get ascending alphabetic order by default.  This is why you have to be careful to convert strings read in by d3 to numbers, if you don't want text sort order.
 
-**Disappearing data elements**: the selectAll <p> problem, the select body append problem...
+**Disappearing data elements**: the selectAll `<p>` problem, the select body append problem...
 
 * SelectAll existing p's:  http://localhost:8000/StudentWork/Week3/barbara/
 * Select body: https://gist.github.com/lmelgar/d1412cf546579be9ceae
