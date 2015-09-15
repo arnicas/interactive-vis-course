@@ -242,6 +242,4 @@ Send me the gist with "Week 4: SVG fixes"
 
 Using the model in d3_dynamic_domain.html, make your own barchart for your data.  Pick one of your numeric columns, and resize the SVG container to fit it.  You can adjust range etc. as you like. Add text to the page saying what it is showing.
 
-**Homework**:
-Come in prepared to talk a little about what topic or topics are interesting to you in the new UNICEF data, and why. Explore their reports and data on the data.unicef.org site. It can be the same topic, if you already zeroed in on one.
 
