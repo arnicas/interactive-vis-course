@@ -220,7 +220,7 @@ Same rules as above:
 Send me the gist: "Week4: Heatmap table"
 
 
-**Homework 2(20pt):**
+**Homework 2 (20pt):**
 
 Using the file in svg_to_fix.html, I want you to add some styling, using d3 and style sheets.  You might need to look up stuff in the SVG references.
 
@@ -238,7 +238,7 @@ Using the file in svg_to_fix.html, I want you to add some styling, using d3 and 
 
 Send me the gist with "Week 4: SVG fixes"
 
-**Homework 3(20pt)**:
+**Homework 3 (20pt)**:
 
 Using the model in d3_dynamic_domain.html, make your own barchart for your data.  Pick one of your numeric columns, and resize the SVG container to fit it.  You can adjust range etc. as you like. Add text to the page saying what it is showing.
 
