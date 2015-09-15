@@ -182,6 +182,8 @@ D3 can manipulate and draw SVG, which is how many interactive data graphics are 
 
 * My Example file: SVG_example.html
 
+* And also svg_to_fix.html
+
 A Few Resources:
 
 * Here's a [video introduction to SVG by Scott Murray](https://www.youtube.com/watch?v=qwiRkXnbLtU&feature=youtu.be&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F)
@@ -207,18 +209,17 @@ A Few Resources:
 
     Remember the data site is live again: data.unicef.org
 
-**Homework 1 (25pt)**: Make a sortable table from YOUR DATA (not mine) using tabulate.js and stupidtable.js.  Don't worry about styling this one unless you want to.
+**Homework 1 (25pt)**: Make a sortable table from YOUR DATA (not mine) using tabulate.js and stupidtable.js.  Don't worry about styling this one unless you want to, this is an exercise in using the functions.
 
 * Make the column names nice ones for people to read in the table.
 * Make sure the headers have a cursor that looks like it's a pointer, that indicates you can click.
-* Be sure to add text identifying source and explaining the data.
 
 Send me the Gist: "Week 4: Tabulate sortable table"
 
 **Extra Extra credit (12pt):**
 Figure out how to add a heatmap color scale to one of the columns in your sortable tabulate table.  This may be challenging, depending how you do it.
 
-**Homework 2 (35pt)**:
+**Homework 2 (35pt):**
 
 Make a table like the one in d3_table_heatmap.html for your data.  It should be sortable using stupidtable.js. Make a color scale for one of your numeric columns. You can use the scale on a font or the background.
 Same rules as above:
@@ -232,13 +233,21 @@ Same rules as above:
 Send me the gist: "Week4: Heatmap table"
 
 
-**Homework 3** (15pt): Make a page with some SVG shapes on it (not using D3). Anywhere on the page, but not overlapping, I want to see:
+**Homework 3(25pt):**
 
-* A circle, colored red, with radius 40 pixels.
-* A rectangle, colored blue, with width 30 pixels and height 100 pixels.
-* Another rectangle, colored yellow, with width 100 pixels, and height 30 pixels.  Give it a stroke outline color of blue.
-* Extra credit (4pt): Some SVG text saying "These are my shapes." Font size 14 pt.
+Using the file in svg_to_fix.html, I want you to add some styling, using d3 and style sheets.  You might need to look up stuff in the SVG references.
 
+* Using d3 to select all the ellipses, re-style all the ellipses so their fill is blue.
+* Using d3 to select all the rectangles, re-style them so their stroke width is 2px instead.
+* Use d3 to style all the rectangles so they are pink.
+* Then use d3 to style the first rectangle so it is blue.
+* Use d3 to select the rectangle with id svg_2 and make the color of the stroke orange.
+* Use a CSS style to set the background color of the SVG to a light gray.
+* Use a CSS style to set the line stroke to 3px instead.
+* Extra credit (5pt): Use a d3 category10() color scale to set the color of the lines.
+* Extra Extra credit (3pt): Use d3 to remove the text on top! Will require internet searching.
+
+Send me the gist with "Week 4: SVG fixes"
 
 **Homework**:
 Come in prepared to talk a little about what topic or topics are interesting to you in the new UNICEF data, and why. Explore their reports and data on the data.unicef.org site. It can be the same topic, if you already zeroed in on one.
