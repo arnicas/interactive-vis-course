@@ -133,7 +133,6 @@ Even independent of the rest of D3, the scales are incredibly powerful and usefu
 
 * My example file: scale_examples.html
 
-
 * Read: http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale
 * Supplementary: http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/
 * Videos: [Scott Murray's linear scales](https://www.youtube.com/watch?v=5EZSOsBXdS0&list=PL0tDk-f4v1uh4s33k1qJ7Xl96cOySkLnt), [ordinal scales](https://www.youtube.com/watch?v=WxtJ7VfP_VE&list=PL0tDk-f4v1uh4s33k1qJ7Xl96cOySkLnt&index=2)
@@ -145,33 +144,6 @@ Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color ran
 Here's a cool related recent vis in NYT: http://www.nytimes.com/interactive/2015/08/06/upshot/2016-republican-presidential-candidates-dashboard.html?smid=tw-share&_r=0
 
 Here's a nice heatmap: http://www.washingtonpost.com/graphics/business/jobs-report/
-
-
-###Size Scales
-
-This is a common pattern in D3:
-
-````
-    // set up the size of the SVG container for the graph (later we'll add margins)
-    var height = 350;
-    var width = 300;
-
-    var widthScale = d3.scale.linear().range([ 0, width ]);
-
-    // load the data file
-
-    d3.csv("data/water_improvement_data.csv", function(error, data) {
-
-    // set the domain of the scale, based on the data in the file:
-
-        widthScale.domain([ 0, d3.max(data, function(d) {
-            return +d.year2015;
-    }) ]);
-````
-
-Look at the file and result in [d3_dynamic_domain.html](d3_dynamic_domain.html).
-
-Note that with chaining, you can put your domain and range in any order on your scale function.  d3.scale.linear().domain([]).range([]) is fine, and so is d3.scale.linear.range([]).domain([]).
 
 
 ## SVG
@@ -196,6 +168,32 @@ A Few Resources:
 
 **Homework, see below**
 
+###Size Scales
+
+This is a common pattern in D3:
+
+````
+    // set up the size of the SVG container for the graph (later we'll add margins)
+    var height = 350;
+    var width = 300;
+
+    var widthScale = d3.scale.linear().range([ 0, width ]);
+
+    // load the data file
+
+    d3.csv("data/water_improvement_data.csv", function(error, data) {
+
+    // set the domain of the scale, based on the data in the file:
+
+        widthScale.domain([ 0, d3.max(data, function(d) {
+            return +d.year2015;
+    }) ]);
+````
+
+Look at d3_dynamic_domain.html.
+
+Note that with chaining, you can put your domain and range in any order on your scale function.  d3.scale.linear().domain([]).range([]) is fine, and so is d3.scale.linear.range([]).domain([]).
+
 ## Readings
 
 * [A Tour Through The Visualization Zoo](http://queue.acm.org/detail.cfm?id=1805128)- some examples of less common visualization techniques, possible in D3.
@@ -209,17 +207,8 @@ A Few Resources:
 
     Remember the data site is live again: data.unicef.org
 
-**Homework 1 (25pt)**: Make a sortable table from YOUR DATA (not mine) using tabulate.js and stupidtable.js.  Don't worry about styling this one unless you want to, this is an exercise in using the functions.
 
-* Make the column names nice ones for people to read in the table.
-* Make sure the headers have a cursor that looks like it's a pointer, that indicates you can click.
-
-Send me the Gist: "Week 4: Tabulate sortable table"
-
-**Extra Extra credit (12pt):**
-Figure out how to add a heatmap color scale to one of the columns in your sortable tabulate table.  This may be challenging, depending how you do it.
-
-**Homework 2 (35pt):**
+**Homework 1 (35pt):**
 
 Make a table like the one in d3_table_heatmap.html for your data.  It should be sortable using stupidtable.js. Make a color scale for one of your numeric columns. You can use the scale on a font or the background.
 Same rules as above:
@@ -233,7 +222,7 @@ Same rules as above:
 Send me the gist: "Week4: Heatmap table"
 
 
-**Homework 3(25pt):**
+**Homework 2(20pt):**
 
 Using the file in svg_to_fix.html, I want you to add some styling, using d3 and style sheets.  You might need to look up stuff in the SVG references.
 
@@ -245,9 +234,15 @@ Using the file in svg_to_fix.html, I want you to add some styling, using d3 and 
 * Use a CSS style to set the background color of the SVG to a light gray.
 * Use a CSS style to set the line stroke to 3px instead.
 * Extra credit (5pt): Use a d3 category10() color scale to set the color of the lines.
+
+
 * Extra Extra credit (3pt): Use d3 to remove the text on top! Will require internet searching.
 
 Send me the gist with "Week 4: SVG fixes"
+
+**Homework 3(20pt)**:
+
+Using the model in d3_dynamic_domain.html, make your own barchart for your data.  Pick one of your numeric columns, and resize the SVG container to fit it.  You can adjust range etc. as you like. Add text to the page saying what it is showing.
 
 **Homework**:
 Come in prepared to talk a little about what topic or topics are interesting to you in the new UNICEF data, and why. Explore their reports and data on the data.unicef.org site. It can be the same topic, if you already zeroed in on one.

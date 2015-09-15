@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Horizontal Bar - Dynamic Domain</title>
-		<script type="text/javascript" src="../js/d3.v3.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 		<style type="text/css">
 
 			body {
@@ -23,15 +23,16 @@
 
 
 			var height = 350;
-			var width = 300;
+			var width = 320;
 
+			// Set up the range here - my output sizes
 			var widthScale = d3.scale.linear()
 								.range([ 0, width ]);
 
 			var svg = d3.select("body")
 						.append("svg")
-						.attr("width", w)
-						.attr("height", h);
+						.attr("width", width)
+						.attr("height", height);
 
 
 			d3.csv("data/water_improvement_data.csv", function(error, data) {
@@ -44,6 +45,7 @@
 					return d3.descending(+a.year2015, +b.year2015);
 				});
 
+				// set up the domain here, from the data i read in.
 				widthScale.domain([ 0, d3.max(data, function(d) {
 					return +d.year2015;
 				}) ]);
@@ -55,7 +57,7 @@
 
 				rects.attr("x", 0)
 					.attr("y", function(d, i) {
-						return i * 10;
+						return i * 20;
 					})
 					.attr("width", function(d) {
 						return widthScale(d.year2015);
@@ -63,7 +65,7 @@
 					.attr("height", 8)
 					.append("title")
 					.text(function(d) {
-						return d.country + "'s access to good water: " + d.year2015 + "%";
+						return d.name + "'s access to good water: " + d.year2015 + "%";
 					});
 
 			});
