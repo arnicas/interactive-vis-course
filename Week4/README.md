@@ -76,8 +76,6 @@ Added to my references on the home page of the repo:
 
 * A new reference with more examples of interactive vis: https://docs.google.com/spreadsheets/d/1sSWytfD1N1nuXkry7IZyscahj9M8lX04XJWeqrdgDZk/pubhtml
 
-Let's discuss "exploratory" vs "explanatory" vis for a moment.
-
 
 ## More On Tables
 
