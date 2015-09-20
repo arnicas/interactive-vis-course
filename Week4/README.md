@@ -127,7 +127,9 @@ A very cool project:
 
 Even independent of the rest of D3, the scales are incredibly powerful and useful tools.  Scales map numbers from a domain into a range. In particular, we need to turn numbers that are in our input data into pixel locations on the screen.  Or into colors.
 
-* Reference, required: https://github.com/mbostock/d3/wiki/Ordinal-Scales
+* References: Quantitative Scales: https://github.com/mbostock/d3/wiki/Quantitative-Scales
+* References: Ordinal Scales: https://github.com/mbostock/d3/wiki/Ordinal-Scales
+* References: Time Scales: https://github.com/mbostock/d3/wiki/Time-Scales
 
 * My example file: scale_examples.html
 
@@ -139,9 +141,9 @@ Even independent of the rest of D3, the scales are incredibly powerful and usefu
 
 Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color range to one column of numbers.  You could have done this on the font itself, of course.
 
-Here's a cool related recent vis in NYT: http://www.nytimes.com/interactive/2015/08/06/upshot/2016-republican-presidential-candidates-dashboard.html?smid=tw-share&_r=0
-
-Here's a nice heatmap: http://www.washingtonpost.com/graphics/business/jobs-report/
+* Here's a cool related recent vis in NYT: http://www.nytimes.com/interactive/2015/08/06/upshot/2016-republican-presidential-candidates-dashboard.html?smid=tw-share&_r=0
+* Here's a nice heatmap: http://www.washingtonpost.com/graphics/business/jobs-report/
+* Another great heatmap on vaccines: http://graphics.wsj.com/infectious-diseases-and-vaccines/
 
 
 ## SVG

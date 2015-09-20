@@ -15,16 +15,16 @@ Subject to change!
 * [Week1](Week1): Intro to Tools, Client Project, CSVs
 * [Week2](Week2): Loading CSV Data, Highcharts
 * [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
-* [Week4](Week4): SVG and D3 bar/line charts
-* [Week5](Week5): Tooltips and Events
-* [Week6](Week6): (Crowded) Linecharts and Scatterplots; Voronoi
-* [Week7](Week7): Animation
-* [Week8](Week8): Small Multiples
-* [Week9](Week9):  Cross-Linking and Brushing
-* [Week10](Week10): Storytelling Techniques: Steppers
+* [Week4](Week4): More tables, SVG and D3 bar charts
+* [Week5](Week5): Bar Charts, Axes, Text
+* [Week6](Week6): (Crowded) Linecharts and Scatterplots
+* [Week7](Week7): Tooltips and Events
+* [Week8](Week8):  Animation
+* [Week9](Week9):  Maps
+* [Week10](Week10): Small Multiples, Cross-Linking and Brushing
 * [Week11](Week11): Storytelling Techniques: Scrollytelling
 * [Week12](Week12): APIs, Ajax, Servers
-* [Week13](Week13): Class requests (Maybe Maps)
+* [Week13](Week13): Class requests
 * [Week14](Week14): Project & Overflow
 * [Week15](Week15): Project & Overflow
 
