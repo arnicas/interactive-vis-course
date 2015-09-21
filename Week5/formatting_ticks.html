@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- A modified example from Scott Murray's Knight d3 course. -->
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Formatting Ticks</title>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+		<style type="text/css">
+
+			body {
+				background-color: white;
+				font-family: Helvetica, Arial, sans-serif;
+			}
+
+			h1 {
+				font-size: 24px;
+				margin: 0;
+			}
+
+			p {
+				font-size: 14px;
+				margin: 10px 0 0 0;
+			}
+
+			svg {
+				background-color: white;
+			}
+
+			circle:hover {
+				fill: orange;
+			}
+
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: black;
+				shape-rendering: crispEdges;
+			}
+
+			.axis text {
+				font-family: sans-serif;
+				font-size: 11px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<h1>Life Satisfaction</h1>
+
+		<p>Better Life Index &ldquo;Life Satisfaction&rdquo; scores vs. percentage of population reporting good or better health. Source: <a href="http://stats.oecd.org/Index.aspx?DataSetCode=BLI">OECD</a>, 2014</p>
+
+		<script type="text/javascript">
+
+
+		// Scott is "cheating" and not using the full pattern for margins.
+		// It is better to use the object style with margin.top, margin.right, etc.
+
+			var w = 700;
+			var h = 600;
+			var padding = [ 20, 10, 50, 50 ];  //Top, right, bottom, left
+
+
+
+			var xScale = d3.scale.linear()
+								.range([ padding[3], w - padding[1] - padding[3] ]);
+
+			// top to bottom:
+			var yScale = d3.scale.linear()
+								.range([ h - padding[2], padding[0] ]);
+
+			//  Custom tick count -- 15.
+			var xAxis = d3.svg.axis()
+							.scale(xScale)
+							.orient("bottom")
+							.ticks(15);
+
+		// Custom format on ticks - just a string return, not a function here
+			var yAxis = d3.svg.axis()
+							.scale(yScale)
+							.orient("left")
+							.tickFormat(function(d) {
+								return d + "%"
+							});
+
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+
+
+
+			d3.csv("data/betterlifeindex.csv", function(data) {
+
+				xScale.domain(
+					d3.extent(data, function(d) {
+						return +d.lifeSatisfaction;
+					}));
+
+				yScale.domain(
+					d3.extent(data, function(d) {
+						return +d.selfReportedHealth;
+					}));
+
+				var circles = svg.selectAll("circle")
+								.data(data)
+								.enter()
+								.append("circle");
+
+				circles.attr("cx", function(d) {
+						return xScale(d.lifeSatisfaction);
+					})
+					.attr("cy", function(d) {
+						return yScale(d.selfReportedHealth);
+					})
+					.attr("r", 4)
+					.attr("fill", "steelblue")
+					.append("title")
+					.text(function(d) {
+						return d.country + "'s life satisfaction score is " + d.lifeSatisfaction + ", and " + d.selfReportedHealth + "% report good health";
+					});
+
+				svg.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + (h - padding[2] + 10) + ")")
+					.call(xAxis);
+
+				svg.append("g")
+					.attr("class", "y axis")
+					.attr("transform", "translate(" + (padding[3] - 10) + ",0)")
+					.call(yAxis);
+
+			});
+
+
+		</script>
+
+	</body>
+</html>

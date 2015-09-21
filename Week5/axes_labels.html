@@ -14,6 +14,14 @@
 				background-color: white;
 			}
 
+			rect {
+				fill: steelblue;
+			}
+
+			rect:hover {
+				fill: orange;
+			}
+
 			.axis path,
 			.axis line {
 				fill: none;
@@ -24,6 +32,12 @@
 			.axis text {
 				font-family: sans-serif;
 				font-size: 11px;
+			}
+
+			.xlabel {
+				font-famile: sans-serif;
+				font-size: 11px;
+				color: gray;
 			}
 
 		</style>
@@ -96,6 +110,11 @@
 						return widthScale(d.year2015);
 					})
 					.attr("height", heightScale.rangeBand())
+					.style("fill", function(d){
+						if (d.name === "The World") {
+							return "darkblue";
+						}
+					})
 					.append("title")
 					.text(function(d) {
 						return d.name + "'s access to good water: " + d.year2015 + "%";
@@ -113,8 +132,17 @@
 					.attr("transform", "translate(" + margin.left + ",0)")
 					.call(yAxis);
 
-			});
+				svg.append("text")
+					.attr("class", "xlabel")
+        	.attr("transform", "translate(" + (margin.left + width / 2) + " ," +
+        				(height + margin.bottom) + ")")
+        	.style("text-anchor", "middle")
+        	.attr("dy", "12")
+        	.text("Percent");
 
+        	// You could also use tick formatting to get a % sign on each axis tick
+
+			});
 
 		</script>
 

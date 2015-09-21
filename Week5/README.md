@@ -1,9 +1,7 @@
-## Week 5: More on Bar Charts, Axes
+## Week 5: More on Bar Charts, Axes, Simple Lines.
 
 
 ### Homework Review:
-
-
 
 
 ## Review on Joins and Scales
@@ -119,11 +117,18 @@ SVG has its own text element.
 
 * Read: https://www.dashingd3js.com/svg-text-element
 * Read -- this is about labels on scatterplot circles, but the same principles apply: Labels on elements: http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2
+* A good overview of d3 with a bunch of SVG element attributes - make sure you read down to the text parts to see how they work: http://www.d3noob.org/2014/02/attributes-in-d3js.html
 
-Adding text to the end of your bars... or other things.
+The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right.  dy with a negative value will move it "up", because the coordinate system is "higher numbers at the bottom of the screen."
 
-Example:
+Example: Modified version of Jo's bars: http://bl.ocks.org/arnicas/2d34b474c762abe9f4ee
 
+###Tips on Formatting Numbers in D3 in Axes, etc
+
+See http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html
+
+
+**Homework**: See below.
 
 ## The Group Element in SVG
 
@@ -169,6 +174,24 @@ svg.append("g")
 
 See axes_labels.html.
 
+## Putting Margins and Labels and Transforms Together
+
+How to add an axis label to your axes.
+* http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html
+
+This often turns into a trial-and-error routine with transforms. My code in axes_labels.html has:
+
+````
+svg.append("text")
+    .attr("class", "xlabel")
+    .attr("transform", "translate(" + (margin.left + width / 2) + " ," +
+                        (height + margin.bottom) + ")")
+    .style("text-anchor", "middle")
+    .attr("dy", "12")
+    .text("Percent");
+````
+I'm not going to lie, it took me a few tries to get the location right.
+
 
 ## More Stuff on Bar Charts
 
@@ -181,11 +204,11 @@ Using nested data/ resources:
 ## Homework
 
 Readings:
-* Ch 8: http://chimera.labs.oreilly.com/books/1230000000345/ch08.html
-* 
+* Axes: Ch 8: http://chimera.labs.oreilly.com/books/1230000000345/ch08.html
 
-**Homework1** (20pt):
-Add axes labels, and special color rule for your barchart. Also, label the end points of your bars with their actual values.  Add a hover rule to your CSS.
+
+**Homework1** (25pt):
+Use the d3 margin conventions to set up your bar chart. Add axes labels, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the text section).  Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.
 
 
 
