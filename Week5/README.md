@@ -326,7 +326,7 @@ I'm not going to lie, it takes me a few tries to get the locations right.
 After we do the in-class exercise, I'll post the simple_scatter model.
 
 
-##More Stuff on Bar Charts, Scatterplot Examples, A Dot Plot
+##Example Links on Bar Charts, Scatterplot Examples, Dot Plots
 
 
 * Nathan's great post on 0 baseline for barcharts: http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/
@@ -337,6 +337,10 @@ After we do the in-class exercise, I'll post the simple_scatter model.
 http://www.bloomberg.com/politics/graphics/2014-incumbent-governors/?hootPostID=031ede1ff3806f5956e7bdadac068a20
 
 * Scatterplots linked to maps: http://anandthakker.github.io/baltimore-neighborhood-vitalsigns/#/i/male10:female10/c/Greater-_Charles-_Village--Barclay/
+
+* A classic style dot plot: http://www.verisi.com/resources/d3-tutorial-basic-charts.htm#s7
+
+* A cool hybrid of a dot plot for times: http://neuralengr.com/asifr/journals/
 
 * A dot plot example by me -- this is a modification between a bar chart and a scatterplot! dot_plot.html
 
