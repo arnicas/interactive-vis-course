@@ -286,6 +286,8 @@ svg.append("g")
 
 See axes_labels.html.
 
+If you want to specially format your tick labels, you can.  See formatting_ticks.html.
+
 
 ## Adding an Axis Label: Putting Margins and Labels and Transforms Together
 
