@@ -284,7 +284,7 @@ svg.append("g")
     .call(axis);  // here were 'call' the function for the axis.
 ````
 
-See axes_labels.html.
+See bar_axes_labels.html.
 
 If you want to specially format your tick labels, you can.  See formatting_ticks.html.
 
@@ -326,10 +326,17 @@ I'm not going to lie, it takes me a few tries to get the locations right.
 After we do the in-class exercise, I'll post the simple_scatter model.
 
 
-##More Stuff on Bar Charts, A Dot Plot
+##More Stuff on Bar Charts, Scatterplot Examples, A Dot Plot
 
 
-* Nathan's great post on 0 baseline: http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/
+* Nathan's great post on 0 baseline for barcharts: http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/
+
+* Shneiderman's mantra: http://blog.futureadvisor.com/explore-changes-in-wages-and-employment-across-industries/
+
+* A super scatterplot project to keep you motivated - with animations:
+http://www.bloomberg.com/politics/graphics/2014-incumbent-governors/?hootPostID=031ede1ff3806f5956e7bdadac068a20
+
+* Scatterplots linked to maps: http://anandthakker.github.io/baltimore-neighborhood-vitalsigns/#/i/male10:female10/c/Greater-_Charles-_Village--Barclay/
 
 * A dot plot example by me -- this is a modification between a bar chart and a scatterplot! dot_plot.html
 
