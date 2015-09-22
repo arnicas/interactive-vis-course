@@ -1,4 +1,4 @@
-## Week 5: More on Bar Charts, Axes, Transforms, Labels...
+## Week 5: More on Bar Charts, Axes, Transforms, Labels, Scatterplots...
 
 
 ### Homework Review:
@@ -127,17 +127,20 @@ rects.attr("fill", function(d) {
 })
 ````
 
+That's what Jo did in http://bl.ocks.org/jowang0319/03712cf42713752d62e9.
+
 ## Adding Text Elements
 
 SVG has its own text element.
 
-* Read: https://www.dashingd3js.com/svg-text-element
-* Read -- this is about labels on scatterplot circles, but the same principles apply: Labels on elements: http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2
 * A good overview of d3 with a bunch of SVG element attributes - make sure you read down to the text parts to see how they work: http://www.d3noob.org/2014/02/attributes-in-d3js.html
+* A simple set of circles with text labels: https://www.dashingd3js.com/svg-text-element
+* Read: This is also about labels on scatterplot circles, but the same principles apply: Labels on elements: http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2
 
 The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right.  dy with a negative value will move it "up", because the coordinate system is "higher numbers at the bottom of the screen."
 
 Examples:
+
 * Modified version of Jo's bars: http://bl.ocks.org/arnicas/2d34b474c762abe9f4ee
 * Halina's end-of-bars text: http://bl.ocks.org/hmader/5f428acbd45c230400b5#file-contraceptive-mortality-select-countries-chart-csv
 
@@ -148,13 +151,10 @@ See http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html
 
 ## Review on Joins and Scales
 
-A reminder on joins and scales:
+Reminders about joins and scales, using circles:
 
-* http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffer6e1c9&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+* This is circles with colors and sizes based on data values: http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffer6e1c9&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 
-A reminder on binding data:
-
-http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 
 ## More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes
 
@@ -182,7 +182,10 @@ o.rangeExtent(); // [0, 100]
 
 Remember: rangeRoundBands (plural) sets up the bands.  rangeBand() (singular) gives you one of the bands!  Range, like in quantitive scales, tells you what you mapped to! rangeExtent is like d3.extent - the max and min of your range.
 
-If you use an ordinal scale with categorical items, like the names of bars in a bar chart, it will "space them out" for you on the scale.  See axes_labels.html.
+If you use an ordinal scale with categorical items, like the names of bars in a bar chart, it will "space them out" for you on the scale.
+
+Example: See bar_axes_labels.html.
+
 
 ### Aside on Javascript Map
 
@@ -192,7 +195,7 @@ We can also use this handy Javascript map function in our scale:
 
 ````
 var heightScale = d3.scale.ordinal()
-                                .rangeRoundBands([ margin.top, height], 0.2);
+                    .rangeRoundBands([ margin.top, height], 0.2);
 
 heightScale.domain(
     // the map function returns an array of all the d.name values only!
@@ -201,6 +204,7 @@ heightScale.domain(
     })
 );
 ````
+
 A map is a way to take an array of items (like data) and return a new array, after doing something to each item.  It's like data.forEach(), except it can save you some typing and extra variables.
 
 
@@ -288,7 +292,7 @@ See axes_labels.html.
 How to add an axis label to your axes.
 * http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html
 
-This often turns into a trial-and-error routine with transforms. My code in axes_labels.html has:
+This often turns into a trial-and-error routine with transforms. My code in bar_axes_labels.html has:
 
 ````
 svg.append("text")
@@ -299,14 +303,31 @@ svg.append("text")
     .attr("dy", "12")
     .text("Percent");
 ````
+
+Y axes need a translate, rotate, too.
+
+````
+svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Value");
+
+
+
 I'm not going to lie, it took me a few tries to get the location right.
 
 
-## More Stuff on Bar Charts, Dot Plot
+##Scatterplots
 
-Using nested data/ resources:
+After we do the in-class exercise, I'll post the simple_scatter model.
 
-* Grouped Bar Charts: http://bl.ocks.org/mbostock/3887051
+
+## More Stuff on Bar Charts, A Dot Plot
+
+
 * Nathan's great post on 0 baseline: http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/
 
 * A dot plot example by me -- this is a modification between a bar chart and a scatterplot! dot_plot.html
@@ -316,22 +337,37 @@ Using nested data/ resources:
 
 Readings:
 * Axes: Ch 8: http://chimera.labs.oreilly.com/books/1230000000345/ch08.html
+* Axis Labels: http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html
 
+**Homework1** (12pt): Turn in the scatterplot we made in class by midnight tonight.
 
-**Homework1** (15pt): Turn in the scatterplot we made in class. It should have:
 * Dots for the data rows.
-* Margins set up with an object.
-* Axes labels.
-* A special case color on the "World" dot.
+* Margins set up with an object (margin.top...)
+* Scales that use the margin settings.
+* A label on the X axis, positioned with transform, translate.
+* A special case color on the "World" dot, using an if statement.
+* CSS rule for circle fill that refers to a class (circle.something).
+* Extra credit (4pt): A rotated Y axis label.
 
-**Homework2** (20pt):
+After you turn this in, I'll post scatterplot code.
+
+**Homework2(20pt)**:
 Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the Text section and Halina's example).  Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.
 
-**Homework3** (25pt):
-Make a scatter plot with your own data.  Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship.  Write a text snippet that explains it and identifies the source.
+**Homework3(25pt)**:
+Make a scatter plot with your own data.  Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship.  Write a text snippet that explains it and identifies the source of the data.  Use UNICEF styling.
 
-Extra Credit
+**Extra Extra Credit (15pt)**: Make a dot plot with your data using my model and an appropriate comparison.  (Common things for dot plots are gender differences, date differences, related measures of some kind...)
 
+**Homework4**(5pt): Everyone should have an interesting thing they have found in the latest UNICEF reports and data, that they think they would like to explore. It can be world-wide, or region/country specific, or income specific, or gender-related...
+
+Reminder: The newest UNICEF reports:
+    * http://www.unicef.org/publications/index_83078.html
+    * Plus a Key Findings summary report:
+    * http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf
+    * And another report which we released at the same time: http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf
+
+Remember the data site is live again: data.unicef.org
 
 
 
