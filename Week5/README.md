@@ -304,20 +304,19 @@ svg.append("text")
     .text("Percent");
 ````
 
-Y axes need a translate, rotate, too.
+Y axes need a translate, rotate, too.  The rotation changes how things are oriented.
 
 ````
 svg.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x",0 - (height / 2))
+        .attr("y", 0 - margin.left) // you may need to adjust this
+        .attr("x", 0 - (height / 2)) // you may need to adjust
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Value");
+````
 
-
-
-I'm not going to lie, it took me a few tries to get the location right.
+I'm not going to lie, it takes me a few tries to get the locations right.
 
 
 ##Scatterplots
@@ -325,7 +324,7 @@ I'm not going to lie, it took me a few tries to get the location right.
 After we do the in-class exercise, I'll post the simple_scatter model.
 
 
-## More Stuff on Bar Charts, A Dot Plot
+##More Stuff on Bar Charts, A Dot Plot
 
 
 * Nathan's great post on 0 baseline: http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/
