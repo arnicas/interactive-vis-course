@@ -73,6 +73,10 @@ d3.select("text").remove();
 * Yan's pretty text labels and tooltips: http://bl.ocks.org/yan2014/dbc99ce7e5858d4769db
 * Jo's special case colored bar: http://bl.ocks.org/jowang0319/03712cf42713752d62e9
 
+Luis's huge table issue:  Filter the data after read you read it in. Let's do it:
+http://blockbuilder.org/arnicas/3a3a0510c4ffe824f008
+
+
 
 ## Setting Custom Fills By Data Value or Index
 
@@ -315,7 +319,6 @@ Readings:
 
 
 **Homework1** (15pt): Turn in the scatterplot we made in class. It should have:
-
 * Dots for the data rows.
 * Margins set up with an object.
 * Axes labels.
