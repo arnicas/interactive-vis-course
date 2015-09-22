@@ -56,11 +56,11 @@
 			// these are the margins around the graph. Axes labels go in margins.
 			var margin = {top: 20, right: 25, bottom: 20, left: 200};
 
-			var width = 1000 - margin.left - margin.right,
-    		height = 500 - margin.top - margin.bottom;
+			var width = fullwidth - margin.left - margin.right,
+    		height = fullheight - margin.top - margin.bottom;
 
 			var widthScale = d3.scale.linear()
-								.range([ 0, width]);
+								.range([0, width]);
 
 			var heightScale = d3.scale.ordinal()
 								.rangeRoundBands([ margin.top, height], 0.2);
@@ -131,6 +131,8 @@
 					.attr("class", "y axis")
 					.attr("transform", "translate(" + margin.left + ",0)")
 					.call(yAxis);
+
+				// Label below x axis
 
 				svg.append("text")
 					.attr("class", "xlabel")
