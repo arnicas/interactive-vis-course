@@ -352,21 +352,22 @@ Readings:
 
 After you turn this in, I'll post scatterplot code.
 
-**Homework2(20pt)**:
+**Homework2 (20pt)**:
 Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the Text section and Halina's example).  Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.
 
-**Homework3(25pt)**:
+**Homework3 (25pt)**:
 Make a scatter plot with your own data.  Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship.  Write a text snippet that explains it and identifies the source of the data.  Use UNICEF styling.
 
 **Extra Extra Credit (15pt)**: Make a dot plot with your data using my model and an appropriate comparison.  (Common things for dot plots are gender differences, date differences, related measures of some kind...)
 
-**Homework4**(5pt): Everyone should have an interesting thing they have found in the latest UNICEF reports and data, that they think they would like to explore. It can be world-wide, or region/country specific, or income specific, or gender-related...
+**Homework4 (5pt)**: Everyone should have an interesting thing they have found in the latest UNICEF reports and data, that they think they would like to explore. It can be world-wide, or region/country specific, or income specific, or gender-related...
 
-Reminder: The newest UNICEF reports:
-    * http://www.unicef.org/publications/index_83078.html
-    * Plus a Key Findings summary report:
-    * http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf
-    * And another report which we released at the same time: http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf
+Reminder... The newest UNICEF reports:
+
+* http://www.unicef.org/publications/index_83078.html
+* Plus a Key Findings summary report:
+* http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf
+* And another report which we released at the same time: http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf
 
 Remember the data site is live again: data.unicef.org
 
