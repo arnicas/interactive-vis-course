@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- A Modification of Scott Murray's class example for Knight D3. -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Parsing Dates</title>
+		<script type="text/javascript" src="../d3.v3.js"></script>
+	</head>
+	<body>
+
+		<p>Not much to see here; check the console!</p>
+
+		<script type="text/javascript">
+
+
+
+			//Examples illustrating date parsing and formatting
+
+			//This is a string (neither a number nor a Date yet!)
+			var testString = "1980";
+
+			//Define the format, in our case YYYY
+			//For all options, see: https://github.com/mbostock/d3/wiki/Time-Formatting
+			var dateFormat = d3.time.format("%Y");
+
+			//PARSE the string, returning a JavaScript Date object
+			var testDate = dateFormat.parse(testString);
+			console.log(testDate);
+
+			//FORMAT the Date object, returning a string
+			var testFormat = dateFormat(testDate);
+			console.log(testFormat);
+
+
+
+		</script>
+
+	</body>
+</html>
