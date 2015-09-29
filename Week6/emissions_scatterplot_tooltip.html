@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!-- A modification of Scott Murray's example from Knight D3 course -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Dot Plot with Date Scale and Axis</title>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+		<style type="text/css">
+
+			body {
+				background-color: white;
+				font-family: Helvetica, Arial, sans-serif;
+			}
+
+			h1 {
+				font-size: 24px;
+				margin: 0;
+			}
+
+			p {
+				font-size: 14px;
+				margin: 10px 0 0 0;
+			}
+
+			svg {
+				background-color: white;
+			}
+
+			circle {
+				fill: steelblue;
+			}
+
+			circle:hover {
+				fill: orange;
+			}
+
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: black;
+				shape-rendering: crispEdges;
+			}
+
+			.axis text {
+				font-family: sans-serif;
+				font-size: 11px;
+			}
+
+			.tooltip {
+				position: absolute;
+				z-index: 10;
+			}
+
+			.tooltip p {
+				background-color: white;
+				border: gray 1px solid;
+				padding: 2px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<h1>United States CO2 Emissions</h1>
+
+		<p>The United States&rsquo; carbon dioxide emissions, 1961-2010. Source: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT?page=6">World Bank</a>, 2014</p>
+
+		<script type="text/javascript">
+
+
+			var width = 700;
+			var height = 600;
+			var margin = { top: 20, right: 10, bottom: 50, left: 100};
+
+
+			//Set up date formatting and years
+			var dateFormat = d3.time.format("%Y");
+
+			var xScale = d3.time.scale()
+								.range([ margin.left, width - margin.right - margin.left ]);
+
+			var yScale = d3.scale.linear()
+								.range([ margin.top, height - margin.bottom ]);
+
+
+
+			var xAxis = d3.svg.axis()
+							.scale(xScale)
+							.orient("bottom")
+							.ticks(15)
+							.tickFormat(function(d) {
+								return dateFormat(d);
+							});
+
+			var yAxis = d3.svg.axis()
+							.scale(yScale)
+							.orient("left");
+
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", width)
+						.attr("height", height);
+
+			// add a tooltip to the page - not to the svg itself!
+			var tooltip = d3.select("body")
+      	.append("div")
+      	.attr("class", "tooltip");
+
+			d3.csv("data/usa_co2_emissions.csv", function(myData) {
+
+				xScale.domain(d3.extent(myData, function(d){
+						return dateFormat.parse(d.year);
+						})
+				);
+
+				// the domain is from the max of the emissions to 0 - remember it's reversed.
+				yScale.domain([ d3.max(myData, function(d) {
+						return +d.emissions;
+					}),
+					0
+				]);
+
+				var circles = svg.selectAll("circle")
+								.data(myData)
+								.enter()
+								.append("circle");
+
+				circles.attr("cx", function(d) {
+						return xScale(dateFormat.parse(d.year));
+					})
+					.attr("cy", function(d) {
+						return yScale(d.emissions);
+					})
+					.attr("r", 4)
+					.append("title")
+					.text(function(d) {
+						return d.year + " emissions: " + d.emissions + " kt";
+					});
+
+				circles
+					.on("mouseover", function(d){
+						return tooltip
+							.style("display", null)
+							.html("<p>Year: " + d.year +
+									  "<br>Emissions: " + d.emissions + " kt</p>");
+					})
+      		.on("mousemove", function(){
+      			console.log("events", window.event, d3.event);
+      			return tooltip
+      				.style("top", (d3.event.pageY - 10) + "px" )
+      				.style("left", (d3.event.pageX + 10) + "px");
+      		})
+      		.on("mouseout", function(){
+      			return tooltip.style("display", "none");});
+
+				svg.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + (height - margin.bottom + 10) + ")")
+					.call(xAxis);
+
+				svg.append("g")
+					.attr("class", "y axis")
+					.attr("transform", "translate(" + (margin.left - 10) + ",0)")
+					.call(yAxis);
+
+			});
+
+
+		</script>
+
+	</body>
+</html>

@@ -16,9 +16,9 @@ Subject to change!
 * [Week2](Week2): Loading CSV Data, Highcharts
 * [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
 * [Week4](Week4): More tables, SVG and D3 bar charts
-* [Week5](Week5): Bar Charts, Axes, Text
-* [Week6](Week6): (Crowded) Linecharts and Scatterplots
-* [Week7](Week7): Tooltips and Events
+* [Week5](Week5): Bar Charts, Axes, Text, Scatterplots
+* [Week6](Week6): (Crowded) Linecharts, Events, Simple Tooltips
+* [Week7](Week7): More Events, Updates to Data
 * [Week8](Week8):  Animation
 * [Week9](Week9):  Maps
 * [Week10](Week10): Small Multiples, Cross-Linking and Brushing
@@ -83,6 +83,8 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345.  [Code samp
 * **Blocksplorer**: search for code examples in D3 blocks! http://bl.ocksplorer.org/
 
 * Great overall tips: https://northlandia.wordpress.com/2014/10/23/ten-best-practices-for-coding-with-d3/
+
+* **D3 examples of Chart Types**: http://christopheviau.com/d3list/gallery.html
 
 * **D3 Newbie FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
 

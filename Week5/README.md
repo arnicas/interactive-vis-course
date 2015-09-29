@@ -207,6 +207,11 @@ heightScale.domain(
 
 A map is a way to take an array of items (like data) and return a new array, after doing something to each item.  It's like data.forEach(), except it can save you some typing and extra variables.
 
+There are more great d3 functions for arrays listed on the web reference: 
+https://github.com/mbostock/d3/wiki/Arrays
+
+
+
 
 ## The Group Element in SVG
 
@@ -323,7 +328,7 @@ I'm not going to lie, it takes me a few tries to get the locations right.
 
 ##Scatterplots
 
-After we do the in-class exercise, I'll post the simple_scatter model.
+After we do the in-class exercise, I'll post the scatterplot model.
 
 
 ##Example Links on Bar Charts, Scatterplot Examples, Dot Plots
@@ -357,7 +362,7 @@ Readings:
 * Margins set up with an object (margin.top...)
 * Scales that use the margin settings.
 * A label on the X axis, positioned with transform, translate.
-* A special case color on the "World" dot, using an if statement.
+* A special case color on the one of the dots, using an if statement.
 * CSS rule for circle fill that refers to a class (circle.something).
 * Extra credit (4pt): A rotated Y axis label.
 
