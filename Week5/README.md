@@ -369,7 +369,7 @@ Readings:
 After you turn this in, I'll post scatterplot code.
 
 **Homework2 (20pt)**:
-Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the Text section and Halina's example).  Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.
+Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Use an ordinal axis on the Y axis to label the bars.  Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the Text section and Halina's example).  Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.
 
 **Homework3 (25pt)**:
 Make a scatter plot with your own data.  Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship.  Write a text snippet that explains it and identifies the source of the data.  Use UNICEF styling.

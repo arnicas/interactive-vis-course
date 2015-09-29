@@ -4,7 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Parsing Dates</title>
-		<script type="text/javascript" src="../d3.v3.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
 	</head>
 	<body>
 
@@ -17,7 +18,7 @@
 			//Examples illustrating date parsing and formatting
 
 			//This is a string (neither a number nor a Date yet!)
-			var testString = "1980";
+			var testString = "2013";
 
 			//Define the format, in our case YYYY
 			//For all options, see: https://github.com/mbostock/d3/wiki/Time-Formatting
@@ -25,12 +26,35 @@
 
 			//PARSE the string, returning a JavaScript Date object
 			var testDate = dateFormat.parse(testString);
-			console.log(testDate);
 
-			//FORMAT the Date object, returning a string
-			var testFormat = dateFormat(testDate);
+			console.log(testDate);  // now it's a date object that JS and D3 understand.
+
+			var outputFormat = d3.time.format("'%y")
+
+			//FORMAT the Date object, returning a string - this can be your output format
+
+			var testFormat = outputFormat(testDate);
 			console.log(testFormat);
 
+			// Let's use this page for help: http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95
+
+			var string1 = "2014-01-21";
+			// What if we want to output these as 01-14?
+
+			var outputFormat = d3.time.format("%m-%y");
+
+			var string2 = "Jan01";
+
+			// what if we want the output to be "2001"?
+
+			var string3 = "Year 2014";
+
+			// what if we want the output to be 2014?
+
+			//var dateFormat = d3.time.format(?);
+			//var newdate = dateForamt.parse(string1);
+			//console.log(dateFormat.parse(string1));
+			//console.log(outputFormat(newdate);
 
 
 		</script>

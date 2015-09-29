@@ -82,8 +82,6 @@
 			var yScale = d3.scale.linear()
 								.range([ margin.top, height - margin.bottom ]);
 
-
-
 			var xAxis = d3.svg.axis()
 							.scale(xScale)
 							.orient("bottom")
@@ -131,27 +129,14 @@
 					.attr("cy", function(d) {
 						return yScale(d.emissions);
 					})
-					.attr("r", 4)
-					.append("title")
-					.text(function(d) {
-						return d.year + " emissions: " + d.emissions + " kt";
-					});
+					.attr("r", 4);
+
+				// Adding all the mouse events for the tooltips!
 
 				circles
-					.on("mouseover", function(d){
-						return tooltip
-							.style("display", null)
-							.html("<p>Year: " + d.year +
-									  "<br>Emissions: " + d.emissions + " kt</p>");
-					})
-      		.on("mousemove", function(){
-      			console.log("events", window.event, d3.event);
-      			return tooltip
-      				.style("top", (d3.event.pageY - 10) + "px" )
-      				.style("left", (d3.event.pageX + 10) + "px");
-      		})
-      		.on("mouseout", function(){
-      			return tooltip.style("display", "none");});
+					.on("mouseover", mouseoverFunc) // see below...
+      		.on("mousemove", mousemoveFunc) // see below...
+      		.on("mouseout", mouseoutFunc); // see below...
 
 				svg.append("g")
 					.attr("class", "x axis")
@@ -164,6 +149,25 @@
 					.call(yAxis);
 
 			});
+
+	function mouseoverFunc(d) {
+		// console.log(d);
+		return tooltip
+			.style("display", null) // this removes the display none setting from it
+			.html("<p>Year: " + d.year +
+					  "<br>Emissions: " + d.emissions + " kt</p>");
+		}
+
+	function mousemoveFunc(d) {
+		//console.log("events", window.event, d3.event);
+		return tooltip
+			.style("top", (d3.event.pageY - 10) + "px" )
+			.style("left", (d3.event.pageX + 10) + "px");
+	}
+
+	function mouseoutFunc(d) {
+    return tooltip.style("display", "none");  // this sets it to invisible!
+  }
 
 
 		</script>

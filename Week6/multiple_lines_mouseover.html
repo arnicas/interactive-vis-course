@@ -256,18 +256,20 @@
 					.call(yAxis);
 
 
-				// here we add the mouseover effect, and use the id we created to style it.
+				// here we add the mouseover and mouseout effect, and use the id we created to style it.
+
+				function mouseoutFunction() {
+						// this removes the id on mouseout.
+						d3.select(this).attr("id", null);
+				}
 
 				d3.selectAll("path.line")
-					.on("mouseover", function () {
+					.on("mouseover", function () {  // this version is an inline anonymous function
 						// 'this' is the dom element. you need to d3 select it, to add attr's.
 						//console.log(this);
 						d3.select(this).attr("id", "focused");
 					})
-					.on("mouseout", function () {
-						// this removes the id on mouseout.
-						d3.select(this).attr("id", null);
-					});
+					.on("mouseout", mouseoutFunction);  // this version calls a named function.
 
 
 			}); // end of data csv

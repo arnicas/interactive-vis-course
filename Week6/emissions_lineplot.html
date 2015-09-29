@@ -85,7 +85,6 @@
 							.orient("left");
 
 
-
 			var line = d3.svg.line()
 				.x(function(d) {
 					return xScale(dateFormat.parse(d.year));
@@ -101,8 +100,6 @@
 						.attr("width", width)
 						.attr("height", height);
 
-
-
 			d3.csv("data/usa_co2_emissions.csv", function(myData) {
 
 				// get the min and max of the years in the data, after parsing as dates!
@@ -117,6 +114,10 @@
 					}),
 					0
 				]);
+
+				console.log("my data", myData);
+
+				// instead of all this:
 
 				// var circles = svg.selectAll("circle")
 				// 				.data(data)
@@ -148,7 +149,7 @@
 				svg.datum(myData)
 					.append("path")
 					.attr("class", "line usa")
-					.attr("d", line)  // line is a function that will operate on the data array.
+					.attr("d", line)  // line is a function that will operate on the data array, with x and y.
 					.attr("fill", "none")
 					.attr("stroke", "steelblue")
 					.attr("stroke-width", 2);
