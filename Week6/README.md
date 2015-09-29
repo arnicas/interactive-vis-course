@@ -257,21 +257,16 @@ d3.merge([ [1], [2, 3] ]); // returns [1, 2, 3]
 
 ## Homeworks
 
-**Homework1 Tooltips & Padding (12pt)**: Using the scatterplot you made for Week5, with your own data (from UNICEF data), make real tooltips using the method in emissions_scatterplot_tooltip.html. Remove your title text element from the dots, after you make the real tooltips.  Add some padding the way I showed you above. Send it as "Week 6: Scatter tooltips."
-
-**Extra Credit Homework (12pt)**: Label the outlier lines (the ones that are very high) on the line plot in multiple_lines.html, using a technique like in the examples above under "Labeling Lines Directly."  The goal here is to have text on the chart at the end of the line, saying what country it is. You can use the last data point in the line to get the text coordinates.
+**Homework1 Tooltips & Padding (12pt)**: Using the scatterplot you made for Week5, with your own data (from UNICEF data), make real tooltips using the method in emissions_scatterplot_tooltip.html. Remove your title text element from the dots, after you make the real tooltips.  Add some padding the way I showed you above. Send gist as "Week 6: Scatter tooltips."
 
 **Homework2 Multiple Lines (35pt)**: If you don't have it now, download some timeseries data from UNICEF's data site. This means measures of something by year, such as under 5 mortality each year since 1990.  Make sure you get more than one series, but on the same time scale, because we want multiple lines on your chart.  Combine files if you have to in javascript, or combine in Excel/text to make one file with all your data.
 
 * Give the lines mouseovers so that they look different when the mouse is over them, using classes and d3.classed.
 * Give them tooltips that identify what each line is.
 
-Send it as "Week 6: My Line Plot."
+The hardest part of this might be the data manipulations part.  Please email/see me for help. Send gist and data as "Week 6: My Line Plot."
 
-
-
-
-
-
+**Homework 3, Labeled Lines, Extra Credit Homework (12pt)**: Label the outlier lines (the ones that are very high) on the line plot in multiple_lines.html, using a technique like in the examples above under "Labeling Lines Directly."  The goal here is to have text on the chart at the end of the line, saying what country it is. You can use the last data point in the line to get the text coordinates.
+Email me the gist with "Week 6: Labeled Lines."
 
 
