@@ -261,9 +261,9 @@ d3.merge([ [1], [2, 3] ]); // returns [1, 2, 3]
 
 **Extra Credit Homework (12pt)**: Label the outlier lines (the ones that are very high) on the line plot in multiple_lines.html, using a technique like in the examples above under "Labeling Lines Directly."  The goal here is to have text on the chart at the end of the line, saying what country it is. You can use the last data point in the line to get the text coordinates.
 
-**Homework2 Multiple Lines (30pt)**: If you don't have it now, download some timeseries data from UNICEF's data site. This means measures of something by year, such as under 5 mortality each year since 1990.  Make sure you get more than one series, but on the same time scale, because we want multiple lines on your chart.  Combine files if you have to in javascript, or combine in Excel/text to make one file with all your data.
+**Homework2 Multiple Lines (35pt)**: If you don't have it now, download some timeseries data from UNICEF's data site. This means measures of something by year, such as under 5 mortality each year since 1990.  Make sure you get more than one series, but on the same time scale, because we want multiple lines on your chart.  Combine files if you have to in javascript, or combine in Excel/text to make one file with all your data.
 
-* Give the lines mouseovers so that they look different when the mouse is over them, using classes.
+* Give the lines mouseovers so that they look different when the mouse is over them, using classes and d3.classed.
 * Give them tooltips that identify what each line is.
 
 Send it as "Week 6: My Line Plot."
