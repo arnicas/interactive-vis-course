@@ -1,4 +1,4 @@
-##Week 7: Improving Lines, Data Updates, Transitions
+##Week 7: Improving Lines, Click Events, Data Transitions
 
 
 ## Homework Review
