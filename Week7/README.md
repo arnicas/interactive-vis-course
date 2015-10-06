@@ -290,13 +290,13 @@ Send me the gist with subject/label "Dots on Lines."
 Exra Extra Credit (10pt): If you want to try to do that with voronoi, to make it easier to pick lines/dots, you'll get an extra 10pt.  Beware data points that are at the same point, you may need to use d3.nest() like Mike does in his blocks example.
 
 
-**Homework 2: Transition Plot** (35pt):
+**Homework 2: Transition Plot With Button** (35pt):
 
-Choose a few interesting lines to plot (not a zillion), or a couple nice scatterplot examples. Bars would work too if you want. Pick at least 2.
+Choose a few interesting lines to plot (2 or 3, not a zillion), or a couple nice scatterplot examples. Bars would work too if you want. Pick at least 2.
 
 You will compare the data using transitions between data set variables.  The 2 comparisons must have the same number of points (at this point in the class), no missing or extra data in one set.
 
-Using the example in lines_transition.html or scatter_data_transition.html and in Scott's chapter on transitions, make transitions between the data sets.  Use buttons to control them.  Use a flexible 2 column Bootstrap layout, with your chart in the first column, and put useful text or imagery or both in the second column.  Use UNICEF data and style.
+Using the concepts in lines_transition.html or scatter_data_transition.html and in Scott's chapter on transitions, make transitions between the data sets.  Use buttons to control them.  Use a flexible 2 column Bootstrap layout (like I did in lines_transition.html), with your chart in one column, and put useful text or imagery or both in the other column.  Use UNICEF data and style.
 
 Ideas for comparisons: urban vs. rural, male vs. female, countries like I did, differences for one date vs. the next data...  Points will be awarded for sensible comparions that are interesting!
 
