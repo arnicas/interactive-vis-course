@@ -265,7 +265,7 @@ Have a look at Bootstrap, in very common usage in industry:
 You will use it in one of your homeworks.  I used it for lines_transition.html layout.
 
 
-## Recent Don't Misses - Connected Scatterplots and Line Charts that Lie
+## Recent Don't Miss Projects - Connected Scatterplots and Line Charts that Lie
 
 Connected Scatterplot with Transitions: http://www.nytimes.com/interactive/2015/09/30/business/how-the-us-and-opec-drive-oil-prices.html
 
