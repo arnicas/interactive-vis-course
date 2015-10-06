@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!-- A modified example from Scott Murray's Knight d3 course. -->
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Formatting Ticks</title>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+		<style type="text/css">
+
+			body {
+				background-color: white;
+				font-family: Helvetica, Arial, sans-serif;
+			}
+
+			h1 {
+				font-size: 24px;
+				margin: 0;
+			}
+
+			p {
+				font-size: 14px;
+				margin: 10px 0 0 0;
+			}
+
+			.clicker {
+				font-weight: bolder;
+				color: red;
+				cursor: pointer;
+			}
+
+			svg {
+				background-color: white;
+			}
+
+			.dots {
+				fill: steelblue;
+			}
+
+			.highlighted {
+				fill: orange;
+			}
+
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: black;
+				shape-rendering: crispEdges;
+			}
+
+			.axis text {
+				font-family: sans-serif;
+				font-size: 11px;
+			}
+
+			.xlabel{
+				font-size: 15px;
+				fill: gray;
+			}
+			.ylabel{
+				font-size: 15px;
+				fill: gray;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<h1>Books and Toys at Home by Richest 20% and Poorest 20%</h1>
+
+		<p>Source: <a href="data.worldbank.org">World Bank SOWC All Countries Update 214</a>, latest data 2013</p>
+
+		<p class="clicker">Click Me to Change to Toys!</p>
+
+		<script type="text/javascript">
+
+
+			var width = 700;
+			var height = 600;
+
+			var margin = { top: 20, right: 10, bottom: 50, left: 50 };
+
+			// redo this with an object for the margin settings: var margin = {top...}
+
+			var dotRadius = 3; // fix this to a nice value.
+
+			// fill in the margin values here.  Also, we set domain to 0 to 100 since it's percents,
+			// plus some padding room!
+			var xScale = d3.scale.linear()
+								.range([ margin.left, width - margin.right - margin.left])
+								.domain([-2,100]);
+
+			// top to bottom:
+			var yScale = d3.scale.linear()
+								.range([ height - margin.bottom, margin.top ])
+								.domain([-2,100]);
+
+			//  Custom tick count if you want it.
+			// Create your axes here.
+			var xAxis = d3.svg.axis()
+							.scale(xScale)
+							.orient("bottom")
+							.ticks(10);  // fix this to a good number of ticks for your scale later.
+
+			var yAxis = d3.svg.axis()
+							.scale(yScale)
+							.orient("left");
+
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", width)
+						.attr("height", height);
+
+			d3.csv("data/books_toys_by_rich_poor2013.csv", function(data) {
+
+
+				// to add in padding -- adjust the -/+ according to the data values
+
+				var circles = svg.selectAll("circle")
+							.data(data)
+							.enter()
+							.append("circle");
+								// fill in the rest of the data, enter, append here.
+
+				// add a class to the circles - ".dots".
+
+				// Circles in SVG have cx, cy, and r attributes. x location, y location, radius.
+
+				circles.attr("cx", function(d) {
+						return xScale(+d.poorBooks);
+						// return the value to use for your x scale here
+					})
+					.attr("cy", function(d) {
+						return yScale(+d.richBooks);
+					})
+					.attr("class", function(d){
+						if (d.country === "Ukraine" || d.country === "Mali" || d.country == "Morocco") {
+							return "highlighted";
+						}
+						else {
+							return "dots";
+						}
+					})
+					.append("title")
+					.text(function(d) {
+						return d.country + " reports books for " + d.poorBooks + "% kids and in poor areas and " + d.richBooks + "% in rich areas.";
+					});
+
+					// adding a silly intro animation to catch the eye -- using transition:
+					circles.sort(function(a, b) {
+							return d3.ascending(+a.urban, +b.urban);
+						})
+						.transition()
+						.delay(function(d, i) {
+							return i * 10;
+						})
+						.duration(500)  // milliseconds, so this is 1 second.
+						.attr("r", dotRadius);
+
+				// fix these translates so they use your margin and height width as needed
+				svg.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+					.call(xAxis);
+
+				svg.append("g")
+					.attr("class", "y axis")
+					.attr("transform", "translate(" + (margin.left) + ",0)")
+					.call(yAxis);
+
+
+				svg.append("text")
+					.attr("class", "xlabel")
+					.attr("transform", "translate(" + (width / 2) + " ," +
+								(height-20) + ")")
+					.style("text-anchor", "middle")
+					.attr("dy", "12")
+					.text("Poorest 20%");
+
+				svg.append("text")
+					.attr("class", "ylabel")
+					.attr("transform", "translate(" + margin.right + " ," +
+								(height/2) + ")")
+					.style("text-anchor", "middle")
+					.attr("dx", "-300")
+					.attr("dy", "12")
+					.attr("transform", "rotate(-90)")
+					.text("Richest 20%");
+
+					d3.select("p.clicker").on("click", function() {
+
+						circles
+							.transition()
+							.attr("cx", function(d) {
+								return xScale(+d.poorToys);
+								// return the value to use for your x scale here
+							})
+							.attr("cy", function(d) {
+								return yScale(+d.richToys);
+							});
+
+							// We can't transition the new title text -- must remove and rewrite.
+						circles.selectAll("title").remove();
+						circles
+							.append("title")
+							.text(function(d) {
+								return d.country + " reports toys for " + d.poorToys + "% kids and in poor areas and " + d.richToys + "% in rich areas.";
+							});
+
+
+					});
+
+
+			});
+
+
+		</script>
+
+	</body>
+</html>

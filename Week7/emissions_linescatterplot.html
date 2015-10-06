@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- A modification of Scott Murray's example from Knight D3 course -->
+<!-- Modified version of Scott Murray's Line Chart from Knight d3 -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Dot Plot with Date Scale and Axis</title>
+		<title>Line Chart</title>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 		<style type="text/css">
 
@@ -31,7 +31,7 @@
 			}
 
 			circle:hover {
-				fill: orange;
+				stroke: gray;
 			}
 
 			.axis path,
@@ -63,7 +63,7 @@
 
 		<h1>United States CO2 Emissions</h1>
 
-		<p>The United States&rsquo; carbon dioxide emissions, 1961-2010. Source: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT?page=6">World Bank</a>, 2014</p>
+		<p>The United States&rsquo; carbon dioxide emissions, 1961-2010. Source: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT?page=6">World Bank</a>, 2014. Example with rollover tooltips.</p>
 
 		<script type="text/javascript">
 
@@ -73,14 +73,19 @@
 			var margin = { top: 20, right: 10, bottom: 50, left: 100};
 
 
+
 			//Set up date formatting and years
 			var dateFormat = d3.time.format("%Y");
+
+
 
 			var xScale = d3.time.scale()
 								.range([ margin.left, width - margin.right - margin.left ]);
 
 			var yScale = d3.scale.linear()
 								.range([ margin.top, height - margin.bottom ]);
+
+
 
 			var xAxis = d3.svg.axis()
 							.scale(xScale)
@@ -94,19 +99,27 @@
 							.scale(yScale)
 							.orient("left");
 
+
+			var line = d3.svg.line()
+				.x(function(d) {
+					return xScale(dateFormat.parse(d.year));
+				})
+				.y(function(d) {
+					return yScale(d.emissions);
+				});
+
+			var tooltip = d3.select("body")
+      	.append("div")
+      	.attr("class", "tooltip");
+
 			var svg = d3.select("body")
 						.append("svg")
 						.attr("width", width)
 						.attr("height", height);
 
-			// add a tooltip to the page - not to the svg itself!
-			var tooltip = d3.select("body")
-      	.append("div")
-      	.attr("class", "tooltip");
-
-
 			d3.csv("data/usa_co2_emissions.csv", function(myData) {
 
+				// get the min and max of the years in the data, after parsing as dates!
 				xScale.domain(d3.extent(myData, function(d){
 						return dateFormat.parse(d.year);
 						})
@@ -119,7 +132,28 @@
 					0
 				]);
 
-				var circles = svg.selectAll("circle")
+				console.log("my data", myData);
+
+				//Line
+				//
+
+				// Lines take a single array of data as their input.  So we don't give it data(data).
+
+				// you could do this:
+				// .data([data])
+				// or use the d3 "datum" which is for single data elements.
+
+				svg.datum(myData)
+					.append("path")
+					.attr("class", "line usa")
+					.attr("d", line)  // line is a function that will operate on the data array, with x and y.
+					.attr("fill", "none")
+					.attr("stroke", "steelblue")
+					.attr("stroke-width", 2);
+
+				// dots go on top of the line!
+
+			 var circles = svg.selectAll("circle")
 								.data(myData)
 								.enter()
 								.append("circle");
@@ -130,14 +164,15 @@
 					.attr("cy", function(d) {
 						return yScale(d.emissions);
 					})
-					.attr("r", 4);
+					.attr("r", 3)
+					.style("opacity", 0); // this is optional - if you want visible dots or not!
 
-				// Adding all the mouse events for the tooltips!
+				// Adding a subtle animation to increase the dot size when over it!
 
 				circles
-					.on("mouseover", mouseoverFunc) // see below...
-      		.on("mousemove", mousemoveFunc) // see below...
-      		.on("mouseout", mouseoutFunc); // see below...
+					.on("mouseover", mouseoverFunc)
+					.on("mousemove", mousemoveFunc)
+					.on("mouseout",	mouseoutFunc);
 
 				svg.append("g")
 					.attr("class", "x axis")
@@ -152,23 +187,30 @@
 			});
 
 	function mouseoverFunc(d) {
-		// console.log(d);
-		return tooltip
-			.style("display", null) // this removes the display none setting from it
-			.html("<p>Year: " + d.year +
-					  "<br>Emissions: " + d.emissions + " kt</p>");
-		}
+			d3.select(this)
+			.transition()
+			.duration(50)
+			.style("opacity", 1)
+			.attr("r", 7);
+			tooltip
+				.style("display", null) // this removes the display none setting from it
+				.html("<p>Year: " + d.year +
+						  "<br>Emissions: " + d.emissions + " kt</p>");
+			}
 
 	function mousemoveFunc(d) {
-		console.log("events", window.event, d3.event);
-		return tooltip
-			.style("top", (d3.event.pageY - 10) + "px" )
-			.style("left", (d3.event.pageX + 10) + "px");
-	}
+			tooltip
+				.style("top", (d3.event.pageY - 10) + "px" )
+				.style("left", (d3.event.pageX + 10) + "px");
+		}
 
 	function mouseoutFunc(d) {
-    return tooltip.style("display", "none");  // this sets it to invisible!
-  }
+			d3.select(this)
+			.transition()
+			.style("opacity", 0)
+			.attr("r", 3);
+	    tooltip.style("display", "none");  // this sets it to invisible!
+	  }
 
 
 		</script>

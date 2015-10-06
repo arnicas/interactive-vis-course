@@ -17,15 +17,15 @@ Subject to change!
 * [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
 * [Week4](Week4): More tables, SVG and D3 bar charts
 * [Week5](Week5): Bar Charts, Axes, Text, Scatterplots
-* [Week6](Week6): (Crowded) Linecharts, Events, Simple Tooltips
-* [Week7](Week7): More Events, Updates to Data
-* [Week8](Week8):  Animation
-* [Week9](Week9):  Maps
-* [Week10](Week10): Small Multiples, Cross-Linking and Brushing
+* [Week6](Week6): Linecharts, Events, Simple Tooltips
+* [Week7](Week7): Improved Lines, Updates to Data, Transitions
+* [Week8](Week8): Small Multiples, Cross-Linking and Brushing
+* [Week9](Week9): Animation
+* [Week10](Week10): Maps
 * [Week11](Week11): Storytelling Techniques: Scrollytelling
-* [Week12](Week12): APIs, Ajax, Servers
-* [Week13](Week13): Class requests
-* [Week14](Week14): Project & Overflow
+* [Week12](Week12): Other Layouts, Reusable Charts, Queue
+* [Week13](Week13): Responsive Design
+* [Week14](Week14): APIs, Ajax, Servers, Portfolios
 * [Week15](Week15): Project & Overflow
 
 

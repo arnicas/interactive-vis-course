@@ -41,7 +41,7 @@
 			var string1 = "2014-01-21";
 			// What if we want to output these as 01-14?
 
-			var outputFormat = d3.time.format("%m-%y");
+
 
 			var string2 = "Jan01";
 
@@ -51,10 +51,15 @@
 
 			// what if we want the output to be 2014?
 
-			//var dateFormat = d3.time.format(?);
-			//var newdate = dateForamt.parse(string1);
-			//console.log(dateFormat.parse(string1));
-			//console.log(outputFormat(newdate);
+			var dateFormat = d3.time.format("Year %Y");
+
+			var newdate = dateFormat.parse(string3);
+
+			console.log(newdate);
+
+			var outputFormat = d3.time.format("%Y");
+
+			console.log(outputFormat(newdate));
 
 
 		</script>

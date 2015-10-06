@@ -19,10 +19,17 @@
 			p {
 				font-size: 14px;
 				margin: 10px 0 0 0;
+				width: 700px;
 			}
 
 			svg {
 				background-color: white;
+			}
+
+			path.line {
+				fill: none;
+				stroke: gray;
+				stroke-width: 2px;
 			}
 
 			.axis path,
@@ -32,26 +39,18 @@
 				stroke-width: 1px;
 			}
 
-			.line {
-				fill: none;
-				stroke: gray;
-				stroke-width: 1px;
-				stroke-opacity: 80%;
-			}
-
-			.line.unfocused{
-				stroke-opacity: 40%;
-			}
-
-			.line.focused {
-				stroke-width: 2px;
-				stroke-opacity: 100%;
-				stroke: black;
-			}
-
 			.axis text {
 				font-family: sans-serif;
 				font-size: 11px;
+			}
+
+			text.linelabel {
+				font-size: 9pt;
+				color: gray;
+			}
+
+			circle {
+				fill: gray;
 			}
 
 			.tooltip {
@@ -61,9 +60,11 @@
 
 			.tooltip p {
 				background-color: white;
-				border: none;
+				border: gray 1px solid;
 				padding: 2px;
+				max-width: 180px;
 			}
+
 
 		</style>
 	</head>
@@ -71,10 +72,9 @@
 
 		<h1>CO2 Emissions by Country</h1>
 
-		<p>Carbon dioxide emissions, 1961-2010. Data not available for the entire period for all countries. Source: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT?page=6">World Bank</a>, 2014.  Roll-over a line to see which country is plotted.</p>
+		<p>Carbon dioxide emissions, 1961-2010. Data not available for the entire period for all countries. Source: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT?page=6">World Bank</a>, 2014. (Based on a modified example from Scott Murray.)</p>
 
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-		
+		<script type="text/javascript" src="../js/d3.v3.js"></script>
 		<script type="text/javascript">
 
 
@@ -102,12 +102,13 @@
 							.tickFormat(function(d) {
 								return dateFormat(d);
 							})
+							.outerTickSize([0])
 							.innerTickSize([0]);
 
 			var yAxis = d3.svg.axis()
 							.scale(yScale)
 							.orient("left")
-							.innerTickSize([0]);
+							.outerTickSize([0]);
 
 
 
@@ -122,10 +123,6 @@
 				});
 
 
-			// add a tooltip to the page - not to the svg itself!
-			var tooltip = d3.select("body")
-      	.append("div")
-      	.attr("class", "tooltip");
 
 			//Create the empty SVG image
 			var svg = d3.select("body")
@@ -134,48 +131,14 @@
 						.attr("height", height);
 
 
+			var tooltip = d3.select("body")
+      	.append("div")
+      	.attr("class", "tooltip");
+
+
 			//Load data
 			d3.csv("data/co2_emissions.csv", function(data) {
 
-				//Data is loaded in, but we need to restructure it.
-				//Remember, each line requires an array of x/y pairs;
-				//that is, an array of arrays, like so:
-				//
-				//	[ [x: 1, y: 1], [x: 2, y: 2], [x: 3, y: 3] ]
-				//
-				//We, however, are using 'year' as x and 'amount' as y.
-				//We also need to know which country belongs to each
-				//line, so we will build an array of objects that is
-				//structured like this:
-				/*
-
-					[
-						{
-							country: "Australia",
-							emissions: [
-										{ year: 1961, amount: 90589.568 },
-										{ year: 1962, amount: 94912.961 },
-										{ year: 1963, amount: 101029.517 },
-										…
-									   ]
-						},
-						{
-							country: "Bermuda",
-							emissions: [
-										{ year: 1961, amount: 176.016 },
-										{ year: 1962, amount: 157.681 },
-										{ year: 1963, amount: 150.347 },
-										…
-									   ]
-						},
-						…
-					 ]
-
-				*/
-				//Note that this is an array of objects. Each object
-				//contains two values, 'country' and 'emissions'.
-				//The 'emissions' value is itself an array, containing
-				//more objects, each one holding 'year' and 'amount' values.
 
 				//New array with all the years, for referencing later
 				var years = ["1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"];
@@ -198,6 +161,7 @@
 						if (d[y]) {
 							//Add a new object to the new emissions data array - for year, amount
 							myEmissions.push({
+								country: d.countryName, // we can put the country in here too
 								year: y,
 								amount: d[y]  // this is the value for, for example, d["2004"]
  							});
@@ -239,12 +203,10 @@
 
 
 				//Make a group for each country
-				var groups = svg.selectAll("g.lines")
+				var groups = svg.selectAll("g")
 					.data(dataset)
 					.enter()
-					.append("g")
-					.attr("class", "lines");
-
+					.append("g");
 
 				//Within each group, create a new line/path,
 				//binding just the emissions data to each one
@@ -257,6 +219,54 @@
 					.attr("class", "line")
 					.attr("d", line);
 
+			// Tooltip dots
+
+			var circles = groups.selectAll("circle")
+								.data(function(d) { // because there's a group with data already...
+											return d.emissions; // NOT an array here.
+								})
+								.enter()
+								.append("circle");
+
+				circles.attr("cx", function(d) {
+						return xScale(dateFormat.parse(d.year));
+					})
+					.attr("cy", function(d) {
+						return yScale(d.amount);
+					})
+					.attr("r", 3)
+					.style("opacity", 0); // this is optional - if you want visible dots or not!
+
+				// Adding a subtle animation to increase the dot size when over it!
+
+				circles
+					.on("mouseover", mouseoverFunc)
+					.on("mousemove", mousemoveFunc)
+					.on("mouseout",	mouseoutFunc);
+
+			groups.append("text")
+	      .datum(function(d) {
+	      	console.log("Here", {name: d.country, value: d.emissions[d.emissions.length - 1]});
+	      	return {name: d.country, value: d.emissions[d.emissions.length - 1]};
+	      })
+	      .attr("transform", function(d) {
+	      	console.log("in transform", d);
+	      	// error on some with no d.value - American Samoa, for instance.
+	      	if (d.value) {
+	      		return "translate(" + xScale(dateFormat.parse(d.value.year)) + "," + yScale(+d.value.amount) + ")";
+	      		}
+	      	else {
+	      		return null;
+	      		}
+	      	})
+	      .attr("x", 3)
+	      .attr("dy", ".35em")
+	      .text(function(d) {
+	      	if (d.value && +d.value.amount > 700000) {
+	      	return d.name;
+	      	}
+	      })
+	      .attr("class", "linelabel");
 
 				//Axes
 				svg.append("g")
@@ -269,44 +279,33 @@
 					.attr("transform", "translate(" + margin.left + ",0)")
 					.call(yAxis);
 
+				function mouseoverFunc(d) {
+					d3.select(this)
+						.transition()
+						.style("opacity", 1)
+						.attr("r", 4);
+					tooltip
+						.style("display", null) // this removes the display none setting from it
+						.html("<p>Country: " + d.country +
+									"<br>Year: " + d.year +
+								  "<br>Emissions: " + d.amount + " kt</p>");
+					}
 
-				// here we add the mouseover and mouseout effect, and use the id we created to style it.
+				function mousemoveFunc(d) {
+					tooltip
+						.style("top", (d3.event.pageY - 10) + "px" )
+						.style("left", (d3.event.pageX + 10) + "px");
+					}
 
-				// this is on the g elements, because the country name is in the data there.
-				// the line itself has data of an array of x,y values.
-				d3.selectAll("g.lines")
-					.on("mouseover", mouseoverFunc)
-					.on("mouseout", mouseoutFunc)
-					.on("mousemove", mousemoveFunc);  // this version calls a named function.
-
+				function mouseoutFunc(d) {
+					d3.select(this)
+						.transition()
+						.style("opacity", 0)
+						.attr("r", 3);
+			    tooltip.style("display", "none");  // this sets it to invisible!
+			  }
 
 			}); // end of data csv
-
-	function mouseoverFunc(d) {
-		// line styling:
-		// this is the g element. select it, then the line inside it!
-		//console.log(d, this);
-
-		d3.selectAll("path.line").classed("unfocused", true);
-		// now undo the unfocus on the current line and set to focused.
-		d3.select(this).select("path.line").classed("unfocused", false).classed("focused", true);
-		tooltip
-			.style("display", null) // this removes the display none setting from it
-			.html("<p>" + d.country + "</p>");
-	}
-
-	function mouseoutFunc() {
-			// this removes special classes for focusing from all lines. Back to default.
-			d3.selectAll("path.line").classed("unfocused", false).classed("focused", false);
-			tooltip.style("display", "none");  // this sets it to invisible!
-	}
-
-	function mousemoveFunc(d) {
-		//console.log("events", window.event, d3.event);
-		tooltip
-			.style("top", (d3.event.pageY - 10) + "px" )
-			.style("left", (d3.event.pageX + 10) + "px");
-	}
 
 
 

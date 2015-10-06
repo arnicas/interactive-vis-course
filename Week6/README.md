@@ -152,10 +152,10 @@ For reference, multiseries line chart with labelled lines, labels at the end of 
 
 These are probably the most common events you will want to handle with your D3 code:
 
-selection.on("mouseover", `<do something>`)
-selection.on("mouseout", `<do something>`)
-selection.on("mousemove", `<do something>`)
-selection.on("click", `<do something>`)
+* selection.on("mouseover", `<do something>`)
+* selection.on("mouseout", `<do something>`)
+* selection.on("mousemove", `<do something>`)
+* selection.on("click", `<do something>`)
 
 The `<do something>` part can either be an anonymous function right in place, or call a named function.  They are equivalent.
 

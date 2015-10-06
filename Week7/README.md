@@ -1,9 +1,297 @@
-##Week 7: More Events, Data Updates
+##Week 7: Improving Lines, Data Updates, Transitions
 
 
-A reminder on binding data with key values, update, and exit:
+## Homework Review
 
-* http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+### Interesting Scatterplots:
+
+* http://bl.ocks.org/lmelgar/raw/71df1f1bb0cb9b511085/ - check the US here.
+* Pretty styling: http://bl.ocks.org/hmader/raw/1657ebe682c12886ca38/
+
+### Fun Lineplots
+
+* Luis's: http://bl.ocks.org/lmelgar/raw/156d9ad31e0ea8045809/  (could use some labelled lines :)
+* Halina's beautiful style and focus job: http://bl.ocks.org/hmader/raw/03fe396c28f1371aa419/
+* Jiaxin's with the World line: http://bl.ocks.org/theopenwindow/raw/5985f061998cd98d054d/ and gridlines.
+
+### Gridlines:
+
+See this article: http://www.d3noob.org/2013/01/adding-grid-lines-to-d3js-graph.html
+
+````
+var xAxis = d3.svg.axis()
+    .scale(xScale)
+    .tickSize(-myHeight) // this trick makes the inner ticks into lines!
+    .orient("bottom")
+    .ticks(8)
+    .tickFormat(function(d) {
+        return dateFormat(d);
+    })
+    .outerTickSize([0]);
+
+var yAxis = d3.svg.axis()
+    .scale(yScale)
+    .tickSize(myWidth) // also here!
+    .orient("right")
+    .outerTickSize([0])
+    .ticks(5);
+````
+
+### Labeling Lines
+
+See my multiple_lines_labels.html for the data-attachment solution.  It requires checking for empty values in the data set, or it errors. I also used a y-axis threshold to set which lines get labelled, which works with this data because those "high" lines are quite separate from each other.
+
+The alternate way is to use the data in the group g level, and just append text if the country names matches the ones you know are outliers, as in http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/
+
+Another alternate is to just add the very specific data points manually: http://bl.ocks.org/lmelgar/412caec86201bca53743
 
 
-Advanced maneuvers: Clever line bisect mouseover label trick from Mike Bostock: http://bl.ocks.org/mbostock/3902569
+
+## More D3 and JS Convenience Functions
+
+###D3 Nest:
+
+Luis's data is long-form, with a column for country, and another for year.  Grouping by country is the most useful way to handle it for plotting it.  You can see an excerpt in deaths_04yearsold_excerpt.csv.  
+
+See **example lines_d3nest.html**.
+
+````
+var dataset =  d3.nest()
+                .key(function(d) {
+                    return d.Country;
+                })
+                .sortValues(function (a, b) { return dateFormat.parse(a.Year) - dateFormat.parse(b.Year)})
+                .entries(data);
+````
+
+The result is objects that look like:
+
+<img src="nested_data.png">
+
+There are d3 functions to return just the keys -- d3.keys(), and just the values: d3.values().
+
+* Read: http://learnjsdata.com/group_data.html
+* See examples here: http://bl.ocks.org/phoebebright/raw/3176159/.
+* See working code example in lines_transition.html.
+
+### array.filter
+
+````
+// reduces the dataset to only items that match the 'test':
+var angolaObj = dataset.filter(function (d) {
+                            return d.key == "Angola"
+                        });
+// result is an array with a single object: [Object]
+````
+
+### More Data Munging Help
+
+Don't forget to browse through the D3 arrays help page: https://github.com/mbostock/d3/wiki/Arrays.
+And you can always use http://learnjsdata.com.
+
+For really professional data "munging" helpers, you can use lodash.js (an extension of the popular underscore.js library): https://lodash.com/docs.
+
+
+## Lines with Dots and Paths, for Tooltips
+
+The file emissions_linescatterplot.html has both dots and the line connecting them. The dots allow more detailed tooltips, if we want them.  We've added them.
+
+You have the option of having your dots be visible or not on the line.  Just change the dot opacity as you like.
+
+I also added the dots on multiple_lines_labels.html.  Notice it's hard to grab the dots and lines sometimes. See the next section below.
+
+Another alternative, tricky way to add a dot on the line at the point closest to the mouse:
+
+* Clever line bisect mouseover label trick from Mike Bostock: http://bl.ocks.org/mbostock/3902569
+* More explanation: http://www.d3noob.org/2014/07/my-favourite-tooltip-method-for-line.html
+
+
+## Usability Advanced Maneuvers: Lines and Scatters with Voronoi
+
+The problem of lots of lines and/or dots is that it's hard to pick them out of the mess.
+
+Read: http://www.visualcinnamon.com/2015/07/voronoi.html (notice she uses another tooltip method, the Bootstrap lib's jquery method.)
+
+* Demo: Multi-Line Voronoi: http://bl.ocks.org/mbostock/8033015
+
+* Demo: Zan Armstrong's temperature lines: http://bl.ocks.org/zanarmstrong/38d7f79f61a03acc0ef0
+
+* Demo: Picking on a bubble chart, plus animated transition: http://www.nytimes.com/interactive/2013/05/25/sunday-review/corporate-taxes.html
+
+
+## Lines with Interpolation
+
+If you want smooth lines, you can use interpolation functions. Here is a demo of line interpolators in d3: http://bl.ocks.org/mbostock/4342190
+
+Beware: Smoothing lines will distort the "true" values.  Sometimes this matters.
+
+
+## Intro to Transitions
+
+Transitions allow us to animate changes of properties in code.
+
+Read:
+
+* Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_updating_data (as far as "Other Kinds of Data Updates")
+* Optional: http://blog.visual.ly/creating-animations-and-transitions-with-d3-js/
+
+This below example could have used transitions etc.  Also, let's critique it:
+
+* http://www.npr.org/sections/money/2015/09/30/444446022/what-youll-actually-pay-at-1-550-colleges
+
+See the transition with a delay by dot in **scatter_transitions.html**:
+
+````
+// adding a silly intro animation to catch the eye -- using transition:
+circles.sort(function(a, b) {
+        return d3.ascending(+a.educationalAttainment, +b.educationalAttainment);
+    })
+    .transition()
+    .delay(function(d, i) {
+        return i * 10;
+    })
+    .duration(500)
+    .attr("r", dotRadius);
+````
+
+In the file **emissions_linescatterplot.html**, we have added a mouseover transition:
+
+````
+// grow the dot to larger radius on mouseover
+    circles.on("mouseover", function(d) {
+        d3.select(this)
+            .transition()
+            .duration(50)
+            .attr("r", 7);
+    })
+// go back to the old size on mouseout!
+    .on("mouseout", function (d) {
+        d3.select(this)
+            .transition()
+            .attr("r", 3);
+    });
+````
+
+In **lines_transition.html**, we transition between datasets, for different line shapes.
+
+
+## On "Click" Events
+
+Here we use buttons that swap the data on a line chart!  We're also using Bootstrap and a map image.
+
+````
+d3.selectAll("button").on("click", function() {
+    var selectedline = d3.select("path.line");
+    var thisButton = d3.select(this);  // "this" is what was clicked
+    // Here we get the id value for the button, and use that to get a new data set!
+    var newdata = get_values_for_country(thisButton.attr("id"));  // the id has to match the country name for this to work.
+
+    // style the selected button only
+    d3.selectAll("button").classed("selected", false);
+    thisButton.classed("selected", true);
+    // transition the line to the new dataset:
+    selectedline.transition().attr("d", line(newdata));
+````
+
+See: **lines_transition.html**
+
+## Country Regions and a Related Project
+
+This is much prettier than my mockup above, and does similar things to what some of you wanted to do in the homework and now is possible with our buttons (or other UI elements).
+
+**Nathan Yau**: http://projects.flowingdata.com/life-expectancy/.
+
+The tutorial is for-pay, and the code is a little out of date, but the post is here: http://flowingdata.com/2011/10/13/life-expectancy-changes/.
+
+He uses jquery for the "button" fiters - we will use d3 below, but either is fine.
+
+````
+    $('#filters a').click(function() {
+        var countryId = $(this).attr("id");
+        $(this).toggleClass(countryId);
+        showRegion(countryId);
+    });
+````
+And the code for showing regions is going to look familiar:
+
+````
+function showRegion(regionCode) {
+    var countries = d3.selectAll("path."+regionCode);
+    if (countries.classed("highlight")) {
+        countries.attr("class", regionCode);
+    } else {
+        countries.classed("highlight", true);
+    }
+}
+````
+
+He uses a variable with lookups for the region full names:
+````
+var regions = { "SAS": "South Asia" , "ECS": "Europe and Central Asia", "MEA": "Middle East & North Africa", "SSF": "Sub-Saharan Africa", "LCN": "Latin America & Caribbean", "EAS": "East Asia &amp; Pacific", "NAC": "North America" },
+````
+
+And he builds a lookup table for each country / region using the abbreviations. Then he can use the country code to get the region code and use it as a class on the line:
+
+````
+vis.append("svg:path")
+            .data([currData])
+            .attr("country", countries[i][1])
+            .attr("class", countries_regions[countries[i][1]]) // <-- the lookup table
+            .attr("d", line)
+            .on("mouseover", onmouseover)
+            .on("mouseout", onmouseout);
+
+````
+
+I've put the country-region codes table in **Week7/data/country-regions.csv**.  Come see me if you want help using it.
+
+
+## Bootstrap for CSS layouts
+
+Have a look at Bootstrap, in very common usage in industry:
+
+* http://getbootstrap.com/
+* http://getbootstrap.com/css/
+* http://getbootstrap.com/css/#grid
+
+You will use it in one of your homeworks.  I used it for lines_transition.html layout.
+
+
+## Recent Don't Misses - Connected Scatterplots and Line Charts that Lie
+
+Connected Scatterplot with Transitions: http://www.nytimes.com/interactive/2015/09/30/business/how-the-us-and-opec-drive-oil-prices.html
+
+Line charts in the news, the infamous Planned Parenthood graph: http://emschuch.github.io/Planned-Parenthood/
+
+
+## Readings to Encourage You (I Hope)
+
+* Fun read to make you feel better: https://medium.com/@meandvan/how-i-learned-to-stop-worrying-and-love-the-code-af1a809457c7
+* Learning D3 tips from Mike Bostock: https://medium.com/volt-data-lab/to-learn-data-visualization-look-for-small-problems-first-df34fc4630a0  (ignore all the js frameworks and buzzwords if you want, most news graphics teams that publish data insights don't use them)
+
+## Homework
+
+Read: Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_updating_data (up to "Other Kinds of Data Updates," we'll finish next week)
+
+
+**Homework 1: Dots on Lines** (25pt):
+
+Add dots to your personal line charts (not my data!), following the model in emissions_linescatterplot.html and multiple_lines_labels.html.  They can be visible or not, animated or not - but they should have tooltips attached with at least the x and y data values visible in them.
+Send me the gist with subject/label "Dots on Lines."
+
+Exra Extra Credit (10pt): Add voronoi to the line chart too, to make it easier to pick lines/dots.
+
+**Homework 2: Transition Plot** (35pt):
+
+Choose a few interesting lines to plot (not a zillion), or a couple nice scatterplot examples. Bars would work too. Pick at least 2.
+
+You will compare the data using transitions between data set variables.  The 2 comparisons must have the same number of points (at this point in the class), no missing or extra data in one set.
+
+Using the example in lines_transition.html and in Scott's chapter on transitions, make transitions between the data sets.  Use buttons to control them.  Use a flexible 2 column bootstrap layout, with your chart in the first column, and put useful text or imagery or both in the second column.  Use UNICEF data and style.
+
+Ideas for comparisons: urban vs. rural, male vs. female, countries like I did...  Points will be awarded for sensible comparions that are interesting.
+
+Send me the gist with subject "Transition Plot."
+
+
+

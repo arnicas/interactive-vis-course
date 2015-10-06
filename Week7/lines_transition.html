@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!-- Modification of an example by Scott Murray from Knight D3 course -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Line Chart with Multiple Data Sets, Transitions</title>
+
+		<!-- this is the cdn link to bootstrap's css -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<style type="text/css">
+
+			body {
+				background-color: white;
+				font-family: Helvetica, Arial, sans-serif;
+			}
+
+			h1 {
+				font-size: 24px;
+				margin: 0;
+			}
+
+			p {
+				font-size: 14px;
+				margin: 10px 0 0 0;
+			}
+
+			.selected {
+				background-color: steelblue;
+			}
+
+			svg {
+				background-color: white;
+			}
+
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: #ccc;
+				stroke-width: 1px;
+			}
+
+			.line {
+				fill: none;
+				stroke: black;
+				stroke-width: 1px;
+				stroke-opacity: 80%;
+			}
+
+			.axis text {
+				font-family: sans-serif;
+				font-size: 11px;
+				line-height: 1em;
+			}
+
+			.map_note {
+				padding-top: 150px;
+				padding-left: 50px;
+			}
+
+			.tooltip {
+				position: absolute;
+				z-index: 10;
+			}
+
+			.tooltip p {
+				background-color: white;
+				border: none;
+				padding: 2px;
+			}
+
+			/* this is an adjustment to bootstrap's row for my page */
+			.row {
+				padding-top: 50px;
+			}
+
+			/* this is an adjustment to bootstrap for my page */
+			.btn-group {
+				padding-top: 20px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="row">
+        <div class="col-md-5">
+          <h1>Measles in Sub Saharan Africa</h1>
+            			<div class="btn-group" role="group" aria-label="...">
+									  <button type="button" class="btn btn-default" id="Cameroon">Cameroon</button>
+									  <button type="button" class="btn btn-default" id="Congo">Congo</button>
+									  <button type="button" class="btn btn-default" id="Ethiopia">Ethiopia</button>
+									  <button type="button" class="btn btn-default" id="Mozambique">Mozambique</button>
+									  <button type="button" class="btn btn-default" id="Nigeria">Nigeria</button>
+									</div>
+						<div id="svg"></div>
+						<p>Source: <a href="http://www.unicef.org/">UNICEF</a></p>
+        </div>
+        <div class="col-md-5 col-md-offset-2">
+        	<div class="map_note">
+	        	<p>This map is just helpful, it doesn't do anything yet.</p>
+	        	<img src="subsaharan_stamen_map.png" class="img-responsive" alt="SubSaharan Map image" height="600" width="600">
+        	</div>
+        </div>
+      </div>
+
+	</div>
+
+	<!--
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	-->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<script type="text/javascript">
+
+
+			//Dimensions and padding
+			var width = 600;
+			var height = 600;
+			var margin = {top: 20, right: 10, bottom: 40, left: 50};
+
+
+			//Set up date formatting and years
+			var dateFormat = d3.time.format("Year %Y");
+			var outputFormat = d3.time.format("%Y");
+
+			// My shortcut for the scale is to list the first and last only - will set the extents.
+			var years = ["Year 2000", "Year 2013"];
+
+			//Set up scales - I already know the start and end years, not using data for it.
+			var xScale = d3.time.scale()
+								.range([ margin.left, width - margin.right - margin.left ])
+								.domain(
+									d3.extent(years, function(d) {
+									return dateFormat.parse(d);
+									}));
+
+			// don't know the yScale domain yet.
+			var yScale = d3.scale.linear()
+								.range([ margin.top, height - margin.bottom ]);
+
+			//Configure axis generators
+			var xAxis = d3.svg.axis()
+							.scale(xScale)
+							.orient("bottom")
+							.ticks(10)
+							.tickFormat(function(d) {
+								return outputFormat(d);
+							})
+							.innerTickSize([0])
+							.outerTickSize([0]);
+
+			var yAxis = d3.svg.axis()
+							.scale(yScale)
+							.orient("left")
+							.innerTickSize([0])
+							.outerTickSize([0]);
+
+
+			//Configure line generator
+			// each line dataset must have a d.year and a d.amount for this to work.
+			var line = d3.svg.line()
+				.x(function(d) {
+					return xScale(dateFormat.parse(d.Year));
+				})
+				.y(function(d) {
+					return yScale(+d.Measles);
+				});
+
+
+			// add a tooltip to the page - not to the svg itself!
+			var tooltip = d3.select("body")
+      	.append("div")
+      	.attr("class", "tooltip");
+
+			//Create the empty SVG image
+			var svg = d3.select("#svg")
+						.append("svg")
+						.attr("width", width)
+						.attr("height", height);
+
+
+			//Load data
+			d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, data) {
+
+				//Create a new, empty array to hold our restructured dataset.
+				// Notice what happens if you don't sort by year :)
+				var dataset =  d3.nest()
+						.key(function(d) {
+							return d.Country;
+						})
+						.sortValues(function (a, b) { return dateFormat.parse(a.Year) - dateFormat.parse(b.Year)})
+						.entries(data);
+
+				// max of emissions to 0 (reversed, remember)
+				// doing the max on the unnested data - easier to get the full set of Measles that way!
+				yScale.domain([
+					d3.max(data, function(d) {
+							return +d.Measles;
+					}),
+					0
+				]);
+
+				function get_values_for_country(country) {
+				// Helper function to get the values from the data object that has the country key
+				// special case for id's with too many words in them, sadly:
+					if (country === "Congo") {
+						country = "Democratic Republic of the Congo";
+					}
+					return dataset.filter(function (d) {
+										return d.key == country;
+									})[0].values;
+				}
+
+				// Default on first load - using a helper function:
+				var congo = get_values_for_country("Democratic Republic of the Congo");
+
+				svg.selectAll("path")
+					.data( [congo] )
+					.enter()
+					.append("path")
+					.attr("class", "line")
+					.attr("d", line);
+
+				// set the button to show the default country selected:
+				d3.select("button#Congo").classed("selected", true);
+
+				//Axes
+				svg.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+					.call(xAxis);
+
+				svg.append("g")
+					.attr("class", "y axis")
+					.attr("transform", "translate(" + margin.left + ",0)")
+					.call(yAxis);
+
+				d3.selectAll("button").on("click", function() {
+					var selectedline = d3.select("path.line");
+					var thisButton = d3.select(this);
+					var newdata = get_values_for_country(thisButton.attr("id"));  // the id has to match the country name for this to work.
+
+					d3.selectAll("button").classed("selected", false);
+					thisButton.classed("selected", true);
+					selectedline.transition().attr("d", line(newdata));
+
+					/* to understand the above, this is what I had before I added more cases:
+					if (thisButton.attr("id") === "angola") {
+						console.log("angola");
+						var newdata = angola;
+						d3.select("button#congo").classed("selected", false);
+					}
+
+					selectedline.transition().attr("d", line(newdata));
+					*/
+
+
+				});
+
+
+			}); // end of data csv
+
+
+
+
+		</script>
+
+		<!-- Latest compiled and minified JavaScript -->
+	</body>
+</html>
