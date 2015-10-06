@@ -161,7 +161,7 @@
 						if (d[y]) {
 							//Add a new object to the new emissions data array - for year, amount
 							myEmissions.push({
-								country: d.countryName, // we can put the country in here too
+								country: d.countryName, // we can put the country in here too. It won't hurt.
 								year: y,
 								amount: d[y]  // this is the value for, for example, d["2004"]
  							});
@@ -244,6 +244,7 @@
 					.on("mousemove", mousemoveFunc)
 					.on("mouseout",	mouseoutFunc);
 
+			// We're putting the text label at the group level, where the country name was originally.
 			groups.append("text")
 	      .datum(function(d) {
 	      	console.log("Here", {name: d.country, value: d.emissions[d.emissions.length - 1]});

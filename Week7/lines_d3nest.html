@@ -112,7 +112,7 @@
 
 
 			//Configure line generator
-			// each line dataset must have a d.year and a d.amount for this to work.
+			// each line dataset must have an x and a y for this to work.
 			var line = d3.svg.line()
 				.x(function(d) {
 					return xScale(dateFormat.parse(d.Year));
@@ -139,8 +139,7 @@
 
 				var years = ["Year 2000", "Year 2013"];
 
-
-				//Create a new, empty array to hold our restructured dataset
+				// notice what happens if you don't sort these :)
 				var dataset =  d3.nest()
 						.key(function(d) {
 							return d.Country;
@@ -180,7 +179,7 @@
 				//binding just the emissions data to each one
 				groups.selectAll("path")
 					.data(function(d) { // because there's a group with data already...
-						console.log("values", d.values);
+						//console.log("values", d.values);
 						return [d.values]; // it has to be an array for the line function
 					})
 					.enter()

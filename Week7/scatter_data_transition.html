@@ -68,7 +68,7 @@
 
 		<h1>Books and Toys at Home by Richest 20% and Poorest 20%</h1>
 
-		<p>Source: <a href="data.worldbank.org">World Bank SOWC All Countries Update 214</a>, latest data 2013</p>
+		<p>Source: World Development Indicators, <a href="http://datacatalog.worldbank.org">World Bank SOWC All Countries Update 214</a>, latest data 2013</p>
 
 		<p class="clicker">Click Me to Change to Toys!</p>
 
@@ -90,7 +90,7 @@
 								.range([ margin.left, width - margin.right - margin.left])
 								.domain([-2,100]);
 
-			// top to bottom:
+			// top to bottom, padding just in case
 			var yScale = d3.scale.linear()
 								.range([ height - margin.bottom, margin.top ])
 								.domain([-2,100]);
@@ -113,16 +113,10 @@
 
 			d3.csv("data/books_toys_by_rich_poor2013.csv", function(data) {
 
-
-				// to add in padding -- adjust the -/+ according to the data values
-
 				var circles = svg.selectAll("circle")
 							.data(data)
 							.enter()
 							.append("circle");
-								// fill in the rest of the data, enter, append here.
-
-				// add a class to the circles - ".dots".
 
 				// Circles in SVG have cx, cy, and r attributes. x location, y location, radius.
 
@@ -134,6 +128,7 @@
 						return yScale(+d.richBooks);
 					})
 					.attr("class", function(d){
+						// highlighting some interesting outliers
 						if (d.country === "Ukraine" || d.country === "Mali" || d.country == "Morocco") {
 							return "highlighted";
 						}
@@ -145,6 +140,7 @@
 					.text(function(d) {
 						return d.country + " reports books for " + d.poorBooks + "% kids and in poor areas and " + d.richBooks + "% in rich areas.";
 					});
+
 
 					// adding a silly intro animation to catch the eye -- using transition:
 					circles.sort(function(a, b) {
@@ -167,7 +163,6 @@
 					.attr("class", "y axis")
 					.attr("transform", "translate(" + (margin.left) + ",0)")
 					.call(yAxis);
-
 
 				svg.append("text")
 					.attr("class", "xlabel")
