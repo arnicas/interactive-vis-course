@@ -137,6 +137,8 @@
 			//Load data
 			d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, data) {
 
+				console.log("original data", data);
+
 				var years = ["Year 2000", "Year 2013"];
 
 				// notice what happens if you don't sort these :)
@@ -148,7 +150,7 @@
 						.entries(data);
 
 				//Uncomment to log the newly restructured dataset to the console
-				console.log(dataset);
+				console.log("nested data", dataset);
 
 				//Set scale domains - max and mine of the years - we cheated, just the edges
 				xScale.domain(

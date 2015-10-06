@@ -243,6 +243,8 @@
 					// Handle the button click to change the data set.
 					var selectedline = d3.select("path.line");
 					var thisButton = d3.select(this);
+
+					// current attr "id" is returned if you don't set it to anything!
 					var newdata = get_values_for_country(thisButton.attr("id"));  // the id has to match the country name for this to work.
 
 					d3.selectAll("button").classed("selected", false);
