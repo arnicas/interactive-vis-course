@@ -14,7 +14,7 @@
 * Halina's beautiful style and focus job: http://bl.ocks.org/hmader/raw/03fe396c28f1371aa419/
 * Jiaxin's with the World line: http://bl.ocks.org/theopenwindow/raw/5985f061998cd98d054d/ and gridlines.
 
-### Gridlines:
+### Gridlines How To
 
 See this article: http://www.d3noob.org/2013/01/adding-grid-lines-to-d3js-graph.html
 
@@ -39,21 +39,20 @@ var yAxis = d3.svg.axis()
 
 ### Labeling Lines
 
-See my multiple_lines_labels.html for the data-attachment solution.  It requires checking for empty values in the data set, or it errors. I also used a y-axis threshold to set which lines get labelled, which works with this data because those "high" lines are quite separate from each other.
+This was harder than expected, because of the data being at the "group" level.
 
-The alternate way is to use the data in the group g level, and just append text if the country names matches the ones you know are outliers, as in http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/
+See my multiple_lines_labels.html for the data-attachment solution using datum, following Mike Bostock's example.  It requires checking for empty values in the data set, or it errors. I also used a y-axis threshold to set which lines get labelled, which works with this data because those "high" lines are quite separate from each other.
 
-Another alternate is to just add the very specific data points manually: http://bl.ocks.org/lmelgar/412caec86201bca53743
+The alternate way is to use the data in the group `g` level, and just append text if the country names matches the ones you know are outliers, as in http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/
 
+Another alternate is to just add the very specific data points manually, e.g., http://bl.ocks.org/lmelgar/412caec86201bca53743
 
 
 ## More D3 and JS Convenience Functions
 
 ###D3 Nest:
 
-Luis's data is long-form, with a column for country, and another for year.  Grouping by country is the most useful way to handle it for plotting it.  You can see an excerpt in deaths_04yearsold_excerpt.csv.  
-
-See **example lines_d3nest.html**.
+Luis's data is long-form, with a column for country, and another for year.  Grouping by country is the most useful way to handle it for plotting it.  You can see an excerpt in **data/deaths_04yearsold_excerpt.csv.**
 
 ````
 var dataset =  d3.nest()
@@ -68,11 +67,13 @@ The result is objects that look like:
 
 <img src="nested_data.png">
 
-There are d3 functions to return just the keys -- d3.keys(), and just the values: d3.values().
+See **example lines_d3nest.html** for how to deal with this, to group by country and then plot the lines.
+
+There are also d3 functions to return just the keys -- d3.keys(), and just the values: d3.values().
 
 * Read: http://learnjsdata.com/group_data.html
 * See examples here: http://bl.ocks.org/phoebebright/raw/3176159/.
-* See working code example in lines_transition.html.
+* See another working code example in **lines_transition.html.**
 
 ### array.filter
 
@@ -92,15 +93,15 @@ And you can always use http://learnjsdata.com.
 For really professional data "munging" helpers, you can use lodash.js (an extension of the popular underscore.js library): https://lodash.com/docs.
 
 
-## Lines with Dots and Paths, for Tooltips
+## Lines with Dots and Paths, for Improved Tooltips
 
-The file emissions_linescatterplot.html has both dots and the line connecting them. The dots allow more detailed tooltips, if we want them.  We've added them.
+The file **emissions_linescatterplot.html** has both dots and the line connecting them. The dots allow more detailed tooltips, if we want them. Check them out.
 
 You have the option of having your dots be visible or not on the line.  Just change the dot opacity as you like.
 
-I also added the dots on multiple_lines_labels.html.  Notice it's hard to grab the dots and lines sometimes. See the next section below.
+I also added the dots on **multiple_lines_labels.html.**  Notice it's hard to grab the dots and lines sometimes. See the next section below for the advanced tool trick to deal with that.
 
-Another alternative, tricky way to add a dot on the line at the point closest to the mouse:
+Here's another alternative, tricky way to add a dot on the line at the point closest to the mouse:
 
 * Clever line bisect mouseover label trick from Mike Bostock: http://bl.ocks.org/mbostock/3902569
 * More explanation: http://www.d3noob.org/2014/07/my-favourite-tooltip-method-for-line.html
@@ -112,14 +113,14 @@ The problem of lots of lines and/or dots is that it's hard to pick them out of t
 
 Read: http://www.visualcinnamon.com/2015/07/voronoi.html (notice she uses another tooltip method, the Bootstrap lib's jquery method.)
 
-* Demo: Multi-Line Voronoi: http://bl.ocks.org/mbostock/8033015
+* Demo: Multi-Line Voronoi: http://bl.ocks.org/mbostock/8033015 (He has to nest data at the same points to prevent issues with coincident points. We may have this issue in our data too.)
 
 * Demo: Zan Armstrong's temperature lines: http://bl.ocks.org/zanarmstrong/38d7f79f61a03acc0ef0
 
 * Demo: Picking on a bubble chart, plus animated transition: http://www.nytimes.com/interactive/2013/05/25/sunday-review/corporate-taxes.html
 
 
-## Lines with Interpolation
+## Fun: Lines with Interpolation
 
 If you want smooth lines, you can use interpolation functions. Here is a demo of line interpolators in d3: http://bl.ocks.org/mbostock/4342190
 
@@ -130,16 +131,16 @@ Beware: Smoothing lines will distort the "true" values.  Sometimes this matters.
 
 Transitions allow us to animate changes of properties in code.
 
-Read:
+**Read**:
 
 * Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_updating_data (as far as "Other Kinds of Data Updates")
 * Optional: http://blog.visual.ly/creating-animations-and-transitions-with-d3-js/
 
-This below example could have used transitions etc.  Also, let's critique it:
+This below example could have used transitions etc.  Also, let's critique it a little:
 
 * http://www.npr.org/sections/money/2015/09/30/444446022/what-youll-actually-pay-at-1-550-colleges
 
-See the transition with a delay by dot in **scatter_transitions.html**:
+See the transition with a delay by dot in **scatter_transition_in.html**:
 
 ````
 // adding a silly intro animation to catch the eye -- using transition:
@@ -172,12 +173,18 @@ In the file **emissions_linescatterplot.html**, we have added a mouseover transi
     });
 ````
 
-In **lines_transition.html**, we transition between datasets, for different line shapes.
+There are more data-oriented transitions in **scatter_data_transition.html** and **lines_transition.html**.  See below for the click events part.
 
 
 ## On "Click" Events
 
-Here we use buttons that swap the data on a line chart!  We're also using Bootstrap and a map image.
+For a first, simple click event transition, look at **scatter_data_transition.html.**
+
+When the paragraph element with the class is clicked, a transition changes the data elements in the scatter plots.
+
+Then let's look at the more complex **lines_transition.html**.
+
+In it we use buttons that swap the data on a line chart!  (We're also using Bootstrap for some CSS layout and a map image.)
 
 ````
 d3.selectAll("button").on("click", function() {
@@ -193,7 +200,8 @@ d3.selectAll("button").on("click", function() {
     selectedline.transition().attr("d", line(newdata));
 ````
 
-See: **lines_transition.html**
+Review: **lines_transition.html**
+
 
 ## Country Regions and a Related Project
 
@@ -243,10 +251,10 @@ vis.append("svg:path")
 
 ````
 
-I've put the country-region codes table in **Week7/data/country-regions.csv**.  Come see me if you want help using it.
+I've put the country-region codes table in **Week7/data/country-regions.csv**.  Come see me if you want help using it and can't figure out how to do the lookup part.
 
 
-## Bootstrap for CSS layouts
+## FYI: Bootstrap for CSS layouts
 
 Have a look at Bootstrap, in very common usage in industry:
 
@@ -276,20 +284,21 @@ Read: Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/123
 
 **Homework 1: Dots on Lines** (25pt):
 
-Add dots to your personal line charts (not my data!), following the model in emissions_linescatterplot.html and multiple_lines_labels.html.  They can be visible or not, animated or not - but they should have tooltips attached with at least the x and y data values visible in them.
+Add dots to your personal line charts (not my data!), following the model in emissions_linescatterplot.html and multiple_lines_labels.html.  They can be visible or not, animated or not - but they should have tooltips attached that show at least the x and y data values visible in them.
 Send me the gist with subject/label "Dots on Lines."
 
-Exra Extra Credit (10pt): Add voronoi to the line chart too, to make it easier to pick lines/dots.
+Exra Extra Credit (10pt): If you want to try to do that with voronoi, to make it easier to pick lines/dots, you'll get an extra 10pt.  Beware data points that are at the same point, you may need to use d3.nest() like Mike does in his blocks example.
+
 
 **Homework 2: Transition Plot** (35pt):
 
-Choose a few interesting lines to plot (not a zillion), or a couple nice scatterplot examples. Bars would work too. Pick at least 2.
+Choose a few interesting lines to plot (not a zillion), or a couple nice scatterplot examples. Bars would work too if you want. Pick at least 2.
 
 You will compare the data using transitions between data set variables.  The 2 comparisons must have the same number of points (at this point in the class), no missing or extra data in one set.
 
-Using the example in lines_transition.html and in Scott's chapter on transitions, make transitions between the data sets.  Use buttons to control them.  Use a flexible 2 column bootstrap layout, with your chart in the first column, and put useful text or imagery or both in the second column.  Use UNICEF data and style.
+Using the example in lines_transition.html or scatter_data_transition.html and in Scott's chapter on transitions, make transitions between the data sets.  Use buttons to control them.  Use a flexible 2 column Bootstrap layout, with your chart in the first column, and put useful text or imagery or both in the second column.  Use UNICEF data and style.
 
-Ideas for comparisons: urban vs. rural, male vs. female, countries like I did...  Points will be awarded for sensible comparions that are interesting.
+Ideas for comparisons: urban vs. rural, male vs. female, countries like I did, differences for one date vs. the next data...  Points will be awarded for sensible comparions that are interesting!
 
 Send me the gist with subject "Transition Plot."
 
