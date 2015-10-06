@@ -129,7 +129,8 @@
 			var outputFormat = d3.time.format("%Y");
 
 			// My shortcut for the scale is to list the first and last only - will set the extents.
-			var years = ["Year 2000", "Year 2013"];
+			// Also, I set the earlier year to 1999 to get a little spacing on the X axis.
+			var years = ["Year 1999", "Year 2013"];
 
 			//Set up scales - I already know the start and end years, not using data for it.
 			var xScale = d3.time.scale()
