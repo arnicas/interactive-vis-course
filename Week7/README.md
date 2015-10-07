@@ -106,6 +106,29 @@ Here's another alternative, tricky way to add a dot on the line at the point clo
 * Clever line bisect mouseover label trick from Mike Bostock: http://bl.ocks.org/mbostock/3902569
 * More explanation: http://www.d3noob.org/2014/07/my-favourite-tooltip-method-for-line.html
 
+## An Alternate Line Data Structure
+
+Because it's hard to deal with lines without any attributes, especially for styling, another way to structure the file is shown in **lines_with_more_data.html.**  This structure made it easier to style one line based on country name.
+
+````
+var lines = svg.selectAll("path.line")
+                .data(dataset) // it has to be an array for the line function
+                .enter()
+                .append("path")
+                .attr("d", function (d) {
+                    return line(d.emissions); // the line is given the array it needs now
+                })
+                .attr("class", function (d) {
+                    if (d.country === "China") {
+                        return "highlight";
+                    } else {
+                        return "line";
+                    }
+                });
+````
+
+(There are still tooltips on dots, but those are in separate groups, handled as you saw above.)
+
 
 ## Usability Advanced Maneuvers: Lines and Scatters with Voronoi
 
