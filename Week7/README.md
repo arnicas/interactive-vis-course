@@ -149,6 +149,8 @@ If you want smooth lines, you can use interpolation functions. Here is a demo of
 
 Beware: Smoothing lines will distort the "true" values.  Sometimes this matters.
 
+See data examples here: http://www.d3noob.org/2013/01/smoothing-out-lines-in-d3js.html?spref=tw
+
 
 ## Intro to Transitions
 
