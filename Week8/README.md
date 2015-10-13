@@ -190,6 +190,8 @@ Examples:
 
 * My scatter_data_update.html
 
+In your homework, you will modify and use this structure for scatter_homework.html and bar_homework.html.
+
 
 
 ## Recent Interesting Things
@@ -201,7 +203,7 @@ Missed this last week: Smoothing out Lines - http://www.d3noob.org/2013/01/smoot
 
 ## Homework
 
-* Read: (To the bottom of the page) http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates
+Read: (To the bottom of the page) http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates.
 Read anything else you need to get a grip on the enter/update/exit pattern in D3!
 
 
@@ -211,8 +213,7 @@ In the file bar_homework.html, there are about a dozen //TODO items.  Fix all th
 
 **Homework 2 (25pt)**: Scatter Homework.
 
-Fix the scatter_homework.html to have a scatter plot that uses the x and y data values,
-axes (they don't need labels) and transitions.  It should use the enter/update/exit style of code.  The default button (for data1) needs to look selected when the user loads the page.
+Fix the scatter_homework.html to have a scatter plot that uses the x and y data values, axes (they don't need labels) and transitions between data sets.  It should use the enter/update/exit style of code.  The default button (for data1) needs to look selected when the user loads the page.  The axes need to transition too.
 
 **Extra credit (5pt)**: Color the dots by region. (Hint: use either a class, or a category color scale.)
 
@@ -220,12 +221,12 @@ Sent gist to me as "Scatter Homework."
 
 **Homework 3: Project Data Exploration (20pt)**
 
-Send me some graphic data explorations (3 different charts at least!) of data you may want to use in your project. This is NOT meant to be D3 work, but Excel charts, or Tableau images, or Google Charts, or whatever charting tool you want to use.  Use actual data from UNICEF/World Bank/Other sources. Show me some graphical examples that you may want to explore in the project. Explain in text what each graph shows and why it is interesting, with perhaps some ideas on how to make it interactive. 
+Send me some graphic data explorations (3 different charts at least!) of data you may want to use in your project. This is NOT meant to be D3 work, but Excel charts, or Tableau images, or Google Charts, or whatever charting tool you want to use.  Use actual data from UNICEF/World Bank/Other sources. Show me some graphical examples that you may want to explore in the project. Explain in text what each graph shows and why it is interesting, with perhaps some ideas on how to make it interactive.
 
 Put them in a document you can send me -- either email images & text, or Word, or a PDF...  This is exploration stage!
 
 Email as "Exploration."
 
-**Extra Extra Credit**: If you have extra time and want to fix up something in one of your previous week's exercises (like last week's), I will take it and give you a few points depending on what you do to it. This is good because you want your gists to be great for portfolio work. :) Make sure it's a new gist and send me the old one as well, so I can compare.
+**Homework Extra Extra Credit**: If you have extra time and want to fix up something in one of your previous week's exercises (like last week's), I will take it and give you a few points depending on what you do to it. This is good because you want your gists to be great for portfolio work. :) Make sure it's a new gist and send me the old one as well, so I can compare.
 
 
