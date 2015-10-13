@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- Modified example from enjalot: http://bl.ocks.org/enjalot/1429426 -->
+<html>
+ <head>
+    <title>Bar Transition Example</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+    <style type="text/css">
+    body {
+        padding: 50px;
+        font-family: sans-serif;
+        font-size: 12pt;
+    }
+    button {
+        margin: 5px;
+        font-size: 15pt;
+        padding: 3px;
+        cursor: pointer;
+    }
+    input {
+        margin: 5px;
+        font-size: 15pt;
+        padding: 3px;
+    }
+    p {
+        width: 500px;
+    }
+    .data1 {
+        width: 200px;
+        position: absolute;
+        left: 600px;
+        top: 300px;
+    }
+    .data2 {
+        width: 200px;
+        position: absolute;
+        left: 600px;
+        top: 450px;
+    }
+
+    </style>
+ </head>
+ <body>
+    <h2>Homework for Fake Scatter Update</h2>
+    <p>Make this fake data work with the enter/update/exit pattern as scatterplots.
+        <div id="buttons">
+        <button id="data1">Set Data to data 1</button>
+        <button id="data2">Set Data to data 2</button>
+        </div>
+
+        <div id="chart">
+        </div>
+
+<script type="text/javascript">
+
+
+    var data1 = [
+        {country: "Belgium", x: 5, y: 24, region: "Europe"}, // in data set 2
+        {country: "USA", x: 20, y: 43, region: "Americas"}, // in data set 2
+        {country: "China", x: 55, y: 24, region: "Asia"}, // in data set 2
+        {country: "Russia", x: 15, y: 30, region: "Asia"},
+        {country: "France", x: 60, y: 43, region: "Europe"}, // in data set 2
+        {country: "Chile", x: 89, y: 34, region: "Americas"}
+    ];
+
+    var data2 = [
+        {country: "Belgium", x: 5, y: 24, region: "Europe"}, 
+        {country: "USA", x: 20, y: 43, region: "Americas"}, 
+        {country: "Spain", x: 35, y: 24, region: "Europe"},
+        {country: "China", x: 55, y: 24, region: "Asia"}, 
+        {country: "UK", x: 90, y: 10, region: "Europe"},
+        {country: "Brazil", x: 40, y: 20, region: "Americas"},
+        {country: "France", x: 60, y: 43, region: "Europe"}, 
+        {country: "Canada", x: 39, y: 66, region: "Americas"},
+        {country: "Argentina", x: 99, y: 30, region: "Americas"}
+    ];
+
+
+    var width = 400;
+    var height = 400;
+
+        //setup the svg
+
+        var vis = d3.select("#chart").append("svg");
+        var svg = vis
+            .attr("width", width+100)
+            .attr("height", height+100); // adding some random padding
+        svg.append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("stroke", "#999")
+            .attr("fill", "none");
+
+        svg.append("g")
+            .attr("id", "barchart")
+            .attr("transform", "translate(50,50)");
+
+        //setup our ui buttons:
+        d3.select("#data1")
+            .on("click", function(d,i) {
+                redraw(data1);
+            });
+        d3.select("#data2")
+            .on("click", function(d,i) {
+                redraw(data2);
+            });
+
+        //make the dots
+
+        //TODO: make the button for data1 look selected when the page loads.
+        redraw(data1);
+
+
+    // This function is used to draw and update the data. It takes different data each time.
+
+    function redraw(data) {
+
+        //TODO: Fill this in with scatter plot enter/update/exit stuff including transitions.
+        // Include axes that transition.
+
+        } // end of draw function
+
+</script>
+ </body>
+</html>

@@ -1,0 +1,217 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Object Constancy</title>
+<style>
+
+    body {
+      background: #fcfcfa;
+      color: #333;
+      margin: 1em auto 4em auto;
+      position: relative;
+      width: 960px;
+    }
+
+    svg {
+      font: 10px sans-serif;
+    }
+
+    .bar rect {
+      fill: steelblue;
+    }
+
+    .bar rect:hover {
+      fill: orange;
+    }
+
+    .value {
+      fill: white;
+    }
+
+    .axis {
+      shape-rendering: crispEdges;
+    }
+
+    .axis path {
+      fill: none;
+      stroke: none;
+    }
+
+    .x.axis path {
+      fill: none;
+      stroke: white;
+    }
+
+    .x.axis line {
+      stroke: #fff;
+      stroke-opacity: .8;
+    }
+
+    .y.axis path {
+      stroke: black;
+    }
+
+</style>
+</head>
+
+<body>
+
+<h2>Slightly Simplified Code from M. Bostock's Object Constancy Example</h2>
+
+
+<p>Source of original: <a href="http://bost.ocks.org/mike/constancy/">http://bost.ocks.org/mike/constancy/</a></p>
+
+<p id="menu"><b>Top States by Age Bracket, 2008</b><br>Age: <select></select>
+
+<p id="chart"></p>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 40, bottom: 10, left: 40},
+    width = 960,
+    height = 250 - margin.top - margin.bottom;
+
+var format = d3.format(".1%"),
+    states,
+    prevAge;
+
+var xScale = d3.scale.linear()
+    .range([0, width]);
+
+var yScale = d3.scale.ordinal()
+    .rangeRoundBands([0, height], .1);
+
+var xAxis = d3.svg.axis()
+    .scale(xScale)
+    .orient("top")
+    .tickFormat(format);
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .style("margin-left", -margin.left + "px")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+    .attr("class", "x axis");
+
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("class", "domain")
+    .attr("y2", height);
+
+var menu = d3.select("#menu select")
+    .on("change", redraw);
+
+d3.csv("data/states-age.csv", function(data) {
+  states = data;
+
+  var ages = d3.keys(states[0]).filter(function(key) {
+    return key != "State" && key != "Total";
+  });
+
+  states.forEach(function(state) {
+    ages.forEach(function(age) {
+      state[age] = state[age] / state.Total;
+    });
+  });
+
+// build menu from the data
+  menu.selectAll("option")
+      .data(ages)
+    .enter().append("option")
+      .text(function(d) { return d; });
+
+  menu.property("value", "18 to 24 Years");
+  redraw();
+});
+
+
+function redraw() {
+  var currentAge = menu.property("value"),
+      top10 = states.sort(function(a, b) { return b[currentAge] - a[currentAge]; }).slice(0, 10);
+
+  yScale.domain(top10.map(function(d) { return d.State; }));
+
+  var bar = svg.selectAll(".bar")
+      .data(top10, function(d) { return d.State; });
+
+  var barCreate = bar.enter().append("g")
+      .attr("class", "bar")
+      .attr("transform", function(d) { return "translate(0," + (yScale(d.State) + height) + ")"; })
+      .style("fill-opacity", 0);
+
+  console.log("age", prevAge); // this is undefined the first time thru.
+
+  barCreate.append("rect")
+      //.attr("width", age && function(d) { return x(d[age]); })
+      .attr("width", function(d) {
+        if (prevAge) {
+          return xScale(d[prevAge]);
+        }
+      })
+      .attr("height", yScale.rangeBand());
+
+  barCreate.append("text")
+      .attr("class", "label")
+      .attr("x", -3)
+      .attr("y", yScale.rangeBand() / 2)
+      .attr("dy", ".35em")
+      .attr("text-anchor", "end")
+      .text(function(d) { return d.State; });
+
+  barCreate.append("text")
+      .attr("class", "value")
+      //.attr("x", age && function(d) { return x(d[age]) - 3; })
+      .attr("x", function(d) {
+        if (prevAge) {
+        return xScale(d[prevAge]) - 3;
+        }
+      })
+      .attr("y", yScale.rangeBand() / 2)
+      .attr("dy", ".35em")
+      .attr("text-anchor", "end");
+
+  prevAge = currentAge;
+  xScale.domain([0, top10[0][currentAge]]); // they are sorted, so take the top value
+
+  // sets the d.yLocation for the bar that's used in the exit transition.
+  var barUpdate = bar.transition()
+      .attr("transform", function(d) {
+        // set the value of the current y location for the exit move when it goes.
+        d.yLocation = yScale(d.State);
+        return "translate(0," + yScale(d.State) + ")"; })
+      .style("fill-opacity", 1);
+
+  barUpdate.select("rect")
+      .attr("width", function(d) { return xScale(d[currentAge]); });
+
+  barUpdate.select(".value")
+      .attr("x", function(d) { return xScale(d[currentAge]) - 3; })
+      .text(function(d) { return format(d[currentAge]); });
+
+  var barExit = bar.exit().transition()
+      .attr("transform", function(d) { return "translate(0," + (d.yLocation + height) + ")"; })
+      .style("fill-opacity", 0)
+      .remove();
+
+  barExit.select("rect")
+      .attr("width", function(d) { return xScale(d[currentAge]); });
+
+  barExit.select(".value")
+      .attr("x", function(d) { return xScale(d[currentAge]) - 3; })
+      .text(function(d) { return format(d[currentAge]); });
+
+      // transition the axis, so easy if you fixed the domain.
+  svg.transition().select(".x.axis")
+      .call(xAxis);
+}
+
+</script>
+
+</body>
+</html>

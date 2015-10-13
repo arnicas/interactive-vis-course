@@ -134,9 +134,9 @@ var lines = svg.selectAll("path.line")
 
 The problem of lots of lines and/or dots is that it's hard to pick them out of the mess.
 
-Read: http://www.visualcinnamon.com/2015/07/voronoi.html (notice she uses another tooltip method, the Bootstrap lib's jquery method.)
+* Read: http://www.visualcinnamon.com/2015/07/voronoi.html (notice she uses another tooltip method, the Bootstrap lib's jquery method.)
 
-* Demo: Multi-Line Voronoi: http://bl.ocks.org/mbostock/8033015 (He has to nest data at the same points to prevent issues with coincident points. We may have this issue in our data too.)
+* Demo: Multi-Line Voronoi: http://bl.ocks.org/mbostock/8033015, updated to http://bl.ocks.org/curran/6c0ce7a12c7d5497350d. (He has to nest data at the same points to prevent issues with coincident points. We may have this issue in our data too.)
 
 * Demo: Zan Armstrong's temperature lines: http://bl.ocks.org/zanarmstrong/38d7f79f61a03acc0ef0
 
@@ -160,10 +160,8 @@ Transitions allow us to animate changes of properties in code.
 
 * Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_updating_data (as far as "Other Kinds of Data Updates")
 * Optional: http://blog.visual.ly/creating-animations-and-transitions-with-d3-js/
-
-This below example could have used transitions etc.  Also, let's critique it a little:
-
-* http://www.npr.org/sections/money/2015/09/30/444446022/what-youll-actually-pay-at-1-550-colleges
+* Working with Transitions: http://bost.ocks.org/mike/transition/
+* Optional Academic Research: http://vis.berkeley.edu/papers/animated_transitions/
 
 See the transition with a delay by dot in **scatter_transition_in.html**:
 
