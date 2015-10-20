@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!-- code loosely inspired by this block https://gist.github.com/mstanaland/6100713 -->
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 12px sans-serif;
+  padding: 50px;
+}
+
+#form {
+      position: relative;
+      right: 10px;
+      top: 10px;
+      padding-bottom: 20px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+</style>
+<body>
+
+  <h2>Deaths from Illnesses in 2013 in Selected South African Countries</h2>
+  <p><a href="http://apps.who.int/gho/data/node.main.ghe100-by-cause?lang=en">WHO data</a>, deaths of children 0-4 years old in selected South African countries.</p>
+    <div id="form">
+      <label><input type="radio" name="mode" value="bycount" checked>Raw Count</label>
+      <label><input type="radio" name="mode" value="bypercent">Percent of Illness</label>
+    </div>
+  <div id="chart"></div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 150, bottom: 50, left: 40},
+    width = 980 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var xScale = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .3);
+
+var yScale = d3.scale.linear()
+    .rangeRound([height, 0]);
+
+var color = d3.scale.category20();
+
+var xAxis = d3.svg.axis()
+    .scale(xScale)
+    .orient("bottom")
+    .innerTickSize([0]);
+
+var yAxis = d3.svg.axis()
+    .scale(yScale)
+    .orient("left")
+    .tickFormat(d3.format(".2s")); // for the stacked totals version
+
+var stack = d3.layout
+    .stack();
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
+
+  if (error) {
+    console.log(error);
+  }
+
+  data.sort(function(a,b) { return a.Country - b.Country;});
+  // how would we sort by largest total bar?  what would we have to calculate?
+
+  var illnesses = ["Meningitis_encephalitis","Respiratory_infections","Sepsis","Pertussis",
+  "Malaria","Measles","HIV_Aids","Diarrhoeal_diseases","Asphyxia_trauma"];
+
+  dataToStack = makeData(illnesses, data);
+  var stacked = stack(dataToStack);
+  console.log(stacked);
+
+  xScale.domain(data.map(function(d) { return d.Country; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .selectAll("text")
+        .attr("dy", ".5em")
+        .attr("transform", "rotate(-30)")
+        .style("text-anchor", "end");
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Deaths");
+
+  var country = svg.selectAll(".country")
+      .data(stacked)
+    .enter().append("g")
+      .attr("class", "country")
+      .style("fill", function(d, i) { return color(i); });
+
+  country.selectAll("rect")
+      .data(function(d) {
+        console.log("array for a rectangle");
+        return d; })  // this just gets the array for bar segment.
+    .enter().append("rect")
+        .attr("width", xScale.rangeBand());
+
+    // this just draws them in the default way, now they're appended.
+  transitionCount();
+
+  drawLegend();
+
+  d3.selectAll("input").on("change", handleFormClick);
+
+  // All the functions for stuff above!
+
+  function handleFormClick() {
+    if (this.value === "bypercent") {
+      transitionPercent();
+    } else {
+      transitionCount();
+    }
+  }
+
+
+  function makeData () {
+    return illnesses.map(function(illness) {
+        return data.map(function(d) {
+          return {x: d.Country, y: +d[illness]};
+        })
+      });
+  }
+
+
+  function transitionPercent() {
+
+    yAxis.tickFormat(d3.format("%"));
+    stack.offset("expand");  // use this to get it to be relative/normalized!
+    var stacked = stack(makeData(illnesses, data));
+    // call function to do the bars, which is same across both formats.
+    transitionRects(stacked);
+  }
+
+  function transitionCount() {
+
+    yAxis.tickFormat(d3.format(".2s")); // for the stacked totals version
+    stack.offset("zero");
+    var stacked = stack(makeData(illnesses, data));
+    transitionRects(stacked);
+
+    }
+
+  function transitionRects(stacked) {
+
+    // this domain is using the last of the stacked arrays, which is the last illness, and getting the max height.
+    yScale.domain([0, d3.max(stacked[stacked.length-1], function(d) { return d.y0 + d.y; })]);
+
+    // attach new fixed data
+    var country = svg.selectAll(".country")
+      .data(stacked);
+
+    // same on the rects
+    country.selectAll("rect")
+      .data(function(d) {
+        console.log("array for a rectangle");
+        return d;
+      })  // this just gets the array for bar segment.
+
+    svg.selectAll("g.country rect")
+      .transition()
+      .duration(250)
+      .attr("x", function(d) {
+        return xScale(d.x); })
+      .attr("y", function(d) {
+        return yScale(d.y0 + d.y); }) //
+      .attr("height", function(d) {
+        return yScale(d.y0) - yScale(d.y0 + d.y); });  // height is base - tallness
+
+    svg.selectAll(".y.axis").transition().call(yAxis);
+  }
+
+  // Building a legend by hand, based on http://bl.ocks.org/mbostock/3886208
+  function drawLegend() {
+
+    var legend = svg.selectAll(".legend")
+        .data(color.domain().slice().reverse()) // what do you think this does?
+      .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+    legend.append("rect")
+        .attr("x", width)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", color);
+
+    legend.append("text")
+        .attr("x", width + 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .text(function(d, i) { return illnesses[i]; });
+  }
+
+});
+
+</script>

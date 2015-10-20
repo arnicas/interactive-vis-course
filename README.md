@@ -20,12 +20,12 @@ Subject to change!
 * [Week6](Week6): Linecharts, Events, Simple Tooltips
 * [Week7](Week7): Improved Lines, Transitions
 * [Week8](Week8): Updates to Data, Animation
-* [Week9](Week9): Small Multiples, Cross-Linking and Brushing
+* [Week9](Week9): Stacking Chart Types, Intro to Small Multiples
 * [Week10](Week10): Maps
 * [Week11](Week11): Storytelling Techniques: Scrollytelling
 * [Week12](Week12): Other Layouts, Queue
-* [Week13](Week13): Responsive Design
-* [Week14](Week14): APIs, Ajax, Servers, Portfolios
+* [Week13](Week13): Overflow
+* [Week14](Week14): Project, Portfolios
 * [Week15](Week15): Project & Overflow
 
 
