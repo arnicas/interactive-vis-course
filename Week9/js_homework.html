@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<body>
+
+  <h2>Look in the console.</h2>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+
+d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, data) {
+
+  if (error) {
+    console.log(error);
+}
+
+console.log(data);
+
+var illnesses = d3.keys(data[0]).filter(function (d) {
+    // TODO: how do you get all the keys that are not country or year?
+});
+console.log("keys", illnesses);
+
+  data.forEach(function(d) {
+      var sum = 0;
+      // TODO: how would you use the illnesses list to get the total for each row's illnesses? use a forEach.
+      d.total = sum;
+    });
+
+console.log("totals", data);
+
+var countryNames = //TODO: // How would you use a map to get the country names out of the original data file?
+
+countryNames.sort(//TODO: sort them alphabetically)
+
+console.log(countryNames);
+
+var dateFormat = d3.time.format("Year %Y");
+var outputFormat = d3.time.format("%Y");
+
+var nestByCountry = d3.nest()
+  .key(function(d) {return d.Country;})
+  .sortKeys(d3.ascending)
+  .entries(//TODO: what goes in here?);
+
+console.log("nest By country", nestByCountry[0]);
+
+var nestByYear = d3.nest()
+  .key(function(d) {
+    return outputFormat(dateFormat.parse(d.Year));})
+  .sortKeys(function(a,b) {
+    console.log(a, b);
+    // TODO: How would you sort these?  think about using your date formats, and check what a and b are.
+  })
+  .entries(data);
+
+  console.log("nest By Year", nestByYear[0]);
+
+  var years = // TODO: use a map function on the nestByYear to get the years as strings in an array.
+
+  console.log(years);
+
+  var maxMalariaFor2013 = //TODO: find the max malaria in 2013 using the nestByYear results, using maps, filters, d3.max, d3.keys, d3.values, etc.  There are several ways.
+
+  console.log(maxMalariaFor2013);
+
+  var nestByCountryYear = d3.nest()
+  // TODO: nest by country, then by year.
+    .entries(data);
+
+  console.log("by country then year", nestByCountryYear[0]);
+
+
+});
+
+
+</script>
+</body>

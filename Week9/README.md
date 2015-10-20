@@ -217,8 +217,9 @@ See also http://bl.ocks.org/tmaybe/6144082.
 ## Bar Groups
 
 * Grouped bar chart example: http://bl.ocks.org/mbostock/3887051
+* See my version in grouped_bars.html.
 
-(Notice the scales for the x axis here.  There is one for the state labels, and one for each bar in the group.)
+Fancier:
 
 * Stacked to Grouped Bars Animation: http://bl.ocks.org/mbostock/3943967
 * Stacked to multiples transition: http://bl.ocks.org/mbostock/4679202
@@ -243,6 +244,7 @@ Tutorials by Jim Vallandingham (that unfortunately use CoffeeScript):
 
 * Tutorial with a brush: http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/
 
+We'll build some next week.  Think about data in your datasets that could be done with small mutiples.
 
 ### Note: Old D3 Code Alert
 
@@ -259,17 +261,33 @@ it's old D3 code.  We used to have to say "svg" in front of all the svg DOM elem
 
 ## Recent Interesting Things
 
-Related vis yesterday: https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor
+* Related vis yesterday: https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor
 
-World Bank tumblr: http://worldbank.tumblr.com/submit
+* Amazing scrollytelling animated story: http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees
 
-What is a Front-End Developer: https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html
+* World Bank tumblr: http://worldbank.tumblr.com/submit
 
-A friendly guide to debugging (but not about d3 per se): http://p5js.org/tutorials/debugging/
+* What is a Front-End Developer: https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html
+
+* A friendly guide to debugging (but not about d3 per se): http://p5js.org/tutorials/debugging/
 
 
 ## Homework
 
 Read this section: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout. You can see how some other layouts work in that same chapter.
+
+Read: How We Made Failure Factories: https://source.opennews.org/en-US/articles/how-we-made-failure-factories/
+
+**Homework 1 (12pt)**: JS Practice.
+
+Finish js_homework.html, all the todos. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the file.  Week 9: JS homework.
+
+**Homework 2 (25pt)**: Stacked Bars.
+
+Make a stacked_bar_transitions using your own data.  It must transition between normalized and non-normalized like my example does. Try to make it data that you can use in your final project.  Send gist as "Stacked Bars."
+
+**Homework 3 (20pt)**: Grouped Bars.
+
+Make a grouped bars example with your own data. Send it as "Grouped Bars."
 
 
