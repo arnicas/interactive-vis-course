@@ -25,88 +25,6 @@ color(d.illness)
 or color(i)
 ````
 
-## Javascript Keys and Mapping
-
-We need to get serious about mapping values.  A lot of the online examples for this week used mapping to make the data for the stacked layouts. Some of them are really terse.
-
-Reminder about a map:
-
-````
-var array = [{a: 10, b: 20, c: 30}, {a: 14, b: 2, c: 31}];
-var the_a = array.map(function (d) { return d.a;});
-the_a
-[10, 14]
-````
-
-Let's look at the stacked bar example in http://bl.ocks.org/mbostock/3886208.
-
-The data in the CSV looks like this:
-
-````
-State,Under 5 Years,5 to 13 Years,14 to 17 Years,18 to 24 Years,25 to 44 Years,45 to 64 Years,65 Years and Over
-AL,310504,552339,259034,450818,1231572,1215966,641667
-AK,52083,85640,42153,74257,198724,183159,50277
-AZ,515910,828669,362642,601943,1804762,1523681,862573
-AR,202070,343207,157204,264160,754420,727124,407205
-....
-````
-
-First we have:
-````
-var color = d3.scale.ordinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-````
-
-This sets up specific colors to use.
-
-Then:
-
-````
-color.domain(d3.keys(data[0]).filter(function(key) { return key !== "State"; }));
-````
-
-What does this do?  Any guesses?
-
-````
->data[0]
-Object {State: "AL", Under 5 Years: "310504", 5 to 13 Years: "552339", 14 to 17 Years: "259034", 18 to 24 Years: "450818"…}
-````
-
-Now guess...  d3.keys() returns the object attribute keys.
-
-So the color domain:
-
-````
->color.domain()
-["Under 5 Years", "5 to 13 Years", "14 to 17 Years", "18 to 24 Years", "25 to 44 Years", "45 to 64 Years", "65 Years and Over"]
-````
-
-Then this madness, to create the format for the stacking, instead of using a stack layout:
-
-````
-data.forEach(function(d) {
-    var y0 = 0;
-    d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
-    d.total = d.ages[d.ages.length - 1].y1;
-  });
-````
-
-All the action is in the ages array creation.  It's the same as:
-
-````
-data.forEach(function (d) {
-    var y0 = 0;
-    d.ages = ["Under 5 Years", "5 to 13 Years", "14 to 17 Years", "18 to 24 Years", "25 to 44 Years", "45 to 64 Years", "65 Years and Over"].map(function(name) {
-        var height = y0 + +d[name];
-        var obj = { label: name,
-                    y0: y0,
-                    y1: height };
-        y0 = height;
-        return obj;
-    });
-    d.total = d.ages[d.ages.length - 1].y1; // last y1, which is the total height
-})
-````
 
 ## Area Chart
 
@@ -136,7 +54,7 @@ The stacker adds elements to your dataset that say what "level" an item should g
 
 Read: https://github.com/mbostock/d3/wiki/Stack-Layout
 
-See stacked_area_nest.html, which uses the stack layout.
+See stacked_area.html, which uses the stack layout.
 
 See also:
 
@@ -161,7 +79,7 @@ var stack = d3.layout.stack()
     .y(function(d) { return +d.Measles; });
 ````
 
-Try this in stacked_area_nest.html.
+Try this in stacked_area.html.
 
 Another interactive streamgraph example (with highlights and fake tooltips): http://bl.ocks.org/WillTurman/4631136
 
@@ -188,8 +106,8 @@ Tooltips for stacked bar charts: https://gist.github.com/mstanaland/6100713.
 
 ## Normalized Bar Chart
 
-This is a very small variant, after you get the stacked_bar.html working.  See the // notes in the file.
-Just add offset "expand" to the layout!
+This is a very small variant, after you get the stacked_bar.html working.  See the `//` notes in the file.
+Just add offset "expand" to the layout!  (The default offset is "zero".)
 
 ````
 var stack = d3.layout
@@ -214,6 +132,96 @@ See my example stacked_bar_transitions.html.  This includes a bunch of refactori
 See also http://bl.ocks.org/tmaybe/6144082.
 
 
+## Aside on Javascript Keys and Mapping
+
+We need to get serious about data munging with map.  A lot of the online examples for this week used mapping to make the data for the stacked layouts. Mike Bostock says "it's just as easy to make the y0, y1 by hand" for the stacked bars.  Note if you don't use the stack layout, you can't easily switch to a normalized view when you want.
+
+But we should try to understand some of the code for doing it "by hand" because so many examples use it.  And some of them are really terse.
+
+Reminder about a map:
+
+````
+var array = [{a: 10, b: 20, c: 30}, {a: 14, b: 2, c: 31}];
+var the_a = array.map(function (d) { return d.a;});
+the_a
+[10, 14]
+````
+
+Maps return arrays. They are like forEach function loops, except those don't return arrays explicitly. (Although you can use them to create new arrays like we've seen with "push").
+
+Let's look at the stacked bar example in http://bl.ocks.org/mbostock/3886208.  He makes the data using a confusing, compressed few lines.
+
+The data in the CSV looks like this:
+
+````
+State,Under 5 Years,5 to 13 Years,14 to 17 Years,18 to 24 Years,25 to 44 Years,45 to 64 Years,65 Years and Over
+AL,310504,552339,259034,450818,1231572,1215966,641667
+AK,52083,85640,42153,74257,198724,183159,50277
+AZ,515910,828669,362642,601943,1804762,1523681,862573
+AR,202070,343207,157204,264160,754420,727124,407205
+....
+````
+
+First, note we have:
+````
+var color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+````
+
+This sets up specific colors to use.
+
+Then:
+
+````
+color.domain(d3.keys(data[0]).filter(function(key) { return key !== "State"; }));
+````
+
+What does this do?  Any guesses?  Starting from data[0], the "keys" are the attribute names, like "State."
+
+````
+>data[0]
+Object {State: "AL", Under 5 Years: "310504", 5 to 13 Years: "552339", 14 to 17 Years: "259034", 18 to 24 Years: "450818"…}
+````
+
+Now guess...  d3.keys() returns the object attribute names, which are keys.
+
+So the color domain:
+
+````
+>color.domain()
+["Under 5 Years", "5 to 13 Years", "14 to 17 Years", "18 to 24 Years", "25 to 44 Years", "45 to 64 Years", "65 Years and Over"]
+````
+
+Then this madness, to create the format for the stacking manually, instead of using a stack layout:
+
+````
+data.forEach(function(d) {
+    var y0 = 0;
+    d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+    d.total = d.ages[d.ages.length - 1].y1;
+  });
+````
+
+All the action is in the ages array creation.  It's the same as:
+
+````
+data.forEach(function (d) {
+    var y0 = 0;
+    d.ages = ["Under 5 Years", "5 to 13 Years", "14 to 17 Years", "18 to 24 Years", "25 to 44 Years", "45 to 64 Years", "65 Years and Over"].map(function(name) {
+        var height = y0 + +d[name];
+        var obj = { label: name,
+                    y0: y0,
+                    y1: height };
+        y0 = height;
+        return obj;
+    });
+    d.total = d.ages[d.ages.length - 1].y1; // last y1, which is the total height
+})
+````
+
+Because his `{name: name, y0: y0, y1: y0 += +d[name]};` is incrementing the y0 each time through the map loop, so that each time it is the sum of the value of d[name] and the previous y0.
+
+
 ## Bar Groups
 
 * Grouped bar chart example: http://bl.ocks.org/mbostock/3887051
@@ -233,7 +241,7 @@ Three ways:
 
 * Area Charts with a UI filter: http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/ (see old D3 Code alert below)
 
-Tutorials by Jim Vallandingham (that unfortunately use CoffeeScript):
+Tutorials by Jim Vallandingham (that unfortunately use Coffee Script):
 
 * Small Multiples with Details on Demand http://vallandingham.me/small_multiples_with_details.html
 * Linked Small Multiples: https://flowingdata.com/2014/10/15/linked-small-multiples/
@@ -276,18 +284,18 @@ it's old D3 code.  We used to have to say "svg" in front of all the svg DOM elem
 
 Read this section: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout. You can see how some other layouts work in that same chapter.
 
-Read: How We Made Failure Factories: https://source.opennews.org/en-US/articles/how-we-made-failure-factories/
+Read: How We Made Failure Factories: https://source.opennews.org/en-US/articles/how-we-made-failure-factories/ and the original piece: http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/
 
 **Homework 1 (12pt)**: JS Practice.
 
-Finish js_homework.html, all the todos. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the file.  Week 9: JS homework.
+Finish js_homework.html, all the TODOs. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the file.  Week 9: "JS homework".
 
-**Homework 2 (25pt)**: Stacked Bars.
+**Homework 2 (25pt)**: Stacked Bars Transition.
 
 Make a stacked_bar_transitions using your own data.  It must transition between normalized and non-normalized like my example does. Try to make it data that you can use in your final project.  Send gist as "Stacked Bars."
 
 **Homework 3 (20pt)**: Grouped Bars.
 
-Make a grouped bars example with your own data. Send it as "Grouped Bars."
+Make a grouped bars example with your own data. Send gist as "Grouped Bars."
 
 

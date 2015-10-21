@@ -39,7 +39,7 @@ var margin = {top: 20, right: 20, bottom: 60, left: 40},
 var x0 = d3.scale.ordinal()
     .rangeRoundBands([0, width], .3);
 
-var x1 = d3.scale.ordinal();
+var x1 = d3.scale.ordinal(); // the actual bars inside each group
 
 var y = d3.scale.linear()
     .range([height, 0]);

@@ -57,7 +57,7 @@ var yAxis = d3.svg.axis()
 
 var stack = d3.layout
     .stack();
-    //.offset("expand");  // use this to get it to be relative/normalized!
+    //.offset("expand");  // use this to get it to be relative/normalized! Default is zero.
 
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
