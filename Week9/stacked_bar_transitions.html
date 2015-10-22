@@ -66,7 +66,7 @@ var yAxis = d3.svg.axis()
     .tickFormat(d3.format(".2s")); // for the stacked totals version
 
 var stack = d3.layout
-    .stack();
+    .stack(); // default view is "zero" for the count display.
 
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -86,10 +86,7 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
   var illnesses = ["Meningitis_encephalitis","Respiratory_infections","Sepsis","Pertussis",
   "Malaria","Measles","HIV_Aids","Diarrhoeal_diseases","Asphyxia_trauma"];
 
-  dataToStack = makeData(illnesses, data);
-  var stacked = stack(dataToStack);
-  console.log(stacked);
-
+  var stacked = stack(makeData(illnesses, data)); // needed for default view
   xScale.domain(data.map(function(d) { return d.Country; }));
 
   svg.append("g")
@@ -142,10 +139,10 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
   }
 
 
-  function makeData () {
+  function makeData(illnesses, data) {
     return illnesses.map(function(illness) {
         return data.map(function(d) {
-          return {x: d.Country, y: +d[illness]};
+          return {x: d["Country"], y: +d[illness]};
         })
       });
   }
