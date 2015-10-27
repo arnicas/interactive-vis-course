@@ -34,9 +34,9 @@ var countryNames = d3.map(data, function(d){
   return d.Country;
 }).keys();
 
-A d3.map function creates a lookup table with keys as the items you return in your function.  It's not the same thing as array.map.  Array.map just creates a new array of the items you asked for.
+A d3.map function creates a lookup hash table with keys as the items you return in your function.  It's not the same thing as array.map.  Array.map just creates a new array of the items you asked for.
 
-D3.map() is incredibly useful for storing data in objects, though.
+D3.map() is incredibly useful for storing data in objects, though. See https://github.com/mbostock/d3/wiki/Arrays#d3_map.
 
 
 ### Sorting Array Alphabetically
@@ -87,41 +87,44 @@ function typeFix(d) {
 }
 ````
 
+You invoke it like this:
+
 ````
 d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) { ...}
 ````
 
 ## Small Multiples in D3 - Some Details
 
-Three ways:
+Three ways described by Mike:
 
 * Version 1: http://bl.ocks.org/mbostock/1157787
 
-see small_multiples_simple.html
+See small_multiples_simple.html
 
 This method requires you to calculate the Y axis domain everytime you use it. That makes it harder to create axes labels with it.  Notice that the scale is very different across these graphs but that's not obvious here.  Labeling the last point helps a bit.
 
 * Version 2: http://bl.ocks.org/mbostock/9490313 (uses 'each' and calls the drawing funct)
 
-This variant calls a function on "each" of the data charts you're drawing, from the data. Also, allows easier actual axes drawing.  See my version in small_multiples_each.html.
+This variant calls a function on "each" of the data charts you're drawing, from the data. Also, allows easier actual axes drawing.
+
+See my version in small_multiples_each.html.
 
 * Version 3 of Mike's saves a separate y scale per data set: http://bl.ocks.org/mbostock/9490516
 
 (I didn't remake that one. I prefer version 2.)
 
-Tutorials by Jim Vallandingham (that unfortunately use Coffee Script):
+**Tutorials by Jim Vallandingham (that unfortunately use Coffee Script)**:
 
 * Small Multiples with Details on Demand http://vallandingham.me/small_multiples_with_details.html
 * Linked Small Multiples, also by Jim V: https://flowingdata.com/2014/10/15/linked-small-multiples/
 
 Jim's Linked Small Multiples article should be read. He has lots of examples that inspired it.  He uses Version 2's style -- an each loop that draws each of the charts.
 
-He uses the Isotope jquery library: http://isotope.metafizzy.co/
+He also uses the Isotope jquery library: http://isotope.metafizzy.co/
 
-See my version in JS:
+See my version in JS: **linked_small_mults.html**
 
-**linked_small_mults.html**
-
+Finally, small multiples with transitions:
 
 Using some UI from a tutorial by Nathan Yau (http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/), I also made a transition version:
 
