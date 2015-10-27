@@ -18,7 +18,7 @@ Stacked Bar Transitions:
 
 ### Debugging
 
-Let's do a little interactive debugging.  A few of you had NaN's in your console this week.
+Let's do a little interactive debugging.  A few of you had NaN's in your console this week.  Like this: http://bl.ocks.org/lmelgar/raw/c4feac1991b15e398071/
 
 ### Javascript's getFullYear
 
