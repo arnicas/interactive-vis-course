@@ -21,10 +21,10 @@ Subject to change!
 * [Week7](Week7): Improved Lines, Transitions
 * [Week8](Week8): Updates to Data, Animation
 * [Week9](Week9): Stacking Chart Types, Intro to Small Multiples
-* [Week10](Week10): Maps
-* [Week11](Week11): Storytelling Techniques: Scrollytelling
-* [Week12](Week12): Other Layouts, Queue
-* [Week13](Week13): Overflow
+* [Week10](Week10): Small Multiples, Intro to Maps
+* [Week11](Week11): Maps: D3, Leaflet, CartoDB...
+* [Week12](Week12): Storytelling Techniques: Scrollytelling
+* [Week13](Week13): Other Layouts, Queue
 * [Week14](Week14): Project, Portfolios
 * [Week15](Week15): Project & Overflow
 

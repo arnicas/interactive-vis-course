@@ -67,7 +67,7 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
 
   var illnessNames = d3.keys(data[0]).filter(function(key) { return key !== "Country"; });
 
-  data.sort(function (a, b) {return a.Country - b.Country;}); // alphabetize
+  data.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // alphabetize
 
   data.forEach(function(d) {
     d.illnesses = illnessNames.map(function(name) { return {name: name, value: +d[name]}; });

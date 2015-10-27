@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="yau.css"/>
+
+<body>
+
+<div id="header">
+  <h2>Relative Progress on Illnesses in Selected African Countries, 2000-2013</h2>
+
+  <p>Source: WHO. Scale shared across countries for each illness.</p>
+
+</div>
+
+<div id="explain" class="left">
+<h3>Total</h3>
+<p>Text about the total illnesses by country here.</p>
+</div>
+
+<div id="filters">
+  <table class="left">
+    <tr>
+      <td><a id="Total" class="current">Totals</a></td>
+    </tr>
+    <tr>
+      <td><a id="Measles">Measles</a></td>
+    </tr>
+    <tr>
+      <td><a  id="Respiratory_infections">Respiratory Infections</a></td>
+    </tr>
+    <tr>
+      <td><a id="Pertussis">Pertussis</a></td>
+    </tr>
+    <tr>
+      <td><a id="Diarrhoeal_diseases">Diarrhoea and Related Diseases</a></td>
+    </tr>
+    </table>
+
+    <table class="left">
+    <tr>
+      <td><a  id="Sepsis">Sepsis</a></td>
+    </tr>
+    <tr>
+      <td><a  id="HIV_Aids">HIV and AIDS</a></td>
+    </tr>
+    <tr>
+      <td><a id="Malaria">Malaria</a></td>
+    </tr>
+    <tr>
+      <td><a id="Asphyxia_trauma">Asphyxia Trauma</a></td>
+    </tr>
+    <tr>
+      <td><a id="Meningitis_encephalitis">Meningtitis and Encephalitis</a></td>
+    </tr>
+  </table>
+
+<div id="vis"></div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+
+var explain = {
+    "Total": "The dominator of sub-saharan death by illness is Nigeria.",
+    "Measles":"The Democratic Republic of the Congo still seems to have a problem with measles.",
+    "Malaria": "Nigeria still suffers badly from malaria.",
+    "Asphyxia_trauma" : "Nigeria wins again.",
+    "Meningitis_encephalitis": "Nigeria has made recent progress, but still outranks the others.",
+    "HIV_Aids": "A broad problem, still true in Nigeria.",
+    "Sepsis": "Sepsis increasing in Nigeria.",
+    "Diarrhoeal_diseases": "Nigeria again.",
+    "Respiratory_infections": "Nigeria, still."
+};
+
+var countries = [];
+
+var margin = {top: 30, right: 15, bottom: 20, left: 45},
+    width = 250 - margin.left - margin.right,
+    height = 80 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format("Year %Y").parse;
+var outputDate = d3.time.format("%Y");
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var yAxis = d3.svg.axis()
+      .orient("left")
+      .ticks(1)
+      .outerTickSize(0)
+      .tickFormat(d3.format("s"));
+
+var current = "Total";
+
+var area = d3.svg.area()
+    .x(function(d) { return x(d.date); })
+    .y0(height)
+    .y1(function(d) { return y(d[current]); });
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d[current]); });
+
+d3.select("#explain h3").text(current);
+d3.select("#explain p").html(explain[current]);
+
+d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
+
+  //typeFix is a function that parses the dates and sets the strings to numeric. See below!
+  console.log("data after load", data);
+
+  // Nest data by symbol.
+  countries = d3.nest()
+      .key(function(d) { return d.Country; })
+      .sortValues(function(a,b) {return a.date - b.date;})
+      .entries(data);
+
+  // Compute the minimum and maximum date across symbols.
+  // We assume values are sorted by date.
+  x.domain([
+    d3.min(countries, function(s) { return s.values[0].date; }),
+    d3.max(countries, function(s) { return s.values[s.values.length - 1].date; })
+  ]);
+
+  y.domain([0, d3.max(countries, function(c) {
+        return d3.max(c.values, function(v) { return +v[current];});
+      })
+  ]);
+  yAxis.scale(y);
+
+  // Add an SVG element for each symbol, with the desired dimensions and margin.
+  var svg = d3.select("#vis").selectAll("svg")
+      .data(countries)
+    .enter().append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .each(multiple); // uses each to call the multiple code for each country
+
+  function multiple(country) {
+
+    var svg = d3.select(this);
+
+    // Add the area path elements. Note: the y-domain is set per element.
+    svg.append("path")
+        .attr("class", "area")
+        .attr("d", function(d) { return area(d.values); });
+
+    // Add the line path elements. Note: the y-domain is set per element.
+    svg.append("path")
+        .attr("class", "line")
+        .attr("d", function(d) { return line(d.values); });
+
+     svg.append("text")
+      .attr("class", "label")
+      .attr("x", 0)
+      .attr("y", height + margin.bottom/2)
+      .style("text-anchor", "start")
+      .text(function(d) { return outputDate(d.values[0].date); });
+
+    // Add a small label for the symbol name.
+
+    svg.append("text")
+      .attr("class", "label")
+      .attr("x", width/2)
+      .attr("y", -8)
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.key; });
+
+    svg.append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", height + margin.bottom/2)
+      .style("text-anchor", "end")
+      .text(function(d) { return outputDate(d.values[d.values.length - 1].date);});
+
+      // put a dot on last point
+      svg.append("circle")
+      .attr("class", "endpoint")
+      .attr("cx", function(d) {return x(d.values[d.values.length - 1].date);})
+      .attr("cy", function(d) {return y(d.values[d.values.length - 1][current]);})
+      .attr("r", 2);
+
+      // label the value on the last point
+    svg.append("text")
+     .attr("class", "endpoint")
+      .attr("x", width)
+      .attr("y", function(d) {return y(d.values[d.values.length - 1][current]);})
+      .attr("dy", -5)
+      .style("text-anchor", "end")
+      .text(function(d) { return d.values[d.values.length - 1][current]; });
+
+    svg.append("g").attr("class", "y axis").call(yAxis);
+
+  } // end multiple
+
+  d3.selectAll("#filters a").on("click", function() {
+      d3.selectAll("#filters a").classed("current", false);
+      d3.select(this).classed("current", true);
+
+      var label = d3.select(this).attr("text");
+      var selection = d3.select(this).attr("id");
+      current = selection;
+
+      d3.select("#explain h3").text(selection);
+      d3.select("#explain p").html(explain[selection]);
+      transition(selection);
+  });
+
+  function transition(arg) {
+
+    current = arg;
+
+    y.domain([0, d3.max(countries, function(c) {
+        return d3.max(c.values, function(v) { return +v[current];});
+      })
+    ]);
+    yAxis.scale(y);
+    console.log("in trans", y.domain());
+
+    svg.each(function(country) {
+
+      var chart = d3.select(this).transition();
+      chart.select(".y.axis").call(yAxis);
+      chart.select("path.area")
+        .attr("d", function(d) { return area(d.values); });
+      chart.select("path.line")
+      .attr("d", function(d) { return line(d.values); });
+
+      chart.select("circle.endpoint")
+      .attr("cy", function(d) {return y(d.values[d.values.length - 1][current]);});
+
+        // label the value on the last point
+      chart.select("text.endpoint")
+        .attr("y", function(d) {return y(d.values[d.values.length - 1][current]);})
+        .text(function(d) { return d.values[d.values.length - 1][current]; });
+      }); // end each
+  }
+
+});
+
+
+
+// this function is applied to all the data values on load!
+
+function typeFix(d) {
+  d.Meningitis_encephalitis = +d.Meningitis_encephalitis;
+  d.Respiratory_infections = +d.Respiratory_infections;
+  d.Sepsis = +d.Sepsis;
+  d.Pertussis = +d.Pertussis;
+  d.HIV_Aids = +d.HIV_Aids;
+  d.Diarrhoeal_diseases = +d.Diarrhoeal_diseases;
+  d.Asphyxia_trauma = +d.Asphyxia_trauma;
+  d.Malaria = +d.Malaria;
+  d.Measles = +d.Measles;
+  d.date = parseDate(d.Year);
+  return d;
+}
+
+</script>

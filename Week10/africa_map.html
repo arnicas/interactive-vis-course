@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style>
+
+.countries {
+    fill: #e5e5e5;
+    stroke: #fff;
+    stroke-width:2px;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 1000,
+    height = 600;
+
+var svg = d3.select('body').append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+var projection = d3.geo.mercator()
+    .scale(400) // mess with this if you want
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+d3.json('data/continent_africa_subunits.json', function(error, africa) {
+    svg.append('path')
+        .datum(africa)
+        .attr('class', 'countries')
+        .attr('d', path);
+});
+</script>
+</body>
+</html>

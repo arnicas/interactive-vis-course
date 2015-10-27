@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!-- Modification of Mike Bostock's code in http://bl.ocks.org/mbostock/1157787 -->
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+  margin: 20px;
+  padding: 20px;
+}
+
+.line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+.area {
+  fill: #e7e7e7;
+}
+
+.label {
+  fill: steelblue;
+}
+
+.endpoint {
+  fill: #666;
+}
+
+.y.axis text {
+  fill: steelblue;
+}
+
+</style>
+<body>
+
+  <h2>Relative Progress on Measles 2000-2013</h2>
+
+  <p>Source: WHO. Scales specified per country.</p>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+
+var margin = {top: 30, right: 15, bottom: 20, left: 45},
+    width = 250 - margin.left - margin.right,
+    height = 69 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format("Year %Y").parse;
+var outputDate = d3.time.format("%Y");
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var yAxis = d3.svg.axis()
+      .orient("left")
+      .ticks(1)
+      .outerTickSize(0)
+      .tickFormat(d3.format("s"));
+
+var illness = "Malaria";  // pick the one from the columns to plot
+
+d3.select("h2").text("Relative Progress on " + illness + " 2000-2013");
+
+var area = d3.svg.area()
+    .x(function(d) { return x(d.date); })
+    .y0(height)
+    .y1(function(d) { return y(d[illness]); });
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d[illness]); });
+
+d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
+
+  //typeFix is a function that parses the dates and sets the strings to numeric. See below!
+  console.log("data after load", data);
+
+  // Nest data by symbol.
+  var countries = d3.nest()
+      .key(function(d) { return d.Country; })
+      .sortValues(function(a,b) {return a.date - b.date;})
+      .entries(data);
+
+  console.log(countries);
+
+  // Compute the minimum and maximum date across symbols.
+  // We assume values are sorted by date.
+  x.domain([
+    d3.min(countries, function(s) { return s.values[0].date; }),
+    d3.max(countries, function(s) { return s.values[s.values.length - 1].date; })
+  ]);
+
+  // Add an SVG element for each symbol, with the desired dimensions and margin.
+  var svg = d3.select("body").selectAll("svg")
+      .data(countries)
+    .enter().append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .each(multiple); // uses each to call the multiple code for each country
+
+
+  function multiple(country) {
+
+    console.log("in multiple", country);
+
+    var svg = d3.select(this);
+    // domain set in the function for each country's values
+    y.domain([0, d3.max(country.values, function(d) { return d[illness]; })]);
+
+
+    // Add the area path elements. Note: the y-domain is set per element.
+    svg.append("path")
+        .attr("class", "area")
+        .attr("d", function(d) { return area(d.values); });
+
+    // Add the line path elements. Note: the y-domain is set per element.
+    svg.append("path")
+        .attr("class", "line")
+        .attr("d", function(d) { return line(d.values); });
+
+     svg.append("text")
+      .attr("class", "label")
+      .attr("x", 0)
+      .attr("y", height + margin.bottom/2)
+      .style("text-anchor", "start")
+      .text(function(d) { return outputDate(d.values[0].date); });
+
+    // Add a small label for the symbol name.
+
+    svg.append("text")
+      .attr("class", "label")
+      .attr("x", width/2)
+      .attr("y", -8)
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.key; });
+
+    svg.append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", height + margin.bottom/2)
+      .style("text-anchor", "end")
+      .text(function(d) { return outputDate(d.values[d.values.length - 1].date);});
+
+      // put a dot on last point
+      svg.append("circle")
+      .attr("class", "endpoint")
+      .attr("cx", function(d) {return x(d.values[d.values.length - 1].date);})
+      .attr("cy", function(d) {return y(d.values[d.values.length - 1][illness]);})
+      .attr("r", 2);
+
+      // label the value on the last point
+    svg.append("text")
+     .attr("class", "endpoint")
+      .attr("x", width)
+      .attr("y", function(d) {return y(d.values[d.values.length - 1][illness]);})
+      .attr("dy", -5)
+      .style("text-anchor", "end")
+      .text(function(d) { return d.values[d.values.length - 1][illness]; });
+
+    yAxis.scale(y);
+
+    svg.append("g").attr("class", "y axis").call(yAxis);
+
+  } // end of the multiple function
+
+});
+
+// this function is applied to all the data values on load!
+
+function typeFix(d) {
+  d.Malaria = +d.Malaria;
+  d.Measles = +d.Measles;
+  d.date = parseDate(d.Year);
+  return d;
+}
+
+</script>
