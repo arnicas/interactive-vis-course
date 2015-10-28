@@ -1,7 +1,51 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 
+<!-- CSS style for table filters based on Nathan Yau's in his tutorial for How American's Spend Their Days -->
+
 <link rel="stylesheet" type="text/css" href="yau.css"/>
+
+<style>
+
+#filters table{
+  border-collapse:collapse;
+  border-top:1px solid #ccc;
+}
+
+#filters table td{
+  padding:0;margin:0;
+}
+
+#filters a{
+  display:block;
+  padding:2px 4px;
+  font-size:1.1em;
+  color:#919292;
+  background:#F0F4F5;
+  cursor:pointer;
+  border-left:1px solid #CCCCCC;
+  border-bottom:1px solid #CCCCCC;
+  border-right:1px solid #CCCCCC;
+  overflow:hidden;
+}
+
+#filters a:hover{
+  text-decoration:underline;
+}
+#filters a.current{
+  background:#fff;color:#000;
+  font-weight:bold;
+}
+#filters a.current:hover{
+  text-decoration:none;
+}
+
+.left{float:left;}
+
+.clr{clear:both;}
+
+
+</style>
 
 <body>
 
@@ -54,6 +98,9 @@
     </tr>
   </table>
 
+</div>
+  <div class="clr"></div>
+
 <div id="vis"></div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
@@ -68,14 +115,15 @@ var explain = {
     "HIV_Aids": "A broad problem, still true in Nigeria.",
     "Sepsis": "Sepsis increasing in Nigeria.",
     "Diarrhoeal_diseases": "Nigeria again.",
-    "Respiratory_infections": "Nigeria, still."
+    "Respiratory_infections": "Nigeria, still.",
+    "Pertussis": "I guess Nigeria wins?"
 };
 
 var countries = [];
 
 var margin = {top: 30, right: 15, bottom: 20, left: 45},
     width = 250 - margin.left - margin.right,
-    height = 80 - margin.top - margin.bottom;
+    height = 100 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("Year %Y").parse;
 var outputDate = d3.time.format("%Y");
@@ -88,8 +136,9 @@ var y = d3.scale.linear()
 
 var yAxis = d3.svg.axis()
       .orient("left")
-      .ticks(1)
+      .ticks(2)
       .outerTickSize(0)
+      .innerTickSize(0)
       .tickFormat(d3.format("s"));
 
 var current = "Total";
