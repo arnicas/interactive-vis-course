@@ -35,6 +35,14 @@ console.log("totals", data);
 
 // How would you use a map to get the country names out of this nest structure?
 
+
+var nestByCountry = d3.nest()
+  .key(function(d) {return d.Country;})
+  .sortKeys(d3.ascending)
+  .entries(data);
+
+console.log("nest By country", nestByCountry[0]);
+
 var names = nestByCountry.map(function(d) { return d.key;});
 
 
@@ -47,12 +55,6 @@ var countryNames = data.map(function(d) {return d.Country;});
 
 countryNames.sort();
 
-var nestByCountry = d3.nest()
-  .key(function(d) {return d.Country;})
-  .sortKeys(d3.ascending)
-  .entries(data);
-
-console.log("nest By country", nestByCountry[0]);
 
 
 var dateFormat = d3.time.format("Year %Y");

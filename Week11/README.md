@@ -4,6 +4,9 @@ Maps:
 
 Mike's tutorial: http://bost.ocks.org/mike/map/
 
+
+Animated Maps tutorial: https://github.com/maptime-ams/animated-borders-d3js?utm_content=bufferb12b2&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
 http://blog.cartodb.com/cartodb-makes-d3-maps-a-breeze/
 
 http://maptimeboston.github.io/d3-maptime/?utm_content=bufferf944d&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer#/
