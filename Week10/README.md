@@ -120,7 +120,7 @@ See my version in small_multiples_each.html.
 
 Jim's Linked Small Multiples article should be read. He has lots of examples that inspired it.  He uses Version 2's style -- an each loop that draws each of the charts.
 
-He also uses the Isotope jquery library: http://isotope.metafizzy.co/
+He also uses the Isotope jquery library: http://isotope.metafizzy.co/  Which you are welcome to use in your own work. (It is okay to use for non-commercial uses.)
 
 See my version in JS: **linked_small_mults.html**
 
@@ -129,6 +129,10 @@ Finally, small multiples with transitions:
 Using some UI from a tutorial by Nathan Yau (http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/), I also made a transition version:
 
 **small_multiples_each_trans.html**
+
+and a variant with the scales different across each country, to show the comparison not blown out by Nigeria:
+
+**small_multiples_each_trans_diffaxis.html**
 
 
 ## Maps in D3

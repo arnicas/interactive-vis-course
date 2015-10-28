@@ -125,7 +125,7 @@ a{
 <div id="header">
   <h2>Relative Progress on Illnesses in Selected African Countries, 2000-2013</h2>
 
-  <p>Source: WHO. Scale shared across countries for each illness.</p>
+  <p>Source: WHO. Scale differs across countries for each illness.</p>
 
 </div>
 
@@ -180,16 +180,16 @@ a{
 <script>
 
 var explain = {
-    "Total": "The dominator of sub-saharan death by illness is Nigeria.",
-    "Measles":"The Democratic Republic of the Congo still seems to have a problem with measles.",
-    "Malaria": "Nigeria still suffers badly from malaria.",
-    "Asphyxia_trauma" : "Nigeria wins again.",
-    "Meningitis_encephalitis": "Nigeria has made recent progress, but still outranks the others.",
-    "HIV_Aids": "A broad problem, still true in Nigeria.",
-    "Sepsis": "Sepsis increasing in Nigeria.",
-    "Diarrhoeal_diseases": "Nigeria again.",
-    "Respiratory_infections": "Nigeria, still.",
-    "Pertussis": "I guess Nigeria wins?"
+    "Total": "Rwanda and Botswana made significant rates of progress. Angola not so much.",
+    "Measles":"Despite occasional outbreaks, all countries have made progress. The Democractic Republic of the Congo still suffers badly.",
+    "Malaria": "Malaria has been reduced across most countries, with the exception of the Central African Republic.",
+    "Asphyxia_trauma" : "Asphyxia and related trauma are still on the rise or relatively unchanged in many countries.",
+    "Meningitis_encephalitis": "All countries show improvement in deaths from meningitis and encephalitis, but C.A.R. shows a slight increase.",
+    "HIV_Aids": "HIV and Aids have been reduced generally, but may be on the increase in Angola and Nigeria.",
+    "Sepsis": "Sepsis increased or remained almost flat in most countries except Rwanda.",
+    "Diarrhoeal_diseases": "Presumably with access to better water, the diarrhoael diseases have been reduced across these countries.",
+    "Respiratory_infections": "Little signficant improvement in progress.",
+    "Pertussis": "Pertussis appears to be on the increase in many countries."
 };
 
 var countries = [];
@@ -236,6 +236,7 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
   // Nest data by symbol.
   countries = d3.nest()
       .key(function(d) { return d.Country; })
+      .sortKeys(d3.ascending)
       .sortValues(function(a,b) {return a.date - b.date;})
       .entries(data);
 
@@ -245,12 +246,6 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
     d3.min(countries, function(s) { return s.values[0].date; }),
     d3.max(countries, function(s) { return s.values[s.values.length - 1].date; })
   ]);
-
-  y.domain([0, d3.max(countries, function(c) {
-        return d3.max(c.values, function(v) { return +v[current];});
-      })
-  ]);
-  yAxis.scale(y);
 
   // Add an SVG element for each country, with the desired dimensions and margin.
   var svg = d3.select("#vis").selectAll("svg")
@@ -265,6 +260,11 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
   function multiple(country) {
 
     var svg = d3.select(this);
+
+    // domain set per chart in this example:
+    y.domain([0, d3.max(country.values, function(v) { return +v[current];})
+      ]);
+    yAxis.scale(y);
 
     // Add the area path elements. Note: the y-domain is set per element.
     svg.append("path")
@@ -336,15 +336,13 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
 
     current = arg;
 
-    y.domain([0, d3.max(countries, function(c) {
-        return d3.max(c.values, function(v) { return +v[current];});
-      })
-    ]);
-    yAxis.scale(y);
     console.log("in trans", y.domain());
 
     svg.each(function(country) {
 
+      y.domain([0, d3.max(country.values, function(v) { return +v[current];})]
+      );
+      yAxis.scale(y);
       var chart = d3.select(this).transition();
       chart.select(".y.axis").call(yAxis);
       chart.select("path.area")
