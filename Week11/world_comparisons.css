@@ -1,0 +1,91 @@
+/* A lot of this CSS is inherited from the Flowing Data tutorial:
+http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/;
+*/
+
+body {
+	margin: 0;
+	padding: 0;
+  font-family: Helvetica, sans-serif;
+}
+
+#main-wrapper {
+    width: 1000px;
+    padding: 50px;
+}
+
+#metrics { width: 920px; margin: 20px auto 15px 0; font-family: Helvetica, sans-serif; }
+#metrics h3 { font-size: 13px; font-family: Helvetica, sans-serif; text-align: center; margin-bottom: 0; }
+#metrics ul { font-size: 12px; font-family: Helvetica, sans-serif; margin-left: 0; padding: 0; }
+#metrics ul li {
+    list-style: none;
+    margin: 10px 10px 0 0;
+    padding: 2px 0;
+    display: inline-block;
+    width: 108px;
+    /*background: #e0e0e0;*/
+    cursor: pointer;
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid #e0e0e0;
+}
+#metrics ul li.bottom { margin-bottom: 0; }
+#metrics #income { width: 250px; float: left; border-right: 1px solid #ccc; margin-right: 15px; }
+#metrics #location { width: 250px; float: left; padding-left: 5px;  }
+#metrics .block-button { width: 80px; display: block; float:left; clear:both; }
+
+.tooltip {
+    position: absolute;
+    z-index: 10;
+    text-align: left;
+    width: 170px;
+    padding: 10px;
+    font-size: 10px;
+    font-family: Helvetica, sans-serif;
+    background: #ffffff;
+    pointer-events: none;
+    opacity: 0;
+}
+.tooltip h3 {
+  font-size: 12px; margin: 0 0 7px 0;
+  line-height: 1.2em;
+}
+div.tooltip .line { clear: both; margin-top: 3px; font-size: 11px; }
+div.tooltip .symbol { float: left; width: 6px; height: 6px; margin: 3px 4px 0 0; }
+div.tooltip .val { float: right; width: 25px; text-align: center; margin-right: 4px; background: none; }
+
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.button {
+  fill: #000;
+}
+
+.scalebutton {
+  cursor: pointer;
+}
+
+.countries {
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+.countries path.selected {
+    stroke: #000;
+    stroke-width: 0.5px;
+}
+
+path.richest, #metrics ul li.selected.richest, .tooltip .richest { fill: #8dd3c7; background: #8dd3c7; }
+path.poorest, #metrics ul li.selected.poorest, .tooltip .poorest { fill: #bc80bd; background: #bc80bd; }
+path.differenceIncome, #metrics ul li.selected.differenceIncome, .tooltip .differenceIncome { fill: #bebada; background: #bebada; }
+path.urban, #metrics ul li.selected.urban, .tooltip .urban { fill: #80b1d3; background: #80b1d3; }
+path.rural, #metrics ul li.selected.rural, .tooltip .rural { fill: #fdb462; background: #fdb462; }
+path.differenceLoc, #metrics ul li.selected.differenceLoc, .tooltip .differenceLoc { fill: #b3de69; background: #b3de69; }
+
+.clr { clear: both; }
+
+#vis {
+  padding: 25px;
+  display: inline-block;
+}

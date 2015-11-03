@@ -282,7 +282,7 @@ svg {
       g.append("rect")
         .attr("class", "background")
         .style("pointer-events", "all")
-        .attr("width", width + margin.right)
+        .attr("width", width)
         .attr("height", height).on("mouseover", mouseover)
         .on("mousemove", mousemove)
         .on("mouseout", mouseout);
@@ -377,14 +377,14 @@ svg {
 
   setupIsotope();
 
-    d3.select("#button-wrap").selectAll("div").on("click", function() {
-      var id;
-      id = d3.select(this).attr("id");
-      d3.select("#button-wrap").selectAll("div").classed("active", false);
-      d3.select("#" + id).classed("active", true);
-      return $("#vis").isotope({
-        sortBy: id
-      });
+  d3.select("#button-wrap").selectAll("div").on("click", function() {
+    var id;
+    id = d3.select(this).attr("id");
+    d3.select("#button-wrap").selectAll("div").classed("active", false);
+    d3.select("#" + id).classed("active", true);
+    return $("#vis").isotope({
+      sortBy: id
+    });
   }); // end button setup
 
 }); // end of read tsv

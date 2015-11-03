@@ -1,0 +1,1 @@
+{"type":"Topology","objects":{"units":{"type":"GeometryCollection","geometries":[{"type":"MultiPolygon","properties":{"name":"Isle of Man"},"arcs":[[[0]]]}]}},"arcs":[[[4620,1337],[-3840,-720],[4996,7984],[3464,1259],[759,-3343],[-5379,-5180]]],"transform":{"scale":[0.00005187286298629665,0.000037861859085916346],"translate":[-4.83059648299988,54.040432033000144]}}

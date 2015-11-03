@@ -1,0 +1,1 @@
+{"type":"Topology","objects":{"units":{"type":"GeometryCollection","geometries":[{"type":"MultiPolygon","properties":{"name":"Archipel des Kerguelen"},"arcs":[[[0]]]}]}},"arcs":[[[7729,242],[195,-118],[162,51],[33,-80],[-170,2],[-40,-83],[-232,-11],[52,239]]],"transform":{"scale":[0.003789506554855481,0.0038174797297729876],"translate":[39.693939649000185,-49.72161223799985]}}
