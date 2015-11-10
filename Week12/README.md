@@ -21,6 +21,8 @@
 
 **Tipsy!**
 
+Why does it not work well on maps?  Let's look at this...
+* http://bl.ocks.org/jowang0319/raw/d31f5412213d214c60e7/
 
 
 ## More Map Tools/Techniques
@@ -183,6 +185,7 @@ Example: http://pageflow.ericmakswitat.de/research
 
 Read this: [Telling Stories with Data](http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf)
 Read this: http://bost.ocks.org/mike/scroll/
+Read/skim in this order: http://vallandingham.me/think_you_can_scroll.html, http://mfviz.com/scrollytelling/#/
 
 
 **Homework 1 (25pt), Scrollytelling**: Use the template in scroller_template.html and associated files to tell a short story about that line graph.  You can write your own functions to highlight, label, color, etc, anything you want.  If you prefer to try to put your own data and chart into it, if it will help with your project, go for it.  There should be at least 4 steps to it. Send as "Scrolling."
@@ -192,5 +195,7 @@ Note: If you prefer to use a stepper, you can construct a new page with buttons 
 **Homeworkd 2 (35pt), 3 Charts**:
 
 Make 3 D3 charts of different kinds that you would like to include in your final project, all on the same page.  You can use multiple data files (using queue).  They do not have to be interactive yet (you can avoid tooltips etc until later).  It will definitely save you time if you can reuse this code in your project, so make sure you are building towards your final design.  We will discuss the next level of interaction next week. Send as "3 Charts."
+
+**Homeword 3 (5pt), Story Technique**:  Based on the examples and the pdf reading, which of the 7 genres of storytelling are you going to use for your project? Say why.
 
 
