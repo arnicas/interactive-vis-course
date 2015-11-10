@@ -48,7 +48,9 @@ For next week, read this smart paper:
 
 * Budget Forecast Compared to Reality: http://www.nytimes.com/interactive/2010/02/02/us/politics/20100201-budget-porcupine-graphic.html
 
-Tutorial: http://vallandingham.me/stepper_steps.html (includes a jquery version and a pure D3 version)
+Tutorial:
+
+* http://vallandingham.me/stepper_steps.html (includes a jquery version and a pure D3 version)
 
 
 ###Scrollytelling
@@ -57,7 +59,7 @@ Tutorial: http://vallandingham.me/stepper_steps.html (includes a jquery version 
 Snow Fall: http://www.nytimes.com/projects/2012/snow-fall/#/?part=tunnel-creek
 
 
-### Tutorials:
+###Tutorials on Scrollytelling
 
 Jim Vallandingham:
 
@@ -65,17 +67,20 @@ Jim Vallandingham:
 * His demo app: http://vallandingham.me/scroll_demo/
 * His tutorial: http://vallandingham.me/scroller.html
 
-Based on Jim's tutorial and talk, but with a slightly modified code library:
+Based on Jim's tutorial and talk, Mike Freeman tutorial, but with a slightly modified code library:
 
-http://mfviz.com/scrollytelling/#/
+* http://mfviz.com/scrollytelling/#/
+* His code: https://github.com/mkfreeman/scrolling (I saved a copy as mfreeman_scroller.js in our js dir)
 
-Let's Free Congress: http://letsfreecongress.org/
-And post about the transitions: http://blog.tonyhschu.ca/post/49488608263/technical-write-up-scroll-linked-animations
+Another case by Tony Hschu:
+
+* Let's Free Congress: http://letsfreecongress.org/
+* And post about the transitions: http://blog.tonyhschu.ca/post/49488608263/technical-write-up-scroll-linked-animations
 
 
 ##Examples
 
-Jim's list:
+**Jim's list**:
 
 * http://vallandingham.me/scroll_talk/examples/
 
@@ -83,25 +88,24 @@ Jim's list:
 
 * Bloomberg What's Really Warming the World? http://www.bloomberg.com/graphics/2015-whats-warming-the-world/  (using the graph-scroll lib)
 
-Position based scrolling:
+**Position-based scrolling** (as Mike Bostock calls it):
 
 * Shark and Minnow: http://www.nytimes.com/newsgraphics/2013/10/27/south-china-sea/
 * Ted Ligety: http://www.nytimes.com/newsgraphics/2014/sochi-olympics/giant-slalom.html
 
-English vs. Chinese Colors:
+**Scrolling with steppers**:
 
-* http://muyueh.com/greenhoney/
-
-Scrolling Bubble Vis with Search at the end:
-
-* http://www.bloomberg.com/graphics/2015-auto-sales/ - "Martini glass style" of storytelling
-
-More scrolly charts:
+* English vs. Chinese Colors: http://muyueh.com/greenhoney/
 
 * http://www.nytimes.com/interactive/2014/03/31/science/motorcycle-helmet-laws.html
 * The Making-of: https://source.opennews.org/en-US/articles/behind-scenes-fewer-helmets-more-deaths/
 
+
+**Yet more scrolly goodness**:
+
 * Battle of the Berrics, linked text too: http://www.georgelmurphy.com/berrics/
+
+* http://www.bloomberg.com/graphics/2015-auto-sales/ - "Martini glass style" of storytelling
 
 * CA is getting Fracked by Anna Flagg: http://www.facesoffracking.org/data-visualization/
 
