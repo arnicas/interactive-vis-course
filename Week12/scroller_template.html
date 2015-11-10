@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scrolling Sections</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="line.css" />
+
+<style>
+
+.container {
+  width: 890px;
+}
+
+#graphic {
+  padding-top: 60px;
+}
+
+
+#sections {
+  position: relative;
+  display: inline-block;
+  width: 250px;
+  top: 0px;
+  z-index: 90;
+  padding-bottom: 250px;
+}
+
+.step {
+  margin-bottom: 200px;
+  font-family: "TiemposTextWeb-Regular","Georgia";
+  font-size: 16px;
+  line-height: 23px;
+  color: #767678;
+}
+
+#sections .title {
+  font-family: Arial,Helvetica,"san-serif";
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #262626;
+  line-height: 1.2em;
+}
+
+#extra-space {
+  height: 300px;
+}
+
+#vis {
+  display: inline-block;
+  position: fixed;
+  top: 60px;
+  z-index: 1;
+  margin-left: 0;
+  font-size: 10px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div id='graphic'>
+    <div id='sections'>
+      <section class="step">
+        <!-- case 0 -->
+        <div class="title">Child Deaths</div>
+        Under 5 mortality rates across the world.
+      </section>
+      <section class="step">
+        <!-- case 1 -->
+        <div class="title">More text here</div>
+        Say something else here because this section seems to get triggered too soon. Bug?
+      </section>
+      <section class="step">
+        <!-- case 2 -->
+        <div class="title">What's this one?</div>
+          Something interesting to highlight, label, color.
+      </section>
+      <section class="step">
+        <!-- case 3 -->
+        <div class="title">Maybe Another One.</div>
+        Check out this highlight. Make sure to undo the previous one.
+      </section>
+      <section class="step">
+        <!-- case 4-->
+        <div class="title">Maybe Yet Another.</div>
+        Check out this highlight. Make sure to undo the previous one.
+      </section>
+    </div>
+    <div id='vis'>
+    </div>
+    <div id="extra-space">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="js/mfreeman_scroller.js"></script>
+<script src="js/line_chart.js"></script>
+<script src="js/scroller_settings.js"></script>
+</body>
+</html>

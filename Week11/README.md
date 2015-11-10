@@ -197,6 +197,7 @@ What have we done so far?
 **Chart Types:**
 
 * tables, sorting tables
+* dot plots
 * bar charts
 * stacked bar charts
 * grouped bar charts
@@ -220,7 +221,7 @@ What have we done so far?
 * Sorting items
 * Annotation/labeling of interesting data points
 
-Shneiderman's matra: "Overview first, zoom and filter, details on demand."
+Shneiderman's mantra: "Overview first, zoom and filter, details on demand."
 
 Your project will have to have at least 4 types of graphs we've done in class in it, plus some interactive features such as tooltips, useful animation, some storytelling component.  It should be a single page project.  More criteria coming next week.
 
@@ -264,7 +265,7 @@ https://github.com/veltman/learninglunches/tree/master/maps
 
 **HW 1 (20pts) Region Colors**:  Make a region color-coded map of the world like I showed. You can start from africa_map2.html and africa_map3.html for the data loading.  Use the region data in World_Development_Indicators_Metadata_Countries.csv.  You may have to use the ISO3 column.
 
-**HW 2 (15pts) Choropleth Map**: Make a choropleth map for your project data, using a continent or region or world of your choice, similar to what I did in africa_map3.html. It should have a legend and tooltips. **Extra Credit (grad students, 6 pts)**: Use the jquery Tipsy plugin (or another jquery plugin) for the tooltips.
+**HW 2 (15pts) Choropleth Map**: Make a choropleth map for your project data, using a continent or region or world of your choice, similar to what I did in africa_map3.html. It should have a legend and tooltips. **Extra Credit (grad students, 6 pts)**: Use the jquery Tipsy plugin (or another jquery plugin) for the tooltips. [Actually, it doesn't work on maps. Why not?]
 
 **HW 3 (20 pts) Design Sketch Rev2**: I want an updated design sketch for your project, using some ideas from the second stages of the Five Design Sheets site. http://fds.design/ You should have done some exploratory charts and graphs and have ideas about what types of charts you will include in the project now.  We'll discuss these in class next week.
 
