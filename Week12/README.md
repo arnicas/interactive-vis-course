@@ -4,17 +4,19 @@
 ## Homeworks:
 
 **Choropleth**:
-http://bl.ocks.org/yan2014/raw/e15c1329be30aec416fe/
-http://bl.ocks.org/hmader/raw/974f4ef284c48d5952a5/
-http://bl.ocks.org/DimsumPanda/raw/3362898c1386114463d4/
-http://bl.ocks.org/lmelgar/d5972f3a4c7e19e5a6f6
-http://bl.ocks.org/lwhitaker3/e8090246a20d9515789b
+
+* http://bl.ocks.org/yan2014/raw/e15c1329be30aec416fe/
+* http://bl.ocks.org/hmader/raw/974f4ef284c48d5952a5/
+* http://bl.ocks.org/DimsumPanda/raw/3362898c1386114463d4/
+* http://bl.ocks.org/lmelgar/d5972f3a4c7e19e5a6f6
+* http://bl.ocks.org/lwhitaker3/e8090246a20d9515789b
 
 
 **Regions**:
-http://bl.ocks.org/lmelgar/63de22d5f26adc8853ed
-http://bl.ocks.org/theopenwindow/600d7cbceeab66921bc5
-http://bl.ocks.org/lwhitaker3/raw/9348e54d6d85d8e7a70d/
+
+* http://bl.ocks.org/lmelgar/63de22d5f26adc8853ed
+* http://bl.ocks.org/theopenwindow/600d7cbceeab66921bc5
+* http://bl.ocks.org/lwhitaker3/raw/9348e54d6d85d8e7a70d/
 
 
 **Tipsy!**
@@ -23,12 +25,14 @@ http://bl.ocks.org/lwhitaker3/raw/9348e54d6d85d8e7a70d/
 
 ## More Map Tools/Techniques
 
-http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html
+A good article:
 
-Tool I missed:
-http://datamaps.github.io/
+* http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html
 
-Example of it used: http://data.runkeeper.com/rk-usa-running-stats-by-state
+Tool I missed - Datamaps:
+
+* http://datamaps.github.io/
+* Example of it used: http://data.runkeeper.com/rk-usa-running-stats-by-state
 
 
 ## Storytelling
