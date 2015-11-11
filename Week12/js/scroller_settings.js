@@ -2,6 +2,15 @@
 
 // For use with scroller_template.html and mfreeman_scroller.js.
 
+
+// function to move a selection to the front/top, from
+// https://gist.github.com/trtg/3922684
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
+
 var settings = {
   // could be used to save settings for styling things.
 }
@@ -12,8 +21,9 @@ function focus_country(country) {
     d3.selectAll("path.line").classed("focused", false);
     if (country) {
         var country = country.replace(/\s/g, '_');
-        d3.select("g.lines#" + country + " path.line")
-        .classed("focused", true);
+        var line = d3.select("g.lines#" + country + " path.line");
+        line.classed("focused", true);
+        line.moveToFront();
     }
 }
 

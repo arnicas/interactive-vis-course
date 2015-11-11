@@ -30,6 +30,7 @@ Why does it not work well on maps?  Let's look at this...
 A good article:
 
 * http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html
+* Even more design options: https://richardbrath.wordpress.com/2015/10/15/equal-area-cartograms-and-multivariate-labels/
 
 Tool I missed - Datamaps:
 
@@ -73,6 +74,16 @@ Based on Jim's tutorial and talk, Mike Freeman tutorial, but with a slightly mod
 
 * http://mfviz.com/scrollytelling/#/
 * His code: https://github.com/mkfreeman/scrolling (I saved a copy as mfreeman_scroller.js in our js dir)
+
+Truth: I spent a lot of time trying to adapt 2 graphs to these techniques in both the Bloomberg framework in graph-tools.io and Jim's. My code was a mess and not worth sharing yet.
+
+The example for the homework is much simpler, a combo using Mike Freeman's modified version of Jim's scroller:
+
+* scroller_template.html:
+* requires js/line_chart.js
+* js/scroller_settings.js
+* js/mfreeman_scroller.js
+* line.css
 
 Another case by Tony Hschu:
 
@@ -183,9 +194,9 @@ Example: http://pageflow.ericmakswitat.de/research
 
 ##Homework
 
-Read this: [Telling Stories with Data](http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf)
-Read this: http://bost.ocks.org/mike/scroll/
-Read/skim in this order: http://vallandingham.me/think_you_can_scroll.html, http://mfviz.com/scrollytelling/#/
+* Read this: [Telling Stories with Data](http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf)
+* Read this: http://bost.ocks.org/mike/scroll/
+* Read/skim in this order: http://vallandingham.me/think_you_can_scroll.html, http://mfviz.com/scrollytelling/#/
 
 
 **Homework 1 (25pt), Scrollytelling**: Use the template in scroller_template.html and associated files to tell a short story about that line graph.  You can write your own functions to highlight, label, color, etc, anything you want.  If you prefer to try to put your own data and chart into it, if it will help with your project, go for it.  There should be at least 4 steps to it. Send as "Scrolling."
