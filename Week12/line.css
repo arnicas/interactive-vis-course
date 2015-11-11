@@ -22,5 +22,5 @@ path.line {
 .line.focused {
   stroke-width: 2px;
   stroke-opacity: 100%;
-  stroke: steelblue;
+  stroke: orange;
 }
