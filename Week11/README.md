@@ -71,6 +71,8 @@ And my version using our data and some changes:
 Any design suggestions?  How would you improve the tooltips?
 
 
+* Read this on map coloring scales: http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/
+
 ## Map Demos I Like
 
 * Scattered Well-Being (in Mexico): http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/, http://mollica.space/scattered-well-being/
@@ -260,8 +262,13 @@ Apologies if this pissed you off, it pissed off a bunch of journalists this week
 
 ## Homework
 
-Read Noah Veltman's primer on maps and tools, it will help a lot with vocabulary and concepts:
+Read:
+
+* Noah Veltman's primer on maps and tools, it will help a lot with vocabulary and concepts:
 https://github.com/veltman/learninglunches/tree/master/maps
+* Map coloring scales in d3: http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/
+* Don't use rainbow schemes or your data vis license will be revoked: https://eagereyes.org/basics/rainbow-color-map
+
 
 **HW 1 (20pts) Region Colors**:  Make a region color-coded map of the world like I showed. You can start from africa_map2.html and africa_map3.html for the data loading.  Use the region data in World_Development_Indicators_Metadata_Countries.csv.  You may have to use the ISO3 column.
 
