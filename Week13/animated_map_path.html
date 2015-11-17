@@ -1,0 +1,155 @@
+
+<!-- Slight modification of example 1 on http://mtaptich.github.io/d3-lessons/d3-extras/ to add play/pause button.-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<style>
+.land {
+  fill: #eee;
+  stroke: #777777;
+}
+
+circle {
+  fill: steelblue;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+.journey{
+  fill: none;
+  stroke: #000;
+  stroke-width: 4;
+  stroke-dasharray: 4px,8px;
+}
+</style>
+
+<h2>Map with Play/Pause Button on Path Code</h2>
+
+<p>Original source (without play button) from <a href="http://mtaptich.github.io/d3-lessons/d3-extras/">mtaptich.github.io/d3-lessons/d3-extras</a>.</p>
+
+<button>Play</button>
+
+<div id="chart"></div>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script>
+
+var width = 960,
+    height = 500;
+
+var projection = d3.geo.conicConformal()
+    .rotate([98, 0])
+    .center([0, 38])
+    .parallels([29.5, 45.5])
+    .scale(1000) // Change to 300 to zoom out
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var points = [
+  [-122.2728, 37.8717],
+  [-104.9903, 39.7392],
+  [-93.2650, 44.9778],
+  [-75.6008, 41.0144],
+  [-86.7833, 36.1667],
+  [-96.7970, 32.7767],
+  [-110.9264,32.2217]
+];
+
+var pauseValues = {
+  lastTime: 0,
+  currentTime: 0
+};
+
+
+// The x/y coordinates in the map scale are calculated by
+// projection([d.long,d.lat]). So take the first for x, second for y.
+
+var line = d3.svg.line()
+    .interpolate("cardinal-closed")
+    .x(function(d) { return projection(d)[0]; }) // lon
+    .y(function(d) { return projection(d)[1]; }); // lat
+
+queue()
+    .defer(d3.json, "data/state_pol.json")
+    .await(ready);
+
+function ready (error, us) {
+  svg.append("g")
+      .attr("class", "land")
+    .selectAll("path")
+      .data(topojson.feature(us, us.objects.state_pol).features)
+    .enter().append("path")
+      .attr("class", function(d) {return d.id})
+      .attr("d", path)
+
+  var linepath = svg.append("path")
+      .data([points])
+      .attr("d", line)
+      .attr('class', 'journey');
+
+  svg.selectAll(".point")
+      .data(points)
+    .enter().append("circle")
+      .attr("r", 8)
+      .attr("transform", function(d) { return "translate(" + projection(d) + ")"; });
+
+  var circle = svg.append("circle")
+      .attr("r", 19)
+      .attr("transform", "translate(" + projection(points[0]) + ")");
+
+  d3.select("button").on("click",function(d, i){
+      var button = d3.select(this);
+      if (button.text() == "Pause") {
+        button.text("Play");
+        circle.transition()
+          .duration(0);
+        setTimeout(function() {
+          pauseValues.lastTime = pauseValues.currentTime;
+          },
+        100);  // introduces a delay before resetting the times
+      } else {
+        button.text("Pause");
+        transition();
+      }
+  });
+
+  function transition() {
+      circle.transition()
+          .duration(5000)
+          .ease("linear")
+          .attrTween("transform", translateAlong(linepath.node()))
+          .each("end", function() {
+            pauseValues = {
+              lastTime: 0,
+              currentTime: 0
+            };
+          transition();
+      });
+  }
+
+} // end of ready
+
+// Returns an attrTween for translating along the specified path element.
+function translateAlong(path) {
+  var l = path.getTotalLength();
+  return function(d, i, a) {
+    return function(t) {
+      t += pauseValues.lastTime % 1.0; // mod to keep it under 1.
+      var p = path.getPointAtLength(t * l);
+      pauseValues.currentTime = t;
+      return "translate(" + p.x + "," + p.y + ")";
+    };
+  };
+}
+
+</script>

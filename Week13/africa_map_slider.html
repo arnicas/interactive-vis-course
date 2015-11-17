@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style>
+
+
+body {
+    font-family: Helvetica, sans-serif;
+    padding: 40px;
+}
+
+.countries {
+    stroke: #fff;
+    stroke-width:2px;
+}
+
+.legendLinear text {
+    font-size: 9px;
+}
+
+.chroniton text {
+    font-size: 10px;
+    color: gray;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.x.axis, .slider text {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  user-select:none;
+}
+.x.axis path.domain {
+  stroke-width:10;
+  stroke-linecap:round;
+  stroke:#ddd;
+}
+.x.axis path.halo {
+  stroke-width:12;
+  stroke-linecap:round;
+  stroke:#ccc;
+}
+.tick line {
+  stroke:#d0d0d0;
+  stroke-width:1;
+  transform:translate(0px, -5px);
+}
+.slider .handle {
+  fill: #fff;
+  stroke-width:1;
+  stroke:#333;
+}
+.slider .handle, .slider text {
+  cursor: move;
+  cursor: -webkit-grab;
+  transition:fill 200ms ease-in-out;
+}
+.handle:active, .slider text:active {
+  cursor: move;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+.slider.brushing .handle {
+  fill: #eee;
+}
+.label {
+  font:bold 12px sans-serif;
+}
+
+
+</style>
+<body>
+
+    <h2>Fertility Rates in Africa</h2>
+
+    <p>Source: Halina's file.</p>
+
+    <div id="slider"></div>
+
+    <div id="vis"></div>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="//d3js.org/queue.v1.min.js"></script>
+<script src="js/d3-legend.min.js"></script>
+<script src="js/chroniton-only.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+
+<script>
+
+var width = 1000,
+    height = 600;
+
+var svg = d3.select('#vis').append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+var dateFormat = d3.time.format("%Y");
+
+var projection = d3.geo.mercator()
+    .scale(400) // mess with this if you want
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var colorScale = d3.scale.linear().range(["#fee0d2", "#de2d26"]).interpolate(d3.interpolateLab);
+
+var countryById = d3.map();
+var data = [];
+var filterValue = "2013";
+
+// see examples in http://www.macwright.org/chroniton/example/
+
+var slider = chroniton()
+      .domain([dateFormat.parse("1960"),dateFormat.parse("2013")])
+      .labelFormat(d3.time.format('%Y'))
+      .width(500)
+      .height(50)
+      .playButton(true) // can also be set to loop
+      .on("change", function(d) {
+          filterValue = dateFormat(d3.time.year(d));
+          console.log("filterValue", filterValue);
+          redraw();
+      });
+
+d3.select("#slider")
+  .call(slider);
+
+// we use queue because we have 2 data files to load.
+queue()
+    .defer(d3.json, "data/africa.topojson")
+    .defer(d3.csv, "data/World_Development_Indicators_Metadata_Countries.csv", makeLookup)
+    .defer(d3.csv, "data/fertility_long.csv", typeFertility) // process
+    .await(loaded);
+
+function typeFertility(d) {
+    d.fertility = +d.Fertility;
+    d.year = dateFormat.parse(d.Year);
+    d.country = d.Country;
+    return d;
+}
+
+function makeLookup(d) {
+    countryById.set(d.ISO3, d);
+    return d;
+}
+
+function getData(d) {
+    var dataRow = countryById.get(d.properties.adm0_a3_is); // best match
+    var dataVal = null;
+    // must be a more elegant way to do this with all the checks, but i'm tired
+    if (dataRow) {
+        dataVal = data.get(dataRow.ShortName);
+    }
+    if (dataVal) {
+        console.log("dataVal shortname", dataVal[0].Country);
+        dataVal = dataVal.filter(function (d) {
+            return d.Year == filterValue;
+        });
+    }
+    if (dataVal) {
+        dataVal = dataVal[0];
+    }
+    return dataVal;
+}
+
+function getColor(d) {
+    var dataVal = getData(d);
+    if (dataVal) {
+        return colorScale(dataVal.fertility);
+    }
+    // if we fall through, i.e., no match
+    //console.log("no dataRow", d);
+    return "#ccc";
+}
+
+function getText(d) {
+    var dataVal = getData(d);
+    if (dataVal) {
+        return dataVal.country + ": " + dataVal.fertility;
+    } else {
+        return d.properties.name + ": No data.";
+    }
+}
+
+function loaded(error, africa, codes, fertility) {
+
+    //console.log(africa);
+    //console.log(codes);
+    //console.log(fertility);
+
+    data = d3.nest()
+        .key(function(d) {
+            return d.Country;
+        })
+        .map(fertility, d3.map);
+
+    console.log("map result", data.get("Afghanistan"));
+
+    colorScale.domain(d3.extent(fertility, function(d) {return d.fertility;}));
+
+    var countries = topojson.feature(africa, africa.objects.collection).features;
+
+    svg.selectAll('path.countries')
+        .data(countries)
+        .enter()
+        .append('path')
+        .attr('class', 'countries')
+        .attr('d', path)
+        .attr('fill', function(d,i) {
+            return getColor(d);
+        })
+        .append("title")
+        .text(function(d) {
+            return getText(d);
+        });
+
+
+    // The d3-legend component is called here:
+
+    var linear = colorScale;
+
+    svg.append("g")
+      .attr("class", "legendLinear")
+      .attr("transform", "translate(20,20)");
+
+    var legendLinear = d3.legend.color()
+      .shapeWidth(30)
+      .orient('horizontal')
+      .scale(linear);
+
+    svg.select(".legendLinear")
+      .call(legendLinear);
+
+}
+
+function redraw() {
+
+    svg.selectAll('path.countries')
+        .transition()
+        .attr('fill', function(d,i) {
+            return getColor(d); // the filtervalue is a global in the func.
+        });
+    //fix tooltips
+    d3.selectAll('path.countries title')
+        .attr("text",function (d){
+            return getText(d);
+        });
+}
+
+</script>
+</body>
+</html>
