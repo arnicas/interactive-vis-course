@@ -160,13 +160,17 @@ More related items:
 
 ## Recent Interesting Things
 
-* Mercator Puzzle: http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
+Mercator Map Projection Puzzle:
+
+* http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
 
 Animated Map on CartoDB for The Martian:
 
 * https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map
 
-* IIB Shortlist for Awards: http://www.informationisbeautifulawards.com/showcase?award=2015&pcategory=short-list&type=awards (I'm a judge.)
+Information is Beautiful Shortlist for Awards:
+
+* http://www.informationisbeautifulawards.com/showcase?award=2015&pcategory=short-list&type=awards (I'm a judge.)
 
 
 ## Let's Set Up Your Project Pages
@@ -181,14 +185,19 @@ After you do the stuff on the github site, in your local directory for the proje
 >git checkout gh-pages
 ````
 
-then for all the work you do:
+You will now be working only in the branch that is public for the website, gh-pages.  Then if you want to commit and push from the command line, you can edit your files, and then do:
 
 ````
-> commit -am 'My note about what I did'
->git push
+>git status [to see what files need adding, vs what have changed]
+>git add [filename] -- for each file you want to add to the repo if it's not there yet
+>commit -am 'My note about what I did'  [this commits everything you have added or edited and uses that note to say what you did]
+>git push [push the changes to the repo so i can pull them :)]
 ````
 
-And you should see the results on your `username.github.io/project-name` page.
+On the repo project page, reload/refresh the page. You should see all the files you added and edited there.  If you have the index.html page showing your d3 work, it will update with the latest work when you look at
+your `your-username.github.io/project-name` page.
+
+You can work in a github GUI or some other way if you want.  Just make sure you check your work is visible in the url view.
 
 
 ## Homework
