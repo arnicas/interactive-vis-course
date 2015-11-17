@@ -169,6 +169,10 @@ Notice how important the moveToFront is for the map mouseover.
 
 ## Recent Interesting Things
 
+Animated ScrollyTelling Annotated Click Line Chart:
+
+* http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0
+
 Mercator Map Projection Puzzle:
 
 * http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
