@@ -142,6 +142,11 @@ Animated borders with a control: https://github.com/maptime-ams/animated-borders
 Demo: http://maptime-ams.github.io/animated-borders-d3js/tutorial/13/
 
 
+## Set up your project pages
+
+https://pages.github.com/
+
+
 ## Recent Interesting Things
 
 * Mercator Puzzle: http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
