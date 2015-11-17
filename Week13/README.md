@@ -181,6 +181,8 @@ Animated Map on CartoDB for The Martian:
 
 * https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map
 
+* Animated grid squares by M Bostock (using a timer): http://bl.ocks.org/mbostock/1009139
+
 Information is Beautiful Shortlist for Awards:
 
 * http://www.informationisbeautifulawards.com/showcase?award=2015&pcategory=short-list&type=awards (I'm a judge.)
