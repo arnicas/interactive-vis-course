@@ -158,6 +158,15 @@ More related items:
 * D3 slider control that is not year/time based: http://thematicmapping.org/playground/d3/d3.slider/
 
 
+## Click on a Map
+
+A lot of you want to trigger actions off charts or maps.
+
+An example is in **africa_map_clicker.html.**  Of course, the div with the tooltip-like text could instead be another chart!
+
+Notice how important the moveToFront is for the map mouseover.
+
+
 ## Recent Interesting Things
 
 Mercator Map Projection Puzzle:
@@ -199,6 +208,10 @@ your `your-username.github.io/project-name` page.
 
 You can work in a github GUI or some other way if you want.  Just make sure you check your work is visible in the url view.
 
+If you screw yourself up, this guide might help:
+
+ * http://sethrobertson.github.io/GitFixUm/fixup.html
+
 
 ## Homework
 
@@ -212,7 +225,7 @@ I'd like to see more development in your project.  Show me where you are and wha
 
 **Homework 3 (15pt) Judge IIB Contest For Me**
 
-Just kidding, but go through the interactives for the [contest](http://www.informationisbeautifulawards.com/showcase?award=2015&pcategory=short-list&type=awards) and pick 2 you would nominate for an award and tell me why. I'm curious how much agreement there will be :)  Send it as email: "Contest Winners"
+Just kidding, but go through the interactives for the [contest](http://www.informationisbeautifulawards.com/showcase?acategory=interactive&action=index&award=2015&controller=showcase&page=1&pcategory=short-list&type=awards) and pick 2 you would nominate for an award and tell me why. I'm curious how much agreement there will be :)  Send it as email: "Contest Winners"
 
 
 

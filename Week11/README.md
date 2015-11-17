@@ -24,7 +24,7 @@ He introduces TopoJSON (https://github.com/mbostock/topojson/wiki).  Confusingly
 
 What is it?  It's a simplification format for map data that reduces the file size of GeoJSON data. If your data is in TopoJSON format, you need to also include TopoJSON in your javascript library includes.
 
-There are some more tools for non-command-line work in the **Tools** section below.  
+There are some more tools for non-command-line work in the **Tools** section below.
 
 
 **Demos**:
@@ -178,6 +178,8 @@ Also, I have put a large number of useful world/country topojson files in this w
 ##Map Design Guidelines
 
 **Never use the rainbow color scheme!** You will lose your data vis license. https://eagereyes.org/basics/rainbow-color-map
+
+**Read this**: * Map coloring scales in d3: http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/
 
 Colorbrewer, Colors for maps (and other useful palettes for vis): http://colorbrewer2.org/
 

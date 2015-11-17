@@ -18,70 +18,40 @@ body {
     font-size: 9px;
 }
 
-.chroniton text {
-    font-size: 10px;
-    color: gray;
+#info {
+    position: absolute;
+    top: 300px;
+    left: 50px;
+    width: 150px;
+    border: 1px gray dotted;
+    margin: 15px;
+    text-align: center;
 }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+p.country {
+    font-size: 1.2em;
+    font-weight: bolder;
+    color: "steelblue";
 }
-.x.axis, .slider text {
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  user-select:none;
+p.rate {
+    font-size: 1em;
+    font-weight: bolder;
+    fcolor: "steelblue";
 }
-.x.axis path.domain {
-  stroke-width:10;
-  stroke-linecap:round;
-  stroke:#ddd;
-}
-.x.axis path.halo {
-  stroke-width:12;
-  stroke-linecap:round;
-  stroke:#ccc;
-}
-.tick line {
-  stroke:#d0d0d0;
-  stroke-width:1;
-  transform:translate(0px, -5px);
-}
-.slider .handle {
-  fill: #fff;
-  stroke-width:1;
-  stroke:#333;
-}
-.slider .handle, .slider text {
-  cursor: move;
-  cursor: -webkit-grab;
-  transition:fill 200ms ease-in-out;
-}
-.handle:active, .slider text:active {
-  cursor: move;
-  cursor: -moz-grabbing;
-  cursor: -webkit-grabbing;
-}
-.slider.brushing .handle {
-  fill: #eee;
-}
-.label {
-  font:bold 12px sans-serif;
-}
-
 
 </style>
 <body>
 
     <h2>Fertility Rates in Africa</h2>
 
-    <p>Source: Halina's file, truncated.</p>
-
-    <div id="slider"></div>
+    <p>Source: Halina's file, only some data.</p>
 
     <div id="vis"></div>
+
+    <div id="info">
+        <p class="country">Click a country!</p>
+        <p class="rate"></p>
+    </div>
 
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script src="//d3js.org/queue.v1.min.js"></script>
@@ -94,9 +64,9 @@ body {
 var width = 1000,
     height = 600;
 
-var svg = d3.select('#vis').append('svg')
-    .attr('width', width)
-    .attr('height', height);
+var svg = d3.select("#vis").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
 var dateFormat = d3.time.format("%Y");
 
@@ -113,22 +83,6 @@ var countryById = d3.map();
 var data = [];
 var filterValue = "2013";
 
-// see examples in http://www.macwright.org/chroniton/example/
-
-var slider = chroniton()
-      .domain([dateFormat.parse("1960"),dateFormat.parse("2013")])
-      .labelFormat(d3.time.format('%Y'))
-      .width(500)
-      .height(50)
-      .playButton(true) // can also be set to loop
-      .on("change", function(d) {
-          filterValue = dateFormat(d3.time.year(d));
-          console.log("filterValue", filterValue);
-          redraw();
-      });
-
-d3.select("#slider")
-  .call(slider);
 
 // we use queue because we have 2 data files to load.
 queue()
@@ -152,12 +106,12 @@ function makeLookup(d) {
 function getData(d) {
     var dataRow = countryById.get(d.properties.adm0_a3_is); // best match
     var dataVal = null;
-    // must be a more elegant way to do this with all the checks, but i'm tired
+    // must be a more elegant way to do this with all the checks, but i"m tired
     if (dataRow) {
         dataVal = data.get(dataRow.ShortName);
     }
     if (dataVal) {
-        //console.log("dataVal shortname", dataVal[0].Country);
+        console.log("dataVal shortname", dataVal[0].Country);
         dataVal = dataVal.filter(function (d) {
             return d.Year == filterValue;
         });
@@ -178,30 +132,23 @@ function getColor(d) {
     return "#ccc";
 }
 
-function getText(d) {
-    var dataVal = getData(d);
-    if (dataVal) {
-        return dataVal.country + ": " + dataVal.fertility;
-    } else {
-        return d.properties.name + ": No data.";
-    }
-}
-
 function loaded(error, africa, codes, fertility) {
 
     //console.log(africa);
     //console.log(codes);
     //console.log(fertility);
 
+    // this construction creates a hash lookup for the country to values
     data = d3.nest()
         .key(function(d) {
             return d.Country;
         })
         .map(fertility, d3.map);
 
-    console.log("map result", data.get("Afghanistan"));
+    //console.log("map result", data.get("Afghanistan"));
 
-    colorScale.domain(d3.extent(fertility, function(d) { return d.fertility;}));
+    colorScale.domain(d3.extent(fertility, function(d) {
+        if (d.Year == filterValue) return d.fertility;}));
 
     var countries = topojson.feature(africa, africa.objects.collection).features;
 
@@ -214,11 +161,16 @@ function loaded(error, africa, codes, fertility) {
         .attr("fill", function(d,i) {
             return getColor(d);
         })
+        .on("click", showInfo)
+        .on("mouseover", function(d) {
+            d3.select(this).moveToFront();
+            d3.select(this).style("stroke", "black");
+        })
+        .on("mouseout", function(d) {
+            d3.select(this).style("stroke", "#fff");
+        })
         .append("title")
-        .text(function(d) {
-            return getText(d);
-        });
-
+        .text("Click me!");
 
     // The d3-legend component is called here:
 
@@ -238,21 +190,23 @@ function loaded(error, africa, codes, fertility) {
 
 }
 
-function redraw() {
-
-  // we might want to redo the color scale and legend here, not sure.
-
-    svg.selectAll("path.countries")
-        .transition()
-        .attr("fill", function(d,i) {
-            return getColor(d); // the filtervalue is a global in the func.
-        });
-    //fix tooltips
-    d3.selectAll("path.countries title")
-      .text(function (d){
-            return getText(d);
-        });
+function showInfo(d) {
+    //console.log(getText(d));
+    var dataVal = getData(d);
+    if (dataVal) {
+        d3.select("#info p.country").html(dataVal.country);
+        d3.select("#info p.rate").html(dataVal.fertility);
+    } else {
+        d3.select("#info p.country").html(d.properties.name);
+        d3.select("#info p.rate").html("no data available.");
+    }
 }
+
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
 
 </script>
 </body>
