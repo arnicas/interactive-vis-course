@@ -23,10 +23,10 @@ Subject to change!
 * [Week9](Week9): Stacking Chart Types, Intro to Small Multiples
 * [Week10](Week10): Small Multiples, Intro to Maps
 * [Week11](Week11): Maps: D3, Leaflet, CartoDB...
-* [Week12](Week12): Storytelling Techniques: Scrollytelling
-* [Week13](Week13): Other Layouts, Queue
-* [Week14](Week14): Project, Portfolios
-* [Week15](Week15): Project & Overflow
+* [Week12](Week12): Storytelling Techniques: Scrollytelling, Steppers
+* [Week13](Week13): Animation: Lines, Play/Pause...
+* [Week14](Week14): Project, Reusable charts, other layouts
+* [Week15](Week15): Project, WebGl & Canvas
 
 
 ### 2. Programming Techniques and Tools
