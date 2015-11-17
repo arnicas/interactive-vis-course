@@ -23,18 +23,7 @@
 * Yan: http://bl.ocks.org/yan2014/raw/cd88a6b8fba1d0eb988d/
 
 
-## More than one on a page
-
-One way is to use multiple div tags, with different id's.
-
-* http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html
-
-In this example, there is a nice function for drawing each data set, which means the variables for each graph are in the function scope, not global:
-
-* http://jsfiddle.net/1cqb3uw8/
-
-
-## Javascript Scope
+### Javascript Tips: Scope
 
 
 We should review this for the multiple charts case, and for the general code structuring in your project.  Don't be worried if you are getting tripped up on it, it took me a long time to figure it out at first too.
@@ -68,45 +57,29 @@ Reminders:
 * You will have name collisions if you use multiple code files that have the same variable names in them.  Be careful and rename things so they aren't the same, unless you protect them inside functions.
 
 
-## Animation
+### More than one chart on a page
 
+One way is to use multiple div tags, with different id's.
+
+* http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html
+
+In this example, there is a nice function for drawing each data set, which means the variables for each graph are in the function scope, not global:
+
+* http://jsfiddle.net/1cqb3uw8/
+
+
+## Animation in D3
 
 One of the most famous animated graphs ever is Hans Rosling's [Gapminder](http://www.gapminder.org/world/#$majorMode=chart$is;shi=t;ly=2003;lb=f;il=t;fs=11;al=30;stl=t;st=t;nsl=t;se=t$wst;tts=C$ts;sp=5.59290322580644;ti=2013$zpv;v=0$inc_x;mmid=XCOORDS;iid=phAwcNAVuyj1jiMAkmq1iMg;by=ind$inc_y;mmid=YCOORDS;iid=phAwcNAVuyj2tPLxKvvnNPA;by=ind$inc_s;uniValue=8.21;iid=phAwcNAVuyj0XOoBL_n5tAQ;by=ind$inc_c;uniValue=255;gid=CATID0;by=grp$map_x;scale=log;dataMin=194;dataMax=96846$map_y;scale=lin;dataMin=23;dataMax=86$map_s;sma=49;smi=2.65$cd;bd=0$inds=;example=75).
 
 Tom Carden (RandomEtc) re-did it in javascript using canvas (not D3):
 http://randometc.github.io/mind-gapper-js/
 
-And then Mike Bostock did it too in D3:
-Gapminder animation in d3: http://bost.ocks.org/mike/nations/
+And then Mike Bostock did it too, in D3:
+
+* Gapminder animation in d3: http://bost.ocks.org/mike/nations/
 
 But his version has a hidden brush (IMO) for the years. Can you find it?
-
-
-## Animated Paths on Maps
-
-* On Leaflet, zev ross: http://bl.ocks.org/zross/6a31f4ef9e778d94c204
-
-* Another good tutorial: http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html
-
-* Example in http://mtaptich.github.io/d3-lessons/d3-extras/
-
-* See example animated_map.html with a play/pause button.
-
-Also see this tool to make trails:
-
-* https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-* And demo: http://benschmidt.org/D3-trail/minard.html
-
-
-## Animated Line Charts
-
-The unrolling effect!  This is all over in real news stories.  So you need to know how to do it.
-
-* Tutorial, Unrolling line charts http://big-elephants.com/2014-06/unrolling-line-charts-d3js/
-
-See the example in **animated_line.html**.  You could use this in your own scrolly stories if you wanted to.  Use the second version, for a smoother effect.
-
-There is no setTimer function because the animation delay happens via the interpolation function.
 
 
 ## Animated Bar Chart
@@ -139,6 +112,36 @@ function redraw() {
 }
 ````
 
+## Animated Line Charts
+
+The unrolling effect!  This is all over in real news stories.  So you need to know how to do it.
+
+* Unrolling line charts: http://big-elephants.com/2014-06/unrolling-line-charts-d3js/
+
+See the example in **animated_line.html**.  You could use this in your own scrolly stories if you wanted to.  Use the second version, for a smoother effect.
+
+The animation delay happens via the interpolation function.
+
+
+
+## Animated Paths on Maps
+
+Jiaxin wanted to do this.
+
+* Example in http://mtaptich.github.io/d3-lessons/d3-extras/
+
+See my example **animated_map.html** with a play/pause button added to it.
+
+
+* On Leaflet, zev ross: http://bl.ocks.org/zross/6a31f4ef9e778d94c204
+* Another good tutorial: http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html
+
+Also see this tool from Ben Schmidt to make trails, including animated ones:
+
+* https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+* And demo: http://benschmidt.org/D3-trail/minard.html
+
+
 
 ##UI Sliders
 
@@ -146,14 +149,14 @@ function redraw() {
 
 See my example use of it in **africa_map_slider.html.**
 
-Play/Pause audio + animation: https://www.bignerdranch.com/blog/music-visualization-with-d3-js/
 
-Animated borders with a control: https://github.com/maptime-ams/animated-borders-d3js/
-Demo: http://maptime-ams.github.io/animated-borders-d3js/tutorial/13/
+More related items:
 
-
+* Play/Pause audio + animation: https://www.bignerdranch.com/blog/music-visualization-with-d3-js/
+* Animated borders with a control: https://github.com/maptime-ams/animated-borders-d3js/, the [Demo](http://maptime-ams.github.io/animated-borders-d3js/tutorial/13/).
 * Brush as time slider: http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58
-* D3 slider examples: http://thematicmapping.org/playground/d3/d3.slider/
+* D3 slider control that is not year/time based: http://thematicmapping.org/playground/d3/d3.slider/
+
 
 ## Recent Interesting Things
 
@@ -166,7 +169,7 @@ Animated Map on CartoDB for The Martian:
 * IIB Shortlist for Awards: http://www.informationisbeautifulawards.com/showcase?award=2015&pcategory=short-list&type=awards (I'm a judge.)
 
 
-## Set up your project pages
+## Let's Set Up Your Project Pages
 
 Let's do this:
 https://pages.github.com/
