@@ -118,7 +118,7 @@ function make_data(rawdata) {
 
 function draw_lines(dataset) {
 
-    console.log(dataset);
+    //console.log(dataset);
 
     //Set scale domains - max and min of the years
     xScale.domain(

@@ -133,11 +133,10 @@
 				// Circles in SVG have cx, cy, and r attributes. x location, y location, radius.
 
 				circles.attr("cx", function(d) {
-						return xScale(+d.urban);
-						// return the value to use for your x scale here
+						return 0; // starting from 0 for the movement in, below!
 					})
 					.attr("cy", function(d) {
-						return yScale(+d.rural);
+						return height - margin.bottom; // starting from 0,0, y is lower left corner
 					})
 					.attr("r", 0)  // set it up as 0 sized, and use transition below to grow the dots
 					.append("title")
@@ -145,16 +144,38 @@
 						return d.name + " reports primary school attendance in rural areas of " + d.rural + "% and in urban areas of " + d.urban + "%";
 					});
 
-					// adding a silly intro animation to catch the eye -- using transition:
+
+					//  We use 2 transitions here - first one is half a second, to half way point, then 
+					// second is to the end positions, using a longer duration, so it seems slower.
+
 					circles.sort(function(a, b) {
 							return d3.ascending(+a.urban, +b.urban);
 						})
 						.transition()
-						.delay(function(d, i) {
+						.duration(500)
+						.ease("linear")
+					.delay(function(d, i) {
 							return i * 10;
 						})
-						.duration(2000)  // milliseconds, so this is 2 seconds.
-						.attr("r", dotRadius); // grow the dots to their expected radius
+					.attr("cx", function(d) {
+						return xScale(+d.urban/2); // halfway there
+					})
+					.attr("cy", function(d) {
+						return yScale(+d.rural/2); // halfway there
+					})
+					.attr("r", dotRadius);
+
+					circles
+					.transition()
+						.duration(1000)
+						.ease("linear")
+					.attr("cx", function(d) {
+						return xScale(+d.urban);
+					})
+					.attr("cy", function(d) {
+						return yScale(+d.rural);
+					})
+					.attr("r", dotRadius); // have to repeat this here because radius on original circles selection circles was 0.
 
 				// fix these translates so they use your margin and height width as needed
 				svg.append("g")

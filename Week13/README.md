@@ -205,7 +205,7 @@ You will now be working only in the branch that is public for the website, gh-pa
 ````
 >git status [to see what files need adding, vs what have changed]
 >git add [filename] -- for each file you want to add to the repo if it's not there yet
->commit -am 'My note about what I did'  [this commits everything you have added or edited and uses that note to say what you did]
+>git commit -am 'My note about what I did'  [this commits everything you have added or edited and uses that note to say what you did]
 >git push [push the changes to the repo so i can pull them :)]
 ````
 
