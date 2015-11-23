@@ -135,6 +135,14 @@ var map = d3.select('#map').append('svg')
 	    .attr('width', map_width)
 	    .attr('height', map_height);
 
+map.append("svg:image")
+    .attr("xlink:href", "progress-anim.gif")
+    .attr("id", "progress-image")
+    .attr("width", 43)
+    .attr("height", 11)
+    .attr("x", map_width / 2)
+    .attr("y", map_height / 2);
+
 var projection = d3.geo.mercator()
     .scale(300) // mess with this if you want
     .translate([map_width / 2, map_height / 2]);
@@ -250,6 +258,7 @@ function loaded(error, africa, data) {
 	d3.select("path.country#" + country).moveToFront();
 	d3.select(".subhead").html("Historical Rate for " + countryById.get(country).Country);
 
+	map.select("#progress-image").remove(); // remove animation for loading
 }
 
 
