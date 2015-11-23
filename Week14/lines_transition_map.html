@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!-- Modification of an example by Scott Murray from Knight D3 course -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Line Chart and Map with Click Function</title>
+
+		<!-- this is the cdn link to bootstrap's css -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<style type="text/css">
+
+			body {
+				background-color: white;
+				font-family: Helvetica, Arial, sans-serif;
+			}
+
+			p {
+				font-size: 14px;
+				margin: 10px 0 0 0;
+			}
+
+			.selected {
+				background-color: steelblue;
+			}
+
+			#map {
+				cursor: pointer;
+			}
+
+			#vis {
+				top: 200px;
+			}
+
+			.subhead {
+				margin-top: 70px;
+			}
+
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: #ccc;
+				stroke-width: 1px;
+			}
+
+			path.line {
+				fill: none;
+				stroke: #de2d26;
+				stroke-width: 1px;
+				stroke-opacity: 80%;
+			}
+
+			.axis text {
+				font-family: sans-serif;
+				font-size: 11px;
+				line-height: 1em;
+			}
+
+			.map_note {
+				padding-top: 150px;
+				padding-left: 50px;
+			}
+
+			.tooltip {
+				position: absolute;
+				z-index: 10;
+			}
+
+			.tooltip p {
+				background-color: white;
+				border: none;
+				padding: 2px;
+			}
+
+			/* this is an adjustment to bootstrap's row for my page */
+			.row {
+				padding-top: 50px;
+			}
+
+			.countries {
+			    stroke: #fff;
+			    stroke-width:2px;
+			}
+
+			.legendLinear text {
+			    font-size: 9px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="row">
+        <div class="col-md-6">
+          <h1>Malaria Rates in Africa</h1>
+          <p>Relative Rates for 2013, most recent data. Click for historical trend.</p>
+					<div id="map"></div>
+						<p>Source: <a href="http://www.unicef.org/">UNICEF</a></p>
+        </div>
+        <div class="col-md-6">
+        	<h3 class="subhead"></h3>
+        <div id="vis"></div>
+        </div>
+      </div>
+
+	</div>
+
+	<!--
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	-->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+		<script src="//d3js.org/queue.v1.min.js"></script>
+		<script src="js/d3-legend.min.js"></script>
+		<script src="//d3js.org/topojson.v1.min.js"></script>
+
+		<script type="text/javascript">
+
+
+
+// General defaults
+
+var illness = "Malaria"; // illness to map / plot
+var country = "NGA";  // starter country
+
+// Map global variables
+
+var map_width = 500,
+	  map_height = 600;
+
+var map = d3.select('#map').append('svg')
+	    .attr('width', map_width)
+	    .attr('height', map_height);
+
+var projection = d3.geo.mercator()
+    .scale(300) // mess with this if you want
+    .translate([map_width / 2, map_height / 2]);
+
+var mapPath = d3.geo.path()
+    .projection(projection);
+
+var mapColorScale = d3.scale.linear().range(["#fee0d2", "#de2d26"]).interpolate(d3.interpolateLab);
+
+var countryById = d3.map();
+
+// Line Chart globals
+
+var width = 500;
+var height = 400;
+var margin = {top: 50, right: 10, bottom: 40, left: 50};
+
+//Set up date formatting and years
+var dateFormat = d3.time.format("Year %Y");
+var outputFormat = d3.time.format("%Y");
+
+// My shortcut for the scale is to list the first and last only - will set the extents.
+// Also, I set the earlier year to 1999 to get a little spacing on the X axis.
+var years = ["Year 1999", "Year 2013"];
+
+//Set up scales - I already know the start and end years, not using data for it.
+var xScale = d3.time.scale()
+					.range([ margin.left, width - margin.right - margin.left ])
+					.domain(
+						d3.extent(years, function(d) {
+						return dateFormat.parse(d);
+						}));
+
+// don't know the yScale domain yet. Will set it with the data.
+var yScale = d3.scale.linear()
+					.range([ margin.top, height - margin.bottom ]);
+
+//Configure axis generators
+var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.ticks(10)
+				.tickFormat(function(d) {
+					return outputFormat(d);
+				})
+				.innerTickSize([0])
+				.outerTickSize([0]);
+
+var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.innerTickSize([0])
+				.outerTickSize([0]);
+
+
+//Configure line generator
+// each line dataset must have an x and y for this to work.
+var line = d3.svg.line()
+	.interpolate("cardinal")
+	.x(function(d) {
+		return xScale(d.year);
+	})
+	.y(function(d) {
+		return yScale(+d[illness]);
+	});
+
+//Create the empty SVG image
+var linechart = d3.select("#vis")
+			.append("svg")
+			.attr("width", width)
+			.attr("height", height);
+
+
+	// we use queue because we have 2 data files to load.
+queue()
+  .defer(d3.json, "data/africa.topojson")
+  .defer(d3.csv, "data/deaths_04yearsold_codes.csv", typeAndSet) // process
+  .await(loaded);  // call loaded after loading, to render the charts with data
+
+function typeAndSet(d) {
+    d[illness] = +d[illness];
+    countryById.set(d.ISO3, d);   // lookup key is d.ISO3, value returned is all of row d
+    d.year = dateFormat.parse(d.Year);
+    return d;
+}
+
+function loaded(error, africa, data) {
+
+		if (error) {
+			console.log("error loading files", error);
+		}
+
+		data = data.filter(function(d) { return d.Region == "Sub-Saharan Africa" || d.Region == "Middle East & North Africa";});
+
+						// Notice what happens if you don't sort by year :)
+		var dataset =  d3.nest()
+				.key(function(d) {
+					return d.ISO3;
+				})
+				.sortValues(function (a, b) { return a.year - b.year;})
+				.entries(data);
+
+		if (africa) {
+			draw_map(africa, dataset);
+		}
+
+		if (data) {
+			draw_lines(country, dataset); // draws the initial state.
+		}
+
+	// set up the first country shown using global country variable:
+	d3.select("path.countries#" + country).style("stroke", "gray");
+	d3.select("path.country#" + country).moveToFront();
+	d3.select(".subhead").html("Historical Rate for " + countryById.get(country).Country);
+
+}
+
+
+function draw_map(africa, data) {
+
+  // they are nested, so the scale has to get into the values of the objects
+  mapColorScale.domain([0,
+  	d3.max(data, function(d) {
+  			return d3.max(d.values, function (c) {
+  				return c[illness];
+  			}
+  		)})
+  	]);
+
+  var countries = topojson.feature(africa, africa.objects.collection).features;
+
+  map.selectAll("path.countries")
+      .data(countries)
+      .enter()
+      .append("path")
+      .attr("class", "countries")
+      .attr("id", function(d) {return d.properties.adm0_a3;})
+      .attr("d", mapPath)
+      .attr("fill", function(d,i) {
+          return getColor(d);
+      })
+      .on("click", showCountryLine);
+
+  // The d3-legend component is called here:
+
+	var linear = mapColorScale;
+
+  map.append("g")
+    .attr("class", "legendLinear")
+    .attr("transform", "translate(70,50)");
+
+  var legendLinear = d3.legend.color()
+    .shapeWidth(30)
+    .labelFormat(d3.format("f"))
+    .orient("vertical")
+    .scale(linear);
+
+  map.select(".legendLinear")
+    .call(legendLinear);
+
+  // inside so we can use data from the parent function
+  function showCountryLine(d) {
+  	var id = d.properties.adm0_a3;
+  	var linedata = get_values_for_country(id, data);
+  	update_lines(id, linedata);
+  	d3.selectAll("path.countries").style("stroke", "white");
+  	d3.select(this).style("stroke", "gray");
+		d3.select(this).moveToFront();
+  }
+
+} // end draw_map
+
+
+function draw_lines(country, data) {
+
+	// Default on first load is set in country var.
+	var linedata = get_values_for_country(country, data);
+
+	yScale.domain([
+			d3.max(linedata, function (c) {
+				return c[illness];
+			}),
+		0]);
+
+	//console.log("linedata", linedata);
+
+	linechart.selectAll("path")
+		.data([linedata])
+		.enter()
+		.append("path")
+		.attr("class", "line")
+		.attr("d", line);
+
+	//Axes
+	linechart.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+		.call(xAxis);
+
+	linechart.append("g")
+		.attr("class", "y axis")
+		.attr("transform", "translate(" + margin.left + ",0)")
+		.call(yAxis);
+
+	update_lines(country, linedata); // this is for the transitions if any, and headings
+
+} // end draw_lines
+
+function update_lines(country, data) {
+
+		// doing the max on the unnested data - easier to get the full set of Malaria that way!
+	yScale.domain([
+		d3.max(data, function (c) {
+				return c[illness];
+			}),
+		0
+	]);
+
+	var lines = linechart.select("path.line").data([data]);
+
+	lines
+		.transition()
+		.attr("d", line);
+
+	d3.select(".y.axis").transition().call(yAxis);
+
+	console.log(data);
+
+	if (data.length && data[0][illness] > 0) {
+		d3.select(".subhead").html("Historical Rate for " + countryById.get(country).Country);
+	} else if (!data.length || data[0][illness] == 0) {
+		d3.select(".subhead").html("No data for this country.");
+	}
+
+}
+
+function getColor(d) {
+    var dataRow = countryById.get(d.properties.adm0_a3);
+    if (dataRow) {
+        return mapColorScale(+dataRow[illness]);
+    } else {
+        console.log("no dataRow",d, d.properties.adm0_a3, d.properties.name);
+        return "#ccc";
+    }
+}
+
+function get_values_for_country(countrycode, data) {
+	// Helper function to get the values from the data object that has the country key
+	// special case for id's with too many words in them, sadly:
+	console.log(countrycode);
+	var values = data.filter(function (d) {
+						return d.key == countrycode;
+					});
+	if (values.length) {
+		return values[0].values;
+	} else {
+		return [];
+	}
+}
+
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
+
+
+		</script>
+
+		<!-- Latest compiled and minified JavaScript -->
+	</body>
+</html>
