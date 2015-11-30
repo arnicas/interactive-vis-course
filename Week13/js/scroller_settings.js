@@ -13,7 +13,7 @@ d3.selection.prototype.moveToFront = function() {
 
 var settings = {
   // could be used to save settings for styling things.
-}
+};
 
 var data = []; // make this global
 
@@ -82,7 +82,7 @@ var update = function(value) {
   }
   draw_lines(localdata); // we can update the data if we want in the cases. Draw before focus!
   focus_country(country); // this applies a highlight on a country.
-}
+};
 // setup scroll functionality
 
 function display(error, mydata) {

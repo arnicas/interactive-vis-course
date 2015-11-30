@@ -1,6 +1,21 @@
 
 ##Week 12: Storytelling Tools: Scrolling, Steppers
 
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Homeworks:](#)
+- [More Map Tools/Techniques](#)
+- [Storytelling](#)
+  - [Steppers ("slideshow")](#)
+  - [Scrollytelling](#)
+  - [Tutorials on Scrollytelling](#)
+- [Examples](#)
+  - [Zoomytelling, a subgenre?](#)
+- [Javascript Tips, the Switch Statement](#)
+- [Design tips](#)
+- [Other Related Tools](#)
+- [Homework](#)
+
 ## Homeworks:
 
 **Choropleth**:

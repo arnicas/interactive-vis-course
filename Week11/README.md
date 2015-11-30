@@ -181,6 +181,8 @@ Also, I have put a large number of useful world/country topojson files in this w
 
 **Read this**: * Map coloring scales in d3: http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/
 
+Jenks breaks code you could use from the previous article: https://gist.github.com/tmcw/4977508
+
 Colorbrewer, Colors for maps (and other useful palettes for vis): http://colorbrewer2.org/
 
 Thematic Cartography Guide: http://axismaps.github.io/thematic-cartography/

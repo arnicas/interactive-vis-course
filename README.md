@@ -134,3 +134,6 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345.  [Code samp
 * Visualoop: http://visualoop.com/
     * Article with pointers from Visualoop: http://visualoop.com/blog/11044/30-amazing-data-viz-galleries-everyone-should-follow
 
+* Sign up for the DashingD3 newsletter: Sign up for the DashingD3 newsletter if you haven't: https://www.dashingd3js.com/
+
+

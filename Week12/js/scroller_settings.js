@@ -13,7 +13,7 @@ d3.selection.prototype.moveToFront = function() {
 
 var settings = {
   // could be used to save settings for styling things.
-}
+};
 
 function focus_country(country) {
   console.log("in focus", country);
@@ -34,6 +34,7 @@ var update = function(value) {
     case 0:
       console.log("in case", value);
       country = null;
+      break;
     case 1:
       console.log("in case", value);
       break;
@@ -55,7 +56,7 @@ var update = function(value) {
       break;
   }
   focus_country(country); // this applies a highlight on a country.
-}
+};
 // setup scroll functionality
 
 var data = []; // make this global
@@ -76,7 +77,7 @@ function display(error, mydata) {
     scroll(d3.selectAll('.step'));
 
     // Pass the update function to the scroll object
-    scroll.update(update)
+    scroll.update(update);
   }
 }
 

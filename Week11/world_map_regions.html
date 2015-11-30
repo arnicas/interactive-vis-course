@@ -36,18 +36,19 @@ body {
 <script>
 
 var width = 1000,
-    height = 600;
+  height = 600;
 
-var svg = d3.select('#vis').append('svg')
-    .attr('width', width)
-    .attr('height', height);
+var svg = d3.select('#vis')
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height);
 
 var projection = d3.geo.mercator()
-    .scale(200) // mess with this if you want
-    .translate([width / 2, height / 2]);
+  .scale(200) // mess with this if you want
+  .translate([width / 2, height / 2]);
 
 var path = d3.geo.path()
-    .projection(projection);
+  .projection(projection);
 
 var colorScale = d3.scale.category20();
 
@@ -55,72 +56,72 @@ var countryById = d3.map();
 
 // we use queue because we have 2 data files to load.
 queue()
-    .defer(d3.json, "data/countries.json")
-    .defer(d3.csv, "data/World_Development_Indicators_Metadata_Countries.csv", typeAndSet) // process
-    .await(loaded);
+  .defer(d3.json, "data/countries.json")
+  .defer(d3.csv, "data/World_Development_Indicators_Metadata_Countries.csv", typeAndSet) // process
+  .await(loaded);
 
 function typeAndSet(d) {
-    // All we do here is set up our lookup map: we will use the code to find the country
-    // Let's discuss what goes wrong with this, too.
-    countryById.set(d.ISO3, d);
-    return d;
+  // All we do here is set up our lookup map: we will use the code to find the country
+  // Let's discuss what goes wrong with this, too.
+  countryById.set(d.ISO3, d);
+  return d;
 }
 
 function getColor(d) {
-    console.log(d);
-    var dataRow = countryById.get(d.id);
-    if (dataRow) {
-        console.log(dataRow);
-        return colorScale(dataRow.Region);
-    } else {
-        return "#ccc";
-    }
+  console.log(d);
+  var dataRow = countryById.get(d.id);
+  if (dataRow) {
+    console.log(dataRow);
+    return colorScale(dataRow.Region);
+  } else {
+    return "#ccc";
+  }
 }
 
 function getText(d) {
-    // this is for the tooltip/title function, for country name and debugging...
- var dataRow = countryById.get(d.id);
-    if (dataRow) {
-        return dataRow.ShortName + ":" + dataRow.Region;
-    } else {
-        console.log("no dataRow", d);
-        return d.properties.name + ": No region.";
-    }
+  // this is for the tooltip/title function, for country name and debugging...
+  var dataRow = countryById.get(d.id);
+  if (dataRow) {
+    return dataRow.ShortName + ":" + dataRow.Region;
+  } else {
+    console.log("no dataRow", d);
+    return d.properties.name + ": No region.";
+  }
 }
 
 function loaded(error, world, regions) {
 
-    console.log(world);
-    console.log(regions);
+  console.log(world);
+  console.log(regions);
 
-    var countries = topojson.feature(world, world.objects.units).features;
+  var countries = topojson.feature(world, world.objects.units).features;
 
-    svg.selectAll('path.countries')
-        .data(countries)
-        .enter()
-        .append('path')
-        .attr('class', 'countries')
-        .attr('d', path)
-        .attr('fill', function(d,i) {
-            return getColor(d);
-        })
-        .append("title") // our fake tooltips, for debugging
-        .text(function(d) {
-            return getText(d);
-        });
+  svg.selectAll('path.countries')
+    .data(countries)
+    .enter()
+    .append('path')
+    .attr('class', 'countries')
+    .attr('d', path)
+    .attr('fill', function(d, i) {
+      return getColor(d);
+    })
+    .append("title") // our fake tooltips, for debugging
+    .text(function(d) {
+      return getText(d);
+    });
 
-    // using the d3-legend plugin!
+  // using the d3-legend plugin!
 
-    svg.append("g")
-      .attr("class", "legendColors")
-      .attr("transform", "translate(20,400)"); // where we put it on the page!
+  svg.append("g")
+    .attr("class", "legendColors")
+    .attr("transform", "translate(20,400)"); // where we put it on the page!
 
-    var legendColors = d3.legend.color()
-      .shapeWidth(30)
-      .scale(colorScale); // our existing color scale
+  var legendColors = d3.legend.color()
+    .shapeWidth(30)
+    .scale(colorScale); // our existing color scale
 
-    svg.select(".legendColors")
-      .call(legendColors);
+  svg.select(".legendColors")
+    .call(legendColors);
 
 }
 
