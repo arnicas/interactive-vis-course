@@ -127,7 +127,7 @@ Ones that might work in your project: pie (for small number of wedges), treemap 
 * Sign up for the DashingD3 newsletter if you haven't: https://www.dashingd3js.com/
 
 
-## Homework
+##Homework
 
 More progress!  Nothing due, but send me your bugs/hangups.
 
