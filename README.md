@@ -56,7 +56,7 @@ Other resources on child mortality:
 
 ### 4. Evaluation
 
-Grading based on weekly homeworks (50%) and a final project (50%) that uses many of the techniques in a storytelling project using the client data (supplemented as you like).  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
+Grading based on weekly homeworks (60%) and a final project (40%) that uses many of the techniques in a storytelling project using the client data (supplemented as you like).  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
 
 Primary emphasis is on end user experience and data honesty; secondary consideration will be good coding practices.
 

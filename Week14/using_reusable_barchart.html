@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: sans-serif;
+            padding-left: 20px;
+        }
+
+        div {
+            padding: 20px 0 0 10px;
+        }
+
+        #menu select {
+        background: #ccc;
+           width: 220px;
+           padding: 5px;
+           font-size: 14px;
+           line-height: 1;
+           border: 0;
+           border-radius: 0;
+           height: 34px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Demo using a Reusable Bar Chart Code Library</h2>
+    <p>From <a href="http://bl.ocks.org/rcmoore38/9f2908455355c0589619">http://bl.ocks.org/rcmoore38/9f2908455355c0589619</a></p>
+    <p>Also, note that this example doesn't use a key value to set up object constancy, so we don't know which country is which bar. It's just sorted by worst-to-best.</p>
+
+    <select id="menu">
+    <option value="Measles">Measles</option>
+    <option value="Malaria">Malaria</option>
+    </select>
+
+    <div id="updatableChart"></div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script src="js/reusable_barchart.js"></script>
+<script src="//d3js.org/queue.v1.min.js"></script>
+<script>
+
+    var illness = "Measles";
+
+    var dateFormat = d3.time.format("Year %Y");
+
+    queue()
+    .defer(d3.csv, "data/deaths_04yearsold_excerpt.csv") // process
+    .await(loaded);  // call loaded after loading, to render the charts with data
+
+
+    function getData(data) {
+        var dataset = data.filter(function(d) {
+            return d.Year == "Year 2013";
+        });
+        dataset.sort(function(a,b) {return +b[illness] -  +a[illness];}); // illness is a global
+        var illnessVals = dataset.map(function(d) {return +d[illness]});
+        return illnessVals;
+    }
+
+
+
+    function loaded(error, data) {
+
+        var illnessVals = getData(data); // default is Measles
+        var updatableChart = barChart().width(800).data(illnessVals);
+
+        d3.select('#updatableChart')
+            .call(updatableChart);
+
+        updatableChart.data(illnessVals);
+
+        d3.select("select#menu")
+            .on("change", function() {
+                illness = d3.select("select#menu").property("value"); // reset global
+                console.log(illness);
+                console.log(getData(data));
+                updatableChart.data(getData(data));
+            });
+
+    }
+
+</script>
+</body>
+</html>
