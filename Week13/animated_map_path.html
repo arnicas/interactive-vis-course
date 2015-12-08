@@ -76,8 +76,10 @@ var pauseValues = {
 
 var line = d3.svg.line()
     .interpolate("cardinal-closed")
-    .x(function(d) { return projection(d)[0]; }) // lon
-    .y(function(d) { return projection(d)[1]; }); // lat
+    .x(function(d) {
+    return projection(d)[0]; }) // lon
+    .y(function(d) {
+    return projection(d)[1]; }); // lat
 
 queue()
     .defer(d3.json, "data/state_pol.json")
