@@ -33,6 +33,10 @@ Also, when you stop right before a certain point, you can then execute code "by 
 
 Turn off excessive logging if you don't need it anymore!  You want your console.logs to be useful.  A linter will complain if there are ANY left when you finish your code.
 
+### Use the Error Traceback
+
+![error printout](debugging.png)
+
 
 ## D3 Specific Debugging
 
