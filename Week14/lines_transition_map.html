@@ -250,7 +250,7 @@ function loaded(error, africa, data) {
 		}
 
 		if (data) {
-			draw_lines(country, dataset); // draws the initial state.
+			draw_lines(country, dataset); // draws the initial country line.
 		}
 
 	// set up the first country shown using global country variable:
@@ -362,8 +362,10 @@ function update_lines(country, data) {
 		0
 	]);
 
+  // bind the new data
 	var lines = linechart.select("path.line").data([data]);
 
+  // transition.  there is no need for enter and exit in this case. we entered when we drew the first one in draw_lines.
 	lines
 		.transition()
 		.attr("d", line);
@@ -411,7 +413,7 @@ d3.selection.prototype.moveToFront = function() {
 };
 
 
-		</script>
+</script>
 
 		<!-- Latest compiled and minified JavaScript -->
 	</body>
