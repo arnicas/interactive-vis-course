@@ -2,29 +2,6 @@
 ## Week 14: Reusable Charts, More Layouts, Project Help
 
 
-## Your Awards Votes
-
-There was little agreement!  Very interesting :)
-
-* Halina: The Counted, Unaffordable Country, TrueSize
-
-* Luis: The Counted, A Nation Divided (Luis: this wasn't in the same/right section)
-
-* Yan: History.io, Globe of Economic Complexity
-
-* Jiaxin: Freelance Survey Rates, Recessions and Recoveries
-
-* Barbara: Unaffordable Country, Job Market Tracker
-
-* Louise: Unaffordable Country, History.io
-
-* Jo: Globe of Economic Complexity, Nasdaq Bubble
-
-* Lynn voted for: Unaffordable Country, Job Market Tracker, tie: History.io / The Counted.
-
-**Tallies: Counted(3), Unaffordable Country(3), History.io (3), Globe of Economic Complexity (2)**
-
-
 ## Project Grading
 
 Project is 40% of the course grade total (base points, not the extra credit points). That comes to 495 points.

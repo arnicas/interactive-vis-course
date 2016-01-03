@@ -1,7 +1,6 @@
 
 ## Week 15: Project Help
 
-Problems I have seen in your projects....
 
 ## How to File a Bug Report
 
@@ -86,15 +85,11 @@ If you want to create SVG elements from multiple data items, you need to use ```
 
 A former colleague has written a great blog post on better ways to lint and check for formatting errors in JS:  http://glebbahmutov.com/blog/1-2-3-linted/
 
+This requires you to have node installed and do a bunch of other modules installs.  I set it up for myself, and I can help.
+
 
 ## Homework
 
-Projects are due by midnight (east coast time) on December 15.  Make sure your repo is updated, and send me the link to the index page.
-
-Grades are due from me by noon on Dec 21.  I'll send you email as well.
-
-Don't forget to fill out the course evaluations!  I'd also like to hear anything you want to send by email about how the course could be better. And what was hardest for you to learn!
-
-For those students who are around, we will meet at 7.30pm outside my office for project demos, discussion, decompression, and light refreshments on Dec 15.
+Project work!
 
 
