@@ -4,11 +4,6 @@
 
 ### Styling project examples
 
-* Halina: https://bl.ocks.org/hmader/raw/90153b9ce62daaff0ce6/
-* Luis: http://bl.ocks.org/lmelgar/9282a5f5535471f99070
-* Jiaxin: https://bl.ocks.org/theopenwindow/raw/5a30931358d083631a60/
-* Barbara: https://bl.ocks.org/DimsumPanda/raw/763cfe24b91242a7dcf2/
-
 Take a little care with how formatted your CSS sheets are. In future it will matter more.
 
 Gists reminders: Upload files with the add button; name your web pages index.html so they will work in bl.ocks.org.
@@ -36,8 +31,6 @@ For the extra credit, what are the pros and cons of these 2 approaches to the pr
 
 A few illustrative data files...
 
-* Jo: https://gist.github.com/jowang0319/de07deb25b1c80b5de68
-* Louise: https://gist.github.com/lwhitaker3/5b9358fb79e6848c032b
 
 
 ## Client Project Brief

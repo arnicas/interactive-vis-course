@@ -3,16 +3,6 @@
 
 ## Homework Review
 
-### Interesting Scatterplots:
-
-* http://bl.ocks.org/lmelgar/raw/71df1f1bb0cb9b511085/ - check the US here.
-* Pretty styling: http://bl.ocks.org/hmader/raw/1657ebe682c12886ca38/
-
-### Fun Lineplots
-
-* Luis's: http://bl.ocks.org/lmelgar/raw/156d9ad31e0ea8045809/  (could use some labelled lines :)
-* Halina's beautiful style and focus job: http://bl.ocks.org/hmader/raw/03fe396c28f1371aa419/
-* Jiaxin's with the World line: http://bl.ocks.org/theopenwindow/raw/5985f061998cd98d054d/ and gridlines.
 
 ### Gridlines How To
 

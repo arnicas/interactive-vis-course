@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#week-15-project-help">Week 15: Project Help</a></li>
+<li><a href="#how-to-file-a-bug-report">How to File a Bug Report</a></li>
+<li><a href="#debugging-reminders">Debugging Reminders</a><ul>
+<li><a href="#breakpoints">Breakpoints</a></li>
+<li><a href="#console.log">Console.log</a></li>
+<li><a href="#use-the-error-traceback">Use the Error Traceback</a></li>
+</ul></li>
+<li><a href="#d3-specific-debugging">D3 Specific Debugging</a><ul>
+<li><a href="#tooltips">Tooltips</a></li>
+<li><a href="#nans-in-d3-code">NaN's in D3 code</a></li>
+<li><a href="#the-update-pattern">The Update Pattern</a></li>
+<li><a href="#data-vs.-datum">Data vs. Datum</a></li>
+</ul></li>
+<li><a href="#more-on-linting">More on Linting</a></li>
+<li><a href="#homework">Homework</a></li>
+</ul>
+</div>
+<h2 id="week-15-project-help">Week 15: Project Help</h2>
+<h2 id="how-to-file-a-bug-report">How to File a Bug Report</h2>
+<p>If you have a bug in your code, you need to do some things first, and then ask for help if you fail. Your help request has to have details in it, or we will waste time!</p>
+<ul>
+<li><p>How do I recreate the problem you think you see? For example: &quot;click on the World button and there is an error in the console&quot;.</p></li>
+<li><p>Where in the code is the problem likely to be? If you are doing your own good debugging effort, you have narrowed it down to a location in the code using breakpoints and the console. Tell me what that says, and it will help me find it.</p></li>
+<li><p>Tell me what js file to look in. You all have a zillion now.</p></li>
+</ul>
+<h2 id="debugging-reminders">Debugging Reminders</h2>
+<h3 id="breakpoints">Breakpoints</h3>
+<p>Using breakpoints -- to stop your code at a certain line and inspect the values of various variables and data.</p>
+<p>Use Command-option-i on the Mac to quickly open the console window. Click on the &quot;SOURCE&quot; tab. Navigate to the js file you are trying to debug.</p>
+<p>Using breakpoints:</p>
+<ul>
+<li><a href="https://developer.chrome.com/devtools/docs/javascript-debugging">https://developer.chrome.com/devtools/docs/javascript-debugging</a><br /></li>
+<li><a href="https://www.youtube.com/watch?v=CoESC2XGZLg">https://www.youtube.com/watch?v=CoESC2XGZLg</a>, <a href="https://www.youtube.com/watch?v=L0aJDRdOYDo">https://www.youtube.com/watch?v=L0aJDRdOYDo</a></li>
+</ul>
+<p>Also, when you stop right before a certain point, you can then execute code &quot;by hand&quot; in the console window to see what the values are yourself. I do this for selections (to see if there is anything actually selected) and scales - to check xScale.domain() for instance, to verify the numbers are right.</p>
+<h3 id="console.log">Console.log</h3>
+<p>Turn off excessive logging if you don't need it anymore! You want your console.logs to be useful. A linter will complain if there are ANY left when you finish your code.</p>
+<h3 id="use-the-error-traceback">Use the Error Traceback</h3>
+<p>Click to expand the error message to see the lines of code, and find the first item FROM THE TOP that refers to your code (not d3 or another library you are including):</p>
+<p><img src="debugging.png" alt="error printout" /></p>
+<p>Then if you click on that line, your source window will take you there. Notice in this case there is something else marked with a red X. This is also an error source.</p>
+<p><img src="debugging2.png" alt="source printout" /></p>
+<h2 id="d3-specific-debugging">D3 Specific Debugging</h2>
+<h3 id="tooltips">Tooltips</h3>
+<p>D3 tooltips Need to be attached to the document &quot;body&quot; to work properly! Otherwise their positioning will be wrong. Double check where you put them if you have location issues.</p>
+<p>Also, use a class other than &quot;tooltip&quot; if you use Bootstrap. It may conflict.</p>
+<h3 id="nans-in-d3-code">NaN's in D3 code</h3>
+<p>Frequently, you get NaN's in the console with SVG shapes when there is something wrong with a scale.<br />Go back to how you set up your scales and check the .domain()s to see if they are valid.</p>
+<h3 id="the-update-pattern">The Update Pattern</h3>
+<p>Remember there are some general patterns for the code for updated graphs.</p>
+<ol>
+<li>Setup the svg and global variables first - like the scales.<br /></li>
+<li>Use the data to get the domains for your scales, probably in a draw function.<br /></li>
+<li>Draw the &quot;initial view&quot; of the graph. If you are using an update, you can call the update function with your first data here.<br /></li>
+<li><p>The update function has 4 things in it to be general:</p>
+<p>a. <strong>bind</strong> the data to the dom elements (don't forget to use a key if you want good transitions): <code>var circles = svg.selectAll(&quot;circle.countries&quot;).data(mydata, function(d){return d.Country;});</code></p>
+<p>b. <strong>enter</strong> to draw new ones</p>
+<p>c. <strong>exit</strong> to remove ones you don't need now</p>
+<p>d. <strong>transition</strong> - this applies to all the items &quot;left&quot; on the page after the enter and exit, and makes them move prettily.</p></li>
+</ol>
+<p>You can see this full pattern in use in <strong>Week8/scatter_data_update.html</strong>.</p>
+<h3 id="data-vs.-datum">Data vs. Datum</h3>
+<p>If you have a single data element, you can use <code>.datum()</code>. There is no enter function with a single data element! You just append things after it.</p>
+<p>If you want to create SVG elements from multiple data items, you need to use <code>.data()</code> and an enter() function.</p>
+<ul>
+<li>Read the answer from Mike here: <a href="http://stackoverflow.com/questions/10086167/d3-how-to-deal-with-json-data-structures">http://stackoverflow.com/questions/10086167/d3-how-to-deal-with-json-data-structures</a></li>
+</ul>
+<h2 id="more-on-linting">More on Linting</h2>
+<p>A former colleague has written a great blog post on better ways to lint and check for formatting errors in JS: <a href="http://glebbahmutov.com/blog/1-2-3-linted/">http://glebbahmutov.com/blog/1-2-3-linted/</a></p>
+<p>This requires you to have node installed and do a bunch of other modules installs. I set it up for myself, and I can help.</p>
+<h2 id="homework">Homework</h2>
+<p>Project work!</p>
+</body>
+</html>

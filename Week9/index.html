@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#week-9-stacking-chart-types-intro-to-small-multiples">Week 9: Stacking Chart Types, Intro to Small Multiples</a></li>
+<li><a href="#homework-issues">Homework Issues</a><ul>
+<li><a href="#color-by-region">Color by Region</a></li>
+</ul></li>
+<li><a href="#area-chart">Area Chart</a></li>
+<li><a href="#stacked-area">Stacked Area</a></li>
+<li><a href="#streamgraph">Streamgraph</a><ul>
+<li><a href="#how-would-we-transition-between-them">How would we transition between them?</a></li>
+</ul></li>
+<li><a href="#stacked-bar-chart">Stacked Bar Chart</a></li>
+<li><a href="#normalized-bar-chart">Normalized Bar Chart</a><ul>
+<li><a href="#how-would-we-transition-between-them-1">How would we transition between them?</a></li>
+</ul></li>
+<li><a href="#aside-on-javascript-keys-and-mapping">Aside on Javascript Keys and Mapping</a></li>
+<li><a href="#bar-groups">Bar Groups</a></li>
+<li><a href="#small-multiples-in-d3">Small Multiples in D3</a><ul>
+<li><a href="#note-old-d3-code-alert">Note: Old D3 Code Alert</a></li>
+</ul></li>
+<li><a href="#recent-interesting-things">Recent Interesting Things</a></li>
+<li><a href="#homework">Homework</a></li>
+</ul>
+</div>
+<h2 id="week-9-stacking-chart-types-intro-to-small-multiples">Week 9: Stacking Chart Types, Intro to Small Multiples</h2>
+<h2 id="homework-issues">Homework Issues</h2>
+<h3 id="color-by-region">Color by Region</h3>
+<p>This is how I expected it, but some of you did it by hand:</p>
+<pre><code>var colorScale = d3.scale.category10();
+circle.attr(&quot;fill&quot;, function(d) {return colorScale(d.region);})</code></pre>
+<p>Notice that if you don't like the category() colors in D3, you can set your own, as long as you have enough in the list for your different items:</p>
+<pre><code>var color = d3.scale.ordinal().range([&quot;lightpink&quot;, &quot;darkgray&quot;, &quot;lightblue&quot;]);
+color.domain([&quot;sepsis&quot;, &quot;malaria&quot;, &quot;typhoid&quot;]);
+...
+color(d.illness)
+or color(i)</code></pre>
+<h2 id="area-chart">Area Chart</h2>
+<p>The area chart is a line chart, but filled in! There is a new layout for it:</p>
+<pre><code>    var area = d3.svg.area()
+        .x(function(d) {
+            return xScale(dateFormat.parse(d.year));
+        })
+        .y0(height - margin.bottom)  // the bottom line!
+        .y1(function(d) {
+            return yScale(+d.amount); // the top line
+        });</code></pre>
+<p>Example in area_plot.html.</p>
+<h2 id="stacked-area">Stacked Area</h2>
+<p>We use the area layout and the stack function for this.</p>
+<p>See <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>.</p>
+<p>The stacker adds elements to your dataset that say what &quot;level&quot; an item should go in. It calculates a y0, for the y base location, and a y, which is the height from the base position. These get added to your dataset if they weren't there already. (Note: A lot of stacked bar examples just construct the y and y0 by hand, instead of using the stack function.)</p>
+<p>Read: <a href="https://github.com/mbostock/d3/wiki/Stack-Layout">https://github.com/mbostock/d3/wiki/Stack-Layout</a></p>
+<p>See stacked_area.html, which uses the stack layout.</p>
+<p>See also:</p>
+<ul>
+<li>Line to Stacked Area transitions (too flashy, but): <a href="http://bl.ocks.org/tswast/4390054">http://bl.ocks.org/tswast/4390054</a></li>
+</ul>
+<h2 id="streamgraph">Streamgraph</h2>
+<p>The streamgraph is a minor variant on the stacked area chart!</p>
+<p>Here's a NYT example: <a href="http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0">http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0</a></p>
+<p>A recent news example: <a href="https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor">https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor</a></p>
+<p>The only difference is:</p>
+<pre><code>var stack = d3.layout.stack()
+    .offset(&quot;silhouette&quot;) // &lt;-- instead of zero!
+    .values(function(d) { return d.values; })
+    .x(function(d) { return formatDate.parse(d.Year);})
+    .y(function(d) { return +d.Measles; });</code></pre>
+<p>Try this in stacked_area.html.</p>
+<p>Another interactive streamgraph example (with highlights and fake tooltips): <a href="http://bl.ocks.org/WillTurman/4631136">http://bl.ocks.org/WillTurman/4631136</a></p>
+<h3 id="how-would-we-transition-between-them">How would we transition between them?</h3>
+<p>How would we transition between these 2 forms? It should be easy, right? Let's discuss.</p>
+<p>If you want to see a tutorial on changing between these forms, see this one by Jim Vallandingham on FlowingData:</p>
+<ul>
+<li>Demo: <a href="http://projects.flowingdata.com/tut/chart_transitions_demo/">http://projects.flowingdata.com/tut/chart_transitions_demo/</a><br /></li>
+<li><a href="https://flowingdata.com/2013/01/17/how-to-animate-transitions-between-multiple-charts/">https://flowingdata.com/2013/01/17/how-to-animate-transitions-between-multiple-charts/</a></li>
+</ul>
+<p>If you need access via account and password, let me know.</p>
+<h2 id="stacked-bar-chart">Stacked Bar Chart</h2>
+<p>Again, see this section: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>.</p>
+<p>See stacked_bar.html.</p>
+<p>Tooltips for stacked bar charts: <a href="https://gist.github.com/mstanaland/6100713">https://gist.github.com/mstanaland/6100713</a>.</p>
+<h2 id="normalized-bar-chart">Normalized Bar Chart</h2>
+<p>This is a very small variant, after you get the stacked_bar.html working. See the <code>//</code> notes in the file.<br />Just add offset &quot;expand&quot; to the layout! (The default offset is &quot;zero&quot;.)</p>
+<pre><code>var stack = d3.layout
+    .stack()
+    .offset(&quot;expand&quot;);</code></pre>
+<p>You have to be sure you change your labels on the Y axis to be %'s too:</p>
+<pre><code>var yAxis = d3.svg.axis()
+    .scale(yScale)
+    .orient(&quot;left&quot;)
+    .tickFormat(d3.format(&quot;.2s&quot;)); // for the stacked totals version
+    //.tickFormat(d3.format(&quot;%&quot;)); // for the normalized version</code></pre>
+<h3 id="how-would-we-transition-between-them-1">How would we transition between them?</h3>
+<p>See my example stacked_bar_transitions.html. This includes a bunch of refactoring into functions, where there is repetition, too. Let's discuss it.</p>
+<p>See also <a href="http://bl.ocks.org/tmaybe/6144082">http://bl.ocks.org/tmaybe/6144082</a>.</p>
+<h2 id="aside-on-javascript-keys-and-mapping">Aside on Javascript Keys and Mapping</h2>
+<p>We need to get serious about data munging with map. A lot of the online examples for this week used mapping to make the data for the stacked layouts. Mike Bostock says &quot;it's just as easy to make the y0, y1 by hand&quot; for the stacked bars. Note if you don't use the stack layout, you can't easily switch to a normalized view when you want.</p>
+<p>But we should try to understand some of the code for doing it &quot;by hand&quot; because so many examples use it. And some of them are really terse.</p>
+<p>Reminder about a map:</p>
+<pre><code>var array = [{a: 10, b: 20, c: 30}, {a: 14, b: 2, c: 31}];
+var the_a = array.map(function (d) { return d.a;});
+the_a
+[10, 14]</code></pre>
+<p>Maps return arrays. They are like forEach function loops, except those don't return arrays explicitly. (Although you can use them to create new arrays like we've seen with &quot;push&quot;).</p>
+<p>Let's look at the stacked bar example in <a href="http://bl.ocks.org/mbostock/3886208">http://bl.ocks.org/mbostock/3886208</a>. He makes the data using a confusing, compressed few lines.</p>
+<p>The data in the CSV looks like this:</p>
+<pre><code>State,Under 5 Years,5 to 13 Years,14 to 17 Years,18 to 24 Years,25 to 44 Years,45 to 64 Years,65 Years and Over
+AL,310504,552339,259034,450818,1231572,1215966,641667
+AK,52083,85640,42153,74257,198724,183159,50277
+AZ,515910,828669,362642,601943,1804762,1523681,862573
+AR,202070,343207,157204,264160,754420,727124,407205
+....</code></pre>
+<p>First, note we have:</p>
+<pre><code>var color = d3.scale.ordinal()
+    .range([&quot;#98abc5&quot;, &quot;#8a89a6&quot;, &quot;#7b6888&quot;, &quot;#6b486b&quot;, &quot;#a05d56&quot;, &quot;#d0743c&quot;, &quot;#ff8c00&quot;]);</code></pre>
+<p>This sets up specific colors to use.</p>
+<p>Then:</p>
+<pre><code>color.domain(d3.keys(data[0]).filter(function(key) { return key !== &quot;State&quot;; }));</code></pre>
+<p>What does this do? Any guesses? Starting from data[0], the &quot;keys&quot; are the attribute names, like &quot;State.&quot;</p>
+<pre><code>&gt;data[0]
+Object {State: &quot;AL&quot;, Under 5 Years: &quot;310504&quot;, 5 to 13 Years: &quot;552339&quot;, 14 to 17 Years: &quot;259034&quot;, 18 to 24 Years: &quot;450818&quot;…}</code></pre>
+<p>Now guess... d3.keys() returns the object attribute names, which are keys.</p>
+<p>So the color domain:</p>
+<pre><code>&gt;color.domain()
+[&quot;Under 5 Years&quot;, &quot;5 to 13 Years&quot;, &quot;14 to 17 Years&quot;, &quot;18 to 24 Years&quot;, &quot;25 to 44 Years&quot;, &quot;45 to 64 Years&quot;, &quot;65 Years and Over&quot;]</code></pre>
+<p>Then this madness, to create the format for the stacking manually, instead of using a stack layout:</p>
+<pre><code>data.forEach(function(d) {
+    var y0 = 0;
+    d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+    d.total = d.ages[d.ages.length - 1].y1;
+  });</code></pre>
+<p>All the action is in the ages array creation. It's the same as:</p>
+<pre><code>data.forEach(function (d) {
+    var y0 = 0;
+    d.ages = [&quot;Under 5 Years&quot;, &quot;5 to 13 Years&quot;, &quot;14 to 17 Years&quot;, &quot;18 to 24 Years&quot;, &quot;25 to 44 Years&quot;, &quot;45 to 64 Years&quot;, &quot;65 Years and Over&quot;].map(function(name) {
+        var height = y0 + +d[name];
+        var obj = { label: name,
+                    y0: y0,
+                    y1: height };
+        y0 = height;
+        return obj;
+    });
+    d.total = d.ages[d.ages.length - 1].y1; // last y1, which is the total height
+})</code></pre>
+<p>Because his <code>{name: name, y0: y0, y1: y0 += +d[name]};</code> is incrementing the y0 each time through the map loop, so that each time it is the sum of the value of d[name] and the previous y0.</p>
+<h2 id="bar-groups">Bar Groups</h2>
+<ul>
+<li>Grouped bar chart example: <a href="http://bl.ocks.org/mbostock/3887051">http://bl.ocks.org/mbostock/3887051</a><br /></li>
+<li>See my version in grouped_bars.html.</li>
+</ul>
+<p>Fancier:</p>
+<ul>
+<li>Stacked to Grouped Bars Animation: <a href="http://bl.ocks.org/mbostock/3943967">http://bl.ocks.org/mbostock/3943967</a><br /></li>
+<li>Stacked to multiples transition: <a href="http://bl.ocks.org/mbostock/4679202">http://bl.ocks.org/mbostock/4679202</a></li>
+</ul>
+<h2 id="small-multiples-in-d3">Small Multiples in D3</h2>
+<p>Three ways:</p>
+<ul>
+<li><a href="http://bl.ocks.org/mbostock/1157787">http://bl.ocks.org/mbostock/1157787</a><br /></li>
+<li><a href="http://bl.ocks.org/mbostock/9490313">http://bl.ocks.org/mbostock/9490313</a> (uses 'each' and calls the drawing funct)<br /></li>
+<li><p><a href="http://bl.ocks.org/mbostock/9490516">http://bl.ocks.org/mbostock/9490516</a> (I find this one strange)</p></li>
+<li><p>Area Charts with a UI filter: <a href="http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/">http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/</a> (see old D3 Code alert below)</p></li>
+</ul>
+<p>Tutorials by Jim Vallandingham (that unfortunately use Coffee Script):</p>
+<ul>
+<li>Small Multiples with Details on Demand <a href="http://vallandingham.me/small_multiples_with_details.html">http://vallandingham.me/small_multiples_with_details.html</a><br /></li>
+<li><p>Linked Small Multiples: <a href="https://flowingdata.com/2014/10/15/linked-small-multiples/">https://flowingdata.com/2014/10/15/linked-small-multiples/</a></p></li>
+<li><p>Small Multiple Maps tutorial: <a href="http://blog.webkid.io/multiple-maps-d3/">http://blog.webkid.io/multiple-maps-d3/</a></p></li>
+<li><p>Example: <a href="http://datatodisplay.com/blog/interactive-data-visualisation/premier-league-small-multiples/">http://datatodisplay.com/blog/interactive-data-visualisation/premier-league-small-multiples/</a></p></li>
+<li><p>Tutorial with a brush: <a href="http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/">http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/</a></p></li>
+</ul>
+<p>We'll build some next week. Think about data in your datasets that could be done with small mutiples.</p>
+<h3 id="note-old-d3-code-alert">Note: Old D3 Code Alert</h3>
+<p>If you see this stuff (e.g., in some of Flowing Data's tutorials):</p>
+<pre><code>&quot;svg:line&quot;
+&quot;svg:svg&quot;
+&quot;svg:rect&quot;</code></pre>
+<p>it's old D3 code. We used to have to say &quot;svg&quot; in front of all the svg DOM elements. Not necessary anymore.</p>
+<h2 id="recent-interesting-things">Recent Interesting Things</h2>
+<ul>
+<li><p>Related vis yesterday: <a href="https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor">https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor</a></p></li>
+<li><p>Amazing scrollytelling animated story: <a href="http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees">http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees</a></p></li>
+<li><p>World Bank tumblr: <a href="http://worldbank.tumblr.com/submit">http://worldbank.tumblr.com/submit</a></p></li>
+<li><p>What is a Front-End Developer: <a href="https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html">https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html</a></p></li>
+<li><p>A friendly guide to debugging (but not about d3 per se): <a href="http://p5js.org/tutorials/debugging/">http://p5js.org/tutorials/debugging/</a></p></li>
+</ul>
+<h2 id="homework">Homework</h2>
+<p>Read this section: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>. You can see how some other layouts work in that same chapter.</p>
+<p>Read: How We Made Failure Factories: <a href="https://source.opennews.org/en-US/articles/how-we-made-failure-factories/">https://source.opennews.org/en-US/articles/how-we-made-failure-factories/</a> and the original piece: <a href="http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/">http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/</a></p>
+<p><strong>Homework 1 (12pt)</strong>: JS Practice.</p>
+<p>Finish js_homework.html, all the TODOs. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the file. Week 9: &quot;JS homework&quot;.</p>
+<p><strong>Homework 2 (25pt)</strong>: Stacked Bars Transition.</p>
+<p>Make a stacked_bar_transitions using your own data. It must transition between normalized and non-normalized like my example does. Try to make it data that you can use in your final project. Send gist as &quot;Stacked Bars.&quot;</p>
+<p><strong>Homework 3 (20pt)</strong>: Grouped Bars.</p>
+<p>Make a grouped bars example with your own data. Send gist as &quot;Grouped Bars.&quot;</p>
+</body>
+</html>

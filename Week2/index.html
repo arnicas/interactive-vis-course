@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#week-2-high-charts-intro-to-d3-data-loading">Week 2: High Charts, Intro to D3 Data Loading</a></li>
+<li><a href="#review-homework">Review Homework</a><ul>
+<li><a href="#styling-project-examples">Styling project examples</a></li>
+<li><a href="#javascript-errors">Javascript errors</a></li>
+</ul></li>
+<li><a href="#data-files-you-picked">Data Files You Picked</a></li>
+<li><a href="#client-project-brief">Client Project Brief</a></li>
+<li><a href="#look-fun-interactive-for-useful-things">Look Fun Interactive for Useful Things</a></li>
+<li><a href="#intro-to-high-charts">Intro to High Charts</a></li>
+<li><a href="#there-are-so-many-charting-libraries-out-there">There Are So Many Charting Libraries Out There</a></li>
+<li><a href="#loading-data-and-very-simple-d3-intro">Loading Data, and Very Simple D3 Intro</a></li>
+<li><a href="#interactive-vis-techniques---readings">Interactive Vis Techniques - Readings</a></li>
+<li><a href="#homeworks">Homeworks</a></li>
+</ul>
+</div>
+<h2 id="week-2-high-charts-intro-to-d3-data-loading">Week 2: High Charts, Intro to D3 Data Loading</h2>
+<h2 id="review-homework">Review Homework</h2>
+<h3 id="styling-project-examples">Styling project examples</h3>
+<p>Take a little care with how formatted your CSS sheets are. In future it will matter more.</p>
+<p>Gists reminders: Upload files with the add button; name your web pages index.html so they will work in bl.ocks.org.</p>
+<h3 id="javascript-errors">Javascript errors</h3>
+<p>Discuss the whole thing...</p>
+<p>For the extra credit, what are the pros and cons of these 2 approaches to the problem? I said: <code>Create a function that calculates the population per house seat for any object.</code></p>
+<pre><code>    var popperseat = function(x){
+        return data2014[x].population/data2014[x].seat
+    };</code></pre>
+<pre><code>    function population_per_seat(population, seat) {
+      return population/seat;
+    }</code></pre>
+<h2 id="data-files-you-picked">Data Files You Picked</h2>
+<p>A few illustrative data files...</p>
+<h2 id="client-project-brief">Client Project Brief</h2>
+<p>What problems did we find of interest in the brief and other data sources? Let's discuss interesting data questions. Seems that data.unicef.org is still down...</p>
+<h2 id="look-fun-interactive-for-useful-things">Look Fun Interactive for Useful Things</h2>
+<p>This is a trick you get with interactives -- the &quot;recast&quot; the problem in a new way, or &quot;switch&quot; the view of the data. This can mean scale change, or annotation/highlighting different data. Here's a couple examples:</p>
+<ul>
+<li>A log scale switch: log vs. normal (Exoplanets interactive from NatGeo link is broken, so let's use this now: <a href="http://bl.ocks.org/phoebebright/4124200">http://bl.ocks.org/phoebebright/4124200</a>)<br /></li>
+<li><a href="http://www.nytimes.com/interactive/2015/08/28/world/europe/countries-under-strain-from-european-migration-crisis.html?smid=tw-nytimes&amp;_r=0">A Surge in Asylum Applications</a> - Total vs. Population switch<br /></li>
+<li><a href="http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html?_r=2&amp;">How Democrats vs Republicans See Friday's Job Numbers</a>, NYT Graphics</li>
+</ul>
+<h2 id="intro-to-high-charts">Intro to High Charts</h2>
+<p>Let's look at this project in some detail: <a href="http://datatools.urban.org/Features/wealth-inequality-charts/">http://datatools.urban.org/Features/wealth-inequality-charts/</a>. Look at the source code, too.</p>
+<p>Resources:</p>
+<ul>
+<li>Install the JQuery way: <a href="http://www.highcharts.com/docs/getting-started/installation">http://www.highcharts.com/docs/getting-started/installation</a><br /></li>
+<li>Tutorial for first bar chart: <a href="http://www.highcharts.com/docs/getting-started/your-first-chart">http://www.highcharts.com/docs/getting-started/your-first-chart</a><br /></li>
+<li>Trellis Chart example: <a href="http://jsfiddle.net/highcharts/VqruM/">http://jsfiddle.net/highcharts/VqruM/</a><br /></li>
+<li>Scatterplot example: <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/scatter/">http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/scatter/</a><br /></li>
+<li>Using data in csv's: <a href="http://www.highcharts.com/docs/working-with-data/data-module">http://www.highcharts.com/docs/working-with-data/data-module</a> (but this is super mysterious to me - hard to tell what controls what!)</li>
+</ul>
+<p>Trying to use data in CSV's with High Charts required me to reformat the CSV data into different structures. Long, wide, and somewhere in between. Be aware that how you structure your data will impact how easily you can use it in your Javascript without having to do rewriting of objects after you load it. (Have a look at this on wide vs long data: <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">https://en.wikipedia.org/wiki/Wide_and_narrow_data</a>.)</p>
+<p>More of my local examples:</p>
+<ul>
+<li><a href="highcharts_dot.html">highcharts_dot.html</a> and <a href="highcharts_dot_csv.html">highcharts_dot_csv.html</a><br /></li>
+<li><a href="highcharts_slope.html">highcharts_slope.html</a> - my attempt at a slopegraph! Not using CSV data, but embedded data.</li>
+</ul>
+<p>Here is a useful excerpt you can use in the homework in <a href="highcharts_switch.html">highcharts_switch.html</a>.</p>
+<p><strong>Homework</strong>: See below.</p>
+<h2 id="there-are-so-many-charting-libraries-out-there">There Are So Many Charting Libraries Out There</h2>
+<p>See, e.g.,</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks">https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks</a><br /></li>
+<li><a href="http://www.sitepoint.com/15-best-javascript-charting-libraries/">http://www.sitepoint.com/15-best-javascript-charting-libraries/</a><br /></li>
+<li>And now this epic tool/book browser: <a href="http://keshif.me/demo/VisTools">http://keshif.me/demo/VisTools</a></li>
+</ul>
+<p><strong>Extra Credit Homework</strong>: See below.</p>
+<h2 id="loading-data-and-very-simple-d3-intro">Loading Data, and Very Simple D3 Intro</h2>
+<p>Read in data with D3 and verify it's there in the console: <a href="d3_load_csv_json.html">d3_load_csv_json.html</a>. JSON objects (javascript object notation) should be there for each row of your data set.</p>
+<p>Let's look at <a href="d3_simple_append.html">d3_simple_append.html</a> and how that works.</p>
+<p>Create <code>&lt;p&gt;</code> tags for each row of your data, using the template in the <a href="create_p_from_data.html">create_p_from_data.html</a> file.</p>
+<p>Resources:</p>
+<ul>
+<li>A <a href="https://www.youtube.com/watch?v=KqEm-3tofBA&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F&amp;index=6">video from Scott Murray explaining d3.csv loading of objects</a><br /></li>
+<li>Here is the JQuery doc on append, if you want it: <a href="http://api.jquery.com/append/">http://api.jquery.com/append/</a></li>
+</ul>
+<p><strong>Homework</strong>: See below.</p>
+<h2 id="interactive-vis-techniques---readings">Interactive Vis Techniques - Readings</h2>
+<p>Some of the reading for this week will motivate the interactive vis techniques we are going to cover in this class.</p>
+<ul>
+<li>Skim this - <a href="http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/">When Telling Data Driven Stories, Let Readers Ask Questions Too</a> (Tableau examples that motivate interaction and data sharing; we won't make our final projects in Tableau, but you're welcome to prototype with it.)<br /></li>
+<li><p><a href="shneidermanEyesHaveIt.pdf">The Eyes Have It (1996)</a>, Ben Shneiderman - a classic article that features the mantra everyone must memorize:</p>
+<p><em>Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.</em></p></li>
+<li><p>Video by Scott Murray <a href="https://www.youtube.com/watch?v=DRIlogs5vzw&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F&amp;index=5">introducing D3</a> for his course, not all of which applies (we aren't using his files)-- but which reviews selections. And reviews the console use and method chaining. SVG will be introduced bit at the end, which we will start on in a couple weeks.</p></li>
+</ul>
+<h2 id="homeworks">Homeworks</h2>
+<p>Do the readings/videos list just above. Memorize the mantra. Plus these:</p>
+<p><strong>Homework 1</strong>: Using the structure and switch button functionality in <a href="highcharts_switch.html">highcharts_switch.html</a>, plug in 2 of your own related High Charts charts, using UNICEF data. Adjust the text, labels, tooltips, etc. to match your data and data source. Be sure it has useful tooltips. Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.</p>
+<p>Change the style to use style attributes from the <a href="https://github.com/arnicas/interactive-vis-course/blob/master/UNICEF%20Brand%20Toolkit%20ENG%20Sept%202012.pdf">UNICEF style guide</a>.</p>
+<p>Points:</p>
+<ul>
+<li>35pts for charts and styling and your own (UNICEF) data, points included for originality (not just mean/median) in the data you chart and compare.<br /></li>
+<li>Extra credit (6pt): Use at least one other type of chart, aside from the line charts in the example.<br /></li>
+<li>Extra credit (5pt): Load your data from variables in a separate JS included file, instead of inlining the data values in the highcharts code directly. Use variables in the Highcharts code instead.<br /></li>
+<li>OR Extra-Extra credit (not required of grad students, but 10pt): Use CSV input data, instead of inline data. You may be asked to present how you did this. I think it's hard.</li>
+</ul>
+<p>For your gist: Be sure the html page is called index.html. Be sure your path to highcharts is a CDN, not local, link. Check it in as a gist and send me the link to the gist, &quot;Week2: High Charts.&quot; My gist examples show the CDN path you should use in your code.</p>
+<p><strong>EXTRA CREDIT Homework</strong>: Reproduce one of the charts you made with Highcharts in another JS charting library (not the button switch part). It must have tooltips. Include a &quot;Readme.md&quot; file with your gist that explains what it was like to work with this library in comparison to Highcharts. Send gist link by email: &quot;Week 2: Another JS library.&quot; Be sure to use a CDN path to the library again, if you can find one! If you can't, let me know. (12pt)</p>
+<p><strong>Homework 2</strong>: Read in one of your data files and verify your objects are there as expected. Prove it to me by creating <code>&lt;p&gt;</code>'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, &quot;Week 2: Paragraph Data load.&quot; (15pt) <em>Name the web page itself index.html so it will work in a blocks example!</em></p>
+</body>
+</html>

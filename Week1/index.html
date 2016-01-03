@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#week-1">Week 1:</a></li>
+<li><a href="#what-this-class-covers-the-general-plan...">What This Class Covers, the General Plan...</a></li>
+<li><a href="#the-client-project-unicef-child-and-maternal-mortality">The Client Project: UNICEF (Child and Maternal Mortality)</a></li>
+<li><a href="#data-formatting-in-excel">Data Formatting in Excel</a></li>
+<li><a href="#intro-to-chrome-tools-the-console">Intro to Chrome Tools, the Console</a></li>
+<li><a href="#github-and-gists">Github and Gists</a><ul>
+<li><a href="#github">Github</a></li>
+<li><a href="#gists">Gists</a></li>
+</ul></li>
+<li><a href="#review-of-htmlcss">Review of HTML/CSS</a></li>
+<li><a href="#javascript-review">Javascript Review</a></li>
+<li><a href="#loading-data-with-jsd3">Loading Data with JS/D3</a></li>
+<li><a href="#you-and-your-local-server">You and Your Local Server</a></li>
+<li><a href="#homeworks-collected-up">Homeworks Collected Up</a></li>
+</ul>
+</div>
+<h2 id="week-1">Week 1:</h2>
+<p>Lots of getting set up and review exercises.</p>
+<h2 id="what-this-class-covers-the-general-plan...">What This Class Covers, the General Plan...</h2>
+<p>Review repo's <a href="../README.md">README</a>.</p>
+<h2 id="the-client-project-unicef-child-and-maternal-mortality">The Client Project: UNICEF (Child and Maternal Mortality)</h2>
+<ul>
+<li>Readings: The <a href="../APromiseRenewed_Brief_March2015.pdf">client brief</a>. And their 1024 Key Findings Report. Look for any open questions you may have after looking at their report and website. Take a few notes, we'll discuss next week.<br /></li>
+<li>A storytelling interactive by JanWillem Tulp (<a href="http://tulpinteractive.com/">http://tulpinteractive.com/</a>): <a href="http://www.apromiserenewed.org/infographics/">http://www.apromiserenewed.org/infographics/</a><br /></li>
+<li>Play with their Dashboard for more data insights and questions: <a href="http://www.apromiserenewed.org/dashboard/">http://www.apromiserenewed.org/dashboard/</a></li>
+</ul>
+<h2 id="data-formatting-in-excel">Data Formatting in Excel</h2>
+<ul>
+<li>Recommended read for general good advice: <a href="http://kbroman.org/dataorg/">http://kbroman.org/dataorg/</a><br /></li>
+<li>A good article arguing for &quot;tidy&quot; data in long format, with R code examp: <a href="http://vita.had.co.nz/papers/tidy-data.pdf">http://vita.had.co.nz/papers/tidy-data.pdf</a> (Note that D3 usually wants &quot;wide&quot; instead)</li>
+</ul>
+<p>We'll go through a download and csv formatting example in class. You'll need to do the same, so take notes!</p>
+<p>Let's look at the infant_deaths data set from WHO first. (Walkthrough how I formatted it for use in javascript.)</p>
+<p><strong>Homework</strong>: See below.</p>
+<h2 id="intro-to-chrome-tools-the-console">Intro to Chrome Tools, the Console</h2>
+<ul>
+<li>View Source. Let's do it. First at childmortality.org...<br /></li>
+<li>Look at a newspaper site too, and view the styling on an article. You'll need this for a homework project. Remember news online includes newspapers as well as sites like Slate, Buzzfeed, etc.<br /></li>
+<li>Chrome Tools: Read a bit here about the console and trying stuff in it: <a href="http://jsforcats.com/#basics">http://jsforcats.com/#basics</a></li>
+</ul>
+<h2 id="github-and-gists">Github and Gists</h2>
+<h3 id="github">Github</h3>
+<p>Github is how you should get and keep the course files up to date.<br />Make an account, if you haven't.</p>
+<ul>
+<li>Make sure you have git installed: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a><br /></li>
+<li>If you are new to using the command line, read up here: <a href="http://cli.learncodethehardway.org/book/">http://cli.learncodethehardway.org/book/</a> (thanks Luis)</li>
+</ul>
+<p>I recommend you clone my repo, so you can repull it as I add stuff. You will do <code>git clone [copied path]</code> (https is fine for now). I'll show you in class.</p>
+<p>Every week you should do <code>git pull</code> to get my updates. Do this from inside the directory made by cloning. <strong>If you want to make changes to class files, save them with new names.</strong></p>
+<h3 id="gists">Gists</h3>
+<p>You'll be doing homework in gists. This makes it easier for me to review and check it and find issues. Also, the bl.ocks.org site makes things easy for visual display of gists. See: <a href="http://bl.ocks.org/">http://bl.ocks.org/</a>.</p>
+<p>Make a directory for your files for a gist <strong>NOT INSIDE THE COURSE FILES REPO DIRECTORY</strong> and upload those by hand from the web page, or using the command line tool gistup. If you use the command line, make a directory for each gist, NOT INSIDE THE CLASS REPO YOU CLONED. (Your gists can't be inside another repo.)</p>
+<p>Resources and tips on using gists:</p>
+<ul>
+<li>Read: Gists how-to: <a href="https://help.github.com/articles/creating-gists/">https://help.github.com/articles/creating-gists/</a><br /></li>
+<li>Command line gist tool info (optional): <a href="https://github.com/mbostock/gistup">https://github.com/mbostock/gistup</a><br /></li>
+<li>Optional: Watch <a href="https://www.youtube.com/watch?v=4WteFeHzkNQ&amp;feature=youtu.be&amp;list=PL0tDk-f4v1ujDIGTpXjsTxCnMdR5JBGyQ">this video</a> from Scott Murray on using gists - but when you upload files (like your CSV), DON'T copy and paste it into a file -- you want to actually upload the CSV file. (You won't be following his directions for his homework, so you can stop there.)</li>
+</ul>
+<p>You can see all your gists by looking here - where you fill in your own user name where mine is: <a href="https://gist.github.com/arnicas">https://gist.github.com/arnicas</a>. If you want to edit or delete it, click on the header for one from the list.</p>
+<p><strong>Important Tips</strong>:</p>
+<ul>
+<li>If you want your d3 visual code to show up in bl.ocks.org, you need to name your html file index.html.<br /></li>
+<li>And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the <code>&lt;script&gt;</code> tag, you want to reference: <code>&lt;script type=&quot;text/javascript&quot; src=&quot;//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js&quot;&gt;&lt;/script&gt;</code> instead of a local path.</li>
+</ul>
+<p><em>Demo making a gist for a CSV file...</em></p>
+<h2 id="review-of-htmlcss">Review of HTML/CSS</h2>
+<p>Have a look at this fun project, Tufte CSS: <a href="http://www.daveliepmann.com/tufte-css/">http://www.daveliepmann.com/tufte-css/</a>.</p>
+<p>A refresher on HTML and CSS is necessary -- you can't afford to NOT be good at CSS with interactive graphics. It's as important as Javascript. There's a refresher in Ch 3 of IDVW.</p>
+<p><strong>Homework</strong>: See below.</p>
+<h2 id="javascript-review">Javascript Review</h2>
+<p>I sent you some stuff over the summer, and here is a list of teaching references again: <a href="https://www.javascript.com/resources">https://www.javascript.com/resources</a>. And <a href="http://learnxinyminutes.com/docs/javascript/">http://learnxinyminutes.com/docs/javascript/</a>.</p>
+<p>A super simple intro with gif demos is JS For Cats: <a href="http://jsforcats.com/">http://jsforcats.com/</a><br />You should review everything in it except for the last part on callbacks now.</p>
+<p>If we have time, we'll play with <a href="console_javascript.html">console_javascript.html</a> now.</p>
+<ul>
+<li>Optional <a href="https://www.youtube.com/watch?v=3g1061kFrCs&amp;index=4&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F">video by Scott Murray</a> reviewing some Javascript concepts.</li>
+</ul>
+<p><strong>Homework:</strong> See below.</p>
+<h2 id="loading-data-with-jsd3">Loading Data with JS/D3</h2>
+<p>You will use the data you downloaded and formatted in D3 next week.</p>
+<p><strong>Recommended Reading</strong>: Loading data with D3, at <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p>
+<h2 id="you-and-your-local-server">You and Your Local Server</h2>
+<p>You need one. Otherwise Javascript code won't execute on your pages. So<br />set up your servers. Depending on time, we'll do it in class. Use this to help: <a href="https://github.com/arnicas/d3-faq#running-a-server">https://github.com/arnicas/d3-faq#running-a-server</a>.</p>
+<h2 id="homeworks-collected-up">Homeworks Collected Up</h2>
+<p>Homework is due at 5pm on Monday the night before the next class. I have office hours on Monday if you have struggled.</p>
+<p>Readings:</p>
+<ul>
+<li><p>Read Chapter 3 of IDVW: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch02.html">http://chimera.labs.oreilly.com/books/1230000000345/ch02.html</a>. You can stop at the SVG part at the end of chapter 3, for now. (Chapter 2 may be nice background but is optional.)</p></li>
+<li><p><a href="../APromiseRenewed_Brief_March2015.pdf">The client brief</a> and Key Findings from 2014: Look for any open questions you may have after looking at their report and website. Take a few notes, we'll discuss next week.</p></li>
+<li><p>Loading data with D3, at <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p></li>
+</ul>
+<p><strong>Homework</strong>: Style <a href="wapo_debates_article.html">this page</a> to look like the news website of your choice or like Tufte. Don't get out of control - just headlines, byline, paragraph/body text, and images. Make a gist and send me the link: &quot;Week 1: Style article.&quot; (30pt, Extra credit: make your style sheet external, 5pt)</p>
+<p><strong>Homework:</strong> Fix <a href="js_errors.html">js_errors.html</a> so it displays correctly. Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: &quot;Week 1, JS errors&quot;. If you can't do it all, send me as far as you got. (20pt, Extra credit 10pt see end of the file. Partial credit given!)</p>
+<p><strong>Homework</strong>: Download a UNICEF data set (or related one on child/maternal mortality) of interest to you and format in Excel for use in visualization. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.' (10pt, Extra credit: Add a calculated value column, 5pt)</p>
+<p><strong>Homework</strong>: Set up your server, github accounts, etc!</p>
+</body>
+</html>

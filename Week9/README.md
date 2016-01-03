@@ -2,10 +2,6 @@
 
 ## Homework Issues
 
-Scatterplot Transitions:
-
-* Colors by Region and labels: http://bl.ocks.org/DimsumPanda/a94f6c0c3121ad2a4f17
-* Cute colors and tooltips: http://bl.ocks.org/lmelgar/raw/086115f650545013a915/
 
 ###Color by Region
 

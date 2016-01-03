@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#week-5-more-on-bar-charts-axes-transforms-labels-scatterplots...">Week 5: More on Bar Charts, Axes, Transforms, Labels, Scatterplots...</a><ul>
+<li><a href="#homework-review">Homework Review:</a></li>
+</ul></li>
+<li><a href="#setting-custom-fills-by-data-value-or-index">Setting Custom Fills By Data Value or Index</a></li>
+<li><a href="#adding-text-elements">Adding Text Elements</a><ul>
+<li><a href="#tips-on-formatting-numbers-in-d3-in-axes-etc">Tips on Formatting Numbers in D3 in Axes, etc</a></li>
+</ul></li>
+<li><a href="#review-on-joins-and-scales">Review on Joins and Scales</a></li>
+<li><a href="#more-scales-ordinal-and-rangebands-rangeroundbands-useful-for-axes">More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes</a><ul>
+<li><a href="#aside-on-javascript-map">Aside on Javascript Map</a></li>
+</ul></li>
+<li><a href="#the-group-element-in-svg">The Group Element in SVG</a></li>
+<li><a href="#a-reminder-on-coordinates-in-svg-space">A Reminder on Coordinates in SVG Space</a></li>
+<li><a href="#the-d3-margin-convention">The D3 Margin Convention</a></li>
+<li><a href="#transform-translate-move-a-starting-coordinate-somewhere.">Transform, Translate: Move a starting coordinate somewhere.</a></li>
+<li><a href="#adding-axes">Adding Axes</a></li>
+<li><a href="#adding-an-axis-label-putting-margins-and-labels-and-transforms-together">Adding an Axis Label: Putting Margins and Labels and Transforms Together</a></li>
+<li><a href="#scatterplots">Scatterplots</a></li>
+<li><a href="#example-links-on-bar-charts-scatterplot-examples-dot-plots">Example Links on Bar Charts, Scatterplot Examples, Dot Plots</a></li>
+<li><a href="#homework">Homework</a></li>
+</ul>
+</div>
+<h2 id="week-5-more-on-bar-charts-axes-transforms-labels-scatterplots...">Week 5: More on Bar Charts, Axes, Transforms, Labels, Scatterplots...</h2>
+<h3 id="homework-review">Homework Review:</h3>
+<p><strong>SVG Selection Homework</strong></p>
+<p>Reminder:</p>
+<ul>
+<li>Using d3 to select all the ellipses, re-style all the ellipses so their fill is blue.<br /></li>
+<li>Using d3 to select all the rectangles, re-style them so their stroke width is 2px instead.<br /></li>
+<li>Use d3 to style all the rectangles so they are pink.<br /></li>
+<li>Then use d3 to style the first rectangle so it is blue.<br /></li>
+<li>Use d3 to select the rectangle with id svg_2 and make the color of the stroke orange.<br /></li>
+<li>Use a CSS style to set the background color of the SVG to a light gray.<br /></li>
+<li>Use a CSS style to set the line stroke to 3px instead.<br /></li>
+<li>Extra credit (5pt): Use a d3 category10() color scale to set the color of the lines.</li>
+</ul>
+<pre><code>// Use a CSS style to set the background color of the SVG to a light gray.
+// Use a CSS style to set the line stroke to 3px instead.
+&lt;style&gt;
+      svg{
+        background-color: #d3d3d3;
+      }
+      line{
+        stroke-width: 3px;
+      }
+&lt;/style&gt;
+
+// Using d3 to select all the ellipses, re-style all the ellipses so their fill is blue.
+d3.selectAll(&quot;ellipse&quot;).style(&quot;fill&quot;, &quot;blue&quot;);
+
+// Using d3 to select all the rectangles, re-style them so their stroke width is 2px instead.
+// Use d3 to style all the rectangles so they are pink.
+d3.selectAll(&quot;rect&quot;).style(&quot;fill&quot;, &quot;pink&quot;).style(&quot;stroke-width&quot;, &quot;2px&quot;)
+or
+d3.selectAll(&quot;rect&quot;).style({&quot;stroke-width&quot;: &quot;2px&quot;, &quot;fill&quot;: &quot;pink&quot;});
+
+// Then use d3 to style the first rectangle so it is blue.
+var rectangles = d3.selectAll(&quot;rect&quot;)[0];
+d3.select(rectangles[0]).style(&quot;fill&quot;,&quot;blue&quot;);
+or
+d3.select(&quot;rect&quot;).style(&quot;fill&quot;, &quot;blue&quot;);
+
+// Use d3 to select the rectangle with id svg_2 and make the color of the stroke orange.
+d3.select(&quot;#svg_2&quot;).style(&quot;stroke&quot;,&quot;orange&quot;);
+
+// Extra credit (5pt): Use a d3 category10() color scale to set the color of the lines.
+var colors = d3.scale.category10();
+d3.selectAll(&quot;line&quot;).style(&quot;stroke&quot;, function(d, i) {
+        return colors(i);
+});
+
+// Extra Extra credit (3pt): Use d3 to remove the text on top!
+d3.selectAll(&quot;text&quot;).remove();
+or
+d3.select(&quot;text&quot;).remove();
+</code></pre>
+<h2 id="setting-custom-fills-by-data-value-or-index">Setting Custom Fills By Data Value or Index</h2>
+<p>What if we want to do special-case rules in our styles? This is easy, with a tiny bit of JS knowledge! Just use an if-statement and test for the special case you want to<br />use in your style rule:</p>
+<pre><code>// this pattern allows you to test the value of a data element, and set the fill
+// for a specific value.
+
+rects.attr(&quot;fill&quot;, function(d) {
+    if (d.region === &quot;The World&quot;) {
+        return &quot;darkblue&quot;;
+    } else {
+        return &quot;steelblue&quot;;
+    }
+})</code></pre>
+<p>You could use that same pattern for items with values above a mean, or below. Or median. D3 has some nice math utilities: <a href="https://github.com/mbostock/d3/wiki/Arrays">https://github.com/mbostock/d3/wiki/Arrays</a>. Your if- statement would then have a comparison in it:</p>
+<pre><code>// Use a d3 helper function to calculate your median (or mean, or whatever)
+var median = d3.median(data, function(d) {
+    // the value I want to get the mean of:
+    return d.year2015;
+});
+rects.attr(&quot;fill&quot;, function(d) {
+    if (d.year2015 &lt; median) {
+        return &quot;red&quot;;
+    } else {
+        return &quot;steelblue&quot;;
+    }
+})</code></pre>
+<p>If you want to set a different color for an item at a particlar index, you can use the &quot;i&quot; argument:</p>
+<pre><code> rects.attr(&quot;fill&quot;, function(d,i) {
+    // color the first one darkblue:
+    if (i === 0) {
+        return &quot;darkblue&quot;;
+    } else {
+        return &quot;steelblue&quot;;
+    }
+})</code></pre>
+<p>That's what Jo did in <a href="http://bl.ocks.org/jowang0319/03712cf42713752d62e9">http://bl.ocks.org/jowang0319/03712cf42713752d62e9</a>.</p>
+<h2 id="adding-text-elements">Adding Text Elements</h2>
+<p>SVG has its own text element.</p>
+<ul>
+<li>A good overview of d3 with a bunch of SVG element attributes - make sure you read down to the text parts to see how they work: <a href="http://www.d3noob.org/2014/02/attributes-in-d3js.html">http://www.d3noob.org/2014/02/attributes-in-d3js.html</a><br /></li>
+<li>A simple set of circles with text labels: <a href="https://www.dashingd3js.com/svg-text-element">https://www.dashingd3js.com/svg-text-element</a><br /></li>
+<li>Read: This is also about labels on scatterplot circles, but the same principles apply: Labels on elements: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2">http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2</a></li>
+</ul>
+<p>The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right. dy with a negative value will move it &quot;up&quot;, because the coordinate system is &quot;higher numbers at the bottom of the screen.&quot;</p>
+<p>Examples:</p>
+<ul>
+<li>Modified version of Jo's bars: <a href="http://bl.ocks.org/arnicas/2d34b474c762abe9f4ee">http://bl.ocks.org/arnicas/2d34b474c762abe9f4ee</a><br /></li>
+<li>Halina's end-of-bars text: <a href="http://bl.ocks.org/hmader/5f428acbd45c230400b5#file-contraceptive-mortality-select-countries-chart-csv">http://bl.ocks.org/hmader/5f428acbd45c230400b5#file-contraceptive-mortality-select-countries-chart-csv</a></li>
+</ul>
+<h3 id="tips-on-formatting-numbers-in-d3-in-axes-etc">Tips on Formatting Numbers in D3 in Axes, etc</h3>
+<p>See <a href="http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html">http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html</a></p>
+<h2 id="review-on-joins-and-scales">Review on Joins and Scales</h2>
+<p>Reminders about joins and scales, using circles:</p>
+<ul>
+<li>This is circles with colors and sizes based on data values: <a href="http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffer6e1c9&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffer6e1c9&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
+</ul>
+<h2 id="more-scales-ordinal-and-rangebands-rangeroundbands-useful-for-axes">More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes</h2>
+<p>All the scale references are here:</p>
+<ul>
+<li>References: Quantitative Scales: <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales">https://github.com/mbostock/d3/wiki/Quantitative-Scales</a><br /></li>
+<li>References: Ordinal Scales: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">https://github.com/mbostock/d3/wiki/Ordinal-Scales</a><br /></li>
+<li>References: Time Scales: <a href="https://github.com/mbostock/d3/wiki/Time-Scales">https://github.com/mbostock/d3/wiki/Time-Scales</a></li>
+</ul>
+<p>In ordinal scales, there is a useful item for categorical axes... the rangebands. (rangeRoundBands s the same except it creates rounded values.)</p>
+<ul>
+<li><a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeBands">https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeBands</a></li>
+</ul>
+<pre><code>// from https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeBands
+var o = d3.scale.ordinal()
+    .domain([1, 2, 3])
+    .rangeRoundBands([0, 100]);
+
+o.range(); // [1, 34, 67]
+o.rangeBand(); // 33
+o.rangeExtent(); // [0, 100]
+</code></pre>
+<p>Remember: rangeRoundBands (plural) sets up the bands. rangeBand() (singular) gives you one of the bands! Range, like in quantitive scales, tells you what you mapped to! rangeExtent is like d3.extent - the max and min of your range.</p>
+<p>If you use an ordinal scale with categorical items, like the names of bars in a bar chart, it will &quot;space them out&quot; for you on the scale.</p>
+<p>Example: See bar_axes_labels.html.</p>
+<h3 id="aside-on-javascript-map">Aside on Javascript Map</h3>
+<p>Remember last week we made a separate array to get the values of a single column of data, using newArray.push? We used this for the max/min/extent in the domain settings on scales.</p>
+<p>We can also use this handy Javascript map function in our scale:</p>
+<pre><code>var heightScale = d3.scale.ordinal()
+                    .rangeRoundBands([ margin.top, height], 0.2);
+
+heightScale.domain(
+    // the map function returns an array of all the d.name values only!
+    data.map(function (d) {
+        return d.name;
+    })
+);</code></pre>
+<p>A map is a way to take an array of items (like data) and return a new array, after doing something to each item. It's like data.forEach(), except it can save you some typing and extra variables.</p>
+<p>There are more great d3 functions for arrays listed on the web reference:<br /><a href="https://github.com/mbostock/d3/wiki/Arrays">https://github.com/mbostock/d3/wiki/Arrays</a></p>
+<h2 id="the-group-element-in-svg">The Group Element in SVG</h2>
+<p>You can group elements in SVG using a 'g' node. The group can be where you attach your data, in some cases. It doesn't show up as a drawing element on the screen, it just lets you organize things and with classes or id's, it's sometimes easier for styling or selection purposes.</p>
+<p>Groups also allow transforms to be applied to them, which affects everything inside the container.</p>
+<ul>
+<li>Read: <a href="https://www.dashingd3js.com/svg-group-element-and-d3js">https://www.dashingd3js.com/svg-group-element-and-d3js</a></li>
+</ul>
+<h2 id="a-reminder-on-coordinates-in-svg-space">A Reminder on Coordinates in SVG Space</h2>
+<ul>
+<li>Read: <a href="https://www.dashingd3js.com/using-the-svg-coordinate-space">https://www.dashingd3js.com/using-the-svg-coordinate-space</a></li>
+</ul>
+<p>But -- <strong>alert -- despite that article, never use a &quot;<a href="file:///">file:///</a>&quot; in your URL.</strong> I argued about this with him today on Twitter. His examples use no loaded data files, so he has no error such as you will get.</p>
+<h2 id="the-d3-margin-convention">The D3 Margin Convention</h2>
+<p>Now that we've seen g's and transforms and the coordinate space, we're ready for the classic on margins. This is a recommended way to set up margins in D3 -- you can use some or all of this pattern (I often skip the &quot;g&quot; translate), but the basic idea is that you have padding around your chart, inside the SVG container. Then all your coordinates take into account the margin sizes as appropriate.</p>
+<p><img src="margins.png"></p>
+<pre><code>var svgWidth = 1000,
+    svgHeight = 500;
+
+// these are the margins around the graph. Axes labels go in margins.
+var margin = {top: 20, right: 25, bottom: 20, left: 200};
+
+var chartWidth = svgWidth - margin.left - margin.right,
+    chartHeight = svgHeight - margin.top - margin.bottom;</code></pre>
+<p>Some more implications of the coordinate system:</p>
+<p>A scale for your Y axis values needs to be inverted, if you want higher numbers at the top. Don't forget this - your range is changed so you map this way:</p>
+<pre><code>var yScale = d3.scale.linear().range([ height, 0 ]);</code></pre>
+<ul>
+<li>Mike's post on it: <a href="http://bl.ocks.org/mbostock/3019563">http://bl.ocks.org/mbostock/3019563</a></li>
+</ul>
+<h2 id="transform-translate-move-a-starting-coordinate-somewhere.">Transform, Translate: Move a starting coordinate somewhere.</h2>
+<p>Let's play with <a href="http://blockbuilder.org/arnicas/6217eec849a8f270e80d">http://blockbuilder.org/arnicas/6217eec849a8f270e80d</a>.</p>
+<h2 id="adding-axes">Adding Axes</h2>
+<p>To understand how axes work in D3, you need to know about groups (&quot;g&quot; in SVG), transforms, coordinate systems, and scales. So now we're ready!</p>
+<p>Axes are a complicated element in D3 that have a lot of little switches to them. The refence with all the options:</p>
+<ul>
+<li><a href="https://github.com/mbostock/d3/wiki/SVG-Axes">https://github.com/mbostock/d3/wiki/SVG-Axes</a></li>
+</ul>
+<p>And read this:</p>
+<ul>
+<li>Chapter 8: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch08.html">http://chimera.labs.oreilly.com/books/1230000000345/ch08.html</a></li>
+</ul>
+<p>They are set up as a function, and then applied to your data and graph using a &quot;call&quot; function. You can apply an axis to a selection.</p>
+<pre><code>var axis = d3.svg.axis()
+    .scale(&lt;your scale in here&gt;) // this sets up the right ticks for you!
+    .orientation(&quot;bottom&quot;);  // we&#39;ve created a scale, but it doesn&#39;t appear till we call it with an svg selection.
+
+var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, 1440)
+    .attr(&quot;height&quot;, 30);
+
+// Put them inside a g, group element:
+svg.append(&quot;g&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(0,30)&quot;)
+    .call(axis);  // here were &#39;call&#39; the function for the axis.</code></pre>
+<p>See bar_axes_labels.html.</p>
+<p>If you want to specially format your tick labels, you can. See formatting_ticks.html.</p>
+<h2 id="adding-an-axis-label-putting-margins-and-labels-and-transforms-together">Adding an Axis Label: Putting Margins and Labels and Transforms Together</h2>
+<p>How to add an axis label to your axes.</p>
+<ul>
+<li><a href="http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html">http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html</a></li>
+</ul>
+<p>This often turns into a trial-and-error routine with transforms. My code in bar_axes_labels.html has:</p>
+<pre><code>svg.append(&quot;text&quot;)
+    .attr(&quot;class&quot;, &quot;xlabel&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(&quot; + (margin.left + width / 2) + &quot; ,&quot; +
+                        (height + margin.bottom) + &quot;)&quot;)
+    .style(&quot;text-anchor&quot;, &quot;middle&quot;)
+    .attr(&quot;dy&quot;, &quot;12&quot;)
+    .text(&quot;Percent&quot;);</code></pre>
+<p>Y axes need a translate, rotate, too. The rotation changes how things are oriented.</p>
+<pre><code>svg.append(&quot;text&quot;)
+        .attr(&quot;transform&quot;, &quot;rotate(-90)&quot;)
+        .attr(&quot;y&quot;, 0 - margin.left) // you may need to adjust this
+        .attr(&quot;x&quot;, 0 - (height / 2)) // you may need to adjust
+        .attr(&quot;dy&quot;, &quot;1em&quot;)
+        .style(&quot;text-anchor&quot;, &quot;middle&quot;)
+        .text(&quot;Value&quot;);</code></pre>
+<p>I'm not going to lie, it takes me a few tries to get the locations right.</p>
+<h2 id="scatterplots">Scatterplots</h2>
+<p>After we do the in-class exercise, I'll post the scatterplot model.</p>
+<h2 id="example-links-on-bar-charts-scatterplot-examples-dot-plots">Example Links on Bar Charts, Scatterplot Examples, Dot Plots</h2>
+<ul>
+<li><p>Nathan's great post on 0 baseline for barcharts: <a href="http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/">http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/</a></p></li>
+<li><p>Shneiderman's mantra: <a href="http://blog.futureadvisor.com/explore-changes-in-wages-and-employment-across-industries/">http://blog.futureadvisor.com/explore-changes-in-wages-and-employment-across-industries/</a></p></li>
+<li><p>A super scatterplot project to keep you motivated - with animations:<br /><a href="http://www.bloomberg.com/politics/graphics/2014-incumbent-governors/?hootPostID=031ede1ff3806f5956e7bdadac068a20">http://www.bloomberg.com/politics/graphics/2014-incumbent-governors/?hootPostID=031ede1ff3806f5956e7bdadac068a20</a></p></li>
+<li><p>Scatterplots linked to maps: <a href="http://anandthakker.github.io/baltimore-neighborhood-vitalsigns/#/i/male10:female10/c/Greater-_Charles-_Village">http://anandthakker.github.io/baltimore-neighborhood-vitalsigns/#/i/male10:female10/c/Greater-_Charles-_Village</a>--Barclay/</p></li>
+<li><p>A classic style dot plot: <a href="http://www.verisi.com/resources/d3-tutorial-basic-charts.htm#s7">http://www.verisi.com/resources/d3-tutorial-basic-charts.htm#s7</a></p></li>
+<li><p>A cool hybrid of a dot plot for times: <a href="http://neuralengr.com/asifr/journals/">http://neuralengr.com/asifr/journals/</a></p></li>
+<li><p>A dot plot example by me -- this is a modification between a bar chart and a scatterplot! dot_plot.html</p></li>
+</ul>
+<h2 id="homework">Homework</h2>
+<p>Readings:</p>
+<ul>
+<li>Axes: Ch 8: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch08.html">http://chimera.labs.oreilly.com/books/1230000000345/ch08.html</a><br /></li>
+<li>Axis Labels: <a href="http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html">http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html</a></li>
+</ul>
+<p><strong>Homework1</strong> (12pt): Turn in the scatterplot we made in class by midnight tonight.</p>
+<ul>
+<li>Dots for the data rows.<br /></li>
+<li>Margins set up with an object (margin.top...)<br /></li>
+<li>Scales that use the margin settings.<br /></li>
+<li>A label on the X axis, positioned with transform, translate.<br /></li>
+<li>A special case color on the one of the dots, using an if statement.<br /></li>
+<li>CSS rule for circle fill that refers to a class (circle.something).<br /></li>
+<li>Extra credit (4pt): A rotated Y axis label.</li>
+</ul>
+<p>After you turn this in, I'll post scatterplot code.</p>
+<p><strong>Homework2 (20pt)</strong>:<br />Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Use an ordinal axis on the Y axis to label the bars. Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the Text section and Halina's example). Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.</p>
+<p><strong>Homework3 (25pt)</strong>:<br />Make a scatter plot with your own data. Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship. Write a text snippet that explains it and identifies the source of the data. Use UNICEF styling.</p>
+<p><strong>Extra Extra Credit (15pt)</strong>: Make a dot plot with your data using my model and an appropriate comparison. (Common things for dot plots are gender differences, date differences, related measures of some kind...)</p>
+</body>
+</html>

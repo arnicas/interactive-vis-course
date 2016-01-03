@@ -3,7 +3,6 @@
 
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
-- [Homeworks:](#)
 - [More Map Tools/Techniques](#)
 - [Storytelling](#)
   - [Steppers ("slideshow")](#)
@@ -18,27 +17,9 @@
 
 ## Homeworks:
 
-**Choropleth**:
-
-* http://bl.ocks.org/yan2014/raw/e15c1329be30aec416fe/
-* http://bl.ocks.org/hmader/raw/974f4ef284c48d5952a5/
-* http://bl.ocks.org/DimsumPanda/raw/3362898c1386114463d4/
-* http://bl.ocks.org/lmelgar/d5972f3a4c7e19e5a6f6
-* http://bl.ocks.org/lwhitaker3/e8090246a20d9515789b
-
-
-**Regions**:
-
-* http://bl.ocks.org/lmelgar/63de22d5f26adc8853ed
-* http://bl.ocks.org/theopenwindow/600d7cbceeab66921bc5
-* http://bl.ocks.org/lwhitaker3/raw/9348e54d6d85d8e7a70d/
-
-
 **Tipsy!**
 
-Why does it not work well on maps?  Let's look at this...
-* http://bl.ocks.org/jowang0319/raw/d31f5412213d214c60e7/
-
+Why does it not work well on maps?  Let's look at this one:
 
 ## More Map Tools/Techniques
 

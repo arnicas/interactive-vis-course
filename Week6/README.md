@@ -29,16 +29,9 @@ Values all squished together on a linear scale?  Try log scales? or other? See h
 
 ### Bar Charts
 
-* http://bl.ocks.org/lwhitaker3/c2683797e0f306d57e23 - line annotation too!
-* http://bl.ocks.org/DimsumPanda/raw/f702266104b0316011c9/ - maybe flip it?
-
 Bar chart axes issues... I was after ordinal scale labeling of the bars on the Y axis, as in Week5/bar_axes_labels.html.
 
 ###Dot Plots
-
-* Great style: http://bl.ocks.org/lmelgar/raw/1b6ac17f21c091d7edcb/.
-* Interesting data: http://bl.ocks.org/yan2014/raw/7f395595bae3afb95a71/
-* http://bl.ocks.org/DimsumPanda/raw/377168164d5ab59bebad/
 
 See a lovely example here in Tableau: http://healthintelligence.drupalgardens.com/content/visualizing-human-development-gender-gap
 
@@ -218,7 +211,7 @@ If you forget any of them, you'll have a bug!
 Example: **emissions_scatterplot_tooltip.html**
 
 Here's an alternative using a plugin, d3.tip:  http://labratrevenge.com/d3-tip/.
-Example by Yan: http://bl.ocks.org/yan2014/cd5fecb580b676f338cd
+
 
 
 

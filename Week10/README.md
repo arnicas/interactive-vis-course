@@ -2,23 +2,11 @@
 
 ## Homework Review
 
-Grouped bar charts:
-
-* Halina's with tooltips that help a lot: http://bl.ocks.org/hmader/raw/860638a52dc07603346c/
-* Pretty color scheme in Luis's: http://bl.ocks.org/lmelgar/raw/0718b0cc3614fcf936f3/
-* Yan's mouseover: http://bl.ocks.org/yan2014/raw/2d7b391b6f176968aa0a/
-* Louise's data: http://bl.ocks.org/lwhitaker3/raw/4091a5ffc0e84477a456/
-
-Stacked Bar Transitions:
-
-* Halina's: http://bl.ocks.org/hmader/raw/a78a061a0e4a85d69413/
-
-
 ## Javascript and D3 Tips
 
 ### Debugging
 
-Let's do a little interactive debugging.  A few of you had NaN's in your console this week.  Like this: http://bl.ocks.org/lmelgar/raw/c4feac1991b15e398071/
+Let's do a little interactive debugging.  A few of you had NaN's in your console this week.
 
 ### Javascript's getFullYear
 

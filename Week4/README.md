@@ -2,9 +2,6 @@
 
 ## Homework Review
 
-* Louise: http://bl.ocks.org/lwhitaker3/raw/c2f0fb4bcb86363aad39/ (Nice trick on the sorting. Also pretty, and uses classes in the d3.)
-* Yan's sorting: http://bl.ocks.org/yan2014/c9dd6919658991d33b87
-
 If you have an array of numbers or strings, not objects, your sort needs to work differently:
 
 ````
@@ -32,10 +29,6 @@ Alphabetic sorting:  If you sort strings, you get ascending alphabetic order by 
 
 **Disappearing data elements**: the selectAll `<p>` problem, the select body append problem...
 
-* SelectAll existing p's:  http://localhost:8000/StudentWork/Week3/barbara/
-* Select body: https://gist.github.com/lmelgar/d1412cf546579be9ceae
-* Also Halina's nice comma format trick: http://bl.ocks.org/hmader/da4f32773c05d8664a35
-
 You can do `d3.select("body").data()` or generally `D3 SELECTIONS.data()` to see what data is attached to the selection.  Remember to use something to identify your new elements as different from any existing ones... we want a one-to-one mapping between data and DOM elements.
 
 **Javascript**:
@@ -48,29 +41,11 @@ especially: http://jsbin.com/lewufuroqi/3/edit?js,console,output
 
 ### Some More table examples, with cool code
 
-* Barbara: http://bl.ocks.org/DimsumPanda/3712df7474acef9e2190 (See the alphabetic sorting.)
-* Luis's styling:  http://bl.ocks.org/lmelgar/897f5f00115e002c7966
-* Jo's specific style rule: http://bl.ocks.org/jowang0319/raw/6728c175ccdff3d6f64b/
-* Halina's: http://bl.ocks.org/hmader/3a5dd630234a94231def
-
 Assigning a style in d3:
 
 ````
     d3.select(<element>).style("color", "#eeeeee");
 ````
-
-### How do I make this? Your requests:
-
-
-* Simulations: http://www.theguardian.com/society/ng-interactive/2015/feb/05/-sp-watch-how-measles-outbreak-spreads-when-kids-get-vaccinated
-* Great maps and tooltips: http://www.theguardian.com/society/ng-interactive/2015/sep/02/unaffordable-country-where-can-you-afford-to-buy-a-house
-* Chord diagram Refugees project: http://blog.csaladen.es/refugees/
-* Sunburst tree: https://www.jasondavies.com/coffee-wheel/
-* Network: http://www.scientificamerican.com/article/flavor-connection-taste-map-interactive/
-* Isotype sorting: http://www.gannett-cdn.com/experiments/usatoday/2014/gm-recall/index.html
-* Animated line chart: http://www.bloomberg.com/graphics/2014-hottest-year-on-record/
-* A nice scrolling story with timeline: http://graphics.wsj.com/flash-crash-timeline/
-* A trolling request to make this thing, I can't even...: http://map.norsecorp.com/
 
 Added to my references on the home page of the repo:
 

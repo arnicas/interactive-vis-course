@@ -4,25 +4,6 @@
 
 ### Homework Review:
 
-### Scrollytelling:
-
-* http://bl.ocks.org/lmelgar/raw/f2eed6d1a2536b826fe8/
-* http://bl.ocks.org/DimsumPanda/raw/d6ae46c5e6eee4f7fddd/
-* http://bl.ocks.org/lwhitaker3/raw/597d7db09fe16c832241/
-* Halina's Map: http://bl.ocks.org/hmader/raw/0348f21de2106bd56676/
-* Yan's Map: http://bl.ocks.org/yan2014/raw/fd8ce631121b048002aa/
-* Jo's scatterplots: http://bl.ocks.org/jowang0319/raw/56c1a815be4b33d1e8d9/
-
-
-### 3 Charts
-
-* Barbara: http://bl.ocks.org/DimsumPanda/raw/797d49663e8f82969d30/
-* Jo: http://bl.ocks.org/jowang0319/raw/4a3cbf8743433f6396d3/
-* Louise: http://bl.ocks.org/lwhitaker3/raw/d2ff874aa87a3034fa18/
-* Jiaxin (a few bugs still): http://localhost:8000/StudentWork/Week12/jiaxin/
-* Yan: http://bl.ocks.org/yan2014/raw/cd88a6b8fba1d0eb988d/
-
-
 ### Javascript Tips: Scope
 
 

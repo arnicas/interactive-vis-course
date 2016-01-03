@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#week-4-more-tables-scales-bars-in-d3">Week 4: More Tables, Scales, Bars in D3</a></li>
+<li><a href="#homework-review">Homework Review</a><ul>
+<li><a href="#some-more-table-examples-with-cool-code">Some More table examples, with cool code</a></li>
+</ul></li>
+<li><a href="#more-on-tables">More On Tables</a></li>
+<li><a href="#examples-of-interactive-tables-and-style-advice">Examples of Interactive Tables and Style Advice</a><ul>
+<li><a href="#d3-table-examples">D3 Table Examples</a></li>
+<li><a href="#live-examples">Live Examples</a></li>
+<li><a href="#table-ui">Table UI</a></li>
+<li><a href="#jquery-table-refs">JQuery Table Refs</a></li>
+<li><a href="#just-cool">Just Cool</a></li>
+</ul></li>
+<li><a href="#d3-scales">D3 Scales</a><ul>
+<li><a href="#color-scales">Color Scales</a></li>
+</ul></li>
+<li><a href="#svg">SVG</a><ul>
+<li><a href="#some-resources">Some Resources</a></li>
+<li><a href="#size-scales">Size Scales</a></li>
+</ul></li>
+<li><a href="#readings">Readings</a></li>
+</ul>
+</div>
+<h2 id="week-4-more-tables-scales-bars-in-d3">Week 4: More Tables, Scales, Bars in D3</h2>
+<h2 id="homework-review">Homework Review</h2>
+<p>If you have an array of numbers or strings, not objects, your sort needs to work differently:</p>
+<pre><code>    arrays = [
+        [2,4,5,6,8, &quot;china&quot;],
+        [1,4,7,8,90,4, &quot;australia&quot;],
+        [34,44,23,54,65,5, &quot;belgium&quot;],
+        [3,4,54,2,4,5,6,&quot;france&quot;]
+    ]
+
+    To sort by the item in the 3rd column:
+
+    arrays.sort(function(a, b) {
+        return b[2] - a[2];
+    })
+
+    or
+
+    arrays.sort(function(a,b) {
+        return d3.descending(a[2], b[2]);
+        })</code></pre>
+<p>Alphabetic sorting: If you sort strings, you get ascending alphabetic order by default. This is why you have to be careful to convert strings read in by d3 to numbers, if you don't want text sort order.</p>
+<p><strong>Disappearing data elements</strong>: the selectAll <code>&lt;p&gt;</code> problem, the select body append problem...</p>
+<p>You can do <code>d3.select(&quot;body&quot;).data()</code> or generally <code>D3 SELECTIONS.data()</code> to see what data is attached to the selection. Remember to use something to identify your new elements as different from any existing ones... we want a one-to-one mapping between data and DOM elements.</p>
+<p><strong>Javascript</strong>:</p>
+<p>Using &quot;var&quot; and scope.</p>
+<p>Let's peek at <a href="http://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/">http://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/</a><br />especially: <a href="http://jsbin.com/lewufuroqi/3/edit?js,console,output">http://jsbin.com/lewufuroqi/3/edit?js,console,output</a></p>
+<h3 id="some-more-table-examples-with-cool-code">Some More table examples, with cool code</h3>
+<p>Assigning a style in d3:</p>
+<pre><code>    d3.select(&lt;element&gt;).style(&quot;color&quot;, &quot;#eeeeee&quot;);</code></pre>
+<p>Added to my references on the home page of the repo:</p>
+<ul>
+<li>A new reference with more examples of interactive vis: <a href="https://docs.google.com/spreadsheets/d/1sSWytfD1N1nuXkry7IZyscahj9M8lX04XJWeqrdgDZk/pubhtml">https://docs.google.com/spreadsheets/d/1sSWytfD1N1nuXkry7IZyscahj9M8lX04XJWeqrdgDZk/pubhtml</a></li>
+</ul>
+<h2 id="more-on-tables">More On Tables</h2>
+<p>Let's review these:</p>
+<ul>
+<li>d3_tabulate_function.html<br /></li>
+<li>d3_tabulate_function_sortable.html - using a JQuery function with D3!</li>
+</ul>
+<p><strong>Homework</strong>: See below.</p>
+<h2 id="examples-of-interactive-tables-and-style-advice">Examples of Interactive Tables and Style Advice</h2>
+<h3 id="d3-table-examples">D3 Table Examples</h3>
+<ul>
+<li>A live NYT project (<a href="http://www.nytimes.com/interactive/2012/09/14/us/how-the-chicago-public-school-district-compares.html">Chicago Public Schools</a>) with bars in a table<br /></li>
+<li>D3 Sortable Table with bars <a href="http://bl.ocks.org/mbostock/3719724">http://bl.ocks.org/mbostock/3719724</a><br /></li>
+<li>D3 Tablesort plugin <a href="https://github.com/ile/d3-tablesort">https://github.com/ile/d3-tablesort</a><br /></li>
+<li>Sorting and styling in D3: <a href="http://www.d3noob.org/2013/02/more-d3js-table-madness-sorting.html">http://www.d3noob.org/2013/02/more-d3js-table-madness-sorting.html</a></li>
+</ul>
+<h3 id="live-examples">Live Examples</h3>
+<ul>
+<li>Inline sparklines and graphs: <a href="https://www.safaribooksonline">https://www.safaribooksonline</a>.<br />com/blog/2014/02/12/inline-visualization-d3-js/?utm_content=buffer980a1&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer<br /></li>
+<li>A live project with this technique: <a href="http://stateofobesity.org/adult-obesity/">http://stateofobesity.org/adult-obesity/</a></li>
+</ul>
+<h3 id="table-ui">Table UI</h3>
+<ul>
+<li>Nice style tips (visual): <a href="https://darkhorseanalytics.com/blog/clear-off-the-table/">https://darkhorseanalytics.com/blog/clear-off-the-table/</a><br /></li>
+<li>Table UI Patterns - styling, interaction: <a href="http://www.jankoatwarpspeed.com/ultimate-guide-to-table-ui-patterns/">http://www.jankoatwarpspeed.com/ultimate-guide-to-table-ui-patterns/</a></li>
+</ul>
+<h3 id="jquery-table-refs">JQuery Table Refs</h3>
+<ul>
+<li>An article on styling in JQuery: <a href="http://code.tutsplus.com/tutorials/using-jquery-to-manipulate-and-filter-data">http://code.tutsplus.com/tutorials/using-jquery-to-manipulate-and-filter-data</a>--net-5351<br /></li>
+<li>More JQuery tables: <a href="http://www.datatables.net/">http://www.datatables.net/</a>, <a href="http://www.dynatable.com/?sorts%5Bus-%24%5D=1">http://www.dynatable.com/?sorts%5Bus-%24%5D=1</a>, filtering and sorting UI options: <a href="http://www.unheap.com/section/user-interface/filter-sort/">http://www.unheap.com/section/user-interface/filter-sort/</a></li>
+</ul>
+<h3 id="just-cool">Just Cool</h3>
+<p>Supplementary FYI reading:</p>
+<ul>
+<li>A more advanced approach by Gregor Aisch: <a href="https://vis4.net/blog/posts/making-html-tables-in-d3-doesnt-need-to-be-a-pain/">https://vis4.net/blog/posts/making-html-tables-in-d3-doesnt-need-to-be-a-pain/</a></li>
+</ul>
+<p>A very cool project:</p>
+<ul>
+<li>Data Comb, <a href="http://www.bytemuse.com/post/data-comb-visualization/">http://www.bytemuse.com/post/data-comb-visualization/</a></li>
+</ul>
+<h2 id="d3-scales">D3 Scales</h2>
+<p>Even independent of the rest of D3, the scales are incredibly powerful and useful tools. Scales map numbers from a domain into a range. In particular, we need to turn numbers that are in our input data into pixel locations on the screen. Or into colors.</p>
+<ul>
+<li>References: Quantitative Scales: <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales">https://github.com/mbostock/d3/wiki/Quantitative-Scales</a><br /></li>
+<li>References: Ordinal Scales: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">https://github.com/mbostock/d3/wiki/Ordinal-Scales</a><br /></li>
+<li><p>References: Time Scales: <a href="https://github.com/mbostock/d3/wiki/Time-Scales">https://github.com/mbostock/d3/wiki/Time-Scales</a></p></li>
+<li><p>My example file: scale_examples.html</p></li>
+<li>Read: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale">http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale</a><br /></li>
+<li>Supplementary: <a href="http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/">http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/</a><br /></li>
+<li><p>Videos: <a href="https://www.youtube.com/watch?v=5EZSOsBXdS0&amp;list=PL0tDk-f4v1uh4s33k1qJ7Xl96cOySkLnt">Scott Murray's linear scales</a>, <a href="https://www.youtube.com/watch?v=WxtJ7VfP_VE&amp;list=PL0tDk-f4v1uh4s33k1qJ7Xl96cOySkLnt&amp;index=2">ordinal scales</a></p></li>
+</ul>
+<h3 id="color-scales">Color Scales</h3>
+<p>Look at <a href="d3_table_heatmap.html">d3_table_heatmap.html</a>, where we add a color range to one column of numbers. You could have done this on the font itself, of course.</p>
+<ul>
+<li>Here's a cool related recent vis in NYT: <a href="http://www.nytimes.com/interactive/2015/08/06/upshot/2016-republican-presidential-candidates-dashboard.html?smid=tw-share&amp;_r=0">http://www.nytimes.com/interactive/2015/08/06/upshot/2016-republican-presidential-candidates-dashboard.html?smid=tw-share&amp;_r=0</a><br /></li>
+<li>Here's a nice heatmap: <a href="http://www.washingtonpost.com/graphics/business/jobs-report/">http://www.washingtonpost.com/graphics/business/jobs-report/</a><br /></li>
+<li>Another great heatmap on vaccines: <a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/">http://graphics.wsj.com/infectious-diseases-and-vaccines/</a></li>
+</ul>
+<h2 id="svg">SVG</h2>
+<p>SVG stands for &quot;scaleable vector graphics.&quot; D3 can create DOM elements that can be manipulated like you've been manipulating other HTML elements, such as <code>&lt;p&gt;</code> and <code>&lt;table&gt;</code>. SVG elements include shapes like circles and rectangles, which is why it's useful for creating charts.</p>
+<p>D3 can manipulate and draw SVG, which is how many interactive data graphics are created. (An alternative is to use canvas for drawing shapes, but things drawn on canvas can't be manipulated as DOM elements like SVG items can, leading to some downsides.)</p>
+<ul>
+<li><p>My Example file: SVG_example.html</p></li>
+<li><p>And also svg_to_fix.html</p></li>
+</ul>
+<p>A Few Resources:</p>
+<ul>
+<li>Here's a <a href="https://www.youtube.com/watch?v=qwiRkXnbLtU&amp;feature=youtu.be&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F">video introduction to SVG by Scott Murray</a><br /></li>
+<li>Basics on SVG shapes in D3: <a href="https://www.dashingd3js.com/svg-basic-shapes-and-d3js">https://www.dashingd3js.com/svg-basic-shapes-and-d3js</a></li>
+</ul>
+<h3 id="some-resources">Some Resources</h3>
+<ul>
+<li><a href="http://svgpocketguide.com/book/">Pocket Guide to Writing SVG</a><br /></li>
+<li><a href="http://billautomata.github.io/svg2d3/">SVG2D3 tool</a> by Bill Automata - not good looking D3, but will give you an idea of the relationship and how D3 &quot;builds&quot; SVG.<br /></li>
+<li>A tool to clean up SVG exported from Inkscape or Illustrator: <a href="http://codedread.com/scour/">http://codedread.com/scour/</a></li>
+</ul>
+<p><strong>Homework, see below</strong></p>
+<h3 id="size-scales">Size Scales</h3>
+<p>This is a common pattern in D3:</p>
+<pre><code>    // set up the size of the SVG container for the graph (later we&#39;ll add margins)
+    var height = 350;
+    var width = 300;
+
+    var widthScale = d3.scale.linear().range([ 0, width ]);
+
+    // load the data file
+
+    d3.csv(&quot;data/water_improvement_data.csv&quot;, function(error, data) {
+
+    // set the domain of the scale, based on the data in the file:
+
+        widthScale.domain([ 0, d3.max(data, function(d) {
+            return +d.year2015;
+    }) ]);</code></pre>
+<p>Look at d3_dynamic_domain.html.</p>
+<p>Note that with chaining, you can put your domain and range in any order on your scale function. d3.scale.linear().domain([]).range([]) is fine, and so is d3.scale.linear.range([]).domain([]).</p>
+<h2 id="readings">Readings</h2>
+<ul>
+<li><a href="http://queue.acm.org/detail.cfm?id=1805128">A Tour Through The Visualization Zoo</a>- some examples of less common visualization techniques, possible in D3.<br /></li>
+<li><p>Read: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale">http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale</a></p></li>
+<li><p>The newest UNICEF reports:</p>
+<ul>
+<li><a href="http://www.unicef.org/publications/index_83078.html">http://www.unicef.org/publications/index_83078.html</a><br /></li>
+<li>Plus a Key Findings summary report:<br /></li>
+<li><a href="http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf">http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf</a><br /></li>
+<li>And another report which we released at the same time: <a href="http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf">http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf</a></li>
+</ul>
+<p>Remember the data site is live again: data.unicef.org</p></li>
+</ul>
+<p><strong>Homework 1 (35pt):</strong></p>
+<p>Make a table like the one in d3_table_heatmap.html for your data. It should be sortable using stupidtable.js. Make a color scale for one of your numeric columns. You can use the scale on a font or the background.<br />Same rules as above:</p>
+<ul>
+<li>Style it (with CSS or in d3).<br /></li>
+<li>Make the column names nice ones for people to read in the table.<br /></li>
+<li>Sort the data in javascript for a default sort order that's sensible.<br /></li>
+<li>Make sure the headers have a cursor that looks like it's a pointer, that indicates you can click.<br /></li>
+<li>Be sure to add text identifying source and explaining the data.</li>
+</ul>
+<p>Send me the gist: &quot;Week4: Heatmap table&quot;</p>
+<p><strong>Homework 2 (20pt):</strong></p>
+<p>Using the file in svg_to_fix.html, I want you to add some styling, using d3 and style sheets. You might need to look up stuff in the SVG references.</p>
+<ul>
+<li>Using d3 to select all the ellipses, re-style all the ellipses so their fill is blue.<br /></li>
+<li>Using d3 to select all the rectangles, re-style them so their stroke width is 2px instead.<br /></li>
+<li>Use d3 to style all the rectangles so they are pink.<br /></li>
+<li>Then use d3 to style the first rectangle so it is blue.<br /></li>
+<li>Use d3 to select the rectangle with id svg_2 and make the color of the stroke orange.<br /></li>
+<li>Use a CSS style to set the background color of the SVG to a light gray.<br /></li>
+<li>Use a CSS style to set the line stroke to 3px instead.<br /></li>
+<li><p>Extra credit (5pt): Use a d3 category10() color scale to set the color of the lines.</p></li>
+<li><p>Extra Extra credit (3pt): Use d3 to remove the text on top! Will require internet searching.</p></li>
+</ul>
+<p>Send me the gist with &quot;Week 4: SVG fixes&quot;</p>
+<p><strong>Homework 3 (20pt)</strong>:</p>
+<p>Using the model in d3_dynamic_domain.html, make your own barchart for your data. Pick one of your numeric columns, and resize the SVG container to fit it. You can adjust range etc. as you like. Add text to the page saying what it is showing.</p>
+</body>
+</html>

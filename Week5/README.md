@@ -59,25 +59,6 @@ d3.select("text").remove();
 
 ````
 
-**Heatmap Tables:**
-
-* Jiaxin's pretty fonts: http://blockbuilder.org/arnicas/92471e6abfd94b938a8a
-* Luis's is huge: http://bl.ocks.org/lmelgar/raw/84e7439ecd10c47b4fc3/
-* Halina's multi-color columns: http://bl.ocks.org/hmader/4f37cc2ff6703c51a4a1
-* Louise's data: http://bl.ocks.org/lwhitaker3/raw/f0b7b87a1d1efb531703/
-* Barbara's data: http://bl.ocks.org/DimsumPanda/8128faf2d5ed6f99df60
-
-**Barcharts:**
-
-* Halina's nice labels: http://bl.ocks.org/hmader/raw/5f428acbd45c230400b5/
-* Yan's pretty text labels and tooltips: http://bl.ocks.org/yan2014/dbc99ce7e5858d4769db
-* Jo's special case colored bar: http://bl.ocks.org/jowang0319/03712cf42713752d62e9
-
-Luis's huge table issue:  Filter the data after read you read it in. Let's do it:
-http://blockbuilder.org/arnicas/3a3a0510c4ffe824f008
-
-
-
 ## Setting Custom Fills By Data Value or Index
 
 What if we want to do special-case rules in our styles?  This is easy, with a tiny bit of JS knowledge!  Just use an if-statement and test for the special case you want to
@@ -375,18 +356,6 @@ Using the bar chart you made already, add a margin (using a margin object) to fi
 Make a scatter plot with your own data.  Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship.  Write a text snippet that explains it and identifies the source of the data.  Use UNICEF styling.
 
 **Extra Extra Credit (15pt)**: Make a dot plot with your data using my model and an appropriate comparison.  (Common things for dot plots are gender differences, date differences, related measures of some kind...)
-
-**Homework4 (5pt)**: Everyone should have an interesting thing they have found in the latest UNICEF reports and data, that they think they would like to explore. It can be world-wide, or region/country specific, or income specific, or gender-related...
-
-Reminder... The newest UNICEF reports:
-
-* http://www.unicef.org/publications/index_83078.html
-* Plus a Key Findings summary report:
-* http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf
-* And another report which we released at the same time: http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf
-
-Remember the data site is live again: data.unicef.org
-
 
 
 

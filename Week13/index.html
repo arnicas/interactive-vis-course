@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#week-13-animation-with-a-timer-play-buttons-ui">Week 13: Animation with a Timer, &quot;Play&quot; buttons, UI</a><ul>
+<li><a href="#homework-review">Homework Review:</a></li>
+<li><a href="#javascript-tips-scope">Javascript Tips: Scope</a></li>
+<li><a href="#more-than-one-chart-on-a-page">More than one chart on a page</a></li>
+</ul></li>
+<li><a href="#animation-in-d3">Animation in D3</a></li>
+<li><a href="#animated-bar-chart">Animated Bar Chart</a></li>
+<li><a href="#animated-line-charts">Animated Line Charts</a></li>
+<li><a href="#animated-paths-on-maps">Animated Paths on Maps</a></li>
+<li><a href="#ui-sliders">UI Sliders</a></li>
+<li><a href="#click-on-a-map">Click on a Map</a></li>
+<li><a href="#recent-interesting-things">Recent Interesting Things</a></li>
+<li><a href="#lets-set-up-your-project-pages">Let's Set Up Your Project Pages</a></li>
+<li><a href="#homework">Homework</a></li>
+</ul>
+</div>
+<h2 id="week-13-animation-with-a-timer-play-buttons-ui">Week 13: Animation with a Timer, &quot;Play&quot; buttons, UI</h2>
+<h3 id="homework-review">Homework Review:</h3>
+<h3 id="javascript-tips-scope">Javascript Tips: Scope</h3>
+<p>We should review this for the multiple charts case, and for the general code structuring in your project. Don't be worried if you are getting tripped up on it, it took me a long time to figure it out at first too.</p>
+<pre><code>var scale;
+var data = [];
+
+scale = d3.scale.linear().range([0, width]);
+
+function doSomething(arg1, arg2) {
+    var var1 = scale;
+    var data = arg2;
+
+    scale.domain(d3.extent(data, function(d) {return d.value;}));
+
+    data = data.filter(function(d) {return d.country == &quot;United States&quot;;});
+}
+</code></pre>
+<p>Let's discuss that snippet. What's happening in it?</p>
+<p>Reminders:</p>
+<ul>
+<li>Variables declared outside of functions are global.<br /></li>
+<li>If you refer to a variable without &quot;var&quot; in front of it, and it was already declared with a &quot;var&quot; declaration, you are changing the value.<br /></li>
+<li>Variables declared inside a function are visible inside that function only.<br /></li>
+<li>arguments to a function call are variables visible in the function call only, as well.<br /></li>
+<li>Code you import from external <code>&lt;script&gt;</code> files add functions and variables to your workspace, just like if you wrote them in a <code>&lt;script&gt;</code> tag in the index.htmnl page.<br /></li>
+<li>You will have name collisions if you use multiple code files that have the same variable names in them. Be careful and rename things so they aren't the same, unless you protect them inside functions.</li>
+</ul>
+<h3 id="more-than-one-chart-on-a-page">More than one chart on a page</h3>
+<p>One way is to use multiple div tags, with different id's.</p>
+<ul>
+<li><a href="http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html">http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html</a></li>
+</ul>
+<p>In this example, there is a nice function for drawing each data set, which means the variables for each graph are in the function scope, not global:</p>
+<ul>
+<li><a href="http://jsfiddle.net/1cqb3uw8/">http://jsfiddle.net/1cqb3uw8/</a></li>
+</ul>
+<h2 id="animation-in-d3">Animation in D3</h2>
+<p>One of the most famous animated graphs ever is Hans Rosling's <a href="http://www.gapminder.org/world/#$majorMode=chart$is;shi=t;ly=2003;lb=f;il=t;fs=11;al=30;stl=t;st=t;nsl=t;se=t$wst;tts=C$ts;sp=5.59290322580644;ti=2013$zpv;v=0$inc_x;mmid=XCOORDS;iid=phAwcNAVuyj1jiMAkmq1iMg;by=ind$inc_y;mmid=YCOORDS;iid=phAwcNAVuyj2tPLxKvvnNPA;by=ind$inc_s;uniValue=8.21;iid=phAwcNAVuyj0XOoBL_n5tAQ;by=ind$inc_c;uniValue=255;gid=CATID0;by=grp$map_x;scale=log;dataMin=194;dataMax=96846$map_y;scale=lin;dataMin=23;dataMax=86$map_s;sma=49;smi=2.65$cd;bd=0$inds=;example=75">Gapminder</a>.</p>
+<p>Tom Carden (RandomEtc) re-did it in javascript using canvas (not D3):<br /><a href="http://randometc.github.io/mind-gapper-js/">http://randometc.github.io/mind-gapper-js/</a></p>
+<p>And then Mike Bostock did it too, in D3:</p>
+<ul>
+<li>Gapminder animation in d3: <a href="http://bost.ocks.org/mike/nations/">http://bost.ocks.org/mike/nations/</a></li>
+</ul>
+<p>But his version has a hidden brush (IMO) for the years. Can you find it?</p>
+<h2 id="animated-bar-chart">Animated Bar Chart</h2>
+<ul>
+<li>Example by Tom Carden: <a href="http://bl.ocks.org/RandomEtc/cff3610e7dd47bef2d01">http://bl.ocks.org/RandomEtc/cff3610e7dd47bef2d01</a></li>
+</ul>
+<p>Note that again, we set up the page, then load the data, and call a &quot;replay&quot; function that is a timer that calls the &quot;draw&quot; function with new data.</p>
+<p>The draw function sets the domains based on current data set, transitions the axes, and does the data binding, exiting, entering, and updating, with transitions.</p>
+<p>Timer:</p>
+<pre><code>setInterval(function() {
+  redraw();  // call the function you created to update the chart
+}, 1500);  // this is the seconds delay before executing.</code></pre>
+<p>Redraw function:</p>
+<pre><code>function redraw() {
+  // Update…
+  chart.selectAll(&quot;rect&quot;)
+      .data(data)
+    .transition()
+      .duration(1000)
+      .attr(&quot;y&quot;, function(d) { return h - y(d.value) - .5; })
+      .attr(&quot;height&quot;, function(d) { return y(d.value); });
+}</code></pre>
+<h2 id="animated-line-charts">Animated Line Charts</h2>
+<p>The unrolling effect! This is all over in real news stories. So you need to know how to do it.</p>
+<ul>
+<li>Unrolling line charts: <a href="http://big-elephants.com/2014-06/unrolling-line-charts-d3js/">http://big-elephants.com/2014-06/unrolling-line-charts-d3js/</a></li>
+</ul>
+<p>See the example in <strong>animated_line.html</strong>. You could use this in your own scrolly stories if you wanted to. Use the second version, for a smoother effect.</p>
+<p>The animation delay happens via the interpolation function.</p>
+<h2 id="animated-paths-on-maps">Animated Paths on Maps</h2>
+<p>Jiaxin wanted to do this.</p>
+<ul>
+<li>Example in <a href="http://mtaptich.github.io/d3-lessons/d3-extras/">http://mtaptich.github.io/d3-lessons/d3-extras/</a></li>
+</ul>
+<p>See my example <strong>animated_map.html</strong> with a play/pause button added to it.</p>
+<ul>
+<li>On Leaflet, zev ross: <a href="http://bl.ocks.org/zross/6a31f4ef9e778d94c204">http://bl.ocks.org/zross/6a31f4ef9e778d94c204</a><br /></li>
+<li>Another good tutorial: <a href="http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html">http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html</a></li>
+</ul>
+<p>Also see this tool from Ben Schmidt to make trails, including animated ones:</p>
+<ul>
+<li><a href="https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a><br /></li>
+<li>And demo: <a href="http://benschmidt.org/D3-trail/minard.html">http://benschmidt.org/D3-trail/minard.html</a></li>
+</ul>
+<h2 id="ui-sliders">UI Sliders</h2>
+<ul>
+<li>Tom MacWright's control that I recommend: <a href="http://www.macwright.org/chroniton/example/">http://www.macwright.org/chroniton/example/</a></li>
+</ul>
+<p>See my example use of it in <strong>africa_map_slider.html.</strong></p>
+<p>More related items:</p>
+<ul>
+<li>Play/Pause audio + animation: <a href="https://www.bignerdranch.com/blog/music-visualization-with-d3-js/">https://www.bignerdranch.com/blog/music-visualization-with-d3-js/</a><br /></li>
+<li>Animated borders with a control: <a href="https://github.com/maptime-ams/animated-borders-d3js/">https://github.com/maptime-ams/animated-borders-d3js/</a>, the <a href="http://maptime-ams.github.io/animated-borders-d3js/tutorial/13/">Demo</a>.<br /></li>
+<li>Brush as time slider: <a href="http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58">http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58</a><br /></li>
+<li>D3 slider control that is not year/time based: <a href="http://thematicmapping.org/playground/d3/d3.slider/">http://thematicmapping.org/playground/d3/d3.slider/</a></li>
+</ul>
+<h2 id="click-on-a-map">Click on a Map</h2>
+<p>A lot of you want to trigger actions off charts or maps.</p>
+<p>An example is in <strong>africa_map_clicker.html.</strong> Of course, the div with the tooltip-like text could instead be another chart!</p>
+<p>Notice how important the moveToFront is for the map mouseover.</p>
+<h2 id="recent-interesting-things">Recent Interesting Things</h2>
+<p>Animated ScrollyTelling Annotated Click Line Chart:</p>
+<ul>
+<li><a href="http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0">http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0</a></li>
+</ul>
+<p>Mercator Map Projection Puzzle:</p>
+<ul>
+<li><a href="http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html">http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html</a></li>
+</ul>
+<p>Animated Map on CartoDB for The Martian:</p>
+<ul>
+<li><p><a href="https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map">https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map</a></p></li>
+<li><p>Animated grid squares by M Bostock (using a timer): <a href="http://bl.ocks.org/mbostock/1009139">http://bl.ocks.org/mbostock/1009139</a></p></li>
+</ul>
+<p>Information is Beautiful Shortlist for Awards:</p>
+<ul>
+<li><a href="http://www.informationisbeautifulawards.com/showcase?award=2015&amp;pcategory=short-list&amp;type=awards">http://www.informationisbeautifulawards.com/showcase?award=2015&amp;pcategory=short-list&amp;type=awards</a> (I'm a judge.)</li>
+</ul>
+<h2 id="lets-set-up-your-project-pages">Let's Set Up Your Project Pages</h2>
+<p>Let's do this:<br /><a href="https://pages.github.com/">https://pages.github.com/</a></p>
+<p>After you do the stuff on the github site, in your local directory for the project,</p>
+<pre><code>&gt;git pull
+&gt;git checkout gh-pages</code></pre>
+<p>You will now be working only in the branch that is public for the website, gh-pages. Then if you want to commit and push from the command line, you can edit your files, and then do:</p>
+<pre><code>&gt;git status [to see what files need adding, vs what have changed]
+&gt;git add [filename] -- for each file you want to add to the repo if it&#39;s not there yet
+&gt;git commit -am &#39;My note about what I did&#39;  [this commits everything you have added or edited and uses that note to say what you did]
+&gt;git push [push the changes to the repo so i can pull them :)]</code></pre>
+<p>On the repo project page, reload/refresh the page. You should see all the files you added and edited there. If you have the index.html page showing your d3 work, it will update with the latest work when you look at<br />your <code>your-username.github.io/project-name</code> page.</p>
+<p>You can work in a github GUI or some other way if you want. Just make sure you check your work is visible in the url view.</p>
+<p>If you screw yourself up, this guide might help:</p>
+<ul>
+<li><a href="http://sethrobertson.github.io/GitFixUm/fixup.html">http://sethrobertson.github.io/GitFixUm/fixup.html</a></li>
+</ul>
+<h2 id="homework">Homework</h2>
+<p><strong>Homework 1 (10pt) Create your project site.</strong></p>
+<p>Send me the link to the repo. Make sure it has an index page. I will be pulling from your projects to debug and review from now on. Send me your link.</p>
+<p><strong>Homework 2 (20pt) Project Progress!</strong></p>
+<p>I'd like to see more development in your project. Show me where you are and what's blocking you now, if anything. You can combine this with the one above if you want, but make sure you tell me what progress you made since this week.</p>
+<p><strong>Homework 3 (15pt) Judge IIB Contest For Me</strong></p>
+<p>Just kidding, but go through the interactives for the <a href="http://www.informationisbeautifulawards.com/showcase?acategory=interactive&amp;action=index&amp;award=2015&amp;controller=showcase&amp;page=1&amp;pcategory=short-list&amp;type=awards">contest</a> and pick 2 you would nominate for an award and tell me why. I'm curious how much agreement there will be :) Send it as email: &quot;Contest Winners&quot;</p>
+</body>
+</html>

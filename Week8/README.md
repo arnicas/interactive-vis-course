@@ -2,16 +2,6 @@
 
 ## Homework Review
 
-### Transitions:
-
-* http://bl.ocks.org/DimsumPanda/raw/6242dc285176a797a6e3/ - great pic work
-* http://bl.ocks.org/theopenwindow/raw/793b507351950b6ffa73/ - text changes!
-
-
-### Dots on Lines
-
-* Highlighted Line: http://bl.ocks.org/theopenwindow/raw/f160401fe26b60c88484/
-* Yan with Voronoi: http://bl.ocks.org/yan2014/7e7d91af038d7f5ed88c
 
 ### Default Button Selection Style
 

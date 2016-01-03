@@ -7,20 +7,8 @@ Discuss issues we had with the homeworks, High Charts, and/or data loading.
 
 **First, server: You Must Use Your Server with Javascript.**
 
-High Charts examples:
-
-* Louise: http://bl.ocks.org/lwhitaker3/raw/8fb150421ff2ca7251be/
-* Jo: http://bl.ocks.org/jowang0319/raw/0991b58b29039bfcbb56/
-* Luis: http://bl.ocks.org/lmelgar/raw/7e3a21a905cae284cab8/
-* Halina: http://bl.ocks.org/hmader/raw/7473839d1bbbedb7b291/
 
 **Other charting libraries:**
-
-Lots of you used Google Charts, probably because I said it wasn't that bad :)
-
-* Louise: http://bl.ocks.org/lwhitaker3/9790e93bd61152bc01f4
-* Luis tried a couple and ended with Zingchart.js: http://bl.ocks.org/lmelgar/3b1e7aa8a5889e396215 (notice the legend behavior differs)
-
 
 About Readme.md files...  Tips on formatting in markdown, if you want: https://help.github.com/articles/github-flavored-markdown/
 
