@@ -1,18 +1,16 @@
-# interactive-vis-course
+# Interactive Data Vis Course Repo
 
 Repo for U of Miami course on interactive vis by Lynn Cherny, fall 2015.
 
-    Office Hours: Wolfson 1020A, M & Th 1.30-3.
+    Office Hours: Wolfson 1020A, M & Th 1-3 or by appt.
     Emails for homework: arnicas@gmail.com
-
 
 ## What the Course Covers
 
 ### 1. Interactive data vis: Design Principles, Techniques, Best-Practices...
 
-Subject to change!
 
-* [Week1](Week1): Intro to Tools, Client Project, CSVs
+* [Week1](Week1): Intro to Tools and the Course, Setup, CSVs Coping
 * [Week2](Week2): Loading CSV Data, Highcharts
 * [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
 * [Week4](Week4): More tables, SVG and D3 bar charts
@@ -26,46 +24,41 @@ Subject to change!
 * [Week12](Week12): Storytelling Techniques: Scrollytelling, Steppers
 * [Week13](Week13): Animation: Lines, Play/Pause...
 * [Week14](Week14): Project, Reusable charts, other layouts
-* [Week15](Week15): Project, WebGl & Canvas
+* [Week15](Week15): Project
 
 
-### 2. Programming Techniques and Tools
+### 2. Programming Techniques and Tools We'll Cover
 
 * Javascript and useful libraries like JQuery, lowdash
-* Good practices with D3
-* Charting libs like High Charts, D3, libs on top of D3
-* GitHub use (and some command line stuff)
+* Good practices with D3.js for data vis
+* Charting libs like High Charts, D3, libs on top of D3 like Dimple.js
+* GitHub use
 * Debugging how-to's
 
 
-### 3. A Client Project: UNICEF: http://www.unicef.org/
+### 3. Data Analysis Sources
 
-* [The client brief](APromiseRenewed_Brief_March2015.pdf)
-* The 2014 Key Findings Report on http://www.apromiserenewed.org/: [pdf](http://www.apromiserenewed.org/wp-content/uploads/2015/07/A-Promise-Renewed-2014-Key-Findings.pdf) (plus other publications that may be useful!)
-* Their data sites: http://data.unicef.org/index.php, http://mics.unicef.org
+* UNICEF & Child Mortality (Fall Semester Client)
+    * [The client brief](APromiseRenewed_Brief_March2015.pdf)
+    * The 2014 Key Findings Report on http://www.apromiserenewed.org/: [pdf](http://www.apromiserenewed.org/wp-content/uploads/2015/07/A-Promise-Renewed-2014-Key-Findings.pdf) (plus other publications that may be useful!)
+    * Their data sites: http://data.unicef.org/index.php, http://mics.unicef.org
+    * World Health Org (WHO): http://www.who.int/research/en/
+    * http://childmortality.org/ - UN Inter-agency Group for Child Mortality Estimation (IGME), of which UNICEF is a member (new data coming in September)
 
-* Note: [UNICEF Style Guide](UNICEF Brand Toolkit ENG Sept 2012.pdf) - important
 
+* More coming soon...
 
-Other resources on child mortality:
-
-* World Health Org (WHO): http://www.who.int/research/en/
-* Max Roser: http://ourworldindata.org/data/health/maternal-mortality/
-* http://childmortality.org/ - UN Inter-agency Group for Child Mortality Estimation (IGME), of which UNICEF is a member (new data coming in September)
-* More in my delicious links: https://delicious.com/arnicas/unicef
 
 ### 4. Evaluation
 
-Grading based on weekly homeworks (60%) and a final project (40%) that uses many of the techniques in a storytelling project using the client data (supplemented as you like).  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
+Grading based on weekly homeworks (60%) and a final project (40%) that uses many of the techniques in a storytelling project using data that interests you.  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
 
 Primary emphasis is on end user experience and data honesty; secondary consideration will be good coding practices.
-
-**Extra Credit**: Grad students must do the extra credit (unless noted otherwise). Anyone else can do them for extra credit!  I'd suggest doing as many as you can.
 
 **Due Dates**: Due by 5pm on Monday before class day, unless I decide otherwise... You will be submitting links by email (arnicas@gmail.com).
 
 
-## D3 Books and Tutorial Materials
+## Background: D3 Books and Tutorial Materials
 
 * **Interactive Data Visualization for the Web** ("IDVW"), Scott Murray’s book: http://alignedleft.com/work/d3-book
 Online version: http://chimera.labs.oreilly.com/books/1230000000345.  [Code samples here](https://github.com/alignedleft/d3-book). *This is the book I'll assign most intro D3 readings from.*
@@ -88,7 +81,7 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345.  [Code samp
 
 * **D3 Newbie FAQ**: I am working on this, and will be editing it as we encounter new ones :). https://github.com/arnicas/d3-faq
 
-* Videos:
+* Videos on D3:
     * Knight Center D3 Course video playlists: I'll recommend some of Scott Murray's videos as backup or weekend viewing. (They don't seem to be well-indexed on YouTube, but start [here](https://www.youtube.com/user/KnightCenterMOOC/playlists).  The code examples are [here](https://github.com/alignedleft/data-vis-d3).
     * These intro videos seem good too: https://www.youtube.com/user/d3Vienno/videos
 

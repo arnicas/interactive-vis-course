@@ -86,8 +86,6 @@ If we have time, we'll play with [console_javascript.html](console_javascript.ht
 
 * Optional [video by Scott Murray](https://www.youtube.com/watch?v=3g1061kFrCs&index=4&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F) reviewing some Javascript concepts.
 
-**Homework:** See below.
-
 
 ## Loading Data with JS/D3
 
@@ -104,20 +102,17 @@ set up your servers. Depending on time, we'll do it in class. Use this to help: 
 
 ## Homeworks Collected Up
 
-Homework is due at 5pm on Monday the night before the next class. I have office hours on Monday if you have struggled.
+Homework is due at 5pm on Monday the night before the next class. I have office hours on Monday if you have struggled!
 
 Readings:
 
 * Read Chapter 3 of IDVW: http://chimera.labs.oreilly.com/books/1230000000345/ch02.html. You can stop at the SVG part at the end of chapter 3, for now. (Chapter 2 may be nice background but is optional.)
 
-* [The client brief](../APromiseRenewed_Brief_March2015.pdf) and Key Findings from 2014: Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
-
 * Loading data with D3, at http://learnjsdata.com/read_data.html.
 
-**Homework**:  Style [this page](wapo_debates_article.html) to look like the news website of your choice or like Tufte.  Don't get out of control - just headlines, byline, paragraph/body text, and images.  Make a gist and send me the link: "Week 1: Style article."  (30pt, Extra credit: make your style sheet external, 5pt)
 
 **Homework:** Fix [js_errors.html](js_errors.html) so it displays correctly.  Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, JS errors".  If you can't do it all, send me as far as you got. (20pt, Extra credit 10pt see end of the file. Partial credit given!)
 
-**Homework**: Download a UNICEF data set (or related one on child/maternal mortality) of interest to you and format in Excel for use in visualization. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.' (10pt, Extra credit: Add a calculated value column, 5pt)
+**Homework**: Download a data set of interest to you and format in Excel for use in visualization. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.'  You'll need this file next week. (10pt)
 
 **Homework**: Set up your server, github accounts, etc!
