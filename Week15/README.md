@@ -70,7 +70,7 @@ Remember there are some general patterns for the code for updated graphs.
     c. **exit** to remove ones you don't need now
     d. **transition** - this applies to all the items "left" on the page after the enter and exit, and makes them move prettily.
 
-You can see this full pattern in use in **Week8/scatter_data_update.html**.
+You can see this full pattern in use in **[../Week8/scatter_data_update.html](../Week8/scatter_data_update.html)**.
 
 ### Data vs. Datum
 

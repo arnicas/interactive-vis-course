@@ -99,10 +99,12 @@ The unrolling effect!  This is all over in real news stories.  So you need to kn
 
 * Unrolling line charts: http://big-elephants.com/2014-06/unrolling-line-charts-d3js/
 
-See the example in **animated_line.html**.  You could use this in your own scrolly stories if you wanted to.  Use the second version, for a smoother effect.
+See the example in **[animated_line.html](animated_line.html)**.  You could use this in your own scrolly stories if you wanted to.  Use the second version, for a smoother effect.
 
 The animation delay happens via the interpolation function.
 
+
+TODO: Fix up the global vars in the animated lines example, add a sync'd animation.
 
 
 ## Animated Paths on Maps
@@ -111,7 +113,7 @@ Jiaxin wanted to do this.
 
 * Example in http://mtaptich.github.io/d3-lessons/d3-extras/
 
-See my example **animated_map.html** with a play/pause button added to it.
+See my example **[animated_map.html](animated_map.html)** with a play/pause button added to it.
 
 
 * On Leaflet, zev ross: http://bl.ocks.org/zross/6a31f4ef9e778d94c204
@@ -128,7 +130,7 @@ Also see this tool from Ben Schmidt to make trails, including animated ones:
 
 * Tom MacWright's control that I recommend: http://www.macwright.org/chroniton/example/
 
-See my example use of it in **africa_map_slider.html.**
+See my example use of it in **[africa_map_slider.html](africa_map_slider.html).**
 
 
 More related items:
@@ -143,7 +145,7 @@ More related items:
 
 A lot of you want to trigger actions off charts or maps.
 
-An example is in **africa_map_clicker.html.**  Of course, the div with the tooltip-like text could instead be another chart!
+An example is in **[africa_map_clicker.html](africa_map_clicker.html).**  Of course, the div with the tooltip-like text could instead be another chart!
 
 Notice how important the moveToFront is for the map mouseover.
 
@@ -210,9 +212,6 @@ Send me the link to the repo. Make sure it has an index page.  I will be pulling
 
 I'd like to see more development in your project.  Show me where you are and what's blocking you now, if anything.  You can combine this with the one above if you want, but make sure you tell me what progress you made since this week.
 
-**Homework 3 (15pt) Judge IIB Contest For Me**
-
-Just kidding, but go through the interactives for the [contest](http://www.informationisbeautifulawards.com/showcase?acategory=interactive&action=index&award=2015&controller=showcase&page=1&pcategory=short-list&type=awards) and pick 2 you would nominate for an award and tell me why. I'm curious how much agreement there will be :)  Send it as email: "Contest Winners"
 
 
 

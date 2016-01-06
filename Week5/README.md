@@ -108,11 +108,9 @@ rects.attr("fill", function(d) {
 })
 ````
 
-That's what Jo did in http://bl.ocks.org/jowang0319/03712cf42713752d62e9.
-
 ## Adding Text Elements
 
-SVG has its own text element.
+SVG has its own "text" element.
 
 * A good overview of d3 with a bunch of SVG element attributes - make sure you read down to the text parts to see how they work: http://www.d3noob.org/2014/02/attributes-in-d3js.html
 * A simple set of circles with text labels: https://www.dashingd3js.com/svg-text-element
@@ -120,10 +118,6 @@ SVG has its own text element.
 
 The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right.  dy with a negative value will move it "up", because the coordinate system is "higher numbers at the bottom of the screen."
 
-Examples:
-
-* Modified version of Jo's bars: http://bl.ocks.org/arnicas/2d34b474c762abe9f4ee
-* Halina's end-of-bars text: http://bl.ocks.org/hmader/5f428acbd45c230400b5#file-contraceptive-mortality-select-countries-chart-csv
 
 ###Tips on Formatting Numbers in D3 in Axes, etc
 
@@ -165,7 +159,9 @@ Remember: rangeRoundBands (plural) sets up the bands.  rangeBand() (singular) gi
 
 If you use an ordinal scale with categorical items, like the names of bars in a bar chart, it will "space them out" for you on the scale.
 
-Example: See bar_axes_labels.html.
+Example: See [bar_axes_labels.html](bar_axes_labels.html).
+
+TODO: Make another bar example with ordinal scales.
 
 
 ### Aside on Javascript Map
@@ -236,6 +232,8 @@ var yScale = d3.scale.linear().range([ height, 0 ]);
 
 * Mike's post on it: http://bl.ocks.org/mbostock/3019563
 
+TODO: Discuss his extra ```<g>``` transform.
+
 ## Transform, Translate: Move a starting coordinate somewhere.
 
 Let's play with http://blockbuilder.org/arnicas/6217eec849a8f270e80d.
@@ -270,9 +268,9 @@ svg.append("g")
     .call(axis);  // here were 'call' the function for the axis.
 ````
 
-See bar_axes_labels.html.
+See [bar_axes_labels.html](bar_axes_labels.html).
 
-If you want to specially format your tick labels, you can.  See formatting_ticks.html.
+If you want to specially format your tick labels, you can.  See [formatting_ticks.html](formatting_ticks.html).
 
 
 ## Adding an Axis Label: Putting Margins and Labels and Transforms Together
@@ -280,7 +278,7 @@ If you want to specially format your tick labels, you can.  See formatting_ticks
 How to add an axis label to your axes.
 * http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html
 
-This often turns into a trial-and-error routine with transforms. My code in bar_axes_labels.html has:
+This often turns into a trial-and-error routine with transforms. My code in [bar_axes_labels.html](bar_axes_labels.html) has:
 
 ````
 svg.append("text")

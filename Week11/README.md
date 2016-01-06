@@ -5,15 +5,7 @@
 
 Small Multiples:
 
-* http://bl.ocks.org/hmader/26d6d9cc1f0f5625fc07
-* http://bl.ocks.org/lwhitaker3/069decfde338d934e54b
-* http://bl.ocks.org/yan2014/raw/222b7fc184672cdfa6ea/
-
-
-Let's talk about what "count" is calculated on... and the bug with the extra dot at the end that I left in.
-
-Also make sure you saw this example I added:
-small_multiples_each_trans_diffaxis.html.
+Let's talk about what "count" is calculated on...
 
 
 ##Starting with D3 Maps
@@ -34,11 +26,11 @@ Let's play with some:
 * http://geojson.io/#map=2/82.9/142.2.
 * http://techslides.com/demos/d3/d3-exploring-countries.html
 
-Now let's look at africa_map.html first.  That's a simple map of borders using TopoJSON of the continent.
+Now let's look at [africa_map.html](africa_map.html) first.  That's a simple map of borders using TopoJSON of the continent.
 
-Then africa_map2.html -- look how we get to the actual country features.
+Then [africa_map2.html](africa_map2.html) -- look how we get to the actual country features.
 
-Let's look at coloring the world by regions in http://localhost:8000/interactive-vis-course/Week11/world_map_regions.html and discuss. (This is a homework problem for you.)
+Let's look at coloring the world by regions in [world_map_regions.html](world_map_regions.html) and discuss. (This is a homework problem for you.)
 
 
 ## Choropleths
@@ -66,7 +58,7 @@ http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/
 
 And my version using our data and some changes:
 
-* **world_comparisons.html**
+* **[world_comparisons.html](world_comparisons.html)**
 
 Any design suggestions?  How would you improve the tooltips?
 
@@ -274,9 +266,9 @@ https://github.com/veltman/learninglunches/tree/master/maps
 * Don't use rainbow schemes or your data vis license will be revoked: https://eagereyes.org/basics/rainbow-color-map
 
 
-**HW 1 (20pts) Region Colors**:  Make a region color-coded map of the world like I showed. You can start from africa_map2.html and africa_map3.html for the data loading.  Use the region data in World_Development_Indicators_Metadata_Countries.csv.  You may have to use the ISO3 column.
+**HW 1 (20pts) Region Colors**:  Make a region color-coded map of the world like I showed. You can start from [africa_map2.html](africa_map2.html) and [africa_map3.html](africa_map3.html) for the data loading.  Use the region data in [World_Development_Indicators_Metadata_Countries.csv](World_Development_Indicators_Metadata_Countries.csv).  You may have to use the ISO3 column.
 
-**HW 2 (15pts) Choropleth Map**: Make a choropleth map for your project data, using a continent or region or world of your choice, similar to what I did in africa_map3.html. It should have a legend and tooltips. **Extra Credit (grad students, 6 pts)**: Use the jquery Tipsy plugin (or another jquery plugin) for the tooltips. [Actually, it doesn't work on maps. Why not?]
+**HW 2 (15pts) Choropleth Map**: Make a choropleth map for your project data, using a continent or region or world of your choice, similar to what I did in africa_map3.html. It should have a legend and tooltips.
 
 **HW 3 (20 pts) Design Sketch Rev2**: I want an updated design sketch for your project, using some ideas from the second stages of the Five Design Sheets site. http://fds.design/ You should have done some exploratory charts and graphs and have ideas about what types of charts you will include in the project now.  We'll discuss these in class next week.
 

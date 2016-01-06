@@ -56,10 +56,8 @@ Added to my references on the home page of the repo:
 
 Let's review these:
 
-* d3_tabulate_function.html
-* d3_tabulate_function_sortable.html - using a JQuery function with D3!
-
-**Homework**: See below.
+* [d3_tabulate_function.html](d3_tabulate_function.html)
+* [d3_tabulate_function_sortable.html](d3_tabulate_function_sortable.html) - using a JQuery function with D3!
 
 
 ## Examples of Interactive Tables and Style Advice
@@ -106,7 +104,7 @@ Even independent of the rest of D3, the scales are incredibly powerful and usefu
 * References: Ordinal Scales: https://github.com/mbostock/d3/wiki/Ordinal-Scales
 * References: Time Scales: https://github.com/mbostock/d3/wiki/Time-Scales
 
-* My example file: scale_examples.html
+* My example file: [scale_examples.html](scale_examples.html)
 
 * Read: http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale
 * Supplementary: http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/
@@ -127,9 +125,8 @@ SVG stands for "scaleable vector graphics."  D3 can create DOM elements that can
 
 D3 can manipulate and draw SVG, which is how many interactive data graphics are created. (An alternative is to use canvas for drawing shapes, but things drawn on canvas can't be manipulated as DOM elements like SVG items can, leading to some downsides.)
 
-* My Example file: SVG_example.html
-
-* And also svg_to_fix.html
+* My Example file: [SVG_example.html](SVG_example.html)
+* And also [svg_to_fix.html](svg_to_fix.html).
 
 A Few Resources:
 
@@ -165,22 +162,14 @@ This is a common pattern in D3:
     }) ]);
 ````
 
-Look at d3_dynamic_domain.html.
+Look at [d3_dynamic_domain.html](d3_dynamic_domain.html).
 
-Note that with chaining, you can put your domain and range in any order on your scale function.  d3.scale.linear().domain([]).range([]) is fine, and so is d3.scale.linear.range([]).domain([]).
+Note that with chaining, you can put your domain and range in any order on your scale function.  ```d3.scale.linear().domain([]).range([])``` is fine, and so is ```d3.scale.linear.range([]).domain([])```.
 
 ## Readings
 
 * [A Tour Through The Visualization Zoo](http://queue.acm.org/detail.cfm?id=1805128)- some examples of less common visualization techniques, possible in D3.
 * Read: http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale
-
-* The newest UNICEF reports:
-    * http://www.unicef.org/publications/index_83078.html
-    * Plus a Key Findings summary report:
-    * http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf
-    * And another report which we released at the same time: http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf
-
-    Remember the data site is live again: data.unicef.org
 
 
 **Homework 1 (35pt):**
@@ -199,7 +188,7 @@ Send me the gist: "Week4: Heatmap table"
 
 **Homework 2 (20pt):**
 
-Using the file in svg_to_fix.html, I want you to add some styling, using d3 and style sheets.  You might need to look up stuff in the SVG references.
+Using the file in [svg_to_fix.html](svg_to_fix.html), I want you to add some styling, using d3 and style sheets.  You might need to look up stuff in the SVG references.
 
 * Using d3 to select all the ellipses, re-style all the ellipses so their fill is blue.
 * Using d3 to select all the rectangles, re-style them so their stroke width is 2px instead.
@@ -217,6 +206,6 @@ Send me the gist with "Week 4: SVG fixes"
 
 **Homework 3 (20pt)**:
 
-Using the model in d3_dynamic_domain.html, make your own barchart for your data.  Pick one of your numeric columns, and resize the SVG container to fit it.  You can adjust range etc. as you like. Add text to the page saying what it is showing.
+Using the model in [d3_dynamic_domain.html](d3_dynamic_domain.html), make your own barchart for your own data.  Pick one of your numeric columns, and resize the SVG container to fit it.  You can adjust range etc. as you like. Add text to the page saying what it is showing.
 
 

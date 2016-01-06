@@ -1,25 +1,8 @@
 
 ##Week 12: Storytelling Tools: Scrolling, Steppers
 
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+## Homeworks
 
-- [More Map Tools/Techniques](#)
-- [Storytelling](#)
-  - [Steppers ("slideshow")](#)
-  - [Scrollytelling](#)
-  - [Tutorials on Scrollytelling](#)
-- [Examples](#)
-  - [Zoomytelling, a subgenre?](#)
-- [Javascript Tips, the Switch Statement](#)
-- [Design tips](#)
-- [Other Related Tools](#)
-- [Homework](#)
-
-## Homeworks:
-
-**Tipsy!**
-
-Why does it not work well on maps?  Let's look at this one:
 
 ## More Map Tools/Techniques
 
@@ -75,11 +58,14 @@ Truth: I spent a lot of time trying to adapt 2 graphs to these techniques in bot
 
 The example for the homework is much simpler, a combo using Mike Freeman's modified version of Jim's scroller:
 
-* scroller_template.html:
-* requires js/line_chart.js
-* js/scroller_settings.js
-* js/mfreeman_scroller.js
-* line.css
+* [scroller_template.html](scroller_template.html)
+  * requires js/line_chart.js
+  * js/scroller_settings.js
+  * js/mfreeman_scroller.js
+  * line.css
+* [scroller_template_lines2.html](scroller_template_lines2.html) -- with more page context around it
+
+TODO: Try to fix up libs used to handle backing up from different ending points; clarify step 0 and when to trigger it at start.
 
 Another case by Tony Hschu:
 
@@ -195,13 +181,15 @@ Example: http://pageflow.ericmakswitat.de/research
 * Read/skim in this order: http://vallandingham.me/think_you_can_scroll.html, http://mfviz.com/scrollytelling/#/
 
 
-**Homework 1 (25pt), Scrollytelling**: Use the template in scroller_template.html and associated files to tell a short story about that line graph.  You can write your own functions to highlight, label, color, etc, anything you want.  If you prefer to try to put your own data and chart into it, if it will help with your project, go for it.  There should be at least 4 steps to it. Send as "Scrolling."
+**Homework 1 (25pt), Scrollytelling**: Use the template in [scroller_template_lines2.html](scroller_template_lines2.html) and associated files to tell a short story about that line graph.  You can write your own functions to highlight, label, color, etc, anything you want.  If you prefer to try to put your own data and chart into it, if it will help with your project, go for it.  There should be at least 4 steps to it. Send as "Scrolling."
 
 Note: If you prefer to use a stepper, you can construct a new page with buttons (like we did in the first few weeks) with highlights triggered by the buttons.  Again, do that only if you want to use it in your final project.
 
 **Homeworkd 2 (35pt), 3 Charts**:
 
 Make 3 D3 charts of different kinds that you would like to include in your final project, all on the same page.  You can use multiple data files (using queue).  They do not have to be interactive yet (you can avoid tooltips etc until later).  It will definitely save you time if you can reuse this code in your project, so make sure you are building towards your final design.  We will discuss the next level of interaction next week. Send as "3 Charts."
+
+TODO: Code structuring for this earlier in semester.
 
 **Homeword 3 (5pt), Story Technique**:  Based on the examples and the pdf reading, which of the 7 genres of storytelling are you going to use for your project? Say why.
 

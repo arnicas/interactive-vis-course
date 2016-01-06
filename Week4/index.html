@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
 </head>
 <body>
 <div id="TOC">
@@ -70,10 +70,9 @@
 <h2 id="more-on-tables">More On Tables</h2>
 <p>Let's review these:</p>
 <ul>
-<li>d3_tabulate_function.html<br /></li>
-<li>d3_tabulate_function_sortable.html - using a JQuery function with D3!</li>
+<li><a href="d3_tabulate_function.html">d3_tabulate_function.html</a><br /></li>
+<li><a href="d3_tabulate_function_sortable.html">d3_tabulate_function_sortable.html</a> - using a JQuery function with D3!</li>
 </ul>
-<p><strong>Homework</strong>: See below.</p>
 <h2 id="examples-of-interactive-tables-and-style-advice">Examples of Interactive Tables and Style Advice</h2>
 <h3 id="d3-table-examples">D3 Table Examples</h3>
 <ul>
@@ -112,7 +111,7 @@
 <li>References: Quantitative Scales: <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales">https://github.com/mbostock/d3/wiki/Quantitative-Scales</a><br /></li>
 <li>References: Ordinal Scales: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">https://github.com/mbostock/d3/wiki/Ordinal-Scales</a><br /></li>
 <li><p>References: Time Scales: <a href="https://github.com/mbostock/d3/wiki/Time-Scales">https://github.com/mbostock/d3/wiki/Time-Scales</a></p></li>
-<li><p>My example file: scale_examples.html</p></li>
+<li><p>My example file: <a href="scale_examples.html">scale_examples.html</a></p></li>
 <li>Read: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale">http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale</a><br /></li>
 <li>Supplementary: <a href="http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/">http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/</a><br /></li>
 <li><p>Videos: <a href="https://www.youtube.com/watch?v=5EZSOsBXdS0&amp;list=PL0tDk-f4v1uh4s33k1qJ7Xl96cOySkLnt">Scott Murray's linear scales</a>, <a href="https://www.youtube.com/watch?v=WxtJ7VfP_VE&amp;list=PL0tDk-f4v1uh4s33k1qJ7Xl96cOySkLnt&amp;index=2">ordinal scales</a></p></li>
@@ -128,8 +127,8 @@
 <p>SVG stands for &quot;scaleable vector graphics.&quot; D3 can create DOM elements that can be manipulated like you've been manipulating other HTML elements, such as <code>&lt;p&gt;</code> and <code>&lt;table&gt;</code>. SVG elements include shapes like circles and rectangles, which is why it's useful for creating charts.</p>
 <p>D3 can manipulate and draw SVG, which is how many interactive data graphics are created. (An alternative is to use canvas for drawing shapes, but things drawn on canvas can't be manipulated as DOM elements like SVG items can, leading to some downsides.)</p>
 <ul>
-<li><p>My Example file: SVG_example.html</p></li>
-<li><p>And also svg_to_fix.html</p></li>
+<li>My Example file: <a href="SVG_example.html">SVG_example.html</a><br /></li>
+<li>And also <a href="svg_to_fix.html">svg_to_fix.html</a>.</li>
 </ul>
 <p>A Few Resources:</p>
 <ul>
@@ -160,20 +159,12 @@
         widthScale.domain([ 0, d3.max(data, function(d) {
             return +d.year2015;
     }) ]);</code></pre>
-<p>Look at d3_dynamic_domain.html.</p>
-<p>Note that with chaining, you can put your domain and range in any order on your scale function. d3.scale.linear().domain([]).range([]) is fine, and so is d3.scale.linear.range([]).domain([]).</p>
+<p>Look at <a href="d3_dynamic_domain.html">d3_dynamic_domain.html</a>.</p>
+<p>Note that with chaining, you can put your domain and range in any order on your scale function. <code>d3.scale.linear().domain([]).range([])</code> is fine, and so is <code>d3.scale.linear.range([]).domain([])</code>.</p>
 <h2 id="readings">Readings</h2>
 <ul>
 <li><a href="http://queue.acm.org/detail.cfm?id=1805128">A Tour Through The Visualization Zoo</a>- some examples of less common visualization techniques, possible in D3.<br /></li>
-<li><p>Read: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale">http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale</a></p></li>
-<li><p>The newest UNICEF reports:</p>
-<ul>
-<li><a href="http://www.unicef.org/publications/index_83078.html">http://www.unicef.org/publications/index_83078.html</a><br /></li>
-<li>Plus a Key Findings summary report:<br /></li>
-<li><a href="http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf">http://www.unicef.org/publications/files/APR_2015_Key_Findings_8_Sep_15.pdf</a><br /></li>
-<li>And another report which we released at the same time: <a href="http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf">http://www.unicef.org/publications/files/Child_Mortality_Report_2015_Web_8_Sept_15.pdf</a></li>
-</ul>
-<p>Remember the data site is live again: data.unicef.org</p></li>
+<li>Read: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale">http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale</a></li>
 </ul>
 <p><strong>Homework 1 (35pt):</strong></p>
 <p>Make a table like the one in d3_table_heatmap.html for your data. It should be sortable using stupidtable.js. Make a color scale for one of your numeric columns. You can use the scale on a font or the background.<br />Same rules as above:</p>
@@ -186,7 +177,7 @@
 </ul>
 <p>Send me the gist: &quot;Week4: Heatmap table&quot;</p>
 <p><strong>Homework 2 (20pt):</strong></p>
-<p>Using the file in svg_to_fix.html, I want you to add some styling, using d3 and style sheets. You might need to look up stuff in the SVG references.</p>
+<p>Using the file in <a href="svg_to_fix.html">svg_to_fix.html</a>, I want you to add some styling, using d3 and style sheets. You might need to look up stuff in the SVG references.</p>
 <ul>
 <li>Using d3 to select all the ellipses, re-style all the ellipses so their fill is blue.<br /></li>
 <li>Using d3 to select all the rectangles, re-style them so their stroke width is 2px instead.<br /></li>
@@ -200,6 +191,6 @@
 </ul>
 <p>Send me the gist with &quot;Week 4: SVG fixes&quot;</p>
 <p><strong>Homework 3 (20pt)</strong>:</p>
-<p>Using the model in d3_dynamic_domain.html, make your own barchart for your data. Pick one of your numeric columns, and resize the SVG container to fit it. You can adjust range etc. as you like. Add text to the page saying what it is showing.</p>
+<p>Using the model in <a href="d3_dynamic_domain.html">d3_dynamic_domain.html</a>, make your own barchart for your own data. Pick one of your numeric columns, and resize the SVG container to fit it. You can adjust range etc. as you like. Add text to the page saying what it is showing.</p>
 </body>
 </html>

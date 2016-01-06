@@ -6,7 +6,7 @@
 
 **Padding**:
 
-How to add padding on scatterplots... see Week5/scatter_sample.html, now posted.
+How to add padding on scatterplots... see [Week5/scatter_sample.html](../Week5/scatter_sample.html), now posted.
 
 **Bar chart 0 line**:
 
@@ -29,7 +29,7 @@ Values all squished together on a linear scale?  Try log scales? or other? See h
 
 ### Bar Charts
 
-Bar chart axes issues... I was after ordinal scale labeling of the bars on the Y axis, as in Week5/bar_axes_labels.html.
+Bar chart axes issues... I was after ordinal scale labeling of the bars on the Y axis, as in [Week5/bar_axes_labels.html](../Week5/bar_axes_labels.html).
 
 ###Dot Plots
 
@@ -49,11 +49,6 @@ var textlabels = d3.svg.selectAll("text.labels")
 
 ````
 
-### Project Ideas!
-
-Let's do it!
-
-
 
 ## Dates in D3
 
@@ -66,7 +61,7 @@ Watch: Working with Dates in D3, Scott Murray: https://www.youtube.com/watch?v=C
 
 Use: http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95
 
-Example: Date formatting and parsing in d3_date_parsing.html.  Let's work through that.
+Example: Date formatting and parsing in [d3_date_parsing.html](d3_date_parsing.html).  Let's work through that.
 
 
 ##Line Charts (and Time)
@@ -95,8 +90,8 @@ var line = d3.svg.line()
 
 Examples:
 
-* Scatterplot: **emissions_time_scatterplot.html** -- we're turning this data into a line plot:
-* Lineplot version: **emissions_lineplot.html**
+* Scatterplot: **[emissions_time_scatterplot.html](emissions_time_scatterplot.html)** -- we're turning this data into a line plot:
+* Lineplot version: **[emissions_lineplot.html](emissions_lineplot.html)**
 
 Now plotting more data, we use g elements for each country (or other "parent", and the values for the line are in another attribute, under "emissions":
 
@@ -125,7 +120,7 @@ Now plotting more data, we use g elements for each country (or other "parent", a
 ````
 
 
-* See my example **multiple_lines.html**
+* See my example **[multiple_lines.html](multiple_lines.html)**
 
 For more calm and friendly explanation of lines in d3, watch the line charts video from Scott Murray:
 
@@ -174,7 +169,7 @@ function handle_click(d,i) {
 rect.on("click", handle_click);  // notice you call it by name only, no parens!
 ````
 
-See **multiple_lines_mouseover.html.**
+See **[multiple_lines_mouseover.html](multiple_lines_mouseover.html).**
 
 
 ## D3 Tooltips
@@ -188,7 +183,7 @@ There are 3 crucial pieces:
 * and then the mouseover, which sets position, text, and visibility.
 
 
-Relevant bits from my file example: emissions_scatterplot_tooltip.html
+Relevant bits from my file example: [emissions_scatterplot_tooltip.html](emissions_scatterplot_tooltip.html)
 ````
 .tooltip {
     position: absolute;
@@ -208,7 +203,7 @@ circles
 
 If you forget any of them, you'll have a bug!
 
-Example: **emissions_scatterplot_tooltip.html**
+Example: **[emissions_scatterplot_tooltip.html](emissions_scatterplot_tooltip.html)**
 
 Here's an alternative using a plugin, d3.tip:  http://labratrevenge.com/d3-tip/.
 
@@ -225,7 +220,7 @@ This example file shows how to use classes using a new d3 method, `d3.classed()`
 
 **Reference**: https://github.com/mbostock/d3/wiki/Selections#classed
 
-See **multiple_lines_mouseover_tooltip.html**.
+See **[multiple_lines_mouseover_tooltip.html](multiple_lines_mouseover_tooltip.html)**.
 
 
 ## For the Homework: Combining a Couple of Files If You Have To

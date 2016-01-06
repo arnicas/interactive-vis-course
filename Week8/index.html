@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
 </head>
 <body>
 <div id="TOC">
@@ -41,6 +41,7 @@
 <h3 id="moving-a-line-to-the-front">Moving a Line to the Front</h3>
 <p>Get the parent, then append yourself to it. Remember, D3 svg draws &quot;in order&quot; -- things drawn later are on top of things drawn earlier.</p>
 <pre><code>d.city.line.parentNode.appendChild(d.city.line);</code></pre>
+<p>TODO: code for the moveToFront() here.</p>
 <h3 id="getting-to-a-parent-selection-sibling-selection">Getting to a Parent Selection / Sibling Selection</h3>
 <p>When you select a dot, you may also want your line to appear selected too. One trick would be to class the dots and the lines in the same group with a matching identifier, so you can more easily select the line with the matching identifier.</p>
 <p>Or, you can select it via DOM sibling relationship.</p>
@@ -55,7 +56,7 @@
 <pre><code>var mygroup = d3.select(this).node().parentNode;
 d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, true);</code></pre>
 <h2 id="voronoi-again">Voronoi Again</h2>
-<p>It was actually pretty hard with a lot of lines. I used the nest to make sure data points weren't overlapping. Code in <strong>multiple_lines_voronoi.html</strong>.</p>
+<p>It was actually pretty hard with a lot of lines. I used the nest to make sure data points weren't overlapping. Code in <strong><a href="multiple_lines_voronoi.html">multiple_lines_voronoi.html</a></strong>.</p>
 <p>Mike updated his multi-line voronoi for 2015 data: <a href="http://bl.ocks.org/curran/6c0ce7a12c7d5497350d">http://bl.ocks.org/curran/6c0ce7a12c7d5497350d</a></p>
 <p>Voronoi beer map: <a href="http://www.washingtonpost.com/news/wonkblog/wp/2015/10/06/find-out-which-beer-is-made-closest-to-you-with-this-crazy-map/?utm_content=buffer91ba0&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">http://www.washingtonpost.com/news/wonkblog/wp/2015/10/06/find-out-which-beer-is-made-closest-to-you-with-this-crazy-map/?utm_content=buffer91ba0&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></p>
 <p>Voronoi airport maps:</p>
@@ -87,15 +88,15 @@ d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, tr
 <li>Update Pattern 2: Key Functions: <a href="http://bl.ocks.org/mbostock/3808221">http://bl.ocks.org/mbostock/3808221</a><br /></li>
 <li><p>Update Pattern 3: Transitions: <a href="http://bl.ocks.org/mbostock/3808234">http://bl.ocks.org/mbostock/3808234</a></p></li>
 <li><p>Another demo: <a href="http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></p></li>
-<li><p>My example, a simple enter, transition, exit example in bar_updates_no_key.html.</p></li>
+<li><p>My example, a simple enter, transition, exit example in <a href="bar_updates_no_key.html">bar_updates_no_key.html</a>.</p></li>
 </ul>
 <p><strong>For data keys:</strong></p>
 <ul>
-<li>Object Constancy Intro: <a href="http://bost.ocks.org/mike/constancy/">http://bost.ocks.org/mike/constancy/</a> (Read this, but there are advanced details in the full source code for that example. See my simplified, commented version of the code in bostock_bar_updates_simpler.html.)</li>
+<li>Object Constancy Intro: <a href="http://bost.ocks.org/mike/constancy/">http://bost.ocks.org/mike/constancy/</a> (Read this, but there are advanced details in the full source code for that example. See my simplified, commented version of the code in <a href="bostock_bar_updates_simpler.html">bostock_bar_updates_simpler.html</a>.)</li>
 </ul>
 <p>Examples with keys:</p>
 <ul>
-<li>My example, bars_updates_key.html.<br /></li>
+<li>My example, <a href="bars_updates_key.html">bars_updates_key.html</a>.<br /></li>
 <li>A more detailed example with dots, not bars: <a href="http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3">http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3</a><br /></li>
 <li>An example with Line Charts: <a href="http://bl.ocks.org/nsonnad/4175202">http://bl.ocks.org/nsonnad/4175202</a><br /></li>
 <li>Nice examples in this tutorial with temperature graphs: <a href="http://code.hazzens.com/d3tut/lesson_4.html">http://code.hazzens.com/d3tut/lesson_4.html</a></li>
@@ -108,7 +109,7 @@ d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, tr
   }).slice(0, 10); // cut off the top 10!
 </code></pre>
 <h3 id="how-a-select-menu-works">How A Select Menu Works</h3>
-<p>There are drop-down select menus in bostock_bar_updates_simpler.html and scatter_data_update.html. In the Bostock example, he constructs the menu using D3 and the data set, in scatter_data_update.html I build it manually and use D3 to respond to its use.</p>
+<p>There are drop-down select menus in <a href="bostock_bar_updates_simpler.html">bostock_bar_updates_simpler.html</a> and <a href="scatter_data_update.html">scatter_data_update.html</a>. In the Bostock example, he constructs the menu using D3 and the data set, in <a href="scatter_data_update.html">scatter_data_update.html</a> I build it manually and use D3 to respond to its use.</p>
 <pre><code>&lt;p id=&quot;menu&quot;&gt;
             &lt;select&gt;
                 &lt;option value=&quot;all&quot;&gt;All Countries&lt;/option&gt;
@@ -141,22 +142,23 @@ d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, tr
 <li>Load the data, and inside that function, call the draw function - this will use the data you pass it to draw the graph.<br /></li>
 <li>In the draw function: Set your scale domains here too, based on current data values, then create graphs if they don't exist, update the data if they do with transitions and exit().</li>
 </ol>
+<p>TODO: Add a graphic?</p>
 <p>Examples:</p>
 <ul>
-<li><p>Simple bar_updates_no_key.html</p></li>
-<li><p>More complex bar_updates_key.html</p></li>
-<li><p>My scatter_data_update.html</p></li>
+<li><p>Simple <a href="bar_updates_no_key.html">bar_updates_no_key.html</a></p></li>
+<li><p>More complex <a href="bar_updates_key.html">bar_updates_key.html</a></p></li>
+<li><p>My <a href="scatter_data_update.html">scatter_data_update.html</a></p></li>
 </ul>
-<p>In your homework, you will modify and use this structure for scatter_homework.html and bar_homework.html.</p>
+<p>In your homework, you will modify and use this structure for <a href="scatter_homework.html">scatter_homework.html</a> and <a href="bar_homework.html">bar_homework.html</a>.</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <p>NYT Hightlights of Digital Storytelling: <a href="http://www.nytimes.com/2015/10/07/business/using-innovative-storytelling-to-illuminate-the-world.html">http://www.nytimes.com/2015/10/07/business/using-innovative-storytelling-to-illuminate-the-world.html</a></p>
 <p>Missed this last week: Smoothing out Lines - <a href="http://www.d3noob.org/2013/01/smoothing-out-lines-in-d3js.html?spref=tw">http://www.d3noob.org/2013/01/smoothing-out-lines-in-d3js.html?spref=tw</a></p>
 <h2 id="homework">Homework</h2>
 <p>Read: (To the bottom of the page) <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates">http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates</a>.<br />Read anything else you need to get a grip on the enter/update/exit pattern in D3!</p>
 <p><strong>Homework 1 (15pt)</strong>: Finished Bar Homework.</p>
-<p>In the file bar_homework.html, there are about a dozen //TODO items. Fix all the //TODO items in it. Send to me with subject &quot;Finished Bar Homework.&quot;</p>
+<p>In the file <a href="bar_homework.html">bar_homework.html</a>, there are about a dozen //TODO items. Fix all the //TODO items in it. Send to me with subject &quot;Finished Bar Homework.&quot;</p>
 <p><strong>Homework 2 (25pt)</strong>: Scatter Homework.</p>
-<p>Fix the scatter_homework.html to have a scatter plot that uses the x and y data values, axes (they don't need labels) and transitions between data sets. It should use the enter/update/exit style of code. The default button (for data1) needs to look selected when the user loads the page. The axes need to transition too.</p>
+<p>Fix the <a href="scatter_homework.html">scatter_homework.html</a> to have a scatter plot that uses the x and y data values, axes (they don't need labels) and transitions between data sets. It should use the enter/update/exit style of code. The default button (for data1) needs to look selected when the user loads the page. The axes need to transition too.</p>
 <p><strong>Extra credit (5pt)</strong>: Color the dots by region. (Hint: use either a class, or a category color scale.)</p>
 <p>Sent gist to me as &quot;Scatter Homework.&quot;</p>
 <p><strong>Homework 3: Project Data Exploration (20pt)</strong></p>

@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
 </head>
 <body>
 <div id="TOC">
@@ -121,20 +121,14 @@ rects.attr(&quot;fill&quot;, function(d) {
         return &quot;steelblue&quot;;
     }
 })</code></pre>
-<p>That's what Jo did in <a href="http://bl.ocks.org/jowang0319/03712cf42713752d62e9">http://bl.ocks.org/jowang0319/03712cf42713752d62e9</a>.</p>
 <h2 id="adding-text-elements">Adding Text Elements</h2>
-<p>SVG has its own text element.</p>
+<p>SVG has its own &quot;text&quot; element.</p>
 <ul>
 <li>A good overview of d3 with a bunch of SVG element attributes - make sure you read down to the text parts to see how they work: <a href="http://www.d3noob.org/2014/02/attributes-in-d3js.html">http://www.d3noob.org/2014/02/attributes-in-d3js.html</a><br /></li>
 <li>A simple set of circles with text labels: <a href="https://www.dashingd3js.com/svg-text-element">https://www.dashingd3js.com/svg-text-element</a><br /></li>
 <li>Read: This is also about labels on scatterplot circles, but the same principles apply: Labels on elements: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2">http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2</a></li>
 </ul>
 <p>The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right. dy with a negative value will move it &quot;up&quot;, because the coordinate system is &quot;higher numbers at the bottom of the screen.&quot;</p>
-<p>Examples:</p>
-<ul>
-<li>Modified version of Jo's bars: <a href="http://bl.ocks.org/arnicas/2d34b474c762abe9f4ee">http://bl.ocks.org/arnicas/2d34b474c762abe9f4ee</a><br /></li>
-<li>Halina's end-of-bars text: <a href="http://bl.ocks.org/hmader/5f428acbd45c230400b5#file-contraceptive-mortality-select-countries-chart-csv">http://bl.ocks.org/hmader/5f428acbd45c230400b5#file-contraceptive-mortality-select-countries-chart-csv</a></li>
-</ul>
 <h3 id="tips-on-formatting-numbers-in-d3-in-axes-etc">Tips on Formatting Numbers in D3 in Axes, etc</h3>
 <p>See <a href="http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html">http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html</a></p>
 <h2 id="review-on-joins-and-scales">Review on Joins and Scales</h2>
@@ -164,7 +158,8 @@ o.rangeExtent(); // [0, 100]
 </code></pre>
 <p>Remember: rangeRoundBands (plural) sets up the bands. rangeBand() (singular) gives you one of the bands! Range, like in quantitive scales, tells you what you mapped to! rangeExtent is like d3.extent - the max and min of your range.</p>
 <p>If you use an ordinal scale with categorical items, like the names of bars in a bar chart, it will &quot;space them out&quot; for you on the scale.</p>
-<p>Example: See bar_axes_labels.html.</p>
+<p>Example: See <a href="bar_axes_labels.html">bar_axes_labels.html</a>.</p>
+<p>TODO: Make another bar example with ordinal scales.</p>
 <h3 id="aside-on-javascript-map">Aside on Javascript Map</h3>
 <p>Remember last week we made a separate array to get the values of a single column of data, using newArray.push? We used this for the max/min/extent in the domain settings on scales.</p>
 <p>We can also use this handy Javascript map function in our scale:</p>
@@ -207,6 +202,7 @@ var chartWidth = svgWidth - margin.left - margin.right,
 <ul>
 <li>Mike's post on it: <a href="http://bl.ocks.org/mbostock/3019563">http://bl.ocks.org/mbostock/3019563</a></li>
 </ul>
+<p>TODO: Discuss his extra <code>&lt;g&gt;</code> transform.</p>
 <h2 id="transform-translate-move-a-starting-coordinate-somewhere.">Transform, Translate: Move a starting coordinate somewhere.</h2>
 <p>Let's play with <a href="http://blockbuilder.org/arnicas/6217eec849a8f270e80d">http://blockbuilder.org/arnicas/6217eec849a8f270e80d</a>.</p>
 <h2 id="adding-axes">Adding Axes</h2>
@@ -232,14 +228,14 @@ var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
 svg.append(&quot;g&quot;)
     .attr(&quot;transform&quot;, &quot;translate(0,30)&quot;)
     .call(axis);  // here were &#39;call&#39; the function for the axis.</code></pre>
-<p>See bar_axes_labels.html.</p>
-<p>If you want to specially format your tick labels, you can. See formatting_ticks.html.</p>
+<p>See <a href="bar_axes_labels.html">bar_axes_labels.html</a>.</p>
+<p>If you want to specially format your tick labels, you can. See <a href="formatting_ticks.html">formatting_ticks.html</a>.</p>
 <h2 id="adding-an-axis-label-putting-margins-and-labels-and-transforms-together">Adding an Axis Label: Putting Margins and Labels and Transforms Together</h2>
 <p>How to add an axis label to your axes.</p>
 <ul>
 <li><a href="http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html">http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html</a></li>
 </ul>
-<p>This often turns into a trial-and-error routine with transforms. My code in bar_axes_labels.html has:</p>
+<p>This often turns into a trial-and-error routine with transforms. My code in <a href="bar_axes_labels.html">bar_axes_labels.html</a> has:</p>
 <pre><code>svg.append(&quot;text&quot;)
     .attr(&quot;class&quot;, &quot;xlabel&quot;)
     .attr(&quot;transform&quot;, &quot;translate(&quot; + (margin.left + width / 2) + &quot; ,&quot; +

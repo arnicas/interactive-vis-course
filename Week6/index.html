@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
 </head>
 <body>
 <div id="TOC">
@@ -18,7 +18,6 @@
 <li><a href="#bar-charts">Bar Charts</a></li>
 <li><a href="#dot-plots">Dot Plots</a></li>
 <li><a href="#selections-d3-reminder">Selections D3 Reminder!</a></li>
-<li><a href="#project-ideas">Project Ideas!</a></li>
 </ul></li>
 <li><a href="#dates-in-d3">Dates in D3</a></li>
 <li><a href="#line-charts-and-time">Line Charts (and Time)</a><ul>
@@ -36,7 +35,7 @@
 <h2 id="homework-review">Homework Review</h2>
 <h3 id="axes-issues">Axes issues</h3>
 <p><strong>Padding</strong>:</p>
-<p>How to add padding on scatterplots... see Week5/scatter_sample.html, now posted.</p>
+<p>How to add padding on scatterplots... see <a href="../Week5/scatter_sample.html">Week5/scatter_sample.html</a>, now posted.</p>
 <p><strong>Bar chart 0 line</strong>:</p>
 <p>When we draw bars, we always start from 0. If we use margin.left as our starting point, we can get screwy results if we don't subtract that from the xscale -- because it's our new 0 point. It's as if we used a transform, translate(margin.left, margin.top) on the graph before we drew the bars.</p>
 <p>For some review of bar charts, including vertical ones with ordinal scales, see Mike Bostock's tutorial (especially part 3): <a href="http://bost.ocks.org/mike/bar/3/">http://bost.ocks.org/mike/bar/3/</a></p>
@@ -51,7 +50,7 @@
 <p>Aside on connected dot plots... Here are some famous examples in this post by Alberto: <a href="http://www.thefunctionalart.com/2012/09/in-praise-of-connected-scatter-plots.html">http://www.thefunctionalart.com/2012/09/in-praise-of-connected-scatter-plots.html</a></p>
 <p>Values all squished together on a linear scale? Try log scales? or other? See <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales">https://github.com/mbostock/d3/wiki/Quantitative-Scales</a>. Let's try it: <a href="http://blockbuilder.org/arnicas/bc3ebc9d6d6d58fac9a2">http://blockbuilder.org/arnicas/bc3ebc9d6d6d58fac9a2</a></p>
 <h3 id="bar-charts">Bar Charts</h3>
-<p>Bar chart axes issues... I was after ordinal scale labeling of the bars on the Y axis, as in Week5/bar_axes_labels.html.</p>
+<p>Bar chart axes issues... I was after ordinal scale labeling of the bars on the Y axis, as in <a href="../Week5/bar_axes_labels.html">Week5/bar_axes_labels.html</a>.</p>
 <h3 id="dot-plots">Dot Plots</h3>
 <p>See a lovely example here in Tableau: <a href="http://healthintelligence.drupalgardens.com/content/visualizing-human-development-gender-gap">http://healthintelligence.drupalgardens.com/content/visualizing-human-development-gender-gap</a></p>
 <h3 id="selections-d3-reminder">Selections D3 Reminder!</h3>
@@ -62,14 +61,12 @@
     .append(&quot;text&quot;)
     .attr(&quot;class&quot;, &quot;labels&quot;);
 </code></pre>
-<h3 id="project-ideas">Project Ideas!</h3>
-<p>Let's do it!</p>
 <h2 id="dates-in-d3">Dates in D3</h2>
 <p>For scales to work with dates, you need to convert your date strings to Javascript dates. We do that by using d3.time.format(). We 'parse' the incoming date, and in axes tick labels we may want to use another format to print the date.</p>
 <p>D3 docs on time formatting: <a href="https://github.com/mbostock/d3/wiki/Time-Formatting">https://github.com/mbostock/d3/wiki/Time-Formatting</a></p>
 <p>Read: <a href="http://learnjsdata.com/time.html">http://learnjsdata.com/time.html</a><br />Watch: Working with Dates in D3, Scott Murray: <a href="https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=1">https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=1</a></p>
 <p>Use: <a href="http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95">http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95</a></p>
-<p>Example: Date formatting and parsing in d3_date_parsing.html. Let's work through that.</p>
+<p>Example: Date formatting and parsing in <a href="d3_date_parsing.html">d3_date_parsing.html</a>. Let's work through that.</p>
 <h2 id="line-charts-and-time">Line Charts (and Time)</h2>
 <p>Line charts take a special form of data - objects with 2 data points, for the x &amp; y coordinates, as an array. So the real &quot;work&quot; in line charts is getting your data into shape for this. That means javascript munging.</p>
 <p>Data for a line might look like:</p>
@@ -88,8 +85,8 @@ year: &quot;1961&quot; }</code></pre>
                 });</code></pre>
 <p>Examples:</p>
 <ul>
-<li>Scatterplot: <strong>emissions_time_scatterplot.html</strong> -- we're turning this data into a line plot:<br /></li>
-<li>Lineplot version: <strong>emissions_lineplot.html</strong></li>
+<li>Scatterplot: <strong><a href="emissions_time_scatterplot.html">emissions_time_scatterplot.html</a></strong> -- we're turning this data into a line plot:<br /></li>
+<li>Lineplot version: <strong><a href="emissions_lineplot.html">emissions_lineplot.html</a></strong></li>
 </ul>
 <p>Now plotting more data, we use g elements for each country (or other &quot;parent&quot;, and the values for the line are in another attribute, under &quot;emissions&quot;:</p>
 <pre><code>[
@@ -114,7 +111,7 @@ year: &quot;1961&quot; }</code></pre>
     …
  ]</code></pre>
 <ul>
-<li>See my example <strong>multiple_lines.html</strong></li>
+<li>See my example <strong><a href="multiple_lines.html">multiple_lines.html</a></strong></li>
 </ul>
 <p>For more calm and friendly explanation of lines in d3, watch the line charts video from Scott Murray:</p>
 <ul>
@@ -150,7 +147,7 @@ function handle_click(d,i) {
 
 // use it in the click event handler:
 rect.on(&quot;click&quot;, handle_click);  // notice you call it by name only, no parens!</code></pre>
-<p>See <strong>multiple_lines_mouseover.html.</strong></p>
+<p>See <strong><a href="multiple_lines_mouseover.html">multiple_lines_mouseover.html</a>.</strong></p>
 <h2 id="d3-tooltips">D3 Tooltips</h2>
 <p>There are lots of ways to do tooltips in D3 applications. I'm showing you a simple way that uses HTML, which means you can put any content you want in the tooltip. We just position it with the window.event (or d3.event) location for where the cursor is when the mouse event is fired.</p>
 <p>There are 3 crucial pieces:</p>
@@ -159,7 +156,7 @@ rect.on(&quot;click&quot;, handle_click);  // notice you call it by name only, n
 <li>the attachment to the body (not to the SVG!),<br /></li>
 <li>and then the mouseover, which sets position, text, and visibility.</li>
 </ul>
-<p>Relevant bits from my file example: emissions_scatterplot_tooltip.html</p>
+<p>Relevant bits from my file example: <a href="emissions_scatterplot_tooltip.html">emissions_scatterplot_tooltip.html</a></p>
 <pre><code>.tooltip {
     position: absolute;
     z-index: 10;
@@ -174,14 +171,14 @@ circles
     .on(&quot;mousemove&quot;, mousemoveFunc) // see below...
     .on(&quot;mouseout&quot;, mouseoutFunc); // see below...</code></pre>
 <p>If you forget any of them, you'll have a bug!</p>
-<p>Example: <strong>emissions_scatterplot_tooltip.html</strong></p>
+<p>Example: <strong><a href="emissions_scatterplot_tooltip.html">emissions_scatterplot_tooltip.html</a></strong></p>
 <p>Here's an alternative using a plugin, d3.tip: <a href="http://labratrevenge.com/d3-tip/">http://labratrevenge.com/d3-tip/</a>.</p>
 <h3 id="doing-tooltips-on-lines-is-harder">Doing Tooltips on Lines is Harder</h3>
 <p>One issue with lines and tooltips is that the data is an array, and the element itself is a single entity. A mouseover on it won't know &quot;where&quot; on the line you are, unless you also add dots (we'll do that next week) or use other tricks to find your location. We'll do these advanced moves next week.</p>
 <p>This example file shows how to use classes using a new d3 method, <code>d3.classed()</code>. It's a shorthand for adding a class to an element, and turning it on or off. This is needed because you may want multiple classes on an element to control styling, and .attr(&quot;class&quot;) will set only one on it, removing others.</p>
 <p><code>selection.classed('foo', true)</code> will set the selection class to &quot;foo,&quot; so it will be selection.foo. <code>selection.classed('foo', false)</code> will remove the class &quot;foo&quot; from selection.</p>
 <p><strong>Reference</strong>: <a href="https://github.com/mbostock/d3/wiki/Selections#classed">https://github.com/mbostock/d3/wiki/Selections#classed</a></p>
-<p>See <strong>multiple_lines_mouseover_tooltip.html</strong>.</p>
+<p>See <strong><a href="multiple_lines_mouseover_tooltip.html">multiple_lines_mouseover_tooltip.html</a></strong>.</p>
 <h2 id="for-the-homework-combining-a-couple-of-files-if-you-have-to">For the Homework: Combining a Couple of Files If You Have To</h2>
 <p>There are a few ways to handle multiple data files. For now, let's just nest the calls:</p>
 <pre><code>d3.csv(&quot;file1.csv&quot;, function(error, data1) {

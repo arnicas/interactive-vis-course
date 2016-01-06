@@ -37,7 +37,7 @@ The area chart is a line chart, but filled in!  There is a new layout for it:
         });
 ````
 
-Example in area_plot.html.
+Example in [area_plot.html](area_plot.html).
 
 
 ## Stacked Area
@@ -75,7 +75,7 @@ var stack = d3.layout.stack()
     .y(function(d) { return +d.Measles; });
 ````
 
-Try this in stacked_area.html.
+Try this in [stacked_area.html](stacked_area.html).
 
 Another interactive streamgraph example (with highlights and fake tooltips): http://bl.ocks.org/WillTurman/4631136
 
@@ -96,13 +96,13 @@ If you need access via account and password, let me know.
 
 Again, see this section: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout.
 
-See stacked_bar.html.
+See [stacked_bar.html](stacked_bar.html).
 
 Tooltips for stacked bar charts: https://gist.github.com/mstanaland/6100713.
 
 ## Normalized Bar Chart
 
-This is a very small variant, after you get the stacked_bar.html working.  See the `//` notes in the file.
+This is a very small variant, after you get the [stacked_bar.html](stacked_bar.html) working.  See the `//` notes in the file.
 Just add offset "expand" to the layout!  (The default offset is "zero".)
 
 ````
@@ -123,7 +123,7 @@ var yAxis = d3.svg.axis()
 
 ### How would we transition between them?
 
-See my example stacked_bar_transitions.html.  This includes a bunch of refactoring into functions, where there is repetition, too.  Let's discuss it.
+See my example [stacked_bar_transitions.html](stacked_bar_transitions.html).  This includes a bunch of refactoring into functions, where there is repetition, too.  Let's discuss it.
 
 See also http://bl.ocks.org/tmaybe/6144082.
 
@@ -221,7 +221,7 @@ Because his `{name: name, y0: y0, y1: y0 += +d[name]};` is incrementing the y0 e
 ## Bar Groups
 
 * Grouped bar chart example: http://bl.ocks.org/mbostock/3887051
-* See my version in grouped_bars.html.
+* See my version in [grouped_bars.html](grouped_bars.html).
 
 Fancier:
 
@@ -231,13 +231,14 @@ Fancier:
 ## Small Multiples in D3
 
 Three ways:
+
 * http://bl.ocks.org/mbostock/1157787
 * http://bl.ocks.org/mbostock/9490313 (uses 'each' and calls the drawing funct)
 * http://bl.ocks.org/mbostock/9490516 (I find this one strange)
 
 * Area Charts with a UI filter: http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/ (see old D3 Code alert below)
 
-Tutorials by Jim Vallandingham (that unfortunately use Coffee Script):
+Tutorials by Jim Vallandingham (that unfortunately use CoffeeScript):
 
 * Small Multiples with Details on Demand http://vallandingham.me/small_multiples_with_details.html
 * Linked Small Multiples: https://flowingdata.com/2014/10/15/linked-small-multiples/
@@ -284,11 +285,11 @@ Read: How We Made Failure Factories: https://source.opennews.org/en-US/articles/
 
 **Homework 1 (12pt)**: JS Practice.
 
-Finish js_homework.html, all the TODOs. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the file.  Week 9: "JS homework".
+Finish [js_homework.html](js_homework.html), all the TODOs. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the file.  Week 9: "JS homework".
 
 **Homework 2 (25pt)**: Stacked Bars Transition.
 
-Make a stacked_bar_transitions using your own data.  It must transition between normalized and non-normalized like my example does. Try to make it data that you can use in your final project.  Send gist as "Stacked Bars."
+Make a stacked_bar_transitions using your own data.  It must transition between normalized and non-normalized like my example does. Try to make it data that you can use in your final project.  You need tooltips on this, too. Send gist as "Stacked Bars."
 
 **Homework 3 (20pt)**: Grouped Bars.
 

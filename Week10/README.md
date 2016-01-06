@@ -30,14 +30,13 @@ D3.map() is incredibly useful for storing data in objects, though. See https://g
 ### Sorting Array Alphabetically
 
 ````
-array.sort(d3.ascending)
-or
 array.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // 
 or
-array.sort()
+array.sort() // if there are just strings in the array!
 ````
 
-But `function(a,b) {return a - b;}` doesn't work.  I probably made this mistake somewhere in our code, I'll check for it.
+But `function(a,b) {return a - b;}` doesn't work.
+
 
 ### Why: data(function (d) {return d;})
 
@@ -65,7 +64,7 @@ You'll see each with the small multiples today.  It gives you the d, i you need 
 
 ## Mike's Process Data on Load function
 
-You can see this in small_multiples_simple.html, a cool trick:
+You can see this in [small_multiples_simple.html](small_multiples_simple.html), a cool trick:
 
 ````
 function typeFix(d) {
@@ -87,7 +86,7 @@ Three ways described by Mike:
 
 * Version 1: http://bl.ocks.org/mbostock/1157787
 
-See small_multiples_simple.html
+See [small_multiples_simple.html](small_multiples_simple.html).
 
 This method requires you to calculate the Y axis domain everytime you use it. That makes it harder to create axes labels with it.  Notice that the scale is very different across these graphs but that's not obvious here.  Labeling the last point helps a bit.
 
@@ -95,7 +94,7 @@ This method requires you to calculate the Y axis domain everytime you use it. Th
 
 This variant calls a function on "each" of the data charts you're drawing, from the data. Also, allows easier actual axes drawing.
 
-See my version in small_multiples_each.html.
+See my version in [small_multiples_each.html](small_multiples_each.html).
 
 * Version 3 of Mike's saves a separate y scale per data set: http://bl.ocks.org/mbostock/9490516
 
@@ -110,17 +109,17 @@ Jim's Linked Small Multiples article should be read. He has lots of examples tha
 
 He also uses the Isotope jquery library: http://isotope.metafizzy.co/  Which you are welcome to use in your own work. (It is okay to use for non-commercial uses.)
 
-See my version in JS: **linked_small_mults.html**
+See my version in JS: **[linked_small_mults.html](linked_small_mults.html)**
 
 Finally, small multiples with transitions:
 
 Using some UI from a tutorial by Nathan Yau (http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/), I also made a transition version:
 
-**small_multiples_each_trans.html**
+**[small_multiples_each_trans.html](small_multiples_each_trans.html)**
 
 and a variant with the scales different across each country, to show the comparison not blown out by Nigeria:
 
-**small_multiples_each_trans_diffaxis.html**
+**[small_multiples_each_trans_diffaxis.html](small_multiples_each_trans_diffaxis.html)**
 
 
 ## Maps in D3
@@ -129,7 +128,7 @@ Read Mike's tutorial: http://bost.ocks.org/mike/map/
 
 You don't have to do all of it yet.  We may or may not deal with the command line tools in class.
 
-Let's look at africa_map.html.
+Let's look at [africa_map.html](africa_map.html).
 
 Example of small multiple maps:
 
@@ -157,8 +156,6 @@ Example of small multiple maps:
 * Read: Making of the Guardian piece I showed: https://source.opennews.org/en-US/articles/how-we-made-homan-square-portrait/
 * Read Mike's tutorial: http://bost.ocks.org/mike/map/
 
-**Homework 1 (10pt)**:  Use Halina's models and add tooltips to your stacked bar transition chart.  They will enormously improve the example for your portfolio.
-Send me the gist as "Week 10: tooltips."
 
 **Homework 2 (25pt)**: Make a small multiples display for your own project data. Even if it's only a few multiples!  You can use any of the examples I provided.  I will give extra extra credit points for the more complex work, but the base requirement is to be like the code in small_multiples_simple.html.  Try to stay on your project topic, make something you would really use in it.  Send me the gist as "Week 10, Small Multiples."
 

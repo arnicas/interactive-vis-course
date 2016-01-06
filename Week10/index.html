@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
 </head>
 <body>
 <div id="TOC">
@@ -41,12 +41,10 @@ var n = d.getFullYear();</code></pre>
 <p>A d3.map function creates a lookup hash table with keys as the items you return in your function. It's not the same thing as array.map. Array.map just creates a new array of the items you asked for.</p>
 <p>D3.map() is incredibly useful for storing data in objects, though. See <a href="https://github.com/mbostock/d3/wiki/Arrays#d3_map">https://github.com/mbostock/d3/wiki/Arrays#d3_map</a>.</p>
 <h3 id="sorting-array-alphabetically">Sorting Array Alphabetically</h3>
-<pre><code>array.sort(d3.ascending)
+<pre><code>array.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // 
 or
-array.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // 
-or
-array.sort()</code></pre>
-<p>But <code>function(a,b) {return a - b;}</code> doesn't work. I probably made this mistake somewhere in our code, I'll check for it.</p>
+array.sort() // if there are just strings in the array!</code></pre>
+<p>But <code>function(a,b) {return a - b;}</code> doesn't work.</p>
 <h3 id="why-datafunction-d-return-d">Why: data(function (d) {return d;})</h3>
 <p>Inside a selection, with data attached, you will be selecting a subset of the data.</p>
 <p>Remember in the Nested Selections document... <a href="http://bost.ocks.org/mike/nest/">http://bost.ocks.org/mike/nest/</a>:</p>
@@ -61,7 +59,7 @@ array.sort()</code></pre>
 Invokes the specified function for each element in the current selection, passing in the current datum d and index i, with the this context of the current DOM element. This operator is used internally by nearly every other operator, and can be used to invoke arbitrary code for each selected element. The each operator can be used to process selections recursively, by using d3.select(this) within the callback function.</code></pre>
 <p>You'll see each with the small multiples today. It gives you the d, i you need to work with!</p>
 <h2 id="mikes-process-data-on-load-function">Mike's Process Data on Load function</h2>
-<p>You can see this in small_multiples_simple.html, a cool trick:</p>
+<p>You can see this in <a href="small_multiples_simple.html">small_multiples_simple.html</a>, a cool trick:</p>
 <pre><code>function typeFix(d) {
   d.Measles = +d.Measles;
   d.date = parseDate(d.Year);
@@ -74,13 +72,13 @@ Invokes the specified function for each element in the current selection, passin
 <ul>
 <li>Version 1: <a href="http://bl.ocks.org/mbostock/1157787">http://bl.ocks.org/mbostock/1157787</a></li>
 </ul>
-<p>See small_multiples_simple.html</p>
+<p>See <a href="small_multiples_simple.html">small_multiples_simple.html</a>.</p>
 <p>This method requires you to calculate the Y axis domain everytime you use it. That makes it harder to create axes labels with it. Notice that the scale is very different across these graphs but that's not obvious here. Labeling the last point helps a bit.</p>
 <ul>
 <li>Version 2: <a href="http://bl.ocks.org/mbostock/9490313">http://bl.ocks.org/mbostock/9490313</a> (uses 'each' and calls the drawing funct)</li>
 </ul>
 <p>This variant calls a function on &quot;each&quot; of the data charts you're drawing, from the data. Also, allows easier actual axes drawing.</p>
-<p>See my version in small_multiples_each.html.</p>
+<p>See my version in <a href="small_multiples_each.html">small_multiples_each.html</a>.</p>
 <ul>
 <li>Version 3 of Mike's saves a separate y scale per data set: <a href="http://bl.ocks.org/mbostock/9490516">http://bl.ocks.org/mbostock/9490516</a></li>
 </ul>
@@ -92,16 +90,16 @@ Invokes the specified function for each element in the current selection, passin
 </ul>
 <p>Jim's Linked Small Multiples article should be read. He has lots of examples that inspired it. He uses Version 2's style -- an each loop that draws each of the charts.</p>
 <p>He also uses the Isotope jquery library: <a href="http://isotope.metafizzy.co/">http://isotope.metafizzy.co/</a> Which you are welcome to use in your own work. (It is okay to use for non-commercial uses.)</p>
-<p>See my version in JS: <strong>linked_small_mults.html</strong></p>
+<p>See my version in JS: <strong><a href="linked_small_mults.html">linked_small_mults.html</a></strong></p>
 <p>Finally, small multiples with transitions:</p>
 <p>Using some UI from a tutorial by Nathan Yau (<a href="http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/">http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/</a>), I also made a transition version:</p>
-<p><strong>small_multiples_each_trans.html</strong></p>
+<p><strong><a href="small_multiples_each_trans.html">small_multiples_each_trans.html</a></strong></p>
 <p>and a variant with the scales different across each country, to show the comparison not blown out by Nigeria:</p>
-<p><strong>small_multiples_each_trans_diffaxis.html</strong></p>
+<p><strong><a href="small_multiples_each_trans_diffaxis.html">small_multiples_each_trans_diffaxis.html</a></strong></p>
 <h2 id="maps-in-d3">Maps in D3</h2>
 <p>Read Mike's tutorial: <a href="http://bost.ocks.org/mike/map/">http://bost.ocks.org/mike/map/</a></p>
 <p>You don't have to do all of it yet. We may or may not deal with the command line tools in class.</p>
-<p>Let's look at africa_map.html.</p>
+<p>Let's look at <a href="africa_map.html">africa_map.html</a>.</p>
 <p>Example of small multiple maps:</p>
 <ul>
 <li>Small Multiple Maps tutorial: <a href="http://blog.webkid.io/multiple-maps-d3/">http://blog.webkid.io/multiple-maps-d3/</a></li>
@@ -121,7 +119,6 @@ Invokes the specified function for each element in the current selection, passin
 <li>Read: Making of the Guardian piece I showed: <a href="https://source.opennews.org/en-US/articles/how-we-made-homan-square-portrait/">https://source.opennews.org/en-US/articles/how-we-made-homan-square-portrait/</a><br /></li>
 <li>Read Mike's tutorial: <a href="http://bost.ocks.org/mike/map/">http://bost.ocks.org/mike/map/</a></li>
 </ul>
-<p><strong>Homework 1 (10pt)</strong>: Use Halina's models and add tooltips to your stacked bar transition chart. They will enormously improve the example for your portfolio.<br />Send me the gist as &quot;Week 10: tooltips.&quot;</p>
 <p><strong>Homework 2 (25pt)</strong>: Make a small multiples display for your own project data. Even if it's only a few multiples! You can use any of the examples I provided. I will give extra extra credit points for the more complex work, but the base requirement is to be like the code in small_multiples_simple.html. Try to stay on your project topic, make something you would really use in it. Send me the gist as &quot;Week 10, Small Multiples.&quot;</p>
 <p>Start making plans for your project more concrete. Implement any charts with your project data that might be useful inside your final project.</p>
 </body>

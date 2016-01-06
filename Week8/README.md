@@ -21,6 +21,10 @@ Get the parent, then append yourself to it.  Remember, D3 svg draws "in order" -
 d.city.line.parentNode.appendChild(d.city.line);
 ````
 
+TODO: code for the moveToFront()  here.
+
+
+
 ### Getting to a Parent Selection / Sibling Selection
 
 When you select a dot, you may also want your line to appear selected too.  One trick would be to class the dots and the lines in the same group with a matching identifier, so you can more easily select the line with the matching identifier.
@@ -49,8 +53,7 @@ d3.select(mygroup).select("path.line").classed("focused", true);
 
 ## Voronoi Again
 
-It was actually pretty hard with a lot of lines.  I used the nest to make sure data points weren't overlapping. Code in **multiple_lines_voronoi.html**.
-
+It was actually pretty hard with a lot of lines.  I used the nest to make sure data points weren't overlapping. Code in **[multiple_lines_voronoi.html](multiple_lines_voronoi.html)**.
 
 Mike updated his multi-line voronoi for 2015 data: http://bl.ocks.org/curran/6c0ce7a12c7d5497350d
 
@@ -94,15 +97,15 @@ Demos:
 
 * Another demo: http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 
-* My example, a simple enter, transition, exit example in bar_updates_no_key.html.
+* My example, a simple enter, transition, exit example in [bar_updates_no_key.html](bar_updates_no_key.html).
 
 **For data keys:**
 
-* Object Constancy Intro: http://bost.ocks.org/mike/constancy/  (Read this, but there are advanced details in the full source code for that example. See my simplified, commented version of the code in bostock_bar_updates_simpler.html.)
+* Object Constancy Intro: http://bost.ocks.org/mike/constancy/  (Read this, but there are advanced details in the full source code for that example. See my simplified, commented version of the code in [bostock_bar_updates_simpler.html](bostock_bar_updates_simpler.html).)
 
 Examples with keys:
 
-* My example, bars_updates_key.html.
+* My example, [bars_updates_key.html](bars_updates_key.html).
 * A more detailed example with dots, not bars: http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3
 * An example with Line Charts: http://bl.ocks.org/nsonnad/4175202
 * Nice examples in this tutorial with temperature graphs: http://code.hazzens.com/d3tut/lesson_4.html
@@ -124,7 +127,7 @@ topTen = data.sort(function(a, b) {
 
 ### How A Select Menu Works
 
-There are drop-down select menus in bostock_bar_updates_simpler.html and scatter_data_update.html. In the Bostock example, he constructs the menu using D3 and the data set, in scatter_data_update.html I build it manually and use D3 to respond to its use.
+There are drop-down select menus in [bostock_bar_updates_simpler.html](bostock_bar_updates_simpler.html) and [scatter_data_update.html](scatter_data_update.html). In the Bostock example, he constructs the menu using D3 and the data set, in [scatter_data_update.html](scatter_data_update.html) I build it manually and use D3 to respond to its use.
 
 ````
 <p id="menu">
@@ -172,15 +175,17 @@ A common structure for an updating D3 vis is:
 2. Load the data, and inside that function, call the draw function - this will use the data you pass it to draw the graph.
 3. In the draw function: Set your scale domains here too, based on current data values, then create graphs if they don't exist, update the data if they do with transitions and exit().
 
+TODO: Add a graphic?
+
 Examples:
 
-* Simple bar_updates_no_key.html
+* Simple [bar_updates_no_key.html](bar_updates_no_key.html)
 
-* More complex bar_updates_key.html
+* More complex [bar_updates_key.html](bar_updates_key.html)
 
-* My scatter_data_update.html
+* My [scatter_data_update.html](scatter_data_update.html)
 
-In your homework, you will modify and use this structure for scatter_homework.html and bar_homework.html.
+In your homework, you will modify and use this structure for [scatter_homework.html](scatter_homework.html) and [bar_homework.html](bar_homework.html).
 
 
 
@@ -199,11 +204,11 @@ Read anything else you need to get a grip on the enter/update/exit pattern in D3
 
 **Homework 1 (15pt)**: Finished Bar Homework.
 
-In the file bar_homework.html, there are about a dozen //TODO items.  Fix all the //TODO items in it. Send to me with subject "Finished Bar Homework."
+In the file [bar_homework.html](bar_homework.html), there are about a dozen //TODO items.  Fix all the //TODO items in it. Send to me with subject "Finished Bar Homework."
 
 **Homework 2 (25pt)**: Scatter Homework.
 
-Fix the scatter_homework.html to have a scatter plot that uses the x and y data values, axes (they don't need labels) and transitions between data sets.  It should use the enter/update/exit style of code.  The default button (for data1) needs to look selected when the user loads the page.  The axes need to transition too.
+Fix the [scatter_homework.html](scatter_homework.html) to have a scatter plot that uses the x and y data values, axes (they don't need labels) and transitions between data sets.  It should use the enter/update/exit style of code.  The default button (for data1) needs to look selected when the user loads the page.  The axes need to transition too.
 
 **Extra credit (5pt)**: Color the dots by region. (Hint: use either a class, or a category color scale.)
 

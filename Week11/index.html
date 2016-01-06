@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="../markdown.css" type="text/css" />
+  <link rel="stylesheet" href="markdown.css" type="text/css" />
 </head>
 <body>
 <div id="TOC">
@@ -33,13 +33,7 @@
 <h2 id="week-11-maps-project-design">Week 11: Maps, Project Design</h2>
 <h2 id="homework-review">Homework Review</h2>
 <p>Small Multiples:</p>
-<ul>
-<li><a href="http://bl.ocks.org/hmader/26d6d9cc1f0f5625fc07">http://bl.ocks.org/hmader/26d6d9cc1f0f5625fc07</a><br /></li>
-<li><a href="http://bl.ocks.org/lwhitaker3/069decfde338d934e54b">http://bl.ocks.org/lwhitaker3/069decfde338d934e54b</a><br /></li>
-<li><a href="http://bl.ocks.org/yan2014/raw/222b7fc184672cdfa6ea/">http://bl.ocks.org/yan2014/raw/222b7fc184672cdfa6ea/</a></li>
-</ul>
-<p>Let's talk about what &quot;count&quot; is calculated on... and the bug with the extra dot at the end that I left in.</p>
-<p>Also make sure you saw this example I added:<br />small_multiples_each_trans_diffaxis.html.</p>
+<p>Let's talk about what &quot;count&quot; is calculated on...</p>
 <h2 id="starting-with-d3-maps">Starting with D3 Maps</h2>
 <p>Mike's tutorial: <a href="http://bost.ocks.org/mike/map/">http://bost.ocks.org/mike/map/</a></p>
 <p>He introduces TopoJSON (<a href="https://github.com/mbostock/topojson/wiki">https://github.com/mbostock/topojson/wiki</a>). Confusingly, this is sometimes a file format, sometimes about command line software, sometimes about the js library.</p>
@@ -51,9 +45,9 @@
 <li><a href="http://geojson.io/#map=2/82.9/142.2">http://geojson.io/#map=2/82.9/142.2</a>.<br /></li>
 <li><a href="http://techslides.com/demos/d3/d3-exploring-countries.html">http://techslides.com/demos/d3/d3-exploring-countries.html</a></li>
 </ul>
-<p>Now let's look at africa_map.html first. That's a simple map of borders using TopoJSON of the continent.</p>
-<p>Then africa_map2.html -- look how we get to the actual country features.</p>
-<p>Let's look at coloring the world by regions in <a href="http://localhost:8000/interactive-vis-course/Week11/world_map_regions.html">http://localhost:8000/interactive-vis-course/Week11/world_map_regions.html</a> and discuss. (This is a homework problem for you.)</p>
+<p>Now let's look at <a href="africa_map.html">africa_map.html</a> first. That's a simple map of borders using TopoJSON of the continent.</p>
+<p>Then <a href="africa_map2.html">africa_map2.html</a> -- look how we get to the actual country features.</p>
+<p>Let's look at coloring the world by regions in <a href="world_map_regions.html">world_map_regions.html</a> and discuss. (This is a homework problem for you.)</p>
 <h2 id="choropleths">Choropleths</h2>
 <p>Choropleths are thematic maps colored according to a data values associated with regions. This is probably what you will need for your project. We won't be focusing on how to plot points on maps in this class, but some of the tutorials I link to cover that.</p>
 <p>There ARE some ways to get such maps without much work - use CartoDB, for instance.</p>
@@ -72,7 +66,7 @@
 </ul>
 <p>And my version using our data and some changes:</p>
 <ul>
-<li><strong>world_comparisons.html</strong></li>
+<li><strong><a href="world_comparisons.html">world_comparisons.html</a></strong></li>
 </ul>
 <p>Any design suggestions? How would you improve the tooltips?</p>
 <ul>
@@ -210,8 +204,8 @@
 <li>Map coloring scales in d3: <a href="http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/">http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/</a><br /></li>
 <li>Don't use rainbow schemes or your data vis license will be revoked: <a href="https://eagereyes.org/basics/rainbow-color-map">https://eagereyes.org/basics/rainbow-color-map</a></li>
 </ul>
-<p><strong>HW 1 (20pts) Region Colors</strong>: Make a region color-coded map of the world like I showed. You can start from africa_map2.html and africa_map3.html for the data loading. Use the region data in World_Development_Indicators_Metadata_Countries.csv. You may have to use the ISO3 column.</p>
-<p><strong>HW 2 (15pts) Choropleth Map</strong>: Make a choropleth map for your project data, using a continent or region or world of your choice, similar to what I did in africa_map3.html. It should have a legend and tooltips. <strong>Extra Credit (grad students, 6 pts)</strong>: Use the jquery Tipsy plugin (or another jquery plugin) for the tooltips. [Actually, it doesn't work on maps. Why not?]</p>
+<p><strong>HW 1 (20pts) Region Colors</strong>: Make a region color-coded map of the world like I showed. You can start from <a href="africa_map2.html">africa_map2.html</a> and <a href="africa_map3.html">africa_map3.html</a> for the data loading. Use the region data in <a href="World_Development_Indicators_Metadata_Countries.csv">World_Development_Indicators_Metadata_Countries.csv</a>. You may have to use the ISO3 column.</p>
+<p><strong>HW 2 (15pts) Choropleth Map</strong>: Make a choropleth map for your project data, using a continent or region or world of your choice, similar to what I did in africa_map3.html. It should have a legend and tooltips.</p>
 <p><strong>HW 3 (20 pts) Design Sketch Rev2</strong>: I want an updated design sketch for your project, using some ideas from the second stages of the Five Design Sheets site. <a href="http://fds.design/">http://fds.design/</a> You should have done some exploratory charts and graphs and have ideas about what types of charts you will include in the project now. We'll discuss these in class next week.</p>
 </body>
 </html>

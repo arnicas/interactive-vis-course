@@ -17,11 +17,8 @@ About Readme.md files...  Tips on formatting in markdown, if you want: https://h
 * Let's talk about data column names:
 https://gist.github.com/DimsumPanda/1b8f5adcbf4d752cff0c
 
-* Let's discuss the color palette.
-
 * Let's discuss [jquery_error_on_load.html](jquery_error_on_load.html).
 Remember, for JSON files check them with http://jsonlint.com/.
-
 
 What took the most time?
 
@@ -109,8 +106,8 @@ We're starting with tables, because in my opinion they are an often overlooked p
 Reading: [IDVW Chapter 5](http://chimera.labs.oreilly.com/books/1230000000345/ch05.html#_binding_data)
 
 
-* Review d3_table.html.  Try to use breakpoints and logging to understand it.
-* You should review: http://bost.ocks.org/mike/nest/
+* Review [d3_table.html](d3_table.html).  Try to use breakpoints and logging to understand it.
+* You should review: [http://bost.ocks.org/mike/nest/](http://bost.ocks.org/mike/nest/)
 * How selections work demo: selectAll vs. select: http://prcweb.co.uk/lab/selection/
 
 **Homework**: See below.
@@ -134,7 +131,7 @@ Plus anything else that I referenced above that helps you better understand d3 d
 
 Readings above.
 
-**Homework 1** (30pts): Using the data in data/UN_RefugeesByOrigin_1990-2013.csv, and using my examples in d3_process_data.html...
+**Homework 1** (30pts): Using the data in data/UN_RefugeesByOrigin_1990-2013.csv, and using my examples in [d3_process_data.html](d3_process_data.html)...
 
 * fix any column names you think should/could be improved in the csv (and give it a new name)
 * load your data in d3 using d3.csv, and in the function in d3.csv:
