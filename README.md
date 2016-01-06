@@ -1,6 +1,6 @@
 # Interactive Data Vis Course Repo
 
-Repo for U of Miami course on interactive vis by Lynn Cherny, fall 2015.
+Repo for U of Miami course on interactive vis by Lynn Cherny, fall and spring 2015.
 
     Office Hours: Wolfson 1020A, M & Th 1-3 or by appt.
     Emails for homework: arnicas@gmail.com
@@ -26,6 +26,7 @@ Repo for U of Miami course on interactive vis by Lynn Cherny, fall 2015.
 * [Week14](Week14): Project, Reusable charts, other layouts
 * [Week15](Week15): Project
 
+All the made-for-class example files are [here](examples.html). Many other examples are linked in each week's folder.
 
 ### 2. Programming Techniques and Tools We'll Cover
 
