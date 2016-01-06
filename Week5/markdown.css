@@ -3,9 +3,10 @@
 body {
   font-family: 'PT Sans', Helvetica, 'Helvetica Neuve', Arial, Tahoma, sans-serif;
   font-size: 17px;
-
+  max-width: 1000px;
   color: #333;
-
+  margin: auto;
+  float: none;
   background: url(../img/groovepaper.png) repeat top left;
 }
 

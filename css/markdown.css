@@ -1,12 +1,23 @@
 @import url(//fonts.googleapis.com/css?family=PT+Sans);
 
 body {
-  font-family: 'PT Sans', Helvetica, 'Helvetica Neuve', Arial, Tahoma, sans-serif;
+font-family: 'PT Sans', Helvetica, 'Helvetica Neuve', Arial, Tahoma, sans-serif;
   font-size: 17px;
-
+  max-width: 1000px;
   color: #333;
+  margin: 0 auto;
+  float: none;
+}
 
-  background: url(../img/groovepaper.png) repeat top left;
+
+a.left {
+  float: left;
+  display: inline-block;
+}
+
+a.right {
+  float: right;
+  display: inline-block;
 }
 
 h1, h2, h3, h4, h5, h6 {
