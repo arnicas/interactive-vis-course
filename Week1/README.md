@@ -1,29 +1,10 @@
 
-##Week 1:
+##Week 1: Getting Set Up, CSV Files
 
-Lots of getting set up and review exercises.
+## What This Class Covers
 
-## What This Class Covers, the General Plan...
+Review repo's [home page](../index.html).
 
-Review repo's [README](../README.md).
-
-## The Client Project: UNICEF (Child and Maternal Mortality)
-
-* Readings: The [client brief](../APromiseRenewed_Brief_March2015.pdf). And their 1024 Key Findings Report. Look for any open questions you may have after looking at their report and website.  Take a few notes, we'll discuss next week.
-* A storytelling interactive by JanWillem Tulp (http://tulpinteractive.com/): http://www.apromiserenewed.org/infographics/
-* Play with their Dashboard for more data insights and questions: http://www.apromiserenewed.org/dashboard/
-
-
-## Data Formatting in Excel
-
-* Recommended read for general good advice: http://kbroman.org/dataorg/
-* A good article arguing for "tidy" data in long format, with R code examp: http://vita.had.co.nz/papers/tidy-data.pdf (Note that D3 usually wants "wide" instead)
-
-We'll go through a download and csv formatting example in class.  You'll need to do the same, so take notes!
-
-Let's look at the infant_deaths data set from WHO first. (Walkthrough how I formatted it for use in javascript.)
-
-**Homework**: See below.
 
 ## Intro to Chrome Tools, the Console
 
@@ -35,15 +16,14 @@ Let's look at the infant_deaths data set from WHO first. (Walkthrough how I form
 
 ### Github
 
-Github is how you should get and keep the course files up to date.
-Make an account, if you haven't.
+Github is how you should get and keep the course files up to date. Make an account, if you haven't.
 
 * Make sure you have git installed: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 * If you are new to using the command line, read up here: http://cli.learncodethehardway.org/book/ (thanks Luis)
 
 I recommend you clone my repo, so you can repull it as I add stuff. You will do `git clone [copied path]` (https is fine for now).  I'll show you in class.
 
-Every week you should do `git pull` to get my updates. Do this from inside the directory made by cloning.  **If you want to make changes to class files, save them with new names.**
+Every week you should do `git pull` to get my updates. Do this from inside the directory made by cloning.  **If you want to make changes to class files, save them with new names or you will have merge conflicts. No one survives that.**
 
 ### Gists
 
@@ -62,45 +42,49 @@ You can see all your gists by looking here - where you fill in your own user nam
 **Important Tips**:
 
 * If you want your d3 visual code to show up in bl.ocks.org, you need to name your html file index.html.
-* And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the `<script>` tag, you want to reference: `<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>` instead of a local path.
+* And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the `<script>` tag, you want to reference: `<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>` instead of a local path.  A CDN is an online reference to a library file.
 
 *Demo making a gist for a CSV file...*
 
-## Review of HTML/CSS
+## You and Your Local Server: You Need One.
 
-Have a look at this fun project, Tufte CSS: http://www.daveliepmann.com/tufte-css/.
-
-A refresher on HTML and CSS is necessary -- you can't afford to NOT be good at CSS with interactive graphics.  It's as important as Javascript. There's a refresher in Ch 3 of IDVW.
-
-**Homework**: See below.
+You need one.  Otherwise Javascript code won't execute on your pages. So
+set up your servers. If you haven't got one running (WAMP, MAMP, python, or otherwise), stick around and we'll set it up at the end. Use this to help: https://github.com/arnicas/d3-faq#running-a-server.
 
 
 ## Javascript Review
 
-I sent you some stuff over the summer, and here is a list of teaching references again: https://www.javascript.com/resources. And http://learnxinyminutes.com/docs/javascript/.
+I expect everyone to be proficient with HTML and CSS and to know at least a bit of javascript.  If you don't, this class will be very hard.  If you're already great at JS, I'll try to keep you entertained anyway.
 
-A super simple intro with gif demos is JS For Cats: http://jsforcats.com/
-You should review everything in it except for the last part on callbacks now.
+Let's play with [console_javascript.html](console_javascript.html) now.
 
-If we have time, we'll play with [console_javascript.html](console_javascript.html) now.
+**Resources:**
 
+* List here: https://www.javascript.com/resources.
+* And http://learnxinyminutes.com/docs/javascript/.
+* There are also links on the course [home page](../index.html).
+* A super simple intro with gif demos is JS For Cats: http://jsforcats.com/. You should review everything in it except for the last part on callbacks now.
 * Optional [video by Scott Murray](https://www.youtube.com/watch?v=3g1061kFrCs&index=4&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F) reviewing some Javascript concepts.
 
 
-## Loading Data with JS/D3
+## Data in Excel
 
-You will use the data you downloaded and formatted in D3 next week.
+A good place to do an initial formatting of data for use in web apps is Excel (or Google Sheets). We often want to use csv files as data sources.
 
-**Recommended Reading**: Loading data with D3, at http://learnjsdata.com/read_data.html.
+* Recommended read for general good advice: http://kbroman.org/dataorg/
+* A good article arguing for "tidy" data in long format, with R code examp: http://vita.had.co.nz/papers/tidy-data.pdf (Note that D3 usually wants "wide" instead)
+
+We'll go through a download and csv formatting example in class.  You'll need to do the same, so take notes!  Let's look at the infant_deaths data set from WHO first. (Walkthrough how I formatted it for use in javascript.)
+
+Things to remember about data in CSV files for use in the browser:
+
+* It's better to keep your variable names clear, but short, and with no spaces in them
+* You want all columns labeled.
+
+A next step for data work is to do exploration with graphs in Excel or a tool like Tableau.  We'll go over those in a couple week
 
 
-## You and Your Local Server
-
-You need one.  Otherwise Javascript code won't execute on your pages. So
-set up your servers. Depending on time, we'll do it in class. Use this to help: https://github.com/arnicas/d3-faq#running-a-server.
-
-
-## Homeworks Collected Up
+## Homework
 
 Homework is due at 5pm on Monday the night before the next class. I have office hours on Monday if you have struggled!
 
@@ -111,7 +95,7 @@ Readings:
 * Loading data with D3, at http://learnjsdata.com/read_data.html.
 
 
-**Homework:** Fix [js_errors.html](js_errors.html) so it displays correctly.  Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, JS errors".  If you can't do it all, send me as far as you got. (20pt, Extra credit 10pt see end of the file. Partial credit given!)
+**Homework:** Fix [js_errors.html](js_errors.html) so it displays correctly.  Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, JS errors".  If you can't do it all, send me as far as you got. (20pt)
 
 **Homework**: Download a data set of interest to you and format in Excel for use in visualization. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.'  You'll need this file next week. (10pt)
 

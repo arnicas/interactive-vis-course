@@ -3,22 +3,23 @@
 
 ## Week1
 
-* [console_javascript.html](Week1/console_javascript.html)
+* [console_javascript.html](Week1/console_javascript.html): Console action only.
 
 ## Week2
 
-* [highcharts_dot.html](Week2/highcharts_dot.html)
-* [highcharts_dot_csv.html](Week2/highcharts_dot_csv.html)
-* [highcharts_slope.html](Week2/highcharts_slope.html)
-* [highcharts_switch.html](Week2/highcharts_switch.html)
-* [d3_load_csv_json.html](Week2/d3_load_csv_json.html)
-* [d3_simple_append.html](Week2/d3_simple_append.html)
-* [create_p_from_data.html](Week2/create_p_from_data.html)
+* [highcharts_dot.html](Week2/highcharts_dot.html): A not great hack at a dot plot in Highchars, using data in the chart object.
+* [highcharts_dot_csv.html](Week2/highcharts_dot_csv.html): Another attempted dot plot in Highcharts using external csv data, which is kind of hard.
+* [highcharts_slope.html](Week2/highcharts_slope.html): A not terrible slope chart hacked up in Highcharts.
+* [highcharts_switch.html](Week2/highcharts_switch.html): Template example for a button switch between Highcharts charts, extracted from <a href=http://datatools.urban.org/Features/wealth-inequality-charts/">Urban Institute wealth inequality project.</a>
+* [d3_load_csv_json.html](Week2/d3_load_csv_json.html): Loading a simple CSV file with d3.
+* [d3_simple_append.html](Week2/d3_simple_append.html): Appending to the DOM with d3.
+* [create_p_from_data.html](Week2/create_p_from_data.html): Create paragraphs from csv data and append to the DOM - not using a good D3 enter() method yet.
 
+[![switcher](Week2/img/highcharts_switch.png =100x100)](Week2/highcharts_switch.html)
 
 ## Week3
 
-* [jquery_error_on_load.html](Week3/jquery_error_on_load.html)
+* [jquery_error_on_load.html](Week3/jquery_error_on_load.html): This errors, needs fixing.
 * [d3_process_data.html](Week3/d3_process_data.html)
 * [d3_new_obj_data.html](Week3/d3_new_obj_data.html)
 * [d3_process_data_dates.html](Week3/d3_process_data_dates.html)

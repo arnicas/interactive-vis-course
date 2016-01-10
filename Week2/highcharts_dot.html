@@ -1,9 +1,16 @@
 
 <html>
   <head>
+
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+    }
+    </style>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Highcharts Example DotPlot</title>
-
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
@@ -61,7 +68,7 @@ $(function() {
         },
         plotOptions: {
             area: {
-                fillOpacity: 0
+                fillOpacity: 0.01
             },
             series: {
                 lineWidth: 0
@@ -87,6 +94,8 @@ $(function() {
 </head>
 
 <body>
+
+<p>Hacking together a fake dot plot with Highcharts using an area chart on its side, with no fill. Not sure if the line on mouseover is a feature or problem.
 
     <div id="container" style="min-width: 500px; height: 600px; margin: 0 auto"></div>
 

@@ -19,15 +19,17 @@
 
 <script type="text/javascript">
 
+// this is a javascript function.
 function simple_add(arg1, arg2) {
   return arg1 + arg2;
 }
 
+// so is this. Because it's defined as a var, it needs to appear before it's referred to on the page.
 var subtract = function(arg1, arg2) {
   return arg1 - arg2;
 };
 
-
+// this is an object
 var myobject = {
   cats: 2,
   dogs: 5,
@@ -57,7 +59,7 @@ var mydata = [
 // fix this to fill in your name and display this in the console.
 //console.log("Hi, my name is " + "Lynn").
 
-// fix this so you can refere to burrowing owls:
+// fix this so you can refer to burrowing owls:
 //console.log("Problem 1, owls:", myobject.burrowingOwls);
 
 // fix to call the function with the cats and dogs properly
@@ -73,14 +75,6 @@ console.log("Problem 4, print the size or length of the mydata array using the r
 // Fill in the function, args, and fix the args so this works:
 console.log("Problem 5, subtract experience of Bob from Alice, which requires fixing the data so subtraction works:", <fill in function and args here>);
 
-console.log("Your page should now display the last h2 element...");
-
-// Raw DOM manipulation without jquery or d3.  This has no errors:
-var child = document.createElement("h2");
-child.innerHTML = "You did it!";
-document.getElementById("content").appendChild(child);
-
-// Extra credit (10pt):
 
 // Create another list of data objects expressing these estimates from 2014:
 // Florida's population is 19,893,297, and it has 27 seats in the US House of Reps.
@@ -88,7 +82,15 @@ document.getElementById("content").appendChild(child);
 // Texas's pop is 26,956,958, and it has 36 seats in the US House.
 //
 // Create a function that calculates the population per house seat for any object.
-// Console.log the output for all 3 states.
+// Console.log the output for all 3 states' pop per house seat.
+
+console.log("Your page should now display the last h2 element...");
+
+// Raw DOM manipulation without jquery or d3: fix the missing variable with the results of the part above.
+
+var child = document.createElement("h2");
+child.innerHTML = "You did it! Texas has a Population per House Seat of " + YourAnswerHere;
+document.getElementById("content").appendChild(child);
 
 </script>
 </html>

@@ -9,4 +9,4 @@ done
 
 echo "Doing top level index and examples..."
 pandoc --from markdown_github --to html README.md --toc -H pandoc/pandoc_header.txt -B pandoc/pandoc_before.txt > index.html
-pandoc --from markdown_github --to html examples.md --toc -H pandoc/pandoc_header.txt -B pandoc/pandoc_before.txt > examples.html
+pandoc --from markdown_github --to html examples.md -H pandoc/pandoc_header.txt -B pandoc/pandoc_before_examples.txt > examples.html

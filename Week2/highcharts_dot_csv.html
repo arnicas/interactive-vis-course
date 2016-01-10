@@ -35,11 +35,11 @@ $.get('data/water_improvement_data.csv', function(data) {
             text: 'source: UNICEF Data'
         },
         legend: {
-            layout: 'vertical',
+            layout: 'horizontal',
             align: 'right',
             verticalAlign: 'top',
-            x: -150,
-            y: 100,
+            x: -50,
+            y: 50,
             floating: true,
             borderWidth: 1,
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
@@ -59,7 +59,7 @@ $.get('data/water_improvement_data.csv', function(data) {
         },
         plotOptions: {
             area: {
-                fillOpacity: 0
+                fillOpacity: 0.01
             },
             series: {
                 lineWidth: 0,

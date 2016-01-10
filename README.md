@@ -1,16 +1,18 @@
 # Interactive Data Vis Course Repo
 
-Repo for U of Miami course on interactive vis by Lynn Cherny, fall and spring 2015.
+Repo for U of Miami School of Communication course on interactive data visualization for the web by Lynn Cherny (fall 2015 and spring 2016).
 
     Office Hours: Wolfson 1020A, M & Th 1-3 or by appt.
     Emails for homework: arnicas@gmail.com
 
 ## What the Course Covers
 
-### 1. Interactive data vis: Design Principles, Techniques, Best-Practices...
+### 1. Interactive Data Vis: Design Principles, Techniques, Best-Practices...
+
+Originally intended as having a journalistic focus, the course contents will expand a little more in spring 2016 to address broader topics in visualization. (Those additions are in progress.)
 
 
-* [Week1](Week1): Intro to Tools and the Course, Setup, CSVs Coping
+* [Week1](Week1): Intro to Tools and the Course, Setup, CSVs
 * [Week2](Week2): Loading CSV Data, Highcharts
 * [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
 * [Week4](Week4): More tables, SVG and D3 bar charts
@@ -32,14 +34,14 @@ All the made-for-class example files are [here](examples.html). Many other examp
 
 * Javascript and useful libraries like JQuery, lowdash
 * Good practices with D3.js for data vis
-* Charting libs like High Charts, D3, libs on top of D3 like Dimple.js
+* Web Charting libs like Highcharts, D3, libs on top of D3 like Dimple.js
 * GitHub use
 * Debugging how-to's
 
 
-### 3. Data Analysis Sources
+### 3. Data Sources
 
-* UNICEF & Child Mortality (Fall Semester Client)
+#### UNICEF & Child Mortality (Fall Semester Client, optional for Spring)
     * [The client brief](APromiseRenewed_Brief_March2015.pdf)
     * The 2014 Key Findings Report on http://www.apromiserenewed.org/: [pdf](http://www.apromiserenewed.org/wp-content/uploads/2015/07/A-Promise-Renewed-2014-Key-Findings.pdf) (plus other publications that may be useful!)
     * Their data sites: http://data.unicef.org/index.php, http://mics.unicef.org
@@ -47,16 +49,18 @@ All the made-for-class example files are [here](examples.html). Many other examp
     * http://childmortality.org/ - UN Inter-agency Group for Child Mortality Estimation (IGME), of which UNICEF is a member (new data coming in September)
 
 
-* More coming soon...
+#### Quantified Self
+
+#### Data Set Resources
 
 
 ### 4. Evaluation
 
-Grading based on weekly homeworks (60%) and a final project (40%) that uses many of the techniques in a storytelling project using data that interests you.  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that too.
+Grading based on weekly homeworks (60%) and a final project (40%) that uses many of the techniques in a storytelling project using data that interests you.  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that, too.
 
 Primary emphasis is on end user experience and data honesty; secondary consideration will be good coding practices.
 
-**Due Dates**: Due by 5pm on Monday before class day, unless I decide otherwise... You will be submitting links by email (arnicas@gmail.com).
+**Homework Due Dates**: Due by 5pm on Monday before class day, unless I decide otherwise... You will be submitting links by email (arnicas@gmail.com).
 
 
 ## Background: D3 Books and Tutorial Materials
