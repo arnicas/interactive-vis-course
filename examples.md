@@ -15,7 +15,7 @@
 * [d3_simple_append.html](Week2/d3_simple_append.html): Appending to the DOM with d3.
 * [create_p_from_data.html](Week2/create_p_from_data.html): Create paragraphs from csv data and append to the DOM - not using a good D3 enter() method yet.
 
-[![switcher](Week2/img/highcharts_switch.png =100x100)](Week2/highcharts_switch.html)
+![<img src="Week2/img/highcharts_switch.png" width="100" height="100">](Week2/highcharts_switch.html)
 
 ## Week3
 
