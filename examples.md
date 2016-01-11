@@ -42,7 +42,7 @@
 * [formatting_ticks.html](Week5/formatting_ticks.html): Formatting ticks
 * [bar_axes_labels.html](Week5/bar_axes_labels.html): More labeling axes
 * [scatter_skeleton.html](Week5/scatter_skeleton.html): A starter scatterplot to fix
-* [dot_plot.html](dot_plot.html): A dot plot example
+* [dot_plot.html](Week5/dot_plot.html): A dot plot example
 
 
 ## Week6: Line Charts, Events, Tooltips
@@ -105,8 +105,8 @@
 * [africa_map.html](Week11/africa_map.html): Map of borders only.
 * [africa_map2.html](Week11/africa_map2.html): Using country features now.
 * [africa_map3.html](Week11/africa_map3.html): Using a data file, choropleth it.
-* [world_map_regions.html](word_map_regions.html): Countries colored by regions - data bugs remain! Also d3.legend.
-* [carto_db_example.html](carto_db_example.html): Using Carto DB!
+* [world_map_regions.html](Week11/word_map_regions.html): Countries colored by regions - data bugs remain! Also d3.legend.
+* [carto_db_example.html](Week11/carto_db_example.html): Using Carto DB!
 * [world_comparisons.html](Week11/world_comparisons.html): Example based on a Nathan Yau tutorial.
 
 
@@ -121,7 +121,7 @@
 * [animated_lines.html](Week13/animated_lines.html): A variety of methods for animated line drawing.
 * [animated_map_path.html](Week13/animated_map_path.html): A dot travels across a map with a play/pause button.
 * [africa_map_slider.html](Week13/africa_map_slider.html): Change data on choropleth map by year, using a play button/slider
-* [africa_map_clicker.html](africa_map_clicker.html): Click on a map
+* [africa_map_clicker.html](Week13/africa_map_clicker.html): Click on a map
 
 
 ## Week14: Reusable Charts, Map Click
