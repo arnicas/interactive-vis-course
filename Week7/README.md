@@ -1,8 +1,9 @@
-##Week 7: Improving Lines, Click Events, Data Transitions
+# Week 7: Improving Line Charts, Click Events, Data Transitions
 
 
 ## Homework Review
 
+## More D3/JS Convenience Functions
 
 ### Gridlines How To
 
@@ -27,20 +28,9 @@ var yAxis = d3.svg.axis()
     .ticks(5);
 ````
 
-### Labeling Lines
+###D3 Nest
 
-This was harder than expected, because of the data being at the "group" level.
-
-See my [multiple_lines_labels.html](multiple_lines_labels.html) for the data-attachment solution using datum, following Mike Bostock's example.  It requires checking for empty values in the data set, or it errors. I also used a y-axis threshold to set which lines get labelled, which works with this data because those "high" lines are quite separate from each other.
-
-The alternate way is to use the data in the group `g` level, and just append text if the country names matches the ones you know are outliers, as in http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/
-
-
-## More D3 and JS Convenience Functions
-
-###D3 Nest:
-
-Luis's data is long-form, with a column for country, and another for year.  Grouping by country is the most useful way to handle it for plotting it.  You can see an excerpt in **[data/deaths_04yearsold_excerpt.csv](data/deaths_04yearsold_excerpt.csv).**
+This data set is long-form, with a column for country, and another for year.  Grouping by country is the most useful way to handle it for plotting it.  You can see an excerpt in **[data/deaths_04yearsold_excerpt.csv](data/deaths_04yearsold_excerpt.csv).**
 
 ````
 var dataset =  d3.nest()
@@ -59,9 +49,12 @@ See **[example lines_d3nest.html](example lines_d3nest.html)** for how to deal w
 
 There are also d3 functions to return just the keys -- d3.keys(), and just the values: d3.values().
 
+Reference:
+
 * Read: http://learnjsdata.com/group_data.html
 * See examples here: http://bl.ocks.org/phoebebright/raw/3176159/.
 * See another working code example in **lines_transition.html.**
+
 
 ### array.filter
 
@@ -81,7 +74,17 @@ And you can always use http://learnjsdata.com.
 For really professional data "munging" helpers, you can use lodash.js (an extension of the popular underscore.js library): https://lodash.com/docs.
 
 
-## Lines with Dots and Paths, for Improved Tooltips
+## More on Lines: Improving the UI
+
+### Labeling Lines
+
+This was harder than expected, because of the data being at the "group" level.
+
+See my [multiple_lines_labels.html](multiple_lines_labels.html) for the data-attachment solution using datum, following Mike Bostock's example.  It requires checking for empty values in the data set, or it errors. I also used a y-axis threshold to set which lines get labelled, which works with this data because those "high" lines are quite separate from each other.
+
+The alternate way is to use the data in the group `g` level, and just append text if the country names matches the ones you know are outliers, as in http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/
+
+### Lines with Dots and Paths, for Improved Tooltips
 
 The file **[emissions_linescatterplot.html](emissions_linescatterplot.html)** has both dots and the line connecting them. The dots allow more detailed tooltips, if we want them. Check them out.
 
@@ -94,7 +97,7 @@ Here's another alternative, tricky way to add a dot on the line at the point clo
 * Clever line bisect mouseover label trick from Mike Bostock: http://bl.ocks.org/mbostock/3902569
 * More explanation: http://www.d3noob.org/2014/07/my-favourite-tooltip-method-for-line.html
 
-## An Alternate Line Data Structure
+### An Alternate Line Data Structure
 
 Because it's hard to deal with lines without any attributes, especially for styling, another way to structure the file is shown in **[lines_with_more_data.html](lines_with_more_data.html).**  This structure made it easier to style one line based on country name.
 
@@ -118,20 +121,30 @@ var lines = svg.selectAll("path.line")
 (There are still tooltips on dots, but those are in separate groups, handled as you saw above.)
 
 
-## Usability Advanced Maneuvers: Lines and Scatters with Voronoi
+### Usability Advanced Maneuvers: Lines and Scatters with Voronoi
 
-The problem of lots of lines and/or dots is that it's hard to pick them out of the mess.
+The problem of lots of lines and/or dots is that it's hard to pick them out of the mess.  There is a technique to improve this problem, but it requires restructuring your vis quite a bit.
+
+Reference and how-to's:
 
 * Read: http://www.visualcinnamon.com/2015/07/voronoi.html (notice she uses another tooltip method, the Bootstrap lib's jquery method.)
-
 * Demo: Multi-Line Voronoi: http://bl.ocks.org/mbostock/8033015, updated to http://bl.ocks.org/curran/6c0ce7a12c7d5497350d. (He has to nest data at the same points to prevent issues with coincident points. We may have this issue in our data too.)
-
+* An update for 2015 data: http://bl.ocks.org/curran/6c0ce7a12c7d5497350d
 * Demo: Zan Armstrong's temperature lines: http://bl.ocks.org/zanarmstrong/38d7f79f61a03acc0ef0
-
 * Demo: Picking on a bubble chart, plus animated transition: http://www.nytimes.com/interactive/2013/05/25/sunday-review/corporate-taxes.html
+* Example: Voronoi beer map: http://www.washingtonpost.com/news/wonkblog/wp/2015/10/06/find-out-which-beer-is-made-closest-to-you-with-this-crazy-map/?utm_content=buffer91ba0&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+Voronoi airport maps:
+
+* US Airports: http://bl.ocks.org/mbostock/4360892
+* Arc Aiport map: http://bl.ocks.org/mbostock/7608400, https://mbostock.github.io/d3/talk/20111116/airports.html
+* World Airports: https://www.jasondavies.com/maps/voronoi/airports/
+* World Capitals: https://www.jasondavies.com/maps/voronoi/capitals/
+
+Example by me: [multiple_lines_voronoi.html](multiple_lines_voronoi.html).
 
 
-## Fun: Lines with Interpolation
+### Fun: Lines with Interpolation
 
 If you want smooth lines, you can use interpolation functions. Here is a demo of line interpolators in d3: http://bl.ocks.org/mbostock/4342190
 
@@ -139,8 +152,13 @@ Beware: Smoothing lines will distort the "true" values.  Sometimes this matters.
 
 See data examples here: http://www.d3noob.org/2013/01/smoothing-out-lines-in-d3js.html?spref=tw
 
+We will do animated lines in an upcoming week.
 
-## Intro to Transitions
+
+## Transitions in D3 and Click Events
+
+
+### D3 Transitions
 
 Transitions allow us to animate changes of properties in code.
 
@@ -187,7 +205,7 @@ In the file **[emissions_linescatterplot.html](emissions_linescatterplot.html)**
 There are more data-oriented transitions in **[scatter_data_transition.html](scatter_data_transition.html)** and **[lines_transition.html](lines_transition.html)**.  See below for the click events part.
 
 
-## On "Click" Events
+### On "Click" Events
 
 For a first, simple click event transition, look at **[scatter_data_transition.html](scatter_data_transition.html).**
 
@@ -214,13 +232,13 @@ d3.selectAll("button").on("click", function() {
 Review: **[lines_transition.html](lines_transition.html)**
 
 
-## Country Regions and a Related Project
+### Country Regions Line Chart Example
 
 This is much prettier than my mockup above, and does similar things to what some of you wanted to do in the homework and now is possible with our buttons (or other UI elements).
 
 **Nathan Yau**: http://projects.flowingdata.com/life-expectancy/.
 
-The tutorial is for-pay, and the code is a little out of date, but the post is here: http://flowingdata.com/2011/10/13/life-expectancy-changes/.
+The tutorial requires membership; see me. (Also, the code is a little out of date.)
 
 He uses jquery for the "button" fiters - we will use d3 below, but either is fine.
 
@@ -252,7 +270,7 @@ var regions = { "SAS": "South Asia" , "ECS": "Europe and Central Asia", "MEA": "
 And he builds a lookup table for each country / region using the abbreviations. Then he can use the country code to get the region code and use it as a class on the line:
 
 ````
-vis.append("svg:path")
+vis.append("svg:path")  // this is out of date - we don't need to append "svg:" anymore
             .data([currData])
             .attr("country", countries[i][1])
             .attr("class", countries_regions[countries[i][1]]) // <-- the lookup table
@@ -261,6 +279,8 @@ vis.append("svg:path")
             .on("mouseout", onmouseout);
 
 ````
+
+In more modern D3 code, we'd use a d3.map() hash lookup for the country code region lookup. You'll see some examples in upcoming weeks.
 
 I've put the country-region codes table in **[data/country-regions.csv](data/country-regions.csv)**.  Come see me if you want help using it and can't figure out how to do the lookup part.
 
@@ -273,24 +293,25 @@ Have a look at Bootstrap, in very common usage in industry:
 * http://getbootstrap.com/css/
 * http://getbootstrap.com/css/#grid
 
-You will use it in one of your homeworks.  I used it for lines_transition.html layout.
+You will use it in one of your homeworks.  I used it for the [lines_transition.html](lines_transition.html) layout.
 
 
-## Recent Don't Miss Projects - Connected Scatterplots and Line Charts that Lie
+## Recent Interesting Things
 
-Connected Scatterplot with Transitions: http://www.nytimes.com/interactive/2015/09/30/business/how-the-us-and-opec-drive-oil-prices.html
+* Connected Scatterplot with Transitions: http://www.nytimes.com/interactive/2015/09/30/business/how-the-us-and-opec-drive-oil-prices.html
+* Line charts in the news, the infamous Planned Parenthood graph: http://emschuch.github.io/Planned-Parenthood/
 
-Line charts in the news, the infamous Planned Parenthood graph: http://emschuch.github.io/Planned-Parenthood/
+Things to encourage you, I hope:
 
-
-## Readings to Encourage You (I Hope)
-
-* Fun read to make you feel better: https://medium.com/@meandvan/how-i-learned-to-stop-worrying-and-love-the-code-af1a809457c7
+* https://medium.com/@meandvan/how-i-learned-to-stop-worrying-and-love-the-code-af1a809457c7
 * Learning D3 tips from Mike Bostock: https://medium.com/volt-data-lab/to-learn-data-visualization-look-for-small-problems-first-df34fc4630a0  (ignore all the js frameworks and buzzwords if you want, most news graphics teams that publish data insights don't use them)
+
 
 ## Homework
 
-Read: Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_updating_data (up to "Other Kinds of Data Updates," we'll finish next week)
+Reading
+
+* Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_updating_data (up to "Other Kinds of Data Updates," we'll finish next week)
 
 
 **Homework 1: Dots on Lines** (25pt):
@@ -298,9 +319,7 @@ Read: Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/123
 Add dots to your personal line charts (not my data!), following the model in [emissions_linescatterplot.html](emissions_linescatterplot.html) and [multiple_lines_labels.html](emissions_linescatterplot.html).  They can be visible or not, animated or not - but they should have tooltips attached that show at least the x and y data values visible in them.
 Send me the gist with subject/label "Dots on Lines."
 
-Exra Extra Credit (10pt): If you want to try to do that with voronoi, to make it easier to pick lines/dots, you'll get an extra 10pt.  Beware data points that are at the same point, you may need to use d3.nest() like Mike does in his blocks example.
-
-TODO: Fix the voronoi example?
+Exra Credit (10pt): If you want to try to do that with voronoi, to make it easier to pick lines/dots, you'll get an extra 10pt.  Beware data points that are at the same point, you may need to use d3.nest() like Mike does in his blocks example.
 
 
 **Homework 2: Transition Plot With Button** (35pt):

@@ -30,36 +30,35 @@
 <h2>TOC</h2>
 <div id="TOC">
 <ul>
-<li><a href="#week-10-small-multiples-map-start">Week 10: Small Multiples, Map Start</a></li>
+<li><a href="#week-10-small-multiples-map-start">Week 10: Small Multiples, Map Start</a><ul>
 <li><a href="#homework-review">Homework Review</a></li>
 <li><a href="#javascript-and-d3-tips">Javascript and D3 Tips</a><ul>
-<li><a href="#debugging">Debugging</a></li>
 <li><a href="#javascripts-getfullyear">Javascript's getFullYear</a></li>
-<li><a href="#d3.map-vs.-array.map-so-confusing.">D3.map vs. Array.map: So confusing.</a></li>
-<li><a href="#sorting-array-alphabetically">Sorting Array Alphabetically</a></li>
+<li><a href="#d3.map-vs.-js-array.map-so-confusing">D3.map vs. JS Array.map: So Confusing</a></li>
+<li><a href="#sorting-array-alphabetically-reminder">Sorting Array Alphabetically, Reminder</a></li>
 <li><a href="#why-datafunction-d-return-d">Why: data(function (d) {return d;})</a></li>
 <li><a href="#d3s-each-function">D3's &quot;each&quot; function</a></li>
-</ul></li>
 <li><a href="#mikes-process-data-on-load-function">Mike's Process Data on Load function</a></li>
-<li><a href="#small-multiples-in-d3---some-details">Small Multiples in D3 - Some Details</a></li>
-<li><a href="#maps-in-d3">Maps in D3</a></li>
+</ul></li>
+<li><a href="#small-multiples-in-d3---more-details">Small Multiples in D3 - More Details</a></li>
+<li><a href="#intro-to-maps-in-d3">Intro to Maps in D3</a></li>
 <li><a href="#recent-interesting-things">Recent Interesting Things</a></li>
-<li><a href="#homework">Homework:</a></li>
+<li><a href="#homework">Homework</a></li>
+</ul></li>
 </ul>
 </div>
-<h2 id="week-10-small-multiples-map-start">Week 10: Small Multiples, Map Start</h2>
+<h1 id="week-10-small-multiples-map-start">Week 10: Small Multiples, Map Start</h1>
 <h2 id="homework-review">Homework Review</h2>
 <h2 id="javascript-and-d3-tips">Javascript and D3 Tips</h2>
-<h3 id="debugging">Debugging</h3>
-<p>Let's do a little interactive debugging. A few of you had NaN's in your console this week.</p>
 <h3 id="javascripts-getfullyear">Javascript's getFullYear</h3>
 <pre><code>var d = new Date();
 var n = d.getFullYear();</code></pre>
-<h3 id="d3.map-vs.-array.map-so-confusing.">D3.map vs. Array.map: So confusing.</h3>
+<p>Also have a look at <a href="http://momentjs.com/">moment.js</a> if you want to do a lot with dates in Javascript.</p>
+<h3 id="d3.map-vs.-js-array.map-so-confusing">D3.map vs. JS Array.map: So Confusing</h3>
 <p>var countryNames = d3.map(data, function(d){<br /> return d.Country;<br />}).keys();</p>
 <p>A d3.map function creates a lookup hash table with keys as the items you return in your function. It's not the same thing as array.map. Array.map just creates a new array of the items you asked for.</p>
 <p>D3.map() is incredibly useful for storing data in objects, though. See <a href="https://github.com/mbostock/d3/wiki/Arrays#d3_map">https://github.com/mbostock/d3/wiki/Arrays#d3_map</a>.</p>
-<h3 id="sorting-array-alphabetically">Sorting Array Alphabetically</h3>
+<h3 id="sorting-array-alphabetically-reminder">Sorting Array Alphabetically, Reminder</h3>
 <pre><code>array.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // 
 or
 array.sort() // if there are just strings in the array!</code></pre>
@@ -75,9 +74,14 @@ array.sort() // if there are just strings in the array!</code></pre>
 <p>From the d3 docs: <a href="https://github.com/mbostock/d3/wiki/Selections#each">https://github.com/mbostock/d3/wiki/Selections#each</a></p>
 <pre><code># selection.each(function)
 
-Invokes the specified function for each element in the current selection, passing in the current datum d and index i, with the this context of the current DOM element. This operator is used internally by nearly every other operator, and can be used to invoke arbitrary code for each selected element. The each operator can be used to process selections recursively, by using d3.select(this) within the callback function.</code></pre>
+Invokes the specified function for each element in the current selection, 
+passing in the current datum d and index i, with the this context of the 
+current DOM element. This operator is used internally by nearly every 
+other operator, and can be used to invoke arbitrary code for each selected 
+element. The each operator can be used to process selections recursively, 
+by using d3.select(this) within the callback function.</code></pre>
 <p>You'll see each with the small multiples today. It gives you the d, i you need to work with!</p>
-<h2 id="mikes-process-data-on-load-function">Mike's Process Data on Load function</h2>
+<h3 id="mikes-process-data-on-load-function">Mike's Process Data on Load function</h3>
 <p>You can see this in <a href="small_multiples_simple.html">small_multiples_simple.html</a>, a cool trick:</p>
 <pre><code>function typeFix(d) {
   d.Measles = +d.Measles;
@@ -86,7 +90,8 @@ Invokes the specified function for each element in the current selection, passin
 }</code></pre>
 <p>You invoke it like this:</p>
 <pre><code>d3.csv(&quot;data/deaths_04yearsold_excerpt.csv&quot;, typeFix, function(error, data) { ...}</code></pre>
-<h2 id="small-multiples-in-d3---some-details">Small Multiples in D3 - Some Details</h2>
+<p>Remember, this applies to every row in your data, and your &quot;fix&quot; function must return the row after doing things to it.</p>
+<h2 id="small-multiples-in-d3---more-details">Small Multiples in D3 - More Details</h2>
 <p>Three ways described by Mike:</p>
 <ul>
 <li>Version 1: <a href="http://bl.ocks.org/mbostock/1157787">http://bl.ocks.org/mbostock/1157787</a></li>
@@ -102,7 +107,7 @@ Invokes the specified function for each element in the current selection, passin
 <li>Version 3 of Mike's saves a separate y scale per data set: <a href="http://bl.ocks.org/mbostock/9490516">http://bl.ocks.org/mbostock/9490516</a></li>
 </ul>
 <p>(I didn't remake that one. I prefer version 2.)</p>
-<p><strong>Tutorials by Jim Vallandingham (that unfortunately use Coffee Script)</strong>:</p>
+<p>Tutorials by Jim Vallandingham (that unfortunately use Coffee Script):</p>
 <ul>
 <li>Small Multiples with Details on Demand <a href="http://vallandingham.me/small_multiples_with_details.html">http://vallandingham.me/small_multiples_with_details.html</a><br /></li>
 <li>Linked Small Multiples, also by Jim V: <a href="https://flowingdata.com/2014/10/15/linked-small-multiples/">https://flowingdata.com/2014/10/15/linked-small-multiples/</a></li>
@@ -110,12 +115,12 @@ Invokes the specified function for each element in the current selection, passin
 <p>Jim's Linked Small Multiples article should be read. He has lots of examples that inspired it. He uses Version 2's style -- an each loop that draws each of the charts.</p>
 <p>He also uses the Isotope jquery library: <a href="http://isotope.metafizzy.co/">http://isotope.metafizzy.co/</a> Which you are welcome to use in your own work. (It is okay to use for non-commercial uses.)</p>
 <p>See my version in JS: <strong><a href="linked_small_mults.html">linked_small_mults.html</a></strong></p>
-<p>Finally, small multiples with transitions:</p>
 <p>Using some UI from a tutorial by Nathan Yau (<a href="http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/">http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/</a>), I also made a transition version:</p>
 <p><strong><a href="small_multiples_each_trans.html">small_multiples_each_trans.html</a></strong></p>
 <p>and a variant with the scales different across each country, to show the comparison not blown out by Nigeria:</p>
 <p><strong><a href="small_multiples_each_trans_diffaxis.html">small_multiples_each_trans_diffaxis.html</a></strong></p>
-<h2 id="maps-in-d3">Maps in D3</h2>
+<p>TODO: Create a linked version of Nathan's using Jim's code.</p>
+<h2 id="intro-to-maps-in-d3">Intro to Maps in D3</h2>
 <p>Read Mike's tutorial: <a href="http://bost.ocks.org/mike/map/">http://bost.ocks.org/mike/map/</a></p>
 <p>You don't have to do all of it yet. We may or may not deal with the command line tools in class.</p>
 <p>Let's look at <a href="africa_map.html">africa_map.html</a>.</p>
@@ -125,18 +130,18 @@ Invokes the specified function for each element in the current selection, passin
 </ul>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
-<li><p>Google Datasets search engine: <a href="https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m">https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m</a></p></li>
-<li><p>The Journalist-Engineer: <a href="https://medium.com/@matthew_daniels/the-journalist-engineer-c9c1a72b993f">https://medium.com/@matthew_daniels/the-journalist-engineer-c9c1a72b993f</a>#.9c5rllt9c</p></li>
-<li><p>More scrollytelling: <a href="http://poly-graph.co/timeless/">http://poly-graph.co/timeless/</a> -- features a bunch of great interactive features. Let's discuss!</p></li>
-<li><p>@VisualisingData's best of august 2015 in vis: <a href="http://www.visualisingdata.com/2015/10/best-of-the-visualisation-web-august-2015/">http://www.visualisingdata.com/2015/10/best-of-the-visualisation-web-august-2015/</a></p></li>
-<li><p>Escape from Mercator: <a href="https://mapzen.com/blog/escape-from-mercator">https://mapzen.com/blog/escape-from-mercator</a></p></li>
-<li><p>Greenland piece in NYT today: <a href="http://www.nytimes.com/interactive/2015/10/27/world/greenland-is-melting-away.html?hp&amp;action=click&amp;pgtype=Homepage&amp;module=photo-spot-region&amp;region=top-news&amp;WT.nav=top-news">http://www.nytimes.com/interactive/2015/10/27/world/greenland-is-melting-away.html?hp&amp;action=click&amp;pgtype=Homepage&amp;module=photo-spot-region&amp;region=top-news&amp;WT.nav=top-news</a></p></li>
+<li>Google Datasets search engine: <a href="https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m">https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m</a><br /></li>
+<li>More scrollytelling: <a href="http://poly-graph.co/timeless/">http://poly-graph.co/timeless/</a> -- features a bunch of great interactive features. Let's discuss!<br /></li>
+<li>@VisualisingData's best of august 2015 in vis: <a href="http://www.visualisingdata.com/2015/10/best-of-the-visualisation-web-august-2015/">http://www.visualisingdata.com/2015/10/best-of-the-visualisation-web-august-2015/</a><br /></li>
+<li>Escape from Mercator: <a href="https://mapzen.com/blog/escape-from-mercator">https://mapzen.com/blog/escape-from-mercator</a><br /></li>
+<li>Greenland piece in NYT today: <a href="http://www.nytimes.com/interactive/2015/10/27/world/greenland-is-melting-away.html?hp&amp;action=click&amp;pgtype=Homepage&amp;module=photo-spot-region&amp;region=top-news&amp;WT.nav=top-news">http://www.nytimes.com/interactive/2015/10/27/world/greenland-is-melting-away.html?hp&amp;action=click&amp;pgtype=Homepage&amp;module=photo-spot-region&amp;region=top-news&amp;WT.nav=top-news</a></li>
 </ul>
-<h2 id="homework">Homework:</h2>
+<h2 id="homework">Homework</h2>
+<p>Readings:</p>
 <ul>
-<li>Read: <a href="https://flowingdata.com/2014/10/15/linked-small-multiples/">https://flowingdata.com/2014/10/15/linked-small-multiples/</a><br /></li>
-<li>Read: Making of the Guardian piece I showed: <a href="https://source.opennews.org/en-US/articles/how-we-made-homan-square-portrait/">https://source.opennews.org/en-US/articles/how-we-made-homan-square-portrait/</a><br /></li>
-<li>Read Mike's tutorial: <a href="http://bost.ocks.org/mike/map/">http://bost.ocks.org/mike/map/</a></li>
+<li><a href="https://flowingdata.com/2014/10/15/linked-small-multiples/">https://flowingdata.com/2014/10/15/linked-small-multiples/</a><br /></li>
+<li>Making of the Guardian piece I showed: <a href="https://source.opennews.org/en-US/articles/how-we-made-homan-square-portrait/">https://source.opennews.org/en-US/articles/how-we-made-homan-square-portrait/</a><br /></li>
+<li>Mike's tutorial: <a href="http://bost.ocks.org/mike/map/">http://bost.ocks.org/mike/map/</a></li>
 </ul>
 <p><strong>Homework 2 (25pt)</strong>: Make a small multiples display for your own project data. Even if it's only a few multiples! You can use any of the examples I provided. I will give extra extra credit points for the more complex work, but the base requirement is to be like the code in small_multiples_simple.html. Try to stay on your project topic, make something you would really use in it. Send me the gist as &quot;Week 10, Small Multiples.&quot;</p>
 <p>Start making plans for your project more concrete. Implement any charts with your project data that might be useful inside your final project.</p>

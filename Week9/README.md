@@ -1,4 +1,4 @@
-## Week 9: Stacking Chart Types, Intro to Small Multiples
+# Week 9: Stacking Chart Types, Intro to Small Multiples
 
 ## Homework Issues
 
@@ -21,6 +21,8 @@ color(d.illness)
 or color(i)
 ````
 
+TODO: Ordinal scale coloring.
+
 
 ## Area Chart
 
@@ -37,33 +39,33 @@ The area chart is a line chart, but filled in!  There is a new layout for it:
         });
 ````
 
-Example in [area_plot.html](area_plot.html).
+Example in [area_plot.html](area_plot.html), based off a Scotty Murray example.
 
 
 ## Stacked Area
 
 We use the area layout and the stack function for this.
 
-See http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout.
+The stacker adds elements to your dataset that say what "level" an item should go in. It calculates a y0, for the y base location, and a y, which is the height from the base position.  These get added to your dataset if they weren't there already.  (Note: A lot of stacked bar examples just construct the y and y0 by hand, instead of using the stack function. But if you use the stack layout, you can do transitions very easily!)
 
-The stacker adds elements to your dataset that say what "level" an item should go in. It calculates a y0, for the y base location, and a y, which is the height from the base position.  These get added to your dataset if they weren't there already.  (Note: A lot of stacked bar examples just construct the y and y0 by hand, instead of using the stack function.)
+Reference:
 
-Read: https://github.com/mbostock/d3/wiki/Stack-Layout
+* https://github.com/mbostock/d3/wiki/Stack-Layout
+* IDVW: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout.
+* See: Line to Stacked Area transitions (too flashy, but): http://bl.ocks.org/tswast/4390054
 
-See stacked_area.html, which uses the stack layout.
-
-See also:
-
-* Line to Stacked Area transitions (too flashy, but): http://bl.ocks.org/tswast/4390054
+See [stacked_area.html](stacked_area.html), which uses the stack layout.
 
 
 ## Streamgraph
 
-The streamgraph is a minor variant on the stacked area chart!
+The streamgraph is a minor variant on the stacked area chart!  If you've used the stack layout, you can transition to it easily.
 
-Here's a NYT example: http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0
+Reference:
 
-A recent news example: https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor
+* Here's a NYT example: http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0
+* A recent news example: https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor
+* Another interactive streamgraph example (with highlights and fake tooltips): http://bl.ocks.org/WillTurman/4631136
 
 The only difference is:
 
@@ -77,8 +79,7 @@ var stack = d3.layout.stack()
 
 Try this in [stacked_area.html](stacked_area.html).
 
-Another interactive streamgraph example (with highlights and fake tooltips): http://bl.ocks.org/WillTurman/4631136
-
+TODO: Add a separate file for this easy change.
 
 ### How would we transition between them?
 
@@ -94,11 +95,14 @@ If you need access via account and password, let me know.
 
 ## Stacked Bar Chart
 
-Again, see this section: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout.
+
+Reference:
+
+* IDVW: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout.
+* Tooltips for stacked bar charts: https://gist.github.com/mstanaland/6100713.
 
 See [stacked_bar.html](stacked_bar.html).
 
-Tooltips for stacked bar charts: https://gist.github.com/mstanaland/6100713.
 
 ## Normalized Bar Chart
 
@@ -235,23 +239,19 @@ Three ways:
 * http://bl.ocks.org/mbostock/1157787
 * http://bl.ocks.org/mbostock/9490313 (uses 'each' and calls the drawing funct)
 * http://bl.ocks.org/mbostock/9490516 (I find this one strange)
-
 * Area Charts with a UI filter: http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/ (see old D3 Code alert below)
 
 Tutorials by Jim Vallandingham (that unfortunately use CoffeeScript):
 
 * Small Multiples with Details on Demand http://vallandingham.me/small_multiples_with_details.html
 * Linked Small Multiples: https://flowingdata.com/2014/10/15/linked-small-multiples/
-
 * Small Multiple Maps tutorial: http://blog.webkid.io/multiple-maps-d3/
-
 * Example: http://datatodisplay.com/blog/interactive-data-visualisation/premier-league-small-multiples/
-
 * Tutorial with a brush: http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/
 
 We'll build some next week.  Think about data in your datasets that could be done with small mutiples.
 
-### Note: Old D3 Code Alert
+**Note: Old D3 Code Alert in Some Tutorials**
 
 If you see this stuff (e.g., in some of Flowing Data's tutorials):
 
@@ -267,21 +267,18 @@ it's old D3 code.  We used to have to say "svg" in front of all the svg DOM elem
 ## Recent Interesting Things
 
 * Related vis yesterday: https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor
-
 * Amazing scrollytelling animated story: http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees
-
 * World Bank tumblr: http://worldbank.tumblr.com/submit
-
 * What is a Front-End Developer: https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html
-
 * A friendly guide to debugging (but not about d3 per se): http://p5js.org/tutorials/debugging/
 
 
 ## Homework
 
-Read this section: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout. You can see how some other layouts work in that same chapter.
+Readings:
 
-Read: How We Made Failure Factories: https://source.opennews.org/en-US/articles/how-we-made-failure-factories/ and the original piece: http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/
+* Read this section: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout. You can see how some other layouts work in that same chapter.
+* How We Made Failure Factories: https://source.opennews.org/en-US/articles/how-we-made-failure-factories/ and the original piece: http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/
 
 **Homework 1 (12pt)**: JS Practice.
 

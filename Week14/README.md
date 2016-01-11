@@ -1,10 +1,12 @@
 
-## Week 14: Reusable Charts, More Layouts, Project Help
+# Week 14: Reusable Charts, More Layouts, Project Help
+
+## Homework Review
 
 
 ## Project Grading
 
-Project is 40% of the course grade total (base points, not the extra credit points). That comes to 495 points.
+Project is 40% of the course grade total (base points, not the extra credit points).
 
 Here is the breakdown:
 
@@ -19,8 +21,6 @@ Here is the breakdown:
 
 Extra-extra credit options will include:
 
-* Well-structured, clean looking code (consider linting!)
-* Use of outside data to supplement UNICEF data (because this is hard work)
 * Using interesting/new interactions or graph types we didn't cover in class (including layouts below)
 * Anything else that makes it stand out as a great project (my perogative, and class feedback during demos)
 
@@ -32,45 +32,46 @@ https://support.office.com/en-us/article/VLOOKUP-function-0bbc8083-26fe-4963-8ab
 
 See the worksheets in scatter_data_plus_codes.xlsx and in deaths_04yearsold_codes.xlsx.
 
-Click on map to update line chart: **lines_transition_map.html**
+Click on map to update line chart: **[lines_transition_map.html](lines_transition_map.html)**  This takes a while to load, and the spinner isn't working right.
 
-Improved Scrollytelling: **Week13/scroller_template_lines2.html**
+TODO: Fix the loading gif.
 
 
-## JS Switch Statements as Function Lookups
-
-Convert a JS Switch to a Function Lookup: http://www.nikola-breznjak.com/blog/javascript/converting-a-javascript-switch-statement-into-a-function-lookup/
-
-Being more Functional (Same approach): http://encosia.com/first-class-functions-as-an-alternative-to-javascripts-switch-statement/
 
 ## A Useful Thing for Pre-Debugging and Interviewing: Linting
+
+Linting is running an app over your code to check for style and obvious errors, like variable conflicts or unused variables.  Linters will often help you avoid bugs and save time.
 
 * http://jshint.com/about/
 * http://jshint.com/install/
 
-You can run it from the command line.
+You can run jshint from the command line. Also look at "JS Beautifiers."
 
-Also look at "JS Beautifiers."
+A former colleague has written a great blog post on better ways to lint and check for formatting errors in JS:  http://glebbahmutov.com/blog/1-2-3-linted/
+
+This requires you to have node installed and do a bunch of other modules installs.  I set it up for myself, and I can help.
 
 
 ## D3's "Reusable Chart Pattern"
 
+You've seen that D3 is a pretty "manual" process.  There is one proposal for better code encapsulation and re-usability in the "reusable charts" closure paradigm.
+
+Reference:
+
 * http://bost.ocks.org/mike/chart/
-
 * a further refinement: Towards Reusable Charts: http://www.toptal.com/d3-js/towards-reusable-d3-js-charts
-
 * Final Code: http://bl.ocks.org/rcmoore38/9f2908455355c0589619
 
-(This is the style Jim Vallandingham uses in his tutorials.)
+Note: This is the style Jim Vallandingham uses in his tutorial code.
 
-**See example using it in using_reusable_barchart.html.**
+**See example using it in [using_reusable_barchart.html](using_reusable_barchart.html).**
 
 
-## D3 Layouts
+## Other D3 Layouts
 
-Other layouts we haven't covered are listed in Chapter 11: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html
+Other layouts we haven't covered are listed in Chapter 11: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html.
 
-Also see the docs: https://github.com/mbostock/d3/wiki/Layouts
+Also see the D3 docs: https://github.com/mbostock/d3/wiki/Layouts
 
 * **Tree / dendrogram**: http://bl.ocks.org/mbostock/4063570, with a how-to (untested) here: http://www.meccanismocomplesso.org/en/dendrogramma-d3-parte1/
 
@@ -90,17 +91,11 @@ Ones that might work in your project: pie (for small number of wedges), treemap 
 ##Recent Interesting Things
 
 * Y Axis critique: http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&utm_content=chorus&utm_medium=social&utm_source=twitter
-
 * Interactive Strip Plots: http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/
-
 * Data Vis catalogue: http://www.datavizcatalogue.com/
-
 * Gender Ratio in the World - relevant to UNICEF data: http://qz.com/335183/heres-why-men-on-earth-outnumber-women-by-60-million/
-
 * Climate Change: https://www.washingtonpost.com/graphics/national/gauging-climate-change/
-
 * Bret Victor's page on climate change: http://worrydream.com/ClimateChange/
-
 * Sign up for the DashingD3 newsletter if you haven't: https://www.dashingd3js.com/
 
 
@@ -109,8 +104,5 @@ Ones that might work in your project: pie (for small number of wedges), treemap 
 More progress!  Nothing due, but send me your bugs/hangups.
 
 Project is due on December 15.  Make sure your github.io link works, that you have committed and pushed it all.
-
-
-
 
 

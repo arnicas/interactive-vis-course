@@ -1,19 +1,17 @@
 
-## Week 15: Project Help
+# Week 15: Project Help
 
 
-## How to File a Bug Report
+## Debugging Reminders
+
+
+### How to File a Bug Report
 
 If you have a bug in your code, you need to do some things first, and then ask for help if you fail.  Your help request has to have details in it, or we will waste time!
 
 * How do I recreate the problem you think you see?  For example: "click on the World button and there is an error in the console".
-
 * Where in the code is the problem likely to be?  If you are doing your own good debugging effort, you have narrowed it down to a location in the code using breakpoints and the console.  Tell me what that says, and it will help me find it.
-
 * Tell me what js file to look in.  You all have a zillion now.
-
-
-## Debugging Reminders
 
 ### Breakpoints
 
@@ -28,7 +26,7 @@ Using breakpoints:
 
 Also, when you stop right before a certain point, you can then execute code "by hand" in the console window to see what the values are yourself.  I do this for selections (to see if there is anything actually selected) and scales - to check xScale.domain() for instance, to verify the numbers are right.
 
-### Console.log
+### Console.log()
 
 Turn off excessive logging if you don't need it anymore!  You want your console.logs to be useful.  A linter will complain if there are ANY left when you finish your code.
 
@@ -41,7 +39,6 @@ Click to expand the error message to see the lines of code, and find the first i
 Then if you click on that line, your source window will take you there.  Notice in this case there is something else marked with a red X. This is also an error source.
 
 ![source printout](debugging2.png)
-
 
 
 ## D3 Specific Debugging
@@ -78,14 +75,9 @@ If you have a single data element, you can use ```.datum()```. There is no enter
 
 If you want to create SVG elements from multiple data items, you need to use ```.data()``` and an enter() function.
 
-* Read the answer from Mike here: http://stackoverflow.com/questions/10086167/d3-how-to-deal-with-json-data-structures
+Read the answer from Mike here: http://stackoverflow.com/questions/10086167/d3-how-to-deal-with-json-data-structures
 
-
-## More on Linting
-
-A former colleague has written a great blog post on better ways to lint and check for formatting errors in JS:  http://glebbahmutov.com/blog/1-2-3-linted/
-
-This requires you to have node installed and do a bunch of other modules installs.  I set it up for myself, and I can help.
+TODO: Bring this forward into data binding, maybe the line section.
 
 
 ## Homework

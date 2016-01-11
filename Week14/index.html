@@ -30,20 +30,22 @@
 <h2>TOC</h2>
 <div id="TOC">
 <ul>
-<li><a href="#week-14-reusable-charts-more-layouts-project-help">Week 14: Reusable Charts, More Layouts, Project Help</a></li>
+<li><a href="#week-14-reusable-charts-more-layouts-project-help">Week 14: Reusable Charts, More Layouts, Project Help</a><ul>
+<li><a href="#homework-review">Homework Review</a></li>
 <li><a href="#project-grading">Project Grading</a></li>
 <li><a href="#helpful-stuff-i-hope">Helpful Stuff (I Hope)</a></li>
-<li><a href="#js-switch-statements-as-function-lookups">JS Switch Statements as Function Lookups</a></li>
 <li><a href="#a-useful-thing-for-pre-debugging-and-interviewing-linting">A Useful Thing for Pre-Debugging and Interviewing: Linting</a></li>
 <li><a href="#d3s-reusable-chart-pattern">D3's &quot;Reusable Chart Pattern&quot;</a></li>
-<li><a href="#d3-layouts">D3 Layouts</a></li>
+<li><a href="#other-d3-layouts">Other D3 Layouts</a></li>
 <li><a href="#recent-interesting-things">Recent Interesting Things</a></li>
 <li><a href="#homework">Homework</a></li>
+</ul></li>
 </ul>
 </div>
-<h2 id="week-14-reusable-charts-more-layouts-project-help">Week 14: Reusable Charts, More Layouts, Project Help</h2>
+<h1 id="week-14-reusable-charts-more-layouts-project-help">Week 14: Reusable Charts, More Layouts, Project Help</h1>
+<h2 id="homework-review">Homework Review</h2>
 <h2 id="project-grading">Project Grading</h2>
-<p>Project is 40% of the course grade total (base points, not the extra credit points). That comes to 495 points.</p>
+<p>Project is 40% of the course grade total (base points, not the extra credit points).</p>
 <p>Here is the breakdown:</p>
 <ul>
 <li>20% for using 4 chart types we covered in class (can include small multiples as one)<br /></li>
@@ -57,37 +59,36 @@
 </ul>
 <p>Extra-extra credit options will include:</p>
 <ul>
-<li>Well-structured, clean looking code (consider linting!)<br /></li>
-<li>Use of outside data to supplement UNICEF data (because this is hard work)<br /></li>
 <li>Using interesting/new interactions or graph types we didn't cover in class (including layouts below)<br /></li>
 <li>Anything else that makes it stand out as a great project (my perogative, and class feedback during demos)</li>
 </ul>
 <h2 id="helpful-stuff-i-hope">Helpful Stuff (I Hope)</h2>
 <p>Joining files in Excel using VLOOKUP:<br /><a href="https://support.office.com/en-us/article/VLOOKUP-function-0bbc8083-26fe-4963-8ab8-93a18ad188a1">https://support.office.com/en-us/article/VLOOKUP-function-0bbc8083-26fe-4963-8ab8-93a18ad188a1</a></p>
 <p>See the worksheets in scatter_data_plus_codes.xlsx and in deaths_04yearsold_codes.xlsx.</p>
-<p>Click on map to update line chart: <strong>lines_transition_map.html</strong></p>
-<p>Improved Scrollytelling: <strong>Week13/scroller_template_lines2.html</strong></p>
-<h2 id="js-switch-statements-as-function-lookups">JS Switch Statements as Function Lookups</h2>
-<p>Convert a JS Switch to a Function Lookup: <a href="http://www.nikola-breznjak.com/blog/javascript/converting-a-javascript-switch-statement-into-a-function-lookup/">http://www.nikola-breznjak.com/blog/javascript/converting-a-javascript-switch-statement-into-a-function-lookup/</a></p>
-<p>Being more Functional (Same approach): <a href="http://encosia.com/first-class-functions-as-an-alternative-to-javascripts-switch-statement/">http://encosia.com/first-class-functions-as-an-alternative-to-javascripts-switch-statement/</a></p>
+<p>Click on map to update line chart: <strong><a href="lines_transition_map.html">lines_transition_map.html</a></strong> This takes a while to load, and the spinner isn't working right.</p>
+<p>TODO: Fix the loading gif.</p>
 <h2 id="a-useful-thing-for-pre-debugging-and-interviewing-linting">A Useful Thing for Pre-Debugging and Interviewing: Linting</h2>
+<p>Linting is running an app over your code to check for style and obvious errors, like variable conflicts or unused variables. Linters will often help you avoid bugs and save time.</p>
 <ul>
 <li><a href="http://jshint.com/about/">http://jshint.com/about/</a><br /></li>
 <li><a href="http://jshint.com/install/">http://jshint.com/install/</a></li>
 </ul>
-<p>You can run it from the command line.</p>
-<p>Also look at &quot;JS Beautifiers.&quot;</p>
+<p>You can run jshint from the command line. Also look at &quot;JS Beautifiers.&quot;</p>
+<p>A former colleague has written a great blog post on better ways to lint and check for formatting errors in JS: <a href="http://glebbahmutov.com/blog/1-2-3-linted/">http://glebbahmutov.com/blog/1-2-3-linted/</a></p>
+<p>This requires you to have node installed and do a bunch of other modules installs. I set it up for myself, and I can help.</p>
 <h2 id="d3s-reusable-chart-pattern">D3's &quot;Reusable Chart Pattern&quot;</h2>
+<p>You've seen that D3 is a pretty &quot;manual&quot; process. There is one proposal for better code encapsulation and re-usability in the &quot;reusable charts&quot; closure paradigm.</p>
+<p>Reference:</p>
 <ul>
-<li><p><a href="http://bost.ocks.org/mike/chart/">http://bost.ocks.org/mike/chart/</a></p></li>
-<li><p>a further refinement: Towards Reusable Charts: <a href="http://www.toptal.com/d3-js/towards-reusable-d3-js-charts">http://www.toptal.com/d3-js/towards-reusable-d3-js-charts</a></p></li>
-<li><p>Final Code: <a href="http://bl.ocks.org/rcmoore38/9f2908455355c0589619">http://bl.ocks.org/rcmoore38/9f2908455355c0589619</a></p></li>
+<li><a href="http://bost.ocks.org/mike/chart/">http://bost.ocks.org/mike/chart/</a><br /></li>
+<li>a further refinement: Towards Reusable Charts: <a href="http://www.toptal.com/d3-js/towards-reusable-d3-js-charts">http://www.toptal.com/d3-js/towards-reusable-d3-js-charts</a><br /></li>
+<li>Final Code: <a href="http://bl.ocks.org/rcmoore38/9f2908455355c0589619">http://bl.ocks.org/rcmoore38/9f2908455355c0589619</a></li>
 </ul>
-<p>(This is the style Jim Vallandingham uses in his tutorials.)</p>
-<p><strong>See example using it in using_reusable_barchart.html.</strong></p>
-<h2 id="d3-layouts">D3 Layouts</h2>
-<p>Other layouts we haven't covered are listed in Chapter 11: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html</a></p>
-<p>Also see the docs: <a href="https://github.com/mbostock/d3/wiki/Layouts">https://github.com/mbostock/d3/wiki/Layouts</a></p>
+<p>Note: This is the style Jim Vallandingham uses in his tutorial code.</p>
+<p><strong>See example using it in <a href="using_reusable_barchart.html">using_reusable_barchart.html</a>.</strong></p>
+<h2 id="other-d3-layouts">Other D3 Layouts</h2>
+<p>Other layouts we haven't covered are listed in Chapter 11: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html</a>.</p>
+<p>Also see the D3 docs: <a href="https://github.com/mbostock/d3/wiki/Layouts">https://github.com/mbostock/d3/wiki/Layouts</a></p>
 <ul>
 <li><p><strong>Tree / dendrogram</strong>: <a href="http://bl.ocks.org/mbostock/4063570">http://bl.ocks.org/mbostock/4063570</a>, with a how-to (untested) here: <a href="http://www.meccanismocomplesso.org/en/dendrogramma-d3-parte1/">http://www.meccanismocomplesso.org/en/dendrogramma-d3-parte1/</a></p></li>
 <li><p><strong>Treemap</strong>: <a href="https://github.com/mbostock/d3/wiki/Treemap-Layout">https://github.com/mbostock/d3/wiki/Treemap-Layout</a>, <a href="http://bl.ocks.org/mbostock/4063582">http://bl.ocks.org/mbostock/4063582</a>, zoomable treemap: <a href="http://bost.ocks.org/mike/treemap/">http://bost.ocks.org/mike/treemap/</a></p></li>
@@ -99,13 +100,13 @@
 <p>Ones that might work in your project: pie (for small number of wedges), treemap (to drill into causes of illness), histogram (to see distribution of death causes and rates, etc).</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
-<li><p>Y Axis critique: <a href="http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&amp;utm_content=chorus&amp;utm_medium=social&amp;utm_source=twitter">http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&amp;utm_content=chorus&amp;utm_medium=social&amp;utm_source=twitter</a></p></li>
-<li><p>Interactive Strip Plots: <a href="http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/">http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/</a></p></li>
-<li><p>Data Vis catalogue: <a href="http://www.datavizcatalogue.com/">http://www.datavizcatalogue.com/</a></p></li>
-<li><p>Gender Ratio in the World - relevant to UNICEF data: <a href="http://qz.com/335183/heres-why-men-on-earth-outnumber-women-by-60-million/">http://qz.com/335183/heres-why-men-on-earth-outnumber-women-by-60-million/</a></p></li>
-<li><p>Climate Change: <a href="https://www.washingtonpost.com/graphics/national/gauging-climate-change/">https://www.washingtonpost.com/graphics/national/gauging-climate-change/</a></p></li>
-<li><p>Bret Victor's page on climate change: <a href="http://worrydream.com/ClimateChange/">http://worrydream.com/ClimateChange/</a></p></li>
-<li><p>Sign up for the DashingD3 newsletter if you haven't: <a href="https://www.dashingd3js.com/">https://www.dashingd3js.com/</a></p></li>
+<li>Y Axis critique: <a href="http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&amp;utm_content=chorus&amp;utm_medium=social&amp;utm_source=twitter">http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&amp;utm_content=chorus&amp;utm_medium=social&amp;utm_source=twitter</a><br /></li>
+<li>Interactive Strip Plots: <a href="http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/">http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/</a><br /></li>
+<li>Data Vis catalogue: <a href="http://www.datavizcatalogue.com/">http://www.datavizcatalogue.com/</a><br /></li>
+<li>Gender Ratio in the World - relevant to UNICEF data: <a href="http://qz.com/335183/heres-why-men-on-earth-outnumber-women-by-60-million/">http://qz.com/335183/heres-why-men-on-earth-outnumber-women-by-60-million/</a><br /></li>
+<li>Climate Change: <a href="https://www.washingtonpost.com/graphics/national/gauging-climate-change/">https://www.washingtonpost.com/graphics/national/gauging-climate-change/</a><br /></li>
+<li>Bret Victor's page on climate change: <a href="http://worrydream.com/ClimateChange/">http://worrydream.com/ClimateChange/</a><br /></li>
+<li>Sign up for the DashingD3 newsletter if you haven't: <a href="https://www.dashingd3js.com/">https://www.dashingd3js.com/</a></li>
 </ul>
 <h2 id="homework">Homework</h2>
 <p>More progress! Nothing due, but send me your bugs/hangups.</p>

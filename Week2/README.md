@@ -1,4 +1,4 @@
-##Week 2: Highcharts, Loading CSV Data With D3.js
+# Week 2: Highcharts, Loading CSV Data With D3.js
 
 ## Review Homework
 

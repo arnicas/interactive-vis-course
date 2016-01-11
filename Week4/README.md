@@ -1,45 +1,54 @@
-##Week 4: More Tables, Scales, Bars in D3
+# Week 4: More Tables, Scales, SVG
 
 ## Homework Review
 
-If you have an array of numbers or strings, not objects, your sort needs to work differently:
-
-````
-    arrays = [
-        [2,4,5,6,8, "china"],
-        [1,4,7,8,90,4, "australia"],
-        [34,44,23,54,65,5, "belgium"],
-        [3,4,54,2,4,5,6,"france"]
-    ]
-
-    To sort by the item in the 3rd column:
-
-    arrays.sort(function(a, b) {
-        return b[2] - a[2];
-    })
-
-    or
-
-    arrays.sort(function(a,b) {
-        return d3.descending(a[2], b[2]);
-        })
-````
-
 Alphabetic sorting:  If you sort strings, you get ascending alphabetic order by default.  This is why you have to be careful to convert strings read in by d3 to numbers, if you don't want text sort order.
 
-**Disappearing data elements**: the selectAll `<p>` problem, the select body append problem...
+### Disappearing Data Elements
+
+the selectAll `<p>` problem, the select body append problem...
 
 You can do `d3.select("body").data()` or generally `D3 SELECTIONS.data()` to see what data is attached to the selection.  Remember to use something to identify your new elements as different from any existing ones... we want a one-to-one mapping between data and DOM elements.
 
-**Javascript**:
-
-Using "var" and scope.
+### Var and JS Scope
 
 Let's peek at http://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/
 especially: http://jsbin.com/lewufuroqi/3/edit?js,console,output
 
+We should review this for the general code structuring in your project.  Don't be worried if you are getting tripped up on it, it took me a long time to figure it out at first too.
 
-### Some More table examples, with cool code
+````
+var scale;
+var data = [];
+
+scale = d3.scale.linear().range([0, width]);
+
+function doSomething(arg1, arg2) {
+    var var1 = scale;
+    var data = arg2;
+
+    scale.domain(d3.extent(data, function(d) {return d.value;}));
+
+    data = data.filter(function(d) {return d.country == "United States";});
+}
+
+````
+
+Let's discuss that snippet. What's happening in it?
+
+TODO: Make code snippet to walk through. Move this earlier in course.
+
+Reminders:
+
+* Variables declared outside of functions are global.
+* If you refer to a variable without "var" in front of it, and it was already declared with a "var" declaration, you are changing the value.
+* Variables declared inside a function are visible inside that function only.
+* arguments to a function call are variables visible in the function call only, as well.
+* Code you import from external `<script>` files add functions and variables to your workspace, just like if you wrote them in a `<script>` tag in the index.htmnl page.
+* You will have name collisions if you use multiple code files that have the same variable names in them.  Be careful and rename things so they aren't the same, unless you protect them inside functions.
+
+
+### A Peak at Style in D3
 
 Assigning a style in d3:
 
@@ -47,20 +56,15 @@ Assigning a style in d3:
     d3.select(<element>).style("color", "#eeeeee");
 ````
 
-Added to my references on the home page of the repo:
 
-* A new reference with more examples of interactive vis: https://docs.google.com/spreadsheets/d/1sSWytfD1N1nuXkry7IZyscahj9M8lX04XJWeqrdgDZk/pubhtml
+## Examples of Interactive Tables and Style Advice
 
-
-## More On Tables
+### More Table Code
 
 Let's review these:
 
-* [d3_tabulate_function.html](d3_tabulate_function.html)
-* [d3_tabulate_function_sortable.html](d3_tabulate_function_sortable.html) - using a JQuery function with D3!
-
-
-## Examples of Interactive Tables and Style Advice
+* [d3_tabulate_function.html](d3_tabulate_function.html): Uses a function to set up the table.
+* [d3_tabulate_function_sortable.html](d3_tabulate_function_sortable.html) - using a JQuery function with D3, after creating the table in D3.
 
 ### D3 Table Examples
 
@@ -85,7 +89,7 @@ com/blog/2014/02/12/inline-visualization-d3-js/?utm_content=buffer980a1&utm_medi
 * An article on styling in JQuery: http://code.tutsplus.com/tutorials/using-jquery-to-manipulate-and-filter-data--net-5351
 * More JQuery tables: http://www.datatables.net/, http://www.dynatable.com/?sorts%5Bus-%24%5D=1, filtering and sorting UI options: http://www.unheap.com/section/user-interface/filter-sort/
 
-### Just Cool
+### Cool Things
 
 Supplementary FYI reading:
 
@@ -95,14 +99,33 @@ A very cool project:
 
 * Data Comb, http://www.bytemuse.com/post/data-comb-visualization/
 
+## SVG
+
+SVG stands for "scaleable vector graphics."  D3 can create DOM elements that can be manipulated like you've been manipulating other HTML elements, such as `<p>` and `<table>`.  SVG elements include shapes like circles and rectangles, which is why it's useful for creating charts.
+
+D3 can manipulate and draw SVG, which is how many interactive data graphics are created. (An alternative is to use canvas for drawing shapes, but things drawn on canvas can't be manipulated as DOM elements like SVG items can, leading to some downsides.)
+
+* My Example file: [SVG_example.html](SVG_example.html)
+* And also [svg_to_fix.html](svg_to_fix.html).
+
+
+### Some Resources for SVG
+
+* Here's a [video introduction to SVG by Scott Murray](https://www.youtube.com/watch?v=qwiRkXnbLtU&feature=youtu.be&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F)
+* Basics on SVG shapes in D3: https://www.dashingd3js.com/svg-basic-shapes-and-d3js
+* [Pocket Guide to Writing SVG](http://svgpocketguide.com/book/)
+* [SVG2D3 tool](http://billautomata.github.io/svg2d3/) by Bill Automata - not good looking D3, but will give you an idea of the relationship and how D3 "builds" SVG.
+* A tool to clean up SVG exported from Inkscape or Illustrator: http://codedread.com/scour/
 
 ## D3 Scales
 
 Even independent of the rest of D3, the scales are incredibly powerful and useful tools.  Scales map numbers from a domain into a range. In particular, we need to turn numbers that are in our input data into pixel locations on the screen.  Or into colors.
 
-* References: Quantitative Scales: https://github.com/mbostock/d3/wiki/Quantitative-Scales
-* References: Ordinal Scales: https://github.com/mbostock/d3/wiki/Ordinal-Scales
-* References: Time Scales: https://github.com/mbostock/d3/wiki/Time-Scales
+Reference:
+
+*  Quantitative Scales: https://github.com/mbostock/d3/wiki/Quantitative-Scales
+* Ordinal Scales: https://github.com/mbostock/d3/wiki/Ordinal-Scales
+* Time Scales: https://github.com/mbostock/d3/wiki/Time-Scales
 
 * My example file: [scale_examples.html](scale_examples.html)
 
@@ -119,28 +142,7 @@ Look at [d3_table_heatmap.html](d3_table_heatmap.html), where we add a color ran
 * Another great heatmap on vaccines: http://graphics.wsj.com/infectious-diseases-and-vaccines/
 
 
-## SVG
-
-SVG stands for "scaleable vector graphics."  D3 can create DOM elements that can be manipulated like you've been manipulating other HTML elements, such as `<p>` and `<table>`.  SVG elements include shapes like circles and rectangles, which is why it's useful for creating charts.
-
-D3 can manipulate and draw SVG, which is how many interactive data graphics are created. (An alternative is to use canvas for drawing shapes, but things drawn on canvas can't be manipulated as DOM elements like SVG items can, leading to some downsides.)
-
-* My Example file: [SVG_example.html](SVG_example.html)
-* And also [svg_to_fix.html](svg_to_fix.html).
-
-A Few Resources:
-
-* Here's a [video introduction to SVG by Scott Murray](https://www.youtube.com/watch?v=qwiRkXnbLtU&feature=youtu.be&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F)
-* Basics on SVG shapes in D3: https://www.dashingd3js.com/svg-basic-shapes-and-d3js
-
-### Some Resources
-* [Pocket Guide to Writing SVG](http://svgpocketguide.com/book/)
-* [SVG2D3 tool](http://billautomata.github.io/svg2d3/) by Bill Automata - not good looking D3, but will give you an idea of the relationship and how D3 "builds" SVG.
-* A tool to clean up SVG exported from Inkscape or Illustrator: http://codedread.com/scour/
-
-**Homework, see below**
-
-###Size Scales
+### Size Scales
 
 This is a common pattern in D3:
 
@@ -166,7 +168,11 @@ Look at [d3_dynamic_domain.html](d3_dynamic_domain.html).
 
 Note that with chaining, you can put your domain and range in any order on your scale function.  ```d3.scale.linear().domain([]).range([])``` is fine, and so is ```d3.scale.linear.range([]).domain([])```.
 
-## Readings
+
+
+## Homework
+
+Readings:
 
 * [A Tour Through The Visualization Zoo](http://queue.acm.org/detail.cfm?id=1805128)- some examples of less common visualization techniques, possible in D3.
 * Read: http://chimera.labs.oreilly.com/books/1230000000345/ch07.html#_creating_a_scale
@@ -197,10 +203,8 @@ Using the file in [svg_to_fix.html](svg_to_fix.html), I want you to add some sty
 * Use d3 to select the rectangle with id svg_2 and make the color of the stroke orange.
 * Use a CSS style to set the background color of the SVG to a light gray.
 * Use a CSS style to set the line stroke to 3px instead.
-* Extra credit (5pt): Use a d3 category10() color scale to set the color of the lines.
-
-
-* Extra Extra credit (3pt): Use d3 to remove the text on top! Will require internet searching.
+* Use a d3 category10() color scale to set the color of the lines.
+*  Use d3 to remove the text on top! Will require internet searching.
 
 Send me the gist with "Week 4: SVG fixes"
 

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scrolling Sections</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="line.css" />
+
+<style>
+
+body {
+  margin: 20px;
+}
+
+.container {
+  width: 890px;
+}
+
+#graphic {
+  padding-top: 60px;
+}
+
+p {
+  padding: 20px;
+}
+
+#sections {
+  position: relative;
+  display: inline-block;
+  width: 250px;
+  top: 0px;
+  z-index: 90;
+  padding-bottom: 20px;
+}
+
+.step {
+  margin-bottom: 200px;
+  font-family: "TiemposTextWeb-Regular","Georgia";
+  font-size: 16px;
+  line-height: 23px;
+  color: #767678;
+}
+
+#sections .title {
+  font-family: Arial,Helvetica,"san-serif";
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #262626;
+  line-height: 1.2em;
+}
+
+#extra-space {
+  height: 300px;
+}
+
+#vis {
+  display: none;
+  position: fixed;
+  top: 60px;
+  z-index: 1;
+  margin-left: 0;
+  font-size: 10px;
+}
+
+#page_header {
+  position: relative;
+  margin: 20px;
+  z-index: 2;
+  width: 600px;
+}
+
+
+</style>
+</head>
+<body>
+
+  <h1> A page title</h1>
+
+  <p>A bunch of hipster text Franzen typewriter 90's, hella pickled pitchfork pinterest. Authentic wolf cronut narwhal drinking vinegar, post-ironic bushwick roof party kogi blue bottle church-key. Swag ramps mustache normcore four loko, pinterest lomo XOXO hashtag fashion axe disrupt schlitz. Skateboard aesthetic bespoke, shoreditch artisan franzen migas locavore wolf heirloom raw denim hammock master cleanse butcher chia. Umami mumblecore put a bird on it bespoke. Cornhole dreamcatcher mlkshk four loko mustache, twee master cleanse disrupt ethical vinyl. Williamsburg wolf mustache, small batch lo-fi readymade synth actually church-key brunch umami pabst.</p>
+
+  <div id="page_header">
+    <h2> Starting Info or pic here maybe</h2>
+  </div>
+
+<div class="container">
+  <div id="graphic">
+    <div id="sections">
+      <section class="step">
+        <div class="title">Scroll down to look at some data.</div>
+        (You could also have no title or text in case 0 at all.)
+      </section>
+      <section class="step">
+        <!-- case 1 -->
+        <div class="title">This is all the lines</div>
+        This is case 1 now, all the countries shown.
+      </section>
+      <section class="step">
+        <!-- case 2 -->
+        <div class="title">Look at Nigeria for Some Reason</div>
+          Something interesting to highlight, label, color.
+      </section>
+      <section class="step">
+        <!-- case 3 -->
+        <div class="title">And here's Bosnia and Herzegovina</div>
+        It doesn't seem to have as much data.
+      </section>
+      <section class="step">
+        <!-- case 4-->
+        <div class="title">These are Disasters</div>
+        Here are Rwanda and Haiti. One is genocide, one is a natural disaster. Guess which is which?
+      </section>
+    </div>
+    <div id="vis">
+    </div>
+  </div>
+</div>
+
+<div id="page_header">
+    <h2>Some more stuff here?</h2>
+</div>
+
+<div id="extra-space"></div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="js/mfreeman_scroller.js"></script>
+<script src="js/line_chart_refactor.js"></script>
+<script src="js/scroller_settings2.js"></script>
+</body>
+</html>

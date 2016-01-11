@@ -1,5 +1,5 @@
 
-##Week 1: Getting Set Up, CSV Files
+# Week 1: Getting Set Up, CSV Files
 
 ## What This Class Covers
 

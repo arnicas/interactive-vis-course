@@ -30,7 +30,7 @@
 <h2>TOC</h2>
 <div id="TOC">
 <ul>
-<li><a href="#week-9-stacking-chart-types-intro-to-small-multiples">Week 9: Stacking Chart Types, Intro to Small Multiples</a></li>
+<li><a href="#week-9-stacking-chart-types-intro-to-small-multiples">Week 9: Stacking Chart Types, Intro to Small Multiples</a><ul>
 <li><a href="#homework-issues">Homework Issues</a><ul>
 <li><a href="#color-by-region">Color by Region</a></li>
 </ul></li>
@@ -45,14 +45,13 @@
 </ul></li>
 <li><a href="#aside-on-javascript-keys-and-mapping">Aside on Javascript Keys and Mapping</a></li>
 <li><a href="#bar-groups">Bar Groups</a></li>
-<li><a href="#small-multiples-in-d3">Small Multiples in D3</a><ul>
-<li><a href="#note-old-d3-code-alert">Note: Old D3 Code Alert</a></li>
-</ul></li>
+<li><a href="#small-multiples-in-d3">Small Multiples in D3</a></li>
 <li><a href="#recent-interesting-things">Recent Interesting Things</a></li>
 <li><a href="#homework">Homework</a></li>
+</ul></li>
 </ul>
 </div>
-<h2 id="week-9-stacking-chart-types-intro-to-small-multiples">Week 9: Stacking Chart Types, Intro to Small Multiples</h2>
+<h1 id="week-9-stacking-chart-types-intro-to-small-multiples">Week 9: Stacking Chart Types, Intro to Small Multiples</h1>
 <h2 id="homework-issues">Homework Issues</h2>
 <h3 id="color-by-region">Color by Region</h3>
 <p>This is how I expected it, but some of you did it by hand:</p>
@@ -64,6 +63,7 @@ color.domain([&quot;sepsis&quot;, &quot;malaria&quot;, &quot;typhoid&quot;]);
 ...
 color(d.illness)
 or color(i)</code></pre>
+<p>TODO: Ordinal scale coloring.</p>
 <h2 id="area-chart">Area Chart</h2>
 <p>The area chart is a line chart, but filled in! There is a new layout for it:</p>
 <pre><code>    var area = d3.svg.area()
@@ -74,21 +74,25 @@ or color(i)</code></pre>
         .y1(function(d) {
             return yScale(+d.amount); // the top line
         });</code></pre>
-<p>Example in <a href="area_plot.html">area_plot.html</a>.</p>
+<p>Example in <a href="area_plot.html">area_plot.html</a>, based off a Scotty Murray example.</p>
 <h2 id="stacked-area">Stacked Area</h2>
 <p>We use the area layout and the stack function for this.</p>
-<p>See <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>.</p>
-<p>The stacker adds elements to your dataset that say what &quot;level&quot; an item should go in. It calculates a y0, for the y base location, and a y, which is the height from the base position. These get added to your dataset if they weren't there already. (Note: A lot of stacked bar examples just construct the y and y0 by hand, instead of using the stack function.)</p>
-<p>Read: <a href="https://github.com/mbostock/d3/wiki/Stack-Layout">https://github.com/mbostock/d3/wiki/Stack-Layout</a></p>
-<p>See stacked_area.html, which uses the stack layout.</p>
-<p>See also:</p>
+<p>The stacker adds elements to your dataset that say what &quot;level&quot; an item should go in. It calculates a y0, for the y base location, and a y, which is the height from the base position. These get added to your dataset if they weren't there already. (Note: A lot of stacked bar examples just construct the y and y0 by hand, instead of using the stack function. But if you use the stack layout, you can do transitions very easily!)</p>
+<p>Reference:</p>
 <ul>
-<li>Line to Stacked Area transitions (too flashy, but): <a href="http://bl.ocks.org/tswast/4390054">http://bl.ocks.org/tswast/4390054</a></li>
+<li><a href="https://github.com/mbostock/d3/wiki/Stack-Layout">https://github.com/mbostock/d3/wiki/Stack-Layout</a><br /></li>
+<li>IDVW: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>.<br /></li>
+<li>See: Line to Stacked Area transitions (too flashy, but): <a href="http://bl.ocks.org/tswast/4390054">http://bl.ocks.org/tswast/4390054</a></li>
 </ul>
+<p>See <a href="stacked_area.html">stacked_area.html</a>, which uses the stack layout.</p>
 <h2 id="streamgraph">Streamgraph</h2>
-<p>The streamgraph is a minor variant on the stacked area chart!</p>
-<p>Here's a NYT example: <a href="http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0">http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0</a></p>
-<p>A recent news example: <a href="https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor">https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor</a></p>
+<p>The streamgraph is a minor variant on the stacked area chart! If you've used the stack layout, you can transition to it easily.</p>
+<p>Reference:</p>
+<ul>
+<li>Here's a NYT example: <a href="http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0">http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0</a><br /></li>
+<li>A recent news example: <a href="https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor">https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor</a><br /></li>
+<li>Another interactive streamgraph example (with highlights and fake tooltips): <a href="http://bl.ocks.org/WillTurman/4631136">http://bl.ocks.org/WillTurman/4631136</a></li>
+</ul>
 <p>The only difference is:</p>
 <pre><code>var stack = d3.layout.stack()
     .offset(&quot;silhouette&quot;) // &lt;-- instead of zero!
@@ -96,7 +100,7 @@ or color(i)</code></pre>
     .x(function(d) { return formatDate.parse(d.Year);})
     .y(function(d) { return +d.Measles; });</code></pre>
 <p>Try this in <a href="stacked_area.html">stacked_area.html</a>.</p>
-<p>Another interactive streamgraph example (with highlights and fake tooltips): <a href="http://bl.ocks.org/WillTurman/4631136">http://bl.ocks.org/WillTurman/4631136</a></p>
+<p>TODO: Add a separate file for this easy change.</p>
 <h3 id="how-would-we-transition-between-them">How would we transition between them?</h3>
 <p>How would we transition between these 2 forms? It should be easy, right? Let's discuss.</p>
 <p>If you want to see a tutorial on changing between these forms, see this one by Jim Vallandingham on FlowingData:</p>
@@ -106,9 +110,12 @@ or color(i)</code></pre>
 </ul>
 <p>If you need access via account and password, let me know.</p>
 <h2 id="stacked-bar-chart">Stacked Bar Chart</h2>
-<p>Again, see this section: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>.</p>
+<p>Reference:</p>
+<ul>
+<li>IDVW: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>.<br /></li>
+<li>Tooltips for stacked bar charts: <a href="https://gist.github.com/mstanaland/6100713">https://gist.github.com/mstanaland/6100713</a>.</li>
+</ul>
 <p>See <a href="stacked_bar.html">stacked_bar.html</a>.</p>
-<p>Tooltips for stacked bar charts: <a href="https://gist.github.com/mstanaland/6100713">https://gist.github.com/mstanaland/6100713</a>.</p>
 <h2 id="normalized-bar-chart">Normalized Bar Chart</h2>
 <p>This is a very small variant, after you get the <a href="stacked_bar.html">stacked_bar.html</a> working. See the <code>//</code> notes in the file.<br />Just add offset &quot;expand&quot; to the layout! (The default offset is &quot;zero&quot;.)</p>
 <pre><code>var stack = d3.layout
@@ -188,19 +195,19 @@ Object {State: &quot;AL&quot;, Under 5 Years: &quot;310504&quot;, 5 to 13 Years:
 <ul>
 <li><a href="http://bl.ocks.org/mbostock/1157787">http://bl.ocks.org/mbostock/1157787</a><br /></li>
 <li><a href="http://bl.ocks.org/mbostock/9490313">http://bl.ocks.org/mbostock/9490313</a> (uses 'each' and calls the drawing funct)<br /></li>
-<li><p><a href="http://bl.ocks.org/mbostock/9490516">http://bl.ocks.org/mbostock/9490516</a> (I find this one strange)</p></li>
-<li><p>Area Charts with a UI filter: <a href="http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/">http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/</a> (see old D3 Code alert below)</p></li>
+<li><a href="http://bl.ocks.org/mbostock/9490516">http://bl.ocks.org/mbostock/9490516</a> (I find this one strange)<br /></li>
+<li>Area Charts with a UI filter: <a href="http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/">http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/</a> (see old D3 Code alert below)</li>
 </ul>
 <p>Tutorials by Jim Vallandingham (that unfortunately use CoffeeScript):</p>
 <ul>
 <li>Small Multiples with Details on Demand <a href="http://vallandingham.me/small_multiples_with_details.html">http://vallandingham.me/small_multiples_with_details.html</a><br /></li>
-<li><p>Linked Small Multiples: <a href="https://flowingdata.com/2014/10/15/linked-small-multiples/">https://flowingdata.com/2014/10/15/linked-small-multiples/</a></p></li>
-<li><p>Small Multiple Maps tutorial: <a href="http://blog.webkid.io/multiple-maps-d3/">http://blog.webkid.io/multiple-maps-d3/</a></p></li>
-<li><p>Example: <a href="http://datatodisplay.com/blog/interactive-data-visualisation/premier-league-small-multiples/">http://datatodisplay.com/blog/interactive-data-visualisation/premier-league-small-multiples/</a></p></li>
-<li><p>Tutorial with a brush: <a href="http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/">http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/</a></p></li>
+<li>Linked Small Multiples: <a href="https://flowingdata.com/2014/10/15/linked-small-multiples/">https://flowingdata.com/2014/10/15/linked-small-multiples/</a><br /></li>
+<li>Small Multiple Maps tutorial: <a href="http://blog.webkid.io/multiple-maps-d3/">http://blog.webkid.io/multiple-maps-d3/</a><br /></li>
+<li>Example: <a href="http://datatodisplay.com/blog/interactive-data-visualisation/premier-league-small-multiples/">http://datatodisplay.com/blog/interactive-data-visualisation/premier-league-small-multiples/</a><br /></li>
+<li>Tutorial with a brush: <a href="http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/">http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/</a></li>
 </ul>
 <p>We'll build some next week. Think about data in your datasets that could be done with small mutiples.</p>
-<h3 id="note-old-d3-code-alert">Note: Old D3 Code Alert</h3>
+<p><strong>Note: Old D3 Code Alert in Some Tutorials</strong></p>
 <p>If you see this stuff (e.g., in some of Flowing Data's tutorials):</p>
 <pre><code>&quot;svg:line&quot;
 &quot;svg:svg&quot;
@@ -208,15 +215,18 @@ Object {State: &quot;AL&quot;, Under 5 Years: &quot;310504&quot;, 5 to 13 Years:
 <p>it's old D3 code. We used to have to say &quot;svg&quot; in front of all the svg DOM elements. Not necessary anymore.</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
-<li><p>Related vis yesterday: <a href="https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor">https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor</a></p></li>
-<li><p>Amazing scrollytelling animated story: <a href="http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees">http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees</a></p></li>
-<li><p>World Bank tumblr: <a href="http://worldbank.tumblr.com/submit">http://worldbank.tumblr.com/submit</a></p></li>
-<li><p>What is a Front-End Developer: <a href="https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html">https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html</a></p></li>
-<li><p>A friendly guide to debugging (but not about d3 per se): <a href="http://p5js.org/tutorials/debugging/">http://p5js.org/tutorials/debugging/</a></p></li>
+<li>Related vis yesterday: <a href="https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor">https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor</a><br /></li>
+<li>Amazing scrollytelling animated story: <a href="http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees">http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees</a><br /></li>
+<li>World Bank tumblr: <a href="http://worldbank.tumblr.com/submit">http://worldbank.tumblr.com/submit</a><br /></li>
+<li>What is a Front-End Developer: <a href="https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html">https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html</a><br /></li>
+<li>A friendly guide to debugging (but not about d3 per se): <a href="http://p5js.org/tutorials/debugging/">http://p5js.org/tutorials/debugging/</a></li>
 </ul>
 <h2 id="homework">Homework</h2>
-<p>Read this section: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>. You can see how some other layouts work in that same chapter.</p>
-<p>Read: How We Made Failure Factories: <a href="https://source.opennews.org/en-US/articles/how-we-made-failure-factories/">https://source.opennews.org/en-US/articles/how-we-made-failure-factories/</a> and the original piece: <a href="http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/">http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/</a></p>
+<p>Readings:</p>
+<ul>
+<li>Read this section: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout</a>. You can see how some other layouts work in that same chapter.<br /></li>
+<li>How We Made Failure Factories: <a href="https://source.opennews.org/en-US/articles/how-we-made-failure-factories/">https://source.opennews.org/en-US/articles/how-we-made-failure-factories/</a> and the original piece: <a href="http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/">http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/</a></li>
+</ul>
 <p><strong>Homework 1 (12pt)</strong>: JS Practice.</p>
 <p>Finish <a href="js_homework.html">js_homework.html</a>, all the TODOs. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the file. Week 9: &quot;JS homework&quot;.</p>
 <p><strong>Homework 2 (25pt)</strong>: Stacked Bars Transition.</p>

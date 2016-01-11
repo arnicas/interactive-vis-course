@@ -30,61 +30,52 @@
 <h2>TOC</h2>
 <div id="TOC">
 <ul>
-<li><a href="#week-6-line-charts-simple-mouse-events-tooltips">Week 6: Line Charts, Simple Mouse Events, Tooltips</a></li>
+<li><a href="#week-6-line-charts-simple-mouse-events-tooltips">Week 6: Line Charts, Simple Mouse Events, Tooltips</a><ul>
 <li><a href="#homework-review">Homework Review</a><ul>
-<li><a href="#axes-issues">Axes issues</a></li>
+<li><a href="#axes-issues-with-bar-charts">Axes issues With Bar Charts</a></li>
 <li><a href="#scatterplots">Scatterplots</a></li>
-<li><a href="#bar-charts">Bar Charts</a></li>
-<li><a href="#dot-plots">Dot Plots</a></li>
 <li><a href="#selections-d3-reminder">Selections D3 Reminder!</a></li>
 </ul></li>
-<li><a href="#dates-in-d3">Dates in D3</a></li>
+<li><a href="#more-on-dates-in-d3">More on Dates in D3</a></li>
 <li><a href="#line-charts-and-time">Line Charts (and Time)</a><ul>
-<li><a href="#labeling-lines-directly-for-the-extra-credit-hw">Labeling Lines Directly (for the Extra Credit HW)</a></li>
+<li><a href="#labeling-lines-directly">Labeling Lines Directly</a></li>
 </ul></li>
 <li><a href="#intro-to-d3-mouse-events">Intro to D3 Mouse Events</a></li>
 <li><a href="#d3-tooltips">D3 Tooltips</a><ul>
-<li><a href="#doing-tooltips-on-lines-is-harder">Doing Tooltips on Lines is Harder</a></li>
+<li><a href="#doing-tooltips-on-lines-is-sometimes-harder">Doing Tooltips on Lines is Sometimes Harder</a></li>
 </ul></li>
-<li><a href="#for-the-homework-combining-a-couple-of-files-if-you-have-to">For the Homework: Combining a Couple of Files If You Have To</a></li>
+<li><a href="#loading-multiple-data-files">Loading Multiple Data Files</a></li>
 <li><a href="#homeworks">Homeworks</a></li>
+</ul></li>
 </ul>
 </div>
-<h2 id="week-6-line-charts-simple-mouse-events-tooltips">Week 6: Line Charts, Simple Mouse Events, Tooltips</h2>
+<h1 id="week-6-line-charts-simple-mouse-events-tooltips">Week 6: Line Charts, Simple Mouse Events, Tooltips</h1>
 <h2 id="homework-review">Homework Review</h2>
-<h3 id="axes-issues">Axes issues</h3>
-<p><strong>Padding</strong>:</p>
-<p>How to add padding on scatterplots... see <a href="../Week5/scatter_sample.html">Week5/scatter_sample.html</a>, now posted.</p>
-<p><strong>Bar chart 0 line</strong>:</p>
+<h3 id="axes-issues-with-bar-charts">Axes issues With Bar Charts</h3>
 <p>When we draw bars, we always start from 0. If we use margin.left as our starting point, we can get screwy results if we don't subtract that from the xscale -- because it's our new 0 point. It's as if we used a transform, translate(margin.left, margin.top) on the graph before we drew the bars.</p>
 <p>For some review of bar charts, including vertical ones with ordinal scales, see Mike Bostock's tutorial (especially part 3): <a href="http://bost.ocks.org/mike/bar/3/">http://bost.ocks.org/mike/bar/3/</a></p>
+<p>TODO: Benefit of Mike's margin convention here.</p>
 <h3 id="scatterplots">Scatterplots</h3>
-<p>Class scatterplots - I removed the requirement for axis labels, including Y axis rotated label, so I gave extra points if you did those.</p>
-<p>Original Scatterplots:</p>
-<ul>
-<li><a href="http://bl.ocks.org/jowang0319/raw/75274174cfdb526195de/">http://bl.ocks.org/jowang0319/raw/75274174cfdb526195de/</a><br /></li>
-<li><a href="http://bl.ocks.org/yan2014/raw/47e20086272f8d492a0a/">http://bl.ocks.org/yan2014/raw/47e20086272f8d492a0a/</a> (trend line, legend)<br /></li>
-<li><a href="http://bl.ocks.org/hmader/raw/887723d30971a07fcb05/">http://bl.ocks.org/hmader/raw/887723d30971a07fcb05/</a> -- two highlights</li>
-</ul>
+<p>How to add padding on scatterplots... see <a href="../Week5/scatter_sample.html">Week5/scatter_sample.html</a>, now posted.</p>
 <p>Aside on connected dot plots... Here are some famous examples in this post by Alberto: <a href="http://www.thefunctionalart.com/2012/09/in-praise-of-connected-scatter-plots.html">http://www.thefunctionalart.com/2012/09/in-praise-of-connected-scatter-plots.html</a></p>
 <p>Values all squished together on a linear scale? Try log scales? or other? See <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales">https://github.com/mbostock/d3/wiki/Quantitative-Scales</a>. Let's try it: <a href="http://blockbuilder.org/arnicas/bc3ebc9d6d6d58fac9a2">http://blockbuilder.org/arnicas/bc3ebc9d6d6d58fac9a2</a></p>
-<h3 id="bar-charts">Bar Charts</h3>
-<p>Bar chart axes issues... I was after ordinal scale labeling of the bars on the Y axis, as in <a href="../Week5/bar_axes_labels.html">Week5/bar_axes_labels.html</a>.</p>
-<h3 id="dot-plots">Dot Plots</h3>
-<p>See a lovely example here in Tableau: <a href="http://healthintelligence.drupalgardens.com/content/visualizing-human-development-gender-gap">http://healthintelligence.drupalgardens.com/content/visualizing-human-development-gender-gap</a></p>
 <h3 id="selections-d3-reminder">Selections D3 Reminder!</h3>
-<p>Selections that don't collide with other elements of the same kind:</p>
+<p>Selections that don't collide with other elements of the same kind -- add a class to make it more specific!</p>
 <pre><code>var textlabels = d3.svg.selectAll(&quot;text.labels&quot;)
     .data(myData)
     .enter()
     .append(&quot;text&quot;)
     .attr(&quot;class&quot;, &quot;labels&quot;);
 </code></pre>
-<h2 id="dates-in-d3">Dates in D3</h2>
+<h2 id="more-on-dates-in-d3">More on Dates in D3</h2>
 <p>For scales to work with dates, you need to convert your date strings to Javascript dates. We do that by using d3.time.format(). We 'parse' the incoming date, and in axes tick labels we may want to use another format to print the date.</p>
-<p>D3 docs on time formatting: <a href="https://github.com/mbostock/d3/wiki/Time-Formatting">https://github.com/mbostock/d3/wiki/Time-Formatting</a></p>
-<p>Read: <a href="http://learnjsdata.com/time.html">http://learnjsdata.com/time.html</a><br />Watch: Working with Dates in D3, Scott Murray: <a href="https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=1">https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=1</a></p>
-<p>Use: <a href="http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95">http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95</a></p>
+<p>References:</p>
+<ul>
+<li>D3 docs on time formatting: <a href="https://github.com/mbostock/d3/wiki/Time-Formatting">https://github.com/mbostock/d3/wiki/Time-Formatting</a><br /></li>
+<li>Read: <a href="http://learnjsdata.com/time.html">http://learnjsdata.com/time.html</a><br /></li>
+<li>Watch: Working with Dates in D3, Scott Murray: <a href="https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=1">https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=1</a><br /></li>
+<li>Use: <a href="http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95">http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95</a></li>
+</ul>
 <p>Example: Date formatting and parsing in <a href="d3_date_parsing.html">d3_date_parsing.html</a>. Let's work through that.</p>
 <h2 id="line-charts-and-time">Line Charts (and Time)</h2>
 <p>Line charts take a special form of data - objects with 2 data points, for the x &amp; y coordinates, as an array. So the real &quot;work&quot; in line charts is getting your data into shape for this. That means javascript munging.</p>
@@ -129,15 +120,13 @@ year: &quot;1961&quot; }</code></pre>
     },
     …
  ]</code></pre>
+<p>See my example <strong><a href="multiple_lines.html">multiple_lines.html</a></strong></p>
+<p><strong>Reference:</strong></p>
 <ul>
-<li>See my example <strong><a href="multiple_lines.html">multiple_lines.html</a></strong></li>
-</ul>
-<p>For more calm and friendly explanation of lines in d3, watch the line charts video from Scott Murray:</p>
-<ul>
-<li>Video: <a href="https://www.youtube.com/watch?v=QiNi2aYANUc&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=2">https://www.youtube.com/watch?v=QiNi2aYANUc&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=2</a><br /></li>
+<li>For more calm and friendly explanation of lines in d3, watch the line charts video from Scott Murray: <a href="https://www.youtube.com/watch?v=QiNi2aYANUc&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=2">https://www.youtube.com/watch?v=QiNi2aYANUc&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=2</a><br /></li>
 <li>Read: <a href="http://code.tutsplus.com/tutorials/building-a-multi-line-chart-using-d3js">http://code.tutsplus.com/tutorials/building-a-multi-line-chart-using-d3js</a>--cms-22935</li>
 </ul>
-<h3 id="labeling-lines-directly-for-the-extra-credit-hw">Labeling Lines Directly (for the Extra Credit HW)</h3>
+<h3 id="labeling-lines-directly">Labeling Lines Directly</h3>
 <p>For reference, multiseries line chart with labelled lines, labels at the end of the line:</p>
 <ul>
 <li>A reference version by Mike Bostock: <a href="http://bl.ocks.org/mbostock/3884955">http://bl.ocks.org/mbostock/3884955</a><br /></li>
@@ -192,13 +181,17 @@ circles
 <p>If you forget any of them, you'll have a bug!</p>
 <p>Example: <strong><a href="emissions_scatterplot_tooltip.html">emissions_scatterplot_tooltip.html</a></strong></p>
 <p>Here's an alternative using a plugin, d3.tip: <a href="http://labratrevenge.com/d3-tip/">http://labratrevenge.com/d3-tip/</a>.</p>
-<h3 id="doing-tooltips-on-lines-is-harder">Doing Tooltips on Lines is Harder</h3>
+<h3 id="doing-tooltips-on-lines-is-sometimes-harder">Doing Tooltips on Lines is Sometimes Harder</h3>
 <p>One issue with lines and tooltips is that the data is an array, and the element itself is a single entity. A mouseover on it won't know &quot;where&quot; on the line you are, unless you also add dots (we'll do that next week) or use other tricks to find your location. We'll do these advanced moves next week.</p>
 <p>This example file shows how to use classes using a new d3 method, <code>d3.classed()</code>. It's a shorthand for adding a class to an element, and turning it on or off. This is needed because you may want multiple classes on an element to control styling, and .attr(&quot;class&quot;) will set only one on it, removing others.</p>
 <p><code>selection.classed('foo', true)</code> will set the selection class to &quot;foo,&quot; so it will be selection.foo. <code>selection.classed('foo', false)</code> will remove the class &quot;foo&quot; from selection.</p>
-<p><strong>Reference</strong>: <a href="https://github.com/mbostock/d3/wiki/Selections#classed">https://github.com/mbostock/d3/wiki/Selections#classed</a></p>
-<p>See <strong><a href="multiple_lines_mouseover_tooltip.html">multiple_lines_mouseover_tooltip.html</a></strong>.</p>
-<h2 id="for-the-homework-combining-a-couple-of-files-if-you-have-to">For the Homework: Combining a Couple of Files If You Have To</h2>
+<p><strong>Reference</strong>:</p>
+<ul>
+<li><a href="https://github.com/mbostock/d3/wiki/Selections#classed">https://github.com/mbostock/d3/wiki/Selections#classed</a></li>
+</ul>
+<p>See <strong><a href="multiple_lines_mouseover_tooltip.html">multiple_lines_mouseover_tooltip.html</a></strong>. Notice it's kind of hard to target the right line... we'll talk about a method to improve that next week using a voronoi grid.</p>
+<p>TODO: Line version with all the data available.</p>
+<h2 id="loading-multiple-data-files">Loading Multiple Data Files</h2>
 <p>There are a few ways to handle multiple data files. For now, let's just nest the calls:</p>
 <pre><code>d3.csv(&quot;file1.csv&quot;, function(error, data1) {
     d3.csv(&quot;file2.csv&quot;, function (error, data2) {
@@ -207,16 +200,17 @@ circles
 
     }); // end file2
 }); // end file1</code></pre>
-<p>More on d3.merge:</p>
+<p>More on d3.merge():</p>
 <pre><code>d3.merge([ [1], [2, 3] ]); // returns [1, 2, 3]</code></pre>
+<p>We will use queue() in a few weeks.</p>
 <h2 id="homeworks">Homeworks</h2>
 <p><strong>Homework1 Tooltips &amp; Padding (12pt)</strong>: Using the scatterplot you made for Week5, with your own data (from UNICEF data), make real tooltips using the method in emissions_scatterplot_tooltip.html. Remove your title text element from the dots, after you make the real tooltips. Add some padding the way I showed you above. Send gist as &quot;Week 6: Scatter tooltips.&quot;</p>
-<p><strong>Homework2 Multiple Lines (35pt)</strong>: If you don't have it now, download some timeseries data from UNICEF's data site. This means measures of something by year, such as under 5 mortality each year since 1990. Make sure you get more than one series, but on the same time scale, because we want multiple lines on your chart. Combine files if you have to in javascript, or combine in Excel/text to make one file with all your data.</p>
+<p><strong>Homework2 Multiple Lines (35pt)</strong>: If you don't have it now, download some timeseries data. This means measures of something by year, such as under 5 mortality each year since 1990. Make sure you get more than one series, but on the same time scale, because we want multiple lines on your chart. Combine files if you have to in javascript, or combine in Excel/text to make one file with all your data.</p>
 <ul>
 <li>Give the lines mouseovers so that they look different when the mouse is over them, using classes and d3.classed.<br /></li>
 <li>Give them tooltips that identify what each line is.</li>
 </ul>
 <p>The hardest part of this might be the data manipulations part. Please email/see me for help. Send gist and data as &quot;Week 6: My Line Plot.&quot;</p>
-<p><strong>Homework 3, Labeled Lines, Extra Credit Homework (12pt)</strong>: Label the outlier lines (the ones that are very high) on the line plot in multiple_lines.html, using a technique like in the examples above under &quot;Labeling Lines Directly.&quot; The goal here is to have text on the chart at the end of the line, saying what country it is. You can use the last data point in the line to get the text coordinates.<br />Email me the gist with &quot;Week 6: Labeled Lines.&quot;</p>
+<p><strong>Homework 3, Labeled Lines</strong>: Label the outlier lines (the ones that are very high) on the line plot in multiple_lines.html, using a technique like in the examples above under &quot;Labeling Lines Directly.&quot; The goal here is to have text on the chart at the end of the line, saying what country it is. You can use the last data point in the line to get the text coordinates.<br />Email me the gist with &quot;Week 6: Labeled Lines.&quot;</p>
 </body>
 </html>

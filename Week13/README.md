@@ -1,44 +1,12 @@
 
-## Week 13: Animation with a Timer, "Play" buttons, UI
+# Week 13: Animation with a Timer, "Play" buttons, More UI
 
 
-### Homework Review:
+## Homework Review
 
-### Javascript Tips: Scope
+## Javascript Tips
 
-
-We should review this for the multiple charts case, and for the general code structuring in your project.  Don't be worried if you are getting tripped up on it, it took me a long time to figure it out at first too.
-
-````
-var scale;
-var data = [];
-
-scale = d3.scale.linear().range([0, width]);
-
-function doSomething(arg1, arg2) {
-    var var1 = scale;
-    var data = arg2;
-
-    scale.domain(d3.extent(data, function(d) {return d.value;}));
-
-    data = data.filter(function(d) {return d.country == "United States";});
-}
-
-````
-
-Let's discuss that snippet. What's happening in it?
-
-Reminders:
-
-* Variables declared outside of functions are global.
-* If you refer to a variable without "var" in front of it, and it was already declared with a "var" declaration, you are changing the value.
-* Variables declared inside a function are visible inside that function only.
-* arguments to a function call are variables visible in the function call only, as well.
-* Code you import from external `<script>` files add functions and variables to your workspace, just like if you wrote them in a `<script>` tag in the index.htmnl page.
-* You will have name collisions if you use multiple code files that have the same variable names in them.  Be careful and rename things so they aren't the same, unless you protect them inside functions.
-
-
-### More than one chart on a page
+### More Than One Chart Per Page
 
 One way is to use multiple div tags, with different id's.
 
@@ -48,6 +16,12 @@ In this example, there is a nice function for drawing each data set, which means
 
 * http://jsfiddle.net/1cqb3uw8/
 
+Ideally, you are using functions to protect your variable scope and encapsulate operations.  This will make debugging easier.
+
+### Using Functions Wisely
+
+TODO: Fill in some stuff here.
+
 
 ## Animation in D3
 
@@ -56,16 +30,14 @@ One of the most famous animated graphs ever is Hans Rosling's [Gapminder](http:/
 Tom Carden (RandomEtc) re-did it in javascript using canvas (not D3):
 http://randometc.github.io/mind-gapper-js/
 
-And then Mike Bostock did it too, in D3:
+And then Mike Bostock did it too, in D3: Gapminder animation in d3: http://bost.ocks.org/mike/nations/
 
-* Gapminder animation in d3: http://bost.ocks.org/mike/nations/
-
-But his version has a hidden brush (IMO) for the years. Can you find it?
+But his version has a hidden (IMO) brush for the years. Can you find it?
 
 
-## Animated Bar Chart
+### Animated Bar Charts
 
-* Example by Tom Carden: http://bl.ocks.org/RandomEtc/cff3610e7dd47bef2d01
+Example by Tom Carden: http://bl.ocks.org/RandomEtc/cff3610e7dd47bef2d01
 
 Note that again, we set up the page, then load the data, and call a "replay" function that is a timer that calls the "draw" function with new data.
 
@@ -93,45 +65,38 @@ function redraw() {
 }
 ````
 
-## Animated Line Charts
+### Animated Line Charts
 
 The unrolling effect!  This is all over in real news stories.  So you need to know how to do it.
 
-* Unrolling line charts: http://big-elephants.com/2014-06/unrolling-line-charts-d3js/
+**Unrolling line charts: http://big-elephants.com/2014-06/unrolling-line-charts-d3js/**
 
-See the example in **[animated_line.html](animated_line.html)**.  You could use this in your own scrolly stories if you wanted to.  Use the second version, for a smoother effect.
+See the examples in **[animated_lines.html](animated_lines.html)**.  You could use this in your own scrolly stories if you wanted to.  Use the second version, for a smoother effect.
 
 The animation delay happens via the interpolation function.
 
+TODO: Fix up the global vars in the animated lines example, add a sync'd animation. Make the animation work right on the segment.
 
-TODO: Fix up the global vars in the animated lines example, add a sync'd animation.
 
+### Animated Paths on Maps
 
-## Animated Paths on Maps
+See my example **[animated_map_path.html](animated_map_path.html)** with a play/pause button added to it. (Thanks to Jim Vallandingham for fixing a bug in the timer code.)
 
-Jiaxin wanted to do this.
+Reference:
 
 * Example in http://mtaptich.github.io/d3-lessons/d3-extras/
-
-See my example **[animated_map.html](animated_map.html)** with a play/pause button added to it.
-
-
 * On Leaflet, zev ross: http://bl.ocks.org/zross/6a31f4ef9e778d94c204
 * Another good tutorial: http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html
-
-Also see this tool from Ben Schmidt to make trails, including animated ones:
-
-* https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-* And demo: http://benschmidt.org/D3-trail/minard.html
+* Also see this tool from Ben Schmidt to make trails, including animated ones: https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+  * And demo: http://benschmidt.org/D3-trail/minard.html
 
 
 
-##UI Sliders
+### UI Sliders for Timelines
 
-* Tom MacWright's control that I recommend: http://www.macwright.org/chroniton/example/
+Tom MacWright's control that I recommend: http://www.macwright.org/chroniton/example/.
 
-See my example use of it in **[africa_map_slider.html](africa_map_slider.html).**
-
+See my example use of it in **[africa_map_slider.html](africa_map_slider.html).** It has options for configuring it to restart playing, etc.
 
 More related items:
 
@@ -141,37 +106,25 @@ More related items:
 * D3 slider control that is not year/time based: http://thematicmapping.org/playground/d3/d3.slider/
 
 
-## Click on a Map
+## Click on a Map to Trigger Stuff
 
 A lot of you want to trigger actions off charts or maps.
 
 An example is in **[africa_map_clicker.html](africa_map_clicker.html).**  Of course, the div with the tooltip-like text could instead be another chart!
 
-Notice how important the moveToFront is for the map mouseover.
+Notice how important the moveToFront() is for the map mouseover.
 
 
 ## Recent Interesting Things
 
-Animated ScrollyTelling Annotated Click Line Chart:
-
-* http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0
-
-Mercator Map Projection Puzzle:
-
-* http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
-
-Animated Map on CartoDB for The Martian:
-
-* https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map
-
+* Animated ScrollyTelling Annotated Click Line Chart: http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0
+* Mercator Map Projection Puzzle: http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
+* Animated Map on CartoDB for The Martian: https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map
 * Animated grid squares by M Bostock (using a timer): http://bl.ocks.org/mbostock/1009139
-
-Information is Beautiful Shortlist for Awards:
-
-* http://www.informationisbeautifulawards.com/showcase?award=2015&pcategory=short-list&type=awards (I'm a judge.)
+* Information is Beautiful Shortlist for Awards: http://www.informationisbeautifulawards.com/showcase?award=2015&pcategory=short-list&type=awards 
 
 
-## Let's Set Up Your Project Pages
+## Set Up Your Project Pages (Github.io)
 
 Let's do this:
 https://pages.github.com/

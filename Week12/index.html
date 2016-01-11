@@ -30,86 +30,75 @@
 <h2>TOC</h2>
 <div id="TOC">
 <ul>
-<li><a href="#week-12-storytelling-tools-scrolling-steppers">Week 12: Storytelling Tools: Scrolling, Steppers</a></li>
-<li><a href="#homeworks">Homeworks</a></li>
-<li><a href="#more-map-toolstechniques">More Map Tools/Techniques</a></li>
-<li><a href="#storytelling">Storytelling</a><ul>
-<li><a href="#steppers-slideshow">Steppers (&quot;slideshow&quot;)</a></li>
-<li><a href="#scrollytelling">Scrollytelling</a></li>
-<li><a href="#tutorials-on-scrollytelling">Tutorials on Scrollytelling</a></li>
-</ul></li>
-<li><a href="#examples">Examples</a><ul>
+<li><a href="#week-12-storytelling-tools-scrolling-steppers">Week 12: Storytelling Tools: Scrolling, Steppers</a><ul>
+<li><a href="#homework-review">Homework Review</a></li>
+<li><a href="#storytelling-intro">Storytelling Intro</a></li>
+<li><a href="#steppers-slideshow">Steppers (&quot;Slideshow&quot;)</a></li>
+<li><a href="#scroll-triggered-scrollytelling">Scroll-Triggered: &quot;Scrollytelling&quot;</a><ul>
+<li><a href="#examples-of-scrollytelling">Examples of Scrollytelling</a></li>
 <li><a href="#zoomytelling-a-subgenre">Zoomytelling, a subgenre?</a></li>
+<li><a href="#design-tip-avoid-scolljacking">Design Tip: Avoid Scolljacking</a></li>
+<li><a href="#other-related-scrolly-tools">Other Related Scrolly Tools</a></li>
 </ul></li>
-<li><a href="#javascript-tips-the-switch-statement">Javascript Tips, the Switch Statement</a></li>
-<li><a href="#design-tips">Design tips</a></li>
-<li><a href="#other-related-tools">Other Related Tools</a></li>
+<li><a href="#javascript-tips">Javascript Tips</a><ul>
+<li><a href="#switch-statement-and-a-functional-alternative">Switch Statement (and a Functional Alternative)</a></li>
+<li><a href="#string-character-replacements">String Character Replacements</a></li>
+</ul></li>
 <li><a href="#homework">Homework</a></li>
+</ul></li>
 </ul>
 </div>
-<h2 id="week-12-storytelling-tools-scrolling-steppers">Week 12: Storytelling Tools: Scrolling, Steppers</h2>
-<h2 id="homeworks">Homeworks</h2>
-<h2 id="more-map-toolstechniques">More Map Tools/Techniques</h2>
-<p>A good article:</p>
-<ul>
-<li><a href="http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html">http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html</a><br /></li>
-<li>Even more design options: <a href="https://richardbrath.wordpress.com/2015/10/15/equal-area-cartograms-and-multivariate-labels/">https://richardbrath.wordpress.com/2015/10/15/equal-area-cartograms-and-multivariate-labels/</a></li>
-</ul>
-<p>Tool I missed - Datamaps:</p>
-<ul>
-<li><a href="http://datamaps.github.io/">http://datamaps.github.io/</a><br /></li>
-<li>Example of it used: <a href="http://data.runkeeper.com/rk-usa-running-stats-by-state">http://data.runkeeper.com/rk-usa-running-stats-by-state</a></li>
-</ul>
-<h2 id="storytelling">Storytelling</h2>
+<h1 id="week-12-storytelling-tools-scrolling-steppers">Week 12: Storytelling Tools: Scrolling, Steppers</h1>
+<h2 id="homework-review">Homework Review</h2>
+<h2 id="storytelling-intro">Storytelling Intro</h2>
 <p>For next week, read this smart paper:</p>
 <ul>
 <li><a href="http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf">Telling Stories with Data</a></li>
 </ul>
-<h3 id="steppers-slideshow">Steppers (&quot;slideshow&quot;)</h3>
+<h2 id="steppers-slideshow">Steppers (&quot;Slideshow&quot;)</h2>
+<p>Reference:</p>
 <ul>
-<li><p><a href="http://www.nytimes.com/interactive/2013/05/07/education/college-admissions-gap.html">http://www.nytimes.com/interactive/2013/05/07/education/college-admissions-gap.html</a></p></li>
-<li><p>Budget Forecast Compared to Reality: <a href="http://www.nytimes.com/interactive/2010/02/02/us/politics/20100201-budget-porcupine-graphic.html">http://www.nytimes.com/interactive/2010/02/02/us/politics/20100201-budget-porcupine-graphic.html</a></p></li>
+<li><a href="http://www.nytimes.com/interactive/2013/05/07/education/college-admissions-gap.html">http://www.nytimes.com/interactive/2013/05/07/education/college-admissions-gap.html</a><br /></li>
+<li>Budget Forecast Compared to Reality: <a href="http://www.nytimes.com/interactive/2010/02/02/us/politics/20100201-budget-porcupine-graphic.html">http://www.nytimes.com/interactive/2010/02/02/us/politics/20100201-budget-porcupine-graphic.html</a></li>
 </ul>
 <p>Tutorial:</p>
 <ul>
 <li><a href="http://vallandingham.me/stepper_steps.html">http://vallandingham.me/stepper_steps.html</a> (includes a jquery version and a pure D3 version)</li>
 </ul>
-<h3 id="scrollytelling">Scrollytelling</h3>
-<p>Snow Fall: <a href="http://www.nytimes.com/projects/2012/snow-fall/#/?part=tunnel-creek">http://www.nytimes.com/projects/2012/snow-fall/#/?part=tunnel-creek</a></p>
-<h3 id="tutorials-on-scrollytelling">Tutorials on Scrollytelling</h3>
-<p>Jim Vallandingham:</p>
+<p>TODO: Make a simple button stepper example.</p>
+<h2 id="scroll-triggered-scrollytelling">Scroll-Triggered: &quot;Scrollytelling&quot;</h2>
+<p>The canonical example:</p>
+<ul>
+<li>Snow Fall: <a href="http://www.nytimes.com/projects/2012/snow-fall/#/?part=tunnel-creek">http://www.nytimes.com/projects/2012/snow-fall/#/?part=tunnel-creek</a></li>
+</ul>
+<p>Jim Vallandingham's tutorial material:</p>
 <ul>
 <li>His Openvis talk: <a href="http://vallandingham.me/think_you_can_scroll.html">http://vallandingham.me/think_you_can_scroll.html</a><br /></li>
 <li>His demo app: <a href="http://vallandingham.me/scroll_demo/">http://vallandingham.me/scroll_demo/</a><br /></li>
 <li>His tutorial: <a href="http://vallandingham.me/scroller.html">http://vallandingham.me/scroller.html</a></li>
 </ul>
-<p>Based on Jim's tutorial and talk, Mike Freeman tutorial, but with a slightly modified code library:</p>
+<p>Based on Jim's tutorial and talk, a Mike Freeman tutorial, but with a slightly modified code library:</p>
 <ul>
 <li><a href="http://mfviz.com/scrollytelling/#/">http://mfviz.com/scrollytelling/#/</a><br /></li>
 <li>His code: <a href="https://github.com/mkfreeman/scrolling">https://github.com/mkfreeman/scrolling</a> (I saved a copy as mfreeman_scroller.js in our js dir)</li>
 </ul>
-<p>Truth: I spent a lot of time trying to adapt 2 graphs to these techniques in both the Bloomberg framework in graph-tools.io and Jim's. My code was a mess and not worth sharing yet.</p>
+<p>Truth: I spent a lot of time trying to adapt 2 graphs to these techniques in both the Bloomberg framework in graph-tools.io and Jim's.</p>
 <p>The example for the homework is much simpler, a combo using Mike Freeman's modified version of Jim's scroller:</p>
 <ul>
-<li><a href="scroller_template.html">scroller_template.html</a><br /></li>
+<li>A first simple pass: <a href="scroller_template.html">scroller_template.html</a><br /></li>
 <li>requires js/line_chart.js<br /></li>
 <li>js/scroller_settings.js<br /></li>
 <li>js/mfreeman_scroller.js<br /></li>
 <li>line.css<br /></li>
-<li><a href="scroller_template_lines2.html">scroller_template_lines2.html</a> -- with more page context around it</li>
+<li>But it's not good enough. Here's some improved work: <a href="scroller_template_lines2.html">scroller_template_lines2.html</a> -- with more page context around it.</li>
 </ul>
-<p>TODO: Try to fix up libs used to handle backing up from different ending points; clarify step 0 and when to trigger it at start.</p>
-<p>Another case by Tony Hschu:</p>
-<ul>
-<li>Let's Free Congress: <a href="http://letsfreecongress.org/">http://letsfreecongress.org/</a><br /></li>
-<li>And post about the transitions: <a href="http://blog.tonyhschu.ca/post/49488608263/technical-write-up-scroll-linked-animations">http://blog.tonyhschu.ca/post/49488608263/technical-write-up-scroll-linked-animations</a></li>
-</ul>
-<h2 id="examples">Examples</h2>
+<p>TODO: Try to fix up lib used to handle backing up from different ending points; clarify step 0 and when to trigger it at start. Generally document the start/end position issues.</p>
+<h3 id="examples-of-scrollytelling">Examples of Scrollytelling</h3>
 <p><strong>Jim's list</strong>:</p>
 <ul>
-<li><p><a href="http://vallandingham.me/scroll_talk/examples/">http://vallandingham.me/scroll_talk/examples/</a></p></li>
-<li><p>The Receession in 255 Charts: <a href="http://www.nytimes.com/interactive/2014/06/05/upshot/how-the-recession-reshaped-the-economy-in-255-charts.html">http://www.nytimes.com/interactive/2014/06/05/upshot/how-the-recession-reshaped-the-economy-in-255-charts.html</a></p></li>
-<li><p>Bloomberg What's Really Warming the World? <a href="http://www.bloomberg.com/graphics/2015-whats-warming-the-world/">http://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a> (using the graph-scroll lib)</p></li>
+<li><a href="http://vallandingham.me/scroll_talk/examples/">http://vallandingham.me/scroll_talk/examples/</a><br /></li>
+<li>The Receession in 255 Charts: <a href="http://www.nytimes.com/interactive/2014/06/05/upshot/how-the-recession-reshaped-the-economy-in-255-charts.html">http://www.nytimes.com/interactive/2014/06/05/upshot/how-the-recession-reshaped-the-economy-in-255-charts.html</a><br /></li>
+<li>Bloomberg What's Really Warming the World? <a href="http://www.bloomberg.com/graphics/2015-whats-warming-the-world/">http://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a> (using the graph-scroll lib)</li>
 </ul>
 <p><strong>Position-based scrolling</strong> (as Mike Bostock calls it):</p>
 <ul>
@@ -118,15 +107,17 @@
 </ul>
 <p><strong>Scrolling with steppers</strong>:</p>
 <ul>
-<li><p>English vs. Chinese Colors: <a href="http://muyueh.com/greenhoney/">http://muyueh.com/greenhoney/</a></p></li>
+<li>English vs. Chinese Colors: <a href="http://muyueh.com/greenhoney/">http://muyueh.com/greenhoney/</a><br /></li>
 <li><a href="http://www.nytimes.com/interactive/2014/03/31/science/motorcycle-helmet-laws.html">http://www.nytimes.com/interactive/2014/03/31/science/motorcycle-helmet-laws.html</a><br /></li>
-<li><p>The Making-of: <a href="https://source.opennews.org/en-US/articles/behind-scenes-fewer-helmets-more-deaths/">https://source.opennews.org/en-US/articles/behind-scenes-fewer-helmets-more-deaths/</a></p></li>
+<li>The Making-of: <a href="https://source.opennews.org/en-US/articles/behind-scenes-fewer-helmets-more-deaths/">https://source.opennews.org/en-US/articles/behind-scenes-fewer-helmets-more-deaths/</a></li>
 </ul>
 <p><strong>Yet more scrolly goodness</strong>:</p>
 <ul>
-<li><p>Battle of the Berrics, linked text too: <a href="http://www.georgelmurphy.com/berrics/">http://www.georgelmurphy.com/berrics/</a></p></li>
-<li><p><a href="http://www.bloomberg.com/graphics/2015-auto-sales/">http://www.bloomberg.com/graphics/2015-auto-sales/</a> - &quot;Martini glass style&quot; of storytelling</p></li>
-<li><p>CA is getting Fracked by Anna Flagg: <a href="http://www.facesoffracking.org/data-visualization/">http://www.facesoffracking.org/data-visualization/</a></p></li>
+<li>Let's Free Congress: <a href="http://letsfreecongress.org/">http://letsfreecongress.org/</a>,<br /></li>
+<li>And a post about the transitions: <a href="http://blog.tonyhschu.ca/post/49488608263/technical-write-up-scroll-linked-animations">http://blog.tonyhschu.ca/post/49488608263/technical-write-up-scroll-linked-animations</a><br /></li>
+<li>Battle of the Berrics, linked text too: <a href="http://www.georgelmurphy.com/berrics/">http://www.georgelmurphy.com/berrics/</a><br /></li>
+<li><a href="http://www.bloomberg.com/graphics/2015-auto-sales/">http://www.bloomberg.com/graphics/2015-auto-sales/</a> - &quot;Martini glass style&quot; of storytelling<br /></li>
+<li>CA is getting Fracked by Anna Flagg: <a href="http://www.facesoffracking.org/data-visualization/">http://www.facesoffracking.org/data-visualization/</a></li>
 </ul>
 <h3 id="zoomytelling-a-subgenre">Zoomytelling, a subgenre?</h3>
 <ul>
@@ -134,30 +125,12 @@
 <li><p>Greenland: <a href="http://www.nytimes.com/interactive/2015/10/27/world/greenland-is-melting-away.html">http://www.nytimes.com/interactive/2015/10/27/world/greenland-is-melting-away.html</a></p></li>
 <li><p>What is this... Active Satellites: <a href="http://qz.com/296941/interactive-graphic-every-active-satellite-orbiting-earth/">http://qz.com/296941/interactive-graphic-every-active-satellite-orbiting-earth/</a></p></li>
 </ul>
-<h2 id="javascript-tips-the-switch-statement">Javascript Tips, the Switch Statement</h2>
-<p>You'll see this in the Mike Freeman example and the homework based on his slides. See: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch</a>.</p>
-<pre><code>switch (expression) {
-  case value1:
-    //Statements executed when the result of expression matches value1
-    [break;]
-  case value2:
-    //Statements executed when the result of expression matches value2
-    [break;]
-  ...
-  case valueN:
-    //Statements executed when the result of expression matches valueN
-    [break;]
-  default:
-    //Statements executed when none of the values match the value of the expression
-    [break;]
-}</code></pre>
-<p>Also, notice this string replace function:</p>
-<pre><code>var country = country.replace(/\s/g, &#39;_&#39;);</code></pre>
-<h2 id="design-tips">Design tips</h2>
-<p><a href="http://bost.ocks.org/mike/scroll/">http://bost.ocks.org/mike/scroll/</a></p>
-<p>&quot;Scrolljacking&quot; is bad:</p>
-<p>Contrast this MacPro page: <a href="http://www.apple.com/mac-pro/?afid=p238%7Csf9lg0Y3B-dc_mtid_1870765e38482_pcrid_91262087647_&amp;cid=aos-us-kwg-mac-slid">http://www.apple.com/mac-pro/?afid=p238%7Csf9lg0Y3B-dc_mtid_1870765e38482_pcrid_91262087647_&amp;cid=aos-us-kwg-mac-slid</a>-<br />With the pencil examination in <a href="http://www.fiftythree.com/pencil">http://www.fiftythree.com/pencil</a></p>
-<h2 id="other-related-tools">Other Related Tools</h2>
+<h3 id="design-tip-avoid-scolljacking">Design Tip: Avoid Scolljacking</h3>
+<p>Read: <a href="http://bost.ocks.org/mike/scroll/">http://bost.ocks.org/mike/scroll/</a></p>
+<p>&quot;Scrolljacking&quot; is bad.</p>
+<p>Contrast this MacPro page: <a href="http://www.apple.com/mac-pro/?afid=p238%7Csf9lg0Y3B-dc_mtid_1870765e38482_pcrid_91262087647_&amp;cid=aos-us-kwg-mac-slid">http://www.apple.com/mac-pro/?afid=p238%7Csf9lg0Y3B-dc_mtid_1870765e38482_pcrid_91262087647_&amp;cid=aos-us-kwg-mac-slid</a>-<br />with the pencil examination in <a href="http://www.fiftythree.com/pencil">http://www.fiftythree.com/pencil</a>.</p>
+<p>In the latter, and in most of the good scrollytelling examples, the user can speed up and reverse to control their movement. Motion is dependent on the mouse, they aren't hijacked and forced into someone else's pace.</p>
+<h3 id="other-related-scrolly-tools">Other Related Scrolly Tools</h3>
 <p>graph-scroll.js from Bloomberg/Adam R Pearce:</p>
 <ul>
 <li><a href="http://1wheel.github.io/graph-scroll/">http://1wheel.github.io/graph-scroll/</a></li>
@@ -177,10 +150,38 @@
 <li><a href="http://pageflow.io/en">http://pageflow.io/en</a></li>
 </ul>
 <p>Example: <a href="http://pageflow.ericmakswitat.de/research">http://pageflow.ericmakswitat.de/research</a></p>
-<h2 id="homework">Homework</h2>
+<h2 id="javascript-tips">Javascript Tips</h2>
+<h3 id="switch-statement-and-a-functional-alternative">Switch Statement (and a Functional Alternative)</h3>
+<p>You'll see this in the Mike Freeman example and the homework based on his slides. See: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch</a>.</p>
+<pre><code>switch (expression) {
+  case value1:
+    //Statements executed when the result of expression matches value1
+    [break;]
+  case value2:
+    //Statements executed when the result of expression matches value2
+    [break;]
+  ...
+  case valueN:
+    //Statements executed when the result of expression matches valueN
+    [break;]
+  default:
+    //Statements executed when none of the values match the value of the expression
+    [break;]
+}</code></pre>
+<p>However, notice that a lot of Javascript developers argue against switch statements in favor of using objects.</p>
 <ul>
-<li>Read this: <a href="http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf">Telling Stories with Data</a><br /></li>
-<li>Read this: <a href="http://bost.ocks.org/mike/scroll/">http://bost.ocks.org/mike/scroll/</a><br /></li>
+<li><a href="https://javascriptweblog.wordpress.com/2010/03/08/caseagainstswitch/">https://javascriptweblog.wordpress.com/2010/03/08/caseagainstswitch/</a><br /></li>
+<li><a href="http://encosia.com/first-class-functions-as-an-alternative-to-javascripts-switch-statement/">http://encosia.com/first-class-functions-as-an-alternative-to-javascripts-switch-statement/</a></li>
+</ul>
+<h3 id="string-character-replacements">String Character Replacements</h3>
+<p>A useful string replace function -- replace spaces in a country name with underscore:</p>
+<pre><code>var country = country.replace(/\s/g, &#39;_&#39;);</code></pre>
+<p>This comes in useful for creating id's on SVG elements for later reference in code.</p>
+<h2 id="homework">Homework</h2>
+<p>Readings:</p>
+<ul>
+<li><a href="http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf">Telling Stories with Data</a><br /></li>
+<li>Mike's piece: <a href="http://bost.ocks.org/mike/scroll/">http://bost.ocks.org/mike/scroll/</a><br /></li>
 <li>Read/skim in this order: <a href="http://vallandingham.me/think_you_can_scroll.html">http://vallandingham.me/think_you_can_scroll.html</a>, <a href="http://mfviz.com/scrollytelling/#/">http://mfviz.com/scrollytelling/#/</a></li>
 </ul>
 <p><strong>Homework 1 (25pt), Scrollytelling</strong>: Use the template in <a href="scroller_template_lines2.html">scroller_template_lines2.html</a> and associated files to tell a short story about that line graph. You can write your own functions to highlight, label, color, etc, anything you want. If you prefer to try to put your own data and chart into it, if it will help with your project, go for it. There should be at least 4 steps to it. Send as &quot;Scrolling.&quot;</p>
@@ -188,6 +189,5 @@
 <p><strong>Homeworkd 2 (35pt), 3 Charts</strong>:</p>
 <p>Make 3 D3 charts of different kinds that you would like to include in your final project, all on the same page. You can use multiple data files (using queue). They do not have to be interactive yet (you can avoid tooltips etc until later). It will definitely save you time if you can reuse this code in your project, so make sure you are building towards your final design. We will discuss the next level of interaction next week. Send as &quot;3 Charts.&quot;</p>
 <p>TODO: Code structuring for this earlier in semester.</p>
-<p><strong>Homeword 3 (5pt), Story Technique</strong>: Based on the examples and the pdf reading, which of the 7 genres of storytelling are you going to use for your project? Say why.</p>
 </body>
 </html>

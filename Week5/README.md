@@ -1,65 +1,41 @@
-## Week 5: More on Bar Charts, Axes, Transforms, Labels, Scatterplots...
+# Week 5: More on Bar Charts, Axes, Transforms, Labels, Scatterplots...
 
 
-### Homework Review:
+## Homework Review
 
-**SVG Selection Homework**
 
-Reminder:
+## D3 Tricks
 
-* Using d3 to select all the ellipses, re-style all the ellipses so their fill is blue.
-* Using d3 to select all the rectangles, re-style them so their stroke width is 2px instead.
-* Use d3 to style all the rectangles so they are pink.
-* Then use d3 to style the first rectangle so it is blue.
-* Use d3 to select the rectangle with id svg_2 and make the color of the stroke orange.
-* Use a CSS style to set the background color of the SVG to a light gray.
-* Use a CSS style to set the line stroke to 3px instead.
-* Extra credit (5pt): Use a d3 category10() color scale to set the color of the lines.
+
+### Styles
+
+
+You can give svg elements a style attribute, too:
 
 ````
-// Use a CSS style to set the background color of the SVG to a light gray.
-// Use a CSS style to set the line stroke to 3px instead.
-<style>
-      svg{
-        background-color: #d3d3d3;
-      }
-      line{
-        stroke-width: 3px;
-      }
-</style>
-
-// Using d3 to select all the ellipses, re-style all the ellipses so their fill is blue.
-d3.selectAll("ellipse").style("fill", "blue");
-
-// Using d3 to select all the rectangles, re-style them so their stroke width is 2px instead.
-// Use d3 to style all the rectangles so they are pink.
-d3.selectAll("rect").style("fill", "pink").style("stroke-width", "2px")
-or
-d3.selectAll("rect").style({"stroke-width": "2px", "fill": "pink"});
-
-// Then use d3 to style the first rectangle so it is blue.
-var rectangles = d3.selectAll("rect")[0];
-d3.select(rectangles[0]).style("fill","blue");
-or
-d3.select("rect").style("fill", "blue");
-
-// Use d3 to select the rectangle with id svg_2 and make the color of the stroke orange.
-d3.select("#svg_2").style("stroke","orange");
-
-// Extra credit (5pt): Use a d3 category10() color scale to set the color of the lines.
-var colors = d3.scale.category10();
-d3.selectAll("line").style("stroke", function(d, i) {
-        return colors(i);
-});
-
-// Extra Extra credit (3pt): Use d3 to remove the text on top!
-d3.selectAll("text").remove();
-or
-d3.select("text").remove();
-
+d3.select("rect").style("font-color", "#eee");
 ````
 
-## Setting Custom Fills By Data Value or Index
+or assign a class and style via the css sheet:
+
+````
+d3.selectAll("rect").attr("class", "brownrects"); // sets class
+or
+d3.selectAll("rect").classed("brownrects", true); // adds class
+````
+
+Or, of course, you can get SVG specific:
+
+````
+d3.selectAll("rect").attr("fill", "brown");
+````
+
+When you are using both styles and "attr" to control appearance, you may have conflicts.  One of them will "win."
+
+TODO: Make an example.
+
+
+### Setting Custom Fills By Data Value or Index
 
 What if we want to do special-case rules in our styles?  This is easy, with a tiny bit of JS knowledge!  Just use an if-statement and test for the special case you want to
 use in your style rule:
@@ -108,7 +84,9 @@ rects.attr("fill", function(d) {
 })
 ````
 
-## Adding Text Elements
+
+
+### Adding Text Elements
 
 SVG has its own "text" element.
 
@@ -119,19 +97,21 @@ SVG has its own "text" element.
 The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right.  dy with a negative value will move it "up", because the coordinate system is "higher numbers at the bottom of the screen."
 
 
-###Tips on Formatting Numbers in D3 in Axes, etc
+#### Tips on Formatting Numbers in D3 in Axes
 
 See http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html
 
 
-## Review on Joins and Scales
+## Scales
+
+### Reminder about Joins and Scales
 
 Reminders about joins and scales, using circles:
 
 * This is circles with colors and sizes based on data values: http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffer6e1c9&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 
 
-## More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes
+### More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes
 
 All the scale references are here:
 
@@ -184,13 +164,12 @@ heightScale.domain(
 
 A map is a way to take an array of items (like data) and return a new array, after doing something to each item.  It's like data.forEach(), except it can save you some typing and extra variables.
 
-There are more great d3 functions for arrays listed on the web reference: 
-https://github.com/mbostock/d3/wiki/Arrays
+Note: D3.map() is a different function that creates a hash lookup.
 
 
+## More SVG
 
-
-## The Group Element in SVG
+### The Group Element
 
 You can group elements in SVG using a 'g' node.  The group can be where you attach your data, in some cases.  It doesn't show up as a drawing element on the screen, it just lets you organize things and with classes or id's, it's sometimes easier for styling or selection purposes.
 
@@ -198,14 +177,14 @@ Groups also allow transforms to be applied to them, which affects everything ins
 
 * Read: https://www.dashingd3js.com/svg-group-element-and-d3js
 
-## A Reminder on Coordinates in SVG Space
+### Coordinates in SVG Space
 
 * Read: https://www.dashingd3js.com/using-the-svg-coordinate-space
 
 But -- **alert -- despite that article, never use a "file:///" in your URL.**  I argued about this with him today on Twitter. His examples use no loaded data files, so he has no error such as you will get.
 
 
-## The D3 Margin Convention
+### The D3 Margin Convention
 
 Now that we've seen g's and transforms and the coordinate space, we're ready for the classic on margins. This is a recommended way to set up margins in D3 -- you can use some or all of this pattern (I often skip the "g" translate), but the basic idea is that you have padding around your chart, inside the SVG container.  Then all your coordinates take into account the margin sizes as appropriate.
 
@@ -232,14 +211,15 @@ var yScale = d3.scale.linear().range([ height, 0 ]);
 
 * Mike's post on it: http://bl.ocks.org/mbostock/3019563
 
-TODO: Discuss his extra ```<g>``` transform.
+TODO: Discuss his extra ```<g>``` transform. Add to examples.
 
-## Transform, Translate: Move a starting coordinate somewhere.
+
+### Transform, Translate: Move a starting coordinate somewhere.
 
 Let's play with http://blockbuilder.org/arnicas/6217eec849a8f270e80d.
 
 
-## Adding Axes
+## D3 Axes
 
 To understand how axes work in D3, you need to know about groups ("g" in SVG), transforms, coordinate systems, and scales.  So now we're ready!
 
@@ -273,7 +253,7 @@ See [bar_axes_labels.html](bar_axes_labels.html).
 If you want to specially format your tick labels, you can.  See [formatting_ticks.html](formatting_ticks.html).
 
 
-## Adding an Axis Label: Putting Margins and Labels and Transforms Together
+### Adding an Axis Label: Putting Margins and Labels and Transforms Together
 
 How to add an axis label to your axes.
 * http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html
@@ -305,28 +285,29 @@ svg.append("text")
 I'm not going to lie, it takes me a few tries to get the locations right.
 
 
-##Scatterplots
-
-After we do the in-class exercise, I'll post the scatterplot model.
-
-
-##Example Links on Bar Charts, Scatterplot Examples, Dot Plots
-
+##Examples: Starting at Zero, Scatterplot Examples, Dot Plots
 
 * Nathan's great post on 0 baseline for barcharts: http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/
 
-* Shneiderman's mantra: http://blog.futureadvisor.com/explore-changes-in-wages-and-employment-across-industries/
+* Vox's Line Charts Don't Need to Start At Zero video: http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart
+
+
+### Scatterplot Examples
 
 * A super scatterplot project to keep you motivated - with animations:
 http://www.bloomberg.com/politics/graphics/2014-incumbent-governors/?hootPostID=031ede1ff3806f5956e7bdadac068a20
 
 * Scatterplots linked to maps: http://anandthakker.github.io/baltimore-neighborhood-vitalsigns/#/i/male10:female10/c/Greater-_Charles-_Village--Barclay/
 
+### Dot Plots
+
 * A classic style dot plot: http://www.verisi.com/resources/d3-tutorial-basic-charts.htm#s7
 
 * A cool hybrid of a dot plot for times: http://neuralengr.com/asifr/journals/
 
-* A dot plot example by me -- this is a modification between a bar chart and a scatterplot! dot_plot.html
+* See a lovely example of dot plots here in Tableau: http://healthintelligence.drupalgardens.com/content/visualizing-human-development-gender-gap
+
+* A dot plot example by me -- this is a modification between a bar chart and a scatterplot! [dot_plot.html](dot_plot.html)
 
 
 ## Homework
@@ -343,18 +324,15 @@ Readings:
 * A label on the X axis, positioned with transform, translate.
 * A special case color on the one of the dots, using an if statement.
 * CSS rule for circle fill that refers to a class (circle.something).
-* Extra credit (4pt): A rotated Y axis label.
+* Add a rotated Y axis label.
 
 After you turn this in, I'll post scatterplot code.
 
 **Homework2 (20pt)**:
-Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Use an ordinal axis on the Y axis to label the bars.  Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the Text section and Halina's example).  Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.
+Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Use an ordinal axis on the Y axis to label the bars.  Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the Text section).  Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.
 
 **Homework3 (25pt)**:
-Make a scatter plot with your own data.  Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship.  Write a text snippet that explains it and identifies the source of the data.  Use UNICEF styling.
-
-**Extra Extra Credit (15pt)**: Make a dot plot with your data using my model and an appropriate comparison.  (Common things for dot plots are gender differences, date differences, related measures of some kind...)
-
+Make a scatter plot with your own data.  Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship.  Write a text snippet that explains it and identifies the source of the data.
 
 
 

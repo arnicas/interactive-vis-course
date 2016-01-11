@@ -14,19 +14,19 @@ Originally intended as having a journalistic focus, the course contents will exp
 
 * [Week1](Week1): Intro to Tools and the Course, Setup, CSVs
 * [Week2](Week2): Loading CSV Data, Highcharts
-* [Week3](Week3): Selections/Binding and Tables in D3 & JQuery
-* [Week4](Week4): More tables, SVG and D3 bar charts
-* [Week5](Week5): Bar Charts, Axes, Text, Scatterplots
+* [Week3](Week3): Data Loading, Tables in D3
+* [Week4](Week4): More tables, Scales, SVG
+* [Week5](Week5): Bar Charts, Axes, Text Labels, Scatterplots
 * [Week6](Week6): Linecharts, Events, Simple Tooltips
-* [Week7](Week7): Improved Lines, Transitions
-* [Week8](Week8): Updates to Data, Animation
+* [Week7](Week7): Improved Line Charts, Transitions
+* [Week8](Week8): Updates to Data, More Transitions
 * [Week9](Week9): Stacking Chart Types, Intro to Small Multiples
 * [Week10](Week10): Small Multiples, Intro to Maps
 * [Week11](Week11): Maps: D3, Leaflet, CartoDB...
 * [Week12](Week12): Storytelling Techniques: Scrollytelling, Steppers
 * [Week13](Week13): Animation: Lines, Play/Pause...
-* [Week14](Week14): Project, Reusable charts, other layouts
-* [Week15](Week15): Project
+* [Week14](Week14):  Reusable charts, Other Layouts, Project Tips/Grading
+* [Week15](Week15): Helpful Tips: How to File a Bug Report, Debugging, 
 
 All the made-for-class example files are [here](examples.html). Many other examples are linked in each week's folder.
 
@@ -103,6 +103,10 @@ Online version: http://chimera.labs.oreilly.com/books/1230000000345.  [Code samp
 
 * More online courses: https://www.javascript.com/resources.
 
+
+## Debugging Help
+
+* Debugging with Dev Tools and D3: https://egghead.io/lessons/debugging-with-dev-tools
 
 ## Resources for Vis Examples
 
