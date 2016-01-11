@@ -11,7 +11,6 @@ Repo for U of Miami School of Communication course on interactive data visualiza
 
 Originally intended as having a journalistic focus, the course contents will expand a little more in spring 2016 to address broader topics in visualization. (Those additions are in progress.)
 
-
 * [Week1](Week1): Intro to Tools and the Course, Setup, CSVs
 * [Week2](Week2): Loading CSV Data, Highcharts
 * [Week3](Week3): Data Loading, Tables in D3
@@ -38,29 +37,41 @@ All the made-for-class example files are [here](examples.html). Many other examp
 * GitHub use
 * Debugging how-to's
 
-
-### 3. Data Sources
-
-#### UNICEF & Child Mortality (Fall Semester Client, optional for Spring)
-    * [The client brief](APromiseRenewed_Brief_March2015.pdf)
-    * The 2014 Key Findings Report on http://www.apromiserenewed.org/: [pdf](http://www.apromiserenewed.org/wp-content/uploads/2015/07/A-Promise-Renewed-2014-Key-Findings.pdf) (plus other publications that may be useful!)
-    * Their data sites: http://data.unicef.org/index.php, http://mics.unicef.org
-    * World Health Org (WHO): http://www.who.int/research/en/
-    * http://childmortality.org/ - UN Inter-agency Group for Child Mortality Estimation (IGME), of which UNICEF is a member (new data coming in September)
-
-
-#### Quantified Self
-
-#### Data Set Resources
-
-
-### 4. Evaluation
+### 3. Evaluation
 
 Grading based on weekly homeworks (60%) and a final project (40%) that uses many of the techniques in a storytelling project using data that interests you.  This is a project course - you will be making things more than you will be reading or writing, but there will be a bit of that, too.
 
 Primary emphasis is on end user experience and data honesty; secondary consideration will be good coding practices.
 
 **Homework Due Dates**: Due by 5pm on Monday before class day, unless I decide otherwise... You will be submitting links by email (arnicas@gmail.com).
+
+## Data Sources To Use
+
+### UNICEF & Child Mortality (Fall Semester Client, optional for Spring)
+
+* [The client brief](miscfiles/APromiseRenewed_Brief_March2015.pdf)
+* The 2014 Key Findings Report on http://www.apromiserenewed.org/: [pdf](http://www.apromiserenewed.org/wp-content/uploads/2015/07/A-Promise-Renewed-2014-Key-Findings.pdf) (plus other publications that may be useful!)
+* Their data sites: http://data.unicef.org/index.php, http://mics.unicef.org
+* World Health Org (WHO): http://www.who.int/research/en/
+* http://childmortality.org/ - UN Inter-agency Group for Child Mortality Estimation (IGME), of which UNICEF is a member (new data coming in September)
+
+### Links to Datasets
+
+* Jeremy Singer-Vine's excellent tinyletter archives for Data Is Plural (and maybe get on the list!): http://tinyletter.com/data-is-plural/archive
+* [My delicious links to datasets](https://delicious.com/arnicas/datasets)
+* [World Bank Data](http://data.worldbank.org/)
+
+
+### Quantified Self
+
+Use yourself as data! Learn about yourself! Fitbit's, sleep trackers, self-logging...
+
+* A long list of data sources, tools, etc. on [Wikipedia](https://en.wikipedia.org/wiki/Quantified_Self)
+* Nicolas Felton's Annual Reports: started analogue, then developed an IPhone app (http://feltron.com/apps.html) and got digital with Processing: e.g., http://feltron.com/far14.html
+* Flowing Data links on "self-surveillance": http://flowingdata.com/category/self-surveillance/
+* Dear Data" -- analogue artistic vis by @stefpos and @giogialupi: http://www.dear-data.com/all
+
+You can't improve what you don't measure :)
 
 
 ## Background: D3 Books and Tutorial Materials
