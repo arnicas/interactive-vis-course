@@ -26,7 +26,7 @@ Originally intended as having a journalistic focus, the course contents will exp
 * [Week12](Week12): Storytelling Techniques: Scrollytelling, Steppers
 * [Week13](Week13): Animation: Lines, Play/Pause...
 * [Week14](Week14):  Reusable charts, Other Layouts, Project Tips/Grading
-* [Week15](Week15): Helpful Tips: How to File a Bug Report, Debugging, 
+* [Week15](Week15): Helpful Tips: How to File a Bug Report, Debugging
 
 All the made-for-class example files are [here](examples.html). Many other examples are linked in each week's folder.
 

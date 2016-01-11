@@ -1,11 +1,11 @@
 
 # All Local Examples in the Course
 
-## Week1
+## Week1: Intro
 
 * [console_javascript.html](Week1/console_javascript.html): Console action only.
 
-## Week2
+## Week2: Loading Data, Highcharts
 
 * [highcharts_dot.html](Week2/highcharts_dot.html): A not great hack at a dot plot in Highchars, using data in the chart object.
 * [highcharts_dot_csv.html](Week2/highcharts_dot_csv.html): Another attempted dot plot in Highcharts using external csv data, which is kind of hard.
@@ -16,7 +16,7 @@
 * [create_p_from_data.html](Week2/create_p_from_data.html): Create paragraphs from csv data and append to the DOM - not using a good D3 enter() method yet.
 
 
-## Week3
+## Week3: More Data Loading, Tables in D3
 
 * [jquery_error_on_load.html](Week3/jquery_error_on_load.html): This errors, needs fixing.
 * [d3_process_data.html](Week3/d3_process_data.html): Processing data on load.
@@ -25,7 +25,7 @@
 * [d3_table.html](Week3/d3_table.html): A D3 table.
 
 
-## Week4
+## Week4: Tables, Scales, SVG
 
 * [d3_tabulate_function.html](Week4/d3_tabulate_function.html): A function to draw a table with.
 * [d3_tabulate_function_sortable.html](Week4/d3_tabulate_function_sortable.html): A sortable table using jquery after D3 table creation.
@@ -36,7 +36,7 @@
 * [d3_dynamic_domain.html](Week4/d3_dynamic_domain.html): First bar chart! Using scales in D3 for bar size.
 
 
-## Week5
+## Week5: Bar Charts, Axes, Text Labels, Scatterplots
 
 * [bar_axes_labels.html](Week5/bar_axes_labels.html): Labeling axes in bar charts
 * [formatting_ticks.html](Week5/formatting_ticks.html): Formatting ticks
@@ -45,7 +45,7 @@
 * [dot_plot.html](dot_plot.html): A dot plot example
 
 
-## Week6
+## Week6: Line Charts, Events, Tooltips
 
 * [d3_date_parsing.html](Week6/d3_date_parsing.html): Handling dates in your data (read and format)
 * [emissions_time_scatterplot.html](Week6/emissions_time_scatterplot.html): Scatterplot
@@ -57,7 +57,7 @@
 
 
 
-## Week7
+## Week7: Improved Line Charts, Transitions
 
 * [multiple_lines_labels.html](Week7/multiple_lines_labels.html): Labels on specific lines
 * [lines_d3nest.html](Week7lines_d3nest.html): Nesting data to plot it
@@ -70,7 +70,7 @@
 * [lines_transition.html](Week7/lines_transition.html): Button click changes line chart data. (Map is static.)
 
 
-## Week8
+## Week8: Updates to Data, More Transitions
 
 * [bar_updates_no_key.html](Week8/bar_updates_no_key.html): Update the dumb way, without object constancy
 * [bostock_bar_updates_simpler.html](Week8/bostock_bar_updates_simpler.html): Simplified example of Mike Bostock's Object Constancy example
@@ -80,7 +80,7 @@
 * [bar_homework.html](Week8/bar_homework.html): Finish this.
 
 
-## Week9
+## Week9: Stacking Chart Types, Grouped Bars
 
 * [area_plot.html](Week9/area_plot.html): Area plot.
 * [stacked_area.html](Week9/stacked_area.html): Using stacked layout, you can switch easily to the streamgraph display.
@@ -90,7 +90,7 @@
 * [js_homework.html](Week9/js_homework.html): Homework on js.
 
 
-## Week10
+## Week10: Small Multiples
 
 * [small_multiples_simple.html](Week10/small_multiples_simple.html): Static small multiple area charts.
 * [small_multiples_each.html](Week10/small_multiples_each.html): Drawn another way, using "each".
@@ -100,7 +100,7 @@
 * [africa_map.html](Week10/africa_map.html): Map starter code.
 
 
-## Week11
+## Week11: Maps
 
 * [africa_map.html](Week11/africa_map.html): Map of borders only.
 * [africa_map2.html](Week11/africa_map2.html): Using country features now.
@@ -110,13 +110,13 @@
 * [world_comparisons.html](Week11/world_comparisons.html): Example based on a Nathan Yau tutorial.
 
 
-## Week12
+## Week12: Storytelling (Scrollers and Steppers)
 
 * [scroller_template.html](Week12/scroller_template.html): An inadequate first pass at a scrollying vis.
 * [scroller_template_lines2.html](Week12/scroller_template_lines2.html): Improved, with more page context and moveToFront() in action.
 
 
-## Week13
+## Week13: Animation in UI
 
 * [animated_lines.html](Week13/animated_lines.html): A variety of methods for animated line drawing.
 * [animated_map_path.html](Week13/animated_map_path.html)
@@ -124,7 +124,7 @@
 * [africa_map_clicker.html](africa_map_clicker.html): Click on a map
 
 
-## Week14
+## Week14: Reusable Charts, Map Click
 
 * [lines_transition_map.html](Week14/lines_transition_map.html): Click on a map to update the line.
 * [using_reusable_barchart.html](Week14/using_reusable_barchart.html): Reusable barchart code in use.
