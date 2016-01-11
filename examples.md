@@ -63,7 +63,7 @@
 * [lines_d3nest.html](Week7lines_d3nest.html): Nesting data to plot it
 * [emissions_linescatterplot.html](Week7/emissions_linescatterplot.html): Dots and lines in the lineplot
 * [lines_with_more_data.html](Week7/lines_with_more_data.html): Structure for the data that makes access to values easier for interaction
-* [multiple_lines_voronoi.html](multiple_lines_voronoi.html): Using voronoi overlay to make it easier to target points
+* [multiple_lines_voronoi.html](Week7/multiple_lines_voronoi.html): Using voronoi overlay to make it easier to target points
 * [scatter_transition_in.html](Week7/scatter_transition_in.html): Delay on arriving dots
 * [emissions_linescatterplot.html](Week7/emissions_linescatterplot.html): Mouseover triggers a transition
 * [scatter_data_transition.html](Week7/scatter_data_transition.html): Click causes data change and animation (only works once)
