@@ -74,7 +74,7 @@
 
 * [bar_updates_no_key.html](Week8/bar_updates_no_key.html): Update the dumb way, without object constancy
 * [bostock_bar_updates_simpler.html](Week8/bostock_bar_updates_simpler.html): Simplified example of Mike Bostock's Object Constancy example
-* [bar_updates_key.html](Week8/bars_updates_key.html): Updated using a key and coloring by "remaining" bar
+* [bar_updates_key.html](Week8/bar_updates_key.html): Updated using a key and coloring by "remaining" bar
 * [scatter_data_update.html](Week8/scatter_data_update.html): Restructure to show update pattern with select menu, and new ones come from the "right" direction.
 * [scatter_homework.html](Week8/scatter_homework.html): Finish this.
 * [bar_homework.html](Week8/bar_homework.html): Finish this.
