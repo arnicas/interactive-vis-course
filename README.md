@@ -1,6 +1,6 @@
 # Interactive Data Vis Course Repo
 
-Repo for U of Miami School of Communication course on interactive data visualization for the web by Lynn Cherny (fall 2015 and spring 2016).  This is best viewed on github.io: http://arnicas.github.io/interactive-data-vis/.
+Repo for U of Miami School of Communication course on interactive data visualization for the web by Lynn Cherny (fall 2015 and spring 2016).  The repo is best viewed on github.io: http://arnicas.github.io/interactive-vis-course/
 
     Office Hours: Wolfson 1020A, M & Th 1-3 or by appt.
     Emails for homework: arnicas@gmail.com
