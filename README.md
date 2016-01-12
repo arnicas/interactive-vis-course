@@ -60,11 +60,12 @@ Primary emphasis is on end user experience and data honesty; secondary considera
 * Jeremy Singer-Vine's excellent tinyletter archives for Data Is Plural (and maybe get on the list!): http://tinyletter.com/data-is-plural/archive
 * [My delicious links to datasets](https://delicious.com/arnicas/datasets)
 * [World Bank Data](http://data.worldbank.org/)
+* Sets collected by Curran Kelleher: https://github.com/curran/data
 
 
 ### Quantified Self
 
-Use yourself as data! Learn about yourself! Fitbit's, sleep trackers, self-logging...
+Use yourself as data! Learn about yourself! Fitbit's, sleep trackers, self-logging...Amazon shopping logs, email data, Facebook friends, etc!
 
 * A long list of data sources, tools, etc. on [Wikipedia](https://en.wikipedia.org/wiki/Quantified_Self)
 * Nicolas Felton's Annual Reports: started analogue, then developed an IPhone app (http://feltron.com/apps.html) and got digital with Processing: e.g., http://feltron.com/far14.html
