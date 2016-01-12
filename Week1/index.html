@@ -39,7 +39,8 @@
 </ul></li>
 <li><a href="#you-and-your-local-server-you-need-one.">You and Your Local Server: You Need One.</a></li>
 <li><a href="#javascript-review">Javascript Review</a></li>
-<li><a href="#data-in-excelspreadsheets">Data in Excel/Spreadsheets</a></li>
+<li><a href="#data-in-csv-from-excelspreadsheets">Data in CSV (from Excel/Spreadsheets)</a></li>
+<li><a href="#load-the-data-with-d3">Load the Data with D3</a></li>
 <li><a href="#homework">Homework</a></li>
 </ul></li>
 </ul>
@@ -90,7 +91,7 @@
 <li>A super simple intro with gif demos is JS For Cats: <a href="http://jsforcats.com/">http://jsforcats.com/</a>. You should review everything in it except for the last part on callbacks now.<br /></li>
 <li>Optional <a href="https://www.youtube.com/watch?v=3g1061kFrCs&amp;index=4&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F">video by Scott Murray</a> reviewing some Javascript concepts.</li>
 </ul>
-<h2 id="data-in-excelspreadsheets">Data in Excel/Spreadsheets</h2>
+<h2 id="data-in-csv-from-excelspreadsheets">Data in CSV (from Excel/Spreadsheets)</h2>
 <p>A good place to do an initial formatting of data for use in web apps is Excel (or Google Sheets). We often want to use csv files as data sources.</p>
 <ul>
 <li>Recommended read for general good advice: <a href="http://kbroman.org/dataorg/">http://kbroman.org/dataorg/</a><br /></li>
@@ -138,6 +139,9 @@ See, you don’t need the quotation marks or the brackets. So eliminating
 spaces just saves you a lot of typing and headache later.</code></pre>
 <p>You can read this for more info on reading data in D3: <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p>
 <p>A next step for data work is to do exploration with graphs in Excel or a tool like Tableau. We'll go over those in a couple weeks.</p>
+<h2 id="load-the-data-with-d3">Load the Data with D3</h2>
+<p>Read in data with D3 and verify it's there in the console: <a href="d3_load_csv_json.html">d3_load_csv_json.html</a>. JSON objects (javascript object notation) should be there for each row of your data set.</p>
+<p>The contents of each data set are printed to the screen using a simple jquery text operation and <code>&quot;JSON.stringify().&quot;</code></p>
 <h2 id="homework">Homework</h2>
 <p>Homework is due at 5pm on Monday the night before the next class. I have office hours on Monday if you have struggled!</p>
 <p>Readings:</p>
@@ -146,7 +150,7 @@ spaces just saves you a lot of typing and headache later.</code></pre>
 <li><p>Loading data with D3, at <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p></li>
 </ul>
 <p><strong>Homework:</strong> Fix <a href="js_errors.html">js_errors.html</a> so it displays correctly. Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: &quot;Week 1, JS errors&quot;. If you can't do it all, send me as far as you got. (20pt)</p>
-<p><strong>Homework</strong>: Download a data set of interest to you and format in Excel for use in visualization. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.' You'll need this file next week. (10pt)</p>
+<p><strong>Homework</strong>: Download a data set of interest to you and format in Excel or Google sheets for use in visualization. Follow the advice above. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist in which you load the CSV file and print it to the screen the way I did in <a href="d3_load_csv_json.html">d3_load_csv_json.html</a>. (You don't need to do a JSON version.) Make a gist with a page called index.html(!) and your data files send me the link: 'Week 1: CSV data.' You'll need this file next week. (12pt)</p>
 <p><strong>Homework</strong>: Set up your server, github accounts, etc!</p>
 </body>
 </html>
