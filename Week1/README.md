@@ -66,7 +66,7 @@ Let's play with [console_javascript.html](console_javascript.html) now.
 * Optional [video by Scott Murray](https://www.youtube.com/watch?v=3g1061kFrCs&index=4&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F) reviewing some Javascript concepts.
 
 
-## Data in Excel/Spreadsheets
+## Data in CSV (from Excel/Spreadsheets)
 
 A good place to do an initial formatting of data for use in web apps is Excel (or Google Sheets). We often want to use csv files as data sources.
 
@@ -121,6 +121,12 @@ You can read this for more info on reading data in D3: http://learnjsdata.com/re
 
 A next step for data work is to do exploration with graphs in Excel or a tool like Tableau.  We'll go over those in a couple weeks.
 
+## Load the Data with D3
+
+Read in data with D3 and verify it's there in the console: [d3_load_csv_json.html](d3_load_csv_json.html).  JSON objects (javascript object notation) should be there for each row of your data set.
+
+The contents of each data set are printed to the screen using a simple jquery text operation and `"JSON.stringify()."`
+
 
 ## Homework
 
@@ -135,6 +141,6 @@ Readings:
 
 **Homework:** Fix [js_errors.html](js_errors.html) so it displays correctly.  Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: "Week 1, JS errors".  If you can't do it all, send me as far as you got. (20pt)
 
-**Homework**: Download a data set of interest to you and format in Excel for use in visualization. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist with the csv file and send me the link: 'Week 1: CSV data.'  You'll need this file next week. (10pt)
+**Homework**: Download a data set of interest to you and format in Excel or Google sheets for use in visualization. Follow the advice above. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist in which you load the CSV file and print it to the screen the way I did in [d3_load_csv_json.html](d3_load_csv_json.html).  (You don't need to do a JSON version.)  Make a gist with a page called index.html(!) and your data files send me the link: 'Week 1: CSV data.'  You'll need this file next week. (12pt)
 
 **Homework**: Set up your server, github accounts, etc!

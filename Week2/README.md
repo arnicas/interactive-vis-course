@@ -52,7 +52,7 @@ Let's look at Dimple.js now. It's built on top of D3.
 
 ## Loading Data, and Very Simple D3 Intro
 
-Read in data with D3 and verify it's there in the console: [d3_load_csv_json.html](d3_load_csv_json.html).  JSON objects (javascript object notation) should be there for each row of your data set.
+Last week you loaded a data file from CSV into a web page. Now we're going to do a simple DOM operation using that data file.
 
 Let's look at [d3_simple_append.html](d3_simple_append.html) and how that works.
 

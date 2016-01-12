@@ -4,6 +4,7 @@
 ## Week1: Intro
 
 * [console_javascript.html](Week1/console_javascript.html): Console action only.
+* * [d3_load_csv_json.html](Week1/d3_load_csv_json.html): Loading simple CSV (and JSON) files with d3.
 
 ## Week2: Loading Data, Highcharts
 
@@ -11,7 +12,6 @@
 * [highcharts_dot_csv.html](Week2/highcharts_dot_csv.html): Another attempted dot plot in Highcharts using external csv data, which is kind of hard.
 * [highcharts_slope.html](Week2/highcharts_slope.html): A not terrible slope chart hacked up in Highcharts.
 * [highcharts_switch.html](Week2/highcharts_switch.html): Template example for a button switch between Highcharts charts, extracted from <a href=http://datatools.urban.org/Features/wealth-inequality-charts/">Urban Institute wealth inequality project.</a>
-* [d3_load_csv_json.html](Week2/d3_load_csv_json.html): Loading a simple CSV file with d3.
 * [d3_simple_append.html](Week2/d3_simple_append.html): Appending to the DOM with d3.
 * [create_p_from_data.html](Week2/create_p_from_data.html): Create paragraphs from csv data and append to the DOM - not using a good D3 enter() method yet.
 
