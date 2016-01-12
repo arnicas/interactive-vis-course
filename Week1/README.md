@@ -9,7 +9,6 @@ Review repo's [home page](../index.html).
 ## Intro to Chrome Tools, the Console
 
 * View Source. Let's do it. First at childmortality.org...
-* Look at a newspaper site too, and view the styling on an article. You'll need this for a homework project. Remember news online includes newspapers as well as sites like Slate, Buzzfeed, etc.
 * Chrome Tools: Read a bit here about the console and trying stuff in it: http://jsforcats.com/#basics
 
 ## Github and Gists
@@ -54,7 +53,7 @@ set up your servers. If you haven't got one running (WAMP, MAMP, python, or othe
 
 ## Javascript Review
 
-I expect everyone to be proficient with HTML and CSS and to know at least a bit of javascript.  If you don't, this class will be very hard.  If you're already great at JS, I'll try to keep you entertained anyway.
+I expect everyone to be proficient with HTML and CSS and to know at least a bit of Javascript.  If you don't, this class will be very hard.  If you're already great at JS, I'll try to keep you entertained anyway.
 
 Let's play with [console_javascript.html](console_javascript.html) now.
 
@@ -67,7 +66,7 @@ Let's play with [console_javascript.html](console_javascript.html) now.
 * Optional [video by Scott Murray](https://www.youtube.com/watch?v=3g1061kFrCs&index=4&list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F) reviewing some Javascript concepts.
 
 
-## Data in Excel
+## Data in Excel/Spreadsheets
 
 A good place to do an initial formatting of data for use in web apps is Excel (or Google Sheets). We often want to use csv files as data sources.
 
@@ -80,8 +79,47 @@ Things to remember about data in CSV files for use in the browser:
 
 * It's better to keep your variable names clear, but short, and with no spaces in them
 * You want all columns labeled.
+* You want to format numbers in them without commas
 
-A next step for data work is to do exploration with graphs in Excel or a tool like Tableau.  We'll go over those in a couple week
+Read this for some tips: http://learnjsdata.com/read_data.html.
+
+Comment from Scott Murray in the Knight D3 online class:
+
+    I strongly recommend simplifying column titles so they do not include spaces.
+    Why? JavaScript object notation is simpler without spaces. Let me give you an example.
+
+    Say you define an object like so:
+
+    var object = {
+      Country: “USA”,
+      “Number of Bananas per Capita (millions)”: “556”,
+      ”Total Length of Peels if Laid End to End (kilometers)”: “412415123”
+    }
+
+    To get at the value “556”, you would need to type:
+
+    object[“Number of Bananas per Capita (millions)”]
+
+    However, if you excluded spaces from your column titles, so your object 
+    looked like this:
+
+    var object = { 
+      country: “USA”,
+      numBananas: “556”,
+      peelLength: “412415123”
+    }
+
+    …well first of all, that is so much easier to read, but also then you can 
+    use simplified object notation:
+
+    object.numBananas  //returns “556”
+
+    See, you don’t need the quotation marks or the brackets. So eliminating 
+    spaces just saves you a lot of typing and headache later.
+
+You can read this for more info on reading data in D3: http://learnjsdata.com/read_data.html.
+
+A next step for data work is to do exploration with graphs in Excel or a tool like Tableau.  We'll go over those in a couple weeks.
 
 
 ## Homework

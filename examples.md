@@ -7,7 +7,7 @@
 
 ## Week2: Loading Data, Highcharts
 
-* [highcharts_dot.html](Week2/highcharts_dot.html): A not great hack at a dot plot in Highchars, using data in the chart object.
+* [highcharts_dot.html](Week2/highcharts_dot.html): A not great hack at a dot plot in Highcharts, using data in the chart object.
 * [highcharts_dot_csv.html](Week2/highcharts_dot_csv.html): Another attempted dot plot in Highcharts using external csv data, which is kind of hard.
 * [highcharts_slope.html](Week2/highcharts_slope.html): A not terrible slope chart hacked up in Highcharts.
 * [highcharts_switch.html](Week2/highcharts_switch.html): Template example for a button switch between Highcharts charts, extracted from <a href=http://datatools.urban.org/Features/wealth-inequality-charts/">Urban Institute wealth inequality project.</a>

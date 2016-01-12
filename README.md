@@ -1,6 +1,6 @@
 # Interactive Data Vis Course Repo
 
-Repo for U of Miami School of Communication course on interactive data visualization for the web by Lynn Cherny (fall 2015 and spring 2016).  The repo is best viewed on github.io: http://arnicas.github.io/interactive-vis-course/
+Repo for U of Miami School of Communication course on interactive data visualization for the web by Lynn Cherny (fall 2015 and spring 2016).  The repo is best viewed on github.io: http://arnicas.github.io/interactive-vis-course/. Lynn is @arnicas on twitter.
 
     Office Hours: Wolfson 1020A, M & Th 1-3 or by appt.
     Emails for homework: arnicas@gmail.com
@@ -31,8 +31,8 @@ All the made-for-class example files are [here](examples.html). Many other examp
 
 ### 2. Programming Techniques and Tools We'll Cover
 
-* Javascript and useful libraries like JQuery, lowdash
 * Good practices with D3.js for data vis
+* Javascript and useful libraries like jQuery, lodash
 * Web Charting libs like Highcharts, D3, libs on top of D3 like Dimple.js
 * GitHub use
 * Debugging how-to's

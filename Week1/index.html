@@ -39,7 +39,7 @@
 </ul></li>
 <li><a href="#you-and-your-local-server-you-need-one.">You and Your Local Server: You Need One.</a></li>
 <li><a href="#javascript-review">Javascript Review</a></li>
-<li><a href="#data-in-excel">Data in Excel</a></li>
+<li><a href="#data-in-excelspreadsheets">Data in Excel/Spreadsheets</a></li>
 <li><a href="#homework">Homework</a></li>
 </ul></li>
 </ul>
@@ -50,7 +50,6 @@
 <h2 id="intro-to-chrome-tools-the-console">Intro to Chrome Tools, the Console</h2>
 <ul>
 <li>View Source. Let's do it. First at childmortality.org...<br /></li>
-<li>Look at a newspaper site too, and view the styling on an article. You'll need this for a homework project. Remember news online includes newspapers as well as sites like Slate, Buzzfeed, etc.<br /></li>
 <li>Chrome Tools: Read a bit here about the console and trying stuff in it: <a href="http://jsforcats.com/#basics">http://jsforcats.com/#basics</a></li>
 </ul>
 <h2 id="github-and-gists">Github and Gists</h2>
@@ -81,7 +80,7 @@
 <h2 id="you-and-your-local-server-you-need-one.">You and Your Local Server: You Need One.</h2>
 <p>You need one. Otherwise Javascript code won't execute on your pages. So<br />set up your servers. If you haven't got one running (WAMP, MAMP, python, or otherwise), stick around and we'll set it up at the end. Use this to help: <a href="https://github.com/arnicas/d3-faq#running-a-server">https://github.com/arnicas/d3-faq#running-a-server</a>.</p>
 <h2 id="javascript-review">Javascript Review</h2>
-<p>I expect everyone to be proficient with HTML and CSS and to know at least a bit of javascript. If you don't, this class will be very hard. If you're already great at JS, I'll try to keep you entertained anyway.</p>
+<p>I expect everyone to be proficient with HTML and CSS and to know at least a bit of Javascript. If you don't, this class will be very hard. If you're already great at JS, I'll try to keep you entertained anyway.</p>
 <p>Let's play with <a href="console_javascript.html">console_javascript.html</a> now.</p>
 <p><strong>Resources:</strong></p>
 <ul>
@@ -91,7 +90,7 @@
 <li>A super simple intro with gif demos is JS For Cats: <a href="http://jsforcats.com/">http://jsforcats.com/</a>. You should review everything in it except for the last part on callbacks now.<br /></li>
 <li>Optional <a href="https://www.youtube.com/watch?v=3g1061kFrCs&amp;index=4&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F">video by Scott Murray</a> reviewing some Javascript concepts.</li>
 </ul>
-<h2 id="data-in-excel">Data in Excel</h2>
+<h2 id="data-in-excelspreadsheets">Data in Excel/Spreadsheets</h2>
 <p>A good place to do an initial formatting of data for use in web apps is Excel (or Google Sheets). We often want to use csv files as data sources.</p>
 <ul>
 <li>Recommended read for general good advice: <a href="http://kbroman.org/dataorg/">http://kbroman.org/dataorg/</a><br /></li>
@@ -101,9 +100,44 @@
 <p>Things to remember about data in CSV files for use in the browser:</p>
 <ul>
 <li>It's better to keep your variable names clear, but short, and with no spaces in them<br /></li>
-<li>You want all columns labeled.</li>
+<li>You want all columns labeled.<br /></li>
+<li>You want to format numbers in them without commas</li>
 </ul>
-<p>A next step for data work is to do exploration with graphs in Excel or a tool like Tableau. We'll go over those in a couple week</p>
+<p>Read this for some tips: <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p>
+<p>Comment from Scott Murray in the Knight D3 online class:</p>
+<pre><code>I strongly recommend simplifying column titles so they do not include spaces.
+Why? JavaScript object notation is simpler without spaces. Let me give you an example.
+
+Say you define an object like so:
+
+var object = {
+  Country: “USA”,
+  “Number of Bananas per Capita (millions)”: “556”,
+  ”Total Length of Peels if Laid End to End (kilometers)”: “412415123”
+}
+
+To get at the value “556”, you would need to type:
+
+object[“Number of Bananas per Capita (millions)”]
+
+However, if you excluded spaces from your column titles, so your object 
+looked like this:
+
+var object = { 
+  country: “USA”,
+  numBananas: “556”,
+  peelLength: “412415123”
+}
+
+…well first of all, that is so much easier to read, but also then you can 
+use simplified object notation:
+
+object.numBananas  //returns “556”
+
+See, you don’t need the quotation marks or the brackets. So eliminating 
+spaces just saves you a lot of typing and headache later.</code></pre>
+<p>You can read this for more info on reading data in D3: <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p>
+<p>A next step for data work is to do exploration with graphs in Excel or a tool like Tableau. We'll go over those in a couple weeks.</p>
 <h2 id="homework">Homework</h2>
 <p>Homework is due at 5pm on Monday the night before the next class. I have office hours on Monday if you have struggled!</p>
 <p>Readings:</p>
