@@ -188,7 +188,7 @@ But -- **alert -- despite that article, never use a "file:///" in your URL.**  I
 
 Now that we've seen g's and transforms and the coordinate space, we're ready for the classic on margins. This is a recommended way to set up margins in D3 -- you can use some or all of this pattern (I often skip the "g" translate), but the basic idea is that you have padding around your chart, inside the SVG container.  Then all your coordinates take into account the margin sizes as appropriate.
 
-<img src="margins.png">
+<img src="img/margins.png">
 
 ````
 var svgWidth = 1000,

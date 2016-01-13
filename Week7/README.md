@@ -43,7 +43,7 @@ var dataset =  d3.nest()
 
 The result is objects that look like:
 
-<img src="nested_data.png">
+<img src="img/nested_data.png">
 
 See **[example lines_d3nest.html](example lines_d3nest.html)** for how to deal with this, to group by country and then plot the lines.
 

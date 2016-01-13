@@ -57,7 +57,7 @@ Primary emphasis is on end user experience and data honesty; secondary considera
 
 ### Links to Datasets
 
-* Jeremy Singer-Vine's excellent tinyletter archives for Data Is Plural (and maybe get on the list!): http://tinyletter.com/data-is-plural/archive
+* Jeremy Singer-Vine's excellent tinyletter archives for Data Is Plural (and maybe get on the list!): http://tinyletter.com/data-is-plural/archive, his [giant spreadsheet](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0)
 * [My delicious links to datasets](https://delicious.com/arnicas/datasets)
 * [World Bank Data](http://data.worldbank.org/)
 * Sets collected by Curran Kelleher: https://github.com/curran/data

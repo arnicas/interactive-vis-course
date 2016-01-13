@@ -34,11 +34,11 @@ Turn off excessive logging if you don't need it anymore!  You want your console.
 
 Click to expand the error message to see the lines of code, and find the first item FROM THE TOP that refers to your code (not d3 or another library you are including):
 
-![error printout](debugging.png)
+![error printout](img/debugging.png)
 
 Then if you click on that line, your source window will take you there.  Notice in this case there is something else marked with a red X. This is also an error source.
 
-![source printout](debugging2.png)
+![source printout](img/debugging2.png)
 
 
 ## D3 Specific Debugging
