@@ -6,12 +6,15 @@
 * [console_javascript.html](Week1/console_javascript.html): Console action only.
 * * [d3_load_csv_json.html](Week1/d3_load_csv_json.html): Loading simple CSV (and JSON) files with d3.
 
-## Week2: Loading Data, Highcharts
+## Week2: Loading Data, Highcharts, Other Libs
 
 * [highcharts_dot.html](Week2/highcharts_dot.html): A not great hack at a dot plot in Highcharts, using data in the chart object.
 * [highcharts_dot_csv.html](Week2/highcharts_dot_csv.html): Another attempted dot plot in Highcharts using external csv data, which is kind of hard.
 * [highcharts_slope.html](Week2/highcharts_slope.html): A not terrible slope chart hacked up in Highcharts.
+* [simpler_switcher.html](Week2/simpler_switcher.html): A simple demo for the logic in the next example, but using 2 buttons.
 * [highcharts_switch.html](Week2/highcharts_switch.html): Template example for a button switch between Highcharts charts, extracted from <a href=http://datatools.urban.org/Features/wealth-inequality-charts/">Urban Institute wealth inequality project.</a>
+* [dimple_barchart.html](Week2/dimple_barchart.html): Making a bar chart with Dimple.js.
+* [dimple_dotplot.html](Week2/dimple_dotplot.html): A dotplot with Dimple.js.
 * [d3_simple_append.html](Week2/d3_simple_append.html): Appending to the DOM with d3.
 * [create_p_from_data.html](Week2/create_p_from_data.html): Create paragraphs from csv data and append to the DOM - not using a good D3 enter() method yet.
 

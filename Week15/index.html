@@ -52,8 +52,8 @@
 <h3 id="how-to-file-a-bug-report">How to File a Bug Report</h3>
 <p>If you have a bug in your code, you need to do some things first, and then ask for help if you fail. Your help request has to have details in it, or we will waste time!</p>
 <ul>
-<li>How do I recreate the problem you think you see? For example: &quot;click on the World button and there is an error in the console&quot;.<br /></li>
-<li>Where in the code is the problem likely to be? If you are doing your own good debugging effort, you have narrowed it down to a location in the code using breakpoints and the console. Tell me what that says, and it will help me find it.<br /></li>
+<li>How do I recreate the problem you think you see? For example: &quot;click on the World button and there is an error in the console&quot;.</li>
+<li>Where in the code is the problem likely to be? If you are doing your own good debugging effort, you have narrowed it down to a location in the code using breakpoints and the console. Tell me what that says, and it will help me find it.</li>
 <li>Tell me what js file to look in. You all have a zillion now.</li>
 </ul>
 <h3 id="breakpoints">Breakpoints</h3>
@@ -61,8 +61,8 @@
 <p>Use Command-option-i on the Mac to quickly open the console window. Click on the &quot;SOURCE&quot; tab. Navigate to the js file you are trying to debug.</p>
 <p>Using breakpoints:</p>
 <ul>
-<li><a href="https://developer.chrome.com/devtools/docs/javascript-debugging">https://developer.chrome.com/devtools/docs/javascript-debugging</a><br /></li>
-<li><a href="https://www.youtube.com/watch?v=CoESC2XGZLg">https://www.youtube.com/watch?v=CoESC2XGZLg</a>, <a href="https://www.youtube.com/watch?v=L0aJDRdOYDo">https://www.youtube.com/watch?v=L0aJDRdOYDo</a></li>
+<li><a href="https://developer.chrome.com/devtools/docs/javascript-debugging" class="uri">https://developer.chrome.com/devtools/docs/javascript-debugging</a></li>
+<li><a href="https://www.youtube.com/watch?v=CoESC2XGZLg" class="uri">https://www.youtube.com/watch?v=CoESC2XGZLg</a>, <a href="https://www.youtube.com/watch?v=L0aJDRdOYDo" class="uri">https://www.youtube.com/watch?v=L0aJDRdOYDo</a></li>
 </ul>
 <p>Also, when you stop right before a certain point, you can then execute code &quot;by hand&quot; in the console window to see what the values are yourself. I do this for selections (to see if there is anything actually selected) and scales - to check xScale.domain() for instance, to verify the numbers are right.</p>
 <h3 id="console.log">Console.log()</h3>
@@ -77,24 +77,25 @@
 <p>D3 tooltips Need to be attached to the document &quot;body&quot; to work properly! Otherwise their positioning will be wrong. Double check where you put them if you have location issues.</p>
 <p>Also, use a class other than &quot;tooltip&quot; if you use Bootstrap. It may conflict.</p>
 <h3 id="nans-in-d3-code">NaN's in D3 code</h3>
-<p>Frequently, you get NaN's in the console with SVG shapes when there is something wrong with a scale.<br />Go back to how you set up your scales and check the .domain()s to see if they are valid.</p>
+<p>Frequently, you get NaN's in the console with SVG shapes when there is something wrong with a scale.<br />
+Go back to how you set up your scales and check the .domain()s to see if they are valid.</p>
 <h3 id="the-update-pattern">The Update Pattern</h3>
 <p>Remember there are some general patterns for the code for updated graphs.</p>
 <ol>
-<li>Setup the svg and global variables first - like the scales.<br /></li>
-<li>Use the data to get the domains for your scales, probably in a draw function.<br /></li>
-<li>Draw the &quot;initial view&quot; of the graph. If you are using an update, you can call the update function with your first data here.<br /></li>
-<li><p>The update function has 4 things in it to be general:</p>
-<p>a. <strong>bind</strong> the data to the dom elements (don't forget to use a key if you want good transitions): <code>var circles = svg.selectAll(&quot;circle.countries&quot;).data(mydata, function(d){return d.Country;});</code></p>
-<p>b. <strong>enter</strong> to draw new ones</p>
-<p>c. <strong>exit</strong> to remove ones you don't need now</p>
-<p>d. <strong>transition</strong> - this applies to all the items &quot;left&quot; on the page after the enter and exit, and makes them move prettily.</p></li>
+<li>Setup the svg and global variables first - like the scales.</li>
+<li>Use the data to get the domains for your scales, probably in a draw function.</li>
+<li>Draw the &quot;initial view&quot; of the graph. If you are using an update, you can call the update function with your first data here.</li>
+<li>The update function has 4 things in it to be general:
+a. <strong>bind</strong> the data to the dom elements (don't forget to use a key if you want good transitions): <code>var circles = svg.selectAll(&quot;circle.countries&quot;).data(mydata, function(d){return d.Country;});</code>
+b. <strong>enter</strong> to draw new ones
+c. <strong>exit</strong> to remove ones you don't need now
+d. <strong>transition</strong> - this applies to all the items &quot;left&quot; on the page after the enter and exit, and makes them move prettily.</li>
 </ol>
-<p>You can see this full pattern in use in <strong><a href="../Week8/scatter_data_update.html">../Week8/scatter_data_update.html</a></strong>.</p>
+<p>You can see this full pattern in use in <strong><a href="../Week8/scatter_data_update.html" class="uri">../Week8/scatter_data_update.html</a></strong>.</p>
 <h3 id="data-vs.-datum">Data vs. Datum</h3>
 <p>If you have a single data element, you can use <code>.datum()</code>. There is no enter function with a single data element! You just append things after it.</p>
 <p>If you want to create SVG elements from multiple data items, you need to use <code>.data()</code> and an enter() function.</p>
-<p>Read the answer from Mike here: <a href="http://stackoverflow.com/questions/10086167/d3-how-to-deal-with-json-data-structures">http://stackoverflow.com/questions/10086167/d3-how-to-deal-with-json-data-structures</a></p>
+<p>Read the answer from Mike here: <a href="http://stackoverflow.com/questions/10086167/d3-how-to-deal-with-json-data-structures" class="uri">http://stackoverflow.com/questions/10086167/d3-how-to-deal-with-json-data-structures</a></p>
 <p>TODO: Bring this forward into data binding, maybe the line section.</p>
 <h2 id="homework">Homework</h2>
 <p>Project work!</p>

@@ -4,17 +4,129 @@
 
 Gists reminders: Upload files with the add button (or drag and drop, don't paste in CSV data); name your web pages index.html so they will work in bl.ocks.org!
 
+### JS Errors
 
-## "Switchers" for Changing the View on the Data
+Let's go through the file together: [js_errors_fix.html](js_errors_fix.html)
 
-This is a trick you get with interactives -- the "recast" the problem in a new way, or "switch" the view of the data.  This can mean scale change, or annotation/highlighting different data.  Here's a couple examples:
+**Console.log and strings:**
 
-* A log scale switch: log vs. normal (Exoplanets interactive from NatGeo link is broken, so let's use this now: http://bl.ocks.org/phoebebright/4124200)
-* [A Surge in Asylum Applications](http://www.nytimes.com/interactive/2015/08/28/world/europe/countries-under-strain-from-european-migration-crisis.html?smid=tw-nytimes&_r=0) - Total vs. Population switch
-* [How Democrats vs Republicans See Friday's Job Numbers](http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html?_r=2&), NYT Graphics
+What will this print?  Why?
+````
+console.log("simple_add(myobject.cats, myobject.dogs)");
+````
+
+**What about this?**
+
+````
+console.log("Problem 3, the first json object is (fix the index in brackets):" + mydata.index)
+````
+
+This works, but you're supposed to call the function I created for it, `simple_add()`:
+
+````
+// fix to call the function with the cats and dogs properly
+console.log("Problem 2, Add 2 values:" + " " + (myobject.cats + myobject.dogs));
+````
+
+This data has an issue, but works when you divide.  Let's discuss:
+
+````
+     var myvalue = [
+         {"Name" : "Florida",
+         "Population": "19893297",
+         "Seats": 27
+         },
+         {"Name" : "California",
+         "Population": "38802500",
+         "Seats": 53
+         },
+         {"Name" : "Texas",
+          "Population": "26956958",
+          "Seats": 36
+         }
+
+     ];
+
+function divide(arg1, arg2) {
+  return arg1 / arg2;
+}
+divide(myvalue[0].Population, myvalue[0].Seats)
+````
 
 
-## Intro to Highcharts
+
+### Data Files
+
+Spaces in Names: http://bl.ocks.org/NERD-rat-LAB/27157c1feea679364fc0
+
+Nested data: http://bl.ocks.org/jashcny/d5632fe6efeb61c39af4
+
+Also nested here: https://gist.github.com/luluwuluying/25b6b78d9a1010f9804e
+
+Years as column names!
+
+Strings and Numbers: http://bl.ocks.org/Shewitt95/eb7ce3c5b3d5663074e0
+
+
+## Pulling the Updated Files Every Week
+
+Open a terminal window inside the directory/folder called "interactive-vis-course".
+
+Type: `git pull`
+
+If all works ok, you should see the new files coming down.
+
+If you get an error, it's probably because you modified a file and it has a merge conflict.  Make sure you rename any files you modified and ideally move them to another location, type `git stash` and then try `git pull` again.
+
+
+## Viewing your Gists as Bl.ocks
+
+If the gist url is `https://gist.github.com/arnicas/743b4b3406d139ab65fa`
+then the bl.ocks url is: `http://bl.ocks.org/arnicas/743b4b3406d139ab65fa`.
+
+NOTE: No https on the start of the block! Also, you can use this [Chrome plugin](https://chrome.google.com/webstore/detail/blocksorg/phjkbonaifennbfpmieeipknnkhaoiaf) to help you view blocks from gists faster -- notice the right side!
+
+<img src="img/blocks_plugin.png">
+
+
+## Command Line Crash Course
+
+Here are some basic, useful commands in the terminal window. The words "folder" and "directory" are synonyms.
+
+
+| Command|      What It Does
+|-------| --------------------------------------- |
+| `ls` | list files here in this folder 
+| `cd ..`   |  change directory *up* one level (..) 
+| `cd Week1` | change directory *down* into Week1 folder 
+| `pwd`     | current working directory (entire path) 
+| `mkdir MyFolder` | make a folder here called "MyFolder"
+| `cd MyFolder` | change directory into the new MyFolder 
+| `ls`  | list files here in this directory 
+| `mv file1.txt MyFile.txt`  |  rename file1.txt to MyFile.txt 
+| `rm filename.txt` | remove/delete filename.txt 
+| `ls Week[tab]` | Tab-complete filename that matches Week-something. 
+| `ls *.html` | list all files in this folder that end with .html 
+| `less file.txt` |  prints out the contents of file.txt - use 'space' to advance by screenful |
+| `git pull` | in a github repo, "pull" the newest changes 
+| `python -m SimpleHTTPServer 8001` | Start a web server in this folder; url `localhost:8001`; use control-C to shut it down when done. |
+
+
+Remember you can always tab-complete.  It'll just beep and do nothing if it doesn't match anything.  If you have files or folders with spaces in their names, tab-complete is the easiest way to "match" them, rather than trying to type them out.
+
+I strongly recommend reviewing this book: http://cli.learncodethehardway.org/book/
+
+
+
+## Hem, There Are So Many Charting Libraries Out There
+
+See, e.g.,
+
+* https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks
+* http://www.sitepoint.com/15-best-javascript-charting-libraries/
+* And now this epic tool/book browser: http://keshif.me/demo/VisTools
+
+### Intro to Highcharts
 
 Let's look at this project in some detail: http://datatools.urban.org/Features/wealth-inequality-charts/. Look at the source code, too.
 
@@ -32,27 +144,59 @@ More of my local examples:
 
 * [highcharts_dot.html](highcharts_dot.html) and [highcharts_dot_csv.html](highcharts_dot_csv.html)
 * [highcharts_slope.html](highcharts_slope.html): my attempt at a slopegraph! Not using CSV data, but embedded data.
-* Here is a useful excerpt you can use in the homework for a "switcher": [highcharts_switch.html](highcharts_switch.html). (This is extracted from the [Urban Institute project](http://datatools.urban.org/Features/wealth-inequality-charts/)).
+
+
+### Dimple.js Examples
+
+Dimple is built on top of D3. You can find the docs with examples [here](http://dimplejs.org/) and the API docs [here](https://github.com/PMSI-AlignAlytics/dimple/wiki). It seems to be especially good with timeseries data, but has some missing example detail.
+
+
+Have a look at [dimple_barchart.html](dimple_barchart.html).
+
+````
+function make_barvis(data, selector, color) {
+  // passing in the data array, an idenfitier to put the graph into, and 
+  // a custom color
+
+  var svg = dimple.newSvg(selector, 600, 600);
+  var myChart = new dimple.chart(svg, data);
+  myChart.setBounds(190, 10, 400, 500);  // x y width height
+  var xAxis = myChart.addMeasureAxis("x", "year2015");
+  xAxis.title = "Access to Clean Water (%)";  // custom label
+  var yAxis = myChart.addCategoryAxis("y", "name");
+  yAxis.title = "Region"; // custom label
+  yAxis.addOrderRule("year2015");  // largest at top!
+  myChart.defaultColors = [new dimple.color(color)];
+  myChart.addSeries(null, dimple.plot.bar);
+  myChart.draw();
+}
+````
+
+For a dot plot alternative, try [dimple_dotplot.html](dimple_dotplot.html).
+
+For all the libraries out there, you'll discover that using their defaults is easy, but customizing stuff ends up being hard or a big hunt through their docs/code/StackOverflow. Writing it yourself from scratch in D3 might often end up easiest.
+
+
+## "Switchers" for Changing the View on the Data
+
+This is a trick you get with interactives -- the "recast" the problem in a new way, or "switch" the view of the data.  This can mean scale change, or annotation/highlighting different data.  Here's a couple examples:
+
+* A log scale switch: log vs. normal (Exoplanets interactive from NatGeo link is broken, so let's use this now: http://bl.ocks.org/phoebebright/4124200)
+* [A Surge in Asylum Applications](http://www.nytimes.com/interactive/2015/08/28/world/europe/countries-under-strain-from-european-migration-crisis.html?smid=tw-nytimes&_r=0) - Total vs. Population switch
+* [How Democrats vs Republicans See Friday's Job Numbers](http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html?_r=2&), NYT Graphics
+
+A very simple template for a toggle button is in the file [simpler_switcher.html](simpler_switcher.html).  This explains some of what is going on in the next example that uses Highcharts, except it uses 2 buttons instead of one and no graphs.
+
+Here is a useful excerpt you can use in the homework for a "switcher": [highcharts_switch.html](highcharts_switch.html). (This is extracted from the [Urban Institute project](http://datatools.urban.org/Features/wealth-inequality-charts/)).
 
 ![switcher](img/highcharts_switch.png)
 
+You'll implement one with your own data for homework if you want to accept the challenge!
 
 
-## Hem, There Are So Many Charting Libraries Out There
+## A Very Simple D3 Intro With Data
 
-See, e.g.,
-
-* https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks
-* http://www.sitepoint.com/15-best-javascript-charting-libraries/
-* And now this epic tool/book browser: http://keshif.me/demo/VisTools
-
-Let's look at Dimple.js now. It's built on top of D3.
-(TODO: Add an example.)
-
-
-## Loading Data, and Very Simple D3 Intro
-
-Last week you loaded a data file from CSV into a web page. Now we're going to do a simple DOM operation using that data file.
+Last week you loaded a data file from CSV into a web page. Now we're going to do a simple DOM operation with D3 using that data file. (This will be easier than the Highcharts stuff!)
 
 Let's look at [d3_simple_append.html](d3_simple_append.html) and how that works.
 
@@ -64,7 +208,7 @@ For your homework, create `<p>` tags for each row of your data, using the templa
 * Here is the JQuery doc on append, if you want it: http://api.jquery.com/append/
 
 
-## Interactive Vis Techniques - Readings
+## Interactive Vis Techniques: Readings
 
 Some of the reading for this week will motivate the interactive vis techniques we are going to cover in this class.
 
@@ -84,14 +228,17 @@ Some of the reading for this week will motivate the interactive vis techniques w
 
 Do the readings/videos list just above.  Memorize the mantra. Plus these:
 
-**Homework 1**: Using the structure and switch button functionality in [highcharts_switch.html](highcharts_switch.html), plug in 2 of your own related High Charts charts, using your data. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has useful tooltips.  Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.
+**Homework 1**: Two Charts
 
-Points: (35pts) for charts and styling and your own data, points included for originality (not just mean/median) in the data you chart and compare. Use at least one other type of chart, aside from the line charts in the example.
+(Required: 25pt): Make 2 charts of your data on the same page, using 2 different chart types (e.g., line chart, bar chart, area...). You may need another data set if you don't have 2 quantitative (numeric) variables in your data set. You can use Highcharts or Dimple.js (or another library if you prefer).
 
-For your gist: *Be sure the html page is called index.html.*  Be sure your path to highcharts is a CDN, not local, link.
-My examples show the CDN path you should use in your code.
+For extra credit (15pt), use the structure and button switch button functionality in [highcharts_switch.html](highcharts_switch.html) to toggle between your two charts. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has useful tooltips.  Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.
 
-  Check it in as a gist and send me the link to the gist, "Week2: High Charts."
+Points: (25pts, plus 15pt extra for toggle).
+
+For your gist: *Be sure the html page is called index.html.*  Be sure your path to Highcharts is a CDN as mine is, not local, link. My examples show the CDN path you should use in your code.
+
+  Check it in as a gist and send me the link to the gist, "Week2: Two Charts."
 
 **Homework 2**: Read in one of your csv data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, "Week 2: Paragraph Data load." (15pt)  *Name the web page itself index.html so it will work in a blocks example!*
 

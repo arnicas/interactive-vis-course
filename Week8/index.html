@@ -59,7 +59,7 @@
   }).slice(0, 10); // cut off the top 10!
 </code></pre>
 <h3 id="using-a-select-menu">Using a Select Menu</h3>
-<p>There are drop-down select menus in <a href="bostock_bar_updates_simpler.html">bostock_bar_updates_simpler.html</a> and <a href="scatter_data_update.html">scatter_data_update.html</a>. In the Bostock example, he constructs the menu using D3 and the data set, in <a href="scatter_data_update.html">scatter_data_update.html</a> I build it manually and use D3 to respond to its use.</p>
+<p>There are drop-down select menus in <a href="bostock_bar_updates_simpler.html" class="uri">bostock_bar_updates_simpler.html</a> and <a href="scatter_data_update.html" class="uri">scatter_data_update.html</a>. In the Bostock example, he constructs the menu using D3 and the data set, in <a href="scatter_data_update.html" class="uri">scatter_data_update.html</a> I build it manually and use D3 to respond to its use.</p>
 <pre><code>&lt;p id=&quot;menu&quot;&gt;
             &lt;select&gt;
                 &lt;option value=&quot;all&quot;&gt;All Countries&lt;/option&gt;
@@ -102,7 +102,8 @@ d3.select(this).moveToFront();</code></pre>
 <h3 id="getting-to-a-parent-selection-sibling-selection">Getting to a Parent Selection / Sibling Selection</h3>
 <p>When you select a dot, you may also want your line to appear selected too. One trick would be to class the dots and the lines in the same group with a matching identifier, so you can more easily select the line with the matching identifier.</p>
 <p>Or, you can select it via DOM sibling relationship.</p>
-<p>Suppose you have an SVG group, like a group with a line in it, a bunch of dots, and a text label.<br />Say you have a selected dot, but want the line that's in the same group.</p>
+<p>Suppose you have an SVG group, like a group with a line in it, a bunch of dots, and a text label.<br />
+Say you have a selected dot, but want the line that's in the same group.</p>
 <pre><code>&lt;g&gt;
     &lt;path class=&quot;line&quot;...&gt;
     &lt;circle ...&gt;
@@ -116,8 +117,8 @@ d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, tr
 <p>Not everything can transition with D3. You'll see a lot of use of transform/translate to achieve transition effects with things that are hard to transition (including groups).</p>
 <p>Reference:</p>
 <ul>
-<li>Working with Transitions: <a href="http://bost.ocks.org/mike/transition/">http://bost.ocks.org/mike/transition/</a><br /></li>
-<li>Optional Academic Research: <a href="http://vis.berkeley.edu/papers/animated_transitions/">http://vis.berkeley.edu/papers/animated_transitions/</a></li>
+<li>Working with Transitions: <a href="http://bost.ocks.org/mike/transition/" class="uri">http://bost.ocks.org/mike/transition/</a></li>
+<li>Optional Academic Research: <a href="http://vis.berkeley.edu/papers/animated_transitions/" class="uri">http://vis.berkeley.edu/papers/animated_transitions/</a></li>
 </ul>
 <h3 id="axes-transitions">Axes Transitions</h3>
 <p>... Are incredibly easy. If you have updated your scale with new data, the transition of an axis is trivial:</p>
@@ -126,28 +127,28 @@ d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, tr
 <h3 id="data-binding-update-pattern-keys">Data Binding, Update Pattern, Keys</h3>
 <p>Reference:</p>
 <ul>
-<li>Reminder: Thinking With Joins: <a href="http://bost.ocks.org/mike/join/">http://bost.ocks.org/mike/join/</a><br /></li>
-<li>Read: (To the bottom of the page) <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates">http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates</a><br /></li>
-<li>Recommended read: <a href="https://square.github.io/intro-to-d3/data-binding/">https://square.github.io/intro-to-d3/data-binding/</a></li>
+<li>Reminder: Thinking With Joins: <a href="http://bost.ocks.org/mike/join/" class="uri">http://bost.ocks.org/mike/join/</a></li>
+<li>Read: (To the bottom of the page) <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates</a></li>
+<li>Recommended read: <a href="https://square.github.io/intro-to-d3/data-binding/" class="uri">https://square.github.io/intro-to-d3/data-binding/</a></li>
 </ul>
 <p>Demos:</p>
 <ul>
-<li>General Update Pattern 1: <a href="http://bl.ocks.org/mbostock/3808218">http://bl.ocks.org/mbostock/3808218</a><br /></li>
-<li>Update Pattern 2: Key Functions: <a href="http://bl.ocks.org/mbostock/3808221">http://bl.ocks.org/mbostock/3808221</a><br /></li>
-<li>Update Pattern 3: Transitions: <a href="http://bl.ocks.org/mbostock/3808234">http://bl.ocks.org/mbostock/3808234</a><br /></li>
-<li>Another demo: <a href="http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
+<li>General Update Pattern 1: <a href="http://bl.ocks.org/mbostock/3808218" class="uri">http://bl.ocks.org/mbostock/3808218</a></li>
+<li>Update Pattern 2: Key Functions: <a href="http://bl.ocks.org/mbostock/3808221" class="uri">http://bl.ocks.org/mbostock/3808221</a></li>
+<li>Update Pattern 3: Transitions: <a href="http://bl.ocks.org/mbostock/3808234" class="uri">http://bl.ocks.org/mbostock/3808234</a></li>
+<li>Another demo: <a href="http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" class="uri">http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
 </ul>
-<p>My example, a simple enter, transition, exit example in <a href="bar_updates_no_key.html">bar_updates_no_key.html</a>.</p>
+<p>My example, a simple enter, transition, exit example in <a href="bar_updates_no_key.html" class="uri">bar_updates_no_key.html</a>.</p>
 <p><strong>Reference for data keys:</strong></p>
 <ul>
-<li>Object Constancy Intro: <a href="http://bost.ocks.org/mike/constancy/">http://bost.ocks.org/mike/constancy/</a> (Read this, but there are advanced details in the full source code for that example. See my simplified, commented version of the code in <a href="bostock_bar_updates_simpler.html">bostock_bar_updates_simpler.html</a>.)</li>
+<li>Object Constancy Intro: <a href="http://bost.ocks.org/mike/constancy/" class="uri">http://bost.ocks.org/mike/constancy/</a> (Read this, but there are advanced details in the full source code for that example. See my simplified, commented version of the code in <a href="bostock_bar_updates_simpler.html" class="uri">bostock_bar_updates_simpler.html</a>.)</li>
 </ul>
-<p>My example, <a href="bar_updates_key.html">bar_updates_key.html</a>.</p>
+<p>My example, <a href="bar_updates_key.html" class="uri">bar_updates_key.html</a>.</p>
 <p>Reference:</p>
 <ul>
-<li>A more detailed example with dots, not bars: <a href="http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3">http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3</a><br /></li>
-<li>An example with Line Charts: <a href="http://bl.ocks.org/nsonnad/4175202">http://bl.ocks.org/nsonnad/4175202</a><br /></li>
-<li>Nice examples in this tutorial with temperature graphs: <a href="http://code.hazzens.com/d3tut/lesson_4.html">http://code.hazzens.com/d3tut/lesson_4.html</a></li>
+<li>A more detailed example with dots, not bars: <a href="http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3" class="uri">http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3</a></li>
+<li>An example with Line Charts: <a href="http://bl.ocks.org/nsonnad/4175202" class="uri">http://bl.ocks.org/nsonnad/4175202</a></li>
+<li>Nice examples in this tutorial with temperature graphs: <a href="http://code.hazzens.com/d3tut/lesson_4.html" class="uri">http://code.hazzens.com/d3tut/lesson_4.html</a></li>
 </ul>
 <h3 id="good-code-structure---functions-for-redrawing">Good Code Structure - Functions for re(drawing)</h3>
 <p>A common structure for an updating D3 vis is:</p>
@@ -160,22 +161,24 @@ the data if they do with transitions and exit().</code></pre>
 <p>TODO: Add a graphic?</p>
 <p>Examples:</p>
 <ul>
-<li>Simple <a href="bar_updates_no_key.html">bar_updates_no_key.html</a><br /></li>
-<li>More complex <a href="bar_updates_key.html">bar_updates_key.html</a><br /></li>
-<li>My <a href="scatter_data_update.html">scatter_data_update.html</a></li>
+<li>Simple <a href="bar_updates_no_key.html" class="uri">bar_updates_no_key.html</a></li>
+<li>More complex <a href="bar_updates_key.html" class="uri">bar_updates_key.html</a></li>
+<li>My <a href="scatter_data_update.html" class="uri">scatter_data_update.html</a></li>
 </ul>
-<p>In your homework, you will modify and use this structure for <a href="scatter_homework.html">scatter_homework.html</a> and <a href="bar_homework.html">bar_homework.html</a>.</p>
+<p>In your homework, you will modify and use this structure for <a href="scatter_homework.html" class="uri">scatter_homework.html</a> and <a href="bar_homework.html" class="uri">bar_homework.html</a>.</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
-<li>NYT Hightlights of Digital Storytelling: <a href="http://www.nytimes.com/2015/10/07/business/using-innovative-storytelling-to-illuminate-the-world.html">http://www.nytimes.com/2015/10/07/business/using-innovative-storytelling-to-illuminate-the-world.html</a></li>
+<li>NYT Hightlights of Digital Storytelling: <a href="http://www.nytimes.com/2015/10/07/business/using-innovative-storytelling-to-illuminate-the-world.html" class="uri">http://www.nytimes.com/2015/10/07/business/using-innovative-storytelling-to-illuminate-the-world.html</a></li>
 </ul>
 <h2 id="homework">Homework</h2>
 <p>Readings:</p>
-<p>Read: (To the bottom of the page) <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates">http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates</a>.<br />Read anything else you need to get a grip on the enter/update/exit pattern in D3!</p>
+<p>Read: (To the bottom of the page) <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates</a>.<br />
+Read anything else you need to get a grip on the enter/update/exit pattern in D3!</p>
 <p><strong>Homework 1 (15pt)</strong>: Finished Bar Homework.</p>
-<p>In the file <a href="bar_homework.html">bar_homework.html</a>, there are about a dozen //TODO items. Fix all the //TODO items in it. Send to me with subject &quot;Finished Bar Homework.&quot;</p>
+<p>In the file <a href="bar_homework.html" class="uri">bar_homework.html</a>, there are about a dozen //TODO items. Fix all the //TODO items in it. Send to me with subject &quot;Finished Bar Homework.&quot;</p>
 <p><strong>Homework 2 (25pt)</strong>: Scatter Homework.</p>
-<p>Fix the <a href="scatter_homework.html">scatter_homework.html</a> to have a scatter plot that uses the x and y data values, axes (they don't need labels) and transitions between data sets. It should use the enter/update/exit style of code. The default button (for data1) needs to look selected when the user loads the page. The axes need to transition too.<br />Color the dots by region. (Hint: use either a class, or a category color scale.)</p>
+<p>Fix the <a href="scatter_homework.html" class="uri">scatter_homework.html</a> to have a scatter plot that uses the x and y data values, axes (they don't need labels) and transitions between data sets. It should use the enter/update/exit style of code. The default button (for data1) needs to look selected when the user loads the page. The axes need to transition too.<br />
+Color the dots by region. (Hint: use either a class, or a category color scale.)</p>
 <p>Sent gist to me as &quot;Scatter Homework.&quot;</p>
 <p><strong>Homework 3: Project Data Exploration (20pt)</strong></p>
 <p>Send me some graphic data explorations (3 different charts at least!) of data you may want to use in your project. This is NOT meant to be D3 work, but Excel charts, or Tableau images, or Google Charts, or whatever charting tool you want to use. Use actual data from your desired project topic. Show me some graphical examples that you may want to explore in the project. Explain in text what each graph shows and why it is interesting, with perhaps some ideas on how to make it interactive.</p>

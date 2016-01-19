@@ -31,12 +31,20 @@
 <div id="TOC">
 <ul>
 <li><a href="#week-2-highcharts-loading-csv-data-with-d3.js">Week 2: Highcharts, Loading CSV Data With D3.js</a><ul>
-<li><a href="#review-homework">Review Homework</a></li>
-<li><a href="#switchers-for-changing-the-view-on-the-data">&quot;Switchers&quot; for Changing the View on the Data</a></li>
+<li><a href="#review-homework">Review Homework</a><ul>
+<li><a href="#js-errors">JS Errors</a></li>
+<li><a href="#data-files">Data Files</a></li>
+</ul></li>
+<li><a href="#pulling-the-updated-files-every-week">Pulling the Updated Files Every Week</a></li>
+<li><a href="#viewing-your-gists-as-bl.ocks">Viewing your Gists as Bl.ocks</a></li>
+<li><a href="#command-line-crash-course">Command Line Crash Course</a></li>
+<li><a href="#hem-there-are-so-many-charting-libraries-out-there">Hem, There Are So Many Charting Libraries Out There</a><ul>
 <li><a href="#intro-to-highcharts">Intro to Highcharts</a></li>
-<li><a href="#hem-there-are-so-many-charting-libraries-out-there">Hem, There Are So Many Charting Libraries Out There</a></li>
-<li><a href="#loading-data-and-very-simple-d3-intro">Loading Data, and Very Simple D3 Intro</a></li>
-<li><a href="#interactive-vis-techniques---readings">Interactive Vis Techniques - Readings</a></li>
+<li><a href="#dimple.js-examples">Dimple.js Examples</a></li>
+</ul></li>
+<li><a href="#switchers-for-changing-the-view-on-the-data">&quot;Switchers&quot; for Changing the View on the Data</a></li>
+<li><a href="#a-very-simple-d3-intro-with-data">A Very Simple D3 Intro With Data</a></li>
+<li><a href="#interactive-vis-techniques-readings">Interactive Vis Techniques: Readings</a></li>
 <li><a href="#homeworks">Homeworks</a></li>
 </ul></li>
 </ul>
@@ -44,62 +52,212 @@
 <h1 id="week-2-highcharts-loading-csv-data-with-d3.js">Week 2: Highcharts, Loading CSV Data With D3.js</h1>
 <h2 id="review-homework">Review Homework</h2>
 <p>Gists reminders: Upload files with the add button (or drag and drop, don't paste in CSV data); name your web pages index.html so they will work in bl.ocks.org!</p>
-<h2 id="switchers-for-changing-the-view-on-the-data">&quot;Switchers&quot; for Changing the View on the Data</h2>
-<p>This is a trick you get with interactives -- the &quot;recast&quot; the problem in a new way, or &quot;switch&quot; the view of the data. This can mean scale change, or annotation/highlighting different data. Here's a couple examples:</p>
-<ul>
-<li>A log scale switch: log vs. normal (Exoplanets interactive from NatGeo link is broken, so let's use this now: <a href="http://bl.ocks.org/phoebebright/4124200">http://bl.ocks.org/phoebebright/4124200</a>)<br /></li>
-<li><a href="http://www.nytimes.com/interactive/2015/08/28/world/europe/countries-under-strain-from-european-migration-crisis.html?smid=tw-nytimes&amp;_r=0">A Surge in Asylum Applications</a> - Total vs. Population switch<br /></li>
-<li><a href="http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html?_r=2&amp;">How Democrats vs Republicans See Friday's Job Numbers</a>, NYT Graphics</li>
-</ul>
-<h2 id="intro-to-highcharts">Intro to Highcharts</h2>
-<p>Let's look at this project in some detail: <a href="http://datatools.urban.org/Features/wealth-inequality-charts/">http://datatools.urban.org/Features/wealth-inequality-charts/</a>. Look at the source code, too.</p>
-<p><strong>Resources</strong>:</p>
-<ul>
-<li>Install the JQuery way: <a href="http://www.highcharts.com/docs/getting-started/installation">http://www.highcharts.com/docs/getting-started/installation</a><br /></li>
-<li>Tutorial for first bar chart: <a href="http://www.highcharts.com/docs/getting-started/your-first-chart">http://www.highcharts.com/docs/getting-started/your-first-chart</a><br /></li>
-<li>Trellis Chart example: <a href="http://jsfiddle.net/highcharts/VqruM/">http://jsfiddle.net/highcharts/VqruM/</a><br /></li>
-<li>Scatterplot example: <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/scatter/">http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/scatter/</a><br /></li>
-<li>Using data in csv's: <a href="http://www.highcharts.com/docs/working-with-data/data-module">http://www.highcharts.com/docs/working-with-data/data-module</a> (but this is super mysterious to me - hard to tell what controls what!)</li>
-</ul>
-<p>Trying to use data in CSV's with High Charts required me to reformat the CSV data into different structures. Long, wide, and somewhere in between. Be aware that how you structure your data will impact how easily you can use it in your Javascript without having to do rewriting of objects after you load it. (Have a look at this on wide vs long data: <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">https://en.wikipedia.org/wiki/Wide_and_narrow_data</a>.)</p>
-<p>More of my local examples:</p>
-<ul>
-<li><a href="highcharts_dot.html">highcharts_dot.html</a> and <a href="highcharts_dot_csv.html">highcharts_dot_csv.html</a><br /></li>
-<li><a href="highcharts_slope.html">highcharts_slope.html</a>: my attempt at a slopegraph! Not using CSV data, but embedded data.<br /></li>
-<li>Here is a useful excerpt you can use in the homework for a &quot;switcher&quot;: <a href="highcharts_switch.html">highcharts_switch.html</a>. (This is extracted from the <a href="http://datatools.urban.org/Features/wealth-inequality-charts/">Urban Institute project</a>).</li>
-</ul>
-<p><img src="img/highcharts_switch.png" alt="switcher" /></p>
+<h3 id="js-errors">JS Errors</h3>
+<p>Let's go through the file together: <a href="js_errors_fix.html" class="uri">js_errors_fix.html</a></p>
+<p><strong>Console.log and strings:</strong></p>
+<p>What will this print? Why?</p>
+<pre><code>console.log(&quot;simple_add(myobject.cats, myobject.dogs)&quot;);</code></pre>
+<p><strong>What about this?</strong></p>
+<pre><code>console.log(&quot;Problem 3, the first json object is (fix the index in brackets):&quot; + mydata.index)</code></pre>
+<p>This works, but you're supposed to call the function I created for it, <code>simple_add()</code>:</p>
+<pre><code>// fix to call the function with the cats and dogs properly
+console.log(&quot;Problem 2, Add 2 values:&quot; + &quot; &quot; + (myobject.cats + myobject.dogs));</code></pre>
+<p>This data has an issue, but works when you divide. Let's discuss:</p>
+<pre><code>     var myvalue = [
+         {&quot;Name&quot; : &quot;Florida&quot;,
+         &quot;Population&quot;: &quot;19893297&quot;,
+         &quot;Seats&quot;: 27
+         },
+         {&quot;Name&quot; : &quot;California&quot;,
+         &quot;Population&quot;: &quot;38802500&quot;,
+         &quot;Seats&quot;: 53
+         },
+         {&quot;Name&quot; : &quot;Texas&quot;,
+          &quot;Population&quot;: &quot;26956958&quot;,
+          &quot;Seats&quot;: 36
+         }
+
+     ];
+
+function divide(arg1, arg2) {
+  return arg1 / arg2;
+}
+divide(myvalue[0].Population, myvalue[0].Seats)</code></pre>
+<h3 id="data-files">Data Files</h3>
+<p>Spaces in Names: <a href="http://bl.ocks.org/NERD-rat-LAB/27157c1feea679364fc0" class="uri">http://bl.ocks.org/NERD-rat-LAB/27157c1feea679364fc0</a></p>
+<p>Nested data: <a href="http://bl.ocks.org/jashcny/d5632fe6efeb61c39af4" class="uri">http://bl.ocks.org/jashcny/d5632fe6efeb61c39af4</a></p>
+<p>Also nested here: <a href="https://gist.github.com/luluwuluying/25b6b78d9a1010f9804e" class="uri">https://gist.github.com/luluwuluying/25b6b78d9a1010f9804e</a></p>
+<p>Years as column names!</p>
+<p>Strings and Numbers: <a href="http://bl.ocks.org/Shewitt95/eb7ce3c5b3d5663074e0" class="uri">http://bl.ocks.org/Shewitt95/eb7ce3c5b3d5663074e0</a></p>
+<h2 id="pulling-the-updated-files-every-week">Pulling the Updated Files Every Week</h2>
+<p>Open a terminal window inside the directory/folder called &quot;interactive-vis-course&quot;.</p>
+<p>Type: <code>git pull</code></p>
+<p>If all works ok, you should see the new files coming down.</p>
+<p>If you get an error, it's probably because you modified a file and it has a merge conflict. Make sure you rename any files you modified and ideally move them to another location, type <code>git stash</code> and then try <code>git pull</code> again.</p>
+<h2 id="viewing-your-gists-as-bl.ocks">Viewing your Gists as Bl.ocks</h2>
+<p>If the gist url is <code>https://gist.github.com/arnicas/743b4b3406d139ab65fa</code><br />
+then the bl.ocks url is: <code>http://bl.ocks.org/arnicas/743b4b3406d139ab65fa</code>.</p>
+<p>NOTE: No https on the start of the block! Also, you can use this <a href="https://chrome.google.com/webstore/detail/blocksorg/phjkbonaifennbfpmieeipknnkhaoiaf">Chrome plugin</a> to help you view blocks from gists faster -- notice the right side!</p>
+<p><img src="img/blocks_plugin.png"></p>
+<h2 id="command-line-crash-course">Command Line Crash Course</h2>
+<p>Here are some basic, useful commands in the terminal window. The words &quot;folder&quot; and &quot;directory&quot; are synonyms.</p>
+<table style="width:67%;">
+<colgroup>
+<col width="11%" />
+<col width="55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>ls</code></td>
+<td align="left">list files here in this folder</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cd ..</code></td>
+<td align="left">change directory <em>up</em> one level (..)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>cd Week1</code></td>
+<td align="left">change directory <em>down</em> into Week1 folder</td>
+</tr>
+<tr class="even">
+<td align="left"><code>pwd</code></td>
+<td align="left">current working directory (entire path)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>mkdir MyFolder</code></td>
+<td align="left">make a folder here called &quot;MyFolder&quot;</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cd MyFolder</code></td>
+<td align="left">change directory into the new MyFolder</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ls</code></td>
+<td align="left">list files here in this directory</td>
+</tr>
+<tr class="even">
+<td align="left"><code>mv file1.txt MyFile.txt</code></td>
+<td align="left">rename file1.txt to MyFile.txt</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>rm filename.txt</code></td>
+<td align="left">remove/delete filename.txt</td>
+</tr>
+<tr class="even">
+<td align="left"><code>ls Week[tab]</code></td>
+<td align="left">Tab-complete filename that matches Week-something.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ls *.html</code></td>
+<td align="left">list all files in this folder that end with .html</td>
+</tr>
+<tr class="even">
+<td align="left"><code>less file.txt</code></td>
+<td align="left">prints out the contents of file.txt - use 'space' to advance by screenful</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>git pull</code></td>
+<td align="left">in a github repo, &quot;pull&quot; the newest changes</td>
+</tr>
+<tr class="even">
+<td align="left"><code>python -m SimpleHTTPServer 8001</code></td>
+<td align="left">Start a web server in this folder; url <code>localhost:8001</code>; use control-C to shut it down when done.</td>
+</tr>
+</tbody>
+</table>
+<p>Remember you can always tab-complete. It'll just beep and do nothing if it doesn't match anything. If you have files or folders with spaces in their names, tab-complete is the easiest way to &quot;match&quot; them, rather than trying to type them out.</p>
+<p>I strongly recommend reviewing this book: <a href="http://cli.learncodethehardway.org/book/" class="uri">http://cli.learncodethehardway.org/book/</a></p>
 <h2 id="hem-there-are-so-many-charting-libraries-out-there">Hem, There Are So Many Charting Libraries Out There</h2>
 <p>See, e.g.,</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks">https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks</a><br /></li>
-<li><a href="http://www.sitepoint.com/15-best-javascript-charting-libraries/">http://www.sitepoint.com/15-best-javascript-charting-libraries/</a><br /></li>
-<li>And now this epic tool/book browser: <a href="http://keshif.me/demo/VisTools">http://keshif.me/demo/VisTools</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks" class="uri">https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_frameworks</a></li>
+<li><a href="http://www.sitepoint.com/15-best-javascript-charting-libraries/" class="uri">http://www.sitepoint.com/15-best-javascript-charting-libraries/</a></li>
+<li>And now this epic tool/book browser: <a href="http://keshif.me/demo/VisTools" class="uri">http://keshif.me/demo/VisTools</a></li>
 </ul>
-<p>Let's look at Dimple.js now. It's built on top of D3.<br />(TODO: Add an example.)</p>
-<h2 id="loading-data-and-very-simple-d3-intro">Loading Data, and Very Simple D3 Intro</h2>
-<p>Last week you loaded a data file from CSV into a web page. Now we're going to do a simple DOM operation using that data file.</p>
-<p>Let's look at <a href="d3_simple_append.html">d3_simple_append.html</a> and how that works.</p>
-<p>For your homework, create <code>&lt;p&gt;</code> tags for each row of your data, using the template in the <a href="create_p_from_data.html">create_p_from_data.html</a> file.</p>
+<h3 id="intro-to-highcharts">Intro to Highcharts</h3>
+<p>Let's look at this project in some detail: <a href="http://datatools.urban.org/Features/wealth-inequality-charts/" class="uri">http://datatools.urban.org/Features/wealth-inequality-charts/</a>. Look at the source code, too.</p>
 <p><strong>Resources</strong>:</p>
 <ul>
-<li>A <a href="https://www.youtube.com/watch?v=KqEm-3tofBA&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F&amp;index=6">video from Scott Murray explaining d3.csv loading of objects</a><br /></li>
-<li>Here is the JQuery doc on append, if you want it: <a href="http://api.jquery.com/append/">http://api.jquery.com/append/</a></li>
+<li>Install the JQuery way: <a href="http://www.highcharts.com/docs/getting-started/installation" class="uri">http://www.highcharts.com/docs/getting-started/installation</a></li>
+<li>Tutorial for first bar chart: <a href="http://www.highcharts.com/docs/getting-started/your-first-chart" class="uri">http://www.highcharts.com/docs/getting-started/your-first-chart</a></li>
+<li>Trellis Chart example: <a href="http://jsfiddle.net/highcharts/VqruM/" class="uri">http://jsfiddle.net/highcharts/VqruM/</a></li>
+<li>Scatterplot example: <a href="http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/scatter/" class="uri">http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/scatter/</a></li>
+<li>Using data in csv's: <a href="http://www.highcharts.com/docs/working-with-data/data-module" class="uri">http://www.highcharts.com/docs/working-with-data/data-module</a> (but this is super mysterious to me - hard to tell what controls what!)</li>
 </ul>
-<h2 id="interactive-vis-techniques---readings">Interactive Vis Techniques - Readings</h2>
+<p>Trying to use data in CSV's with High Charts required me to reformat the CSV data into different structures. Long, wide, and somewhere in between. Be aware that how you structure your data will impact how easily you can use it in your Javascript without having to do rewriting of objects after you load it. (Have a look at this on wide vs long data: <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data" class="uri">https://en.wikipedia.org/wiki/Wide_and_narrow_data</a>.)</p>
+<p>More of my local examples:</p>
+<ul>
+<li><a href="highcharts_dot.html" class="uri">highcharts_dot.html</a> and <a href="highcharts_dot_csv.html" class="uri">highcharts_dot_csv.html</a></li>
+<li><a href="highcharts_slope.html" class="uri">highcharts_slope.html</a>: my attempt at a slopegraph! Not using CSV data, but embedded data.</li>
+</ul>
+<h3 id="dimple.js-examples">Dimple.js Examples</h3>
+<p>Dimple is built on top of D3. You can find the docs with examples <a href="http://dimplejs.org/">here</a> and the API docs <a href="https://github.com/PMSI-AlignAlytics/dimple/wiki">here</a>. It seems to be especially good with timeseries data, but has some missing example detail.</p>
+<p>Have a look at <a href="dimple_barchart.html" class="uri">dimple_barchart.html</a>.</p>
+<pre><code>function make_barvis(data, selector, color) {
+  // passing in the data array, an idenfitier to put the graph into, and 
+  // a custom color
+
+  var svg = dimple.newSvg(selector, 600, 600);
+  var myChart = new dimple.chart(svg, data);
+  myChart.setBounds(190, 10, 400, 500);  // x y width height
+  var xAxis = myChart.addMeasureAxis(&quot;x&quot;, &quot;year2015&quot;);
+  xAxis.title = &quot;Access to Clean Water (%)&quot;;  // custom label
+  var yAxis = myChart.addCategoryAxis(&quot;y&quot;, &quot;name&quot;);
+  yAxis.title = &quot;Region&quot;; // custom label
+  yAxis.addOrderRule(&quot;year2015&quot;);  // largest at top!
+  myChart.defaultColors = [new dimple.color(color)];
+  myChart.addSeries(null, dimple.plot.bar);
+  myChart.draw();
+}</code></pre>
+<p>For a dot plot alternative, try <a href="dimple_dotplot.html" class="uri">dimple_dotplot.html</a>.</p>
+<p>For all the libraries out there, you'll discover that using their defaults is easy, but customizing stuff ends up being hard or a big hunt through their docs/code/StackOverflow. Writing it yourself from scratch in D3 might often end up easiest.</p>
+<h2 id="switchers-for-changing-the-view-on-the-data">&quot;Switchers&quot; for Changing the View on the Data</h2>
+<p>This is a trick you get with interactives -- the &quot;recast&quot; the problem in a new way, or &quot;switch&quot; the view of the data. This can mean scale change, or annotation/highlighting different data. Here's a couple examples:</p>
+<ul>
+<li>A log scale switch: log vs. normal (Exoplanets interactive from NatGeo link is broken, so let's use this now: <a href="http://bl.ocks.org/phoebebright/4124200" class="uri">http://bl.ocks.org/phoebebright/4124200</a>)</li>
+<li><a href="http://www.nytimes.com/interactive/2015/08/28/world/europe/countries-under-strain-from-european-migration-crisis.html?smid=tw-nytimes&amp;_r=0">A Surge in Asylum Applications</a> - Total vs. Population switch</li>
+<li><a href="http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html?_r=2&amp;">How Democrats vs Republicans See Friday's Job Numbers</a>, NYT Graphics</li>
+</ul>
+<p>A very simple template for a toggle button is in the file <a href="simpler_switcher.html" class="uri">simpler_switcher.html</a>. This explains some of what is going on in the next example that uses Highcharts, except it uses 2 buttons instead of one and no graphs.</p>
+<p>Here is a useful excerpt you can use in the homework for a &quot;switcher&quot;: <a href="highcharts_switch.html" class="uri">highcharts_switch.html</a>. (This is extracted from the <a href="http://datatools.urban.org/Features/wealth-inequality-charts/">Urban Institute project</a>).</p>
+<p><img src="img/highcharts_switch.png" alt="switcher" /></p>
+<p>You'll implement one with your own data for homework if you want to accept the challenge!</p>
+<h2 id="a-very-simple-d3-intro-with-data">A Very Simple D3 Intro With Data</h2>
+<p>Last week you loaded a data file from CSV into a web page. Now we're going to do a simple DOM operation with D3 using that data file. (This will be easier than the Highcharts stuff!)</p>
+<p>Let's look at <a href="d3_simple_append.html" class="uri">d3_simple_append.html</a> and how that works.</p>
+<p>For your homework, create <code>&lt;p&gt;</code> tags for each row of your data, using the template in the <a href="create_p_from_data.html" class="uri">create_p_from_data.html</a> file.</p>
+<p><strong>Resources</strong>:</p>
+<ul>
+<li>A <a href="https://www.youtube.com/watch?v=KqEm-3tofBA&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F&amp;index=6">video from Scott Murray explaining d3.csv loading of objects</a></li>
+<li>Here is the JQuery doc on append, if you want it: <a href="http://api.jquery.com/append/" class="uri">http://api.jquery.com/append/</a></li>
+</ul>
+<h2 id="interactive-vis-techniques-readings">Interactive Vis Techniques: Readings</h2>
 <p>Some of the reading for this week will motivate the interactive vis techniques we are going to cover in this class.</p>
 <ul>
-<li>Skim this - <a href="http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/">When Telling Data Driven Stories, Let Readers Ask Questions Too</a> (Tableau examples that motivate interaction and data sharing; we won't make our final projects in Tableau, but you're welcome to prototype with it.)<br /></li>
+<li>Skim this - <a href="http://mediashift.org/2015/08/when-telling-data-driven-stories-let-readers-ask-questions-too/">When Telling Data Driven Stories, Let Readers Ask Questions Too</a> (Tableau examples that motivate interaction and data sharing; we won't make our final projects in Tableau, but you're welcome to prototype with it.)</li>
 <li><p><a href="shneidermanEyesHaveIt.pdf">The Eyes Have It (1996)</a>, Ben Shneiderman - a classic article that features the mantra everyone must memorize:</p>
-<p><em>Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.<br />Overview first, zoom and filter, then details on demand.</em></p></li>
+<p><em>Overview first, zoom and filter, then details on demand.<br />
+Overview first, zoom and filter, then details on demand.<br />
+Overview first, zoom and filter, then details on demand.<br />
+Overview first, zoom and filter, then details on demand.<br />
+Overview first, zoom and filter, then details on demand.<br />
+Overview first, zoom and filter, then details on demand.</em></p></li>
 <li><p>Video by Scott Murray <a href="https://www.youtube.com/watch?v=DRIlogs5vzw&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F&amp;index=5">introducing D3</a> for his course, not all of which applies (we aren't using his files)-- but which reviews selections. And reviews the console use and method chaining. SVG will be introduced bit at the end, which we will start on in a couple weeks.</p></li>
 </ul>
 <h2 id="homeworks">Homeworks</h2>
 <p>Do the readings/videos list just above. Memorize the mantra. Plus these:</p>
-<p><strong>Homework 1</strong>: Using the structure and switch button functionality in <a href="highcharts_switch.html">highcharts_switch.html</a>, plug in 2 of your own related High Charts charts, using your data. Adjust the text, labels, tooltips, etc. to match your data and data source. Be sure it has useful tooltips. Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.</p>
-<p>Points: (35pts) for charts and styling and your own data, points included for originality (not just mean/median) in the data you chart and compare. Use at least one other type of chart, aside from the line charts in the example.</p>
-<p>For your gist: <em>Be sure the html page is called index.html.</em> Be sure your path to highcharts is a CDN, not local, link.<br />My examples show the CDN path you should use in your code.</p>
-<p>Check it in as a gist and send me the link to the gist, &quot;Week2: High Charts.&quot;</p>
+<p><strong>Homework 1</strong>: Two Charts</p>
+<p>(Required: 25pt): Make 2 charts of your data on the same page, using 2 different chart types (e.g., line chart, bar chart, area...). You may need another data set if you don't have 2 quantitative (numeric) variables in your data set. You can use Highcharts or Dimple.js (or another library if you prefer).</p>
+<p>For extra credit (15pt), use the structure and button switch button functionality in <a href="highcharts_switch.html" class="uri">highcharts_switch.html</a> to toggle between your two charts. Adjust the text, labels, tooltips, etc. to match your data and data source. Be sure it has useful tooltips. Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.</p>
+<p>Points: (25pts, plus 15pt extra for toggle).</p>
+<p>For your gist: <em>Be sure the html page is called index.html.</em> Be sure your path to Highcharts is a CDN as mine is, not local, link. My examples show the CDN path you should use in your code.</p>
+<p>Check it in as a gist and send me the link to the gist, &quot;Week2: Two Charts.&quot;</p>
 <p><strong>Homework 2</strong>: Read in one of your csv data files and verify your objects are there as expected. Prove it to me by creating <code>&lt;p&gt;</code>'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, &quot;Week 2: Paragraph Data load.&quot; (15pt) <em>Name the web page itself index.html so it will work in a blocks example!</em></p>
 </body>
 </html>

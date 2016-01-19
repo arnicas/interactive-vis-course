@@ -50,61 +50,62 @@
 <p>Review repo's <a href="../index.html">home page</a>.</p>
 <h2 id="intro-to-chrome-tools-the-console">Intro to Chrome Tools, the Console</h2>
 <ul>
-<li>View Source. Let's do it. First at childmortality.org...<br /></li>
-<li>Chrome Tools: Read a bit here about the console and trying stuff in it: <a href="http://jsforcats.com/#basics">http://jsforcats.com/#basics</a></li>
+<li>View Source. Let's do it. First at childmortality.org...</li>
+<li>Chrome Tools: Read a bit here about the console and trying stuff in it: <a href="http://jsforcats.com/#basics" class="uri">http://jsforcats.com/#basics</a></li>
 </ul>
 <h2 id="github-and-gists">Github and Gists</h2>
 <h3 id="github">Github</h3>
 <p>Github is how you should get and keep the course files up to date. Make an account, if you haven't.</p>
 <ul>
-<li>Make sure you have git installed: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a><br /></li>
-<li>If you are new to using the command line, read up here: <a href="http://cli.learncodethehardway.org/book/">http://cli.learncodethehardway.org/book/</a> (thanks Luis)</li>
+<li>Make sure you have git installed: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" class="uri">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></li>
+<li>If you are new to using the command line, read up here: <a href="http://cli.learncodethehardway.org/book/" class="uri">http://cli.learncodethehardway.org/book/</a> (thanks Luis)</li>
 </ul>
 <p>I recommend you clone my repo, so you can repull it as I add stuff. You will do <code>git clone [copied path]</code> (https is fine for now). I'll show you in class.</p>
 <p>Every week you should do <code>git pull</code> to get my updates. Do this from inside the directory made by cloning. <strong>If you want to make changes to class files, save them with new names or you will have merge conflicts. No one survives that.</strong></p>
 <h3 id="gists">Gists</h3>
-<p>You'll be doing homework in gists. This makes it easier for me to review and check it and find issues. Also, the bl.ocks.org site makes things easy for visual display of gists. See: <a href="http://bl.ocks.org/">http://bl.ocks.org/</a>.</p>
+<p>You'll be doing homework in gists. This makes it easier for me to review and check it and find issues. Also, the bl.ocks.org site makes things easy for visual display of gists. See: <a href="http://bl.ocks.org/" class="uri">http://bl.ocks.org/</a>.</p>
 <p>Make a directory for your files for a gist <strong>NOT INSIDE THE COURSE FILES REPO DIRECTORY</strong> and upload those by hand from the web page, or using the command line tool gistup. If you use the command line, make a directory for each gist, NOT INSIDE THE CLASS REPO YOU CLONED. (Your gists can't be inside another repo.)</p>
 <p>Resources and tips on using gists:</p>
 <ul>
-<li>Read: Gists how-to: <a href="https://help.github.com/articles/creating-gists/">https://help.github.com/articles/creating-gists/</a><br /></li>
-<li>Command line gist tool info (optional): <a href="https://github.com/mbostock/gistup">https://github.com/mbostock/gistup</a><br /></li>
+<li>Read: Gists how-to: <a href="https://help.github.com/articles/creating-gists/" class="uri">https://help.github.com/articles/creating-gists/</a></li>
+<li>Command line gist tool info (optional): <a href="https://github.com/mbostock/gistup" class="uri">https://github.com/mbostock/gistup</a></li>
 <li>Optional: Watch <a href="https://www.youtube.com/watch?v=4WteFeHzkNQ&amp;feature=youtu.be&amp;list=PL0tDk-f4v1ujDIGTpXjsTxCnMdR5JBGyQ">this video</a> from Scott Murray on using gists - but when you upload files (like your CSV), DON'T copy and paste it into a file -- you want to actually upload the CSV file. (You won't be following his directions for his homework, so you can stop there.)</li>
 </ul>
-<p>You can see all your gists by looking here - where you fill in your own user name where mine is: <a href="https://gist.github.com/arnicas">https://gist.github.com/arnicas</a>. If you want to edit or delete it, click on the header for one from the list.</p>
+<p>You can see all your gists by looking here - where you fill in your own user name where mine is: <a href="https://gist.github.com/arnicas" class="uri">https://gist.github.com/arnicas</a>. If you want to edit or delete it, click on the header for one from the list.</p>
 <p><strong>Important Tips</strong>:</p>
 <ul>
-<li>If you want your d3 visual code to show up in bl.ocks.org, you need to name your html file index.html.<br /></li>
+<li>If you want your d3 visual code to show up in bl.ocks.org, you need to name your html file index.html.</li>
 <li>And you need to make sure you use a CDN path to D3, not refer to it locally on your own machine. That means, in the <code>&lt;script&gt;</code> tag, you want to reference: <code>&lt;script type=&quot;text/javascript&quot; src=&quot;//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js&quot;&gt;&lt;/script&gt;</code> instead of a local path. A CDN is an online reference to a library file.</li>
 </ul>
 <p><em>Demo making a gist for a CSV file...</em></p>
 <h2 id="you-and-your-local-server-you-need-one.">You and Your Local Server: You Need One.</h2>
-<p>You need one. Otherwise Javascript code won't execute on your pages. So<br />set up your servers. If you haven't got one running (WAMP, MAMP, python, or otherwise), stick around and we'll set it up at the end. Use this to help: <a href="https://github.com/arnicas/d3-faq#running-a-server">https://github.com/arnicas/d3-faq#running-a-server</a>.</p>
+<p>You need one. Otherwise Javascript code won't execute on your pages. So<br />
+set up your servers. If you haven't got one running (WAMP, MAMP, python, or otherwise), stick around and we'll set it up at the end. Use this to help: <a href="https://github.com/arnicas/d3-faq#running-a-server" class="uri">https://github.com/arnicas/d3-faq#running-a-server</a>.</p>
 <h2 id="javascript-review">Javascript Review</h2>
 <p>I expect everyone to be proficient with HTML and CSS and to know at least a bit of Javascript. If you don't, this class will be very hard. If you're already great at JS, I'll try to keep you entertained anyway.</p>
-<p>Let's play with <a href="console_javascript.html">console_javascript.html</a> now.</p>
+<p>Let's play with <a href="console_javascript.html" class="uri">console_javascript.html</a> now.</p>
 <p><strong>Resources:</strong></p>
 <ul>
-<li>List here: <a href="https://www.javascript.com/resources">https://www.javascript.com/resources</a>.<br /></li>
-<li>And <a href="http://learnxinyminutes.com/docs/javascript/">http://learnxinyminutes.com/docs/javascript/</a>.<br /></li>
-<li>There are also links on the course <a href="../index.html">home page</a>.<br /></li>
-<li>A super simple intro with gif demos is JS For Cats: <a href="http://jsforcats.com/">http://jsforcats.com/</a>. You should review everything in it except for the last part on callbacks now.<br /></li>
+<li>List here: <a href="https://www.javascript.com/resources" class="uri">https://www.javascript.com/resources</a>.</li>
+<li>And <a href="http://learnxinyminutes.com/docs/javascript/" class="uri">http://learnxinyminutes.com/docs/javascript/</a>.</li>
+<li>There are also links on the course <a href="../index.html">home page</a>.</li>
+<li>A super simple intro with gif demos is JS For Cats: <a href="http://jsforcats.com/" class="uri">http://jsforcats.com/</a>. You should review everything in it except for the last part on callbacks now.</li>
 <li>Optional <a href="https://www.youtube.com/watch?v=3g1061kFrCs&amp;index=4&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F">video by Scott Murray</a> reviewing some Javascript concepts.</li>
 </ul>
 <h2 id="data-in-csv-from-excelspreadsheets">Data in CSV (from Excel/Spreadsheets)</h2>
 <p>A good place to do an initial formatting of data for use in web apps is Excel (or Google Sheets). We often want to use csv files as data sources.</p>
 <ul>
-<li>Recommended read for general good advice: <a href="http://kbroman.org/dataorg/">http://kbroman.org/dataorg/</a><br /></li>
-<li>A good article arguing for &quot;tidy&quot; data in long format, with R code examp: <a href="http://vita.had.co.nz/papers/tidy-data.pdf">http://vita.had.co.nz/papers/tidy-data.pdf</a> (Note that D3 usually wants &quot;wide&quot; instead)</li>
+<li>Recommended read for general good advice: <a href="http://kbroman.org/dataorg/" class="uri">http://kbroman.org/dataorg/</a></li>
+<li>A good article arguing for &quot;tidy&quot; data in long format, with R code examp: <a href="http://vita.had.co.nz/papers/tidy-data.pdf" class="uri">http://vita.had.co.nz/papers/tidy-data.pdf</a> (Note that D3 usually wants &quot;wide&quot; instead)</li>
 </ul>
 <p>We'll go through a download and csv formatting example in class. You'll need to do the same, so take notes! Let's look at the infant_deaths data set from WHO first. (Walkthrough how I formatted it for use in javascript.)</p>
 <p>Things to remember about data in CSV files for use in the browser:</p>
 <ul>
-<li>It's better to keep your variable names clear, but short, and with no spaces in them<br /></li>
-<li>You want all columns labeled.<br /></li>
+<li>It's better to keep your variable names clear, but short, and with no spaces in them</li>
+<li>You want all columns labeled.</li>
 <li>You want to format numbers in them without commas</li>
 </ul>
-<p>Read this for some tips: <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p>
+<p>Read this for some tips: <a href="http://learnjsdata.com/read_data.html" class="uri">http://learnjsdata.com/read_data.html</a>.</p>
 <p>Comment from Scott Murray in the Knight D3 online class:</p>
 <pre><code>I strongly recommend simplifying column titles so they do not include spaces.
 Why? JavaScript object notation is simpler without spaces. Let me give you an example.
@@ -137,20 +138,20 @@ object.numBananas  //returns “556”
 
 See, you don’t need the quotation marks or the brackets. So eliminating 
 spaces just saves you a lot of typing and headache later.</code></pre>
-<p>You can read this for more info on reading data in D3: <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p>
+<p>You can read this for more info on reading data in D3: <a href="http://learnjsdata.com/read_data.html" class="uri">http://learnjsdata.com/read_data.html</a>.</p>
 <p>A next step for data work is to do exploration with graphs in Excel or a tool like Tableau. We'll go over those in a couple weeks.</p>
 <h2 id="load-the-data-with-d3">Load the Data with D3</h2>
-<p>Read in data with D3 and verify it's there in the console: <a href="d3_load_csv_json.html">d3_load_csv_json.html</a>. JSON objects (javascript object notation) should be there for each row of your data set.</p>
+<p>Read in data with D3 and verify it's there in the console: <a href="d3_load_csv_json.html" class="uri">d3_load_csv_json.html</a>. JSON objects (javascript object notation) should be there for each row of your data set.</p>
 <p>The contents of each data set are printed to the screen using a simple jquery text operation and <code>&quot;JSON.stringify().&quot;</code></p>
 <h2 id="homework">Homework</h2>
 <p>Homework is due at 5pm on Monday the night before the next class. I have office hours on Monday if you have struggled!</p>
 <p>Readings:</p>
 <ul>
-<li><p>Read Chapter 3 of IDVW: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch02.html">http://chimera.labs.oreilly.com/books/1230000000345/ch02.html</a>. You can stop at the SVG part at the end of chapter 3, for now. (Chapter 2 may be nice background but is optional.)</p></li>
-<li><p>Loading data with D3, at <a href="http://learnjsdata.com/read_data.html">http://learnjsdata.com/read_data.html</a>.</p></li>
+<li><p>Read Chapter 3 of IDVW: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch02.html" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch02.html</a>. You can stop at the SVG part at the end of chapter 3, for now. (Chapter 2 may be nice background but is optional.)</p></li>
+<li><p>Loading data with D3, at <a href="http://learnjsdata.com/read_data.html" class="uri">http://learnjsdata.com/read_data.html</a>.</p></li>
 </ul>
-<p><strong>Homework:</strong> Fix <a href="js_errors.html">js_errors.html</a> so it displays correctly. Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: &quot;Week 1, JS errors&quot;. If you can't do it all, send me as far as you got. (20pt)</p>
-<p><strong>Homework</strong>: Download a data set of interest to you and format in Excel or Google sheets for use in visualization. Follow the advice above. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist in which you load the CSV file and print it to the screen the way I did in <a href="d3_load_csv_json.html">d3_load_csv_json.html</a>. (You don't need to do a JSON version.) Make a gist with a page called index.html(!) and your data files send me the link: 'Week 1: CSV data.' You'll need this file next week. (12pt)</p>
+<p><strong>Homework:</strong> Fix <a href="js_errors.html" class="uri">js_errors.html</a> so it displays correctly. Send me the edited file, plus a screen cap of your console with the results of all the stages correctly showing. Subject line: &quot;Week 1, JS errors&quot;. If you can't do it all, send me as far as you got. (20pt)</p>
+<p><strong>Homework</strong>: Download a data set of interest to you and format in Excel or Google sheets for use in visualization. Follow the advice above. Keep a copy of the Excel file(s) for yourself, but save out a CSV file that can be loaded into javascript. Make a gist in which you load the CSV file and print it to the screen the way I did in <a href="d3_load_csv_json.html" class="uri">d3_load_csv_json.html</a>. (You don't need to do a JSON version.) Make a gist with a page called index.html(!) and your data files send me the link: 'Week 1: CSV data.' You'll need this file next week. (12pt)</p>
 <p><strong>Homework</strong>: Set up your server, github accounts, etc!</p>
 </body>
 </html>

@@ -48,10 +48,10 @@
 <h1 id="week-3-data-loading-tables">Week 3: Data Loading, Tables</h1>
 <h2 id="homework-review">Homework Review</h2>
 <h3 id="an-in-class-debugging-problem">An In-Class Debugging Problem</h3>
-<p>Let's look at the error in <a href="jquery_error_on_load.html">jquery_error_on_load.html</a> together.</p>
+<p>Let's look at the error in <a href="jquery_error_on_load.html" class="uri">jquery_error_on_load.html</a> together.</p>
 <h2 id="some-javascript-manipulations-on-data">Some Javascript Manipulations on Data</h2>
 <h3 id="data-processing-on-load-and-scope">Data Processing on Load (and Scope)</h3>
-<p>It's quite common to do things to your data right after you load it. Very useful ways to iterate through data include <code>dataset.forEach(function (d,i) {...})</code> and map: <code>dataset.map(function (d,i) {...})</code>. Have a look at <a href="http://learnjsdata.com/iterate_data.html">http://learnjsdata.com/iterate_data.html</a>.</p>
+<p>It's quite common to do things to your data right after you load it. Very useful ways to iterate through data include <code>dataset.forEach(function (d,i) {...})</code> and map: <code>dataset.map(function (d,i) {...})</code>. Have a look at <a href="http://learnjsdata.com/iterate_data.html" class="uri">http://learnjsdata.com/iterate_data.html</a>.</p>
 <p>Remember that in d3, you need ALL your work on data to occur inside the d3.csv() function call. Otherwise, the data variables will not be visible to your code and you will get errors that things are undefined.</p>
 <pre><code>d3.csv(&#39;myfile.csv&#39;, function(error, data) {
 
@@ -65,8 +65,8 @@
 
 });</code></pre>
 <ul>
-<li>Review: <a href="d3_process_data.html">d3_process_data.html</a><br /></li>
-<li>Alternately, making new arrays: <a href="d3_new_obj_data.html">d3_new_obj_data.html</a></li>
+<li>Review: <a href="d3_process_data.html" class="uri">d3_process_data.html</a></li>
+<li>Alternately, making new arrays: <a href="d3_new_obj_data.html" class="uri">d3_new_obj_data.html</a></li>
 </ul>
 <h3 id="sorting-data-arrays">Sorting Data Arrays</h3>
 <p>Useful javascript for sorting, by the way - and the sort order depends on whether you do a-b or b-a:</p>
@@ -104,50 +104,50 @@
 <h3 id="dates-in-your-data-a-first-glance">Dates in Your Data (a First Glance)</h3>
 <p>Dates should be turned into Javascript date objects. D3 has tools for this. A lot of the data we will work with from UNICEF includes dates (years, anyway).</p>
 <ul>
-<li>Dates example: <a href="d3_process_data_dates.html">d3_process_data_dates.html</a><br /></li>
-<li>For input date handling, see: <a href="http://learnjsdata.com/time.html">http://learnjsdata.com/time.html</a><br /></li>
-<li>Help with format strings from @zanarmstrong: <a href="http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95">http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95</a><br /></li>
-<li>Video by Scott Murray: <a href="https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B">https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B</a></li>
+<li>Dates example: <a href="d3_process_data_dates.html" class="uri">d3_process_data_dates.html</a></li>
+<li>For input date handling, see: <a href="http://learnjsdata.com/time.html" class="uri">http://learnjsdata.com/time.html</a></li>
+<li>Help with format strings from @zanarmstrong: <a href="http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95" class="uri">http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95</a></li>
+<li>Video by Scott Murray: <a href="https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B" class="uri">https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B</a></li>
 </ul>
 <p>We'll come back to dates in an uncoming week, too.</p>
 <h2 id="intro-to-selections-and-data-binding-in-d3">Intro to Selections and Data Binding in D3</h2>
 <p>To do the &quot;right&quot; thing with data in D3, you need to understand binding data to DOM elements. This concept works with the &quot;selectAll, data, enter, append&quot; pattern.</p>
 <p><strong>Important Readings</strong>:</p>
 <ul>
-<li><a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html">Interactive Data Visualization for the Web (IDVW) Chapter 5</a> introducing D3 binding and loading data.<br /></li>
-<li>Three Little Circles, By Mike Bostock: <a href="http://bost.ocks.org/mike/circles/">http://bost.ocks.org/mike/circles/</a></li>
+<li><a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html">Interactive Data Visualization for the Web (IDVW) Chapter 5</a> introducing D3 binding and loading data.</li>
+<li>Three Little Circles, By Mike Bostock: <a href="http://bost.ocks.org/mike/circles/" class="uri">http://bost.ocks.org/mike/circles/</a></li>
 </ul>
 <p>If you remain confused, try these till you get a grip:</p>
 <ul>
-<li>Another intro article: <a href="http://code.hazzens.com/d3tut/lesson_1.html">http://code.hazzens.com/d3tut/lesson_1.html</a><br /></li>
-<li>Thinking with Joins: by Mike Bostock: <a href="http://bost.ocks.org/mike/join/">http://bost.ocks.org/mike/join/</a><br /></li>
-<li>A nice overview on joins: <a href="http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffera16c8&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffera16c8&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a><br /></li>
-<li>Another review of selections: <a href="http://www.jeromecukier.net/blog/2013/03/05/d3-tutorial-at-strata-redux">http://www.jeromecukier.net/blog/2013/03/05/d3-tutorial-at-strata-redux</a><br /></li>
-<li>How Selections Work in more detail: <a href="http://bost.ocks.org/mike/selection/">http://bost.ocks.org/mike/selection/</a><br /></li>
-<li><a href="http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">D3 Data Binding by Kristw</a><br /></li>
+<li>Another intro article: <a href="http://code.hazzens.com/d3tut/lesson_1.html" class="uri">http://code.hazzens.com/d3tut/lesson_1.html</a></li>
+<li>Thinking with Joins: by Mike Bostock: <a href="http://bost.ocks.org/mike/join/" class="uri">http://bost.ocks.org/mike/join/</a></li>
+<li>A nice overview on joins: <a href="http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffera16c8&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" class="uri">http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffera16c8&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
+<li>Another review of selections: <a href="http://www.jeromecukier.net/blog/2013/03/05/d3-tutorial-at-strata-redux" class="uri">http://www.jeromecukier.net/blog/2013/03/05/d3-tutorial-at-strata-redux</a></li>
+<li>How Selections Work in more detail: <a href="http://bost.ocks.org/mike/selection/" class="uri">http://bost.ocks.org/mike/selection/</a></li>
+<li><a href="http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">D3 Data Binding by Kristw</a></li>
 <li>Scott Murray's <a href="https://www.youtube.com/watch?v=XtxfXcFDMaQ&amp;index=2&amp;list=PL0tDk-f4v1ujCTy4xgYIwzky0uFEm7wiY">video on binding data</a>.</li>
 </ul>
 <h2 id="tables-as-an-intro-to-deep-d3-thinking">Tables as an Intro to &quot;Deep&quot; D3 Thinking</h2>
 <p>We're starting with tables, because in my opinion they are an often overlooked part of the interactive vis landscape, and one of my favorites. Building them illustrate some key aspects of D3 DOM manipulation, they allow us to use JQuery and D3 together if we want; they transition nicely to heatmaps, an excellent visual display method for some types of data.</p>
 <ul>
-<li>Reading: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html#_binding_data">IDVW Chapter 5</a><br /></li>
-<li>Review <a href="d3_table.html">d3_table.html</a>. Try to use breakpoints and logging to understand it.<br /></li>
-<li>You should review: <a href="http://bost.ocks.org/mike/nest/"><a href="http://bost.ocks.org/mike/nest/">http://bost.ocks.org/mike/nest/</a></a><br /></li>
-<li>How selections work demo: selectAll vs. select: <a href="http://prcweb.co.uk/lab/selection/">http://prcweb.co.uk/lab/selection/</a></li>
+<li>Reading: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html#_binding_data">IDVW Chapter 5</a></li>
+<li>Review <a href="d3_table.html" class="uri">d3_table.html</a>. Try to use breakpoints and logging to understand it.</li>
+<li>You should review: <a href="http://bost.ocks.org/mike/nest/" class="uri">http://bost.ocks.org/mike/nest/</a></li>
+<li>How selections work demo: selectAll vs. select: <a href="http://prcweb.co.uk/lab/selection/" class="uri">http://prcweb.co.uk/lab/selection/</a></li>
 </ul>
 <h2 id="homework">Homework</h2>
 <p>Readings:</p>
 <ul>
-<li><a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html">Interactive Data Visualization for the Web (IDVW) Chapter 5</a> introducing D3 binding and loading data.<br /></li>
-<li>Three Little Circles, By Mike Bostock: <a href="http://bost.ocks.org/mike/circles/">http://bost.ocks.org/mike/circles/</a><br /></li>
-<li>Nested Selections and Tables: <a href="http://bost.ocks.org/mike/nest/">http://bost.ocks.org/mike/nest/</a></li>
+<li><a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html">Interactive Data Visualization for the Web (IDVW) Chapter 5</a> introducing D3 binding and loading data.</li>
+<li>Three Little Circles, By Mike Bostock: <a href="http://bost.ocks.org/mike/circles/" class="uri">http://bost.ocks.org/mike/circles/</a></li>
+<li>Nested Selections and Tables: <a href="http://bost.ocks.org/mike/nest/" class="uri">http://bost.ocks.org/mike/nest/</a></li>
 </ul>
 <p>Plus anything else that I referenced above that helps you better understand d3 data selection and joins.</p>
 <p><strong>Homework 1</strong>: (25pt), Build your own styled table from your own CSV data, using the model in d3_table.html.</p>
 <ul>
-<li>Sort the data in javascript in a reasonable default way (by one of the columns) for display before it goes into the table.<br /></li>
-<li>Create one calculated column out of the data in your file - e.g., adding, subtracting, percentage, etc.<br /></li>
-<li>Style it so it doesn't look plain (i.e., better than mine).<br /></li>
+<li>Sort the data in javascript in a reasonable default way (by one of the columns) for display before it goes into the table.</li>
+<li>Create one calculated column out of the data in your file - e.g., adding, subtracting, percentage, etc.</li>
+<li>Style it so it doesn't look plain (i.e., better than mine).</li>
 <li>Make the title header on the page appropriately explain your data table. Add more text to the page to help explain, identifying your source, etc. (25pts)</li>
 </ul>
 <p>Send me the gist, &quot;Week 3: Basic D3 Table.&quot;</p>

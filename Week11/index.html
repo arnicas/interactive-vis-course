@@ -51,183 +51,196 @@
 <h1 id="week-11-maps">Week 11: Maps</h1>
 <h2 id="homework-review">Homework Review</h2>
 <h2 id="d3-maps">D3 Maps</h2>
-<p>You were supposed to read Mike's tutorial: <a href="http://bost.ocks.org/mike/map/">http://bost.ocks.org/mike/map/</a>.</p>
-<p>He introduces TopoJSON (<a href="https://github.com/mbostock/topojson/wiki">https://github.com/mbostock/topojson/wiki</a>). Confusingly, this is sometimes a file format, sometimes about command line software, sometimes about the js library.</p>
+<p>You were supposed to read Mike's tutorial: <a href="http://bost.ocks.org/mike/map/" class="uri">http://bost.ocks.org/mike/map/</a>.</p>
+<p>He introduces TopoJSON (<a href="https://github.com/mbostock/topojson/wiki" class="uri">https://github.com/mbostock/topojson/wiki</a>). Confusingly, this is sometimes a file format, sometimes about command line software, sometimes about the js library.</p>
 <p>What is it? It's a simplification format for map data that reduces the file size of GeoJSON data. If your data is in TopoJSON format, you need to also include TopoJSON in your javascript library includes.</p>
 <h3 id="map-tool-demos">Map Tool Demos</h3>
 <p>Let's play with some tools:</p>
 <ul>
-<li>Distillery: <a href="https://shancarter.github.io/distillery/">https://shancarter.github.io/distillery/</a><br /></li>
-<li><a href="http://geojson.io/#map=2/82.9/142.2">http://geojson.io/#map=2/82.9/142.2</a>.<br /></li>
-<li><a href="http://techslides.com/demos/d3/d3-exploring-countries.html">http://techslides.com/demos/d3/d3-exploring-countries.html</a></li>
+<li>Distillery: <a href="https://shancarter.github.io/distillery/" class="uri">https://shancarter.github.io/distillery/</a></li>
+<li><a href="http://geojson.io/#map=2/82.9/142.2" class="uri">http://geojson.io/#map=2/82.9/142.2</a>.</li>
+<li><a href="http://techslides.com/demos/d3/d3-exploring-countries.html" class="uri">http://techslides.com/demos/d3/d3-exploring-countries.html</a></li>
 </ul>
 <p>There are some more tools for non-command-line work in the Map Tools section below.</p>
 <h3 id="examples-showing-multiple-detail-levels">Examples Showing Multiple Detail Levels</h3>
-<p>Now let's look at <a href="africa_map.html">africa_map.html</a> first. That's a simple map of borders using TopoJSON of the continent.</p>
-<p>Then <a href="africa_map2.html">africa_map2.html</a> -- look how we get to the actual country features.</p>
-<p>Now let's look at coloring the world by regions in <a href="world_map_regions.html">world_map_regions.html</a> and discuss.</p>
+<p>Now let's look at <a href="africa_map.html" class="uri">africa_map.html</a> first. That's a simple map of borders using TopoJSON of the continent.</p>
+<p>Then <a href="africa_map2.html" class="uri">africa_map2.html</a> -- look how we get to the actual country features.</p>
+<p>Now let's look at coloring the world by regions in <a href="world_map_regions.html" class="uri">world_map_regions.html</a> and discuss.</p>
 <h3 id="choropleths">Choropleths</h3>
 <p>Choropleths are thematic maps colored according to a data values associated with regions. This is probably what you will need for your project. We won't be focusing on how to plot points on maps in this class, but some of the tutorials I link to cover that.</p>
 <p>There ARE some ways to get such maps without much work - use CartoDB, for instance.</p>
-<p>See <a href="carto_db_example.html">carto_db_example.html</a> and demo on cartoDB. (Also others in the Tools section.)</p>
-<p>But doing it by hand is not too bad, and always full customization, as usual. Your options are to either merge the data into the geo/topo json file, or use some kind of key to relate the two (like ISO code). You can merge the data in the topojson generation process at the command line, or you can do it in Javascript (see it in <a href="http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359">http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359</a>). We'll be doing the key lookup version.</p>
-<p>Example <a href="africa_map3.html">africa_map3.html</a> introduces a bunch of new useful stuff:</p>
+<p>See <a href="carto_db_example.html" class="uri">carto_db_example.html</a> and demo on cartoDB. (Also others in the Tools section.)</p>
+<p>But doing it by hand is not too bad, and always full customization, as usual. Your options are to either merge the data into the geo/topo json file, or use some kind of key to relate the two (like ISO code). You can merge the data in the topojson generation process at the command line, or you can do it in Javascript (see it in <a href="http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359" class="uri">http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359</a>). We'll be doing the key lookup version.</p>
+<p>Example <a href="africa_map3.html" class="uri">africa_map3.html</a> introduces a bunch of new useful stuff:</p>
 <ul>
-<li>loading multiple files with queue -- <a href="https://github.com/mbostock/queue">https://github.com/mbostock/queue</a><br /></li>
-<li>a legend plugin -- <a href="http://d3-legend.susielu.com/">http://d3-legend.susielu.com/</a><br /></li>
-<li>a d3.map() to lookup stuff for the choropleth -- <a href="https://github.com/mbostock/d3/wiki/Arrays#d3_map">https://github.com/mbostock/d3/wiki/Arrays#d3_map</a></li>
+<li>loading multiple files with queue -- <a href="https://github.com/mbostock/queue" class="uri">https://github.com/mbostock/queue</a></li>
+<li>a legend plugin -- <a href="http://d3-legend.susielu.com/" class="uri">http://d3-legend.susielu.com/</a></li>
+<li>a d3.map() to lookup stuff for the choropleth -- <a href="https://github.com/mbostock/d3/wiki/Arrays#d3_map" class="uri">https://github.com/mbostock/d3/wiki/Arrays#d3_map</a></li>
 </ul>
 <p>Finally, here's a fully interactive map with multiple data sets and tooltips, from Flowing Data:</p>
 <ul>
-<li>Interactive Map with Category Filters:<br /><a href="http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/">http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/</a></li>
+<li>Interactive Map with Category Filters:<br />
+<a href="http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/" class="uri">http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/</a></li>
 </ul>
-<p>And my version using our data and some changes: <strong><a href="world_comparisons.html">world_comparisons.html</a></strong></p>
+<p>And my version using our data and some changes: <strong><a href="world_comparisons.html" class="uri">world_comparisons.html</a></strong></p>
 <p>Any design suggestions? How would you improve the tooltips?</p>
 <h3 id="map-demos-i-like">Map Demos I Like</h3>
 <ul>
-<li>Scattered Well-Being (in Mexico): <a href="http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/">http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/</a>, <a href="http://mollica.space/scattered-well-being/">http://mollica.space/scattered-well-being/</a><br /></li>
-<li>Migrant Deaths: <a href="http://bl.ocks.org/shobhitg/60eec0e1727c6c628728">http://bl.ocks.org/shobhitg/60eec0e1727c6c628728</a><br /></li>
-<li>Comparing Map Projections: <a href="http://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e">http://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e</a><br /></li>
-<li>Compare Parts of the World: <a href="http://bl.ocks.org/zanarmstrong/raw/caa2da1ea1558cdc3357/#scale=527&amp;center0">http://bl.ocks.org/zanarmstrong/raw/caa2da1ea1558cdc3357/#scale=527&amp;center0</a>=-56.44,-17.1&amp;center1=6.07833,53.2052<br /></li>
-<li>Map morph to scatterplot: <a href="http://www.brendansudol.com/writing/usa-animated/">http://www.brendansudol.com/writing/usa-animated/</a><br /></li>
-<li>Cartograms with d3 and topojson: <a href="http://prag.ma/code/d3-cartogram/?segmentized&amp;utm_content=buffer6b792&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer#popchange/2011">http://prag.ma/code/d3-cartogram/?segmentized&amp;utm_content=buffer6b792&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer#popchange/2011</a><br /></li>
-<li>Related, geo-exploder: <a href="http://bsouthga.github.io/d3-exploder/">http://bsouthga.github.io/d3-exploder/</a><br /></li>
-<li>Population map with latitude lines: <a href="http://www.roadtolarissa.com/population-division-fullscreen.html">http://www.roadtolarissa.com/population-division-fullscreen.html</a><br /></li>
-<li>Animated World Map Zoom: <a href="https://www.jasondavies.com/maps/zoom/">https://www.jasondavies.com/maps/zoom/</a><br /></li>
-<li>Epic NYT small multiples: <a href="http://www.nytimes.com/interactive/2012/07/20/us/drought-footprint.html">http://www.nytimes.com/interactive/2012/07/20/us/drought-footprint.html</a><br /></li>
-<li>Civilian Fatalities in Afghanistan - by Pitch Interactive, <a href="http://www.thenation.com/afghanistan-database/">http://www.thenation.com/afghanistan-database/</a> -- little maps in the tooltips!<br /></li>
-<li><p>Taxi Map of NYC: <a href="http://nyctaxi.herokuapp.com/">http://nyctaxi.herokuapp.com/</a> And tutorials related:</p>
+<li>Scattered Well-Being (in Mexico): <a href="http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/" class="uri">http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/</a>, <a href="http://mollica.space/scattered-well-being/" class="uri">http://mollica.space/scattered-well-being/</a></li>
+<li>Migrant Deaths: <a href="http://bl.ocks.org/shobhitg/60eec0e1727c6c628728" class="uri">http://bl.ocks.org/shobhitg/60eec0e1727c6c628728</a></li>
+<li>Comparing Map Projections: <a href="http://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e" class="uri">http://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e</a></li>
+<li>Compare Parts of the World: <a href="http://bl.ocks.org/zanarmstrong/raw/caa2da1ea1558cdc3357/#scale=527&amp;center0=-56.44,-17.1&amp;center1=6.07833,53.2052" class="uri">http://bl.ocks.org/zanarmstrong/raw/caa2da1ea1558cdc3357/#scale=527&amp;center0=-56.44,-17.1&amp;center1=6.07833,53.2052</a></li>
+<li>Map morph to scatterplot: <a href="http://www.brendansudol.com/writing/usa-animated/" class="uri">http://www.brendansudol.com/writing/usa-animated/</a></li>
+<li>Cartograms with d3 and topojson: <a href="http://prag.ma/code/d3-cartogram/?segmentized&amp;utm_content=buffer6b792&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer#popchange/2011" class="uri">http://prag.ma/code/d3-cartogram/?segmentized&amp;utm_content=buffer6b792&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer#popchange/2011</a></li>
+<li>Related, geo-exploder: <a href="http://bsouthga.github.io/d3-exploder/" class="uri">http://bsouthga.github.io/d3-exploder/</a></li>
+<li>Population map with latitude lines: <a href="http://www.roadtolarissa.com/population-division-fullscreen.html" class="uri">http://www.roadtolarissa.com/population-division-fullscreen.html</a></li>
+<li>Animated World Map Zoom: <a href="https://www.jasondavies.com/maps/zoom/" class="uri">https://www.jasondavies.com/maps/zoom/</a></li>
+<li>Epic NYT small multiples: <a href="http://www.nytimes.com/interactive/2012/07/20/us/drought-footprint.html" class="uri">http://www.nytimes.com/interactive/2012/07/20/us/drought-footprint.html</a></li>
+<li>Civilian Fatalities in Afghanistan - by Pitch Interactive, <a href="http://www.thenation.com/afghanistan-database/" class="uri">http://www.thenation.com/afghanistan-database/</a> -- little maps in the tooltips!</li>
+<li>Taxi Map of NYC: <a href="http://nyctaxi.herokuapp.com/" class="uri">http://nyctaxi.herokuapp.com/</a> And tutorials related:
 <ul>
-<li>Leaflet, D3, animation: <a href="http://chriswhong.com/open-data/taxi-techblog-2-leaflet-d3-and-other-frontend-fun/">http://chriswhong.com/open-data/taxi-techblog-2-leaflet-d3-and-other-frontend-fun/</a><br /></li>
-<li>Related: <a href="http://zevross.com/blog/2014/09/30/use-the-amazing-d3-library-to-animate-a-path-on-a-leaflet-map/">http://zevross.com/blog/2014/09/30/use-the-amazing-d3-library-to-animate-a-path-on-a-leaflet-map/</a><br /></li>
-<li>Also: <a href="http://zevross.com/blog/2014/12/09/use-d3-to-gradually-reveal-points-on-a-leaflet-web-map/">http://zevross.com/blog/2014/12/09/use-d3-to-gradually-reveal-points-on-a-leaflet-web-map/</a></li>
+<li>Leaflet, D3, animation: <a href="http://chriswhong.com/open-data/taxi-techblog-2-leaflet-d3-and-other-frontend-fun/" class="uri">http://chriswhong.com/open-data/taxi-techblog-2-leaflet-d3-and-other-frontend-fun/</a></li>
+<li>Related: <a href="http://zevross.com/blog/2014/09/30/use-the-amazing-d3-library-to-animate-a-path-on-a-leaflet-map/" class="uri">http://zevross.com/blog/2014/09/30/use-the-amazing-d3-library-to-animate-a-path-on-a-leaflet-map/</a></li>
+<li>Also: <a href="http://zevross.com/blog/2014/12/09/use-d3-to-gradually-reveal-points-on-a-leaflet-web-map/" class="uri">http://zevross.com/blog/2014/12/09/use-d3-to-gradually-reveal-points-on-a-leaflet-web-map/</a></li>
 </ul></li>
 </ul>
 <h3 id="other-map-tutorials-to-read">Other Map Tutorials to Read</h3>
 <ul>
-<li>Read Noah Veltman's primer on maps and tools:<br /><a href="https://github.com/veltman/learninglunches/tree/master/maps">https://github.com/veltman/learninglunches/tree/master/maps</a><br /></li>
-<li>A simple d3 map explained: <a href="http://www.d3noob.org/2013/03/a-simple-d3js-map-explained.html">http://www.d3noob.org/2013/03/a-simple-d3js-map-explained.html</a><br /><a href="https://github.com/maptimelex/d3-mapping/blob/master/README.md#1-a-very-simple-d3-map">https://github.com/maptimelex/d3-mapping/blob/master/README.md#1-a-very-simple-d3-map</a><br /></li>
-<li>Mike's choropleth example for d3: <a href="http://bl.ocks.org/mbostock/4060606">http://bl.ocks.org/mbostock/4060606</a><br /></li>
-<li>Another detailed D3 choropleth tutorial: <a href="http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359">http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359</a><br /></li>
-<li>On map coloring scales: <a href="http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/">http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/</a><br /></li>
-<li>Small Multiple Maps: <a href="http://blog.webkid.io/multiple-maps-d3/?utm_content=bufferc7f1a&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">http://blog.webkid.io/multiple-maps-d3/?utm_content=bufferc7f1a&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a><br /></li>
-<li>Animated Maps tutorial:<br /><a href="https://github.com/maptime-ams/animated-borders-d3js?utm_content=bufferb12b2&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">https://github.com/maptime-ams/animated-borders-d3js?utm_content=bufferb12b2&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a><br /></li>
-<li>Extensive tutorial files:<br /><a href="http://maptimeboston.github.io/d3-maptime/?utm_content=bufferf944d&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer#/">http://maptimeboston.github.io/d3-maptime/?utm_content=bufferf944d&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer#/</a><br /></li>
-<li>Doing Pan and Zoom in maps, by Mike: <a href="http://bl.ocks.org/mbostock/8fadc5ac9c2a9e7c5ba2">http://bl.ocks.org/mbostock/8fadc5ac9c2a9e7c5ba2</a>, and an article on this: <a href="http://techslides.com/d3-world-maps-tooltips-zooming-and-queue">http://techslides.com/d3-world-maps-tooltips-zooming-and-queue</a><br /></li>
-<li>Using the free QGIS app and this tutorial from Jim Vallandingham:<br /><a href="http://vallandingham.me/shapefile_to_geojson.html">http://vallandingham.me/shapefile_to_geojson.html</a></li>
+<li>Read Noah Veltman's primer on maps and tools:<br />
+<a href="https://github.com/veltman/learninglunches/tree/master/maps" class="uri">https://github.com/veltman/learninglunches/tree/master/maps</a></li>
+<li>A simple d3 map explained: <a href="http://www.d3noob.org/2013/03/a-simple-d3js-map-explained.html" class="uri">http://www.d3noob.org/2013/03/a-simple-d3js-map-explained.html</a><br />
+<a href="https://github.com/maptimelex/d3-mapping/blob/master/README.md#1-a-very-simple-d3-map" class="uri">https://github.com/maptimelex/d3-mapping/blob/master/README.md#1-a-very-simple-d3-map</a></li>
+<li>Mike's choropleth example for d3: <a href="http://bl.ocks.org/mbostock/4060606" class="uri">http://bl.ocks.org/mbostock/4060606</a></li>
+<li>Another detailed D3 choropleth tutorial: <a href="http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359" class="uri">http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359</a></li>
+<li>On map coloring scales: <a href="http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/" class="uri">http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/</a></li>
+<li>Small Multiple Maps: <a href="http://blog.webkid.io/multiple-maps-d3/?utm_content=bufferc7f1a&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" class="uri">http://blog.webkid.io/multiple-maps-d3/?utm_content=bufferc7f1a&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
+<li>Animated Maps tutorial:<br />
+<a href="https://github.com/maptime-ams/animated-borders-d3js?utm_content=bufferb12b2&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" class="uri">https://github.com/maptime-ams/animated-borders-d3js?utm_content=bufferb12b2&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
+<li>Extensive tutorial files:<br />
+<a href="http://maptimeboston.github.io/d3-maptime/?utm_content=bufferf944d&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer#/" class="uri">http://maptimeboston.github.io/d3-maptime/?utm_content=bufferf944d&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer#/</a></li>
+<li>Doing Pan and Zoom in maps, by Mike: <a href="http://bl.ocks.org/mbostock/8fadc5ac9c2a9e7c5ba2" class="uri">http://bl.ocks.org/mbostock/8fadc5ac9c2a9e7c5ba2</a>, and an article on this: <a href="http://techslides.com/d3-world-maps-tooltips-zooming-and-queue" class="uri">http://techslides.com/d3-world-maps-tooltips-zooming-and-queue</a></li>
+<li>Using the free QGIS app and this tutorial from Jim Vallandingham:<br />
+<a href="http://vallandingham.me/shapefile_to_geojson.html" class="uri">http://vallandingham.me/shapefile_to_geojson.html</a></li>
 </ul>
 <h3 id="map-tools">Map Tools</h3>
 <h4 id="misc">Misc</h4>
 <ul>
-<li>Make a Choropleth out of Geo or TopoJSON data, but this requires your variable for coloring be in the geo file: <a href="http://code.minnpost.com/tulip/">http://code.minnpost.com/tulip/</a><br /></li>
-<li>D3 Geomap, a slightly simpler mapping library for relating CSV and geo files: <a href="https://d3-geomap.github.io/">https://d3-geomap.github.io/</a><br /></li>
-<li>Visualize projection distortion:<br /><a href="http://bl.ocks.org/enjalot/bd552e711b8325c64729">http://bl.ocks.org/enjalot/bd552e711b8325c64729</a><br /></li>
-<li><p>DataMaps: <a href="http://datamaps.github.io/">http://datamaps.github.io/</a></p>
+<li>Make a Choropleth out of Geo or TopoJSON data, but this requires your variable for coloring be in the geo file: <a href="http://code.minnpost.com/tulip/" class="uri">http://code.minnpost.com/tulip/</a></li>
+<li>D3 Geomap, a slightly simpler mapping library for relating CSV and geo files: <a href="https://d3-geomap.github.io/" class="uri">https://d3-geomap.github.io/</a></li>
+<li>Visualize projection distortion:<br />
+<a href="http://bl.ocks.org/enjalot/bd552e711b8325c64729" class="uri">http://bl.ocks.org/enjalot/bd552e711b8325c64729</a></li>
+<li>DataMaps: <a href="http://datamaps.github.io/" class="uri">http://datamaps.github.io/</a>
 <ul>
-<li>Example of it used: <a href="http://data.runkeeper.com/rk-usa-running-stats-by-state">http://data.runkeeper.com/rk-usa-running-stats-by-state</a></li>
+<li>Example of it used: <a href="http://data.runkeeper.com/rk-usa-running-stats-by-state" class="uri">http://data.runkeeper.com/rk-usa-running-stats-by-state</a></li>
 </ul></li>
 </ul>
 <h4 id="topojson">TopoJSON</h4>
 <p>There are some non-command line tools now for working with it:</p>
 <ul>
-<li>Convert GeoJSON to TopoJSON: <a href="http://shancarter.github.io/distillery/">http://shancarter.github.io/distillery/</a><br /></li>
-<li>TopoJSON property editor: <a href="http://bl.ocks.org/capesean/92b7d3c7cb7b5e9639ab">http://bl.ocks.org/capesean/92b7d3c7cb7b5e9639ab</a> (only edits to the properties field, by hand, when you click on a region)<br /></li>
-<li><a href="http://geojson.io/#map=2/20.0/0.0">http://geojson.io/#map=2/20.0/0.0</a> (have used this, it's nice!)</li>
+<li>Convert GeoJSON to TopoJSON: <a href="http://shancarter.github.io/distillery/" class="uri">http://shancarter.github.io/distillery/</a></li>
+<li>TopoJSON property editor: <a href="http://bl.ocks.org/capesean/92b7d3c7cb7b5e9639ab" class="uri">http://bl.ocks.org/capesean/92b7d3c7cb7b5e9639ab</a> (only edits to the properties field, by hand, when you click on a region)</li>
+<li><a href="http://geojson.io/#map=2/20.0/0.0" class="uri">http://geojson.io/#map=2/20.0/0.0</a> (have used this, it's nice!)</li>
 </ul>
 <h4 id="cartodb">CartoDB</h4>
 <ul>
-<li>CartoDB: <a href="https://cartodb.com/gallery/">https://cartodb.com/gallery/</a><br /></li>
-<li>CartoDB by hand Choropleths: <a href="http://docs.cartodb.com/tutorials/electoral_map.html">http://docs.cartodb.com/tutorials/electoral_map.html</a><br /></li>
-<li>CartoDB with d3: <a href="http://bl.ocks.org/andrewxhill/4448106">http://bl.ocks.org/andrewxhill/4448106</a><br /></li>
-<li>My example: <a href="carto_db_example.html">carto_db_example.html</a></li>
+<li>CartoDB: <a href="https://cartodb.com/gallery/" class="uri">https://cartodb.com/gallery/</a></li>
+<li>CartoDB by hand Choropleths: <a href="http://docs.cartodb.com/tutorials/electoral_map.html" class="uri">http://docs.cartodb.com/tutorials/electoral_map.html</a></li>
+<li>CartoDB with d3: <a href="http://bl.ocks.org/andrewxhill/4448106" class="uri">http://bl.ocks.org/andrewxhill/4448106</a></li>
+<li>My example: <a href="carto_db_example.html" class="uri">carto_db_example.html</a></li>
 </ul>
 <h4 id="slippy-maps-map-tiles-that-you-can-panzoom-around">Slippy Maps (Map &quot;tiles&quot; that you can pan/zoom around)</h4>
 <ul>
-<li>Mapbox: <a href="https://www.mapbox.com/maps/">https://www.mapbox.com/maps/</a><br /></li>
-<li>Stamen: if you like maps, keep up: <a href="http://stamen.com/">http://stamen.com/</a><br /></li>
-<li>Map Tiles: <a href="http://maps.stamen.com/#terrain/12/37.7706/-122.3782">http://maps.stamen.com/#terrain/12/37.7706/-122.3782</a><br /></li>
+<li>Mapbox: <a href="https://www.mapbox.com/maps/" class="uri">https://www.mapbox.com/maps/</a></li>
+<li>Stamen: if you like maps, keep up: <a href="http://stamen.com/" class="uri">http://stamen.com/</a></li>
+<li>Map Tiles: <a href="http://maps.stamen.com/#terrain/12/37.7706/-122.3782" class="uri">http://maps.stamen.com/#terrain/12/37.7706/-122.3782</a></li>
 <li>Google docs will map for you, and geocode (the process of getting lat/lon for places)</li>
 </ul>
 <h4 id="leaflet-a-nice-js-map-lib-for-slippy-maps-ive-used-and-rec-it">Leaflet, a nice JS map lib for slippy maps (I've used and rec it)</h4>
 <ul>
-<li>Leaflet:<br /><a href="http://maptimeboston.github.io/leaflet-intro/">http://maptimeboston.github.io/leaflet-intro/</a><br /></li>
-<li>D3 with Leaflet:<br /><a href="http://bost.ocks.org/mike/leaflet/">http://bost.ocks.org/mike/leaflet/</a></li>
+<li>Leaflet:<br />
+<a href="http://maptimeboston.github.io/leaflet-intro/" class="uri">http://maptimeboston.github.io/leaflet-intro/</a></li>
+<li>D3 with Leaflet:<br />
+<a href="http://bost.ocks.org/mike/leaflet/" class="uri">http://bost.ocks.org/mike/leaflet/</a></li>
 </ul>
 <h3 id="resources-for-geo-data-files">Resources for Geo Data / Files</h3>
-<p>(Thanks to Noah Veltman's post here: <a href="http://mapstarter.com/">http://mapstarter.com/</a>)</p>
+<p>(Thanks to Noah Veltman's post here: <a href="http://mapstarter.com/" class="uri">http://mapstarter.com/</a>)</p>
 <ul>
-<li><a href="http://geocommons.com/">http://geocommons.com/</a><br /></li>
-<li>Natural Earth: <a href="http://www.naturalearthdata.com/downloads/">http://www.naturalearthdata.com/downloads/</a><br /></li>
-<li>LA and California: <a href="http://boundaries.latimes.com/sets/">http://boundaries.latimes.com/sets/</a><br /></li>
-<li>Illinois and Chicago: <a href="http://boundaries.tribapps.com/api/">http://boundaries.tribapps.com/api/</a><br /></li>
-<li>Minneapolis Post: <a href="http://boundaries.minnpost.com/#datasets">http://boundaries.minnpost.com/#datasets</a><br /></li>
-<li>Mike Bostock's files for county names, state names, countries:<br /><a href="http://bl.ocks.org/mbostock/4090846">http://bl.ocks.org/mbostock/4090846</a></li>
+<li><a href="http://geocommons.com/" class="uri">http://geocommons.com/</a></li>
+<li>Natural Earth: <a href="http://www.naturalearthdata.com/downloads/" class="uri">http://www.naturalearthdata.com/downloads/</a></li>
+<li>LA and California: <a href="http://boundaries.latimes.com/sets/" class="uri">http://boundaries.latimes.com/sets/</a></li>
+<li>Illinois and Chicago: <a href="http://boundaries.tribapps.com/api/" class="uri">http://boundaries.tribapps.com/api/</a></li>
+<li>Minneapolis Post: <a href="http://boundaries.minnpost.com/#datasets" class="uri">http://boundaries.minnpost.com/#datasets</a></li>
+<li>Mike Bostock's files for county names, state names, countries:<br />
+<a href="http://bl.ocks.org/mbostock/4090846" class="uri">http://bl.ocks.org/mbostock/4090846</a></li>
 </ul>
 <p>Also, I have put a large number of useful world/country topojson files in this week's data directory. Hopefully this will be what you need for choropleth maps for the project.</p>
 <h3 id="map-design-guidelines">Map Design Guidelines</h3>
-<p><strong>Never use the rainbow color scheme!</strong> You will lose your data vis license. <a href="https://eagereyes.org/basics/rainbow-color-map">https://eagereyes.org/basics/rainbow-color-map</a></p>
+<p><strong>Never use the rainbow color scheme!</strong> You will lose your data vis license. <a href="https://eagereyes.org/basics/rainbow-color-map" class="uri">https://eagereyes.org/basics/rainbow-color-map</a></p>
 <ul>
-<li>Map coloring scales in d3: <a href="http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/">http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/</a><br /></li>
-<li>Jenks breaks code you could use from the previous article: <a href="https://gist.github.com/tmcw/4977508">https://gist.github.com/tmcw/4977508</a><br /></li>
-<li>Colorbrewer, Colors for maps (and other useful palettes for vis): <a href="http://colorbrewer2.org/">http://colorbrewer2.org/</a><br /></li>
-<li>Thematic Cartography Guide: <a href="http://axismaps.github.io/thematic-cartography/">http://axismaps.github.io/thematic-cartography/</a><br /></li>
-<li>A related talk from Andy Woodruff of Axis Maps: Blindfolded Cartography: <a href="http://www.axismaps.com/blog/2015/05/blindfolded-cartography/">http://www.axismaps.com/blog/2015/05/blindfolded-cartography/</a><br />and the video at OpenVisConf: <a href="https://www.youtube.com/watch?v=e_00WVa3GJA">https://www.youtube.com/watch?v=e_00WVa3GJA</a><br /></li>
-<li><a href="https://medium.com/thoughts-on-journalism/a-great-big-guide-to-when-to-use-maps-in-data-visualisation-5661d833ac62">https://medium.com/thoughts-on-journalism/a-great-big-guide-to-when-to-use-maps-in-data-visualisation-5661d833ac62</a>#.8ic70uj25<br /></li>
-<li>When Maps Shouldn't Be Maps: <a href="http://www.ericson.net/content/2011/10/when-maps-shouldnt-be-maps/">http://www.ericson.net/content/2011/10/when-maps-shouldnt-be-maps/</a><br /></li>
-<li>Hex Tile Maps: <a href="http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html">http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html</a><br /></li>
-<li>Even more design options: <a href="https://richardbrath.wordpress.com/2015/10/15/equal-area-cartograms-and-multivariate-labels/">https://richardbrath.wordpress.com/2015/10/15/equal-area-cartograms-and-multivariate-labels/</a></li>
+<li>Map coloring scales in d3: <a href="http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/" class="uri">http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/</a></li>
+<li>Jenks breaks code you could use from the previous article: <a href="https://gist.github.com/tmcw/4977508" class="uri">https://gist.github.com/tmcw/4977508</a></li>
+<li>Colorbrewer, Colors for maps (and other useful palettes for vis): <a href="http://colorbrewer2.org/" class="uri">http://colorbrewer2.org/</a></li>
+<li>Thematic Cartography Guide: <a href="http://axismaps.github.io/thematic-cartography/" class="uri">http://axismaps.github.io/thematic-cartography/</a></li>
+<li>A related talk from Andy Woodruff of Axis Maps: Blindfolded Cartography: <a href="http://www.axismaps.com/blog/2015/05/blindfolded-cartography/" class="uri">http://www.axismaps.com/blog/2015/05/blindfolded-cartography/</a><br />
+and the video at OpenVisConf: <a href="https://www.youtube.com/watch?v=e_00WVa3GJA" class="uri">https://www.youtube.com/watch?v=e_00WVa3GJA</a></li>
+<li><a href="https://medium.com/thoughts-on-journalism/a-great-big-guide-to-when-to-use-maps-in-data-visualisation-5661d833ac62#.8ic70uj25" class="uri">https://medium.com/thoughts-on-journalism/a-great-big-guide-to-when-to-use-maps-in-data-visualisation-5661d833ac62#.8ic70uj25</a></li>
+<li>When Maps Shouldn't Be Maps: <a href="http://www.ericson.net/content/2011/10/when-maps-shouldnt-be-maps/" class="uri">http://www.ericson.net/content/2011/10/when-maps-shouldnt-be-maps/</a></li>
+<li>Hex Tile Maps: <a href="http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html" class="uri">http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html</a></li>
+<li>Even more design options: <a href="https://richardbrath.wordpress.com/2015/10/15/equal-area-cartograms-and-multivariate-labels/" class="uri">https://richardbrath.wordpress.com/2015/10/15/equal-area-cartograms-and-multivariate-labels/</a></li>
 </ul>
 <h2 id="recap-so-far-project-ahead">Recap So Far: Project Ahead</h2>
 <p>What have we done so far?</p>
 <p><strong>Chart Types:</strong></p>
 <ul>
-<li>tables, sorting tables<br /></li>
-<li>dot plots<br /></li>
-<li>bar charts<br /></li>
-<li>stacked bar charts<br /></li>
-<li>grouped bar charts<br /></li>
-<li>scatterplots<br /></li>
-<li>line charts<br /></li>
-<li>area charts<br /></li>
-<li>streamgraphs<br /></li>
+<li>tables, sorting tables</li>
+<li>dot plots</li>
+<li>bar charts</li>
+<li>stacked bar charts</li>
+<li>grouped bar charts</li>
+<li>scatterplots</li>
+<li>line charts</li>
+<li>area charts</li>
+<li>streamgraphs</li>
 <li>maps</li>
 </ul>
 <p><strong>Skills:</strong></p>
 <ul>
-<li>transitions and animation<br /></li>
-<li>new data, data switching<br /></li>
-<li>UI: buttons, select menus, tooltips, legends, click events<br /></li>
+<li>transitions and animation</li>
+<li>new data, data switching</li>
+<li>UI: buttons, select menus, tooltips, legends, click events</li>
 <li>Next week: scrolling, other storytelling structures</li>
 </ul>
 <p><strong>Tips for good vis:</strong></p>
 <ul>
-<li>Small multiples<br /></li>
-<li>Getting top 10<br /></li>
-<li>Sorting items<br /></li>
+<li>Small multiples</li>
+<li>Getting top 10</li>
+<li>Sorting items</li>
 <li>Annotation/labeling of interesting data points</li>
 </ul>
 <p>Shneiderman's mantra: &quot;Overview first, zoom and filter, details on demand.&quot;</p>
 <p>Your project will have to have at least 4 types of graphs we've done in class in it, plus some interactive features such as tooltips, useful animation, some storytelling component. It should be a single page project. More criteria coming next week.</p>
 <p>It's not too late to switch topics!</p>
-<p>You should be doing sketches and mockups with data now. See: <a href="https://www.dropbox.com/s/z5ymp01eu932fr1/Screenshot%202015-11-03%2011.52.29.png?dl=0">https://www.dropbox.com/s/z5ymp01eu932fr1/Screenshot%202015-11-03%2011.52.29.png?dl=0</a><br />And <a href="http://fds.design/">http://fds.design/</a>. One of these is due for HW 3 again.</p>
+<p>You should be doing sketches and mockups with data now. See: <a href="https://www.dropbox.com/s/z5ymp01eu932fr1/Screenshot%202015-11-03%2011.52.29.png?dl=0">https://www.dropbox.com/s/z5ymp01eu932fr1/Screenshot%202015-11-03%2011.52.29.png?dl=0</a><br />
+And <a href="http://fds.design/" class="uri">http://fds.design/</a>. One of these is due for HW 3 again.</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
-<li><a href="http://xkcd.com/1597/">http://xkcd.com/1597/</a><br /></li>
-<li>Animated Refugee Map: <a href="http://www.takepart.com/article/2015/10/28/map-that-shows-how-huge-europes-refugee-crisis-really-is?cmpid=organic-share-twitter">http://www.takepart.com/article/2015/10/28/map-that-shows-how-huge-europes-refugee-crisis-really-is?cmpid=organic-share-twitter</a><br /></li>
-<li>Small multiple maps: <a href="http://www.nytimes.com/interactive/2015/10/31/upshot/who-still-doesnt-have-health-insurance-obamacare.html?src=twr&amp;_r=0">http://www.nytimes.com/interactive/2015/10/31/upshot/who-still-doesnt-have-health-insurance-obamacare.html?src=twr&amp;_r=0</a><br /></li>
-<li>What Makes a Visualization Memorable: <a href="http://www.storybench.org/understanding-what-makes-a-visualization-memorable/">http://www.storybench.org/understanding-what-makes-a-visualization-memorable/</a><br /></li>
-<li>Interactivity Options: <a href="http://peopleviz.gforge.inria.fr/trunk/SI_cues/">http://peopleviz.gforge.inria.fr/trunk/SI_cues/</a> (I don't totally understand this yet, but it's interesting)<br /></li>
-<li>Five Design Sheet process: <a href="http://fds.design/">http://fds.design/</a></li>
+<li><a href="http://xkcd.com/1597/" class="uri">http://xkcd.com/1597/</a></li>
+<li>Animated Refugee Map: <a href="http://www.takepart.com/article/2015/10/28/map-that-shows-how-huge-europes-refugee-crisis-really-is?cmpid=organic-share-twitter" class="uri">http://www.takepart.com/article/2015/10/28/map-that-shows-how-huge-europes-refugee-crisis-really-is?cmpid=organic-share-twitter</a></li>
+<li>Small multiple maps: <a href="http://www.nytimes.com/interactive/2015/10/31/upshot/who-still-doesnt-have-health-insurance-obamacare.html?src=twr&amp;_r=0" class="uri">http://www.nytimes.com/interactive/2015/10/31/upshot/who-still-doesnt-have-health-insurance-obamacare.html?src=twr&amp;_r=0</a></li>
+<li>What Makes a Visualization Memorable: <a href="http://www.storybench.org/understanding-what-makes-a-visualization-memorable/" class="uri">http://www.storybench.org/understanding-what-makes-a-visualization-memorable/</a></li>
+<li>Interactivity Options: <a href="http://peopleviz.gforge.inria.fr/trunk/SI_cues/" class="uri">http://peopleviz.gforge.inria.fr/trunk/SI_cues/</a> (I don't totally understand this yet, but it's interesting)</li>
+<li>Five Design Sheet process: <a href="http://fds.design/" class="uri">http://fds.design/</a></li>
 </ul>
 <h2 id="homework">Homework</h2>
 <p>Read:</p>
 <ul>
-<li>Noah Veltman's primer on maps and tools, it will help a lot with vocabulary and concepts:<br /><a href="https://github.com/veltman/learninglunches/tree/master/maps">https://github.com/veltman/learninglunches/tree/master/maps</a><br /></li>
-<li>Map coloring scales in d3: <a href="http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/">http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/</a><br /></li>
-<li>Don't use rainbow schemes or your data vis license will be revoked: <a href="https://eagereyes.org/basics/rainbow-color-map">https://eagereyes.org/basics/rainbow-color-map</a></li>
+<li>Noah Veltman's primer on maps and tools, it will help a lot with vocabulary and concepts:<br />
+<a href="https://github.com/veltman/learninglunches/tree/master/maps" class="uri">https://github.com/veltman/learninglunches/tree/master/maps</a></li>
+<li>Map coloring scales in d3: <a href="http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/" class="uri">http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/</a></li>
+<li>Don't use rainbow schemes or your data vis license will be revoked: <a href="https://eagereyes.org/basics/rainbow-color-map" class="uri">https://eagereyes.org/basics/rainbow-color-map</a></li>
 </ul>
-<p><strong>HW 1 (20pts) Region Colors</strong>: Make a region color-coded map of the world like I showed. You can start from <a href="africa_map2.html">africa_map2.html</a> and <a href="africa_map3.html">africa_map3.html</a> for the data loading. Use the region data in <a href="World_Development_Indicators_Metadata_Countries.csv">World_Development_Indicators_Metadata_Countries.csv</a>. You may have to use the ISO3 column!</p>
+<p><strong>HW 1 (20pts) Region Colors</strong>: Make a region color-coded map of the world like I showed. You can start from <a href="africa_map2.html" class="uri">africa_map2.html</a> and <a href="africa_map3.html" class="uri">africa_map3.html</a> for the data loading. Use the region data in <a href="World_Development_Indicators_Metadata_Countries.csv" class="uri">World_Development_Indicators_Metadata_Countries.csv</a>. You may have to use the ISO3 column!</p>
 <p><strong>HW 2 (15pts) Choropleth Map</strong>: Make a choropleth map for your project data, using a continent or region or world of your choice, similar to what I did in africa_map3.html. It should have a legend and tooltips.</p>
-<p><strong>HW 3 (20 pts) Design Sketch Rev2</strong>: I want an updated design sketch for your project, using some ideas from the second stages of the Five Design Sheets site. <a href="http://fds.design/">http://fds.design/</a> You should have done some exploratory charts and graphs and have ideas about what types of charts you will include in the project now. We'll discuss these in class next week.</p>
+<p><strong>HW 3 (20 pts) Design Sketch Rev2</strong>: I want an updated design sketch for your project, using some ideas from the second stages of the Five Design Sheets site. <a href="http://fds.design/" class="uri">http://fds.design/</a> You should have done some exploratory charts and graphs and have ideas about what types of charts you will include in the project now. We'll discuss these in class next week.</p>
 </body>
 </html>

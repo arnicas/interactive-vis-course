@@ -28,8 +28,8 @@
         line-height: 12px;
         text-transform: uppercase;
         text-align: center;
-        float: left;
-        margin-right: 1px;
+        float: right;
+        margin: 5px;
     }
     .chart {
         margin: 0 auto;
@@ -68,11 +68,13 @@
 <body>
 
     <div class='aside-content'>
-        <div id='racial-wealth-gap-mean' class='chart show'></div>
-        <div id='racial-wealth-gap-median' class='chart hide'></div>
         <div class='btn-group clearfix'>
             <button id='racegap' class='btn autocompare'>Show Median</button>
         </div>
+
+        <!-- both of the charts are here - we use show/hide to toggle which is visible. -->
+        <div id='racial-wealth-gap-mean' class='chart show'></div>
+        <div id='racial-wealth-gap-median' class='chart hide'></div>
         <p class='chart-notes'><b>Source:</b> Survey of Consumer Finances 1983&ndash;2013. <b>Example Code Source:</b> <a href='http://datatools.urban.org/Features/wealth-inequality-charts/'>Urban Institute</a></p>
         <p class='chart-notes'><b>Notes:</b> 2013 dollars. Hispanic sample size too small to show. Age is defined as the age of the household head. In 2013, these people were age 62&ndash;70. In 1983, ages 32&ndash;40.</p>
     </div>

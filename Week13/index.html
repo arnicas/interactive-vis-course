@@ -55,22 +55,23 @@
 <h3 id="more-than-one-chart-per-page">More Than One Chart Per Page</h3>
 <p>One way is to use multiple div tags, with different id's.</p>
 <ul>
-<li><a href="http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html">http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html</a></li>
+<li><a href="http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html" class="uri">http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html</a></li>
 </ul>
 <p>In this example, there is a nice function for drawing each data set, which means the variables for each graph are in the function scope, not global:</p>
 <ul>
-<li><a href="http://jsfiddle.net/1cqb3uw8/">http://jsfiddle.net/1cqb3uw8/</a></li>
+<li><a href="http://jsfiddle.net/1cqb3uw8/" class="uri">http://jsfiddle.net/1cqb3uw8/</a></li>
 </ul>
 <p>Ideally, you are using functions to protect your variable scope and encapsulate operations. This will make debugging easier.</p>
 <h3 id="using-functions-wisely">Using Functions Wisely</h3>
 <p>TODO: Fill in some stuff here.</p>
 <h2 id="animation-in-d3">Animation in D3</h2>
 <p>One of the most famous animated graphs ever is Hans Rosling's <a href="http://www.gapminder.org/world/#$majorMode=chart$is;shi=t;ly=2003;lb=f;il=t;fs=11;al=30;stl=t;st=t;nsl=t;se=t$wst;tts=C$ts;sp=5.59290322580644;ti=2013$zpv;v=0$inc_x;mmid=XCOORDS;iid=phAwcNAVuyj1jiMAkmq1iMg;by=ind$inc_y;mmid=YCOORDS;iid=phAwcNAVuyj2tPLxKvvnNPA;by=ind$inc_s;uniValue=8.21;iid=phAwcNAVuyj0XOoBL_n5tAQ;by=ind$inc_c;uniValue=255;gid=CATID0;by=grp$map_x;scale=log;dataMin=194;dataMax=96846$map_y;scale=lin;dataMin=23;dataMax=86$map_s;sma=49;smi=2.65$cd;bd=0$inds=;example=75">Gapminder</a>.</p>
-<p>Tom Carden (RandomEtc) re-did it in javascript using canvas (not D3):<br /><a href="http://randometc.github.io/mind-gapper-js/">http://randometc.github.io/mind-gapper-js/</a></p>
-<p>And then Mike Bostock did it too, in D3: Gapminder animation in d3: <a href="http://bost.ocks.org/mike/nations/">http://bost.ocks.org/mike/nations/</a></p>
+<p>Tom Carden (RandomEtc) re-did it in javascript using canvas (not D3):<br />
+<a href="http://randometc.github.io/mind-gapper-js/" class="uri">http://randometc.github.io/mind-gapper-js/</a></p>
+<p>And then Mike Bostock did it too, in D3: Gapminder animation in d3: <a href="http://bost.ocks.org/mike/nations/" class="uri">http://bost.ocks.org/mike/nations/</a></p>
 <p>But his version has a hidden (IMO) brush for the years. Can you find it?</p>
 <h3 id="animated-bar-charts">Animated Bar Charts</h3>
-<p>Example by Tom Carden: <a href="http://bl.ocks.org/RandomEtc/cff3610e7dd47bef2d01">http://bl.ocks.org/RandomEtc/cff3610e7dd47bef2d01</a></p>
+<p>Example by Tom Carden: <a href="http://bl.ocks.org/RandomEtc/cff3610e7dd47bef2d01" class="uri">http://bl.ocks.org/RandomEtc/cff3610e7dd47bef2d01</a></p>
 <p>Note that again, we set up the page, then load the data, and call a &quot;replay&quot; function that is a timer that calls the &quot;draw&quot; function with new data.</p>
 <p>The draw function sets the domains based on current data set, transitions the axes, and does the data binding, exiting, entering, and updating, with transitions.</p>
 <p>Timer:</p>
@@ -89,44 +90,45 @@
 }</code></pre>
 <h3 id="animated-line-charts">Animated Line Charts</h3>
 <p>The unrolling effect! This is all over in real news stories. So you need to know how to do it.</p>
-<p><strong>Unrolling line charts: <a href="http://big-elephants.com/2014-06/unrolling-line-charts-d3js/">http://big-elephants.com/2014-06/unrolling-line-charts-d3js/</a></strong></p>
-<p>See the examples in <strong><a href="animated_lines.html">animated_lines.html</a></strong>. You could use this in your own scrolly stories if you wanted to. Use the second version, for a smoother effect.</p>
+<p>**Unrolling line charts: <a href="http://big-elephants.com/2014-06/unrolling-line-charts-d3js/**" class="uri">http://big-elephants.com/2014-06/unrolling-line-charts-d3js/**</a></p>
+<p>See the examples in <strong><a href="animated_lines.html" class="uri">animated_lines.html</a></strong>. You could use this in your own scrolly stories if you wanted to. Use the second version, for a smoother effect.</p>
 <p>The animation delay happens via the interpolation function.</p>
 <p>TODO: Fix up the global vars in the animated lines example, add a sync'd animation. Make the animation work right on the segment.</p>
 <h3 id="animated-paths-on-maps">Animated Paths on Maps</h3>
-<p>See my example <strong><a href="animated_map_path.html">animated_map_path.html</a></strong> with a play/pause button added to it. (Thanks to Jim Vallandingham for fixing a bug in the timer code.)</p>
+<p>See my example <strong><a href="animated_map_path.html" class="uri">animated_map_path.html</a></strong> with a play/pause button added to it. (Thanks to Jim Vallandingham for fixing a bug in the timer code.)</p>
 <p>Reference:</p>
 <ul>
-<li>Example in <a href="http://mtaptich.github.io/d3-lessons/d3-extras/">http://mtaptich.github.io/d3-lessons/d3-extras/</a><br /></li>
-<li>On Leaflet, zev ross: <a href="http://bl.ocks.org/zross/6a31f4ef9e778d94c204">http://bl.ocks.org/zross/6a31f4ef9e778d94c204</a><br /></li>
-<li>Another good tutorial: <a href="http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html">http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html</a><br /></li>
-<li>Also see this tool from Ben Schmidt to make trails, including animated ones: <a href="https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a><br /></li>
-<li>And demo: <a href="http://benschmidt.org/D3-trail/minard.html">http://benschmidt.org/D3-trail/minard.html</a></li>
+<li>Example in <a href="http://mtaptich.github.io/d3-lessons/d3-extras/" class="uri">http://mtaptich.github.io/d3-lessons/d3-extras/</a></li>
+<li>On Leaflet, zev ross: <a href="http://bl.ocks.org/zross/6a31f4ef9e778d94c204" class="uri">http://bl.ocks.org/zross/6a31f4ef9e778d94c204</a></li>
+<li>Another good tutorial: <a href="http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html" class="uri">http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html</a></li>
+<li>Also see this tool from Ben Schmidt to make trails, including animated ones: <a href="https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" class="uri">https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
+<li>And demo: <a href="http://benschmidt.org/D3-trail/minard.html" class="uri">http://benschmidt.org/D3-trail/minard.html</a></li>
 </ul>
 <h3 id="ui-sliders-for-timelines">UI Sliders for Timelines</h3>
-<p>Tom MacWright's control that I recommend: <a href="http://www.macwright.org/chroniton/example/">http://www.macwright.org/chroniton/example/</a>.</p>
-<p>See my example use of it in <strong><a href="africa_map_slider.html">africa_map_slider.html</a>.</strong> It has options for configuring it to restart playing, etc.</p>
+<p>Tom MacWright's control that I recommend: <a href="http://www.macwright.org/chroniton/example/" class="uri">http://www.macwright.org/chroniton/example/</a>.</p>
+<p>See my example use of it in <strong><a href="africa_map_slider.html" class="uri">africa_map_slider.html</a>.</strong> It has options for configuring it to restart playing, etc.</p>
 <p>More related items:</p>
 <ul>
-<li>Play/Pause audio + animation: <a href="https://www.bignerdranch.com/blog/music-visualization-with-d3-js/">https://www.bignerdranch.com/blog/music-visualization-with-d3-js/</a><br /></li>
-<li>Animated borders with a control: <a href="https://github.com/maptime-ams/animated-borders-d3js/">https://github.com/maptime-ams/animated-borders-d3js/</a>, the <a href="http://maptime-ams.github.io/animated-borders-d3js/tutorial/13/">Demo</a>.<br /></li>
-<li>Brush as time slider: <a href="http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58">http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58</a><br /></li>
-<li>D3 slider control that is not year/time based: <a href="http://thematicmapping.org/playground/d3/d3.slider/">http://thematicmapping.org/playground/d3/d3.slider/</a></li>
+<li>Play/Pause audio + animation: <a href="https://www.bignerdranch.com/blog/music-visualization-with-d3-js/" class="uri">https://www.bignerdranch.com/blog/music-visualization-with-d3-js/</a></li>
+<li>Animated borders with a control: <a href="https://github.com/maptime-ams/animated-borders-d3js/" class="uri">https://github.com/maptime-ams/animated-borders-d3js/</a>, the <a href="http://maptime-ams.github.io/animated-borders-d3js/tutorial/13/">Demo</a>.</li>
+<li>Brush as time slider: <a href="http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58" class="uri">http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58</a></li>
+<li>D3 slider control that is not year/time based: <a href="http://thematicmapping.org/playground/d3/d3.slider/" class="uri">http://thematicmapping.org/playground/d3/d3.slider/</a></li>
 </ul>
 <h2 id="click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</h2>
 <p>A lot of you want to trigger actions off charts or maps.</p>
-<p>An example is in <strong><a href="africa_map_clicker.html">africa_map_clicker.html</a>.</strong> Of course, the div with the tooltip-like text could instead be another chart!</p>
+<p>An example is in <strong><a href="africa_map_clicker.html" class="uri">africa_map_clicker.html</a>.</strong> Of course, the div with the tooltip-like text could instead be another chart!</p>
 <p>Notice how important the moveToFront() is for the map mouseover.</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
-<li>Animated ScrollyTelling Annotated Click Line Chart: <a href="http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0">http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0</a><br /></li>
-<li>Mercator Map Projection Puzzle: <a href="http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html">http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html</a><br /></li>
-<li>Animated Map on CartoDB for The Martian: <a href="https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map">https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map</a><br /></li>
-<li>Animated grid squares by M Bostock (using a timer): <a href="http://bl.ocks.org/mbostock/1009139">http://bl.ocks.org/mbostock/1009139</a><br /></li>
-<li>Information is Beautiful Shortlist for Awards: <a href="http://www.informationisbeautifulawards.com/showcase?award=2015&amp;pcategory=short-list&amp;type=awards">http://www.informationisbeautifulawards.com/showcase?award=2015&amp;pcategory=short-list&amp;type=awards</a></li>
+<li>Animated ScrollyTelling Annotated Click Line Chart: <a href="http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0" class="uri">http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0</a></li>
+<li>Mercator Map Projection Puzzle: <a href="http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html" class="uri">http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html</a></li>
+<li>Animated Map on CartoDB for The Martian: <a href="https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map" class="uri">https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map</a></li>
+<li>Animated grid squares by M Bostock (using a timer): <a href="http://bl.ocks.org/mbostock/1009139" class="uri">http://bl.ocks.org/mbostock/1009139</a></li>
+<li>Information is Beautiful Shortlist for Awards: <a href="http://www.informationisbeautifulawards.com/showcase?award=2015&amp;pcategory=short-list&amp;type=awards" class="uri">http://www.informationisbeautifulawards.com/showcase?award=2015&amp;pcategory=short-list&amp;type=awards</a></li>
 </ul>
 <h2 id="set-up-your-project-pages-github.io">Set Up Your Project Pages (Github.io)</h2>
-<p>Let's do this:<br /><a href="https://pages.github.com/">https://pages.github.com/</a></p>
+<p>Let's do this:<br />
+<a href="https://pages.github.com/" class="uri">https://pages.github.com/</a></p>
 <p>After you do the stuff on the github site, in your local directory for the project,</p>
 <pre><code>&gt;git pull
 &gt;git checkout gh-pages</code></pre>
@@ -135,11 +137,12 @@
 &gt;git add [filename] -- for each file you want to add to the repo if it&#39;s not there yet
 &gt;git commit -am &#39;My note about what I did&#39;  [this commits everything you have added or edited and uses that note to say what you did]
 &gt;git push [push the changes to the repo so i can pull them :)]</code></pre>
-<p>On the repo project page, reload/refresh the page. You should see all the files you added and edited there. If you have the index.html page showing your d3 work, it will update with the latest work when you look at<br />your <code>your-username.github.io/project-name</code> page.</p>
+<p>On the repo project page, reload/refresh the page. You should see all the files you added and edited there. If you have the index.html page showing your d3 work, it will update with the latest work when you look at<br />
+your <code>your-username.github.io/project-name</code> page.</p>
 <p>You can work in a github GUI or some other way if you want. Just make sure you check your work is visible in the url view.</p>
 <p>If you screw yourself up, this guide might help:</p>
 <ul>
-<li><a href="http://sethrobertson.github.io/GitFixUm/fixup.html">http://sethrobertson.github.io/GitFixUm/fixup.html</a></li>
+<li><a href="http://sethrobertson.github.io/GitFixUm/fixup.html" class="uri">http://sethrobertson.github.io/GitFixUm/fixup.html</a></li>
 </ul>
 <h2 id="homework">Homework</h2>
 <p><strong>Homework 1 (10pt) Create your project site.</strong></p>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<style>
+
+body {
+  font-family: Arial;
+  padding: 50px;
+}
+
+</style>
+
+<body>
+
+  <h2>Dot Plot Chart Using Dimple: Improved Water Supply, 1990-2015</h2>
+
+    <p>Percentage of regions (WHO) with access to clean water source, 1990 vs. 2015.
+    <div class="graph"></div>
+  </div>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="//dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+
+<script>
+
+function make_dotvis(data, selector) {
+  // passing in the data array, an idenfitier to put the graph into, and a custom color
+
+  var svg = dimple.newSvg(selector, 600, 600);
+  var myChart = new dimple.chart(svg, data);
+  myChart.setBounds(190, 10, 400, 500);  // x y width height
+  var xAxis = myChart.addMeasureAxis("x", "total_improved");
+  xAxis.title = "Access to Clean Water (%)"; // custom label
+  var yAxis = myChart.addCategoryAxis("y", "region");
+  yAxis.title = "Region"; // custom label
+  yAxis.addOrderRule("total_improved");  // largest at top!
+  myChart.defaultColors = [new dimple.color("red"),  new dimple.color("steelblue")];
+  myChart.addSeries("year", dimple.plot.scatter);
+  myChart.addLegend(180, 10, 360, 20, "right");
+  myChart.draw();
+
+}
+
+function do_stuff(error, data) {
+
+  if (error) {
+    console.log("error reading file", error);
+  }
+
+  console.log(data);
+
+  make_dotvis(data, ".graph");
+
+}
+
+d3.csv("data/water_improvement_data_long.csv", do_stuff); // arguments implicitly passed on are error and data.
+
+</script>
+
+

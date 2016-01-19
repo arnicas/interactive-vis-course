@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<style>
+
+body {
+  font-family: Arial;
+  padding: 50px;
+}
+
+.barsgroup {
+  margin-left: 20px;
+}
+
+.bars {
+  display: inline-block;
+  position: relative;
+  margin-right: 20px;
+}
+
+.title {
+  display: inline-block;
+  position: relative;
+  padding-left: 150px;
+}
+
+</style>
+
+<body>
+
+  <h2>Bar Chart Using Dimple: Improved Water Supply 2015</h2>
+
+    <p>Percentage of regions (WHO) with access to clean water source, 2015.
+    <p>But let's talk about the categories graphed here... What's wrong with them?
+    <div class="bars"></div>
+  </div>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="//dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+
+<script>
+
+function make_barvis(data, selector, color) {
+  // passing in the data array, an idenfitier to put the graph into, and a custom color
+
+  var svg = dimple.newSvg(selector, 600, 600);
+  var myChart = new dimple.chart(svg, data);
+  myChart.setBounds(190, 10, 400, 500);  // x y width height
+  var xAxis = myChart.addMeasureAxis("x", "year2015");
+  xAxis.title = "Access to Clean Water (%)"; // custom label
+  var yAxis = myChart.addCategoryAxis("y", "name");
+  yAxis.title = "Region"; // custom label
+  yAxis.addOrderRule("year2015");  // largest at top!
+  myChart.defaultColors = [new dimple.color(color)];
+  myChart.addSeries(null, dimple.plot.bar);
+  myChart.draw();
+}
+
+function do_stuff(error, data) {
+
+  if (error) {
+    console.log("error reading file", error);
+  }
+
+  console.log(data);
+
+  make_barvis(data, ".bars", "red");
+
+}
+
+d3.csv("data/water_improvement_data.csv", do_stuff);
+
+</script>
+
+

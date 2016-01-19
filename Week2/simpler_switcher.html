@@ -1,0 +1,124 @@
+
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>Toggle Button Logic</title>
+
+<!-- Illustration of some concepts for another code example for class extracted from http://datatools.urban.org/Features/wealth-inequality-charts/ with code from Tim Meko and Ben Chartoff -->
+
+<style>
+    body {
+        font: 16px/24px'Lato', Helvetica, Helvetica Neue, Arial;
+        width: 90%;
+    }
+    .content {
+        background: #f9f9f9;
+        margin: 20px;
+        width: 600px;
+    }
+    .btn {
+        display: inline;
+        font-size: 14px;
+        padding: 14px;
+        cursor: pointer;
+        border: none;
+        color: white;
+        background-color: #1696d2;
+        display: block;
+        line-height: 12px;
+        text-transform: uppercase;
+        text-align: center;
+        float: right;
+        margin: 5px;
+    }
+
+    .selected {
+        background-color: #ccc;
+        border: black;
+    }
+
+    .chart {
+        margin: 0 auto;
+        margin-top: 0px;
+        position: relative;
+        width: 600px;
+        height: 70%;
+    }
+
+    #chart-one {
+        background-color: pink;
+    }
+
+    #chart-two {
+        background-color: orange;
+    }
+    .btn:hover {
+        background-color: #000;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        content: ' ';
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
+    .clearfix {
+        *zoom: 1;
+    }
+    .hide {
+        display: none;
+    }
+    .show {
+        display: block;
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+    <h2>Illustrating some simple toggle buttons and logic...</h2>
+
+    <div class='content'>
+        <div class='btn-group clearfix'>
+            <button id='buttonTwo' class='btn'>Show Two</button>
+            <button id='buttonOne' class='btn selected'>Show One</button>
+        </div>
+
+        <!-- both of the charts are here - we use show/hide to toggle which is visible. -->
+        <div id='chart-one' class='chart show'><p>Chart One</p></div>
+        <div id='chart-two' class='chart hide'><p>Chart Two</p></div>
+    </div>
+
+</body>
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.9.1.min.js'></script>
+
+<script>
+
+        $('#buttonOne').click(function () {
+
+            document.getElementById('chart-two').className = 'chart hide';
+            document.getElementById('chart-one').className = 'chart show';
+
+            document.getElementById('buttonOne').className = 'btn selected';
+            document.getElementById('buttonTwo').className = 'btn';
+
+
+        });
+
+        $("#buttonTwo").click(function () {
+
+            document.getElementById('chart-two').className = 'chart show';
+            document.getElementById('chart-one').className = 'chart hide';
+            document.getElementById('buttonOne').className = 'btn';
+            document.getElementById('buttonTwo').className = 'btn selected';
+
+        });
+
+</script>
+
+</html>
