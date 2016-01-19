@@ -230,15 +230,14 @@ Do the readings/videos list just above.  Memorize the mantra. Plus these:
 
 **Homework 1**: Two Charts
 
-(Required: 25pt): Make 2 charts of your data on the same page, using 2 different chart types (e.g., line chart, bar chart, area...). You may need another data set if you don't have 2 quantitative (numeric) variables in your data set. You can use Highcharts or Dimple.js (or another library if you prefer).
+(Required: 25pt): Make 2 charts of your data on the same page, using 2 different chart types (e.g., line chart, bar chart, area...). You may need another data set if you don't have 2 quantitative (numeric) variables in your data set. You can use Highcharts or Dimple.js (or another library if you prefer). Add a paragraph of text with the charts that explains them a bit more, what the data source is, and use appropriate CSS styling.
 
-For extra credit (15pt), use the structure and button switch button functionality in [highcharts_switch.html](highcharts_switch.html) to toggle between your two charts. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has useful tooltips.  Add a paragraph of text with the chart that explains it a bit more, using appropriate styling.
+For extra credit (15pt), use the structure and button switch button functionality in [highcharts_switch.html](highcharts_switch.html) or [simpler_switcher.html](simpler_switcher.html) to toggle between your two charts. Adjust the text, labels, tooltips, etc. to match your data and data source.  Be sure it has useful tooltips if you can control that.
 
-Points: (25pts, plus 15pt extra for toggle).
+Points: (25pts, plus 15pt extra for toggle). Check it in as a gist and send me the link to the gist, "Week2: Two Charts."
 
 For your gist: *Be sure the html page is called index.html.*  Be sure your path to Highcharts is a CDN as mine is, not local, link. My examples show the CDN path you should use in your code.
 
-  Check it in as a gist and send me the link to the gist, "Week2: Two Charts."
 
 **Homework 2**: Read in one of your csv data files and verify your objects are there as expected. Prove it to me by creating `<p>`'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, "Week 2: Paragraph Data load." (15pt)  *Name the web page itself index.html so it will work in a blocks example!*
 
