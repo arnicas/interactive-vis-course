@@ -35,9 +35,11 @@
 <li><a href="#js-errors">JS Errors</a></li>
 <li><a href="#data-files">Data Files</a></li>
 </ul></li>
+<li><a href="#more-tool-mechanics-help">More Tool Mechanics Help</a><ul>
 <li><a href="#pulling-the-updated-files-every-week">Pulling the Updated Files Every Week</a></li>
 <li><a href="#viewing-your-gists-as-bl.ocks">Viewing your Gists as Bl.ocks</a></li>
 <li><a href="#command-line-crash-course">Command Line Crash Course</a></li>
+</ul></li>
 <li><a href="#hem-there-are-so-many-charting-libraries-out-there">Hem, There Are So Many Charting Libraries Out There</a><ul>
 <li><a href="#intro-to-highcharts">Intro to Highcharts</a></li>
 <li><a href="#dimple.js-examples">Dimple.js Examples</a></li>
@@ -52,6 +54,7 @@
 <h1 id="week-2-highcharts-loading-csv-data-with-d3.js">Week 2: Highcharts, Loading CSV Data With D3.js</h1>
 <h2 id="review-homework">Review Homework</h2>
 <p>Gists reminders: Upload files with the add button (or drag and drop, don't paste in CSV data); name your web pages index.html so they will work in bl.ocks.org!</p>
+<p>If you have issues with gist.github.com, especially with dragging in CSV files -- you can paste in the contents of the raw csv data (not from Excel, but from plain text), and name it with a .csv extension.</p>
 <h3 id="js-errors">JS Errors</h3>
 <p>Let's go through the file together: <a href="js_errors_fix.html" class="uri">js_errors_fix.html</a></p>
 <p><strong>Console.log and strings:</strong></p>
@@ -84,22 +87,24 @@ function divide(arg1, arg2) {
 }
 divide(myvalue[0].Population, myvalue[0].Seats)</code></pre>
 <h3 id="data-files">Data Files</h3>
-<p>Spaces in Names: <a href="http://bl.ocks.org/NERD-rat-LAB/27157c1feea679364fc0" class="uri">http://bl.ocks.org/NERD-rat-LAB/27157c1feea679364fc0</a></p>
-<p>Nested data: <a href="http://bl.ocks.org/jashcny/d5632fe6efeb61c39af4" class="uri">http://bl.ocks.org/jashcny/d5632fe6efeb61c39af4</a></p>
-<p>Also nested here: <a href="https://gist.github.com/luluwuluying/25b6b78d9a1010f9804e" class="uri">https://gist.github.com/luluwuluying/25b6b78d9a1010f9804e</a></p>
-<p>Years as column names!</p>
-<p>Strings and Numbers: <a href="http://bl.ocks.org/Shewitt95/eb7ce3c5b3d5663074e0" class="uri">http://bl.ocks.org/Shewitt95/eb7ce3c5b3d5663074e0</a></p>
-<h2 id="pulling-the-updated-files-every-week">Pulling the Updated Files Every Week</h2>
+<p>Spaces in column names, avoid them: <a href="http://bl.ocks.org/NERD-rat-LAB/27157c1feea679364fc0" class="uri">http://bl.ocks.org/NERD-rat-LAB/27157c1feea679364fc0</a></p>
+<p>Nested data: <a href="http://bl.ocks.org/jashcny/d5632fe6efeb61c39af4" class="uri">http://bl.ocks.org/jashcny/d5632fe6efeb61c39af4</a><br />
+Also nested here: <a href="https://gist.github.com/luluwuluying/25b6b78d9a1010f9804e" class="uri">https://gist.github.com/luluwuluying/25b6b78d9a1010f9804e</a></p>
+<p>You need a single row of column labels to identify fields; Javascript won't handle the second level of header info, or nested left-hand-side data with missing labels.</p>
+<p>Years as column names! Beware, they won't work with dot notation. You may want to rename them to &quot;Year2001&quot; etc.</p>
+<p>Strings and Numbers, beware again -- the years here should not have quotes and commas in them, there was a type conversion in some spreadsheet tool that went bad: <a href="http://bl.ocks.org/Shewitt95/eb7ce3c5b3d5663074e0" class="uri">http://bl.ocks.org/Shewitt95/eb7ce3c5b3d5663074e0</a></p>
+<h2 id="more-tool-mechanics-help">More Tool Mechanics Help</h2>
+<h3 id="pulling-the-updated-files-every-week">Pulling the Updated Files Every Week</h3>
 <p>Open a terminal window inside the directory/folder called &quot;interactive-vis-course&quot;.</p>
 <p>Type: <code>git pull</code></p>
 <p>If all works ok, you should see the new files coming down.</p>
 <p>If you get an error, it's probably because you modified a file and it has a merge conflict. Make sure you rename any files you modified and ideally move them to another location, type <code>git stash</code> and then try <code>git pull</code> again.</p>
-<h2 id="viewing-your-gists-as-bl.ocks">Viewing your Gists as Bl.ocks</h2>
+<h3 id="viewing-your-gists-as-bl.ocks">Viewing your Gists as Bl.ocks</h3>
 <p>If the gist url is <code>https://gist.github.com/arnicas/743b4b3406d139ab65fa</code><br />
 then the bl.ocks url is: <code>http://bl.ocks.org/arnicas/743b4b3406d139ab65fa</code>.</p>
 <p>NOTE: No https on the start of the block! Also, you can use this <a href="https://chrome.google.com/webstore/detail/blocksorg/phjkbonaifennbfpmieeipknnkhaoiaf">Chrome plugin</a> to help you view blocks from gists faster -- notice the right side!</p>
 <p><img src="img/blocks_plugin.png"></p>
-<h2 id="command-line-crash-course">Command Line Crash Course</h2>
+<h3 id="command-line-crash-course">Command Line Crash Course</h3>
 <p>Here are some basic, useful commands in the terminal window. The words &quot;folder&quot; and &quot;directory&quot; are synonyms.</p>
 <table style="width:67%;">
 <colgroup>
@@ -180,6 +185,7 @@ then the bl.ocks url is: <code>http://bl.ocks.org/arnicas/743b4b3406d139ab65fa</
 <li><a href="http://www.sitepoint.com/15-best-javascript-charting-libraries/" class="uri">http://www.sitepoint.com/15-best-javascript-charting-libraries/</a></li>
 <li>And now this epic tool/book browser: <a href="http://keshif.me/demo/VisTools" class="uri">http://keshif.me/demo/VisTools</a></li>
 </ul>
+<p>My personal test for a new library: will it make it hard for me to create dot plots and slope graphs? These are uncommon options in charting libraries, but data vis popular forms.</p>
 <h3 id="intro-to-highcharts">Intro to Highcharts</h3>
 <p>Let's look at this project in some detail: <a href="http://datatools.urban.org/Features/wealth-inequality-charts/" class="uri">http://datatools.urban.org/Features/wealth-inequality-charts/</a>. Look at the source code, too.</p>
 <p><strong>Resources</strong>:</p>
@@ -193,7 +199,7 @@ then the bl.ocks url is: <code>http://bl.ocks.org/arnicas/743b4b3406d139ab65fa</
 <p>Trying to use data in CSV's with High Charts required me to reformat the CSV data into different structures. Long, wide, and somewhere in between. Be aware that how you structure your data will impact how easily you can use it in your Javascript without having to do rewriting of objects after you load it. (Have a look at this on wide vs long data: <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data" class="uri">https://en.wikipedia.org/wiki/Wide_and_narrow_data</a>.)</p>
 <p>More of my local examples:</p>
 <ul>
-<li><a href="highcharts_dot.html" class="uri">highcharts_dot.html</a> and <a href="highcharts_dot_csv.html" class="uri">highcharts_dot_csv.html</a></li>
+<li><a href="highcharts_dot.html" class="uri">highcharts_dot.html</a> and <a href="highcharts_dot_csv.html" class="uri">highcharts_dot_csv.html</a>: I think the lines on mouseover may be a bit weird, but could be a feature?</li>
 <li><a href="highcharts_slope.html" class="uri">highcharts_slope.html</a>: my attempt at a slopegraph! Not using CSV data, but embedded data.</li>
 </ul>
 <h3 id="dimple.js-examples">Dimple.js Examples</h3>
@@ -215,12 +221,12 @@ then the bl.ocks url is: <code>http://bl.ocks.org/arnicas/743b4b3406d139ab65fa</
   myChart.addSeries(null, dimple.plot.bar);
   myChart.draw();
 }</code></pre>
-<p>For a dot plot alternative, try <a href="dimple_dotplot.html" class="uri">dimple_dotplot.html</a>.</p>
+<p>For a dot plot alternative, try <a href="dimple_dotplot.html" class="uri">dimple_dotplot.html</a>. This was not hard to make, actually.</p>
 <p>For all the libraries out there, you'll discover that using their defaults is easy, but customizing stuff ends up being hard or a big hunt through their docs/code/StackOverflow. Writing it yourself from scratch in D3 might often end up easiest.</p>
 <h2 id="switchers-for-changing-the-view-on-the-data">&quot;Switchers&quot; for Changing the View on the Data</h2>
 <p>This is a trick you get with interactives -- the &quot;recast&quot; the problem in a new way, or &quot;switch&quot; the view of the data. This can mean scale change, or annotation/highlighting different data. Here's a couple examples:</p>
 <ul>
-<li>A log scale switch: log vs. normal (Exoplanets interactive from NatGeo link is broken, so let's use this now: <a href="http://bl.ocks.org/phoebebright/4124200" class="uri">http://bl.ocks.org/phoebebright/4124200</a>)</li>
+<li>A log scale switch: log vs. normal: <a href="http://www.nationalgeographic.com/astrobiology/goldilocks-worlds/">Exoplanets from NatGeo</a>, and another one: <a href="http://bl.ocks.org/phoebebright/4124200" class="uri">http://bl.ocks.org/phoebebright/4124200</a></li>
 <li><a href="http://www.nytimes.com/interactive/2015/08/28/world/europe/countries-under-strain-from-european-migration-crisis.html?smid=tw-nytimes&amp;_r=0">A Surge in Asylum Applications</a> - Total vs. Population switch</li>
 <li><a href="http://www.nytimes.com/interactive/2012/10/05/business/economy/one-report-diverging-perspectives.html?_r=2&amp;">How Democrats vs Republicans See Friday's Job Numbers</a>, NYT Graphics</li>
 </ul>
@@ -230,8 +236,28 @@ then the bl.ocks url is: <code>http://bl.ocks.org/arnicas/743b4b3406d139ab65fa</
 <p>You'll implement one with your own data for homework if you want to accept the challenge!</p>
 <h2 id="a-very-simple-d3-intro-with-data">A Very Simple D3 Intro With Data</h2>
 <p>Last week you loaded a data file from CSV into a web page. Now we're going to do a simple DOM operation with D3 using that data file. (This will be easier than the Highcharts stuff!)</p>
-<p>Let's look at <a href="d3_simple_append.html" class="uri">d3_simple_append.html</a> and how that works.</p>
-<p>For your homework, create <code>&lt;p&gt;</code> tags for each row of your data, using the template in the <a href="create_p_from_data.html" class="uri">create_p_from_data.html</a> file.</p>
+<p>Let's look at <a href="d3_simple_append.html" class="uri">d3_simple_append.html</a> and how that works. We're just appending a <code>&lt;p&gt;</code> tag to the &quot;body&quot; of the document!</p>
+<p>Now, in <a href="create_p_from_data.html" class="uri">create_p_from_data.html</a>, there is some more fanciness going on with your loaded data. Instead of using a for loop in javascript, we'll use a nicer functional construct, the forEach loop:</p>
+<pre><code>var body = d3.select(&quot;body&quot;);
+d3.csv(&quot;data/water_improvement_data.csv&quot;, function(error, mydata) {
+
+    if (error) { console.log(&quot;error loading&quot;, error); }
+
+    console.log(&quot;My first object:&quot;, mydata[0]);
+
+    // This is not the real D3 &#39;way&#39; yet. This is a javascript
+    // loop that will add p elements for each item in the data set
+    // manually. In D3, you will learn to use enter() eventually for this.
+
+    mydata.forEach(function (d) {
+        console.log(&quot;In this loop, d is now &quot;, d);
+        // body was declared above, before the d3.csv!
+        body.append(&quot;p&quot;).text(d.name + &quot; &quot; + d.year1990 + &quot; &quot; + d.year2015);
+    });
+});
+</code></pre>
+<p>In this loop above, we loaded our data into a variable called &quot;mydata&quot;. Using the forEach loop, every row of the data becomes &quot;d&quot; as we go through the array. We add a paragraph p to the body each loop through, with text content made up of the fields of the data row: <code>d.name</code> and <code>d.year1990</code> and <code>d.year2015</code>. The fields &quot;name&quot;, &quot;year1990&quot;, and &quot;year2015&quot; are the columns in my CSV data set.</p>
+<p>For your homework, create <code>&lt;p&gt;</code> tags for each row of your data, using the template in the <a href="create_p_from_data.html" class="uri">create_p_from_data.html</a> file. You will need to load your own data and refer to your own columns in the string your build for the p tag.</p>
 <p><strong>Resources</strong>:</p>
 <ul>
 <li>A <a href="https://www.youtube.com/watch?v=KqEm-3tofBA&amp;list=PL0tDk-f4v1uhQn6iA8M-eGRzIX5Lqsm9F&amp;index=6">video from Scott Murray explaining d3.csv loading of objects</a></li>
@@ -257,6 +283,7 @@ Overview first, zoom and filter, then details on demand.</em></p></li>
 <p>For extra credit (15pt), use the structure and button switch button functionality in <a href="highcharts_switch.html" class="uri">highcharts_switch.html</a> or <a href="simpler_switcher.html" class="uri">simpler_switcher.html</a> to toggle between your two charts. Adjust the text, labels, tooltips, etc. to match your data and data source. Be sure it has useful tooltips if you can control that.</p>
 <p>Points: (25pts, plus 15pt extra for toggle). Check it in as a gist and send me the link to the gist, &quot;Week2: Two Charts.&quot;</p>
 <p>For your gist: <em>Be sure the html page is called index.html.</em> Be sure your path to Highcharts is a CDN as mine is, not local, link. My examples show the CDN path you should use in your code.</p>
-<p><strong>Homework 2</strong>: Read in one of your csv data files and verify your objects are there as expected. Prove it to me by creating <code>&lt;p&gt;</code>'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, &quot;Week 2: Paragraph Data load.&quot; (15pt) <em>Name the web page itself index.html so it will work in a blocks example!</em></p>
+<p><strong>Homework 2</strong>: Paragraph Data load</p>
+<p>Read in one of your csv data files and verify your objects are there as expected. Prove it to me by creating <code>&lt;p&gt;</code>'s on the page using d3 in a forEach loop (you can remove the jquery approach). Make a gist, and send me your gist link, &quot;Week 2: Paragraph Data load.&quot; (10pt) <em>Name the web page itself index.html so it will work in a blocks example!</em></p>
 </body>
 </html>

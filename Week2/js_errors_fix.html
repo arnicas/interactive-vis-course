@@ -46,7 +46,7 @@ var mydata = [
   },
   {
     Name: "Bob",
-    Experience: "10",
+    Experience: 10,
     Title: "Associate Editor"
   },
   {
@@ -57,23 +57,25 @@ var mydata = [
 ];
 
 // fix this to fill in your name and display this in the console.
-//console.log("Hi, my name is " + your name here).
+console.log("Hi, my name is " + "Lynn");
 
 // fix this so you can refer to burrowing owls:
-//console.log("Problem 1, owls:", myobject's burrowing owls);
+
+console.log("Problem 1, owls:", myobject.burrowingOwl);
 
 // fix to call the function with the cats and dogs properly
-//console.log("Problem 2, Add 2 values:", simple_add(myobject's cats, myobject's dogs));
+
+console.log("Problem 2, Add 2 values:", simple_add(myobject.cats, myobject.dogs));
 
 // fix to reference the first object in the list.
-console.log("Problem 3, the first json object is (fix the index in brackets):", mydata[<index>]);
+console.log("Problem 3, the first json object is (fix the index in brackets):", mydata[0]);
 
 
 // A very simple function is needed here...
-console.log("Problem 4, print the size or length of the mydata array using the right function in place of the array object name here:", mydata);
+console.log("Problem 4, print the size or length of the mydata array using the right function in place of the array object name here:", mydata.length);
 
 // Fill in the function, args, and fix the args so this works:
-console.log("Problem 5, subtract experience of Bob from Alice, which requires fixing the data so subtraction works:", <fill in function and args here>);
+console.log("Problem 5, subtract experience of Bob from Alice, which requires fixing the data so subtraction works:", subtract(mydata[0].Experience, mydata[1].Experience));
 
 
 // Create another list of data objects expressing these estimates from 2014:
@@ -118,7 +120,9 @@ console.log("Your page should now display the last h2 element...");
 // Raw DOM manipulation without jquery or d3: fix the missing variable with the results of the part above.
 
 var child = document.createElement("h2");
-child.innerHTML = "You did it! Texas has a Population per House Seat of " + YourAnswerHere;
+child.innerHTML = "You did it! Texas has a Population per House Seat of " + 
+PopPerSeat(states[2].Population, states[2].Seats);
+
 document.getElementById("content").appendChild(child);
 
 </script>
