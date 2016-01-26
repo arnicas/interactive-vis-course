@@ -4,7 +4,7 @@
 ## Week1: Intro
 
 * [console_javascript.html](Week1/console_javascript.html): Console action only.
-* * [d3_load_csv_json.html](Week1/d3_load_csv_json.html): Loading simple CSV (and JSON) files with d3.
+* [d3_load_csv_json.html](Week1/d3_load_csv_json.html): Loading simple CSV (and JSON) files with d3.
 
 ## Week2: Loading Data, Highcharts, Other Libs
 
