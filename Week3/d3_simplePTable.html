@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Loading CSV Data with D3</title>
+
+    <style>
+
+    body  {
+      font-family: Arial, sans-serif;
+      font-size: 1em;
+      margin: 20px;
+      max-width: 900px;
+    }
+
+    p.header {
+      font-size: 110%;
+      font-weight: bold;
+    }
+
+    p.info {
+      font-size: .8em;
+      color: gray;
+      margin-left: 5px;
+      line-height: 1em;
+    }
+
+    p.table {
+      line-height: .5em;
+      margin-left: 20px;
+    }
+
+    </style>
+
+	</head>
+	<body>
+
+		<h1>Using D3 to draw loaded data "p" elements</h1>
+    <p class="info">This table shows regional access to improved water over 15 years. Our layout just draws each row, with no table cells.  We'll have to do some more sophisticated D3 to create each table cell and get good alignment.</p>
+    <p class="info">Source: WHO/UNICEF (2015) Progress on Sanitation and Drinking Water: 2015 Update</p>
+		<div id="data"></div>
+
+	</body>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<script type="text/javascript">
+
+			//Load in contents of CSV file, and do things to the data.
+
+			d3.csv("data/water_improvement_data.csv", function(error, myData) {
+
+        if (error) {
+          console.log("Had an error loading file.");
+        }
+
+				// We'll be using simpler data as values, not objects.
+				var myArray = [];
+
+				myData.forEach(function(d, i){
+
+					// now we add another data object value, a calculated value.
+					d.difference = d.year2015 - d.year1990;
+					if (d.name === "Developing regions") {
+						d.name = "Developing Regions"; // fixing a label in js code - could fix in the file, of course
+					}
+					if (d.name === "Developed regions") {
+						d.name = "Deveoloped Regions";
+					}
+
+				 // Add a new array with the values of each:
+			 	 myArray.push([d.name, d.year1990, d.year2015, d.difference]);
+
+				});
+
+				console.log("Original data ", myData);
+				console.log("My new fixed array of data ", myArray);
+
+				var table = d3.select("#data"); // we will work from the #table div on the page, and attach data to it.
+
+        // first, we create a header row with a special class:
+
+				var header = table.append("p").attr("class", "header");
+
+        // then we attach a single data item to it - an array of strings.
+				header
+					.datum(["Region", "1990", "2015", "Difference"])
+          .text(function(d) {
+            return d.join(' ');  // this is the same as making a string like:
+                                // d[0] + ' ' + d[1] + ' ' + d[2] + ' ' + d[3], except we don't need to know how many items are in the array!
+           });
+
+          // Now we use the data we read in to create the "p" elements in the proper d3 way:
+
+        table
+        	.selectAll("p.table")
+        	.data(myArray)  // because we are using multiple items, we use the select, data, enter, append pattern:
+        	.enter()
+        	.append("p")
+          .attr("class", "table") // we need to create the p.table items that we "selected" here
+          .text(function(d) {
+            console.log("this is my current d row of data", d);
+            return d.join(" "); // this js function joins the array elements with a space separator
+          });
+
+			}); // end of d3.csv
+
+		</script>
+
+</html>

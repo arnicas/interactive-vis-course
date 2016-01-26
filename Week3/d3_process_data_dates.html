@@ -10,6 +10,7 @@
 		<h1>Loading CSV and processing the data.</h1>
 		<p>Not much to see here; try looking in the console!</p>
 		<p>If you open the console after loading, you'll need to reload the page.</p>
+		<p id="dates"></p>
 
 		<script type="text/javascript">
 
@@ -24,26 +25,35 @@
 				// let's do things to the data here.  This is VERY COMMON in d3 code.
 
 				// We're telling the parser what the input string format is:
-				var dateParser = d3.time.format("%Y");
+				var dateParser = d3.time.format("%Y"); // this is 2007 etc, as in the file.
+				var outputDate = d3.time.format(" '%y "); // this is '07 format - with spaces around it
 
-				var outputDate = d3.time.format("'%y");
-
-				// Your arguments for forEach are the item and it's number in the array:
+				// Your arguments for forEach are the item and its number in the array:
 				data.forEach(function(d, i){
 
-					// Here we parse the string year as a date and get a JS date object.
-
-					d.water_access = +d.water_access;
+					d.water_access = +d.water_access; // convert the water_access to a number
 
 					// you apply the function with parse, to read it in:
-					d.year = dateParser.parse(d.year);
+					d.parsed_year = dateParser.parse(d.year);
 
-					console.log(i, d);
+					console.log(i, d); // now look at d.year and d.parsed_year.
 
 					// if you wanted to print it in a short format, instead:
-					console.log("output string", i, outputDate(d.year));
+					console.log("output string", i, outputDate(d.parsed_year));
 				});
 
+				// here's a sample of using d3 to print the output dates:
+
+				var mydates = d3.select("p#dates");
+
+				mydates
+					.selectAll("p")
+					.data(data)
+					.enter()
+					.append("p")
+					.text(function(d) {
+						return "My output year format is:" + outputDate(d.parsed_year);
+					});
 
 			});
 

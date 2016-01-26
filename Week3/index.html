@@ -32,6 +32,7 @@
 <ul>
 <li><a href="#week-3-data-loading-tables">Week 3: Data Loading, Tables</a><ul>
 <li><a href="#homework-review">Homework Review</a><ul>
+<li><a href="#two-charts">Two Charts</a></li>
 <li><a href="#an-in-class-debugging-problem">An In-Class Debugging Problem</a></li>
 </ul></li>
 <li><a href="#some-javascript-manipulations-on-data">Some Javascript Manipulations on Data</a><ul>
@@ -47,6 +48,22 @@
 </div>
 <h1 id="week-3-data-loading-tables">Week 3: Data Loading, Tables</h1>
 <h2 id="homework-review">Homework Review</h2>
+<h3 id="two-charts">Two Charts</h3>
+<p>Nice comparisons:</p>
+<ul>
+<li><a href="http://bl.ocks.org/captainelaine/raw/878de9e89e87cfb5b33e/" class="uri">http://bl.ocks.org/captainelaine/raw/878de9e89e87cfb5b33e/</a></li>
+<li><a href="http://bl.ocks.org/jashcny/raw/a0ad931aac8a8e6960d5/" class="uri">http://bl.ocks.org/jashcny/raw/a0ad931aac8a8e6960d5/</a></li>
+<li><a href="http://bl.ocks.org/JenHLab/raw/f3be2719dc714d82cf92/" class="uri">http://bl.ocks.org/JenHLab/raw/f3be2719dc714d82cf92/</a></li>
+</ul>
+<p>Nice text:</p>
+<ul>
+<li><a href="http://bl.ocks.org/NERD-rat-LAB/raw/0ce43f1e0c366814d3a4/" class="uri">http://bl.ocks.org/NERD-rat-LAB/raw/0ce43f1e0c366814d3a4/</a></li>
+<li><a href="http://bl.ocks.org/SHewitt95/raw/8bbaeb1d9284db6b5a72/" class="uri">http://bl.ocks.org/SHewitt95/raw/8bbaeb1d9284db6b5a72/</a></li>
+<li><a href="http://bl.ocks.org/hfreitas92/raw/ba8a83bde86d429021bd/" class="uri">http://bl.ocks.org/hfreitas92/raw/ba8a83bde86d429021bd/</a></li>
+</ul>
+<p>But note: <strong>the dual-axis problem</strong> is a real one: <a href="https://www.perceptualedge.com/articles/visual_business_intelligence/dual-scaled_axes.pdf" class="uri">https://www.perceptualedge.com/articles/visual_business_intelligence/dual-scaled_axes.pdf</a></p>
+<p>Try to avoid using them!</p>
+<p>What was hard about this homework?</p>
 <h3 id="an-in-class-debugging-problem">An In-Class Debugging Problem</h3>
 <p>Let's look at the error in <a href="jquery_error_on_load.html" class="uri">jquery_error_on_load.html</a> together.</p>
 <h2 id="some-javascript-manipulations-on-data">Some Javascript Manipulations on Data</h2>
@@ -102,16 +119,49 @@
         return d3.descending(a[2], b[2]);
         })</code></pre>
 <h3 id="dates-in-your-data-a-first-glance">Dates in Your Data (a First Glance)</h3>
-<p>Dates should be turned into Javascript date objects. D3 has tools for this. A lot of the data we will work with from UNICEF includes dates (years, anyway).</p>
+<p>Dates should be turned into Javascript date objects. D3 has tools for this. A lot of the data from UNICEF includes dates (years, anyway).</p>
+<p>The thing to remember is that you need to &quot;parse&quot; a date string to make a Javascript date object. You can then convert it to another format to print out a human readable string.</p>
 <ul>
 <li>Dates example: <a href="d3_process_data_dates.html" class="uri">d3_process_data_dates.html</a></li>
+</ul>
+<pre><code>    var dateParser = d3.time.format(&quot;%Y&quot;); // this is 2007 etc, as in the file.
+    var outputDate = d3.time.format(&quot; &#39;%y &quot;); // this is &#39;07 format - with spaces around it</code></pre>
+<p>We &quot;parse&quot; using the <code>.parse()</code> function on the dateParser we set up with a format:</p>
+<pre><code>    // you apply the function with parse, to read it in:
+    d.parsed_year = dateParser.parse(d.year);</code></pre>
+<p>To print it, we just wrap the parsed year in the output format we want:</p>
+<pre><code>console.log(&quot;output string:&quot;, outputDate(d.parsed_year));</code></pre>
+<p>For more:</p>
+<ul>
 <li>For input date handling, see: <a href="http://learnjsdata.com/time.html" class="uri">http://learnjsdata.com/time.html</a></li>
 <li>Help with format strings from @zanarmstrong: <a href="http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95" class="uri">http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95</a></li>
 <li>Video by Scott Murray: <a href="https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B" class="uri">https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B</a></li>
 </ul>
-<p>We'll come back to dates in an uncoming week, too.</p>
+<p>We'll come back to dates in an upcoming week, too.</p>
 <h2 id="intro-to-selections-and-data-binding-in-d3">Intro to Selections and Data Binding in D3</h2>
-<p>To do the &quot;right&quot; thing with data in D3, you need to understand binding data to DOM elements. This concept works with the &quot;selectAll, data, enter, append&quot; pattern.</p>
+<p>To do the &quot;right&quot; thing with data in D3, you need to understand binding data to DOM elements. This concept works with the &quot;selectAll, bind data, enter, append what you selected&quot; pattern.</p>
+<p>Data binding in D3 uses a pattern in which we select a non-existent element on the page, bind the data to it with a <code>.data()</code> statement, <code>enter()</code> it, and then append the thing we selected, for each row of data.</p>
+<p>The pattern for multiple rows of data in a file is always:</p>
+<pre><code>var table = d3.select(&quot;#table&quot;);  // select the thing on the page you are attaching to
+
+// we use the svg element to attach our 
+table.selectAll(&quot;p&quot;) // or whatever svg or DOM element you want to create!
+    .data(myData) // using your data set here - this is the binding
+    .enter() // this is used to &quot;enter&quot; each row of your data
+    .append(&quot;p&quot;) // now create a p for it
+    .text(function(d) {  //  use a data element to fill in the text here. function(d) is always your data item.
+        return d.SomeProperty;
+    });
+</code></pre>
+<p>For data and charts that will be updated, the best pattern to follow is to bind the data separately from the enter stage - because you might be also calling transition and exit on that data selection. (You'll see that later.)</p>
+<pre><code>var mytable = table.selectAll(&quot;p&quot;)
+    .data(myData); // this is a data binding in a separate step.
+
+mytable.enter()
+    .append(&quot;p&quot;)
+    .text(function(d) {
+        return d.someProperty;
+    });</code></pre>
 <p><strong>Important Readings</strong>:</p>
 <ul>
 <li><a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html">Interactive Data Visualization for the Web (IDVW) Chapter 5</a> introducing D3 binding and loading data.</li>
@@ -130,10 +180,28 @@
 <h2 id="tables-as-an-intro-to-deep-d3-thinking">Tables as an Intro to &quot;Deep&quot; D3 Thinking</h2>
 <p>We're starting with tables, because in my opinion they are an often overlooked part of the interactive vis landscape, and one of my favorites. Building them illustrate some key aspects of D3 DOM manipulation, they allow us to use JQuery and D3 together if we want; they transition nicely to heatmaps, an excellent visual display method for some types of data.</p>
 <ul>
-<li>Reading: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch05.html#_binding_data">IDVW Chapter 5</a></li>
-<li>Review <a href="d3_table.html" class="uri">d3_table.html</a>. Try to use breakpoints and logging to understand it.</li>
 <li>You should review: <a href="http://bost.ocks.org/mike/nest/" class="uri">http://bost.ocks.org/mike/nest/</a></li>
 <li>How selections work demo: selectAll vs. select: <a href="http://prcweb.co.uk/lab/selection/" class="uri">http://prcweb.co.uk/lab/selection/</a></li>
+<li><strong>Example:</strong> Start with a simple table with &quot;p&quot; rows: <a href="d3_simplePTable.html" class="uri">d3_simplePTable.html</a>: This example uses data binding and also a datum header row.</li>
+</ul>
+<p>There is a special case for binding a single item of data, using <code>datum()</code> instead of the <code>data()</code> and select/enter pattern. Datum will bind one item, and you can still access it using an append and the <code>function(d)</code> accessor to get attributes of the data. This is an example:</p>
+<pre><code>var table = d3.select(&quot;#data&quot;); // we will work from the #table div on the page, and attach data to it.
+var header = table.append(&quot;p&quot;).attr(&quot;class&quot;, &quot;header&quot;);
+
+// then we attach a single data item to it - an array of strings.
+header
+    .datum([&quot;Region&quot;, &quot;1990&quot;, &quot;2015&quot;, &quot;Difference&quot;])
+    .text(function(d) {
+        return d.join(&quot; &quot;);  // this is the same as making a string like:
+                             // d[0] + &#39; &#39; + d[1] + &#39; &#39; + d[2] + &#39; &#39; + d[3], 
+                             //except we don&#39;t need to know how many items are in the array!
+    });</code></pre>
+<ul>
+<li>More complicated, real table: <a href="d3_table.html" class="uri">d3_table.html</a>. This example uses nested selections. Try to use breakpoints and logging to understand it. This is pretty advanced D3!</li>
+</ul>
+<p>A little more complex in the packaging:</p>
+<ul>
+<li><a href="d3_tabulate_function.html" class="uri">d3_tabulate_function.html</a>: Uses a function to set up the table.</li>
 </ul>
 <h2 id="homework">Homework</h2>
 <p>Readings:</p>
@@ -143,13 +211,14 @@
 <li>Nested Selections and Tables: <a href="http://bost.ocks.org/mike/nest/" class="uri">http://bost.ocks.org/mike/nest/</a></li>
 </ul>
 <p>Plus anything else that I referenced above that helps you better understand d3 data selection and joins.</p>
-<p><strong>Homework 1</strong>: (25pt), Build your own styled table from your own CSV data, using the model in d3_table.html.</p>
+<p><strong>Homework</strong>: (25pt), Build your own styled table from your own CSV data, using the model in <a href="d3_tabulate_function.html" class="uri">d3_tabulate_function.html</a>.</p>
 <ul>
-<li>Sort the data in javascript in a reasonable default way (by one of the columns) for display before it goes into the table.</li>
-<li>Create one calculated column out of the data in your file - e.g., adding, subtracting, percentage, etc.</li>
-<li>Style it so it doesn't look plain (i.e., better than mine).</li>
-<li>Make the title header on the page appropriately explain your data table. Add more text to the page to help explain, identifying your source, etc. (25pts)</li>
+<li>Sort the data in Javascript in a reasonable default way (by one of the columns) for display before it goes into the table.</li>
+<li>Create one calculated column out of the data in your file - e.g., adding, subtracting, percentage, in a forEach loop after you load the data.</li>
+<li>Style it so it doesn't look plain (i.e., make it better than mine).</li>
+<li>Make the title header on the page appropriately explain your data table. Add more text to the page to help explain it and identify your source, etc. (25pts)</li>
 </ul>
-<p>Send me the gist, &quot;Week 3: Basic D3 Table.&quot;</p>
+<p>When you make the gist, you will need to upload the file tabulate.js too!</p>
+<p>Send me the gist: &quot;Week 3: D3 Table.&quot;</p>
 </body>
 </html>

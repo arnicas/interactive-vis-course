@@ -34,7 +34,7 @@
 					// now we add another data object value, a calculated value.
 					d.difference = d.year2015 - d.year1990;
 					if (d.name === "Developing regions") {
-						d.name = "Developing Regions";
+						d.name = "Developing Regions"; // fixing a label in js code - could fix in the file, of course
 					}
 					if (d.name === "Developed regions") {
 						d.name = "Deveoloped Regions";
@@ -52,8 +52,9 @@
 
 				var table = d3.select("#table").append("table");
 
-				var header = table.append("thead").append("tr");
+				var header = table.append("thead").append("tr"); // after this, the header is the tr row.
 
+        // do a data join and create th items for each data element in the array
 				header
 					.selectAll("th")
 					.data(["Region", "1990", "2015", "Difference"])

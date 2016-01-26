@@ -25,12 +25,13 @@
 * [d3_process_data.html](Week3/d3_process_data.html): Processing data on load.
 * [d3_new_obj_data.html](Week3/d3_new_obj_data.html): Making new objects with loaded data.
 * [d3_process_data_dates.html](Week3/d3_process_data_dates.html): Doing some data handling in data.
-* [d3_table.html](Week3/d3_table.html): A D3 table.
+* [d3_simplePTable.html](Week3/d3_simplePTable.html): Create a bunch of rows using d3's enter/append and a datum header. P elements without real table structure.
+* [d3_table.html](Week3/d3_table.html): A D3 table with real table structure.
+* [d3_tabulate_function.html](Week3/d3_tabulate_function.html): A function to draw a table with.
 
 
 ## Week4: Tables, Scales, SVG
 
-* [d3_tabulate_function.html](Week4/d3_tabulate_function.html): A function to draw a table with.
 * [d3_tabulate_function_sortable.html](Week4/d3_tabulate_function_sortable.html): A sortable table using jquery after D3 table creation.
 * [scale_examples.html](Week4/scale_examples.html): Showing some d3 scale code.
 * [d3_table_heatmap.html](Week4/d3_table_heatmap.html): A table with a color heatmap shading.
