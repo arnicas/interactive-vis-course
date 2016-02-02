@@ -4,7 +4,9 @@ http://www.d3noob.org/2013/02/add-html-table-to-your-d3js-graph.html,
 but with minor modification by Lynn.
 */
 
-function tabulate(data, columns, id) {
+function tabulate(data, columns, headers, id) {
+    // columns is the actual object column in the CSV
+    // headers is what i want on the top of the table
     var table = d3.select(id).append("table"),
         thead = table.append("thead"),
         tbody = table.append("tbody");
@@ -12,7 +14,7 @@ function tabulate(data, columns, id) {
     // append the header row
     thead.append("tr")
         .selectAll("th")
-        .data(columns)
+        .data(headers)
         .enter()
         .append("th")
             .text(function(column) { return column; });

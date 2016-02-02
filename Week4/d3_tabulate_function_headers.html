@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Loading CSV Data with D3</title>
+
+	</head>
+	<body>
+
+		<h1>Loading CSV and making a table with a function!</h1>
+		<p>Source: WHO/UNICEF (2015) Progress on Sanitation and Drinking Water: 2015 Update</p>
+		<div id="table"></div>
+
+	</body>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+		<!-- load the function file you need before you call it... -->
+		<script type="text/javascript" src="js/tabulate.js"></script>
+
+		<script type="text/javascript">
+
+			//Load in contents of CSV file, and do things to the data.
+
+			d3.csv("data/water_improvement_data.csv", function(error, data) {
+
+				if (error) {
+					console.log("Had an error loading file.");
+				}
+
+				data.forEach(function(d, i){
+					// now we add another data object value, a calculated value.
+					d.difference = d.year2015 - d.year1990;
+				});
+
+				console.log(data);
+
+				// the tabulate function wants the second argument to be your columns in your data that will be in the table.
+				// third argument is the element to put it into on the page
+				var regionTable = tabulate(data,
+					                        ["name", "year1990", "year2015", "difference"],
+					                        ["Region", "1990", "2015", "Difference"],
+					                        "#table");
+
+				// Excercises for you if you want: Fix the names in the data and table so they look nicer.
+				// Sort the data by whatever you think is most interesting. What problem does that cause?
+				// Add a style sheet to make this table look nice!
+
+			});
+
+		</script>
+
+</html>
