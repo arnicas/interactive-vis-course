@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- File from Scott Murray's Knight D3 course -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Creating HTML Elements</title>
+
+		<style>
+		body {
+			padding: 20px;
+		}
+
+		</style>
+
+	  <!--This will error unless you have d3 local in the course files js dir.
+	  And it won't work on a bl.ocks.org page if you refer to a local file. -->
+
+		<script type="text/javascript" src="../js/d3.v3.js"></script>
+	</head>
+	<body>
+
+		<h2>Playing with Data() / Datum() and Selections</h2>
+
+		<p class="existing">I'm a paragraph on the page. You have to be careful with selections and data joins--you might pick up existing items and "lose" data.</p>
+
+		<div class="another">I'm a div for use later.</div>
+
+		<script type="text/javascript">
+
+		var mydata= ["this is one paragraph", "apples", "another para", "pears", "oranges", 33, 24];
+
+		var mydivdatum = ["this is for a div", 35, "this is too", "datum not data"];
+
+			d3.select("body")
+				.append("p")
+				.attr("class", "new")
+				.text("This is a new paragraph! No data join, just an append.")
+
+			console.log("is there data here?", d3.select("p.new").data());
+
+			/*
+
+			d3.select("body").selectAll("p")
+				.data(mydata)
+				.enter()
+				.append("p")
+				.text(function(d) {
+					console.log("the entered data item is", d);
+					return d;
+				});
+
+			console.log("all the data on the p's:", d3.selectAll("p").data());
+
+			d3.selectAll("div.another")
+				.datum(mydivdatum)
+				.append("p") // you can append
+				.text(function(d) {  // we have access to the data item
+					return d;
+				});
+
+			console.log("data on the div:", d3.selectAll("div.another").data());
+
+			d3.selectAll("div.another")
+			.datum(mydivdatum)
+			//.enter()
+			.append("p")
+			.text(function (d) {
+				return d;
+			});
+
+*/
+
+		</script>
+
+	</body>
+</html>

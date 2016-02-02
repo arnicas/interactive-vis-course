@@ -45,8 +45,13 @@
 
 				});
 
-				console.log(myData);
-				console.log(myArray);
+				console.log("original data is objects:", myData);
+				console.log("fixed data is an array of arrays:", myArray);
+
+        // sort by difference descending - the 4th item in each array:
+        myArray.sort(function(a,b) {
+          return d3.descending(a[3], b[3]);
+        });
 
         // You could also have made the new array with a map function!
 
@@ -57,7 +62,7 @@
         // do a data join and create th items for each data element in the array
 				header
 					.selectAll("th")
-					.data(["Region", "1990", "2015", "Difference"])
+					.data(["Region", "1990", "2015", "Difference"]) // I can name them what I want
 					.enter()
 					.append("th")
           .text(function(d) { return d; });
@@ -66,7 +71,7 @@
 
         rows = tablebody
         	.selectAll("tr")
-        	.data(myArray)
+        	.data(myArray) // this is the array of arrays we made above, in the same order as the column labels, sorted now.
         	.enter()
         	.append("tr");
 

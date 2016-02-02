@@ -47,6 +47,12 @@
                                 <p>SUV
         </div>
 
+
+
+        <div id="colorScale3">
+          This is another ordinal scale, with data mapped to specific values:
+      </div>
+
     </body>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
@@ -70,6 +76,54 @@
     // a shortcut for the max and min operation is:
     console.log(d3.extent(myData));
 
+    // this is the same as above, but using the shortcut d3.extent:
+
+    var linearScale = d3.scale.linear()
+                      .domain(d3.extent(myData))
+                      .range([0,100]);
+
+
+    // Suppose we had objects, like from a CSV?
+
+    myobjects = [
+      {
+      country : "USA",
+      score : "42"
+      },
+      {
+      country : "Belgium",
+      score : "24"
+      },
+      {
+      country : "Taiwan",
+      score : "5"
+      },
+      {
+      country : "Ireland",
+      score : "35"
+      },
+      {
+      country : "Tahiti",
+      score : "05"
+      }
+    ];
+
+    myobjMax = d3.max(myobjects, function(d) {
+      return +d.score;
+    });
+
+    console.log("max from d3.max on objects", myobjMax);
+
+    myobjextents = d3.extent(myobjects, function(d) {
+      return +d.score;
+    });
+
+    console.log("max and min array from d3.extent on objects", myobjextents);
+
+    // Let's look at the scaled data from the original number data:
+
+    console.log("the scaled value 3000 is now", linearScale(3000));
+
     myData.forEach(function(d, i){
         // we call the scale function with each element,
         // and put the result onto the new array:
@@ -82,7 +136,8 @@
 
     var newData = [24, 54, 65, 100, 23, 43, 2, 35, 76, 47];
 
-    var colorScale = d3.scale.linear().domain(d3.extent(newData)).range(['red','blue']);  // note - this is a bad color scale. a single color would be better.
+    // you can use hex etc values in here - i'm just using named colors now
+    var colorScale = d3.scale.linear().domain(d3.extent(newData)).range(['gray','red']);
 
     // draw actual paragraphs with the colors:
     d3.select("#colorScale1")
@@ -97,16 +152,38 @@
         return colorScale(d);
       });
 
+
+    // one of many ordinal scale options for generating lists of colors in d3.
     var colors = d3.scale.category10();
 
     // this is still a function: it returns the colors by count:
     console.log(colors(0));
 
-    // in this example, we select existing p's and restyle them!
+    // in this example, we select existing p's and restyle them!  Notice there are more than 10 items, and the colors start repeating:
+
     d3.select("#colorScale2")
       .selectAll("p")
       .style("color", function(d, i) {
         return colors(i);
       });
+
+
+    // This is a way to specific particular colors for particular values:
+
+    var color3 = d3.scale.ordinal().domain(['apples', 'blueberries', 'oranges', 'lemons']).range(['red', 'blue', 'orange', 'yellow']);
+
+    var myFruit = ['apples', 'oranges', 'lemons', 'blueberries', 'lemons', 'oranges'];
+
+    d3.select("#colorScale3")
+    .selectAll("p")
+    .data(myFruit)
+    .enter()
+    .append("p")
+    .text(function(d) {
+      return d;
+    })
+    .style("color", function (d) {
+      return color3(d);
+    });
 
 </script>

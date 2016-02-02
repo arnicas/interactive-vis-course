@@ -32,6 +32,7 @@
 
 ## Week4: Tables, Scales, SVG
 
+* [d3_data_datum.html](Week4/d3_data_datum.html): Some demos of data joins and selection gotchas.
 * [d3_tabulate_function_sortable.html](Week4/d3_tabulate_function_sortable.html): A sortable table using jquery after D3 table creation.
 * [scale_examples.html](Week4/scale_examples.html): Showing some d3 scale code.
 * [d3_table_heatmap.html](Week4/d3_table_heatmap.html): A table with a color heatmap shading.

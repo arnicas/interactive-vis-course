@@ -86,12 +86,12 @@
 <li>Alternately, making new arrays: <a href="d3_new_obj_data.html" class="uri">d3_new_obj_data.html</a></li>
 </ul>
 <h3 id="sorting-data-arrays">Sorting Data Arrays</h3>
-<p>Useful javascript for sorting, by the way - and the sort order depends on whether you do a-b or b-a:</p>
+<p>Useful javascript for sorting, by the way - and the sort order depends on whether you do a-b or b-a. This notation works with sorting an array of objects, which means they have the attribute &quot;difference&quot; on them:</p>
 <pre><code>data.sort(function(a,b) {
     return b.difference-a.difference;
 });</code></pre>
-<p>This function will sort it in place - meaning, the data array is now sorted for you after you call this function (it persists).</p>
-<p>Also, in d3, there are some utility methods - if you use these, make sure your data values are numeric, though (unless you want sorting by string value, or alphabetic).</p>
+<p>The sort function will sort an array in place - meaning, the data array is now sorted for you after you call this function (it persists).</p>
+<p>Also, in d3, there are some utility methods - if you use these, make sure your data values are numeric, though (unless you want sorting by string value, or alphabetic). This shows us sorting an array of objects by the attribute &quot;value&quot;:</p>
 <pre><code>data.sort(function (a, b) {
     return d3.ascending(a.value, b.value);
 }</code></pre>
@@ -118,6 +118,7 @@
     arrays.sort(function(a,b) {
         return d3.descending(a[2], b[2]);
         })</code></pre>
+<p>Again, alphabetic sorting can use the same d3 helper functions!</p>
 <h3 id="dates-in-your-data-a-first-glance">Dates in Your Data (a First Glance)</h3>
 <p>Dates should be turned into Javascript date objects. D3 has tools for this. A lot of the data from UNICEF includes dates (years, anyway).</p>
 <p>The thing to remember is that you need to &quot;parse&quot; a date string to make a Javascript date object. You can then convert it to another format to print out a human readable string.</p>
@@ -184,7 +185,7 @@ mytable.enter()
 <li>How selections work demo: selectAll vs. select: <a href="http://prcweb.co.uk/lab/selection/" class="uri">http://prcweb.co.uk/lab/selection/</a></li>
 <li><strong>Example:</strong> Start with a simple table with &quot;p&quot; rows: <a href="d3_simplePTable.html" class="uri">d3_simplePTable.html</a>: This example uses data binding and also a datum header row.</li>
 </ul>
-<p>There is a special case for binding a single item of data, using <code>datum()</code> instead of the <code>data()</code> and select/enter pattern. Datum will bind one item, and you can still access it using an append and the <code>function(d)</code> accessor to get attributes of the data. This is an example:</p>
+<p>There is a special case for binding a single item of data, using <code>datum()</code> instead of the <code>data()</code> with the select/enter pattern. Datum will bind one item, and does not use an &quot;enter()&quot; function; you can still access the data in subsequent chained clauses using an append and the <code>function(d)</code> accessor to get attributes of the data. This is an example:</p>
 <pre><code>var table = d3.select(&quot;#data&quot;); // we will work from the #table div on the page, and attach data to it.
 var header = table.append(&quot;p&quot;).attr(&quot;class&quot;, &quot;header&quot;);
 
@@ -196,12 +197,13 @@ header
                              // d[0] + &#39; &#39; + d[1] + &#39; &#39; + d[2] + &#39; &#39; + d[3], 
                              //except we don&#39;t need to know how many items are in the array!
     });</code></pre>
+<p>For more on the <code>data()</code> vs. <code>datum()</code> difference, see the <a href="https://github.com/mbostock/d3/wiki/Selections#datum">datum documentation</a> and <a href="http://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data">this thread on SO</a>.</p>
 <ul>
-<li>More complicated, real table: <a href="d3_table.html" class="uri">d3_table.html</a>. This example uses nested selections. Try to use breakpoints and logging to understand it. This is pretty advanced D3!</li>
+<li>More complicated, real table: <a href="d3_table.html" class="uri">d3_table.html</a>. This example uses nested selections. Try to use breakpoints and logging to understand it. This is pretty advanced D3! This version uses an array of arrays that you create from your data, but you can rename your column headers however you like.</li>
 </ul>
 <p>A little more complex in the packaging:</p>
 <ul>
-<li><a href="d3_tabulate_function.html" class="uri">d3_tabulate_function.html</a>: Uses a function to set up the table.</li>
+<li><a href="d3_tabulate_function.html" class="uri">d3_tabulate_function.html</a>: Uses a function to set up the table. This function requires the actual column names that are in the data to create the table, and uses an array of objects, not arrays! The downside is that the column names can't be prettied up in your code, it uses what's in the csv file.</li>
 </ul>
 <h2 id="homework">Homework</h2>
 <p>Readings:</p>

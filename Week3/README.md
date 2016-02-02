@@ -62,7 +62,7 @@ d3.csv('myfile.csv', function(error, data) {
 
 ### Sorting Data Arrays
 
-Useful javascript for sorting, by the way - and the sort order depends on whether you do a-b or b-a:
+Useful javascript for sorting, by the way - and the sort order depends on whether you do a-b or b-a.  This notation works with sorting an array of objects, which means they have the attribute "difference" on them:
 
 ````
 data.sort(function(a,b) {
@@ -70,9 +70,9 @@ data.sort(function(a,b) {
 });
 ````
 
-This function will sort it in place - meaning, the data array is now sorted for you after you call this function (it persists).
+The sort function will sort an array in place - meaning, the data array is now sorted for you after you call this function (it persists).
 
-Also, in d3, there are some utility methods - if you use these, make sure your data values are numeric, though (unless you want sorting by string value, or alphabetic).
+Also, in d3, there are some utility methods - if you use these, make sure your data values are numeric, though (unless you want sorting by string value, or alphabetic).  This shows us sorting an array of objects by the attribute "value":
 
 ````
 data.sort(function (a, b) {
@@ -110,6 +110,9 @@ If you have an array of numbers or strings, not objects, your sort needs to work
         return d3.descending(a[2], b[2]);
         })
 ````
+
+Again, alphabetic sorting can use the same d3 helper functions!
+
 
 ### Dates in Your Data (a First Glance)
 
@@ -149,7 +152,6 @@ We'll come back to dates in an upcoming week, too.
 ## Intro to Selections and Data Binding in D3
 
 To do the "right" thing with data in D3, you need to understand binding data to DOM elements.  This concept works with the "selectAll, bind data, enter, append what you selected" pattern.
-
 
 Data binding in D3 uses a pattern in which we select a non-existent element on the page, bind the data to it with a `.data()` statement, `enter()` it, and then append the thing we selected, for each row of data.
 
@@ -207,7 +209,7 @@ We're starting with tables, because in my opinion they are an often overlooked p
 * How selections work demo: selectAll vs. select: http://prcweb.co.uk/lab/selection/
 * **Example:** Start with a simple table with "p" rows: [d3_simplePTable.html](d3_simplePTable.html): This example uses data binding and also a datum header row.
 
-There is a special case for binding a single item of data, using `datum()` instead of the `data()` and select/enter pattern.  Datum will bind one item, and you can still access it using an append and the `function(d)` accessor to get attributes of the data.  This is an example:
+There is a special case for binding a single item of data, using `datum()` instead of the `data()` with the select/enter pattern.  Datum will bind one item, and does not use an "enter()" function; you can still access the data in subsequent chained clauses using an append and the `function(d)` accessor to get attributes of the data.  This is an example:
 
 ````
 var table = d3.select("#data"); // we will work from the #table div on the page, and attach data to it.
@@ -223,11 +225,14 @@ header
     });
 ````
 
-* More complicated, real table: [d3_table.html](d3_table.html).  This example uses nested selections.  Try to use breakpoints and logging to understand it.  This is pretty advanced D3!
+For more on the `data()` vs. `datum()` difference, see the [datum documentation](https://github.com/mbostock/d3/wiki/Selections#datum) and [this thread on SO](http://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data).
+
+
+* More complicated, real table: [d3_table.html](d3_table.html).  This example uses nested selections.  Try to use breakpoints and logging to understand it.  This is pretty advanced D3!  This version uses an array of arrays that you create from your data, but you can rename your column headers however you like.
 
 A little more complex in the packaging:
 
-* [d3_tabulate_function.html](d3_tabulate_function.html): Uses a function to set up the table.
+* [d3_tabulate_function.html](d3_tabulate_function.html): Uses a function to set up the table.  This function requires the actual column names that are in the data to create the table, and uses an array of objects, not arrays!  The downside is that the column names can't be prettied up in your code, it uses what's in the csv file.
 
 
 

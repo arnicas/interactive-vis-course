@@ -27,7 +27,7 @@
 			var height = 350;
 			var width = 320;
 
-			// Set up the range here - my output sizes
+			// Set up the range here - my output sizes for my bars - from 0 to width.
 			var widthScale = d3.scale.linear()
 								.range([ 0, width ]);
 
@@ -44,10 +44,10 @@
 				}
 
 				data.sort(function(a, b) {
-					return d3.descending(+a.year2015, +b.year2015);
+					return d3.descending(+a.year2015, +b.year2015); // make numeric
 				});
 
-				// set up the domain here, from the data i read in.
+				// set up the domain here, from the data i read in. I'm starting at 0, not min.
 				widthScale.domain([ 0, d3.max(data, function(d) {
 					return +d.year2015;
 				}) ]);
@@ -59,10 +59,11 @@
 
 				rects.attr("x", 0)
 					.attr("y", function(d, i) {
-						return i * 20;   // just spacing the bars - notice from the top
+							// this is a hack to space the bars - we can do it was axes later.
+						return i * 20;   // just spacing the bars - notice from the top!
 					})
 					.attr("width", function(d) {
-						return widthScale(d.year2015);
+						return widthScale(+d.year2015); // use your scale here:
 					})
 					.attr("height", 10)
 					.append("title")  // this is a simple (bad) tooltip

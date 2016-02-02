@@ -20,6 +20,9 @@
 
 			d3.csv("data/water_improvement_data.csv", function(error, data) {
 
+
+				console.log("data I input", data);
+				
 				if (error) {
 					console.log("Had an error loading file.");
 				}
@@ -29,6 +32,7 @@
 
 				// Your arguments for forEach are the item and it's number in the array:
 				data.forEach(function(data_item, index){
+
 
 					// NB: it's much more common to see (d, i) as shorthand in D3 code.
 
