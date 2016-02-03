@@ -109,7 +109,7 @@
     ];
 
     myobjMax = d3.max(myobjects, function(d) {
-      return +d.score;
+      return d.score;
     });
 
     console.log("max from d3.max on objects", myobjMax);

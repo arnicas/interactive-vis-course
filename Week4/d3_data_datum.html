@@ -38,21 +38,23 @@
 
 			console.log("is there data here?", d3.select("p.new").data());
 
-			/*
-
-			d3.select("body").selectAll("p")
+			d3.select("body").selectAll("p.evennewer")
 				.data(mydata)
 				.enter()
 				.append("p")
+				.attr("class", "evennewer")
 				.text(function(d) {
 					console.log("the entered data item is", d);
 					return d;
 				});
 
+				// too many p's selected - notice no data on the first 2!
+				
 			console.log("all the data on the p's:", d3.selectAll("p").data());
 
 			d3.selectAll("div.another")
 				.datum(mydivdatum)
+				//.enter()
 				.append("p") // you can append
 				.text(function(d) {  // we have access to the data item
 					return d;
@@ -60,15 +62,6 @@
 
 			console.log("data on the div:", d3.selectAll("div.another").data());
 
-			d3.selectAll("div.another")
-			.datum(mydivdatum)
-			//.enter()
-			.append("p")
-			.text(function (d) {
-				return d;
-			});
-
-*/
 
 		</script>
 
