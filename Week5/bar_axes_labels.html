@@ -54,7 +54,8 @@
 				fullheight = 500;
 
 			// these are the margins around the graph. Axes labels go in margins.
-			var margin = {top: 20, right: 25, bottom: 20, left: 200};
+			// so there is a giant left margin because of the strings on the left side.
+			var margin = {top: 20, right: 25, bottom: 45, left: 200};
 
 			var width = fullwidth - margin.left - margin.right,
     		height = fullheight - margin.top - margin.bottom;
@@ -62,13 +63,16 @@
 			var widthScale = d3.scale.linear()
 								.range([0, width]);
 
+			// this will space out the bars between the top margin and chart height
+			// remember 0 is the top for the height, so height == bottom.
 			var heightScale = d3.scale.ordinal()
-								.rangeRoundBands([ margin.top, height], 0.2);
+								.rangeRoundBands([ 0, height], 0.2);
 
 			var xAxis = d3.svg.axis()
 							.scale(widthScale)
 							.orient("bottom");
 
+			// this will create the bar labels for us, given the domain of their strings!
 			var yAxis = d3.svg.axis()
 							.scale(heightScale)
 							.orient("left")
@@ -76,8 +80,10 @@
 
 			var svg = d3.select("body")
 						.append("svg")
-						.attr("width", fullwidth)
-						.attr("height", fullheight);
+							.attr("width", fullwidth)
+							.attr("height", fullheight)
+						.append("g")
+							.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
 			d3.csv("data/water_improvement_data.csv", function(error, data) {
@@ -91,9 +97,11 @@
 				});
 
 				// in this case, i know it's out of 100 because it's percents.
+				// you should calculate using d3.max for your data!
 				widthScale.domain([0, 100]);
 
-				// js map: will make a new array out of all the d.name fields
+				// js map: will make a new array out of all the d.name fields:
+
 				heightScale.domain(data.map(function(d) { return d.name; } ));
 
 				var rects = svg.selectAll("rect")
@@ -102,17 +110,17 @@
 						.append("rect");
 
 				rects
-					.attr("x", margin.left)
+					.attr("x", 0)
 					.attr("y", function(d) {
-						return heightScale(d.name);
+						return heightScale(d.name); // because we mapped to the names!
 					})
 					.attr("width", function(d) {
 						return widthScale(d.year2015);
 					})
-					.attr("height", heightScale.rangeBand())
+					.attr("height", heightScale.rangeBand()) // the height is a rangeband!
 					.style("fill", function(d){
 						if (d.name === "The World") {
-							return "darkblue";
+							return "darkblue"; // special case file, could have been done by a class.
 						}
 					})
 					.append("title")
@@ -124,22 +132,21 @@
 
 				svg.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(" + margin.left + "," + height + ")")
-					.call(xAxis);
+					.attr("transform", "translate(0," + height + ")")
+					.call(xAxis)
 
 				svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform", "translate(" + margin.left + ",0)")
 					.call(yAxis);
 
 				// Label below x axis
 
 				svg.append("text")
 					.attr("class", "xlabel")
-        	.attr("transform", "translate(" + (margin.left + width / 2) + " ," +
-        				(height + margin.bottom) + ")")
+        	.attr("transform", "translate(" + width/2 + " ," +
+        				height + ")")
         	.style("text-anchor", "middle")
-        	.attr("dy", "12")
+        	.attr("dy", "35")
         	.text("Percent");
 
         	// You could also use tick formatting to get a % sign on each axis tick

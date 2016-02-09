@@ -61,6 +61,7 @@ Primary emphasis is on end user experience and data honesty; secondary considera
 * [My delicious links to datasets](https://delicious.com/arnicas/datasets)
 * [World Bank Data](http://data.worldbank.org/)
 * Sets collected by Curran Kelleher: https://github.com/curran/data
+* A big list of CSV datasets: https://vincentarelbundock.github.io/Rdatasets/datasets.html
 
 
 ### Quantified Self

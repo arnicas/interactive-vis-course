@@ -57,20 +57,21 @@
 		// Scott is "cheating" and not using the full pattern for margins.
 		// It is better to use the object style with margin.top, margin.right, etc.
 
-			var w = 700;
-			var h = 600;
-			var padding = [ 20, 10, 50, 50 ];  //Top, right, bottom, left
+			var fullWidth = 700;
+			var fullHeight = 600;
+			var margin = {top:20, right:10, bottom:50, left:50};  //Top, right, bottom, left
 
-
+			var width = fullWidth - margin.left - margin.right;
+			var height = fullHeight - margin.top - margin.bottom;
 
 			var xScale = d3.scale.linear()
-								.range([ padding[3], w - padding[1] - padding[3] ]);
+								.range([ 0, width]);
 
 			// top to bottom:
 			var yScale = d3.scale.linear()
-								.range([ h - padding[2], padding[0] ]);
+								.range([ height, 0 ]);
 
-			//  Custom tick count -- 15.
+			//  Custom tick count -- 15. // still needs a transform on it
 			var xAxis = d3.svg.axis()
 							.scale(xScale)
 							.orient("bottom")
@@ -86,8 +87,11 @@
 
 			var svg = d3.select("body")
 						.append("svg")
-						.attr("width", w)
-						.attr("height", h);
+						.attr("width", fullWidth)
+						.attr("height", fullHeight)
+						.append("g")
+							.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 
 			d3.csv("data/betterlifeindex.csv", function(data) {
 
@@ -107,10 +111,10 @@
 								.append("circle");
 
 				circles.attr("cx", function(d) {
-						return xScale(d.lifeSatisfaction);
+						return xScale(+d.lifeSatisfaction);
 					})
 					.attr("cy", function(d) {
-						return yScale(d.selfReportedHealth);
+						return yScale(+d.selfReportedHealth);
 					})
 					.attr("r", 4)
 					.attr("fill", "steelblue")
@@ -121,12 +125,11 @@
 
 				svg.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + (h - padding[2] + 10) + ")")
+					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
 
 				svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform", "translate(" + (padding[3] - 10) + ",0)")
 					.call(yAxis);
 
 			});

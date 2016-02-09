@@ -61,13 +61,16 @@
 		// Scott is "cheating" and not using the full pattern for margins.
 		// It is better to use the object style with margin.top, margin.right, etc.
 
-			var width = 700;
-			var height = 600;
-			var padding = [ 20, 10, 50, 50 ];  //Top, right, bottom, left
+			var fullwidth = 700;
+			var fullheight = 600;
 
-			// redo this with an object for the margin settings: var margin = {top...}
+			var margin = {top:20, left:10, right:50, bottom: 50};  //Top, right, bottom, left
 
-			var dotRadius = 1; // fix this to a nice value.
+			// what do you need to do to make the width and height for the chart?
+			var height = fullHeight // minus what?
+			var width = fullWidth // minus what?
+
+			var dotRadius = 3; // fix this to a nice value.
 
 			// fill in the margin values here.
 			var xScale = d3.scale.linear()
@@ -91,7 +94,9 @@
 			var svg = d3.select("body")
 						.append("svg")
 						.attr("width", width)
-						.attr("height", height);
+						.attr("height", height)
+						.attr("g",
+
 
 			d3.csv("data/betterlifeindex.csv", function(data) {
 

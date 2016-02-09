@@ -44,8 +44,7 @@
 ## Week5: Bar Charts, Axes, Text Labels, Scatterplots
 
 * [bar_axes_labels.html](Week5/bar_axes_labels.html): Labeling axes in bar charts
-* [formatting_ticks.html](Week5/formatting_ticks.html): Formatting ticks
-* [bar_axes_labels.html](Week5/bar_axes_labels.html): More labeling axes
+* [scatter_formatting_ticks.html](Week5/scatter_formatting_ticks.html): Formatting ticks
 * [scatter_skeleton.html](Week5/scatter_skeleton.html): A starter scatterplot to fix
 * [dot_plot.html](Week5/dot_plot.html): A dot plot example
 

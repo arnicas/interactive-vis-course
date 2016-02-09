@@ -32,28 +32,28 @@
 <ul>
 <li><a href="#week-5-more-on-bar-charts-axes-transforms-labels-scatterplots...">Week 5: More on Bar Charts, Axes, Transforms, Labels, Scatterplots...</a><ul>
 <li><a href="#homework-review">Homework Review</a></li>
-<li><a href="#d3-tricks">D3 Tricks</a><ul>
-<li><a href="#styles">Styles</a></li>
-<li><a href="#setting-custom-fills-by-data-value-or-index">Setting Custom Fills By Data Value or Index</a></li>
-<li><a href="#adding-text-elements">Adding Text Elements</a></li>
-</ul></li>
-<li><a href="#scales">Scales</a><ul>
-<li><a href="#reminder-about-joins-and-scales">Reminder about Joins and Scales</a></li>
-<li><a href="#more-scales-ordinal-and-rangebands-rangeroundbands-useful-for-axes">More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes</a></li>
-<li><a href="#aside-on-javascript-map">Aside on Javascript Map</a></li>
+<li><a href="#d3-techniques">D3 Techniques</a><ul>
+<li><a href="#select-vs.-selectall">Select vs. SelectAll</a></li>
+<li><a href="#styles-and-attrs">Styles (and attr's)</a></li>
+<li><a href="#setting-custom-styleattr-by-data-value-or-index">Setting Custom Style/Attr By Data Value or Index</a></li>
+<li><a href="#text-elements">Text Elements</a></li>
+<li><a href="#formatting-numbers-in-d3">Formatting Numbers in D3</a></li>
+<li><a href="#more-scales-ordinal-and-rangebands-rangeroundbands-useful-for-axes">More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes!</a></li>
 </ul></li>
 <li><a href="#more-svg">More SVG</a><ul>
 <li><a href="#the-group-element">The Group Element</a></li>
 <li><a href="#coordinates-in-svg-space">Coordinates in SVG Space</a></li>
 <li><a href="#the-d3-margin-convention">The D3 Margin Convention</a></li>
-<li><a href="#transform-translate-move-a-starting-coordinate-somewhere.">Transform, Translate: Move a starting coordinate somewhere.</a></li>
 </ul></li>
 <li><a href="#d3-axes">D3 Axes</a><ul>
 <li><a href="#adding-an-axis-label-putting-margins-and-labels-and-transforms-together">Adding an Axis Label: Putting Margins and Labels and Transforms Together</a></li>
 </ul></li>
-<li><a href="#examples-starting-at-zero-scatterplot-examples-dot-plots">Examples: Starting at Zero, Scatterplot Examples, Dot Plots</a><ul>
-<li><a href="#scatterplot-examples">Scatterplot Examples</a></li>
+<li><a href="#scatterplots">Scatterplots</a></li>
+<li><a href="#fun-stuff">Fun Stuff</a><ul>
+<li><a href="#starting-at-zero">Starting at Zero</a></li>
+<li><a href="#interview-with-allison-mccann-at-538">Interview with Allison McCann at 538</a></li>
 <li><a href="#dot-plots">Dot Plots</a></li>
+<li><a href="#more-datasets">More Datasets</a></li>
 </ul></li>
 <li><a href="#homework">Homework</a></li>
 </ul></li>
@@ -61,8 +61,44 @@
 </div>
 <h1 id="week-5-more-on-bar-charts-axes-transforms-labels-scatterplots...">Week 5: More on Bar Charts, Axes, Transforms, Labels, Scatterplots...</h1>
 <h2 id="homework-review">Homework Review</h2>
-<h2 id="d3-tricks">D3 Tricks</h2>
-<h3 id="styles">Styles</h3>
+<p><strong>Sortable Tables:</strong></p>
+<ul>
+<li>Huge difference in Jose's: <a href="http://bl.ocks.org/NERD-rat-LAB/0c2b23bd43ba25972f7a" class="uri">http://bl.ocks.org/NERD-rat-LAB/0c2b23bd43ba25972f7a</a></li>
+<li>Josh's 3 columns: <a href="http://blockbuilder.org/CafeConVega/bc09d99262b2683d0e0f" class="uri">http://blockbuilder.org/CafeConVega/bc09d99262b2683d0e0f</a></li>
+<li>Nice data, Shi Li: <a href="http://bl.ocks.org/shishi0906/raw/d00b07f993d3809a3f72/" class="uri">http://bl.ocks.org/shishi0906/raw/d00b07f993d3809a3f72/</a></li>
+</ul>
+<p>Color scale, linear vs. ordinal:</p>
+<ul>
+<li>Discuss: <a href="http://blockbuilder.org/arnicas/a44d91a99dca636500af" class="uri">http://blockbuilder.org/arnicas/a44d91a99dca636500af</a></li>
+</ul>
+<p>As I said during class last week, if you want to sort numbers with decimals, use <code>sort_type: float</code> for the header.</p>
+<p><strong>Bar charts</strong></p>
+<ul>
+<li>Josh's classes: <a href="http://bl.ocks.org/CafeConVega/2a7076c90d384c13a17e" class="uri">http://bl.ocks.org/CafeConVega/2a7076c90d384c13a17e</a></li>
+<li>Sunny's lovely labels: <a href="http://bl.ocks.org/sunnyuxuan/a7438a9f5290e35798d9" class="uri">http://bl.ocks.org/sunnyuxuan/a7438a9f5290e35798d9</a></li>
+<li>Han's highlighted first bar: <a href="http://bl.ocks.org/jashcny/raw/ad10d2691700ad632f02/" class="uri">http://bl.ocks.org/jashcny/raw/ad10d2691700ad632f02/</a></li>
+<li>Scale difference is huge: <a href="http://blockbuilder.org/claudialexa/8bfa94821048ad8c5eb9" class="uri">http://blockbuilder.org/claudialexa/8bfa94821048ad8c5eb9</a></li>
+<li>Eric's labels and bars: <a href="http://bl.ocks.org/suneric1/raw/eccb0b83c4b644fd9b3d/" class="uri">http://bl.ocks.org/suneric1/raw/eccb0b83c4b644fd9b3d/</a></li>
+</ul>
+<p><strong>SVG Fixes</strong></p>
+<ul>
+<li>A good model from Josh: <a href="http://bl.ocks.org/CafeConVega/a26d63251c04ad78a38c" class="uri">http://bl.ocks.org/CafeConVega/a26d63251c04ad78a38c</a></li>
+</ul>
+<p>Removing the text: I was after <code>d3.select(&quot;text&quot;).remove();</code> but this will do it too: <code>d3.select(&quot;text#svg_28&quot;).style(&quot;display&quot;, &quot;none&quot;);</code></p>
+<p>Also, I wanted CSS stylesheet rules for the svg and lines:</p>
+<pre><code>&lt;style&gt;
+line {
+    stroke: 3px;
+}
+svg {
+    background-color: lightgray;
+}
+&lt;/style&gt;</code></pre>
+<p>But I accepted those of you who used d3.style() commands on selections!</p>
+<h2 id="d3-techniques">D3 Techniques</h2>
+<h3 id="select-vs.-selectall">Select vs. SelectAll</h3>
+<p>If you've been doing the reading, you'll notice that <code>d3.select()</code> selects the <strong>first matching item</strong>, and <code>d3.selectAll()</code> selects all of them. Don't forget this distinction.</p>
+<h3 id="styles-and-attrs">Styles (and attr's)</h3>
 <p>You can give svg elements a style attribute, too:</p>
 <pre><code>d3.select(&quot;rect&quot;).style(&quot;font-color&quot;, &quot;#eee&quot;);</code></pre>
 <p>or assign a class and style via the css sheet:</p>
@@ -72,8 +108,29 @@ d3.selectAll(&quot;rect&quot;).classed(&quot;brownrects&quot;, true); // adds cl
 <p>Or, of course, you can get SVG specific:</p>
 <pre><code>d3.selectAll(&quot;rect&quot;).attr(&quot;fill&quot;, &quot;brown&quot;);</code></pre>
 <p>When you are using both styles and &quot;attr&quot; to control appearance, you may have conflicts. One of them will &quot;win.&quot;</p>
-<p>TODO: Make an example.</p>
-<h3 id="setting-custom-fills-by-data-value-or-index">Setting Custom Fills By Data Value or Index</h3>
+<p><a href="https://www.w3.org/TR/SVG/styling.html">This is a good reference on SVG styling</a> and what works in CSS and what does not. It depends on the SVG element.</p>
+<p>Use style sheets when you can, because you want to keep the formatting independent of the code as much as possible. This makes it easier to swap in a new look without having to hunt through code for the right variables and when they are applied. This means instead of doing hard-coded:</p>
+<pre><code>    d3.select(‘rect’).style(‘fill’, ‘red’)</code></pre>
+<p>it’s better to add a class or id and put the style attribute there:</p>
+<pre><code>    d3.select(‘rect’).attr(‘class’, ‘redrect’)</code></pre>
+<p>and then in the style sheet:</p>
+<pre><code>    .redrect { fill: red }</code></pre>
+<p>For dynamic styling, you want to do it inline, of course. From an excellent article on best practices in D3 coding:</p>
+<pre><code>.style(&quot;fill&quot;, function(d) {
+        return choropleth(d, colorize);
+    })
+
+//OVERRIDES
+
+    .attr(&quot;fill&quot;, function(d) {
+        return choropleth(d, colorize);
+    })</code></pre>
+<p>From that article:</p>
+<pre><code>&quot;Things can get confusing if you assign a style rule as a style in one place and then 
+try to re-assign it as an attribute in another. Thus, it’s best to pick one or the other, 
+and style generally seems more appropriate to me. Note that this does not apply 
+to element x/y positions or path d strings, which are only available as attributes.&quot; </code></pre>
+<h3 id="setting-custom-styleattr-by-data-value-or-index">Setting Custom Style/Attr By Data Value or Index</h3>
 <p>What if we want to do special-case rules in our styles? This is easy, with a tiny bit of JS knowledge! Just use an if-statement and test for the special case you want to<br />
 use in your style rule:</p>
 <pre><code>// this pattern allows you to test the value of a data element, and set the fill
@@ -108,23 +165,29 @@ rects.attr(&quot;fill&quot;, function(d) {
         return &quot;steelblue&quot;;
     }
 })</code></pre>
-<h3 id="adding-text-elements">Adding Text Elements</h3>
-<p>SVG has its own &quot;text&quot; element.</p>
+<h3 id="text-elements">Text Elements</h3>
+<p>SVG has its own &quot;text&quot; element. It has slightly different attributes and styling than HTML text.</p>
 <ul>
-<li>A good overview of d3 with a bunch of SVG element attributes - make sure you read down to the text parts to see how they work: <a href="http://www.d3noob.org/2014/02/attributes-in-d3js.html" class="uri">http://www.d3noob.org/2014/02/attributes-in-d3js.html</a></li>
 <li>A simple set of circles with text labels: <a href="https://www.dashingd3js.com/svg-text-element" class="uri">https://www.dashingd3js.com/svg-text-element</a></li>
+<li>A good overview of d3 SVG element attributes - make sure you read down to the text parts to see how they work: <a href="http://www.d3noob.org/2014/02/attributes-in-d3js.html" class="uri">http://www.d3noob.org/2014/02/attributes-in-d3js.html</a>.</li>
 <li>Read: This is also about labels on scatterplot circles, but the same principles apply: Labels on elements: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2</a></li>
 </ul>
+<p>Important text features -- assuming you have a container where you are attaching it:</p>
+<pre><code>container.append(&quot;text&quot;)         // append text to container selection
+    .style(&quot;fill&quot;, &quot;black&quot;)   // fill the text with the colour black
+    .attr(&quot;dy&quot;, &quot;.35em&quot;)           // set offset y position -- will adjust y!
+    .attr(&quot;dx&quot;, &quot;2px&quot;)              // offset x by 2 px to the right!
+    .attr(&quot;text-anchor&quot;, &quot;end&quot;) // set anchor relative to container - this is right aligned
+    .text(&quot;Hello World&quot;);          // define text string to show.</code></pre>
 <p>The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right. dy with a negative value will move it &quot;up&quot;, because the coordinate system is &quot;higher numbers at the bottom of the screen.&quot;</p>
-<h4 id="tips-on-formatting-numbers-in-d3-in-axes">Tips on Formatting Numbers in D3 in Axes</h4>
-<p>See <a href="http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html" class="uri">http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html</a></p>
-<h2 id="scales">Scales</h2>
-<h3 id="reminder-about-joins-and-scales">Reminder about Joins and Scales</h3>
-<p>Reminders about joins and scales, using circles:</p>
-<ul>
-<li>This is circles with colors and sizes based on data values: <a href="http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffer6e1c9&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" class="uri">http://animateddata.co.uk/articles/d3/datajoins/?utm_content=buffer6e1c9&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
-</ul>
-<h3 id="more-scales-ordinal-and-rangebands-rangeroundbands-useful-for-axes">More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes</h3>
+<h3 id="formatting-numbers-in-d3">Formatting Numbers in D3</h3>
+<p>We use a formatter string to describe how we want the number to display:</p>
+<pre><code>var formatter = d3.format(&quot;,&quot;);
+formatter(2900000)
+\\ output is &quot;2,900,000&quot;</code></pre>
+<p>See giant reference and demos: <a href="http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html" class="uri">http://koaning.s3-website-us-west-2.amazonaws.com/html/d3format.html</a></p>
+<h3 id="more-scales-ordinal-and-rangebands-rangeroundbands-useful-for-axes">More Scales: Ordinal and rangeBands / rangeRoundBands, useful for Axes!</h3>
+<p>We used linear scales for the color background shading in the table, and for the rectangle widths in the basic barchart. We also saw ordinal scales with the colors of text in <a href="Week4/scale_examples.html" class="uri">Week4/scale_examples.html</a>.</p>
 <p>All the scale references are here:</p>
 <ul>
 <li>References: Quantitative Scales: <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales" class="uri">https://github.com/mbostock/d3/wiki/Quantitative-Scales</a></li>
@@ -142,13 +205,11 @@ var o = d3.scale.ordinal()
 
 o.range(); // [1, 34, 67]
 o.rangeBand(); // 33
-o.rangeExtent(); // [0, 100]
-</code></pre>
+o.rangeExtent(); // [0, 100]</code></pre>
 <p>Remember: rangeRoundBands (plural) sets up the bands. rangeBand() (singular) gives you one of the bands! Range, like in quantitive scales, tells you what you mapped to! rangeExtent is like d3.extent - the max and min of your range.</p>
 <p>If you use an ordinal scale with categorical items, like the names of bars in a bar chart, it will &quot;space them out&quot; for you on the scale.</p>
 <p>Example: See <a href="bar_axes_labels.html" class="uri">bar_axes_labels.html</a>.</p>
-<p>TODO: Make another bar example with ordinal scales.</p>
-<h3 id="aside-on-javascript-map">Aside on Javascript Map</h3>
+<h4 id="aside-on-javascript-map">Aside on Javascript Map</h4>
 <p>Remember last week we made a separate array to get the values of a single column of data, using newArray.push? We used this for the max/min/extent in the domain settings on scales.</p>
 <p>We can also use this handy Javascript map function in our scale:</p>
 <pre><code>var heightScale = d3.scale.ordinal()
@@ -161,7 +222,7 @@ heightScale.domain(
     })
 );</code></pre>
 <p>A map is a way to take an array of items (like data) and return a new array, after doing something to each item. It's like data.forEach(), except it can save you some typing and extra variables.</p>
-<p>Note: D3.map() is a different function that creates a hash lookup.</p>
+<p>(Be careful. There is also a d3.map, but it does something different.)</p>
 <h2 id="more-svg">More SVG</h2>
 <h3 id="the-group-element">The Group Element</h3>
 <p>You can group elements in SVG using a 'g' node. The group can be where you attach your data, in some cases. It doesn't show up as a drawing element on the screen, it just lets you organize things and with classes or id's, it's sometimes easier for styling or selection purposes.</p>
@@ -177,6 +238,7 @@ heightScale.domain(
 <h3 id="the-d3-margin-convention">The D3 Margin Convention</h3>
 <p>Now that we've seen g's and transforms and the coordinate space, we're ready for the classic on margins. This is a recommended way to set up margins in D3 -- you can use some or all of this pattern (I often skip the &quot;g&quot; translate), but the basic idea is that you have padding around your chart, inside the SVG container. Then all your coordinates take into account the margin sizes as appropriate.</p>
 <p><img src="img/margins.png"></p>
+<p>Here is a post by Mike Bostock about the D3 margin convention we will use: <a href="http://bl.ocks.org/mbostock/3019563" class="uri">http://bl.ocks.org/mbostock/3019563</a>.</p>
 <pre><code>var svgWidth = 1000,
     svgHeight = 500;
 
@@ -185,15 +247,29 @@ var margin = {top: 20, right: 25, bottom: 20, left: 200};
 
 var chartWidth = svgWidth - margin.left - margin.right,
     chartHeight = svgHeight - margin.top - margin.bottom;</code></pre>
+<p>When you create your svg element, use the conventional pattern:</p>
+<pre><code>var svg = d3.select(&quot;body&quot;)
+                        .append(&quot;svg&quot;)
+                            .attr(&quot;width&quot;, svgWidth)
+                            .attr(&quot;height&quot;, svgHeight)
+                        .append(&quot;g&quot;)
+                            .attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;);</code></pre>
+<p>But in your chart, 0,0 is now the upper left corner inside the margins.</p>
 <p>Some more implications of the coordinate system:</p>
 <p>A scale for your Y axis values needs to be inverted, if you want higher numbers at the top. Don't forget this - your range is changed so you map this way:</p>
 <pre><code>var yScale = d3.scale.linear().range([ height, 0 ]);</code></pre>
-<ul>
-<li>Mike's post on it: <a href="http://bl.ocks.org/mbostock/3019563" class="uri">http://bl.ocks.org/mbostock/3019563</a></li>
-</ul>
-<p>TODO: Discuss his extra <code>&lt;g&gt;</code> transform. Add to examples.</p>
-<h3 id="transform-translate-move-a-starting-coordinate-somewhere.">Transform, Translate: Move a starting coordinate somewhere.</h3>
-<p>Let's play with <a href="http://blockbuilder.org/arnicas/6217eec849a8f270e80d" class="uri">http://blockbuilder.org/arnicas/6217eec849a8f270e80d</a>.</p>
+<p>If you use the margin conventions, which I suggest you do, you will need to pay attention to this from Mike:</p>
+<pre><code>var x = d3.scale.linear()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+If you want to add axes to the chart, they will be positioned correctly by default
+in the &quot;left&quot; and &quot;top&quot; orientations. For &quot;right&quot; or &quot;bottom&quot; orientation, translate
+the axis G element by the width or height, respectively. [--Mike B]
+</code></pre>
+<p>Let's fix things up in here and move labels: <a href="http://blockbuilder.org/arnicas/6217eec849a8f270e80d" class="uri">http://blockbuilder.org/arnicas/6217eec849a8f270e80d</a></p>
 <h2 id="d3-axes">D3 Axes</h2>
 <p>To understand how axes work in D3, you need to know about groups (&quot;g&quot; in SVG), transforms, coordinate systems, and scales. So now we're ready!</p>
 <p>Axes are a complicated element in D3 that have a lot of little switches to them. The refence with all the options:</p>
@@ -211,14 +287,14 @@ var chartWidth = svgWidth - margin.left - margin.right,
 
 var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
     .attr(&quot;width&quot;, 1440)
-    .attr(&quot;height&quot;, 30);
+    .attr(&quot;height&quot;, 30); // may have a group item on it with the 0,0 margin move
 
 // Put them inside a g, group element:
 svg.append(&quot;g&quot;)
-    .attr(&quot;transform&quot;, &quot;translate(0,30)&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(0,&quot; +  height + )&quot;)  // move to the bottom of the chart
     .call(axis);  // here were &#39;call&#39; the function for the axis.</code></pre>
 <p>See <a href="bar_axes_labels.html" class="uri">bar_axes_labels.html</a>.</p>
-<p>If you want to specially format your tick labels, you can. See <a href="formatting_ticks.html" class="uri">formatting_ticks.html</a>.</p>
+<p>If you want to specially format your tick labels, you can. See <a href="formatting_ticks.html">scatter_formatting_ticks.html</a>.</p>
 <h3 id="adding-an-axis-label-putting-margins-and-labels-and-transforms-together">Adding an Axis Label: Putting Margins and Labels and Transforms Together</h3>
 <p>How to add an axis label to your axes.</p>
 <ul>
@@ -241,16 +317,28 @@ svg.append(&quot;g&quot;)
         .style(&quot;text-anchor&quot;, &quot;middle&quot;)
         .text(&quot;Value&quot;);</code></pre>
 <p>I'm not going to lie, it takes me a few tries to get the locations right.</p>
-<h2 id="examples-starting-at-zero-scatterplot-examples-dot-plots">Examples: Starting at Zero, Scatterplot Examples, Dot Plots</h2>
-<ul>
-<li><p>Nathan's great post on 0 baseline for barcharts: <a href="http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/" class="uri">http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/</a></p></li>
-<li><p>Vox's Line Charts Don't Need to Start At Zero video: <a href="http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart" class="uri">http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart</a></p></li>
-</ul>
-<h3 id="scatterplot-examples">Scatterplot Examples</h3>
+<h2 id="scatterplots">Scatterplots</h2>
+<p>Scatterplots are dots on 2 linear x and y scales, usually. They are useful because they give you a visual sense of whether there is a correlation between two variables (example from Wikipedia):</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Scatter_diagram_for_quality_characteristic_XXX.svg/250px-Scatter_diagram_for_quality_characteristic_XXX.svg.png"></p>
+<p>We make them using SVG circle elements, using a scale for x and y position, based on our data.</p>
+<p>Take a look at <a href="scatter_formatting_ticks.html" class="uri">scatter_formatting_ticks.html</a>.</p>
+<p>Live Examples:</p>
 <ul>
 <li><p>A super scatterplot project to keep you motivated - with animations:<br />
 <a href="http://www.bloomberg.com/politics/graphics/2014-incumbent-governors/?hootPostID=031ede1ff3806f5956e7bdadac068a20" class="uri">http://www.bloomberg.com/politics/graphics/2014-incumbent-governors/?hootPostID=031ede1ff3806f5956e7bdadac068a20</a></p></li>
 <li><p>Scatterplots linked to maps: <a href="http://anandthakker.github.io/baltimore-neighborhood-vitalsigns/#/i/male10:female10/c/Greater-_Charles-_Village--Barclay/" class="uri">http://anandthakker.github.io/baltimore-neighborhood-vitalsigns/#/i/male10:female10/c/Greater-_Charles-_Village--Barclay/</a></p></li>
+</ul>
+<p>Let's work on scatter_skeleton.html in class. You will pick two columns you want to visualize for a possible relationship from the dataset in data/betterlifeindex.csv.</p>
+<h2 id="fun-stuff">Fun Stuff</h2>
+<h3 id="starting-at-zero">Starting at Zero</h3>
+<ul>
+<li><p>Nathan's great post on 0 baseline for barcharts: <a href="http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/" class="uri">http://flowingdata.com/2015/08/31/bar-chart-baselines-start-at-zero/</a></p></li>
+<li><p>Vox's Line Charts Don't Need to Start At Zero video: <a href="http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart" class="uri">http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart</a></p></li>
+</ul>
+<h3 id="interview-with-allison-mccann-at-538">Interview with Allison McCann at 538</h3>
+<p>She's a sports vis fan, and her career path is interesting and revealing.</p>
+<ul>
+<li>Link: <a href="http://our-origins.com/post/134936314751/allison-mccann-visual-journalist-fivethirtyeight?utm_content=buffer8f050&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" class="uri">http://our-origins.com/post/134936314751/allison-mccann-visual-journalist-fivethirtyeight?utm_content=buffer8f050&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
 </ul>
 <h3 id="dot-plots">Dot Plots</h3>
 <ul>
@@ -259,26 +347,30 @@ svg.append(&quot;g&quot;)
 <li><p>See a lovely example of dot plots here in Tableau: <a href="http://healthintelligence.drupalgardens.com/content/visualizing-human-development-gender-gap" class="uri">http://healthintelligence.drupalgardens.com/content/visualizing-human-development-gender-gap</a></p></li>
 <li><p>A dot plot example by me -- this is a modification between a bar chart and a scatterplot! <a href="dot_plot.html" class="uri">dot_plot.html</a></p></li>
 </ul>
+<h3 id="more-datasets">More Datasets</h3>
+<p>A long list of CSV datasets...</p>
+<ul>
+<li><a href="https://vincentarelbundock.github.io/Rdatasets/datasets.html" class="uri">https://vincentarelbundock.github.io/Rdatasets/datasets.html</a></li>
+</ul>
 <h2 id="homework">Homework</h2>
 <p>Readings:</p>
 <ul>
 <li>Axes: Ch 8: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch08.html" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch08.html</a></li>
+<li>Labels on elements: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch06.html#_labels_2</a></li>
 <li>Axis Labels: <a href="http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html" class="uri">http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html</a></li>
 </ul>
-<p><strong>Homework1</strong> (12pt): Turn in the scatterplot we made in class by midnight tonight.</p>
+<p><strong>Homework1</strong> (15pt): Turn in the scatterplot we made in class by midnight tonight.</p>
 <ul>
 <li>Dots for the data rows.</li>
 <li>Margins set up with an object (margin.top...)</li>
-<li>Scales that use the margin settings.</li>
-<li>A label on the X axis, positioned with transform, translate.</li>
-<li>A special case color on the one of the dots, using an if statement.</li>
+<li>Scales that use width, height, etc that we set up.</li>
+<li>A label on the X axis, positioned with transform, translate, and on the Y axis.</li>
+<li>A special case color on the one of the dots, using an &quot;if&quot; statement, to highlight it.</li>
 <li>CSS rule for circle fill that refers to a class (circle.something).</li>
-<li>Add a rotated Y axis label.</li>
 </ul>
-<p>After you turn this in, I'll post scatterplot code.</p>
 <p><strong>Homework2 (20pt)</strong>:<br />
-Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Use an ordinal axis on the Y axis to label the bars. Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the Text section). Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.</p>
-<p><strong>Homework3 (25pt)</strong>:<br />
+Using the bar chart you made already, add a margin (using a margin object) to fix up your bar chart. Use an ordinal axis on the Y axis. Add an X axis label, and special color rule for your barchart (change one of the bars, or bars below or above mean/median to a different color). Also, label the end points of your bars with their actual values (see the SVG Text section of the notes above for tips). Add a hover rule to your CSS, so when the mouse is over the bar, it changes color a little.</p>
+<p><strong>Homework3 Extra Credit (15pt)</strong>:<br />
 Make a scatter plot with your own data. Choose a data set that will be appropriate with a scatter plot representation -- comparing 2 scalar (quantitative) values to see if there is a relationship. Write a text snippet that explains it and identifies the source of the data.</p>
 </body>
 </html>
