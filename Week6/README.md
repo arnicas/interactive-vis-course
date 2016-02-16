@@ -7,8 +7,6 @@
 
 * Cibonay's: http://bl.ocks.org/cibonaydames/raw/ab01267bce3ec335db6f/
 
-* Hyan: http://bl.ocks.org/hfreitas92/raw/023678215579beedd68e/
-
 * Sherman on voter turnout: http://bl.ocks.org/SHewitt95/raw/e8a1a1384cdb617130c7/
 
 * Josh: http://bl.ocks.org/CafeConVega/raw/17bebb8a00ee606fd4b9/
@@ -16,8 +14,6 @@
 **Interesting Personal Scatterplots**:
 
 * Zhou: http://bl.ocks.org/captainelaine/raw/7ee56c564dcc7d67a089/
-
-* Han's bubble plot: http://bl.ocks.org/jashcny/raw/7bb55a6c4034fa00dc8e/
 
 * Sunny: http://bl.ocks.org/sunnyuxuan/raw/bbbf9903127eded1b26c/
 
@@ -28,6 +24,8 @@
 * Jennifer: http://bl.ocks.org/JenHLab/raw/dbe1abdadde126100c59/
 
 * Lots of dots: http://bl.ocks.org/eliot84/raw/e6846da998bb238f86d6/
+
+* Han's bubble plot: http://bl.ocks.org/jashcny/raw/7bb55a6c4034fa00dc8e/
 
 * Luying: http://bl.ocks.org/luluwuluying/raw/5e1406e59aae7886b7a3/
 
@@ -92,7 +90,7 @@ var textlabels = d3.svg.selectAll("text.labels")
 
 See the finished example in [bar_axes_labels_on_data.html](bar_axes_labels_on_data.html).
 
-## Responsive Charts in D3 for Josh
+## Responsive Charts in D3 (for Josh Who Keeps Asking)
 
 This is not the full story, but here are some good tips.  They rely on you understanding the margin convention.
 
@@ -101,6 +99,8 @@ This is not the full story, but here are some good tips.  They rely on you under
 * More comprehensive: http://blog.webkid.io/responsive-chart-usability-d3/
 
 * https://www.safaribooksonline.com/blog/2014/02/17/building-responsible-visualizations-d3-js/
+
+You get some mileage out of the attributes for "viewBox" and "preserveAspectRatio" on the SVG container component, but it's not the full solution. Feel free to read more.
 
 
 ##Line Charts (and Time)
@@ -128,9 +128,10 @@ var line = d3.svg.line()
                 });
 ````
 
-Examples:
+We can start with a scatterplot over time:  **[emissions_time_scatterplot.html](emissions_time_scatterplot.html)**
 
-* Scatterplot: **[emissions_time_scatterplot.html](emissions_time_scatterplot.html)** -- we're turning this data into a line plot:
+And then turn that data into a lineplot here:
+
 * Lineplot version: **[emissions_lineplot.html](emissions_lineplot.html)**
 
 Now plotting more data, we use g elements for each country (or other "parent", and the values for the line are in another attribute, under "emissions":
@@ -180,10 +181,18 @@ For reference, multiseries line chart with labelled lines, labels at the end of 
 * A reference version by Mike Bostock: http://bl.ocks.org/mbostock/3884955
 * Simpler version (be sure to read what he says at the top): http://bl.ocks.org/d3noob/8603837
 
+### Things That Are Confusing About Line Charts
+
+* Frequently, for multiple line charts, the line data is in a "g" container.  The data array is attached to the g "parent" node, along with other attributes you might need (for stuff like tooltips).
+* You see `[ data ]` a lot, because the data needs to be passed as an array to the line function.
+* It's a single "mark" (the path) for the array of data -- so for a single line, it's a datum() without a selectAll and enter().  You just append a line element to the parent "g" container.
+
+They will remain a little confusing and different from most of d3.  You might need to come back to this a bit.  But they are incredibly useful chart types, especially with interaction!
+
 
 ### Reminder on Dates in D3
 
-For scales to work with dates, you need to convert your date strings to Javascript dates.  We do that by using d3.time.format().  We 'parse' the incoming date, and in axes tick labels we may want to use another format to print the date.
+For scales to work with dates, you need to convert your date strings to Javascript dates.  We do that by using d3.time.format().  We 'parse' the incoming date, and in axes tick labels we may want to use another format to print the date on the axis.
 
 References:
 
@@ -192,7 +201,7 @@ References:
 * Watch: Working with Dates in D3, Scott Murray: https://www.youtube.com/watch?v=CQsNxDwO5SA&list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&index=1
 * Use: http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95
 
-Example: Date formatting and parsing in [d3_date_parsing.html](d3_date_parsing.html).
+Example in-class-exercise: Date formatting and parsing in [d3_date_parsing.html](d3_date_parsing.html).
 
 
 ## Intro to D3 Mouse Events

@@ -35,9 +35,10 @@
 <li><a href="#scatterplot-improvements-padding-transparency-log-scale">Scatterplot Improvements: Padding, Transparency, Log Scale?</a></li>
 <li><a href="#text-labels-on-the-bars">Text Labels on the Bars</a></li>
 </ul></li>
-<li><a href="#responsive-charts-in-d3-for-josh">Responsive Charts in D3 for Josh</a></li>
+<li><a href="#responsive-charts-in-d3-for-josh-who-keeps-asking">Responsive Charts in D3 (for Josh Who Keeps Asking)</a></li>
 <li><a href="#line-charts-and-time">Line Charts (and Time)</a><ul>
 <li><a href="#labeling-lines-directly">Labeling Lines Directly</a></li>
+<li><a href="#things-that-are-confusing-about-line-charts">Things That Are Confusing About Line Charts</a></li>
 <li><a href="#reminder-on-dates-in-d3">Reminder on Dates in D3</a></li>
 </ul></li>
 <li><a href="#intro-to-d3-mouse-events">Intro to D3 Mouse Events</a><ul>
@@ -54,19 +55,18 @@
 <p><strong>Interesting scatterplots with OECD Data</strong>:</p>
 <ul>
 <li><p>Cibonay's: <a href="http://bl.ocks.org/cibonaydames/raw/ab01267bce3ec335db6f/" class="uri">http://bl.ocks.org/cibonaydames/raw/ab01267bce3ec335db6f/</a></p></li>
-<li><p>Hyan: <a href="http://bl.ocks.org/hfreitas92/raw/023678215579beedd68e/" class="uri">http://bl.ocks.org/hfreitas92/raw/023678215579beedd68e/</a></p></li>
 <li><p>Sherman on voter turnout: <a href="http://bl.ocks.org/SHewitt95/raw/e8a1a1384cdb617130c7/" class="uri">http://bl.ocks.org/SHewitt95/raw/e8a1a1384cdb617130c7/</a></p></li>
 <li><p>Josh: <a href="http://bl.ocks.org/CafeConVega/raw/17bebb8a00ee606fd4b9/" class="uri">http://bl.ocks.org/CafeConVega/raw/17bebb8a00ee606fd4b9/</a></p></li>
 </ul>
 <p><strong>Interesting Personal Scatterplots</strong>:</p>
 <ul>
 <li><p>Zhou: <a href="http://bl.ocks.org/captainelaine/raw/7ee56c564dcc7d67a089/" class="uri">http://bl.ocks.org/captainelaine/raw/7ee56c564dcc7d67a089/</a></p></li>
-<li><p>Han's bubble plot: <a href="http://bl.ocks.org/jashcny/raw/7bb55a6c4034fa00dc8e/" class="uri">http://bl.ocks.org/jashcny/raw/7bb55a6c4034fa00dc8e/</a></p></li>
 <li><p>Sunny: <a href="http://bl.ocks.org/sunnyuxuan/raw/bbbf9903127eded1b26c/" class="uri">http://bl.ocks.org/sunnyuxuan/raw/bbbf9903127eded1b26c/</a></p></li>
 <li><p>Cibonay: <a href="http://bl.ocks.org/cibonaydames/raw/b423c9c0ad626f1b7ffe/" class="uri">http://bl.ocks.org/cibonaydames/raw/b423c9c0ad626f1b7ffe/</a></p></li>
 <li><p>Hyan: <a href="http://bl.ocks.org/hfreitas92/raw/8baa653c36e3a3a02c1d/" class="uri">http://bl.ocks.org/hfreitas92/raw/8baa653c36e3a3a02c1d/</a></p></li>
 <li><p>Jennifer: <a href="http://bl.ocks.org/JenHLab/raw/dbe1abdadde126100c59/" class="uri">http://bl.ocks.org/JenHLab/raw/dbe1abdadde126100c59/</a></p></li>
 <li><p>Lots of dots: <a href="http://bl.ocks.org/eliot84/raw/e6846da998bb238f86d6/" class="uri">http://bl.ocks.org/eliot84/raw/e6846da998bb238f86d6/</a></p></li>
+<li><p>Han's bubble plot: <a href="http://bl.ocks.org/jashcny/raw/7bb55a6c4034fa00dc8e/" class="uri">http://bl.ocks.org/jashcny/raw/7bb55a6c4034fa00dc8e/</a></p></li>
 <li><p>Luying: <a href="http://bl.ocks.org/luluwuluying/raw/5e1406e59aae7886b7a3/" class="uri">http://bl.ocks.org/luluwuluying/raw/5e1406e59aae7886b7a3/</a></p></li>
 </ul>
 <p>Aside on connected dot plots... Here are some famous examples in this post by Alberto: <a href="http://www.thefunctionalart.com/2012/09/in-praise-of-connected-scatter-plots.html" class="uri">http://www.thefunctionalart.com/2012/09/in-praise-of-connected-scatter-plots.html</a></p>
@@ -109,13 +109,14 @@ yScale.domain([
     .attr(&quot;class&quot;, &quot;labels&quot;);
 </code></pre>
 <p>See the finished example in <a href="bar_axes_labels_on_data.html" class="uri">bar_axes_labels_on_data.html</a>.</p>
-<h2 id="responsive-charts-in-d3-for-josh">Responsive Charts in D3 for Josh</h2>
+<h2 id="responsive-charts-in-d3-for-josh-who-keeps-asking">Responsive Charts in D3 (for Josh Who Keeps Asking)</h2>
 <p>This is not the full story, but here are some good tips. They rely on you understanding the margin convention.</p>
 <ul>
 <li><p><a href="http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/" class="uri">http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/</a></p></li>
 <li><p>More comprehensive: <a href="http://blog.webkid.io/responsive-chart-usability-d3/" class="uri">http://blog.webkid.io/responsive-chart-usability-d3/</a></p></li>
 <li><p><a href="https://www.safaribooksonline.com/blog/2014/02/17/building-responsible-visualizations-d3-js/" class="uri">https://www.safaribooksonline.com/blog/2014/02/17/building-responsible-visualizations-d3-js/</a></p></li>
 </ul>
+<p>You get some mileage out of the attributes for &quot;viewBox&quot; and &quot;preserveAspectRatio&quot; on the SVG container component, but it's not the full solution. Feel free to read more.</p>
 <h2 id="line-charts-and-time">Line Charts (and Time)</h2>
 <p>Line charts take a special form of data - objects with 2 data points, for the x &amp; y coordinates, as an array. So the real &quot;work&quot; in line charts is getting your data into shape for this. That means javascript data &quot;munging.&quot;</p>
 <p>Data for a line might look like:</p>
@@ -133,9 +134,9 @@ where each one of the objects has 2 (or more) attributes:
                 .y(function(d) {
                     return yScale(d.emissions);
                 });</code></pre>
-<p>Examples:</p>
+<p>We can start with a scatterplot over time: <strong><a href="emissions_time_scatterplot.html" class="uri">emissions_time_scatterplot.html</a></strong></p>
+<p>And then turn that data into a lineplot here:</p>
 <ul>
-<li>Scatterplot: <strong><a href="emissions_time_scatterplot.html" class="uri">emissions_time_scatterplot.html</a></strong> -- we're turning this data into a line plot:</li>
 <li>Lineplot version: <strong><a href="emissions_lineplot.html" class="uri">emissions_lineplot.html</a></strong></li>
 </ul>
 <p>Now plotting more data, we use g elements for each country (or other &quot;parent&quot;, and the values for the line are in another attribute, under &quot;emissions&quot;:</p>
@@ -177,8 +178,15 @@ where each one of the objects has 2 (or more) attributes:
 <li>A reference version by Mike Bostock: <a href="http://bl.ocks.org/mbostock/3884955" class="uri">http://bl.ocks.org/mbostock/3884955</a></li>
 <li>Simpler version (be sure to read what he says at the top): <a href="http://bl.ocks.org/d3noob/8603837" class="uri">http://bl.ocks.org/d3noob/8603837</a></li>
 </ul>
+<h3 id="things-that-are-confusing-about-line-charts">Things That Are Confusing About Line Charts</h3>
+<ul>
+<li>Frequently, for multiple line charts, the line data is in a &quot;g&quot; container. The data array is attached to the g &quot;parent&quot; node, along with other attributes you might need (for stuff like tooltips).</li>
+<li>You see <code>[ data ]</code> a lot, because the data needs to be passed as an array to the line function.</li>
+<li>It's a single &quot;mark&quot; (the path) for the array of data -- so for a single line, it's a datum() without a selectAll and enter(). You just append a line element to the parent &quot;g&quot; container.</li>
+</ul>
+<p>They will remain a little confusing and different from most of d3. You might need to come back to this a bit. But they are incredibly useful chart types, especially with interaction!</p>
 <h3 id="reminder-on-dates-in-d3">Reminder on Dates in D3</h3>
-<p>For scales to work with dates, you need to convert your date strings to Javascript dates. We do that by using d3.time.format(). We 'parse' the incoming date, and in axes tick labels we may want to use another format to print the date.</p>
+<p>For scales to work with dates, you need to convert your date strings to Javascript dates. We do that by using d3.time.format(). We 'parse' the incoming date, and in axes tick labels we may want to use another format to print the date on the axis.</p>
 <p>References:</p>
 <ul>
 <li>D3 docs on time formatting: <a href="https://github.com/mbostock/d3/wiki/Time-Formatting" class="uri">https://github.com/mbostock/d3/wiki/Time-Formatting</a></li>
@@ -186,7 +194,7 @@ where each one of the objects has 2 (or more) attributes:
 <li>Watch: Working with Dates in D3, Scott Murray: <a href="https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=1" class="uri">https://www.youtube.com/watch?v=CQsNxDwO5SA&amp;list=PL0tDk-f4v1ujc8NrGswT158m2y_7bKs3B&amp;index=1</a></li>
 <li>Use: <a href="http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95" class="uri">http://bl.ocks.org/zanarmstrong/ca0adb7e426c12c06a95</a></li>
 </ul>
-<p>Example: Date formatting and parsing in <a href="d3_date_parsing.html" class="uri">d3_date_parsing.html</a>.</p>
+<p>Example in-class-exercise: Date formatting and parsing in <a href="d3_date_parsing.html" class="uri">d3_date_parsing.html</a>.</p>
 <h2 id="intro-to-d3-mouse-events">Intro to D3 Mouse Events</h2>
 <p>These are probably the most common events you will want to handle with your D3 code:</p>
 <ul>
