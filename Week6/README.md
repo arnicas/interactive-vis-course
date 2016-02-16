@@ -293,8 +293,6 @@ This example file shows how to use classes using a new d3 method, `d3.classed()`
 
 See **[multiple_lines_mouseover_tooltip.html](multiple_lines_mouseover_tooltip.html)**.  Notice it's kind of hard to target the right line... we'll talk about a method to improve that next week using a voronoi grid.
 
-TODO: Line version with all the data available.
-
 
 ## Loading Multiple Data Files
 
