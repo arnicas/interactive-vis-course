@@ -22,6 +22,10 @@
 				fill: orange;
 			}
 
+			.label {
+				font-size: 10px;
+			}
+
 			.axis path,
 			.axis line {
 				fill: none;
@@ -127,6 +131,25 @@
 					.text(function(d) {
 						return d.name + "'s access to good water: " + d.year2015 + "%";
 					});
+
+
+				svg.selectAll("text.label")
+					.data(data)
+					.enter()
+					.append("text")
+					.attr("class", "label")
+					.attr("x", function(d) {
+						return widthScale(d.year2015);
+					})
+					.attr("y", function(d) {
+						return heightScale(d.name); // because we mapped to the names!
+					})
+					.attr("dx", 5)
+					.attr("dy", 15)
+					.text(function(d) {
+						return d.year2015 + "%";
+					});
+
 
 					// add the axes
 

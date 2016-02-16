@@ -115,7 +115,7 @@ d3.selectAll(&quot;rect&quot;).classed(&quot;brownrects&quot;, true); // adds cl
 <pre><code>    d3.select(‘rect’).attr(‘class’, ‘redrect’)</code></pre>
 <p>and then in the style sheet:</p>
 <pre><code>    .redrect { fill: red }</code></pre>
-<p>For dynamic styling, you want to do it inline, of course. From an excellent article on best practices in D3 coding:</p>
+<p>For dynamic styling, you want to do it inline, of course. From <a href="https://northlandia.wordpress.com/2014/10/23/ten-best-practices-for-coding-with-d3/">an excellent article on best practices in D3 coding</a>:</p>
 <pre><code>.style(&quot;fill&quot;, function(d) {
         return choropleth(d, colorize);
     })
@@ -180,6 +180,15 @@ rects.attr(&quot;fill&quot;, function(d) {
     .attr(&quot;text-anchor&quot;, &quot;end&quot;) // set anchor relative to container - this is right aligned
     .text(&quot;Hello World&quot;);          // define text string to show.</code></pre>
 <p>The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right. dy with a negative value will move it &quot;up&quot;, because the coordinate system is &quot;higher numbers at the bottom of the screen.&quot;</p>
+<p>Remember that <strong>if you already have text items on the page when you try to add new ones</strong> (such as doing data labels after axis creation), you will need to be more specific in your data join:</p>
+<pre><code>svg.selectAll(&quot;text.labels&quot;)
+ .data(data)
+ .enter()
+ .append(&quot;text&quot;)
+ .attr(&quot;class&quot;, &quot;labels&quot;)
+ ...
+</code></pre>
+<p>Otherwise, you will not see all your new text items appear correctly.</p>
 <h3 id="formatting-numbers-in-d3">Formatting Numbers in D3</h3>
 <p>We use a formatter string to describe how we want the number to display:</p>
 <pre><code>var formatter = d3.format(&quot;,&quot;);
@@ -316,6 +325,13 @@ svg.append(&quot;g&quot;)
         .attr(&quot;dy&quot;, &quot;1em&quot;)
         .style(&quot;text-anchor&quot;, &quot;middle&quot;)
         .text(&quot;Value&quot;);</code></pre>
+<p>Another method for the Y axis rotation:</p>
+<pre><code>svg.append(&quot;text&quot;)
+    .attr(&quot;yLabel&quot;)
+    .attr(&quot;transform&quot;,&quot;rotate(-90) translate(&quot; + (-height/2) + &quot;,&quot; + &quot;0)&quot;)
+    .style(&quot;text-anchor&quot;,&quot;middle&quot;)
+    .attr(&quot;dy&quot;,-60) // this will need a lot of adjusting probably
+    .text(&quot;String Here&quot;);</code></pre>
 <p>I'm not going to lie, it takes me a few tries to get the locations right.</p>
 <h2 id="scatterplots">Scatterplots</h2>
 <p>Scatterplots are dots on 2 linear x and y scales, usually. They are useful because they give you a visual sense of whether there is a correlation between two variables (example from Wikipedia):</p>

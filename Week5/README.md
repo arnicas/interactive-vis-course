@@ -100,7 +100,7 @@ and then in the style sheet:
     .redrect { fill: red }
 ````
 
-For dynamic styling, you want to do it inline, of course. From an excellent article on best practices in D3 coding:
+For dynamic styling, you want to do it inline, of course. From [an excellent article on best practices in D3 coding](https://northlandia.wordpress.com/2014/10/23/ten-best-practices-for-coding-with-d3/):
 
 ````
 .style("fill", function(d) {
@@ -193,6 +193,20 @@ container.append("text")         // append text to container selection
 ````
 
 The text element is used for labels on axes, on data points, annotations... anything! Be aware that you can adjust the location of the text with a dx or dy attribute, to move it up, down, or to the right.  dy with a negative value will move it "up", because the coordinate system is "higher numbers at the bottom of the screen."
+
+Remember that **if you already have text items on the page when you try to add new ones** (such as doing data labels after axis creation), you will need to be more specific in your data join:
+
+````
+svg.selectAll("text.labels")
+ .data(data)
+ .enter()
+ .append("text")
+ .attr("class", "labels")
+ ...
+
+````
+
+Otherwise, you will not see all your new text items appear correctly.
 
 
 ### Formatting Numbers in D3
@@ -403,6 +417,18 @@ svg.append("text")
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Value");
+````
+
+Another method for the Y axis rotation:
+
+
+````
+svg.append("text")
+    .attr("yLabel")
+    .attr("transform","rotate(-90) translate(" + (-height/2) + "," + "0)")
+    .style("text-anchor","middle")
+    .attr("dy",-60) // this will need a lot of adjusting probably
+    .text("String Here");
 ````
 
 I'm not going to lie, it takes me a few tries to get the locations right.

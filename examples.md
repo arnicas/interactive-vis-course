@@ -51,11 +51,13 @@
 
 ## Week6: Line Charts, Events, Tooltips
 
+* [scatter_skeleton_fixed.html](Week6/scatter_skeleton_fixed.html): The finished version of the scatterplot to fix
+* [bar_axes_labels_on_data.html](Week6/bar_axes_labels_on_data.html): Ordinal axis for Y, data labels on ends of bars
 * [d3_date_parsing.html](Week6/d3_date_parsing.html): Handling dates in your data (read and format)
 * [emissions_time_scatterplot.html](Week6/emissions_time_scatterplot.html): Scatterplot
 * [emissions_lineplot.html](Week6/emissions_lineplot.html): Plotting a line or two
 * [multiple_lines.html](Week6/multiple_lines.html): Plotting a lot of lines
-* [multiple_lines_mouseover.html](Week6/multiple_lines_mouseover.html): Just bolds the moused over line
+* [multiple_lines_mouseover.html](Week6/multiple_lines_mouseover.html): Just bold the moused-over line
 * [emissions_scatterplot_tooltip.html](Week6/emissions_scatterplot_tooltip.html): Tooltips
 * [multiple_lines_mouseover_tooltip.html](Week6/multiple_lines_mouseover_tooltip.html): More tooltips (on entire line, not point)
 

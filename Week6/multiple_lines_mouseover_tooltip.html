@@ -79,22 +79,27 @@
 
 
 			//Dimensions and padding
-			var width = 700;
-			var height = 600;
-			var margin = {top: 20, right: 10, bottom: 40, left:100};
 
+				var fullwidth = 700;
+			var fullheight = 600;
+			var margin = { top: 20, right: 10, bottom: 40, left: 100};
+
+
+			var width = fullwidth - margin.left - margin.right;
+			var height = fullheight - margin.top - margin.bottom;
 
 			//Set up date formatting and years
 			var dateFormat = d3.time.format("%Y");
 
-			//Set up scales
+
 			var xScale = d3.time.scale()
-								.range([ margin.left, width - margin.right - margin.left ]);
+								.range([ 0, width]);
 
 			var yScale = d3.scale.linear()
-								.range([ margin.top, height - margin.bottom ]);
+								.range([0, height]);
 
-			//Configure axis generators
+
+		//Configure axis generators
 			var xAxis = d3.svg.axis()
 							.scale(xScale)
 							.orient("bottom")
@@ -130,8 +135,10 @@
 			//Create the empty SVG image
 			var svg = d3.select("body")
 						.append("svg")
-						.attr("width", width)
-						.attr("height", height);
+						.attr("width", fullwidth)
+						.attr("height", fullheight)
+						.append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
 			//Load data
@@ -178,10 +185,10 @@
 				//more objects, each one holding 'year' and 'amount' values.
 
 				//New array with all the years, for referencing later
-				var years = ["1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"];
+				//var years = ["1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"];
 
 				// or you could get this by doing:
-				// var years = d3.keys(data[0]).slice(0, 54-4); //
+				var years = d3.keys(data[0]).slice(0, 54-4); //
 
 				//Create a new, empty array to hold our restructured dataset
 				var dataset = [];
@@ -198,6 +205,7 @@
 						if (d[y]) {
 							//Add a new object to the new emissions data array - for year, amount
 							myEmissions.push({
+								country: d.countryName,
 								year: y,
 								amount: d[y]  // this is the value for, for example, d["2004"]
  							});
@@ -212,7 +220,7 @@
 						emissions: myEmissions  // we just built this!
 						} );
 
-				});
+				}); // end of the data.forEach loop
 
 				//Uncomment to log the original data to the console
 				// console.log(data);
@@ -221,13 +229,13 @@
 				console.log(dataset);
 
 
-				//Set scale domains - max and mine of the years
+				//Set scale domains - max and min of the years
 				xScale.domain(
 					d3.extent(years, function(d) {
 						return dateFormat.parse(d);
 					}));
 
-				// max of emissions to 0 (reversed, remember)
+				// max of emissions to 0 (reversed, remember) - [max, 0] for y scale
 				yScale.domain([
 					d3.max(dataset, function(d) {
 						return d3.max(d.emissions, function(d) {
@@ -238,7 +246,7 @@
 				]);
 
 
-				//Make a group for each country
+				//Make a group for each country - just for the data binding
 				var groups = svg.selectAll("g.lines")
 					.data(dataset)
 					.enter()
@@ -249,24 +257,23 @@
 				//Within each group, create a new line/path,
 				//binding just the emissions data to each one
 				groups.selectAll("path")
-					.data(function(d) { // because there's a group with data already...
+					.data(function(d) { // because there's a group with data per country already...
 						return [ d.emissions ]; // it has to be an array for the line function
 					})
 					.enter()
 					.append("path")
 					.attr("class", "line")
-					.attr("d", line);
+					.attr("d", line); // calls the line function you defined above, using that array
 
 
 				//Axes
 				svg.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
 
 				svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform", "translate(" + margin.left + ",0)")
 					.call(yAxis);
 
 

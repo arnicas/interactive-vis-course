@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- A modified example from Scott Murray's Knight d3 course. -->
+<!-- A modified example and dataset from Scott Murray's Knight d3 course. -->
 
 <html lang="en">
 	<head>
@@ -29,6 +29,7 @@
 
 			circle.dots {
 				fill: steelblue;
+				opacity: .7;
 			}
 
 			circle:hover {
@@ -51,40 +52,40 @@
 	</head>
 	<body>
 
-		<h1>Life Satisfaction</h1>
+		<h1>Life Satisfaction vs Homicide Rate</h1>
 
-		<p>Better Life Index &ldquo;Life Satisfaction&rdquo; scores vs. percentage of population reporting good or better health. Source: <a href="http://stats.oecd.org/Index.aspx?DataSetCode=BLI">OECD</a>, 2014</p>
+		<p>Better Life Index &ldquo;Life Satisfaction&rdquo; scores vs. homicide rate. United States is highlighted. Source: <a href="http://stats.oecd.org/Index.aspx?DataSetCode=BLI">OECD</a>, 2014</p>
 
 		<script type="text/javascript">
 
 
 		// It is better to use the object style with margin.top, margin.right, etc.
 
-			var fullwidth = 700;
-			var fullheight = 600;
+			var fullWidth = 700;
+			var fullHeight = 600;
 
-			var margin = {top:20, left:10, right:50, bottom: 50};  //Top, right, bottom, left
+			var margin = {top:20, left:50, right:50, bottom: 50};  //Top, right, bottom, left
 
 			// what do you need to do to make the width and height for the chart?
-			var height = fullHeight // minus what?
-			var width = fullWidth // minus what?
+			var height = fullHeight - margin.top - margin.bottom;
+			var width = fullWidth - margin.left - margin.right;
 
-			var dotRadius = 3; // fix this to a nice value.
+			var dotRadius = 4; // fix this to a nice value.
 
 			// fill in the margin values here.
 			var xScale = d3.scale.linear()
-								.range([ what range here? ]);
+								.range([0, width ]);
 
 			// top to bottom:
 			var yScale = d3.scale.linear()
-								.range([ what here? ]);
+								.range([ height, 0]);
 
 			//  Custom tick count if you want it.
 			// Create your axes here.
 			var xAxis = d3.svg.axis()
 							.scale(xScale)
 							.orient("bottom")
-							.ticks(2);  // fix this to a good number of ticks for your scale later.
+							.ticks(10);  // fix this to a good number of ticks for your scale later.
 
 			var yAxis = d3.svg.axis()
 							.scale(yScale)
@@ -92,8 +93,8 @@
 
 			var svg = d3.select("body")
 						.append("svg")
-						.attr("width", width)
-						.attr("height", height)
+						.attr("width", fullWidth)
+						.attr("height", fullHeight)
 						.append("g")
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -101,47 +102,80 @@
 			d3.csv("data/betterlifeindex.csv", function(data) {
 
 				// look at the data file and pick 2 columns to contrast with each other.
+				// if we use d3.extent here, there will be no padding -- the dots
+				// will appear on the axis lines.
 
-				xScale.domain(
-					d3.extent(data, function(d) {
-						// pick a data value to plot on x axis
-					}));
+				xScale.domain([  // make an array of the min and max minus/plus some padding:
+					d3.min(data, function(d) {
+						return +d.homicideRate;
+						}) - 2,
+					d3.max(data, function(d) {
+						return +d.homicideRate;
+						}) + 2
+					]);
 
-				yScale.domain(
-					d3.extent(data, function(d) {
-						// pick a data value to plot for y axis
-					}));
+				yScale.domain([
+					d3.min(data, function(d) {
+						return +d.lifeSatisfaction;
+					}) - 2,
+					d3.max(data, function(d) {
+						return +d.lifeSatisfaction;
+					}) + 2
+				]);
 
 				var circles = svg.selectAll("circle")
-								// fill in the rest of the data, enter, append here.
-
-				// add a class to the circles - ".dots".
+					.data(data)
+					.enter()
+					.append("circle")
+					.classed("dots", true);
 
 				// Circles in SVG have cx, cy, and r attributes. x location, y location, radius.
 
 				circles.attr("cx", function(d) {
+						return xScale(+d.homicideRate);
 						// return the value to use for your x scale here
 					})
 					.attr("cy", function(d) {
+						return yScale(+d.lifeSatisfaction);
 						// return the value to use for your y scale here
 					})
 					.attr("r", dotRadius)  // you might want to increase your dotRadius
-					.attr("fill" // add a fill rule with a special case for one of the countries
+					.style("fill", function(d) {
+						if (d.country==="United States") {
+							return "red";
+						}
+					})
 					.append("title")
 					.text(function(d) {
-						// fill in a text string here for your cheap tooltip
+							return d.country;
 					});
 
 				// fix these translates so they use your margin and height width as needed
 				svg.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + (h - padding[2]) + ")")
-					.call( // fill in the name of your xaxis function here ).
+					.attr("transform", "translate(0," + height + ")")
+					.call(xAxis);
 
 				svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform", "translate(" + (padding[3]) + ",0)")
-					.call( // fill in the name of your yaxis function here).
+					.call(yAxis);
+
+				svg.append("text")
+		    .attr("class", "y label")
+		    .attr("text-anchor", "middle")
+		    .attr("transform", "rotate(-90)")
+		    .attr("x", -width/2)
+		    .attr("y", 0)
+		    .attr("dy", -30)
+		    .text("Life Satisfaction (%)");
+
+		    svg.append("text")
+					.attr("class", "xlabel")
+        	.attr("transform", "translate(" + width/2 + " ," +
+        				height + ")")
+        	.style("text-anchor", "middle")
+        	.attr("dy", "38")
+        	.text("Homicide Rate");
 
 			});
 
