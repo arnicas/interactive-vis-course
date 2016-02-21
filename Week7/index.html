@@ -40,6 +40,7 @@
 </ul></li>
 <li><a href="#more-on-lines-improving-the-ui">More on Lines: Improving the UI</a><ul>
 <li><a href="#labeling-lines">Labeling Lines</a></li>
+<li><a href="#replicating-the-nyt-david-bowie-vis-labels-appear-on-hover">Replicating the NYT David Bowie Vis: Labels Appear on Hover</a></li>
 <li><a href="#lines-with-dots-and-paths-for-improved-tooltips">Lines with Dots and Paths, for Improved Tooltips</a></li>
 <li><a href="#an-alternate-line-data-structure">An Alternate Line Data Structure</a></li>
 <li><a href="#usability-advanced-maneuvers-lines-and-scatters-with-voronoi">Usability Advanced Maneuvers: Lines and Scatters with Voronoi</a></li>
@@ -110,6 +111,34 @@ And you can always use <a href="http://learnjsdata.com" class="uri">http://learn
 <p>This was harder than expected, because of the data being at the &quot;group&quot; level.</p>
 <p>See my <a href="multiple_lines_labels.html" class="uri">multiple_lines_labels.html</a> for the data-attachment solution using datum, following Mike Bostock's example. It requires checking for empty values in the data set, or it errors. I also used a y-axis threshold to set which lines get labelled, which works with this data because those &quot;high&quot; lines are quite separate from each other.</p>
 <p>The alternate way is to use the data in the group <code>g</code> level, and just append text if the country names matches the ones you know are outliers, as in <a href="http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/" class="uri">http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/</a></p>
+<h3 id="replicating-the-nyt-david-bowie-vis-labels-appear-on-hover">Replicating the NYT David Bowie Vis: Labels Appear on Hover</h3>
+<p>I decided to add an example showing you how to remake the <a href="http://www.nytimes.com/interactive/2016/01/12/upshot/david-bowie-songs-that-fans-are-listening-most-heroes-starman-major-tom.html?_r=0">NYT David Bowie songs piece</a> I showed last week.</p>
+<p>See <a href="multiple_lines_labels_hover.html" class="uri">multiple_lines_labels_hover.html</a>. The trick here is that the mouse actions are on the &quot;g&quot; parent that contains the line and the text label. Because we detect the mouseover at the &quot;g&quot;, it makes it easy to select(this) and then select the line and text underneath:</p>
+<pre><code>var groups = svg.selectAll(&quot;g&quot;)
+                    .data(dataset)
+                    .enter()
+                    .append(&quot;g&quot;)
+                    .on(&quot;mouseover&quot;, mouseoverFunc)  // putting these on the g nodes gets us a lot!
+                    .on(&quot;mouseout&quot;, mouseoutFunc);
+
+....
+function mouseoverFunc(d) {
+    // the &quot;this&quot; is the g parent node.  That means we can select it, and then select
+    // the child nodes and style the]m as we want for the hover effect!
+    d3.select(this).select(&quot;path&quot;).attr(&quot;id&quot;, &quot;focused&quot;); // overrides the class
+    d3.select(this).select(&quot;text&quot;).classed(&quot;hidden&quot;, false);  // show it if &quot;hidden&quot;
+    d3.select(this).select(&quot;text&quot;).classed(&quot;bolder&quot;, true);
+    }
+
+function mouseoutFunc(d) {
+    d3.select(this).select(&quot;path&quot;).attr(&quot;id&quot;, null); // remove the focus style
+    d3.select(this).select(&quot;text&quot;).classed(&quot;bolder&quot;, false); // remove the bolding on label
+    // rehide the ones that are in the low numbers
+    if (+d.emissions[d.emissions.length-1].amount &lt;= 700000) {
+        d3.select(this).select(&quot;text&quot;).classed(&quot;hidden&quot;, true);
+    }
+}</code></pre>
+<p>Notice how we select something, and then we can select something more specific under it!</p>
 <h3 id="lines-with-dots-and-paths-for-improved-tooltips">Lines with Dots and Paths, for Improved Tooltips</h3>
 <p>The file <strong><a href="emissions_linescatterplot.html" class="uri">emissions_linescatterplot.html</a></strong> has both dots and the line connecting them. The dots allow more detailed tooltips, if we want them. Check them out.</p>
 <p>You have the option of having your dots be visible or not on the line. Just change the dot opacity as you like.</p>
