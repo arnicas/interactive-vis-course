@@ -84,6 +84,42 @@ See my [multiple_lines_labels.html](multiple_lines_labels.html) for the data-att
 
 The alternate way is to use the data in the group `g` level, and just append text if the country names matches the ones you know are outliers, as in http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/
 
+### Replicating the NYT David Bowie Vis: Labels Appear on Hover
+
+I decided to add an example showing you how to remake the [NYT David Bowie songs piece](http://www.nytimes.com/interactive/2016/01/12/upshot/david-bowie-songs-that-fans-are-listening-most-heroes-starman-major-tom.html?_r=0) I showed last week.
+
+See [multiple_lines_labels_hover.html](multiple_lines_labels_hover.html).  The trick here is that the mouse actions are on the "g" parent that contains the line and the text label.  Because we detect the mouseover at the "g", it makes it easy to select(this) and then select the line and text underneath:
+
+````
+var groups = svg.selectAll("g")
+                    .data(dataset)
+                    .enter()
+                    .append("g")
+                    .on("mouseover", mouseoverFunc)  // putting these on the g nodes gets us a lot!
+                    .on("mouseout", mouseoutFunc);
+
+....
+function mouseoverFunc(d) {
+    // the "this" is the g parent node.  That means we can select it, and then select
+    // the child nodes and style the]m as we want for the hover effect!
+    d3.select(this).select("path").attr("id", "focused"); // overrides the class
+    d3.select(this).select("text").classed("hidden", false);  // show it if "hidden"
+    d3.select(this).select("text").classed("bolder", true);
+    }
+
+function mouseoutFunc(d) {
+    d3.select(this).select("path").attr("id", null); // remove the focus style
+    d3.select(this).select("text").classed("bolder", false); // remove the bolding on label
+    // rehide the ones that are in the low numbers
+    if (+d.emissions[d.emissions.length-1].amount <= 700000) {
+        d3.select(this).select("text").classed("hidden", true);
+    }
+}
+````
+
+Notice how we select something, and then we can select something more specific under it!
+
+
 ### Lines with Dots and Paths, for Improved Tooltips
 
 The file **[emissions_linescatterplot.html](emissions_linescatterplot.html)** has both dots and the line connecting them. The dots allow more detailed tooltips, if we want them. Check them out.
