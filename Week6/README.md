@@ -174,12 +174,14 @@ This is a good style for a crowded line chart, especially when it comes to the o
 
 * http://www.nytimes.com/interactive/2016/01/12/upshot/david-bowie-songs-that-fans-are-listening-most-heroes-starman-major-tom.html?_r=1
 
-After this week, we can now do mouseover events, and line labeling like this.
-
 For reference, multiseries line chart with labelled lines, labels at the end of the line -- follow the tips here.
 
-* A reference version by Mike Bostock: http://bl.ocks.org/mbostock/3884955
-* Simpler version (be sure to read what he says at the top): http://bl.ocks.org/d3noob/8603837
+* A reference version by Mike Bostock: http://bl.ocks.org/mbostock/3884955 [This is more complicated than it has to be because he uses 'datum' to create a simple object for the text label out of the existing data.]
+* Simpler version (be sure to read what he says at the top; your data will not be in reverse order!): http://bl.ocks.org/d3noob/8603837
+
+Also, see this simpler example for labeling a single line using scales instead of the "transform(translate)" method:
+[emissions_lineplot_label.html](emissions_lineplot_label.html).
+
 
 ### Things That Are Confusing About Line Charts
 

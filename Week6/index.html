@@ -172,12 +172,13 @@ where each one of the objects has 2 (or more) attributes:
 <ul>
 <li><a href="http://www.nytimes.com/interactive/2016/01/12/upshot/david-bowie-songs-that-fans-are-listening-most-heroes-starman-major-tom.html?_r=1" class="uri">http://www.nytimes.com/interactive/2016/01/12/upshot/david-bowie-songs-that-fans-are-listening-most-heroes-starman-major-tom.html?_r=1</a></li>
 </ul>
-<p>After this week, we can now do mouseover events, and line labeling like this.</p>
 <p>For reference, multiseries line chart with labelled lines, labels at the end of the line -- follow the tips here.</p>
 <ul>
-<li>A reference version by Mike Bostock: <a href="http://bl.ocks.org/mbostock/3884955" class="uri">http://bl.ocks.org/mbostock/3884955</a></li>
-<li>Simpler version (be sure to read what he says at the top): <a href="http://bl.ocks.org/d3noob/8603837" class="uri">http://bl.ocks.org/d3noob/8603837</a></li>
+<li>A reference version by Mike Bostock: <a href="http://bl.ocks.org/mbostock/3884955" class="uri">http://bl.ocks.org/mbostock/3884955</a> [This is more complicated than it has to be because he uses 'datum' to create a simple object for the text label out of the existing data.]</li>
+<li>Simpler version (be sure to read what he says at the top; your data will not be in reverse order!): <a href="http://bl.ocks.org/d3noob/8603837" class="uri">http://bl.ocks.org/d3noob/8603837</a></li>
 </ul>
+<p>Also, see this simpler example for labeling a single line using scales instead of the &quot;transform(translate)&quot; method:<br />
+<a href="emissions_lineplot_label.html" class="uri">emissions_lineplot_label.html</a>.</p>
 <h3 id="things-that-are-confusing-about-line-charts">Things That Are Confusing About Line Charts</h3>
 <ul>
 <li>Frequently, for multiple line charts, the line data is in a &quot;g&quot; container. The data array is attached to the g &quot;parent&quot; node, along with other attributes you might need (for stuff like tooltips).</li>

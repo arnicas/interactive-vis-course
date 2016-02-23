@@ -74,7 +74,7 @@
 		<p>Carbon dioxide emissions, 1961-2010. Data not available for the entire period for all countries. Source: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT?page=6">World Bank</a>, 2014. (Based on a modified example from Scott Murray.)</p>
 		<p>This version of the interactive uses the technique in <a href="http://www.nytimes.com/interactive/2016/01/12/upshot/david-bowie-songs-that-fans-are-listening-most-heroes-starman-major-tom.html?_r=0">this NYT David Bowie songs line chart</a> to highlight lines and labels beside the line on mouseover.
 		</p>
-		<script type="text/javascript" src="../js/d3.v3.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 		<script type="text/javascript">
 
 
@@ -230,6 +230,7 @@
 			// We're putting the text label at the group level, where the country name was originally.
 			groups.append("text")
 	      .datum(function(d) {
+	      	// this datum move is to access the data at the last data // point and make it easier to refer to below.
 	      	return {country: d.country, value: d.emissions[d.emissions.length - 1]};
 	      })
 	      .attr("transform", function(d) {

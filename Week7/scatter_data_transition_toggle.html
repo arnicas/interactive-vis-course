@@ -25,8 +25,17 @@
 
 			.clicker {
 				font-weight: bolder;
-				color: red;
+				color: black;
 				cursor: pointer;
+			}
+
+			.buttons {
+				margin-left: 500px;
+				padding: 20px;
+			}
+
+			.selected {
+				background-color: #eee;
 			}
 
 			.chart-title {
@@ -77,7 +86,11 @@
 
 		<p>Source: World Development Indicators, <a href="http://datacatalog.worldbank.org">World Bank SOWC All Countries Update 214</a>, latest data 2013</p>
 
-		<p class="clicker">Click Me to Change to Toys!</p>
+		<div class="buttons">
+		<button class="clicker" id="toys">Show Toys!</button>
+		<button class="clicker" id="books">Show Books!</button>
+		</div>
+
 		<p class="chart-title">Books at Home</p>
 
 		<script type="text/javascript">
@@ -125,7 +138,14 @@
 						.append("g")
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-			d3.csv("data/books_toys_by_rich_poor2013.csv", function(data) {
+			d3.csv("data/books_toys_by_rich_poor2013.csv", draw);
+
+
+		function draw(error, data) {
+
+			if (error) {
+				console.log("error reading data");
+			}
 
 				var circles = svg.selectAll("circle")
 							.data(data)
@@ -192,17 +212,46 @@
 					.attr("dy", -25)
 					.text("Richest 20%");
 
-				d3.select("p.clicker").on("click", function() {
+					// make the default data button look selected
+				d3.select("button#books").classed("selected", true);
+
+				// handle the click events on the 2 buttons:
+
+				d3.selectAll("button.clicker").on("click", function() {
+
+					// we use the id attr on each to see which data set to use.
+					var whichbutton = d3.select(this).attr("id");
+
+					// style the buttons to show which one was clicked:
+					d3.select(this).classed("selected", true);
+
+					if (whichbutton === "toys") {
+						d3.select("button#books").classed("selected", false);
+					} else {
+						d3.select("button#toys").classed("selected", false);
+					}
+
+					// The id is either toys or books.  We just check which
+					// one and return the right data and text below:
 
 						circles
 							.transition()
 							.duration(2000)
 							.attr("cx", function(d) {
-								return xScale(+d.poorToys);
+								if (whichbutton === "toys") {
+									return xScale(+d.poorToys);
+								}
+								else { // then it's books:
+									return xScale(+d.poorBooks);
+								}
 								// return the value to use for your x scale here
 							})
 							.attr("cy", function(d) {
-								return yScale(+d.richToys);
+								if (whichbutton === "toys") {
+									return yScale(+d.richToys);
+								} else {
+									return yScale(+d.richBooks);
+								}
 							});
 
 							// We can't transition the new title text -- must remove and rewrite.
@@ -210,17 +259,25 @@
 						circles
 							.append("title")
 							.text(function(d) {
-								return d.country + " reports toys for " + d.poorToys + "% kids in poor areas and " + d.richToys + "% in rich areas.";
+								if (whichbutton === "toys") {
+									return d.country + " reports toys for " + d.poorToys + "% kids in poor areas and " + d.richToys + "% in rich areas.";
+								} else {
+									return d.country + " reports books for " + d.poorBooks + "% kids in poor areas and " + d.richBooks + "% in rich areas.";
+								}
 							});
 
 							// change the visible title!
-					d3.select("p.chart-title").text("Toys at Home");
+					if (whichbutton === "toys") {
+						d3.select("p.chart-title").text("Toys at Home");
+					} else {
+						d3.select("p.chart-title").text("Books at Home");
+					}
 
 
-					}); // end clicker function
+				}); // end clicker function
 
 
-			});
+			};
 
 
 		</script>

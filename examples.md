@@ -56,6 +56,7 @@
 * [d3_date_parsing.html](Week6/d3_date_parsing.html): Handling dates in your data (read and format)
 * [emissions_time_scatterplot.html](Week6/emissions_time_scatterplot.html): Scatterplot
 * [emissions_lineplot.html](Week6/emissions_lineplot.html): Plotting a line or two
+* [emissions_lineplot_label.html](Week6/emissions_lineplot_label.html): Labeling the end of a single line
 * [multiple_lines.html](Week6/multiple_lines.html): Plotting a lot of lines
 * [multiple_lines_mouseover.html](Week6/multiple_lines_mouseover.html): Just bold the moused-over line
 * [emissions_scatterplot_tooltip.html](Week6/emissions_scatterplot_tooltip.html): Tooltips
@@ -72,9 +73,11 @@
 * [lines_with_more_data.html](Week7/lines_with_more_data.html): Structure for the data that makes access to values easier for interaction
 * [multiple_lines_voronoi.html](Week7/multiple_lines_voronoi.html): Using voronoi overlay to make it easier to target points
 * [scatter_transition_in.html](Week7/scatter_transition_in.html): Delay on arriving dots
+* [scatter_transition_move_in_slow.html](Week7/scatter_transition_move_in_slow.html): A different arrival method, all moving up from origin.
 * [emissions_linescatterplot.html](Week7/emissions_linescatterplot.html): Mouseover triggers a transition
 * [scatter_data_transition.html](Week7/scatter_data_transition.html): Click causes data change and animation (only works once)
-* [lines_transition.html](Week7/lines_transition.html): Button click changes line chart data. (Map is static.)
+* [scatter_data_transition_toggle.html](Week7/scatter_data_transition_toggle.html): Buttons toggle between data sets, with animation.  Just uses an if-check.
+* [lines_transition.html](Week7/lines_transition.html): Button clicks change line chart data, multiple series. (Map is static.)
 
 
 ## Week8: Updates to Data, More Transitions

@@ -74,25 +74,27 @@
 
 		<p>Carbon dioxide emissions, 1961-2010. Data not available for the entire period for all countries. Source: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT?page=6">World Bank</a>, 2014. (Based on a modified example from Scott Murray.)</p>
 
-		<script type="text/javascript" src="../js/d3.v3.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 		<script type="text/javascript">
 
 
 			//Dimensions and padding
-			var width = 700;
-			var height = 600;
-			var margin = {top: 20, right: 10, bottom: 40, left:100};
+			var fullwidth = 700;
+			var fullheight = 600;
+			var margin = {top: 20, right: 100, bottom: 40, left:100};
 
+			var width = fullwidth - margin.left - margin.right;
+			var height = fullheight - margin.top - margin.bottom;
 
 			//Set up date formatting and years
 			var dateFormat = d3.time.format("%Y");
 
 			//Set up scales
 			var xScale = d3.time.scale()
-								.range([ margin.left, width - margin.right - margin.left ]);
+								.range([ 0, width ]);
 
 			var yScale = d3.scale.linear()
-								.range([ margin.top, height - margin.bottom ]);
+								.range([ 0, height ]);
 
 			//Configure axis generators
 			var xAxis = d3.svg.axis()
@@ -127,8 +129,10 @@
 			//Create the empty SVG image
 			var svg = d3.select("body")
 						.append("svg")
-						.attr("width", width)
-						.attr("height", height);
+						.attr("width", fullwidth)
+						.attr("height", fullheight)
+						.append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
 			var tooltip = d3.select("body")
@@ -245,26 +249,29 @@
 					.on("mouseout",	mouseoutFunc);
 
 			// We're putting the text label at the group level, where the country name was originally.
+			//We can access data here, because it's already attached!
+			// We use the scales to position labels at end of line.
 			groups.append("text")
-	      .datum(function(d) {
-	      	console.log("Here", {name: d.country, value: d.emissions[d.emissions.length - 1]});
-	      	return {name: d.country, value: d.emissions[d.emissions.length - 1]};
+	      .attr("x", function(d) {
+	      	if (d.emissions.length != 0) {
+		      	var lastYear = d.emissions[d.emissions.length-1].year;
+		      	return xScale(dateFormat.parse(lastYear));
+		      }
 	      })
-	      .attr("transform", function(d) {
-	      	console.log("in transform", d);
-	      	// error on some with no d.value - American Samoa, for instance.
-	      	if (d.value) {
-	      		return "translate(" + xScale(dateFormat.parse(d.value.year)) + "," + yScale(+d.value.amount) + ")";
-	      		}
-	      	else {
-	      		return null;
-	      		}
-	      	})
-	      .attr("x", 3)
+	      .attr("y", function(d) {
+	      	if (d.emissions.length != 0) {
+		      	var lastAmount = d.emissions[d.emissions.length-1].amount;
+		      	return yScale(+lastAmount);
+	      	}
+	      })
+	      .attr("dx", "3px")
 	      .attr("dy", ".35em")
 	      .text(function(d) {
-	      	if (d.value && +d.value.amount > 700000) {
-	      	return d.name;
+	      	if (d.emissions.length != 0) {
+	      		var lastAmount = d.emissions[d.emissions.length-1].amount;
+	      		if (+lastAmount > 700000) {
+	      			return d.country;
+	      		}
 	      	}
 	      })
 	      .attr("class", "linelabel");
@@ -272,12 +279,11 @@
 				//Axes
 				svg.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
 
 				svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform", "translate(" + margin.left + ",0)")
 					.call(yAxis);
 
 				function mouseoverFunc(d) {

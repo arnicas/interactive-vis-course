@@ -27,6 +27,11 @@
 				background-color: white;
 			}
 
+			circle {
+				fill: steelblue;
+				opacity: .7;
+			}
+
 			circle:hover {
 				fill: orange;
 			}
@@ -63,25 +68,25 @@
 		<script type="text/javascript">
 
 
-		// Scott is "cheating" and not using the full pattern for margins.
-		// It is better to use the object style with margin.top, margin.right, etc.
 
-			var width = 700;
-			var height = 600;
+			var fullwidth = 700;
+			var fullheight = 600;
 
 			var margin = { top: 20, right: 10, bottom: 50, left: 50 };
 
-			// redo this with an object for the margin settings: var margin = {top...}
+			var width = fullwidth - margin.left - margin.right;
+			var height = fullheight - margin.top - margin.bottom;
+
 
 			var dotRadius = 3; // fix this to a nice value.
 
 			// fill in the margin values here.
 			var xScale = d3.scale.linear()
-								.range([ margin.left, width - margin.right - margin.left]);
+								.range([ 0, width ]);
 
-			// top to bottom:
+			// top to bottom - because we use min to max in the domain
 			var yScale = d3.scale.linear()
-								.range([ height - margin.bottom, margin.top ]);
+								.range([ height, 0 ]);
 
 			//  Custom tick count if you want it.
 			// Create your axes here.
@@ -96,8 +101,10 @@
 
 			var svg = d3.select("body")
 						.append("svg")
-						.attr("width", width)
-						.attr("height", height);
+						.attr("width", fullwidth)
+						.attr("height", fullheight)
+						.append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 			d3.csv("data/primary_school_attendance_urban_rural.csv", function(data) {
 
@@ -159,31 +166,27 @@
 				// fix these translates so they use your margin and height width as needed
 				svg.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+					.attr("transform", "translate(0," + height  + ")")
 					.call(xAxis);
 
 				svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform", "translate(" + (margin.left) + ",0)")
 					.call(yAxis);
 
 
 				svg.append("text")
 					.attr("class", "xlabel")
 					.attr("transform", "translate(" + (width / 2) + " ," +
-								(height-20) + ")")
+								(height + 20) + ")")
 					.style("text-anchor", "middle")
 					.attr("dy", "12")
 					.text("Urban");
 
 				svg.append("text")
 					.attr("class", "ylabel")
-					.attr("transform", "translate(" + margin.right + " ," +
-								(height/2) + ")")
+					.attr("transform","rotate(-90) translate(" + (-height/2) + ",0)")
 					.style("text-anchor", "middle")
-					.attr("dx", "-300")
-					.attr("dy", "12")
-					.attr("transform", "rotate(-90)")
+					.attr("dy", -25)
 					.text("Rural");
 
 

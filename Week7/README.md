@@ -3,6 +3,16 @@
 
 ## Homework Review
 
+
+Some great linecharts:
+
+* Luying: http://bl.ocks.org/luluwuluying/raw/c3c703286bf4ceb4ea6a/
+* Cibonay: http://bl.ocks.org/cibonaydames/raw/9de111eb13d416d52529/
+* Sunny: http://bl.ocks.org/sunnyuxuan/raw/744270264b87f58d13a1/
+* Missing labels but still awesome: http://bl.ocks.org/JenHLab/raw/f6086f8147873d3493be/
+* Josh: http://bl.ocks.org/CafeConVega/ed643eefaee0879d3947
+* http://bl.ocks.org/SHewitt95/raw/cf838616690e0a0bda3d/
+
 ## More D3/JS Convenience Functions
 
 ### Gridlines How To
@@ -41,11 +51,13 @@ var dataset =  d3.nest()
                 .entries(data);
 ````
 
-The result is objects that look like:
+The result is object with keys (whatever you said was your key) and a values array of your original data that look like:
 
 <img src="img/nested_data.png">
 
 See **[example lines_d3nest.html](example lines_d3nest.html)** for how to deal with this, to group by country and then plot the lines.
+
+The basic gist of using a nested dataset in a line plot is that you pass the array `[ d.values ]` in as the data containing the x and y data items you will be plotting.  Your line function defines which data attributes to use for the x and the y!
 
 There are also d3 functions to return just the keys -- d3.keys(), and just the values: d3.values().
 
@@ -57,6 +69,8 @@ Reference:
 
 
 ### array.filter
+
+A useful function to "filter" an array down to only items that match your test. The result is a new array containing only those items. This one will filter an array of objects by key and find only the object with the key that is "Angola."
 
 ````
 // reduces the dataset to only items that match the 'test':
@@ -78,11 +92,19 @@ For really professional data "munging" helpers, you can use lodash.js (an extens
 
 ### Labeling Lines
 
-This was harder than expected, because of the data being at the "group" level.
 
-See my [multiple_lines_labels.html](multiple_lines_labels.html) for the data-attachment solution using datum, following Mike Bostock's example.  It requires checking for empty values in the data set, or it errors. I also used a y-axis threshold to set which lines get labelled, which works with this data because those "high" lines are quite separate from each other.
+The key item in labeling the last point of a line is getting at the last element in your data array.  You need those X and Y data values to position the text. You can use the length of the array to do that, except subtract 1 because of starting at 0:
 
-The alternate way is to use the data in the group `g` level, and just append text if the country names matches the ones you know are outliers, as in http://bl.ocks.org/theopenwindow/raw/71372a9217c2053febd2/
+````
+data[data.length - 1]
+````
+
+There are a few ways you can position the text labels.
+
+The 2 examples I gave you used "transform" and "translate" to position the labels.  You could also just use the x and y scales directly, like shown in the new example: [emissions_lineplot_label.html](../Week6/emissions_lineplot_label.html).  This is similar to the example in D3 Noob's [post](http://bl.ocks.org/d3noob/8603837).
+
+Also see my [multiple_lines_labels.html](multiple_lines_labels.html).It requires checking for empty values in the data set, or it errors. I also used a y-axis threshold to set which lines get labelled, which works with this data because those "high" lines are quite separate from each other.
+
 
 ### Replicating the NYT David Bowie Vis: Labels Appear on Hover
 
@@ -135,7 +157,7 @@ Here's another alternative, tricky way to add a dot on the line at the point clo
 
 ### An Alternate Line Data Structure
 
-Because it's hard to deal with lines without any attributes, especially for styling, another way to structure the file is shown in **[lines_with_more_data.html](lines_with_more_data.html).**  This structure made it easier to style one line based on country name.
+Because it's hard to deal with lines without any attributes, especially for styling, another way to structure the code is shown in **[lines_with_more_data.html](lines_with_more_data.html).**  This structure made it easier to style one line based on country name.
 
 ````
 var lines = svg.selectAll("path.line")
@@ -159,7 +181,9 @@ var lines = svg.selectAll("path.line")
 
 ### Usability Advanced Maneuvers: Lines and Scatters with Voronoi
 
-The problem of lots of lines and/or dots is that it's hard to pick them out of the mess.  There is a technique to improve this problem, but it requires restructuring your vis quite a bit.
+The problem of lots of lines and/or dots is that it's hard to pick them out of the mess.  There is a technique to improve this problem, but it requires restructuring your vis quite a bit.  The solution is to add a "voronoi" grid overlay that you attach the mouse events to, so the user doesn't have to be "right over" the mouse target to trigger the tooltip.  The closest element will instead display the data.
+
+You don't have to use this, but it's good to know about the solution when you're working with a lot of data.
 
 Reference and how-to's:
 
@@ -177,7 +201,7 @@ Voronoi airport maps:
 * World Airports: https://www.jasondavies.com/maps/voronoi/airports/
 * World Capitals: https://www.jasondavies.com/maps/voronoi/capitals/
 
-Example by me: [multiple_lines_voronoi.html](multiple_lines_voronoi.html).
+Example by me: [multiple_lines_voronoi.html](multiple_lines_voronoi.html).  (TODO: Highlight line as well.)
 
 
 ### Fun: Lines with Interpolation
@@ -220,6 +244,8 @@ circles.sort(function(a, b) {
     .attr("r", dotRadius);
 ````
 
+Also, [scatter_transition_move_in_slow.html](scatter_transition_move_in_slow.html), which differs slightly! This time it moves from the lower left as a mass.
+
 In the file **[emissions_linescatterplot.html](emissions_linescatterplot.html)**, we have added a mouseover transition:
 
 ````
@@ -241,13 +267,31 @@ In the file **[emissions_linescatterplot.html](emissions_linescatterplot.html)**
 There are more data-oriented transitions in **[scatter_data_transition.html](scatter_data_transition.html)** and **[lines_transition.html](lines_transition.html)**.  See below for the click events part.
 
 
-### On "Click" Events
+### Transitions on "Click" Events
 
 For a first, simple click event transition, look at **[scatter_data_transition.html](scatter_data_transition.html).**
 
-When the paragraph element with the class is clicked, a transition changes the data elements in the scatter plots.
+When the paragraph element with the class is clicked, a transition changes the data elements in the scatter plots.  The title changes too.  Notice the highlighted elements - they are outliers and a middle point in the first display, but you can see where they end up when you click the red text.
 
-Then let's look at the more complex **[lines_transition.html](lines_transition.html)**.
+That code is structured poorly and can only be run once. So it won't toggle back and forth.
+
+There is a toggle button version in [scatter_data_transition_toggle.html](scatter_data_transition_toggle.html).  The code for handle the switch of the data values is just a lot of if-statements checking on the current value of the clicked button.
+
+We check the value using these tricks:
+
+````
+<button class="clicker" id="toys">Show Toys!</button>
+<button class="clicker" id="books">Show Books!</button>
+...
+d3.selectAll("button.clicker").on("click", function() {
+
+    // we use the id attr on each to see which data set to use.
+    var whichbutton = d3.select(this).attr("id");
+    // whichbutton will now be set to either "toys" or "books"
+...
+````
+
+Now let's look at the more complex **[lines_transition.html](lines_transition.html)**.  (Note: It may take a while to load initially.)
 
 In it we use buttons that swap the data on a line chart!  (We're also using Bootstrap for some CSS layout and a map image.)
 
@@ -318,8 +362,6 @@ vis.append("svg:path")  // this is out of date - we don't need to append "svg:" 
 
 In more modern D3 code, we'd use a d3.map() hash lookup for the country code region lookup. You'll see some examples in upcoming weeks.
 
-I've put the country-region codes table in **[data/country-regions.csv](data/country-regions.csv)**.  Come see me if you want help using it and can't figure out how to do the lookup part.
-
 
 ## FYI: Bootstrap for CSS layouts
 
@@ -329,7 +371,7 @@ Have a look at Bootstrap, in very common usage in industry:
 * http://getbootstrap.com/css/
 * http://getbootstrap.com/css/#grid
 
-You will use it in one of your homeworks.  I used it for the [lines_transition.html](lines_transition.html) layout.
+You will use it in one of your homeworks.  I used it for the [lines_transition.html](lines_transition.html) layout which admittedly is still an ugly page.
 
 
 ## Recent Interesting Things
@@ -350,23 +392,20 @@ Reading
 * Updating data, transitions, etc: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_updating_data (up to "Other Kinds of Data Updates," we'll finish next week)
 
 
-**Homework 1: Dots on Lines** (25pt):
+**Homework 1: Tooltip Dots on Lines** (20pt):
 
-Add dots to your personal line charts (not my data!), following the model in [emissions_linescatterplot.html](emissions_linescatterplot.html) and [multiple_lines_labels.html](emissions_linescatterplot.html).  They can be visible or not, animated or not - but they should have tooltips attached that show at least the x and y data values visible in them.
+Add dots to your personal line charts (not my data!), following the model in [emissions_linescatterplot.html](emissions_linescatterplot.html) and [multiple_lines_labels.html](emissions_linescatterplot.html).  They can be visible or not, animated or not - but they should have d3 tooltips attached that show at least the x and y data values visible in them.
+
 Send me the gist with subject/label "Dots on Lines."
 
-Exra Credit (10pt): If you want to try to do that with voronoi, to make it easier to pick lines/dots, you'll get an extra 10pt.  Beware data points that are at the same point, you may need to use d3.nest() like Mike does in his blocks example.
 
+**Homework 2: Transition Plot With Buttons** (30pt):
 
-**Homework 2: Transition Plot With Button** (35pt):
+Choose a few interesting lines to plot (2 or 3, not a zillion), or a couple nice scatterplot examples. Bars would work too if you want. (You would just transition the bar width.) Pick at least 2.
 
-Choose a few interesting lines to plot (2 or 3, not a zillion), or a couple nice scatterplot examples. Bars would work too if you want. Pick at least 2.
+You will compare the data using transitions between data set variables.  The 2 comparisons must have the same number of points (at this point in the class), no missing or extra data in one set!  Make sure you have no missing data here in one of your variables.
 
-You will compare the data using transitions between data set variables.  The 2 comparisons must have the same number of points (at this point in the class), no missing or extra data in one set.
-
-Using the concepts in [lines_transition.html](lines_transition.html) or [scatter_data_transition.html](scatter_data_transition.html) and in Scott's chapter on transitions, make transitions between the data sets.  Use buttons to control them.  Use a flexible 2 column Bootstrap layout (like I did in [lines_transition.html](lines_transition.html)), with your chart in one column, and put useful text or imagery or both in the other column.  Use your own data and style.
-
-Ideas for comparisons: urban vs. rural, male vs. female, countries like I did, differences for one date vs. the next data...  Points will be awarded for sensible comparions that are interesting!
+Using the concepts in [lines_transition.html](lines_transition.html) or [scatter_data_transition_toggle.html](scatter_data_transition_toggle.html) and in Scott's chapter on transitions, to make transitions between the data sets.  Use buttons to control them.  Use a flexible 2 column Bootstrap layout (like I did in [lines_transition.html](lines_transition.html)), with your chart in one column, and put useful text or imagery or both in the other column.  Use your own data and style!
 
 Send me the gist with subject "Transition Plot."
 
