@@ -66,14 +66,14 @@
 <li>Sunny: <a href="http://bl.ocks.org/sunnyuxuan/raw/744270264b87f58d13a1/" class="uri">http://bl.ocks.org/sunnyuxuan/raw/744270264b87f58d13a1/</a></li>
 <li>Missing labels but still awesome: <a href="http://bl.ocks.org/JenHLab/raw/f6086f8147873d3493be/" class="uri">http://bl.ocks.org/JenHLab/raw/f6086f8147873d3493be/</a></li>
 <li>Josh: <a href="http://bl.ocks.org/CafeConVega/ed643eefaee0879d3947" class="uri">http://bl.ocks.org/CafeConVega/ed643eefaee0879d3947</a></li>
-<li><a href="http://bl.ocks.org/SHewitt95/raw/cf838616690e0a0bda3d/" class="uri">http://bl.ocks.org/SHewitt95/raw/cf838616690e0a0bda3d/</a></li>
+<li>Sherman: <a href="http://bl.ocks.org/SHewitt95/raw/cf838616690e0a0bda3d/" class="uri">http://bl.ocks.org/SHewitt95/raw/cf838616690e0a0bda3d/</a></li>
 </ul>
 <h2 id="more-d3js-convenience-functions">More D3/JS Convenience Functions</h2>
 <h3 id="gridlines-how-to">Gridlines How To</h3>
 <p>See this article: <a href="http://www.d3noob.org/2013/01/adding-grid-lines-to-d3js-graph.html" class="uri">http://www.d3noob.org/2013/01/adding-grid-lines-to-d3js-graph.html</a></p>
 <pre><code>var xAxis = d3.svg.axis()
     .scale(xScale)
-    .tickSize(-myHeight) // this trick makes the inner ticks into lines!
+    .tickSize(-height) // this trick makes the inner ticks into lines!
     .orient(&quot;bottom&quot;)
     .ticks(8)
     .tickFormat(function(d) {
@@ -83,7 +83,7 @@
 
 var yAxis = d3.svg.axis()
     .scale(yScale)
-    .tickSize(myWidth) // also here!
+    .tickSize(width) // also here!
     .orient(&quot;right&quot;)
     .outerTickSize([0])
     .ticks(5);</code></pre>
@@ -97,7 +97,7 @@ var yAxis = d3.svg.axis()
                 .entries(data);</code></pre>
 <p>The result is object with keys (whatever you said was your key) and a values array of your original data that look like:</p>
 <p><img src="img/nested_data.png"></p>
-<p>See <strong><a href="example%20lines_d3nest.html">example lines_d3nest.html</a></strong> for how to deal with this, to group by country and then plot the lines.</p>
+<p>See <strong><a href="lines_d3nest.html" class="uri">lines_d3nest.html</a></strong> for how to deal with this, to group by country and then plot the lines.</p>
 <p>The basic gist of using a nested dataset in a line plot is that you pass the array <code>[ d.values ]</code> in as the data containing the x and y data items you will be plotting. Your line function defines which data attributes to use for the x and the y!</p>
 <p>There are also d3 functions to return just the keys -- d3.keys(), and just the values: d3.values().</p>
 <p>Reference:</p>

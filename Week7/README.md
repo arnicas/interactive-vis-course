@@ -11,7 +11,7 @@ Some great linecharts:
 * Sunny: http://bl.ocks.org/sunnyuxuan/raw/744270264b87f58d13a1/
 * Missing labels but still awesome: http://bl.ocks.org/JenHLab/raw/f6086f8147873d3493be/
 * Josh: http://bl.ocks.org/CafeConVega/ed643eefaee0879d3947
-* http://bl.ocks.org/SHewitt95/raw/cf838616690e0a0bda3d/
+* Sherman: http://bl.ocks.org/SHewitt95/raw/cf838616690e0a0bda3d/
 
 ## More D3/JS Convenience Functions
 
@@ -22,7 +22,7 @@ See this article: http://www.d3noob.org/2013/01/adding-grid-lines-to-d3js-graph.
 ````
 var xAxis = d3.svg.axis()
     .scale(xScale)
-    .tickSize(-myHeight) // this trick makes the inner ticks into lines!
+    .tickSize(-height) // this trick makes the inner ticks into lines!
     .orient("bottom")
     .ticks(8)
     .tickFormat(function(d) {
@@ -32,7 +32,7 @@ var xAxis = d3.svg.axis()
 
 var yAxis = d3.svg.axis()
     .scale(yScale)
-    .tickSize(myWidth) // also here!
+    .tickSize(width) // also here!
     .orient("right")
     .outerTickSize([0])
     .ticks(5);
@@ -55,7 +55,7 @@ The result is object with keys (whatever you said was your key) and a values arr
 
 <img src="img/nested_data.png">
 
-See **[example lines_d3nest.html](example lines_d3nest.html)** for how to deal with this, to group by country and then plot the lines.
+See **[lines_d3nest.html](lines_d3nest.html)** for how to deal with this, to group by country and then plot the lines.
 
 The basic gist of using a nested dataset in a line plot is that you pass the array `[ d.values ]` in as the data containing the x and y data items you will be plotting.  Your line function defines which data attributes to use for the x and the y!
 

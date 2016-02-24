@@ -252,7 +252,10 @@
 
 					d3.selectAll("button").classed("selected", false);
 					thisButton.classed("selected", true);
-					selectedline.transition().attr("d", line(newdata));
+					selectedline
+						.transition()
+						.duration(2000)
+						.attr("d", line(newdata));
 
 					/* to understand the above, this is what I had before I added more cases:
 					if (thisButton.attr("id") === "angola") {
