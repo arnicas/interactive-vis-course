@@ -68,7 +68,7 @@
 
 * [multiple_lines_labels.html](Week7/multiple_lines_labels.html): Labels on specific lines
 * [multiple_lines_labels_hover.html](Week7/multiple_lines_labels_hover.html): Labels on some lines, plus a hover effect to bold line and reveal hidden labels.
-* [lines_d3nest.html](Week7lines_d3nest.html): Nesting data to plot it
+* [lines_d3nest.html](Week7/lines_d3nest.html): Nesting data to plot lines with d.values
 * [emissions_linescatterplot.html](Week7/emissions_linescatterplot.html): Dots and lines in the lineplot
 * [lines_with_more_data.html](Week7/lines_with_more_data.html): Structure for the data that makes access to values easier for interaction
 * [multiple_lines_voronoi.html](Week7/multiple_lines_voronoi.html): Using voronoi overlay to make it easier to target points
