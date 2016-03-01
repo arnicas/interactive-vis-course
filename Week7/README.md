@@ -150,6 +150,8 @@ You have the option of having your dots be visible or not on the line.  Just cha
 
 I also added the dots on **[multiple_lines_labels.html](multiple_lines_labels.html).**  Notice it's hard to grab the dots and lines sometimes. See the next section below for the advanced tool trick to deal with that.
 
+By popular demand, this is how you might structure your code to do a highlight of the line when you hover over a dot and show a tooltip: See **[multiple_lines_labels_tooltips.html](multiple_lines_labels_tooltips.html)**.  The example uses an id that matches on the line and circle, to make it easier to select the line from the circle.
+
 Here's another alternative, tricky way to add a dot on the line at the point closest to the mouse:
 
 * Clever line bisect mouseover label trick from Mike Bostock: http://bl.ocks.org/mbostock/3902569
@@ -372,6 +374,8 @@ Have a look at Bootstrap, in very common usage in industry:
 * http://getbootstrap.com/css/#grid
 
 You will use it in one of your homeworks.  I used it for the [lines_transition.html](lines_transition.html) layout which admittedly is still an ugly page.
+
+Reminder: Don't use a ".tooltip" class for your D3 tooltips with Bootstrap. Change it to ".mytooltip" or something else.  Bootstrap highjacks ".tooltip" away from you.
 
 
 ## Recent Interesting Things

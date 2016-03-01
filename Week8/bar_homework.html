@@ -77,41 +77,46 @@
 <script type="text/javascript">
 
 
-    var width = 400;
-    var height = 500;
+    var fullwidth = 400;
+    var fullheight = 500;
+
+    var margin = {top: 10, right: 20, bottom: 20, left: 10};
+
+    var height = fullheight - margin.top - margin.bottom;
+    var width = fullwidth - margin.left - margin.right;
 
     var format = d3.format(".1%");
 
-        //setup the svg
+    //setup the svg
 
-        var vis = d3.select("#chart").append("svg");
-        var svg = vis
-            .attr("width", width+100)
-            .attr("height", height+100); // adding some random padding
-        svg.append("rect")
-            .attr("width", "100%")
-            .attr("height", "100%")
-            .attr("fill", "none");
+    var vis = d3.select("#chart").append("svg");
+    var svg = vis
+        .attr("width", fullwidth)
+        .attr("height", fullheight)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        d3.csv("data/deaths_04yearsold_2013percent.csv", function(error, data) {
+    // load the data and do stuff
 
-            var column = d3.select("#menu select").property("value");
-            var dataset = top20_by_column(data, column); // you need to finish this function below.
+    d3.csv("data/deaths_04yearsold_2013percent.csv", function(error, data) {
 
-            console.log(column, dataset);
+        var column = d3.select("#menu select").property("value");
+        var dataset = top20_by_column(data, column); // you need to finish this function below.
 
-            redraw(dataset, column);
+        console.log(column, dataset);
 
-            //setup our ui -- requires access to data variable, so inside csv
-            d3.select("#menu select")
-                .on("change", function() {
-                    column = //TODO: How do you get the current value of the select menu?
-                    dataset = //TODO: How do you get the current filter/storted data?
-                    //console.log(column, dataset);
-                    redraw(dataset, column);
-            });
+        //setup our ui -- requires access to data variable, so inside csv
+        d3.select("#menu select")
+            .on("change", function() {
+                column = //TODO: How do you get the current value of the select menu?
+                dataset = //TODO: How do you get the current filter/storted data?
+                //console.log(column, dataset);
+                redraw(dataset, column);
+        });
 
-        }) // end csv
+        redraw(dataset, column);
+
+    }); // end csv
 
         //make the bars for the first data set.  They will be red at first.
 
@@ -155,7 +160,6 @@
         bars.exit()
             .transition()
             .duration(300)
-            .ease("exp")
             .attr("width", 0)
             //TODO: what goes here at the end of exit?
 
@@ -168,8 +172,9 @@
                 return xScale(//TODO: what goes here?);
             })
             .attr("height", //TODO: In an ordinal scale bar chart, what goes here?)
+            .attr("fill", "darkorange") // do what you like with the colors
             .attr("transform", function(d,i) {
-                return "translate(" + [0, yScale(i)] + ")"
+                return "translate(0," + yScale(i) + ")";
             });
 
 

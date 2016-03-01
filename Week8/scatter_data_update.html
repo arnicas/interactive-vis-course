@@ -36,6 +36,7 @@
 
 			.dots {
 				fill: steelblue;
+				opacity: .7;
 			}
 
 			.dotlabels {
@@ -95,10 +96,13 @@
 
 		// All the global setup is here:
 
-			var width = 700;
-			var height = 600;
+			var fullwidth = 700;
+			var fullheight = 600;
 
 			var margin = { top: 20, right: 10, bottom: 50, left: 50 };
+
+			var width = fullwidth - margin.right - margin.left;
+			var height = fullheight - margin.top - margin.bottom;
 
 			// redo this with an object for the margin settings: var margin = {top...}
 
@@ -107,12 +111,12 @@
 			// fill in the margin values here.  Also, we set domain to 0 to 100 since it's percents,
 			// plus some padding room!
 			var xScale = d3.scale.linear()
-								.range([ margin.left, width - margin.right - margin.left])
+								.range([ 0, width])
 								.domain([-1, 100]);
 
 			// top to bottom, padding just in case
 			var yScale = d3.scale.linear()
-								.range([ height - margin.bottom, margin.top ])
+								.range([ height, 0 ])
 								.domain([-1, 100]);
 
 			//  Custom tick count if you want it.
@@ -128,8 +132,15 @@
 
 			var svg = d3.select("body")
 						.append("svg")
-						.attr("width", width)
-						.attr("height", height);
+						.attr("width", fullwidth)
+						.attr("height", fullheight)
+						.append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.right + ")");
+
+		// utility for label placement jitter
+		function getRandomInt(min, max) {
+  			return Math.floor(Math.random() * (max - min + 1) + min);
+				}
 
 
 			d3.csv("data/books_toys_by_rich_poor2013.csv", function(data) {
@@ -142,30 +153,27 @@
 
       	svg.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
 
 				svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform", "translate(" + (margin.left) + ",0)")
 					.call(yAxis);
 
 				svg.append("text")
 					.attr("class", "xlabel")
 					.attr("transform", "translate(" + (width / 2) + " ," +
-								(height-20) + ")")
+								(height + 25) + ")")
 					.style("text-anchor", "middle")
-					.attr("dy", "12")
+					.attr("dy", 12)
 					.text("Poorest 20%");
 
 				svg.append("text")
 					.attr("class", "ylabel")
-					.attr("transform", "translate(" + margin.right + " ," +
-								(height/2) + ")")
+					.attr("transform", "rotate(-90) translate(" + (-height/2)
+								 + ",0)")
 					.style("text-anchor", "middle")
-					.attr("dx", "-300")
-					.attr("dy", "12")
-					.attr("transform", "rotate(-90)")
+					.attr("dy", -30)
 					.text("Richest 20%");
 
 
@@ -184,12 +192,12 @@
 					  	var newData = data; // set it equal to all the data
 					  } else if (curSelection === "rich") { //poorest 10
 						  	var newData = data.sort(function(a,b) {
-						  		return b.poorToys - a.poorToys;
-						  	}).slice(0, 10);
+							  		return b.poorToys - a.poorToys;
+							  	}).slice(0, 10);
 					  } else if (curSelection === "poor") {  // descending
 						  	var newData = data.sort(function(a,b) { // richest 10
-										return a.poorToys - b.poorToys;
-						  	}).slice(0, 10);
+											return a.poorToys - b.poorToys;
+							  	}).slice(0, 10);
 					  }
 					  console.log(newData);
 					  render(newData);
@@ -309,9 +317,14 @@
 											.attr("transform", function(d) {
 											 return "translate(" + xScale(+d.poorToys) + "," + yScale(+d.richToys) + ")";
 											})
-											.attr({
-												"dx": "4px",
-												"dy": "-5px"
+											.attr("dx", 5)
+											.attr("dy", function(d) {
+												// adding some space for the overlapping ones
+												if (d.country == "Costa Rica" || d.country == "Uzbekistan") {
+													return -12;
+												} else {
+													return -4;
+												}
 											})
 											.attr("class", "dotlabels")
 											.style("opacity", 0)

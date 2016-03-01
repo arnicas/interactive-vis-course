@@ -66,10 +66,11 @@
 
 ## Week7: Improved Line Charts, Transitions
 
-* [multiple_lines_labels.html](Week7/multiple_lines_labels.html): Labels on specific lines
+*  [emissions_linescatterplot.html](Week7/emissions_linescatterplot.html): Dots and lines in the lineplot, with tooltips. Single line.
+* [multiple_lines_labels.html](Week7/multiple_lines_labels.html): Labels on ends of specific lines, with tooltip on data points. Many lines.
+* [multiple_lines_labels_tooltips.html](Week7/multiple_lines_labels_tooltips.html): Tooltips on dots, plus a highlight of the line itself when you mouse over the dots.
 * [multiple_lines_labels_hover.html](Week7/multiple_lines_labels_hover.html): Labels on some lines, plus a hover effect to bold line and reveal hidden labels.
 * [lines_d3nest.html](Week7/lines_d3nest.html): Nesting data to plot lines with d.values
-* [emissions_linescatterplot.html](Week7/emissions_linescatterplot.html): Dots and lines in the lineplot
 * [lines_with_more_data.html](Week7/lines_with_more_data.html): Structure for the data that makes access to values easier for interaction
 * [multiple_lines_voronoi.html](Week7/multiple_lines_voronoi.html): Using voronoi overlay to make it easier to target points
 * [scatter_transition_in.html](Week7/scatter_transition_in.html): Delay on arriving dots
@@ -85,6 +86,7 @@
 * [bar_updates_no_key.html](Week8/bar_updates_no_key.html): Update the dumb way, without object constancy
 * [bostock_bar_updates_simpler.html](Week8/bostock_bar_updates_simpler.html): Simplified example of Mike Bostock's Object Constancy example
 * [bar_updates_key.html](Week8/bar_updates_key.html): Updated using a key and coloring by "remaining" bar
+* [bar_updates_key_sorted.html](Week8/bar_updates_key_sorted.html): Data values sorted, update with key, change color to consistent final color.
 * [scatter_data_update.html](Week8/scatter_data_update.html): Restructure to show update pattern with select menu, and new ones come from the "right" direction.
 * [scatter_homework.html](Week8/scatter_homework.html): Finish this.
 * [bar_homework.html](Week8/bar_homework.html): Finish this.

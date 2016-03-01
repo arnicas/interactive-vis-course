@@ -248,7 +248,7 @@
 					.y(function(d) {
 						return yScale(+d.amount);
 					})
-					.clipExtent([[margin.left, margin.top], [width, height]]);
+					.clipExtent([[0, 0], [width, height]]);
 
 				var voronoiGroup = svg.append("g")
 					.attr("class", "voronoi");

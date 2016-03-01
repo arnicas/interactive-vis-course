@@ -31,26 +31,69 @@
 <div id="TOC">
 <ul>
 <li><a href="#week-8-data-updates-data-binding-by-key-more-transitions">Week 8: Data Updates, Data Binding by Key, More Transitions</a><ul>
-<li><a href="#homework-review">Homework Review</a></li>
+<li><a href="#homework-review">Homework Review</a><ul>
+<li><a href="#reminder-bootstrap-and-tooltips">Reminder: Bootstrap and Tooltips</a></li>
+<li><a href="#highlighting-a-line-and-a-dot-in-a-mouseover">Highlighting a Line and a Dot in a Mouseover</a></li>
+<li><a href="#default-button-selection-style">Default Button Selection Style</a></li>
+<li><a href="#dry-code">DRY Code</a></li>
+</ul></li>
 <li><a href="#useful-tips-for-vis">Useful Tips For Vis</a><ul>
 <li><a href="#sort-and-slice-arrays">Sort and Slice Arrays</a></li>
+<li><a href="#string-replacements-with-regexs">String Replacements with Regex's</a></li>
 <li><a href="#using-a-select-menu">Using a Select Menu</a></li>
-<li><a href="#default-button-selection-style">Default Button Selection Style</a></li>
-<li><a href="#moving-a-line-to-the-front">Moving a Line to the Front</a></li>
+<li><a href="#moving-a-line-or-dot-to-the-front">Moving a Line (or Dot) to the Front</a></li>
 <li><a href="#getting-to-a-parent-selection-sibling-selection">Getting to a Parent Selection / Sibling Selection</a></li>
 </ul></li>
 <li><a href="#more-on-d3-transitions">More on D3 Transitions</a><ul>
 <li><a href="#axes-transitions">Axes Transitions</a></li>
 <li><a href="#data-binding-update-pattern-keys">Data Binding, Update Pattern, Keys</a></li>
-<li><a href="#good-code-structure---functions-for-redrawing">Good Code Structure - Functions for re(drawing)</a></li>
 </ul></li>
-<li><a href="#recent-interesting-things">Recent Interesting Things</a></li>
+<li><a href="#good-code-structure---functions-for-redrawing">Good Code Structure - Functions for re(drawing)</a></li>
+<li><a href="#multiple-data-files-with-queue">Multiple Data Files with Queue()</a></li>
 <li><a href="#homework">Homework</a></li>
 </ul></li>
 </ul>
 </div>
 <h1 id="week-8-data-updates-data-binding-by-key-more-transitions">Week 8: Data Updates, Data Binding by Key, More Transitions</h1>
 <h2 id="homework-review">Homework Review</h2>
+<p>Sherman's lines: <a href="http://bl.ocks.org/SHewitt95/raw/dbc08c4a141ad3b6783d/" class="uri">http://bl.ocks.org/SHewitt95/raw/dbc08c4a141ad3b6783d/</a><br />
+Jennifer's epic voronoi: <a href="http://bl.ocks.org/JenHLab/fabb713c310663d7e60f" class="uri">http://bl.ocks.org/JenHLab/fabb713c310663d7e60f</a><br />
+Zhou's teams: <a href="http://bl.ocks.org/captainelaine/raw/89cbd2aa709e3848d1e4/" class="uri">http://bl.ocks.org/captainelaine/raw/89cbd2aa709e3848d1e4/</a><br />
+Sunny's Lines with Highlights: <a href="http://bl.ocks.org/sunnyuxuan/raw/4455c6faa134084c9377/" class="uri">http://bl.ocks.org/sunnyuxuan/raw/4455c6faa134084c9377/</a><br />
+Eric's Transitions: <a href="http://bl.ocks.org/suneric1/raw/b76051e23a8efc89947f/" class="uri">http://bl.ocks.org/suneric1/raw/b76051e23a8efc89947f/</a></p>
+<h3 id="reminder-bootstrap-and-tooltips">Reminder: Bootstrap and Tooltips</h3>
+<p>Reminder: Don't use a &quot;.tooltip&quot; class for your D3 tooltips with Bootstrap. Change it to &quot;.mytooltip&quot; or something else. Bootstrap highjacks &quot;.tooltip&quot; away from you.</p>
+<h3 id="highlighting-a-line-and-a-dot-in-a-mouseover">Highlighting a Line and a Dot in a Mouseover</h3>
+<p>See <a href="Week7/multiple_lines_labels_tooltips.html">multiple_lines_labels_tooltips.html</a>. In this example, I used an id to label the lines and circles by the same thing, so that a mouseover function can refer to the same id.</p>
+<p>Note that in the groups for the line, I had to access the first data element's country attribute to get the data for the id -- the data array needs to have your group identity in it for this to work. Also, I have to check if the array is defined, in case of errors. I then use a javascript regular expression replacement to remove illegal characters. See section <a href="#string-replacements-with-regexs">below</a> on regex string replacements.</p>
+<pre><code>groups.selectAll(&quot;path&quot;)
+    .data(function(d) { // because there&#39;s a group with data already...
+        return [ d.emissions ]; // it has to be an array for the line function
+    })
+    .enter()
+    .append(&quot;path&quot;)
+    .attr(&quot;class&quot;, &quot;line&quot;)
+    .attr(&quot;classed&quot;, &quot;unfocused&quot;) // they are not focused till mouseover
+    .attr(&quot;id&quot;, function(d) {
+        // we are attaching an id to the line using the countryname, replacing
+        // spaces, commas, periods with underscores so it&#39;s a valid id.
+        // this will be useful when we do the mouseover and want to highlight a line too.
+        if (d[0] &amp;&amp; d[0].length != 0) {
+            // this if-test makes sure there is an array and it&#39;s not empty.
+            return d[0].country.replace(/ |,|\./g, &#39;_&#39;);
+        }
+    })
+    .attr(&quot;d&quot;, line);</code></pre>
+<h3 id="default-button-selection-style">Default Button Selection Style</h3>
+<p>If you have a default state for a display, such as a &quot;currently selected&quot; button state, you should set it to display as selected when the page loads. That way the user knows the current state of the display.</p>
+<p>Just set it to the correct class for the default view of your UI, in your main code. You will have code in your <code>button.on(&quot;click&quot;)</code> function(s) that sets the appearance of the clicked button, too. It should look similar.</p>
+<pre><code>d3.select(&quot;button#Female&quot;).classed(&quot;selected&quot;, true);</code></pre>
+<h3 id="dry-code">DRY Code</h3>
+<p>DRY stands for Don't Repeat Yourself. If you have a lot of code that looks very similar, it can usually be restructured using functions and data arguments. Code with a lot of cut-and-paste stuff leads to errors, too. It's easier to debug smaller code.</p>
+<p>Let's talk about this:</p>
+<ul>
+<li><a href="http://blockbuilder.org/arnicas/307ea2a3f4c80ad7239e" class="uri">http://blockbuilder.org/arnicas/307ea2a3f4c80ad7239e</a></li>
+</ul>
 <h2 id="useful-tips-for-vis">Useful Tips For Vis</h2>
 <h3 id="sort-and-slice-arrays">Sort and Slice Arrays</h3>
 <p>The slice function: get the first N items from the array as a new array:</p>
@@ -58,6 +101,10 @@
         return b.value - a.value; // descending order, biggest at the top!
   }).slice(0, 10); // cut off the top 10!
 </code></pre>
+<h3 id="string-replacements-with-regexs">String Replacements with Regex's</h3>
+<p>In order to create an id (like &quot;path.line#Afgahnistan&quot;) that's valid on a DOM element from a data entity, you might have to &quot;fix&quot; the string to remove illegal characters. This syntax replaces an empty space, a common, and a period with an underscore character:</p>
+<pre><code>return d.country.replace(/ |,|\./g, &#39;_&#39;);</code></pre>
+<p>You can read about regex replacements here: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" class="uri">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</a>.</p>
 <h3 id="using-a-select-menu">Using a Select Menu</h3>
 <p>There are drop-down select menus in <a href="bostock_bar_updates_simpler.html" class="uri">bostock_bar_updates_simpler.html</a> and <a href="scatter_data_update.html" class="uri">scatter_data_update.html</a>. In the Bostock example, he constructs the menu using D3 and the data set, in <a href="scatter_data_update.html" class="uri">scatter_data_update.html</a> I build it manually and use D3 to respond to its use.</p>
 <pre><code>&lt;p id=&quot;menu&quot;&gt;
@@ -85,11 +132,7 @@
     }
     render(newData); // go redraw the data with this new dataset
 }</code></pre>
-<h3 id="default-button-selection-style">Default Button Selection Style</h3>
-<p>If you have a default state for a display, such as a &quot;currently selected&quot; button state, you should set it to display as selected when the page loads. That way the user knows the current state of the display.</p>
-<p>Just set it to the correct class for the default view of your UI, in your main code. You will have code in your <code>button.on(&quot;click&quot;)</code> function(s) that sets the appearance of the clicked button, too. It should look similar.</p>
-<pre><code>d3.select(&quot;button#Female&quot;).classed(&quot;selected&quot;, true);</code></pre>
-<h3 id="moving-a-line-to-the-front">Moving a Line to the Front</h3>
+<h3 id="moving-a-line-or-dot-to-the-front">Moving a Line (or Dot) to the Front</h3>
 <p>Get the parent, then append yourself to it. Remember, D3 svg draws &quot;in order&quot; -- things drawn later are on top of things drawn earlier. An example:</p>
 <pre><code>d.city.line.parentNode.appendChild(d.city.line);</code></pre>
 <p>The general function for moveToFront() is:</p>
@@ -113,6 +156,7 @@ Say you have a selected dot, but want the line that's in the same group.</p>
 <p>From a selection, you can do .node() to get you the DOM element itself. Then from there you can do .parentNode to get the parent in the structure. (The parent is the container 'g'.)</p>
 <pre><code>var mygroup = d3.select(this).node().parentNode;
 d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, true);</code></pre>
+<p>You could use this approach instead of using an id on the lines and circles, if you wanted to highlight a line this way.</p>
 <h2 id="more-on-d3-transitions">More on D3 Transitions</h2>
 <p>Not everything can transition with D3. You'll see a lot of use of transform/translate to achieve transition effects with things that are hard to transition (including groups).</p>
 <p>Reference:</p>
@@ -122,7 +166,8 @@ d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, tr
 </ul>
 <h3 id="axes-transitions">Axes Transitions</h3>
 <p>... Are incredibly easy. If you have updated your scale with new data, the transition of an axis is trivial:</p>
-<pre><code>svg.transition().select(&quot;.x.axis&quot;) // select it, and recall the axis
+<pre><code>svg.transition().select(&quot;.x.axis&quot;) // select it with whatever class you assigned, 
+                                    // and re-&quot;call&quot; the axis
       .call(xAxis);</code></pre>
 <h3 id="data-binding-update-pattern-keys">Data Binding, Update Pattern, Keys</h3>
 <p>Reference:</p>
@@ -138,51 +183,82 @@ d3.select(mygroup).select(&quot;path.line&quot;).classed(&quot;focused&quot;, tr
 <li>Update Pattern 3: Transitions: <a href="http://bl.ocks.org/mbostock/3808234" class="uri">http://bl.ocks.org/mbostock/3808234</a></li>
 <li>Another demo: <a href="http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" class="uri">http://kristw.github.io/d3-data-binding/?utm_content=buffer4c96b&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</a></li>
 </ul>
-<p>My example, a simple enter, transition, exit example in <a href="bar_updates_no_key.html" class="uri">bar_updates_no_key.html</a>.</p>
-<p><strong>Reference for data keys:</strong></p>
+<p>My example, a simple enter, transition, exit example in <a href="bar_updates_no_key.html" class="uri">bar_updates_no_key.html</a>. This is an illustration of WHAT NOT TO DO. There is no object constancy.</p>
+<p>Use of a key function is <strong>CRITICAL</strong> if you are using multiple data sets in a single visualization. Otherwise, your items won't transition properly when you add and remove data.</p>
+<p>The key function is used like this:</p>
+<pre><code>
+var bars = d3.selectAll(&quot;rect&quot;)
+    .data(mydata, function(d) {
+        return d.key; // or whatever thing you want to be constant and identifying
+    });
+
+// the function above it not filtering the data set, or reducing it, or searching it!
+// Now you can join your data:
+
+bars
+    .enter()
+    .append(&quot;rect&quot;)
+    ....
+
+// and from here you probably do a bars.exit() and bars update, too.
+</code></pre>
+<p>Let's walk through my examples, <a href="bar_updates_key.html" class="uri">bar_updates_key.html</a>, and with sorting:<br />
+<a href="bar_updates_key_sorted.html" class="uri">bar_updates_key_sorted.html</a>.</p>
+<p>References:</p>
 <ul>
 <li>Object Constancy Intro: <a href="http://bost.ocks.org/mike/constancy/" class="uri">http://bost.ocks.org/mike/constancy/</a> (Read this, but there are advanced details in the full source code for that example. See my simplified, commented version of the code in <a href="bostock_bar_updates_simpler.html" class="uri">bostock_bar_updates_simpler.html</a>.)</li>
-</ul>
-<p>My example, <a href="bar_updates_key.html" class="uri">bar_updates_key.html</a>.</p>
-<p>Reference:</p>
-<ul>
 <li>A more detailed example with dots, not bars: <a href="http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3" class="uri">http://www.delimited.io/blog/2013/11/8/object-constancy-in-d3</a></li>
 <li>An example with Line Charts: <a href="http://bl.ocks.org/nsonnad/4175202" class="uri">http://bl.ocks.org/nsonnad/4175202</a></li>
 <li>Nice examples in this tutorial with temperature graphs: <a href="http://code.hazzens.com/d3tut/lesson_4.html" class="uri">http://code.hazzens.com/d3tut/lesson_4.html</a></li>
 </ul>
-<h3 id="good-code-structure---functions-for-redrawing">Good Code Structure - Functions for re(drawing)</h3>
+<h2 id="good-code-structure---functions-for-redrawing">Good Code Structure - Functions for re(drawing)</h2>
 <p>A common structure for an updating D3 vis is:</p>
 <pre><code>1. Globally, set up your main vis variables: your margin, scale, ranges, format strings, your svg container creation.
-2. Load the data, and inside that function, call the draw function -
-this will use the data you pass it to draw the graph.
-3. In the draw function: Set your scale domains here too, based on 
-current data values, then create graphs if they don&#39;t exist, update 
-the data if they do with transitions and exit().</code></pre>
-<p>TODO: Add a graphic?</p>
-<p>Examples:</p>
-<ul>
-<li>Simple <a href="bar_updates_no_key.html" class="uri">bar_updates_no_key.html</a></li>
-<li>More complex <a href="bar_updates_key.html" class="uri">bar_updates_key.html</a></li>
-<li>My <a href="scatter_data_update.html" class="uri">scatter_data_update.html</a></li>
-</ul>
-<p>In your homework, you will modify and use this structure for <a href="scatter_homework.html" class="uri">scatter_homework.html</a> and <a href="bar_homework.html" class="uri">bar_homework.html</a>.</p>
-<h2 id="recent-interesting-things">Recent Interesting Things</h2>
-<ul>
-<li>NYT Hightlights of Digital Storytelling: <a href="http://www.nytimes.com/2015/10/07/business/using-innovative-storytelling-to-illuminate-the-world.html" class="uri">http://www.nytimes.com/2015/10/07/business/using-innovative-storytelling-to-illuminate-the-world.html</a></li>
-</ul>
+
+    var fullwidth, fullheight, xScale, yScale, svg, etc...
+    Hook up your UI with on-click or on-change events if you can without data yet.
+
+2. Load the data and call a function to do things with it.
+
+    Do any initial calculations or refinements on the data you need
+    Draw any UI that needs data to be drawn (like menu items)
+    Call a re-usable draw function with your initial data values
+
+3. The draw() function:
+    Set your scale domains here too, based on current data values;
+    use a data join, enter, update transitions, and exit().
+    This should all be designed so it works with different data sets and is reusable.</code></pre>
+<p>A good example of this is in <a href="bostock_bar_updates_simpler.html" class="uri">bostock_bar_updates_simpler.html</a>.</p>
+<p>In your homework, you will modify and use this structure for <a href="bar_homework.html" class="uri">bar_homework.html</a> and in your own version.</p>
+<h2 id="multiple-data-files-with-queue">Multiple Data Files with Queue()</h2>
+<p>To load multiple files, you can use queue; be sure to include the library:</p>
+<pre><code>&lt;script src=&quot;https://d3js.org/queue.v1.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>Then use it like this-- at the global level, list the files...</p>
+<pre><code>queue()
+    .defer(d3.csv, &quot;data/countries.csv&quot;)  // this will become &quot;world&quot; in doStuff args
+    .defer(d3.csv, &quot;data/stunting_by_wealth.csv&quot;) // this will be &quot;stunting&quot;
+    .await(doStuff);
+
+function doStuff(error, world, stunting) {
+// after &quot;error&quot;, the second arg is the first file you loaded, the next is the 2nd file
+...
+}</code></pre>
 <h2 id="homework">Homework</h2>
-<p>Readings:</p>
-<p>Read: (To the bottom of the page) <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates</a>.<br />
+<p><strong>Read</strong>: (To the bottom of the page) <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_other_kinds_of_data_updates</a>.<br />
 Read anything else you need to get a grip on the enter/update/exit pattern in D3!</p>
-<p><strong>Homework 1 (15pt)</strong>: Finished Bar Homework.</p>
-<p>In the file <a href="bar_homework.html" class="uri">bar_homework.html</a>, there are about a dozen //TODO items. Fix all the //TODO items in it. Send to me with subject &quot;Finished Bar Homework.&quot;</p>
-<p><strong>Homework 2 (25pt)</strong>: Scatter Homework.</p>
-<p>Fix the <a href="scatter_homework.html" class="uri">scatter_homework.html</a> to have a scatter plot that uses the x and y data values, axes (they don't need labels) and transitions between data sets. It should use the enter/update/exit style of code. The default button (for data1) needs to look selected when the user loads the page. The axes need to transition too.<br />
-Color the dots by region. (Hint: use either a class, or a category color scale.)</p>
-<p>Sent gist to me as &quot;Scatter Homework.&quot;</p>
-<p><strong>Homework 3: Project Data Exploration (20pt)</strong></p>
-<p>Send me some graphic data explorations (3 different charts at least!) of data you may want to use in your project. This is NOT meant to be D3 work, but Excel charts, or Tableau images, or Google Charts, or whatever charting tool you want to use. Use actual data from your desired project topic. Show me some graphical examples that you may want to explore in the project. Explain in text what each graph shows and why it is interesting, with perhaps some ideas on how to make it interactive.</p>
-<p>Put them in a document you can send me -- either email images &amp; text, or Word, or a PDF... This is exploration stage!</p>
-<p>Email to me as &quot;Exploration.&quot;</p>
+<p>You should also be planning for your final project now... Get your data sets in order, start looking for the data pictures you want to show and interactions that will help.</p>
+<p><strong>Homework 1 (15pt)</strong>: Finish Bar Homework</p>
+<p>In the file <a href="bar_homework.html" class="uri">bar_homework.html</a>, there are about a dozen //TODO items. Fix all the //TODO items in it. Send to me with subject &quot;Finished Bar Homework.&quot; Make sure you fill in the select menu!</p>
+<p><strong>Homework 2 (35pt)</strong>: An Updating Plot With 2+ Datasets</p>
+<p>Make a plot that transitions between 2 or more data sets, and includes:</p>
+<ol>
+<li>axes that transition</li>
+<li>the enter, update, exit pattern with transitions, in a function like &quot;draw&quot;</li>
+<li>UI control (button or select menu) to switch between the data sets</li>
+<li>d3 tooltips</li>
+<li>labels on some interesting points (or all of them if it's only a few)</li>
+</ol>
+<p>This can be a bar chart, a line chart, a scatterplot... use your own datasets! You can use subsets of a big data set if you want (like top 10, bottom 10, all of them) or different data values (different columns). Or combine data sets if they have the same key (like country/state).</p>
+<p>Send this as &quot;My Update Plot.&quot;</p>
 </body>
 </html>

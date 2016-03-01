@@ -156,6 +156,7 @@ function mouseoutFunc(d) {
 <p>The file <strong><a href="emissions_linescatterplot.html" class="uri">emissions_linescatterplot.html</a></strong> has both dots and the line connecting them. The dots allow more detailed tooltips, if we want them. Check them out.</p>
 <p>You have the option of having your dots be visible or not on the line. Just change the dot opacity as you like.</p>
 <p>I also added the dots on <strong><a href="multiple_lines_labels.html" class="uri">multiple_lines_labels.html</a>.</strong> Notice it's hard to grab the dots and lines sometimes. See the next section below for the advanced tool trick to deal with that.</p>
+<p>By popular demand, this is how you might structure your code to do a highlight of the line when you hover over a dot and show a tooltip: See <strong><a href="multiple_lines_labels_tooltips.html" class="uri">multiple_lines_labels_tooltips.html</a></strong>. The example uses an id that matches on the line and circle, to make it easier to select the line from the circle.</p>
 <p>Here's another alternative, tricky way to add a dot on the line at the point closest to the mouse:</p>
 <ul>
 <li>Clever line bisect mouseover label trick from Mike Bostock: <a href="http://bl.ocks.org/mbostock/3902569" class="uri">http://bl.ocks.org/mbostock/3902569</a></li>
@@ -308,6 +309,7 @@ d3.selectAll(&quot;button.clicker&quot;).on(&quot;click&quot;, function() {
 <li><a href="http://getbootstrap.com/css/#grid" class="uri">http://getbootstrap.com/css/#grid</a></li>
 </ul>
 <p>You will use it in one of your homeworks. I used it for the <a href="lines_transition.html" class="uri">lines_transition.html</a> layout which admittedly is still an ugly page.</p>
+<p>Reminder: Don't use a &quot;.tooltip&quot; class for your D3 tooltips with Bootstrap. Change it to &quot;.mytooltip&quot; or something else. Bootstrap highjacks &quot;.tooltip&quot; away from you.</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
 <li>Connected Scatterplot with Transitions: <a href="http://www.nytimes.com/interactive/2015/09/30/business/how-the-us-and-opec-drive-oil-prices.html" class="uri">http://www.nytimes.com/interactive/2015/09/30/business/how-the-us-and-opec-drive-oil-prices.html</a></li>

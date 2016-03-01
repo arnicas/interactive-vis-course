@@ -69,147 +69,164 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 <script>
 
-var margin = {top: 20, right: 40, bottom: 10, left: 40},
-    width = 960,
-    height = 250 - margin.top - margin.bottom;
+  var fullwidth = 960,
+    fullheight = 280;
 
-var format = d3.format(".1%"),
-    states,
-    prevAge;
+  var margin = {top: 20, right: 40, bottom: 10, left: 40},
+      width = fullwidth - margin.right - margin.left;
+      height = fullheight - margin.top - margin.bottom;
 
-var xScale = d3.scale.linear()
-    .range([0, width]);
+  var percentFormat = d3.format(".1%"),
+      states,
+      prevAge;
 
-var yScale = d3.scale.ordinal()
-    .rangeRoundBands([0, height], .1);
+  var xScale = d3.scale.linear()
+      .range([0, width]);
 
-var xAxis = d3.svg.axis()
-    .scale(xScale)
-    .orient("top")
-    .tickFormat(format);
+  var yScale = d3.scale.ordinal()
+      .rangeRoundBands([0, height], .1);
 
-var svg = d3.select("#chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .style("margin-left", -margin.left + "px")
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  var xAxis = d3.svg.axis()
+      .scale(xScale)
+      .orient("top")
+      .tickFormat(percentFormat);
 
-svg.append("g")
-    .attr("class", "x axis");
+  var svg = d3.select("#chart").append("svg")
+      .attr("width", fullwidth)
+      .attr("height", fullheight)
+      .style("margin-left", -margin.left + "px")
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-svg.append("g")
-    .attr("class", "y axis")
-  .append("line")
-    .attr("class", "domain")
-    .attr("y2", height);
+  svg.append("g")
+      .attr("class", "x axis");
 
-var menu = d3.select("#menu select")
-    .on("change", redraw);
+  svg.append("g")
+      .attr("class", "y axis")
+    .append("line")
+      .attr("class", "domain")
+      .attr("y2", height);
 
-d3.csv("data/states-age.csv", function(data) {
-  states = data;
+  var menu = d3.select("#menu select")
+      .on("change", redraw);
 
-  var ages = d3.keys(states[0]).filter(function(key) {
-    return key != "State" && key != "Total";
-  });
+  d3.csv("data/states-age.csv", function(data) {
 
-  states.forEach(function(state) {
-    ages.forEach(function(age) {
-      state[age] = state[age] / state.Total;
+    states = data;
+
+    // remember d3.keys gets us the column names from these objects, using first row:
+    var ages = d3.keys(states[0]).filter(function(key) {
+      return key != "State" && key != "Total"; // this will return columns NOT MATCHING those
     });
-  });
 
-// build menu from the data
-  menu.selectAll("option")
-      .data(ages)
-    .enter().append("option")
-      .text(function(d) { return d; });
+    console.log(ages);
 
-  menu.property("value", "18 to 24 Years");
-  redraw();
-});
+    // do some calculations for each percentage
+    states.forEach(function(state) {
+      ages.forEach(function(age) {
+        state[age] = state[age] / state.Total;
+      });
+    });
+
+  // build menu from the data; could have been done by hand.
+    menu.selectAll("option")
+        .data(ages)
+      .enter().append("option")
+        .text(function(d) { return d; });
+
+    menu.property("value", "18 to 24 Years");
+    // redraw in this case draws the UI - it uses a variable to determine data column.
+    redraw();
+  }); // end load csv
 
 
-function redraw() {
-  var currentAge = menu.property("value"),
-      top10 = states.sort(function(a, b) { return b[currentAge] - a[currentAge]; }).slice(0, 10);
+  function redraw() {
 
-  yScale.domain(top10.map(function(d) { return d.State; }));
+    // get the age for the data access off the menu:
+    var currentAge = menu.property("value");
 
-  var bar = svg.selectAll(".bar")
-      .data(top10, function(d) { return d.State; });
+      // sort by it and then take the top 10 using slice!
+    var top10 = states.sort(function(a, b) {
+            return b[currentAge] - a[currentAge];
+          })
+          .slice(0, 10);
 
-  var barCreate = bar.enter().append("g")
-      .attr("class", "bar")
-      .attr("transform", function(d) { return "translate(0," + (yScale(d.State) + height) + ")"; })
-      .style("fill-opacity", 0);
+    yScale.domain(top10.map(function(d) { return d.State; })); // the y scale is ordinal, all the state names
 
-  console.log("age", prevAge); // this is undefined the first time thru.
+    var bar = svg.selectAll(".bar")
+        .data(top10, function(d) { return d.State; }); // key function!
 
-  barCreate.append("rect")
-      //.attr("width", age && function(d) { return x(d[age]); })
-      .attr("width", function(d) {
-        if (prevAge) {
-          return xScale(d[prevAge]);
-        }
-      })
-      .attr("height", yScale.rangeBand());
+    var barCreate = bar.enter().append("g")
+        .attr("class", "bar")
+        .attr("transform", function(d) { return "translate(0," + (yScale(d.State) + height) + ")"; })
+        .style("fill-opacity", 0);
 
-  barCreate.append("text")
-      .attr("class", "label")
-      .attr("x", -3)
-      .attr("y", yScale.rangeBand() / 2)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "end")
-      .text(function(d) { return d.State; });
+    console.log("age", prevAge); // this is undefined the first time thru.
 
-  barCreate.append("text")
-      .attr("class", "value")
-      //.attr("x", age && function(d) { return x(d[age]) - 3; })
-      .attr("x", function(d) {
-        if (prevAge) {
-        return xScale(d[prevAge]) - 3;
-        }
-      })
-      .attr("y", yScale.rangeBand() / 2)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "end");
+    barCreate.append("rect")
+        //.attr("width", age && function(d) { return x(d[age]); })
+        .attr("width", function(d) {
+          if (prevAge) {
+            return xScale(d[prevAge]);
+          }
+        })
+        .attr("height", yScale.rangeBand());
 
-  prevAge = currentAge;
-  xScale.domain([0, top10[0][currentAge]]); // they are sorted, so take the top value
+    barCreate.append("text")
+        .attr("class", "label")
+        .attr("x", -3)
+        .attr("y", yScale.rangeBand() / 2)
+        .attr("dy", ".35em")
+        .attr("text-anchor", "end")
+        .text(function(d) { return d.State; });
 
-  // sets the d.yLocation for the bar that's used in the exit transition.
-  var barUpdate = bar.transition()
-      .attr("transform", function(d) {
-        // set the value of the current y location for the exit move when it goes.
-        d.yLocation = yScale(d.State);
-        return "translate(0," + yScale(d.State) + ")"; })
-      .style("fill-opacity", 1);
+    barCreate.append("text")
+        .attr("class", "value")
+        //.attr("x", age && function(d) { return x(d[age]) - 3; })
+        .attr("x", function(d) {
+          if (prevAge) {
+          return xScale(d[prevAge]) - 3;
+          }
+        })
+        .attr("y", yScale.rangeBand() / 2)
+        .attr("dy", ".35em")
+        .attr("text-anchor", "end");
 
-  barUpdate.select("rect")
-      .attr("width", function(d) { return xScale(d[currentAge]); });
+    prevAge = currentAge;
+    // they are sorted, so take the top value for the max on the domain here:
+    xScale.domain([0, top10[0][currentAge]]);
 
-  barUpdate.select(".value")
-      .attr("x", function(d) { return xScale(d[currentAge]) - 3; })
-      .text(function(d) { return format(d[currentAge]); });
+    // sets the d.yLocation for the bar that's used in the exit transition.
+    var barUpdate = bar.transition()
+        .attr("transform", function(d) {
+          // set the value of the current y location for the exit move when it goes.
+          d.yLocation = yScale(d.State);
+          return "translate(0," + yScale(d.State) + ")"; })
+        .style("fill-opacity", 1);
 
-  var barExit = bar.exit().transition()
-      .attr("transform", function(d) { return "translate(0," + (d.yLocation + height) + ")"; })
-      .style("fill-opacity", 0)
-      .remove();
+    barUpdate.select("rect")
+        .attr("width", function(d) { return xScale(d[currentAge]); });
 
-  barExit.select("rect")
-      .attr("width", function(d) { return xScale(d[currentAge]); });
+    barUpdate.select(".value")
+        .attr("x", function(d) { return xScale(d[currentAge]) - 3; })
+        .text(function(d) { return percentFormat(d[currentAge]); });
 
-  barExit.select(".value")
-      .attr("x", function(d) { return xScale(d[currentAge]) - 3; })
-      .text(function(d) { return format(d[currentAge]); });
+    var barExit = bar.exit().transition()
+        .attr("transform", function(d) { return "translate(0," + (d.yLocation + height) + ")"; })
+        .style("fill-opacity", 0)
+        .remove();
 
-      // transition the axis, so easy if you fixed the domain.
-  svg.transition().select(".x.axis")
-      .call(xAxis);
-}
+    barExit.select("rect")
+        .attr("width", function(d) { return xScale(d[currentAge]); });
+
+    barExit.select(".value")
+        .attr("x", function(d) { return xScale(d[currentAge]) - 3; })
+        .text(function(d) { return percentFormat(d[currentAge]); });
+
+        // transition the axis, so easy if you fixed the domain!
+    svg.transition().select(".x.axis")
+        .call(xAxis);
+  }
 
 </script>
 
