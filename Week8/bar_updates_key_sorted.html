@@ -168,23 +168,21 @@
         bars.exit()
             .transition()
             .duration(300)
-            .ease("exp")
-                .attr("width", 0)
-                .remove();
+            .attr("width", 0)
+            .remove();
 
         // update transition on all existing ones now -- move the bars to proper widths and location
         bars
             .transition()
             .duration(1000)
-            .ease("quad")
-                .attr("width", function(d) {
-                    return xScale(d.value);
-                })
-                .attr("height", yScale.rangeBand())
-                .attr("fill", "green") // -- turns them all to green at the end.
-                .attr("transform", function(d,i) {
-                    return "translate(0," + yScale(i) + ")";
-                });
+            .attr("width", function(d) {
+                return xScale(d.value);
+            })
+            .attr("height", yScale.rangeBand())
+            .attr("fill", "green") // -- turns them all to green at the end.
+            .attr("transform", function(d,i) {
+                return "translate(0," + yScale(i) + ")";
+            });
 
         } // end of draw function
 

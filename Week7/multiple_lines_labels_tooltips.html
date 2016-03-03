@@ -28,24 +28,17 @@
 
 			path.line {
 				fill: none;
+				stroke: gray;
 			}
 
 			.unfocused {
-				stroke: gray;
-				stroke-width: 2px;
-				stroke-opacity: 0.8;
+				opacity: .5;
+				stroke-width: 1px;
 			}
 
 			.focused {
-				stroke: orange;
-				stroke-opacity: 1;
-				stroke-width: 2px
-			}
-
-			.voronoi path {
-				stroke: none;
-				fill: none;
-				pointer-events: all;
+				opacity: 1;
+				stroke-width: 2px;
 			}
 
 			.axis path,
@@ -66,7 +59,7 @@
 			}
 
 			circle {
-				fill: orange;
+				fill: gray;
 			}
 
 			.tooltip {
@@ -90,6 +83,8 @@
 
 		<p>Carbon dioxide emissions, 1961-2010. Data not available for the entire period for all countries. Source: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT?page=6">World Bank</a>, 2014. (Based on a modified example from Scott Murray.)</p>
 
+		<p>Mouse over the lines to see data points and highlight a line.</p>
+
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 		<script type="text/javascript">
 
@@ -97,7 +92,7 @@
 			//Dimensions and padding
 			var fullwidth = 700;
 			var fullheight = 600;
-			var margin = {top: 20, right: 120, bottom: 40, left:100};
+			var margin = {top: 20, right: 100, bottom: 40, left:100};
 
 			var width = fullwidth - margin.left - margin.right;
 			var height = fullheight - margin.top - margin.bottom;
@@ -110,7 +105,7 @@
 								.range([ 0, width ]);
 
 			var yScale = d3.scale.linear()
-								.range([0, height ]);
+								.range([ 0, height ]);
 
 			//Configure axis generators
 			var xAxis = d3.svg.axis()
@@ -127,6 +122,7 @@
 							.scale(yScale)
 							.orient("left")
 							.outerTickSize([0]);
+
 
 
 			//Configure line generator
@@ -222,133 +218,114 @@
 
 
 				//Make a group for each country
-				var groups = svg.append("g").attr("id", "lines")
-					.selectAll("g")
+				var groups = svg.selectAll("g")
 					.data(dataset)
 					.enter()
-					.append("g")
-					.attr("class", "country")
-					.attr("id", function(d) {
-						if (d.country) {
-							return d.country.replace(/ |,|\./g, "_");
-						}
-					});
+					.append("g");
 
 				//Within each group, create a new line/path,
 				//binding just the emissions data to each one
-				groups
-					.append("path")
-					.classed("line", true)
-					.classed("unfocused", true)
-					.attr("d", function(d) {
-						d.line = this; // this isn't working for use below because it's the wrong dataset
-						return line(d.emissions);
+				groups.selectAll("path")
+					.data(function(d) { // because there's a group with data already...
+						return [ d.emissions ]; // it has to be an array for the line function
 					})
+					.enter()
+					.append("path")
+					.attr("class", "line")
+					.classed("unfocused", true) // they are not focused till mouseover
 					.attr("id", function(d) {
-						if (d.country) {
-							return d.country.replace(/ |,|\./g, "_");
+						// we are attaching an id to the line using the countryname, replacing
+						// the spaces with underscores so it's a valid id.
+						// this will be useful when we do the mouseover and want to highlight a line too.
+						if (d[0] && d[0].length != 0) {
+							// this if-test makes sure there is an array and it's not empty.
+							return d[0].country.replace(/ |,|\./g, '_');
 						}
-					});
+					})
+					.attr("d", line);
+
+			// Tooltip dots
+
+			var circles = groups.selectAll("circle")
+								.data(function(d) { // because there's a group with data already...
+											return d.emissions; // NOT an array here.
+								})
+								.enter()
+								.append("circle");
+
+				circles.attr("cx", function(d) {
+						return xScale(dateFormat.parse(d.year));
+					})
+					.attr("cy", function(d) {
+						return yScale(d.amount);
+					})
+					.attr("r", 3)
+					.attr("id", function(d) {
+						return d.country.replace(/ |,|\./g, '_');
+					})
+					.style("opacity", 0); // this is optional - if you want visible dots or not!
 
 				// Adding a subtle animation to increase the dot size when over it!
 
-				var voronoi = d3.geom.voronoi()
-					.x(function(d){
-						return xScale(dateFormat.parse(d.year));
-					})
-					.y(function(d) {
-						return yScale(+d.amount);
-					})
-					.clipExtent([[0, 0], [width, height]]);
-
-				var voronoiGroup = svg.append("g")
-					.attr("class", "voronoi");
-
-				// we have to do this nesting trick because a lot of dots are in the same place.
-				// the goal here is to map to single points -- no dupes at the same point -- and after
-				// the nesting, return just the actual values (not the keys).
-				// The values in a nest are the original items that went into each key.
-				var nested = d3.nest()
-        	.key(function(d) { // this key is the pair of x/y coords - to keep them single
-        		return xScale(dateFormat.parse(d.year)) + "," + yScale(+d.amount);
-        	})
-        	.rollup(function(v) {
-        		return v[0]; // first of the objects, prevents use of 2 in same place
-        	})
-        	.entries(d3.merge(dataset.map(function(d) { return d.emissions; })))
-        	.map(function (d) { return d.values;});  // the result is just a flat list of values
-
-        	console.log(nested);
-
-				voronoiGroup.selectAll("path")
-					.data(voronoi(nested))
-					.enter()
-					.append("path")
-					.attr("d", function(d, i) {
-						return "M" + d.join("L") + "Z"; }) // this is just what you copy for a voronoi
-					.datum(function(d, i) { return d.point; }) // again, copy as is
-					.on("mouseover", mouseoverFunc) // mouseover goes on the voronoi cell!
+				circles
+					.on("mouseover", mouseoverFunc)
 					.on("mousemove", mousemoveFunc)
 					.on("mouseout",	mouseoutFunc);
 
 			// We're putting the text label at the group level, where the country name was originally.
+			//We can access data here, because it's already attached!
+			// We use the scales to position labels at end of line.
 			groups.append("text")
-	      .datum(function(d) {
-	      	return {name: d.country, value: d.emissions[d.emissions.length - 1]};
+	      .attr("x", function(d) {
+	      	if (d.emissions.length != 0) {
+		      	var lastYear = d.emissions[d.emissions.length-1].year;
+		      	return xScale(dateFormat.parse(lastYear));
+		      }
 	      })
-	      .attr("transform", function(d) {
-	      	// error on some with no d.value - American Samoa, for instance.
-	      	if (d.value) {
-	      		return "translate(" + xScale(dateFormat.parse(d.value.year)) + "," + yScale(+d.value.amount) + ")";
-	      		}
-	      	else {
-	      		return null;
-	      		}
-	      	})
-	      .attr("x", 3)
-	      .attr("dy", ".35em")
+	      .attr("y", function(d) {
+	      	if (d.emissions.length != 0) {
+		      	var lastAmount = d.emissions[d.emissions.length-1].amount;
+		      	return yScale(+lastAmount);
+	      	}
+	      })
+	      .attr("dx", "3px")
+	      .attr("dy", "3px")
 	      .text(function(d) {
-	      	if (d.value && +d.value.amount > 700000) {
-	      	return d.name;
+	      	if (d.emissions.length != 0) {
+	      		var lastAmount = d.emissions[d.emissions.length-1].amount;
+	      		if (+lastAmount > 700000) {
+	      			return d.country;
+	      		}
 	      	}
 	      })
 	      .attr("class", "linelabel");
 
-	      // the line's dot is the "focus" element
-	      var focus = svg.append("g")
-		      .attr("transform", "translate(-100,-100)") // it's off screen
-		      .attr("class", "focus");
-
-				  focus.append("circle")
-				      .attr("r", 3.5);
-
-				  focus.append("text")
-				      .attr("y", -10);
-
 				//Axes
 				svg.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + height  + ")")
+					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
 
 				svg.append("g")
 					.attr("class", "y axis")
 					.call(yAxis);
 
-
 				function mouseoverFunc(d) {
-					// position the dot
-					focus.attr("transform", "translate(" + xScale(dateFormat.parse(d.year)) + "," + yScale(+d.amount) + ")");
-					// show the tooltip
+					// this will highlight both a dot and its line.
+					var lineid = d3.select(this).attr("id");
+
+					d3.select(this)
+						.transition()
+						.style("opacity", 1)
+						.attr("r", 4);
+
+					d3.select("path#" + lineid).classed("focused", true).classed("unfocused", false);
+
 					tooltip
 						.style("display", null) // this removes the display none setting from it
 						.html("<p>Country: " + d.country +
 									"<br>Year: " + d.year +
 								  "<br>Emissions: " + d.amount + " kt</p>");
-					var countryId = d.country.replace(/ |,|\./g, "_");
-
-					d3.select("path.line#" + countryId).classed("focused", true).classed("unfocused", false);
-					d3.select("g.country#" + countryId).moveToFront(); // the parent node is g#lines
 					}
 
 				function mousemoveFunc(d) {
@@ -358,20 +335,19 @@
 					}
 
 				function mouseoutFunc(d) {
-					// remove the dot offscreen and the tooltip
-					focus.attr("transform", "translate(-100,-100)");
-					d3.selectAll("path.line").classed("focused", false).classed("unfocused", true);
+					d3.select(this)
+						.transition()
+						.style("opacity", 0)
+						.attr("r", 3);
+
+					d3.selectAll("path.line").classed("unfocused", true).classed("focused", false);
+
 			    tooltip.style("display", "none");  // this sets it to invisible!
 			  }
 
 			}); // end of data csv
 
 
-		d3.selection.prototype.moveToFront = function() {
-      return this.each(function(){
-        this.parentNode.appendChild(this);
-      });
-    }
 
 		</script>
 

@@ -181,15 +181,15 @@
         bars.exit()
             .transition()
             .duration(300)
-            .ease("exp")
-                .attr("width", 0) // shring them down
-                .remove();
+            //.ease("exp")
+            .attr("width", 0) // shrink them down
+            .remove();
 
         // transition -- moves bars to new width and new position, based on index.
         bars
             .transition()
             .duration(300)
-            .ease("quad")
+            //.ease("quad")
                 .attr("width", xScale) // same as calling this on d in a function
                 .attr("height", yScale.rangeBand())
                 .attr("transform", function(d,i) {

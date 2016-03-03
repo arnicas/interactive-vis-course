@@ -9,7 +9,6 @@ Sunny's Lines with Highlights: http://bl.ocks.org/sunnyuxuan/raw/4455c6faa134084
 Eric's Transitions: http://bl.ocks.org/suneric1/raw/b76051e23a8efc89947f/
 
 
-
 ### Reminder: Bootstrap and Tooltips
 
 Reminder: Don't use a ".tooltip" class for your D3 tooltips with Bootstrap. Change it to ".mytooltip" or something else.  Bootstrap highjacks ".tooltip" away from you.
@@ -18,7 +17,7 @@ Reminder: Don't use a ".tooltip" class for your D3 tooltips with Bootstrap. Chan
 ### Highlighting a Line and a Dot in a Mouseover
 
 
-See [multiple_lines_labels_tooltips.html](Week7/multiple_lines_labels_tooltips.html). In this example, I used an id to label the lines and circles by the same thing, so that a mouseover function can refer to the same id.
+See [multiple_lines_labels_tooltips.html](../Week7/multiple_lines_labels_tooltips.html). In this example, I used an id to label the lines and circles by the same thing, so that a mouseover function can refer to the same id.
 
 Note that in the groups for the line, I had to access the first data element's country attribute to get the data for the id -- the data array needs to have your group identity in it for this to work.  Also, I have to check if the array is defined, in case of errors.  I then use a javascript regular expression replacement to remove illegal characters.  See section [below](#string-replacements-with-regexs) on regex string replacements.
 
@@ -61,6 +60,7 @@ DRY stands for Don't Repeat Yourself. If you have a lot of code that looks very 
 Let's talk about this:
 
 * http://blockbuilder.org/arnicas/307ea2a3f4c80ad7239e
+* Take a look at [refactor.html](refactor.html) for the contrast.
 
 
 
@@ -143,10 +143,15 @@ The general function for moveToFront() is:
 d3.selection.prototype.moveToFront = function() {
       return this.each(function(){
         this.parentNode.appendChild(this);
+    });
+}
 
 // invoke with a d3 selection -- remember, "this" is what your mouse is over!
 d3.select(this).moveToFront();
 ````
+
+You can see this implemented in [multiple_lines_voronoi.html](../Week7/multiple_lines_voronoi.html). In order to get it to work with the voronoi, I had to create a parent container "group" (g#lines) for the lines (and text labels), because that's the parentNode we want to work within for moving things to the front.  (Otherwise, we will move lines on top of the voronoi grid, which messes up mouseovers and other things.)
+
 
 ### Getting to a Parent Selection / Sibling Selection
 

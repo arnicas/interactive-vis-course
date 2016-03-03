@@ -64,7 +64,7 @@ Eric's Transitions: <a href="http://bl.ocks.org/suneric1/raw/b76051e23a8efc89947
 <h3 id="reminder-bootstrap-and-tooltips">Reminder: Bootstrap and Tooltips</h3>
 <p>Reminder: Don't use a &quot;.tooltip&quot; class for your D3 tooltips with Bootstrap. Change it to &quot;.mytooltip&quot; or something else. Bootstrap highjacks &quot;.tooltip&quot; away from you.</p>
 <h3 id="highlighting-a-line-and-a-dot-in-a-mouseover">Highlighting a Line and a Dot in a Mouseover</h3>
-<p>See <a href="Week7/multiple_lines_labels_tooltips.html">multiple_lines_labels_tooltips.html</a>. In this example, I used an id to label the lines and circles by the same thing, so that a mouseover function can refer to the same id.</p>
+<p>See <a href="../Week7/multiple_lines_labels_tooltips.html">multiple_lines_labels_tooltips.html</a>. In this example, I used an id to label the lines and circles by the same thing, so that a mouseover function can refer to the same id.</p>
 <p>Note that in the groups for the line, I had to access the first data element's country attribute to get the data for the id -- the data array needs to have your group identity in it for this to work. Also, I have to check if the array is defined, in case of errors. I then use a javascript regular expression replacement to remove illegal characters. See section <a href="#string-replacements-with-regexs">below</a> on regex string replacements.</p>
 <pre><code>groups.selectAll(&quot;path&quot;)
     .data(function(d) { // because there&#39;s a group with data already...
@@ -93,6 +93,7 @@ Eric's Transitions: <a href="http://bl.ocks.org/suneric1/raw/b76051e23a8efc89947
 <p>Let's talk about this:</p>
 <ul>
 <li><a href="http://blockbuilder.org/arnicas/307ea2a3f4c80ad7239e" class="uri">http://blockbuilder.org/arnicas/307ea2a3f4c80ad7239e</a></li>
+<li>Take a look at <a href="refactor.html" class="uri">refactor.html</a> for the contrast.</li>
 </ul>
 <h2 id="useful-tips-for-vis">Useful Tips For Vis</h2>
 <h3 id="sort-and-slice-arrays">Sort and Slice Arrays</h3>
@@ -139,9 +140,12 @@ Eric's Transitions: <a href="http://bl.ocks.org/suneric1/raw/b76051e23a8efc89947
 <pre><code>d3.selection.prototype.moveToFront = function() {
       return this.each(function(){
         this.parentNode.appendChild(this);
+    });
+}
 
 // invoke with a d3 selection -- remember, &quot;this&quot; is what your mouse is over!
 d3.select(this).moveToFront();</code></pre>
+<p>You can see this implemented in <a href="../Week7/multiple_lines_voronoi.html">multiple_lines_voronoi.html</a>. In order to get it to work with the voronoi, I had to create a parent container &quot;group&quot; (g#lines) for the lines (and text labels), because that's the parentNode we want to work within for moving things to the front. (Otherwise, we will move lines on top of the voronoi grid, which messes up mouseovers and other things.)</p>
 <h3 id="getting-to-a-parent-selection-sibling-selection">Getting to a Parent Selection / Sibling Selection</h3>
 <p>When you select a dot, you may also want your line to appear selected too. One trick would be to class the dots and the lines in the same group with a matching identifier, so you can more easily select the line with the matching identifier.</p>
 <p>Or, you can select it via DOM sibling relationship.</p>

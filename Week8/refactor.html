@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<!-- A modification on Han Huang's code to refactor it -->
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Scatter Transition</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <style type="text/css">
+
+        @import url(https://fonts.googleapis.com/css?family=Raleway:400);
+                @import url(https://fonts.googleapis.com/css?family=Raleway:400italic|Poiret+One|Ubuntu|Oxygen);
+                @import url(https://fonts.googleapis.com/css?family=Raleway:400italic|Poiret+One|Ubuntu);
+
+
+        body {
+            background-color: white;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        h1 {
+            font-family: 'Oxygen', sans-serif;
+            font-size: 28px;
+            margin-left: 120px;
+            color: rgb(233, 42, 58);
+        }
+
+        #signal {
+            font-size: 24px;
+            margin-left: 200px;
+            margin-top: 50px;
+            margin-bottom: -150px;
+            font-weight: bold;
+        }
+
+        p {
+            font-family: 'Oxygen', sans-serif;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        svg {
+            background-color: white;
+        }
+
+            img {
+        margin-top: 180px;
+                width: 350px;
+        height: 470px;
+        margin-left: 100px;
+        }
+
+               #source{
+            margin-left: 200px;
+         }
+
+            .dots {
+            fill: rgb(233, 42, 58);
+            opacity: 0.5;
+        }
+        .highlighted {
+            fill: rgba(80,  193,    252 , 0.7);
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+              stroke: rgb(189,189,189);
+                stroke-width: 1.5px;
+        }
+        .axis text {
+        font-size: 11px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+        .selected {
+            background-color:rgba(233, 42, 58,0.5);
+        }
+
+        .linelabel {
+                font-size: 10px;
+              stroke-width:0.1px;
+                    }
+
+        .mytooltip {
+                position: absolute;
+                z-index: 10;
+                opacity: 1;
+            }
+        .mytooltip p {
+                width: initial;
+                font-family: "Open Sans", sans-serif;
+                line-height: 1.4;
+                color: black;
+                font-size: 13px;
+                background-color: rgba(255,255,255,0.8);
+                border: rgba(230,230,230,1) 1px solid;
+                padding: 5px 7px 5px 7px;
+         }
+        /* this is an adjustment to bootstrap's row for my page */
+        .row {
+            padding-top: 50px;
+
+
+        }
+        /* this is an adjustment to bootstrap for my page */
+        .btn-group {
+            padding-top: 20px;
+            margin-left: 30px;
+            padding-bottom: 40px;
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+                <h1>Disaggregation for children aged 2-14 who experience any violent discipline</h1>
+                                <p id="source">Source: <a href="http://data.unicef.org/child-protection/violent-discipline.html">UNICEF</a> global databases, 2014, based on DHS, MICS and other nationally representative surveys. </p>
+        <div class="row">
+            <div class="col-md-5">
+
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-default" id="phyPsy">Physical & Psychological</button>
+              <button type="button" class="btn btn-default" id="urban"> Urban & Rural</button>
+                      <button type="button" class="btn btn-default" id="male"> Male & Female</button>
+            </div>
+
+            <div id="svg"></div>
+
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+                <div class="map_note">
+                    <p id="signal">Stop Violence! </p>
+                    <img src="http://images.wisegeek.com/female-child-with-hand-over-her-mouth.jpg" alt="Stop Violence">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+<script type="text/javascript">
+
+
+    var fullwidth = 700;
+    var fullheight = 610;
+
+    var margin = { top: 20, right: 10, bottom: 50, left: 80 };
+
+    var width = fullwidth - margin.left - margin.right;
+    var height = fullheight - margin.top - margin.bottom;
+
+
+    // redo this with an object for the margin settings: var margin = {top...}
+
+    var dotRadius = 6; // fix this to a nice value.
+
+    // fill in the margin values here.  Also, we set domain to 0 to 100 since it's percents,
+    // plus some padding room!
+    var xScale = d3.scale.linear()
+                        .range([ 0, width ])
+                        .domain([-2,100]);
+
+    // top to bottom, padding just in case
+    var yScale = d3.scale.linear()
+                        .range([ height, 0 ])
+                        .domain([-2,100]);
+
+    //  Custom tick count if you want it.
+    // Create your axes here.
+    var xAxis = d3.svg.axis()
+                    .scale(xScale)
+                    .orient("bottom")
+                    .ticks(10);  // fix this to a good number of ticks for your scale later.
+
+    var yAxis = d3.svg.axis()
+                    .scale(yScale)
+                    .orient("left");
+
+    var svg = d3.select("#svg")
+                .append("svg")
+                .attr("width", fullwidth)
+                .attr("height", fullheight)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "mytooltip");
+
+    function makeBigger(e) {
+        d3.select(e)
+         .transition()
+         .attr("r", 15);
+    }
+
+    d3.csv("data/violence.csv",draw);
+
+    // draws the initial view, sets up the UI and button events
+
+    function draw(error, data) {
+
+       if (error) {
+            console.log("error reading data");
+        }
+
+        var circles = svg.selectAll("circle")
+                    .data(data)
+                    .enter()
+                    .append("circle");
+
+        // Circles in SVG have cx, cy, and r attributes. x location, y location, radius.
+
+        circles.attr("cx", function(d) {
+                return xScale(+d.Physical);
+                // return the value to use for your x scale here
+            })
+            .attr("cy", function(d) {
+                return yScale(+d.Psychological);
+            })
+            .attr("class", function(d){
+                // highlighting some interesting outliers
+                if (d.CountryName === "Mongolia" || d.CountryName === "Kazakhstan" || d.CountryName == "Egypt") {
+                    return "highlighted";
+                }
+                else {
+                    return "dots";
+                }
+        });
+
+
+        // adding a silly intro animation to catch the eye -- using transition:
+        circles.sort(function(a, b) {
+                return d3.ascending(+a.Physical, +b.Physical);
+            })
+            .transition()
+            .delay(function(d, i) {
+                return i * 25;
+            })
+            .ease("linear") // milliseconds, so this is 1 second.
+            .attr("r", dotRadius);
+
+        // fix these translates so they use your margin and height width as needed
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+        svg.append("text")
+            .attr("class", "xlabel")
+            .attr("transform", "translate(" + (margin.left + width / 2) + " ," +
+                             (height + margin.bottom) + ")")
+            .style("text-anchor", "middle")
+            .attr("dy", "-5")
+            .attr("dx","-40")
+            .attr("font-family","Ubuntu")
+            .attr("font-size","16px")
+            .text("Physical Punishment (%)");
+
+        svg.append("text")
+            .attr("class", "ylabel")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 10 - margin.left)
+            .attr("x", 20 - (height / 2))
+            .attr("dy", "1em")
+            .attr("font-size","16px")
+            .attr("font-family","Ubuntu")
+            .style("text-anchor", "middle")
+            .text("Psychological Aggression (%)");
+
+
+        circles
+            .on("mouseover", mouseoverPP)
+            .on("mousemove", mousemove)
+            .on("mouseout", mouseout);
+
+        d3.select("button#urban").on("click", urbanClick);
+        d3.select("button#male").on("click", maleClick);
+        d3.select("button#phyPsy").on("click", phyClick);
+
+        d3.select("button#phyPsy").classed("selected", true);
+
+
+        function mousemove(d) {
+            tooltip
+                .style("top", (d3.event.pageY - 10) + "px" )
+                .style("left", (d3.event.pageX + 10) + "px");
+            }
+
+        function mouseout(d) {
+            d3.select(this)
+                .transition()
+                .attr("r", dotRadius);
+            tooltip.style("display", "none");
+        }
+
+        function clicked(variableName) {
+                return xScale(d[variableName]);
+        }
+
+        function selectButton(button) {
+            var thisButton = d3.select(button);
+            d3.selectAll("button").classed("selected", false);
+            thisButton.classed("selected", true);
+        }
+
+        function urbanClick() {
+
+            circles
+                .transition()
+                .duration(500)
+                .ease("linear")
+                .attr("cx", function(d) {
+                    return xScale(+d.Urban);
+                    // return the value to use for your x scale here
+                })
+                .attr("cy", function(d) {
+                    return yScale(+d.Rural);
+                })
+
+           selectButton(this);
+
+            d3.select("text.xlabel")
+            .text("Urban Area (%)");
+
+            d3.select("text.ylabel")
+            .text("Rural Area (%)");
+
+            circles
+                .on("mouseover", mouseoverUR)
+                .on("mousemove", mousemove)
+                .on("mouseout", mouseout);
+
+        } // end of urban
+
+        function maleClick() {
+
+            circles
+                .transition()
+                .duration(500)
+                .ease("linear")
+                .attr("cx", function(d) {
+                    return xScale(+d.Male);
+                    // return the value to use for your x scale here
+                })
+                .attr("cy", function(d) {
+                    return yScale(+d.Female);
+                });
+
+            selectButton(this);
+
+            d3.select("text.xlabel")
+                .text("Male (%)");
+
+
+            d3.select("text.ylabel")
+            .text("Female (%)");
+
+
+            circles
+                .on("mouseover", mouseoverMF)
+                .on("mousemove", mousemove)
+                .on("mouseout", mouseout);
+
+        } // end male click function
+
+
+        function phyClick() {
+
+            circles
+                .transition()
+                .duration(500)
+                .ease("linear")
+                .attr("cx", function(d) {
+                    return xScale(+d.Physical);
+                    // return the value to use for your x scale here
+                    })
+                    .attr("cy", function(d) {
+                        return yScale(+d.Psychological);
+                    })
+                .attr("id", "change2");
+
+
+            d3.select("text.xlabel")
+                .text("Physical Punishment (%)");
+
+
+            d3.select("text.ylabel")
+                .text("Psychological Aggression (%)");
+
+            circles
+                .on("mouseover", mouseoverPP) // same as the initial case!
+                .on("mousemove", mousemove)
+                .on("mouseout", mouseout);
+
+            selectButton(this);
+
+        } // end phyclick
+
+    } // end of the draw function
+
+
+    function mouseoverPP(d) {
+        makeBigger(this);
+         tooltip
+         .style("display", null) // this removes the display none setting from it
+         .html("<p>Country: " +d.CountryName +
+                     "<br>" +"Physical punishment: "+ d.Physical + "%" +
+                     "<br>" + "Psychological aggression: "+ d.Psychological + "%");
+    }
+
+
+    function mouseoverUR(d) {
+        makeBigger(this);
+        tooltip
+            .style("display", null) // this removes the display none setting from it
+            .html("<p>Country: " + d.CountryName +
+                        "<br>" + d.Urban + "% of Urban children has experienced violent discipline."+
+                        "<br>" + d.Rural + "% of Rural children has experienced violent discipline.</p>");
+    }
+
+    function mouseoverMF(d) {
+        makeBigger(this);
+        tooltip
+            .style("display", null) // this removes the display none setting from it
+            .html("<p>Country: " + d.CountryName +
+                        "<br>" + d.Male + "% of male has experienced violent discipline."+
+                        "<br>" + d.Female + "% of female children has experienced violent discipline.</p>");
+    }
+
+        </script>
+
+    </body>
+</html>

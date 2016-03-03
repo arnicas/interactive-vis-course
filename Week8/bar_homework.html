@@ -108,8 +108,8 @@
         //setup our ui -- requires access to data variable, so inside csv
         d3.select("#menu select")
             .on("change", function() {
-                column = //TODO: How do you get the current value of the select menu?
-                dataset = //TODO: How do you get the current filter/storted data?
+                column = d3.select("#menu select").property("value"); //TODO: How do you get the current value of the select menu?
+                dataset = top20_by_column(data, column);//TODO: How do you get the current filter/storted data?
                 //console.log(column, dataset);
                 redraw(dataset, column);
         });
@@ -121,6 +121,8 @@
         //make the bars for the first data set.  They will be red at first.
 
     function top20_by_column(data, column) {
+
+       // hint: +data[column]
 
         // TODO: fill in this function.  The answer direction is in the wiki page for week8.
         // You want to sort the data by the column, descending order, and then slice.
@@ -134,7 +136,7 @@
         var max = d3.max(data, function(d) {return +d[column];});
 
         xScale = d3.scale.linear()
-            .domain([0, //TODO: what goes here?])
+            .domain([0, max]) //TODO: what goes here?])
             .range([0, width]);
 
         yScale = d3.scale.ordinal()
@@ -142,8 +144,8 @@
             .rangeBands([0, height], .2);
 
 
-        var bars = vis.selectAll("rect.bar")
-            .data(data, function (d) { return //TODO: what is your key value?}); // key function!
+        var bars = svg.selectAll("rect.bar")
+            .data(data, function (d) { return d.country; //TODO: what is your key value?}); // key function!
 
         //update -- existing bars get blue when we "redraw". We don't change labels.
         bars
@@ -161,6 +163,7 @@
             .transition()
             .duration(300)
             .attr("width", 0)
+            .remove();
             //TODO: what goes here at the end of exit?
 
         // transition -- move the bars to proper widths and location
@@ -169,9 +172,9 @@
             .duration(300)
             .ease("quad")
             .attr("width", function(d) {
-                return xScale(//TODO: what goes here?);
+                return xScale(+d[column]); //TODO: what goes here?);
             })
-            .attr("height", //TODO: In an ordinal scale bar chart, what goes here?)
+            .attr("height", yScale.rangeBand())//TODO: In an ordinal scale bar chart, what goes here?)
             .attr("fill", "darkorange") // do what you like with the colors
             .attr("transform", function(d,i) {
                 return "translate(0," + yScale(i) + ")";
