@@ -1,30 +1,118 @@
 # Week 9: Stacking Chart Types, Intro to Small Multiples
 
-## Homework Issues
+## Homework Review
+
+* Cibonay's Hispanic/White Students: http://bl.ocks.org/cibonaydames/raw/beebedbe445d75132320/
+* Han's Guns: https://bl.ocks.org/jashcny/raw/9d9f6423aff9cdf7ef54/
+* Hyan's Education: http://bl.ocks.org/hfreitas92/raw/b110ef723f6fa524eb76/
+* Josh's Tickets: http://bl.ocks.org/CafeConVega/raw/d50192a1505b5adc44f4/
+* Sunny's Meat: http://bl.ocks.org/sunnyuxuan/4485a768738421cc78cb
+* Sherman's split line: http://bl.ocks.org/Shewitt95/3cff111dceeb17cce275
+* Jennifer's commuters: http://bl.ocks.org/JenHLab/7dccd8f9e80b8659f2d3
+* Zhou's drivers: http://bl.ocks.org/captainelaine/879ed6a6364d6831ea24
+
+* Luying's Men-Women Drama: http://bl.ocks.org/luluwuluying/ed843a39eb2883e32911
+(there is a subtle but important bug in here. Let's review.)
 
 
-###Color by Region
+### Final Bar Homework Code
 
-This is how I expected it, but some of you did it by hand:
+* See it here: [bar_homework_done_safe.html](bar_homework_done_safe.html)
+
+
+### Human Menus
+
+Make the menu items human-friendly when you can, like here - don't just duplicate the data column:
+
 ````
-var colorScale = d3.scale.category10();
-circle.attr("fill", function(d) {return colorScale(d.region);})
+<option value="HIV_AIDS">HIV_AIDS</option>
 ````
 
-Notice that if you don't like the category() colors in D3, you can set your own, as long as you have enough in the list for your different items:
+
+### Key Functions
+
+You should review this article: https://bost.ocks.org/mike/constancy/
+
+This is not a filter or subset operation. It is a way to tell your data what is the "constant" item that ties it to a piece of the DOM, so update transitions will work right and move the right elements.
 
 ````
-var color = d3.scale.ordinal().range(["lightpink", "darkgray", "lightblue"]);
-color.domain(["sepsis", "malaria", "typhoid"]);
-...
-color(d.illness)
-or color(i)
+var labels = svg.selectAll("text.labels")
+            .data(data, function (d) { return d.Country; });
 ````
 
-TODO: Ordinal scale coloring.
+I know it looks like this is just getting the d.Country values for the data binding, but it's not; it's using the whole data set but saying "remember each one by the country field."
+
+You do NOT want to say `d[column]` here. That will just make the updates confused.
+
+### Another Reminder: d[column]
+
+Syntax in Javascript objects:
+
+`d.white` is the same as `d["white"]`
+
+`d.column` is the same as `d["column"]`
+
+If `column` is a variable that changes value, you want to use `d[column]`. (NO QUOTES AROUND `column`.)  That means it will fill in the string that is the variable value!
+
+This is an example of how you might use this -- get a column of data from a UI menu:
+
+````
+var myVariable = d3.select("#menu").property("value"); // get select menu's current value
+console.log(myVariable, data[myVariable]);
+````
+
+If you are still confused, I recommend reading more about Javascript object notation.
 
 
-## Area Chart
+### Updates Are Important
+
+Let's review this code example of the update function: http://bl.ocks.org/mbostock/3808221
+
+And then this on transitions: http://bl.ocks.org/mbostock/3808234
+
+Always put the attributes you are **changing** in the update transition, not in the enter() itself. Otherwise they won't get updated on the old items that were already created!
+
+DON'T DO THIS:
+
+````
+labels
+            .enter()
+            .append("text")
+            .attr("transform", function(d) {  // bad - will not get updated!
+             return "translate(" + xScale(+d.AvgHourWomen) + "," + yScale(+d.AvgHourMen) + ")";
+            })
+            .text(function()...);
+
+labels.transition()
+    .duration(1000);
+````
+
+What's wrong with that is the "transform(translate)" will not **move** the existing items to a new location. You need to put that in the transition update if you want them ALL to move.
+
+DO THIS:
+
+````
+labels
+    .enter()
+    .append("text")
+    .text(function()...);
+
+labels.transition()
+    .duration(1000)
+    .attr("transform", function(d) { // good- this will happen on all items, new and old
+     return "translate(" + xScale(+d.AvgHourWomen) + "," + yScale(+d.AvgHourMen) + ")";
+    });
+
+````
+
+### Review Refactor
+
+I posted the refactor of Han's example here: [refactor.html](refactor.html). There are still a few things that can be DRYed out, but it's much better.
+
+
+## New Chart Types
+
+### Area Charts
 
 The area chart is a line chart, but filled in!  There is a new layout for it:
 
@@ -42,7 +130,7 @@ The area chart is a line chart, but filled in!  There is a new layout for it:
 Example in [area_plot.html](area_plot.html), based off a Scotty Murray example.
 
 
-## Stacked Area
+### Stacked Area
 
 We use the area layout and the stack function for this.
 
@@ -57,7 +145,7 @@ Reference:
 See [stacked_area.html](stacked_area.html), which uses the stack layout.
 
 
-## Streamgraph
+### Streamgraph
 
 The streamgraph is a minor variant on the stacked area chart!  If you've used the stack layout, you can transition to it easily.
 
@@ -66,6 +154,7 @@ Reference:
 * Here's a NYT example: http://www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html?_r=0
 * A recent news example: https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor
 * Another interactive streamgraph example (with highlights and fake tooltips): http://bl.ocks.org/WillTurman/4631136
+* A famous one by Pitch Interactive: http://www.wired.com/2010/11/ff_311_new_york/all/1
 
 The only difference is:
 
@@ -77,15 +166,14 @@ var stack = d3.layout.stack()
     .y(function(d) { return +d.Measles; });
 ````
 
-Try this in [stacked_area.html](stacked_area.html).
 
-TODO: Add a separate file for this easy change.
+#### How would we transition between them?
 
-### How would we transition between them?
+I have edited [stacked_area.html](stacked_area.html) to add a button to switch between the two views.  Notice how the code has to be re-architected to support the toggle. See it in [stacked_area_to_stream.html](stacked_area_to_stream.html).
 
-How would we transition between these 2 forms?  It should be easy, right?  Let's discuss.
+The code structure changes to have a "setup" function for when the data is loaded, and a "redraw" for when the button is toggled.  This includes the transition to the new layout offset type.
 
-If you want to see a tutorial on changing between these forms, see this one by Jim Vallandingham on FlowingData:
+There's a slightly more complex example of this written in CoffeeScript by Jim Vallandingham on FlowingData (Nathan Yau's site):
 
 * Demo: http://projects.flowingdata.com/tut/chart_transitions_demo/
 * https://flowingdata.com/2013/01/17/how-to-animate-transitions-between-multiple-charts/
@@ -98,13 +186,16 @@ If you need access via account and password, let me know.
 
 Reference:
 
-* IDVW: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout.
-* Tooltips for stacked bar charts: https://gist.github.com/mstanaland/6100713.
+* Read this in http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout.
 
-See [stacked_bar.html](stacked_bar.html).
+See [stacked_bar.html](stacked_bar.html).  Some things to notice here:
+
+* We nest the data by the thing you want in the legend - the illnesses.
+* The colors in the legend would be in reverse order from the way the bars are built (bottom up), so we reverse those.
+* Adding tooltips is a HUGE help for this kind of chart. Consider it mandatory.
 
 
-## Normalized Bar Chart
+### Normalized Stacked Bar Chart
 
 This is a very small variant, after you get the [stacked_bar.html](stacked_bar.html) working.  See the `//` notes in the file.
 Just add offset "expand" to the layout!  (The default offset is "zero".)
@@ -125,14 +216,14 @@ var yAxis = d3.svg.axis()
     //.tickFormat(d3.format("%")); // for the normalized version
 ````
 
-### How would we transition between them?
+#### How would we transition between them?
 
 See my example [stacked_bar_transitions.html](stacked_bar_transitions.html).  This includes a bunch of refactoring into functions, where there is repetition, too.  Let's discuss it.
 
-See also http://bl.ocks.org/tmaybe/6144082.
+See also http://bl.ocks.org/tmaybe/6144082.  Might be overkill!
 
 
-## Aside on Javascript Keys and Mapping
+### Aside on Javascript Keys and Mapping
 
 We need to get serious about data munging with map.  A lot of the online examples for this week used mapping to make the data for the stacked layouts. Mike Bostock says "it's just as easy to make the y0, y1 by hand" for the stacked bars.  Note if you don't use the stack layout, you can't easily switch to a normalized view when you want.
 
@@ -149,7 +240,7 @@ the_a
 
 Maps return arrays. They are like forEach function loops, except those don't return arrays explicitly. (Although you can use them to create new arrays like we've seen with "push").
 
-Let's look at the stacked bar example in http://bl.ocks.org/mbostock/3886208.  He makes the data using a confusing, compressed few lines.
+Let's look at the stacked bar example in **http://bl.ocks.org/mbostock/3886208**.  He makes the data using a confusing, compressed few lines.
 
 The data in the CSV looks like this:
 
@@ -222,7 +313,7 @@ data.forEach(function (d) {
 Because his `{name: name, y0: y0, y1: y0 += +d[name]};` is incrementing the y0 each time through the map loop, so that each time it is the sum of the value of d[name] and the previous y0.
 
 
-## Bar Groups
+### Bar Groups
 
 * Grouped bar chart example: http://bl.ocks.org/mbostock/3887051
 * See my version in [grouped_bars.html](grouped_bars.html).
@@ -232,7 +323,7 @@ Fancier:
 * Stacked to Grouped Bars Animation: http://bl.ocks.org/mbostock/3943967
 * Stacked to multiples transition: http://bl.ocks.org/mbostock/4679202
 
-## Small Multiples in D3
+### Small Multiples in D3
 
 Three ways:
 
@@ -251,7 +342,7 @@ Tutorials by Jim Vallandingham (that unfortunately use CoffeeScript):
 
 We'll build some next week.  Think about data in your datasets that could be done with small mutiples.
 
-**Note: Old D3 Code Alert in Some Tutorials**
+**Reminder: Old D3 Code Alert in Some Tutorials**
 
 If you see this stuff (e.g., in some of Flowing Data's tutorials):
 
@@ -266,11 +357,14 @@ it's old D3 code.  We used to have to say "svg" in front of all the svg DOM elem
 
 ## Recent Interesting Things
 
+* Malofiej awards for online vis (last week): http://www.maartenlambrechts.be/malofiej24-the-awards/
+    * First place: Amazing scrollytelling animated story: http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees
 * Related vis yesterday: https://www.foreignaffairs.com/infographics/2015-10-15/china-not-rogue-donor
-* Amazing scrollytelling animated story: http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees
-* World Bank tumblr: http://worldbank.tumblr.com/submit
 * What is a Front-End Developer: https://frontendmasters.gitbooks.io/front-end-handbook/content/what-is-a-FD.html
 * A friendly guide to debugging (but not about d3 per se): http://p5js.org/tutorials/debugging/
+* How We Made Failure Factories: https://source.opennews.org/en-US/articles/how-we-made-failure-factories/ and the original piece: http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/
+
+* NICAR data journalism tutorial links: http://blog.chryswu.com/2016/03/08/nicar16-slides-links-tutorials-resources/
 
 
 ## Homework
@@ -278,18 +372,16 @@ it's old D3 code.  We used to have to say "svg" in front of all the svg DOM elem
 Readings:
 
 * Read this section: http://chimera.labs.oreilly.com/books/1230000000345/ch11.html#_stack_layout. You can see how some other layouts work in that same chapter.
-* How We Made Failure Factories: https://source.opennews.org/en-US/articles/how-we-made-failure-factories/ and the original piece: http://www.tampabay.com/projects/2015/investigations/pinellas-failure-factories/chart-failing-black-students/
 
-**Homework 1 (12pt)**: JS Practice.
+**Homework 1 (20pt)**: JS Practice.
 
-Finish [js_homework.html](js_homework.html), all the TODOs. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the file.  Week 9: "JS homework".
+Finish [js_homework.html](js_homework.html), all the TODOs. I gave you some links to stuff on d3.nest() a week or 2 ago, and you can search online. Send me a screencap of your console output and the gist with the files. Gist: "Week 9: JS homework".
 
-**Homework 2 (25pt)**: Stacked Bars Transition.
+**Homework 2 (25pt)**: Stacked Bars or Streamgraphs Transition
 
-Make a stacked_bar_transitions using your own data.  It must transition between normalized and non-normalized like my example does. Try to make it data that you can use in your final project.  You need tooltips on this, too. Send gist as "Stacked Bars."
+Make a stacked_bar_transitions.html using your own data.  It must transition between normalized and non-normalized like my example does. Try to make it data that you can use in your final project.  You need real D3 tooltips on this, too.
 
-**Homework 3 (20pt)**: Grouped Bars.
+If you have timeseries data and want to do stacked area / streamgraph instead, you can use my model in stacked_area_to_stream.html.  Add tooltips (real D3 ones, not title fields).
 
-Make a grouped bars example with your own data. Send gist as "Grouped Bars."
-
+Send the gist as "Week9: Stacked Transition."
 

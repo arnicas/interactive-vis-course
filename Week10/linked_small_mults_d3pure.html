@@ -3,6 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <style>
@@ -30,8 +31,13 @@ h1 {
   line-height: 1.4em;
 }
 
+#vis {
+  position: relative;
+  display: block;
+}
+
 .chart {
-  float: left;
+  position: absolute;
   padding-right: 5px;
   padding-bottom: 5px;
   padding-top:0;
@@ -78,10 +84,10 @@ svg {
 }
 
 #button-wrap {
-  width: 220px;
+  width: 400px;
+  height: 50px;
   margin-left: auto;
   margin-right: auto;
-  height: 40px;
   margin-bottom: 10px;
   padding-left: 5px;
 }
@@ -89,14 +95,12 @@ svg {
 .button {
   cursor: pointer;
   float: left;
-  width: 100px;
   height: 30px;
   text-align: center;
   background: #fcfcfc;
   border: 1px solid #cecece;
   display: block;
-  padding-top: 5px;
-  margin-top: 10px;
+  padding: 5px 15px;
   border-radius: 5px 5px 5px 5px;
 }
 
@@ -123,34 +127,35 @@ svg {
   <div class="container">
     <h1>Deaths Due to HIV/AIDS for African Children Under 4 Years Old</h1>
     <div id="lead">
-      <p>Data Source: WHO, selected African countries. Based on <a href="https://flowingdata.com/2014/10/15/linked-small-multiples/">tutorial code by Jim Vallandingham.</a></p>
+      <p>Data Source: WHO, selected African countries. Based on <a href="https://flowingdata.com/2014/10/15/linked-small-multiples/">tutorial code by Jim Vallandingham.</a> and an example at <a href="http://britains-diet.labs.theodi.org/?es_p=1359956">Britain's Diet.</a>.</p>
     </div>
     <div id="main">
       <div id="button-wrap">
-        <div id="count" class="button active">COUNT</div>
+        <div id="count" class="button active">WORST</div>
+        <div id="decline" class="button">BIGGEST DROP</div>
         <div id="country" class="button">COUNTRY</div>
       </div>
       <div id="vis"></div>
     </div>
   </div> <!--! end of #container -->
 
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
-  <script src="js/isotope.pkgd.min.js"></script>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 
-  <script type="text/javascript">
 
-  // Heavily simplified version of Jim Vallandingham's Coffee Script tutorial atThe National
-  // https://flowingdata.com/2014/10/15/linked-small-multiples/
+<script type="text/javascript">
 
-  var width = 150,
-    height = 120,
+  var fullwidth = 150,
+    fullheight = 120,
     margin = {
       top: 15,
       right: 20,
       bottom: 40,
       left: 40
     };
+
+  var width = fullwidth - margin.left - margin.right;
+  var height = fullheight - margin.top - margin.bottom;
 
   var data = [],
       circle = null,
@@ -213,7 +218,7 @@ svg {
       d.date = format.parse(d.Year);
       d.count = +d["HIV_Aids"];
     });
-    nest = d3.nest().key(function(d) {
+    var nest = d3.nest().key(function(d) {
       return d.Country;
     }).sortValues(function(a, b) {
       return d3.ascending(a.date, b.date);
@@ -222,64 +227,79 @@ svg {
     return nest;
   }
 
-    // a jquery lib to do the small multiple sorting for us!
-  function setupIsotope() {
-    $("#vis").isotope({
-      itemSelector: '.chart',
-      layoutMode: 'fitRows',
-      getSortData: {
-        count: function(e) {
-          var d, sum;
-          d = d3.select(e).datum();
-          sum = d3.sum(d.values, function(d) {
-            return d.count;
-          });
-          return sum * -1;
-        },
-        country: function(e) {
-          var d;
-          d = d3.select(e).datum();
-          return d.key;
-        }
-      }
-      });
-      return $("#vis").isotope({
-        sortBy: 'count'
-      });
+// borrowed from british cooking example: http://britains-diet.labs.theodi.org/?es_p=1359956
+
+  var cols, margin_left;
+  function calibrate() {
+    cols = Math.floor(window.innerWidth/fullwidth),
+    margin_left = window.innerWidth%fullwidth/2;
+    console.log("cols", cols);
   }
 
+  function getLeft(i) {
+    return margin_left + fullwidth * (i%cols) + "px";
+  }
 
-  d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, rawData) {
+  function getTop(i) {
+    return fullheight * Math.floor(i/cols) + "px";
+  }
 
-     if (error) {
-      console.log(error);
-    };
+  function setChartDivHeight(data_to_plot) {
+  d3.select("#vis").style("height", fullheight * Math.ceil(data_to_plot.length/cols) + "px")
+  }
 
-    var data = transformData(rawData);
+  function layoutCharts(data_to_plot) {
+    calibrate();
+    setChartDivHeight(data_to_plot);
+    setupScales(data_to_plot);
 
-    d3.select("#vis").datum(data).each(function(myData) {
+    var charts = d3.select("#vis").selectAll(".chart").data(data_to_plot, function(d) { return d.key; });
+    var enter = charts.enter().append("div")
+      .attr("class", "chart")
+      .attr("id", function(d) { return "chart-" + d.key; })
+      .style("left", function(d, i) { return getLeft(i); })
+      .style("top", function(d, i) { return getTop(i); })
+    .each(appendChart);
 
-      // now we draw for each array of the data.
+    charts
+      .transition().duration(750).delay(function(d, i) { return i * 10; })
+      .style("left", function(d, i) { return getLeft(i); })
+      .style("top", function(d, i) { return getTop(i); });
 
-      data = myData;
-      setupScales(data);
+    charts.exit().remove();
+  } // end layout charts
 
-      var div = d3.select(this).selectAll(".chart").data(data);
 
-      div.enter()
-        .append("div")
-        .attr("class", "chart")
-        .append("svg")
-        .append("g");
+  var data;
 
-      var svg = div.select("svg")
+  d3.csv("data/deaths_04yearsold_excerpt.csv", drawPlots);
+
+
+    function drawPlots(error, rawData) {
+
+       if (error) {
+        console.log(error);
+      };
+      data = transformData(rawData);
+      // default sort order
+      data.sort(function(a, b) {
+        return d3.descending(+a.values[b.values.length-1].count, +b.values[a.values.length-1].count);
+      });
+      layoutCharts(data);
+
+    } // end drawPlots
+
+
+    function appendChart(data, i) {
+
+
+      var svg = d3.select(this).append("svg")
         .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom);
-
-      var g = svg.select("g")
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      g.append("rect")
+      svg.append("rect")
         .attr("class", "background")
         .style("pointer-events", "all")
         .attr("width", width + margin.right) // extra space for labels that appear
@@ -287,7 +307,8 @@ svg {
         .on("mousemove", mousemove)
         .on("mouseout", mouseout);
 
-      var lines = g.append("g");
+      var lines = svg.append("g");
+
       lines.append("path")
         .attr("class", "area")
         .style("pointer-events", "none")
@@ -335,7 +356,6 @@ svg {
         .attr("text-anchor", "middle")
         .style("pointer-events", "none")
         .attr("dy", -8);
-
       curYear = lines.append("text")
         .attr("class", "year")
         .attr("text-anchor", "middle")
@@ -343,51 +363,69 @@ svg {
         .attr("dy", 13)
         .attr("y", height);
 
-      g.append("g").attr("class", "y axis").call(yAxis);
+      svg.append("g").attr("class", "y axis").call(yAxis);
 
-    }); // end of creating the chart for each data row
 
-  function mouseover() {
-    circle.attr("opacity", 1.0);
-    d3.selectAll(".static_year").classed("hidden", true);
-    return mousemove.call(this);
-  };
-  function mousemove() {
-    var date, index, year;
-    year = xScale.invert(d3.mouse(this)[0]).getFullYear();
-    date = format.parse('' + year);
-    index = 0;
-    circle.attr("cx", xScale(date)).attr("cy", function(c) {
-      index = bisect(c.values, date, 0, c.values.length - 1);
-      return yScale(yValue(c.values[index]));
-    });
-    caption.attr("x", xScale(date)).attr("y", function(c) {
-      return yScale(yValue(c.values[index]));
-    }).text(function(c) {
-      return yValue(c.values[index]);
-    });
-    return curYear.attr("x", xScale(date)).text(year);
-  };
-  function mouseout() {
-    d3.selectAll(".static_year").classed("hidden", false);
-    circle.attr("opacity", 0);
-    caption.text("");
-    return curYear.text("");
-  };
-
-  setupIsotope();
+    } // end of append chart
 
   d3.select("#button-wrap").selectAll("div").on("click", function() {
     var id;
     id = d3.select(this).attr("id");
     d3.select("#button-wrap").selectAll("div").classed("active", false);
     d3.select("#" + id).classed("active", true);
-    return $("#vis").isotope({
-      sortBy: id
-    });
+    if (id == "country") {
+      data.sort(function(a, b) { return d3.ascending(a.key, b.key);});
+    }
+    if (id == "count") {
+      data.sort(function(a, b) {
+        return d3.descending(+a.values[a.values.length-1].count, +b.values[b.values.length-1].count);
+      });
+    }
+    if (id == "decline") {
+      data.sort(function(a, b) {
+        return d3.descending(a.values[0].count - a.values[a.values.length-1].count,
+           b.values[0].count - b.values[b.values.length-1].count);
+      });
+    }
+    layoutCharts(data);
   }); // end button setup
 
-}); // end of read tsv
+  d3.select("window").on("resize", function() {
+    layoutCharts(data);
+  });
+
+    function mouseover() {
+    d3.selectAll("circle").attr("opacity", 1.0);
+    d3.selectAll(".static_year").classed("hidden", true);
+    return mousemove.call(this); // current graph base
+    };
+
+    function mousemove() {
+      var date, index, year;
+      year = xScale.invert(d3.mouse(this)[0]).getFullYear();
+      date = format.parse('' + year);
+      index = 0;
+      d3.selectAll("circle")
+        .attr("cx", xScale(date))
+        .attr("cy", function(c) {
+          index = bisect(c.values, date, 0, c.values.length - 1);
+          return yScale(yValue(c.values[index]));
+      });
+      d3.selectAll("text.caption").attr("x", xScale(date))
+        .attr("y", function(c) {
+          return yScale(yValue(c.values[index]));
+       }).text(function(c) {
+        return yValue(c.values[index]);
+        });
+      d3.selectAll("text.year").attr("x", xScale(date)).text(year);
+    };
+
+    function mouseout() {
+      d3.selectAll(".static_year").classed("hidden", false);
+      d3.selectAll("circle").attr("opacity", 0);
+      d3.selectAll("text.caption").text("");
+      d3.selectAll("text.year").text("");
+    };
 
 </script>
 

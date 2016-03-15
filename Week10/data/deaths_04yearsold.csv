@@ -1,4 +1,4 @@
-Country,Year,Meningitis_encephalitis,Respiratory_infections,Sepsi,Pertussis,Malaria,Measles,Congenital_anomalies,HIV/AIDS,Diarrhoeal_diseases,Asphyxia_ trauma,Total,PIB per capita,Health_exp
+Country,Year,Meningitis_encephalitis,Respiratory_infections,Sepsi,Pertussis,Malaria,Measles,Congenital_anomalies,HIV/AIDS,Diarrhoeal_diseases,Asphyxia_trauma,Total,PIB per capita,Health_exp
 Afghanistan,Year 2013,3363,20040,7131,1214,6,3936,3592,26,13217,11076,63601,665,55
 Afghanistan,Year 2012,3588,20996,7189,1243,6,3331,3574,27,14355,11355,65664,689,58
 Afghanistan,Year 2011,3904,22145,7265,1288,29,4698,3576,26,15623,11659,70213,616,54

@@ -23,6 +23,20 @@ body {
   display: none;
 }
 
+
+.tooltip {
+  position: absolute;
+  z-index: 10;
+}
+
+.tooltip p {
+  background-color: white;
+  border: gray 1px solid;
+  padding: 2px;
+  max-width: 180px;
+}
+
+
 </style>
 <body>
 
@@ -59,6 +73,8 @@ var stack = d3.layout
     .stack();
     //.offset("expand");  // use this to get it to be relative/normalized! Default is zero.
 
+var tooltip = d3.select("body").append("div").classed("tooltip", true);
+
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -77,11 +93,11 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
  // grouping by illness, right way:
   var dataToStack = illnesses.map(function(illness) {
     return data.map(function(d) {
-      return {x: d.Country, y: +d[illness]};
+      return {x: d.Country, y: +d[illness], illness: illness};
     })
   });
 
-/*  // grouping by country - wrong way.
+/*  // grouping by country - wrong way!
 var dataToStack = data.map(function(d) { return illnesses.map(function(illness) { return {x: d.Country, y: +d[illness]}; }); })
 */
 
@@ -111,15 +127,17 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
       .style("text-anchor", "end")
       .text("Deaths");
 
-  var country = svg.selectAll(".country")
+      // we set the colors per illness - the outer nesting
+  var country = svg.selectAll("g.illness")
       .data(stacked)
     .enter().append("g")
-      .attr("class", "g")
+      .attr("class", "illness")
       .style("fill", function(d, i) { return color(i); });
 
+  // but we draw one rect for each country, bottom up.
   country.selectAll("rect")
       .data(function(d) {
-        console.log("array for a rectangle");
+        console.log("array for a rectangle", d);
         return d; })  // this just gets the array for bar segment.
     .enter().append("rect")
       .attr("width", xScale.rangeBand())
@@ -128,13 +146,21 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
       .attr("y", function(d) {
         return yScale(d.y0 + d.y); }) //
       .attr("height", function(d) {
-        return yScale(d.y0) - yScale(d.y0 + d.y); });  // height is base - tallness
-
+        return yScale(d.y0) - yScale(d.y0 + d.y); }) // height is base - tallness
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseout", mouseout);
 
   // Building a legend by hand, based on http://bl.ocks.org/mbostock/3886208
 
+  // NOTE: We are reversing because the bars are build bottom up - and we want the legend
+  // colors to match the order in the bars. Use slice to make a copy instead of reversing the
+  // original in place.
+
+  var illnesses_reversed = illnesses.slice().reverse();
+
   var legend = svg.selectAll(".legend")
-      .data(color.domain().slice().reverse())
+      .data(color.domain().slice().reverse()) // reverse these too
     .enter().append("g")
       .attr("class", "legend")
       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -150,8 +176,36 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "start")
-      .text(function(d, i) { return illnesses[i]; });
+      .text(function(d, i) { return illnesses_reversed[i].replace(/_/g, " "); });
 
 });
+
+function mouseover(d) {
+  // this will highlight both a dot and its line.
+
+  d3.select(this)
+    .transition()
+    .style("stroke", "black");
+
+  tooltip
+    .style("display", null) // this removes the display none setting from it
+    .html("<p>Illness: " + d.illness.replace(/_/g, " ") +
+          "<br>Deaths: " + d.y +
+          "<br>Country: " + d.x + " </p>");
+}
+
+function mousemove(d) {
+  tooltip
+    .style("top", (d3.event.pageY - 10) + "px" )
+    .style("left", (d3.event.pageX + 10) + "px");
+  }
+
+function mouseout(d) {
+  d3.select(this)
+    .transition()
+    .style("stroke", "none");
+
+  tooltip.style("display", "none");  // this sets it to invisible!
+}
 
 </script>

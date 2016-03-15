@@ -60,9 +60,9 @@ var nestByYear = d3.nest()
 
   console.log(years);
 
-  var maxMalariaFor2013 = //TODO: find the max malaria in 2013 using the nestByYear results, using maps, filters, d3.max, d3.keys, d3.values, etc.  There are several ways.
+  var maxMeaslesFor2013 = //TODO: find the max measles in 2012 using the nestByYear results, using maps, filters, d3.max, d3.keys, d3.values, etc.  There are several ways.
 
-  console.log(maxMalariaFor2013);
+  console.log(maxMeaslesFor2012);
 
   var nestByCountryYear = d3.nest()
   // TODO: nest by country, then by year.
@@ -71,7 +71,28 @@ var nestByYear = d3.nest()
   console.log("by country then year", nestByCountryYear[0]);
 
 
-});
+  d3.csv("data/co2_emissions.csv", do_stuff);  // fill in do_stuff below:
+
+
+}); // end d3.csv on illnesses
+
+
+function do_stuff(error, data) {
+
+  var years =  // write some code to get an array of all the years from the columns in the data set.
+
+  var countries = // write some code to get all the country names (consider map).
+
+  var totals = [];
+  data.forEach( // write a loop to calculate the total for each country across all the years.
+    // make an object that has { country: countryName, total: totals} for each country and add it to the array totals.
+    );
+
+  console.log(totals.length, totals[0], totals[0].country, totals[0].total);
+
+  // Extra credit: for each country's data, calculate the percent of total emissions that each year is responsible for. console.log it too.
+
+}
 
 
 </script>

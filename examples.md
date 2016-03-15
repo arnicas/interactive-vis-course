@@ -94,8 +94,10 @@
 
 ## Week9: Stacking Chart Types, Grouped Bars
 
+* [bar_homework_done_safe.html](Week9/bar_homework_done_safe.html): Final bar homework.
 * [area_plot.html](Week9/area_plot.html): Area plot.
 * [stacked_area.html](Week9/stacked_area.html): Using stacked layout, you can switch easily to the streamgraph display.
+* [stacked_area_to_stream.html](Week9/stacked_area_to_stream.html): UI to do the switch to stream with transition.
 * [stacked_bar.html](Week9/stacked_bar.html): Using a stack for the bar display.
 * [stacked_bar_transitions.html](Week9/stacked_bar_transitions.html): Normalizing is easy with a transition.
 * [grouped_bars.html](Week9/grouped_bars.html): Bars in groups.

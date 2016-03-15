@@ -30,6 +30,18 @@ body {
   display: none;
 }
 
+.tooltip {
+  position: absolute;
+  z-index: 10;
+}
+
+.tooltip p {
+  background-color: white;
+  border: gray 1px solid;
+  padding: 2px;
+  max-width: 180px;
+}
+
 </style>
 <body>
 
@@ -37,11 +49,13 @@ body {
   <p><a href="http://apps.who.int/gho/data/node.main.ghe100-by-cause?lang=en">WHO data</a>, deaths of children 0-4 years old in selected South African countries.</p>
     <div id="form">
       <label><input type="radio" name="mode" value="bycount" checked>Raw Count</label>
-      <label><input type="radio" name="mode" value="bypercent">Percent of Illness</label>
+      <label><input type="radio" name="mode" value="bypercent">As Percent of Illness Deaths</label>
     </div>
   <div id="chart"></div>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 <script>
+
+var currentMode = "bycount";
 
 var margin = {top: 20, right: 150, bottom: 50, left: 40},
     width = 980 - margin.left - margin.right,
@@ -73,6 +87,8 @@ var svg = d3.select("#chart").append("svg")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var tooltip = d3.select("body").append("div").attr("class", "tooltip");
 
 d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
 
@@ -111,18 +127,23 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
       .style("text-anchor", "end")
       .text("Deaths");
 
-  var country = svg.selectAll(".country")
+      // there is a nested selection here: data for each illness across all countries
+  var country = svg.selectAll("g.illness")
       .data(stacked)
     .enter().append("g")
-      .attr("class", "country")
+      .attr("class", "illness")
       .style("fill", function(d, i) { return color(i); });
 
+  // then data for each, plus mouseovers - a nested selection/enter here
   country.selectAll("rect")
       .data(function(d) {
         console.log("array for a rectangle", d);
         return d; })  // this just gets the array for bar segment.
     .enter().append("rect")
-        .attr("width", xScale.rangeBand());
+      .attr("width", xScale.rangeBand())
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseout", mouseout);
 
     // this just draws them in the default way, now they're appended.
   transitionCount();
@@ -135,8 +156,10 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
 
   function handleFormClick() {
     if (this.value === "bypercent") {
+      currentMode = "bypercent";
       transitionPercent();
     } else {
+      currentMode = "bycount";
       transitionCount();
     }
   }
@@ -145,7 +168,7 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
   function makeData(illnesses, data) {
     return illnesses.map(function(illness) {
         return data.map(function(d) {
-          return {x: d["Country"], y: +d[illness]};
+          return {x: d.Country, y: +d[illness], illness: illness};
         })
       });
   }
@@ -175,17 +198,18 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
     yScale.domain([0, d3.max(stacked[stacked.length-1], function(d) { return d.y0 + d.y; })]);
 
     // attach new fixed data
-    var country = svg.selectAll(".country")
-      .data(stacked);
+    var country = svg.selectAll("g.illness")
+      .data(stacked);  // just a bunch of arrays. we don't need a key function because it's not different countries or illnesses.
 
     // same on the rects
     country.selectAll("rect")
       .data(function(d) {
-        console.log("array for a rectangle");
+        console.log("array for rectangles", d);
         return d;
       })  // this just gets the array for bar segment.
 
-    svg.selectAll("g.country rect")
+    // the thing that needs to transition is the rectangles themselves, not the g parent.
+    svg.selectAll("g.illness rect")
       .transition()
       .duration(250)
       .attr("x", function(d) {
@@ -201,8 +225,11 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
   // Building a legend by hand, based on http://bl.ocks.org/mbostock/3886208
   function drawLegend() {
 
+    // reverse to get the same order as the bar color layers
+    var illnesses_reversed = illnesses.slice().reverse();
+
     var legend = svg.selectAll(".legend")
-        .data(color.domain().slice()) // make sure your labels are in the right order -- if not, use .reverse() here.
+        .data(color.domain().slice().reverse()) // make sure your labels are in the right order -- if not, use .reverse() here.
       .enter().append("g")
         .attr("class", "legend")
         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -218,7 +245,43 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "start")
-        .text(function(d, i) { return illnesses[i]; });
+        .text(function(d, i) { return illnesses_reversed[i].replace(/_/g, " "); });
+  }
+
+  function mouseover(d) {
+  // this will highlight both a dot and its line.
+
+  var number;
+
+  d3.select(this)
+    .transition()
+    .style("stroke", "black");
+
+  if (currentMode == "bypercent") {
+    number = d3.format(".1%")(d.y);
+  } else {
+    number = d.y;
+  }
+
+  tooltip
+    .style("display", null) // this removes the display none setting from it
+    .html("<p>Illness: " + d.illness.replace(/_/g, " ") +
+          "<br>Deaths: " + number +
+          "<br>Country: " + d.x + " </p>");
+  }
+
+  function mousemove(d) {
+    tooltip
+      .style("top", (d3.event.pageY - 10) + "px" )
+      .style("left", (d3.event.pageX + 10) + "px");
+    }
+
+  function mouseout(d) {
+    d3.select(this)
+      .transition()
+      .style("stroke", "none");
+
+    tooltip.style("display", "none");  // this sets it to invisible!
   }
 
 });

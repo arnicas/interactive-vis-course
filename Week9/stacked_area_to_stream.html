@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!-- mod of Mike Bostock's block http://bl.ocks.org/mbostock/3020685 -->
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 12px sans-serif;
+  padding: 50px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+button {
+  background: orange;
+  margin: 5px;
+
+}
+.selected {
+  background: #ccc;
+}
+
+.layer {
+  fill: white;
+}
+
+</style>
+<body>
+
+  <h2>Stacked Area And Streamgraph Charts of South African Child Deaths from Measles</h2>
+
+  <p><a href="http://apps.who.int/gho/data/node.main.ghe100-by-cause?lang=en">WHO data</a>, deaths of children 0-4 years old in selected South African countries.</p>
+
+  <button id="stream">Stream It!</button><button id="stacked" class="selected">Stack It!</button>
+
+  <div id="chart"></div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <script>
+
+var originaldata;
+
+var formatDate = d3.time.format("Year %Y");
+
+var margin = {top: 20, right: 30, bottom: 30, left: 60},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var xScale = d3.time.scale()
+    .range([0, width]);
+
+var yScale = d3.scale.linear()
+    .range([height, 0]);
+
+var colorScale = d3.scale.category20c();
+
+var xAxis = d3.svg.axis()
+    .scale(xScale)
+    .orient("bottom")
+    .ticks(10);
+
+var yAxis = d3.svg.axis()
+    .scale(yScale)
+    .orient("left");
+
+var stack = d3.layout.stack()
+    .offset("zero") // try "silhouette" next, that's a streamgraph!
+    //.order("inside-out")  // try this and see what you think
+    .values(function(d) { return d.values; })
+    .x(function(d) { return formatDate.parse(d.Year);})
+    .y(function(d) { return +d.Measles; });
+
+  // exactly the same except for offset:
+
+var stream = d3.layout.stack()
+    .offset("silhouette") // try "silhouette" next, that's a streamgraph!
+    //.order("inside-out")  // try this and see what you think
+    .values(function(d) { return d.values; })
+    .x(function(d) { return formatDate.parse(d.Year);})
+    .y(function(d) { return +d.Measles; });
+
+// what's another way we can DRY this out? how about just updating the "offset" when we do the redraw below...
+
+var area = d3.svg.area()
+    .interpolate("cardinal")
+    .x(function(d) { return xScale(formatDate.parse(d.Year)); })
+    .y0(function(d) { return yScale(d.y0); })
+    .y1(function(d) { return yScale(d.y0 + d.y); });
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("data/deaths_04yearsold_excerpt.csv", setup);
+
+
+function setup(error, data) {
+
+  if (error) { console.log(error) };
+
+  originaldata = data; // assign to a global so i can use it in other function
+
+  var dataset =  d3.nest()
+    .key(function(d) {
+      return d.Country;
+    })
+    .sortKeys(d3.descending)  // alphabetic order from top layer
+    .sortValues(function (a, b) { return formatDate.parse(a.Year) - formatDate.parse(b.Year)})
+    .entries(data);
+
+  console.log(dataset);
+
+  // set up the UI function:
+
+  d3.selectAll("button").on("click", function() {
+    var method = d3.select(this).attr("id"); // this is stream or stacked
+    d3.selectAll("button").classed("selected", false);
+    d3.select(this).classed("selected", true);
+    redraw(dataset, method);
+  });
+
+  // default first view: create the axes, so you transition them in the redraw.
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+  redraw(dataset, "stacked");  // method is either stacked or stream
+
+}
+
+function redraw(dataset, method) {
+
+  var layers;
+
+  if (method == "stacked") {
+    layers = stack(dataset); // this operation also modifies the dataset
+  } else {
+    layers = stream(dataset); // this operation also modifies the dataset
+  }
+
+  console.log("layers", layers);  // it adds a y and y0 to the data values.
+
+  // reset these AFTER doing the layer stacking.
+
+  xScale.domain(d3.extent(originaldata, function(d) { return formatDate.parse(d.Year); }));
+  yScale.domain([0, d3.max(originaldata, function(d) { return d.y0 + d.y; })]);
+
+
+  var layers = svg.selectAll(".layer")
+      .data(layers, function(d) {return d.key;});
+
+  layers.enter().append("path")
+      .attr("class", "layer")
+      .append("title")
+      .text(function(d) {
+        return d.key; // country is the key
+      });
+
+  layers.transition().duration(1000)
+    .attr("d", function(d) { return area(d.values); })
+    .style("fill", function(d, i) { return colorScale(i); });
+
+  layers.exit().remove();
+
+  // transition your axes.
+  d3.select(".x.axis").transition().call(xAxis);
+  d3.select(".y.axis").transition().call(yAxis);
+
+}
+
+
+</script>
