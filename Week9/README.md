@@ -10,7 +10,6 @@
 * Sherman's split line: http://bl.ocks.org/Shewitt95/3cff111dceeb17cce275
 * Jennifer's commuters: http://bl.ocks.org/JenHLab/7dccd8f9e80b8659f2d3
 * Zhou's drivers: http://bl.ocks.org/captainelaine/879ed6a6364d6831ea24
-
 * Luying's Men-Women Drama: http://bl.ocks.org/luluwuluying/ed843a39eb2883e32911
 (there is a subtle but important bug in here. Let's review.)
 
@@ -181,7 +180,7 @@ There's a slightly more complex example of this written in CoffeeScript by Jim V
 If you need access via account and password, let me know.
 
 
-## Stacked Bar Chart
+### Stacked Bar Chart
 
 
 Reference:
@@ -323,7 +322,7 @@ Fancier:
 * Stacked to Grouped Bars Animation: http://bl.ocks.org/mbostock/3943967
 * Stacked to multiples transition: http://bl.ocks.org/mbostock/4679202
 
-### Small Multiples in D3
+### Intro to Small Multiples in D3
 
 Three ways:
 

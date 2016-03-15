@@ -108,7 +108,8 @@
 
 * [small_multiples_simple.html](Week10/small_multiples_simple.html): Static small multiple area charts.
 * [small_multiples_each.html](Week10/small_multiples_each.html): Drawn another way, using "each".
-* [linked_small_mults.html](Week10/linked_small_mults.html): Linked, using code from Jim Vallandingham.
+* [linked_small_mults.html](Week10/linked_small_mults.html): Linked, using code from Jim Vallandingham and a plugin for sorting them.
+* [linked_small_mults_d3pure.html](Week10/linked_small_mults_d3pure.html): No plugin for sorting, done in pure d3 with absolute positions.
 * [small_multiples_each_trans.html](Week10/small_multiples_each_trans.html): Code based on Nathan Yau example, shared scale for axes.
 * [small_multiples_each_trans_diffaxis.html](Week10/small_multiples_each_trans_diffaxis.html): Updated code to have unique scale for each, shows change over time but on local scale.
 * [africa_map.html](Week10/africa_map.html): Map starter code.
