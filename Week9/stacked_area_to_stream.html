@@ -46,9 +46,10 @@ var originaldata;
 
 var formatDate = d3.time.format("Year %Y");
 
+var fullheight = 500, fullwidth = 960;
 var margin = {top: 20, right: 30, bottom: 30, left: 60},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
 
 var xScale = d3.time.scale()
     .range([0, width]);
@@ -56,7 +57,7 @@ var xScale = d3.time.scale()
 var yScale = d3.scale.linear()
     .range([height, 0]);
 
-var colorScale = d3.scale.category20c();
+var colorScale = d3.scale.category20b();
 
 var xAxis = d3.svg.axis()
     .scale(xScale)
@@ -92,8 +93,8 @@ var area = d3.svg.area()
     .y1(function(d) { return yScale(d.y0 + d.y); });
 
 var svg = d3.select("#chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", fullwidth)
+    .attr("height", fullheight)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -176,7 +177,7 @@ function redraw(dataset, method) {
 
   // transition your axes.
   d3.select(".x.axis").transition().call(xAxis);
-  d3.select(".y.axis").transition().call(yAxis);
+  d3.select(".y.axis").transition().call(yAxis); // there is no visible change actually
 
 }
 

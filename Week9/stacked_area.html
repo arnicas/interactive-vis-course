@@ -29,9 +29,12 @@ body {
 
 var formatDate = d3.time.format("Year %Y");
 
+var fullwidth = 960,
+  fullheight = 500;
+
 var margin = {top: 20, right: 30, bottom: 30, left: 60},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
 
 var xScale = d3.time.scale()
     .range([0, width]);
@@ -39,7 +42,7 @@ var xScale = d3.time.scale()
 var yScale = d3.scale.linear()
     .range([height, 0]);
 
-var colorScale = d3.scale.category20c();
+var colorScale = d3.scale.category20b();
 
 var xAxis = d3.svg.axis()
     .scale(xScale)
@@ -57,6 +60,7 @@ var stack = d3.layout.stack()
     .x(function(d) { return formatDate.parse(d.Year);})
     .y(function(d) { return +d.Measles; });
 
+// use the result of the stack to draw the shapes using area
 var area = d3.svg.area()
     .interpolate("cardinal")
     .x(function(d) { return xScale(formatDate.parse(d.Year)); })
@@ -64,20 +68,20 @@ var area = d3.svg.area()
     .y1(function(d) { return yScale(d.y0 + d.y); });
 
 var svg = d3.select("#chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", fullwidth )
+    .attr("height", fullheight)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, data) {
 
-  if (error) { console.log(error) };
+  if (error) { console.log(error); };
 
   var dataset =  d3.nest()
     .key(function(d) {
       return d.Country;
     })
-    .sortKeys(d3.descending)  // alphabetic order from top layer
+    .sortKeys(d3.descending)  // alphabetic order from top layer - Zambia at bottom
     .sortValues(function (a, b) { return formatDate.parse(a.Year) - formatDate.parse(b.Year)})
     .entries(data);
 
@@ -87,19 +91,18 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, data) {
   console.log("layers", layers);  // it adds a y and y0 to the data values.
 
   // reset these after doing the layer stacking.
-
   xScale.domain(d3.extent(data, function(d) { return formatDate.parse(d.Year); }));
-  yScale.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
+  yScale.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]); // highest combo
 
   svg.selectAll(".layer")
       .data(layers)
     .enter().append("path")
       .attr("class", "layer")
       .attr("d", function(d) { return area(d.values); })
-      .style("fill", function(d, i) { return colorScale(i); })
+      .style("fill", function(d, i) { return colorScale(i); }) // just count off
       .append("title")
       .text(function(d) {
-        return d.key; // country is the key
+        return d.key; // country is the key in the nest
       });
 
   svg.append("g")

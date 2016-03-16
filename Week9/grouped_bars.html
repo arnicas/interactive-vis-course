@@ -32,32 +32,34 @@ body {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 <script>
 
+var fullheight = 500, 
+  fullwidth = 1000;
 var margin = {top: 20, right: 20, bottom: 60, left: 40},
-    width = 1000 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
 
-var x0 = d3.scale.ordinal()
+var groupScale = d3.scale.ordinal()
     .rangeRoundBands([0, width], .3);
 
-var x1 = d3.scale.ordinal(); // the actual bars inside each group
+var barScale = d3.scale.ordinal(); // the actual bars inside each group
 
-var y = d3.scale.linear()
+var yScale = d3.scale.linear()
     .range([height, 0]);
 
-var color = d3.scale.category10();
+var colorScale = d3.scale.category10();
 
 var xAxis = d3.svg.axis()
-    .scale(x0)
+    .scale(groupScale)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
-    .scale(y)
+    .scale(yScale)
     .orient("left")
     .tickFormat(d3.format(".2s"));
 
 var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", fullwidth)
+    .attr("height", fullheight)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -65,11 +67,10 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
 
   if (error) {console.log(error);}
 
-  // get them from the columns instead this time
-
+  // get them from the columns instead this time -- all columns except the Country one
   var illnessNames = d3.keys(data[0]).filter(function(key) { return key !== "Country"; });
 
-  color.domain(illnessNames);
+  colorScale.domain(illnessNames);
 
   data.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // alphabetize
 
@@ -77,12 +78,14 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
     d.illnesses = illnessNames.map(function(name) { return {name: name, value: +d[name]}; });
   });
 
-  x0.domain(data.map(function(d) { return d.Country; }));  // just all the country names
-  x1.domain(illnessNames).rangeRoundBands([0, x0.rangeBand()]);
-  y.domain([0, d3.max(data, function(d) { return d3.max(d.illnesses, function(d) { 
+  // country labels, spaced out - these are your groups of bars.
+  groupScale.domain(data.map(function(d) { return d.Country; }));  // just all the country names
+  // spacing for each bar, re-used across country groups
+  barScale.domain(illnessNames).rangeRoundBands([0, groupScale.rangeBand()]);
+  yScale.domain([0, d3.max(data, function(d) { return d3.max(d.illnesses, function(d) {
             return d.value;
-            });
-          })
+              });
+            })
   ]);
 
   svg.append("g")
@@ -92,7 +95,7 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
       .selectAll("text")
         .attr("dy", ".5em")
         .attr("transform", "rotate(-30)")
-        .style("text-anchor", "end");
+        .style("text-anchor", "end");  // rotating the labels on the countries a bit
 
   svg.append("g")
       .attr("class", "y axis")
@@ -104,23 +107,24 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
       .style("text-anchor", "end")
       .text("Deaths");
 
-  var state = svg.selectAll(".country")
+      // do the country groups first
+  var country = svg.selectAll("g.country")
       .data(data)
     .enter().append("g")
-      .attr("class", "g")
-      .attr("transform", function(d) { return "translate(" + x0(d.Country) + ",0)"; });
+      .attr("class", "country")
+      .attr("transform", function(d) { return "translate(" + groupScale(d.Country) + ",0)"; });
 
-  state.selectAll("rect")
-      .data(function(d) { return d.illnesses; })
+  country.selectAll("rect")
+      .data(function(d) { return d.illnesses; })  // get the data array for each country
     .enter().append("rect")
-      .attr("width", x1.rangeBand())
-      .attr("x", function(d) { return x1(d.name); })
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
-      .style("fill", function(d) { return color(d.name); });
+      .attr("width", barScale.rangeBand())
+      .attr("x", function(d) { return barScale(d.name); }) // illness bars scale
+      .attr("y", function(d) { return yScale(d.value); }) // drawing from top down
+      .attr("height", function(d) { return height - yScale(d.value); }) // bottom to top
+      .style("fill", function(d,i) { return colorScale(d.name); }); // the illness is the name
 
   var legend = svg.selectAll(".legend")
-      .data(illnessNames.slice().reverse())
+      .data(illnessNames)
     .enter().append("g")
       .attr("class", "legend")
       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -129,13 +133,13 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
       .attr("x", width - 18)
       .attr("width", 18)
       .attr("height", 18)
-      .style("fill", function(d, i) { return color(d);});
+      .style("fill", function(d, i) { return colorScale(d);}); // d is the illness name
 
   legend.append("text")
       .attr("x", width - 24)
       .attr("y", 9)
       .attr("dy", ".35em")
-      .style("text-anchor", "end")
+      .style("text-anchor", "end") // align with rects
       .text(function(d) { return d.replace(/_/g, " "); });
 
 });

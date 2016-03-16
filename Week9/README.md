@@ -106,7 +106,7 @@ labels.transition()
 
 ### Review Refactor
 
-I posted the refactor of Han's example here: [refactor.html](refactor.html). There are still a few things that can be DRYed out, but it's much better.
+I posted the refactor of Han's example here: [refactor.html](Week8/refactor.html). There are still a few things that can be DRYed out, but it's much better.
 
 
 ## New Chart Types
@@ -120,7 +120,7 @@ The area chart is a line chart, but filled in!  There is a new layout for it:
         .x(function(d) {
             return xScale(dateFormat.parse(d.year));
         })
-        .y0(height - margin.bottom)  // the bottom line!
+        .y0(height)  // the bottom line, if you use the margin convention correctly
         .y1(function(d) {
             return yScale(+d.amount); // the top line
         });

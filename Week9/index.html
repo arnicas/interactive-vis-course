@@ -120,7 +120,7 @@ labels.transition()
     });
 </code></pre>
 <h3 id="review-refactor">Review Refactor</h3>
-<p>I posted the refactor of Han's example here: <a href="refactor.html" class="uri">refactor.html</a>. There are still a few things that can be DRYed out, but it's much better.</p>
+<p>I posted the refactor of Han's example here: <a href="Week8/refactor.html">refactor.html</a>. There are still a few things that can be DRYed out, but it's much better.</p>
 <h2 id="new-chart-types">New Chart Types</h2>
 <h3 id="area-charts">Area Charts</h3>
 <p>The area chart is a line chart, but filled in! There is a new layout for it:</p>
@@ -128,7 +128,7 @@ labels.transition()
         .x(function(d) {
             return xScale(dateFormat.parse(d.year));
         })
-        .y0(height - margin.bottom)  // the bottom line!
+        .y0(height)  // the bottom line, if you use the margin convention correctly
         .y1(function(d) {
             return yScale(+d.amount); // the top line
         });</code></pre>

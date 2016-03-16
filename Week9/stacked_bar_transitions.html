@@ -57,9 +57,11 @@ body {
 
 var currentMode = "bycount";
 
+var fullwidth = 980, fullheight = 500;
+
 var margin = {top: 20, right: 150, bottom: 50, left: 40},
-    width = 980 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
 
 var xScale = d3.scale.ordinal()
     .rangeRoundBands([0, width], .3);
@@ -83,8 +85,8 @@ var stack = d3.layout
     .stack(); // default view is "zero" for the count display.
 
 var svg = d3.select("#chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", fullwidth)
+    .attr("height", fullheight)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -102,11 +104,9 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
   var illnesses = ["Meningitis_encephalitis","Respiratory_infections","Sepsis","Pertussis",
   "Malaria","Measles","HIV_Aids","Diarrhoeal_diseases","Asphyxia_trauma"];
 
-  var stacked = stack(makeData(illnesses, data)); // needed for default view
-  xScale.domain(data.map(function(d) { return d.Country; }));
+  color.domain(illnesses);
 
-  console.log("data", data);
-  console.log("stacked", stacked);
+  xScale.domain(data.map(function(d) { return d.Country; }));
 
   svg.append("g")
       .attr("class", "x axis")
@@ -127,26 +127,7 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
       .style("text-anchor", "end")
       .text("Deaths");
 
-      // there is a nested selection here: data for each illness across all countries
-  var country = svg.selectAll("g.illness")
-      .data(stacked)
-    .enter().append("g")
-      .attr("class", "illness")
-      .style("fill", function(d, i) { return color(i); });
-
-  // then data for each, plus mouseovers - a nested selection/enter here
-  country.selectAll("rect")
-      .data(function(d) {
-        console.log("array for a rectangle", d);
-        return d; })  // this just gets the array for bar segment.
-    .enter().append("rect")
-      .attr("width", xScale.rangeBand())
-      .on("mouseover", mouseover)
-      .on("mousemove", mousemove)
-      .on("mouseout", mouseout);
-
-    // this just draws them in the default way, now they're appended.
-  transitionCount();
+  transitionCount(); // this will use the by-count stack, and make the data, and draw.
 
   drawLegend();
 
@@ -197,19 +178,27 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
     // this domain is using the last of the stacked arrays, which is the last illness, and getting the max height.
     yScale.domain([0, d3.max(stacked[stacked.length-1], function(d) { return d.y0 + d.y; })]);
 
-    // attach new fixed data
-    var country = svg.selectAll("g.illness")
-      .data(stacked);  // just a bunch of arrays. we don't need a key function because it's not different countries or illnesses.
 
-    // same on the rects
-    country.selectAll("rect")
+     var illness = svg.selectAll("g.illness")
+      .data(stacked);
+
+    illness.enter().append("g")
+      .attr("class", "illness")
+      .style("fill", function(d, i) { return color(d[0].illness); });
+
+  // then data for each, plus mouseovers - a nested selection/enter here
+   illness.selectAll("rect")
       .data(function(d) {
-        console.log("array for rectangles", d);
-        return d;
-      })  // this just gets the array for bar segment.
+        console.log("array for a rectangle", d);
+        return d; })  // this just gets the array for bar segment.
+    .enter().append("rect")
+      .attr("width", xScale.rangeBand())
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseout", mouseout);
 
     // the thing that needs to transition is the rectangles themselves, not the g parent.
-    svg.selectAll("g.illness rect")
+    illness.selectAll("rect")
       .transition()
       .duration(250)
       .attr("x", function(d) {
@@ -218,6 +207,8 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
         return yScale(d.y0 + d.y); }) //
       .attr("height", function(d) {
         return yScale(d.y0) - yScale(d.y0 + d.y); });  // height is base - tallness
+
+    illness.exit().remove(); // there's actually nothing removed here - we just transition.
 
     svg.selectAll(".y.axis").transition().call(yAxis);
   }
@@ -229,7 +220,7 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
     var illnesses_reversed = illnesses.slice().reverse();
 
     var legend = svg.selectAll(".legend")
-        .data(color.domain().slice().reverse()) // make sure your labels are in the right order -- if not, use .reverse() here.
+        .data(illnesses_reversed) // make sure your labels are in the right order -- if not, use .reverse() here.
       .enter().append("g")
         .attr("class", "legend")
         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -238,7 +229,7 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
         .attr("x", width)
         .attr("width", 18)
         .attr("height", 18)
-        .style("fill", color);
+        .style("fill", function(d) {return color(d)});
 
     legend.append("text")
         .attr("x", width + 24)

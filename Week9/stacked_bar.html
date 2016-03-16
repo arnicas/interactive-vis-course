@@ -46,9 +46,11 @@ body {
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 <script>
 
+var fullwidth = 980, fullheight = 500;
+
 var margin = {top: 20, right: 150, bottom: 50, left: 40},
-    width = 980 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
 
 var xScale = d3.scale.ordinal()
     .rangeRoundBands([0, width], .3);
@@ -69,6 +71,7 @@ var yAxis = d3.svg.axis()
     .tickFormat(d3.format(".2s")); // for the stacked totals version
     //.tickFormat(d3.format("%")); // for the normalized version
 
+// we don't need to specify the x and y if we provide them as d.x and d.y.
 var stack = d3.layout
     .stack();
     //.offset("expand");  // use this to get it to be relative/normalized! Default is zero.
@@ -76,8 +79,8 @@ var stack = d3.layout
 var tooltip = d3.select("body").append("div").classed("tooltip", true);
 
 var svg = d3.select("#chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", fullwidth)
+    .attr("height", fullheight)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -90,7 +93,9 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
   var illnesses = ["Meningitis_encephalitis","Respiratory_infections","Sepsis","Pertussis",
   "Malaria","Measles","HIV_Aids","Diarrhoeal_diseases","Asphyxia_trauma"];
 
- // grouping by illness, right way:
+  color.domain(illnesses);
+
+ // grouping by illness, right way - and making the x and y the stack looks for.
   var dataToStack = illnesses.map(function(illness) {
     return data.map(function(d) {
       return {x: d.Country, y: +d[illness], illness: illness};
@@ -104,6 +109,7 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
   var stacked = stack(dataToStack);
   console.log(stacked);
 
+  // do these after the stack, so you have access to d.y0!
   xScale.domain(data.map(function(d) { return d.Country; }));
   // this domain is using the last of the stacked arrays, and getting the max height.
   yScale.domain([0, d3.max(stacked[stacked.length -1], function(d) { return d.y0 + d.y; })]);
@@ -115,7 +121,7 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
       .selectAll("text")
         .attr("dy", ".5em")
         .attr("transform", "rotate(-30)")
-        .style("text-anchor", "end");
+        .style("text-anchor", "end"); // rotate the labels a bit
 
   svg.append("g")
       .attr("class", "y axis")
@@ -128,14 +134,14 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
       .text("Deaths");
 
       // we set the colors per illness - the outer nesting
-  var country = svg.selectAll("g.illness")
-      .data(stacked)
+  var illness = svg.selectAll("g.illness")
+      .data(stacked) // an array of arrays
     .enter().append("g")
       .attr("class", "illness")
-      .style("fill", function(d, i) { return color(i); });
+      .style("fill", function(d, i) { return color(d[0].illness); });
 
   // but we draw one rect for each country, bottom up.
-  country.selectAll("rect")
+  illness.selectAll("rect")
       .data(function(d) {
         console.log("array for a rectangle", d);
         return d; })  // this just gets the array for bar segment.
@@ -160,7 +166,7 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
   var illnesses_reversed = illnesses.slice().reverse();
 
   var legend = svg.selectAll(".legend")
-      .data(color.domain().slice().reverse()) // reverse these too
+      .data(illnesses_reversed)
     .enter().append("g")
       .attr("class", "legend")
       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -169,7 +175,7 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
       .attr("x", width)
       .attr("width", 18)
       .attr("height", 18)
-      .style("fill", color);
+      .style("fill", function(d) {return color(d);}); // illness name
 
   legend.append("text")
       .attr("x", width + 24)
@@ -181,7 +187,6 @@ var dataToStack = data.map(function(d) { return illnesses.map(function(illness) 
 });
 
 function mouseover(d) {
-  // this will highlight both a dot and its line.
 
   d3.select(this)
     .transition()
