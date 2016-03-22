@@ -230,10 +230,10 @@ Send me a paragraph or 2 about your final project plan.  It's a one-page app, wi
 
 * What data set will you be using?
 * What will your story be?  (If you don't know yet, tell me this.)  A story is something like:
-  * Here's all the data for this State over 10 years.
-  * Here's a weird change at some point.
-  * Here's a zoom in on why, with more or different data.
-  * Here's what's interesting about that/what we need to know next.
+    * Here's all the data for this State over 10 years.
+    * Here's a weird change at some point.
+    * Here's a zoom in on why, with more or different data.
+    * Here's what's interesting about that/what we need to know next.
 * If you can identify at least 4 chart types you want to include (including maps), please identify them.  (You can change your mind later.)  Look through all the examples we've done in class so far.
 * Extra credit for a sketch with Excel or Tableau static graphs.
 
