@@ -88,7 +88,7 @@ var n = d.getFullYear();
 
 Also have a look at [moment.js](http://momentjs.com/) if you want to do a lot with dates in Javascript.
 
-See an example of using this in a simpler graph in [stacked_area_invert.html](stacked_area_invert.html).
+See an example of using this in a simpler graph in [stacked_area_invert.html](stacked_area_invert.html). It is not super precise because of the bisect left. Adding a vertical line for the closest year match would help. This is a nice [example](http://bl.ocks.org/mikehadlow/93b471e569e31af07cd3) of that with a crosshair.
 
 
 ### D3's "each" Function
@@ -200,6 +200,13 @@ Let's look at [africa_map.html](africa_map.html).
 Example of small multiple maps:
 
 * Small Multiple Maps tutorial: http://blog.webkid.io/multiple-maps-d3/
+
+
+## Project Prep
+
+My grading criteria and student projects from last semester are posted [here](http://blogger.ghostweather.com/2016/01/fall-student-d3js-projects.html).  The only expected change to the grading will be adding some points for good UX design.
+
+Ideally, you have a rich data set already.  You have done some investigation and have a story you'd like to tell with some charts.  You've done some charts already, either in class or in Excel/Tableau.  You are ready to start stitching them together in one big project.
 
 
 ## Recent Interesting Things

@@ -34,7 +34,7 @@ body {
 
   <p><a href="http://apps.who.int/gho/data/node.main.ghe100-by-cause?lang=en">WHO data</a>, deaths of children 0-4 years old in selected South African countries.</p>
 
-  <p>This example shows how to use invert and bisect to get the approx values for the data at each point, for the tooltip.  It's not very exact.</p>
+  <p>This example shows how to use invert and bisectors to get the approx values for the data at each point, for the tooltip.  It's not very exact.</p>
 
   <div id="chart"></div>
 
@@ -134,31 +134,35 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, data) {
 
   function mouseover(d) {
 
-    var bisect = d3.bisector(function(d) {
-      return d.Year;
-    }).left;
-
     d3.select(this)
       .transition()
       .style("stroke", "black");
 
-    var date = xScale.invert(d3.mouse(this)[0]);
-    var year = date.getFullYear(); // just use the year for the tooltip
+  }
+
+  function mousemove(d) {
+
+    // we put the tooltip text in here, because otherwise it won't update with mouse pos.
+
+    var bisect = d3.bisector(function(d) {
+      return d.Year;
+    }).left;
+
+    var mouseDate = xScale.invert(d3.mouse(this)[0]);
+    var year = mouseDate.getFullYear(); // just use the year for the tooltip
 
     // formatDate turns it back into the format in d.values, so it can be looked up!
-    var index = bisect(d.values, formatDate(date), 0, d.values.length - 1);
+    var index = bisect(d.values, formatDate(mouseDate), 0, d.values.length-1);
     console.log(index);
 
-    var value = d.values[index].Measles;
+    var value = d.values[index].Measles; // the illness on the y axis
 
     tooltip
       .style("display", null) // this removes the display none setting from it
       .html("<p>Country: " + d.key +
         "<br>Year: " + year +
         "<br>Measles deaths: " + value + "</p>");
-  }
 
-  function mousemove(d) {
     tooltip
       .style("top", (d3.event.pageY - 10) + "px" )
       .style("left", (d3.event.pageX + 10) + "px");
