@@ -20,7 +20,7 @@ var illnesses = d3.keys(data[0]).filter(function (d) {
     return d !== "Country" && d !== "Year";
 });
 
-// or  d3.keys(data[0]).slice(2, 11);
+// or  d3.keys(data[0]).slice(2, 11) -- check this in your console!
 
 console.log("keys", illnesses);
 
@@ -36,11 +36,15 @@ console.log("totals", data);
 
 //var countryNames = //TODO: // How would you use a map to get the country names out of the original data file?
 
-var countryNames = data.map(function(d) { return d.Country;}); // these won't be unique. better to use nest and then map.
+var countryNames = data.map(function(d) { return d.Country;}); // these won't be unique. better to use nest and then map. or set.
 
 countryNames.sort(d3.ascending);
 
 console.log("mapped country names", countryNames); // see below - nest first.
+
+// set approach
+var no_repeats = d3.set(countryNames).values();
+console.log("the set with no repeats", no_repeats);
 
 var dateFormat = d3.time.format("Year %Y");
 var outputFormat = d3.time.format("%Y");
@@ -73,6 +77,8 @@ var nestByYear = d3.nest()
  // var maxMeaslesFor2013 = //TODO: find the max measles in 2012 using the nestByYear results, using maps, filters, d3.max, d3.keys, d3.values, etc.  There are several ways.
 
   var just2012 = nestByYear.filter(function (f) { return f.key == "2012"})[0].values;
+
+  // you could also use the unnested data to do this filter. Then there's no .values.
 
   var maxMeaslesFor2012 = d3.max(just2012, function(d) {return +d.Measles;});
 
@@ -139,6 +145,7 @@ function do_stuff(error, data) {
       return d.countryName == country;
     })[0];
     var countryTotal = totals.filter(function(d) { return d.country == country;})[0].total;
+    // this works because the year is a column/key:
     return countryData[year]/countryTotal;
   }
 

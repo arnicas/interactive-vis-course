@@ -100,7 +100,8 @@
 * [stacked_area_to_stream.html](Week9/stacked_area_to_stream.html): UI to do the switch to stream with transition.
 * [stacked_bar.html](Week9/stacked_bar.html): Using a stack for the bar display.
 * [stacked_bar_transitions.html](Week9/stacked_bar_transitions.html): Normalizing is easy with a transition.
-* [grouped_bars.html](Week9/grouped_bars.html): Bars in groups.
+* [grouped_bars.html](Week9/grouped_bars.html): Bars in groups. 
+* [bostock_stacked_to_group.html](Week9/bostock_stacked_to_group.html): Transition from stacked to grouped and back!
 * [js_homework.html](Week9/js_homework.html): Homework on js.
 
 

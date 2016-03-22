@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- reimplementation of this block of Mike's adding real data https://bl.ocks.org/mbostock/3943967 -->
+<style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+
+text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+form {
+  position: absolute;
+  right: 50px;
+  top: 20px;
+}
+
+</style>
+<h2>Convert from Grouped to Stacked and Back</h2>
+
+<p>A remade version of Mike's <a href="https://bl.ocks.org/mbostock/3943967">block</a>. Deaths in 2013 in some African countries due to illness.</p>
+
+<form>
+  <label><input type="radio" name="mode" value="grouped" checked> Grouped</label>
+  <label><input type="radio" name="mode" value="stacked"> Stacked</label>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script>
+
+var stack = d3.layout.stack();
+
+var margin = {top: 40, right: 10, bottom: 20, left: 10},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .08);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.category20b();
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .tickSize(0)
+    .tickPadding(6)
+    .orient("bottom");
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var layerCount; // "layers"
+
+d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
+
+  // get them from the columns instead this time -- all columns except the Country one
+  var illnessNames = d3.keys(data[0]).filter(function(key) { return key !== "Country"; });
+
+  layerCount = illnessNames.length;
+
+  color.domain(d3.range(illnessNames.length));
+
+  data.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // alphabetize
+
+  var dataToStack = illnessNames.map(function(illness) {
+    return data.map(function(d) {
+      return {x: d.Country, y: +d[illness], illness: illness};
+    })
+  });
+
+  var layers = stack(dataToStack);
+
+  var yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); });
+  var yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
+
+  x.domain(data.map(function(d) {return d.Country;}));
+  y.domain([0, yStackMax]);
+
+  var layer = svg.selectAll(".layer")
+      .data(layers)
+    .enter().append("g")
+      .attr("class", "layer")
+      .style("fill", function(d, i) { return color(i); });
+
+  var rect = layer.selectAll("rect")
+      .data(function(d) { return d; })
+    .enter().append("rect")
+      .attr("x", function(d) { return x(d.x); })
+      .attr("y", height)
+      .attr("width", x.rangeBand())
+      .attr("height", 0);
+
+  rect
+    .append("title")
+    .text(function(d) {
+      return d.x + ": " + d.illness + ": " + d.y;
+    });
+
+  rect.transition()
+      .delay(function(d, i) { return i * 10; })
+      .attr("y", function(d) { return y(d.y0 + d.y); })
+      .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  d3.selectAll("input").on("change", change);
+
+  transitionGrouped();
+
+  function change() {
+    if (this.value === "grouped") {
+      transitionGrouped()
+    }
+    else {
+      transitionStacked();
+    }
+  }
+
+  function transitionGrouped() {
+    y.domain([0, yGroupMax]);
+
+    rect.transition()
+        .duration(500)
+        .delay(function(d, i) { return i * 10; })
+        .attr("x", function(d, i, j) {  // j is index of parent data item - so, the layer #.
+          return x(d.x) + x.rangeBand() / layerCount * j; })
+        .attr("width", x.rangeBand() / layerCount)
+      .transition()
+        .attr("y", function(d) { return y(d.y); })
+        .attr("height", function(d) { return height - y(d.y); });
+  }
+
+  function transitionStacked() {
+    y.domain([0, yStackMax]);
+
+    rect.transition()
+        .duration(500)
+        .delay(function(d, i) { return i * 10; })
+        .attr("y", function(d) { return y(d.y0 + d.y); })
+        .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
+      .transition()
+        .attr("x", function(d) { return x(d.x); })
+        .attr("width", x.rangeBand());
+  }
+
+});
+
+</script>

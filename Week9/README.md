@@ -317,10 +317,12 @@ Because his `{name: name, y0: y0, y1: y0 += +d[name]};` is incrementing the y0 e
 * Grouped bar chart example: http://bl.ocks.org/mbostock/3887051
 * See my version in [grouped_bars.html](grouped_bars.html).
 
-Fancier:
+Fancier - Animations!
 
 * Stacked to Grouped Bars Animation: http://bl.ocks.org/mbostock/3943967
 * Stacked to multiples transition: http://bl.ocks.org/mbostock/4679202
+* **Bonus Fancy**: Conversion of Mike's example to using real data! [bostock_stacked_to_group.html](bostock_stacked_to_group.html).
+
 
 ### Intro to Small Multiples in D3
 

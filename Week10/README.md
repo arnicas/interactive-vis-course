@@ -12,6 +12,11 @@ http://bl.ocks.org/hfreitas92/raw/39e5c1c5fc174e45fd1b/
 * Sherman's enrollment: https://bl.ocks.org/SHewitt95/raw/0197c3ac7cb6e0593810/
 * Han's Religions: http://bl.ocks.org/jashcny/raw/549b69d1b59ca48b52ac/
 
+Let's discuss the [JS homework](../Week9/js_homework_done.html).
+
+Also, I added this awesome example:
+* [bostock_stacked_to_group.html](../Week9/bostock_stacked_to_group.html): Transition from stacked to grouped and back!  Feel free to use for inspiration.
+
 ## Javascript Tips (You Really Need to Know It)
 
 ### Review Links
@@ -40,6 +45,13 @@ array.sort() // if there are just strings in the array!
 But `function(a,b) {return a - b;}` doesn't work for alphabetic sorts.
 
 
+### Boolean Logic
+
+If you were confused by whether to use `||` or `&&` in the filter, you should bone up on boolean tests in Javascript.
+
+This is an interesting article about real world uses of OR for assignment, but maybe not introductory enough: https://addyosmani.com/blog/exploring-javascripts-logical-or-operator/
+
+
 ### d3.map vs. js Array.map
 
 A few of you used a new construct we haven't talked about in class yet, the d3.map.
@@ -66,7 +78,7 @@ An example of it in use is in Week11's [world_comparisons.html](../Week11/world_
 There are other good d3 array functions on the [D3 Arrays doc page](https://github.com/mbostock/d3/wiki/Arrays).
 
 
-### D3 Scale Invert to find a Data Value
+### D3 Scale Invert to Find a Data Value
 
 This is a useful advanced hack for getting the X axis value from a line or area when you don't have the actual data points.
 
@@ -107,7 +119,7 @@ From the d3 docs: https://github.com/mbostock/d3/wiki/Selections#each
 You'll see each with the small multiples today.  It gives you the (d, i) you need to work with!
 
 
-### Mike's "Process Data on Load" function
+### Mike's "Process Data on Load" Function
 
 You can see this in [small_multiples_simple.html](small_multiples_simple.html), a cool trick:
 
@@ -177,7 +189,7 @@ The pure D3 approach uses absolute positioning CSS to position the small multipl
 This requires some functions to get the locations.
 
 
-### More examples Inspired by Nathan Yau
+### More Examples Inspired by Nathan Yau
 
 Using some UI from a tutorial by Nathan Yau (http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/), I also made a transition version:
 
@@ -207,12 +219,6 @@ Example of small multiple maps:
 My grading criteria and student projects from last semester are posted [here](http://blogger.ghostweather.com/2016/01/fall-student-d3js-projects.html).  The only expected change to the grading will be adding some points for good UX design.
 
 Ideally, you have a rich data set already.  You have done some investigation and have a story you'd like to tell with some charts.  You've done some charts already, either in class or in Excel/Tableau.  You are ready to start stitching them together in one big project.
-
-
-## Recent Interesting Things
-
-* Google Datasets search engine: https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m
-* More scrollytelling: http://poly-graph.co/timeless/ -- features a bunch of great interactive features. Let's discuss!
 
 
 ## Homework

@@ -35,19 +35,19 @@
 <li><a href="#javascript-tips-you-really-need-to-know-it">Javascript Tips (You Really Need to Know It)</a><ul>
 <li><a href="#review-links">Review Links</a></li>
 <li><a href="#sorting-array-alphabetically-reminder">Sorting Array Alphabetically, Reminder</a></li>
+<li><a href="#boolean-logic">Boolean Logic</a></li>
 <li><a href="#d3.map-vs.-js-array.map">d3.map vs. js Array.map</a></li>
-<li><a href="#d3-scale-invert-to-find-a-data-value">D3 Scale Invert to find a Data Value</a></li>
+<li><a href="#d3-scale-invert-to-find-a-data-value">D3 Scale Invert to Find a Data Value</a></li>
 <li><a href="#d3s-each-function">D3's &quot;each&quot; Function</a></li>
-<li><a href="#mikes-process-data-on-load-function">Mike's &quot;Process Data on Load&quot; function</a></li>
+<li><a href="#mikes-process-data-on-load-function">Mike's &quot;Process Data on Load&quot; Function</a></li>
 </ul></li>
 <li><a href="#small-multiples-in-d3---more-details">Small Multiples in D3 - More Details</a><ul>
 <li><a href="#approaches-from-mike-bostock">3 Approaches from Mike Bostock</a></li>
 <li><a href="#tutorials-by-jim-vallandingham">Tutorials by Jim Vallandingham</a></li>
-<li><a href="#more-examples-inspired-by-nathan-yau">More examples Inspired by Nathan Yau</a></li>
+<li><a href="#more-examples-inspired-by-nathan-yau">More Examples Inspired by Nathan Yau</a></li>
 </ul></li>
 <li><a href="#intro-to-maps-in-d3">Intro to Maps in D3</a></li>
 <li><a href="#project-prep">Project Prep</a></li>
-<li><a href="#recent-interesting-things">Recent Interesting Things</a></li>
 <li><a href="#homework">Homework</a></li>
 </ul></li>
 </ul>
@@ -65,6 +65,11 @@
 <li>Sherman's enrollment: <a href="https://bl.ocks.org/SHewitt95/raw/0197c3ac7cb6e0593810/" class="uri">https://bl.ocks.org/SHewitt95/raw/0197c3ac7cb6e0593810/</a></li>
 <li>Han's Religions: <a href="http://bl.ocks.org/jashcny/raw/549b69d1b59ca48b52ac/" class="uri">http://bl.ocks.org/jashcny/raw/549b69d1b59ca48b52ac/</a></li>
 </ul>
+<p>Let's discuss the <a href="../Week9/js_homework_done.html">JS homework</a>.</p>
+<p>Also, I added this awesome example:</p>
+<ul>
+<li><a href="../Week9/bostock_stacked_to_group.html">bostock_stacked_to_group.html</a>: Transition from stacked to grouped and back! Feel free to use for inspiration.</li>
+</ul>
 <h2 id="javascript-tips-you-really-need-to-know-it">Javascript Tips (You Really Need to Know It)</h2>
 <h3 id="review-links">Review Links</h3>
 <p>Last week's lesson had some tips on Array.map in Javascript, to help you understand some of the code and some of the HW problems: <a href="../Week9/#aside-on-javascript-keys-and-mapping">Aside on Javascript Keys and Mapping</a>. Please review that.</p>
@@ -78,6 +83,9 @@
 or
 array.sort() // if there are just strings in the array!</code></pre>
 <p>But <code>function(a,b) {return a - b;}</code> doesn't work for alphabetic sorts.</p>
+<h3 id="boolean-logic">Boolean Logic</h3>
+<p>If you were confused by whether to use <code>||</code> or <code>&amp;&amp;</code> in the filter, you should bone up on boolean tests in Javascript.</p>
+<p>This is an interesting article about real world uses of OR for assignment, but maybe not introductory enough: <a href="https://addyosmani.com/blog/exploring-javascripts-logical-or-operator/" class="uri">https://addyosmani.com/blog/exploring-javascripts-logical-or-operator/</a></p>
 <h3 id="d3.map-vs.-js-array.map">d3.map vs. js Array.map</h3>
 <p>A few of you used a new construct we haven't talked about in class yet, the d3.map.</p>
 <p>Remember, a js array.map loops through an array a lot like a forEach - in this case, making a new array of the d.country values in the data array:</p>
@@ -90,7 +98,7 @@ return d.Country;
 .keys();</code></pre>
 <p>An example of it in use is in Week11's <a href="../Week11/world_comparisons.html">world_comparisons.html</a>. Normally you do a &quot;set&quot; for the key, value pairs and a &quot;get&quot; with a key to look up the values in the d3.map.</p>
 <p>There are other good d3 array functions on the <a href="https://github.com/mbostock/d3/wiki/Arrays">D3 Arrays doc page</a>.</p>
-<h3 id="d3-scale-invert-to-find-a-data-value">D3 Scale Invert to find a Data Value</h3>
+<h3 id="d3-scale-invert-to-find-a-data-value">D3 Scale Invert to Find a Data Value</h3>
 <p>This is a useful advanced hack for getting the X axis value from a line or area when you don't have the actual data points.</p>
 <p>See the functions in <a href="linked_small_mults.html" class="uri">linked_small_mults.html</a> for the mouseovers. The year can be found by checking the x position of the current mouse location and using invert on the x date scale:</p>
 <pre><code>    var year = xScale.invert(d3.mouse(this)[0]).getFullYear();</code></pre>
@@ -111,7 +119,7 @@ other operator, and can be used to invoke arbitrary code for each selected
 element. The each operator can be used to process selections recursively, 
 by using d3.select(this) within the callback function.</code></pre>
 <p>You'll see each with the small multiples today. It gives you the (d, i) you need to work with!</p>
-<h3 id="mikes-process-data-on-load-function">Mike's &quot;Process Data on Load&quot; function</h3>
+<h3 id="mikes-process-data-on-load-function">Mike's &quot;Process Data on Load&quot; Function</h3>
 <p>You can see this in <a href="small_multiples_simple.html" class="uri">small_multiples_simple.html</a>, a cool trick:</p>
 <pre><code>function typeFix(d) {
   d.Measles = +d.Measles;
@@ -155,7 +163,7 @@ by using d3.select(this) within the callback function.</code></pre>
       .style(&quot;top&quot;, function(d, i) { return getTop(i); }) // set top
     .each(appendChart);</code></pre>
 <p>This requires some functions to get the locations.</p>
-<h3 id="more-examples-inspired-by-nathan-yau">More examples Inspired by Nathan Yau</h3>
+<h3 id="more-examples-inspired-by-nathan-yau">More Examples Inspired by Nathan Yau</h3>
 <p>Using some UI from a tutorial by Nathan Yau (<a href="http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/" class="uri">http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/</a>), I also made a transition version:</p>
 <p><strong><a href="small_multiples_each_trans.html" class="uri">small_multiples_each_trans.html</a></strong></p>
 <p>and a variant with the scales different across each country, to show the comparison not blown out by Nigeria:</p>
@@ -171,11 +179,6 @@ by using d3.select(this) within the callback function.</code></pre>
 <h2 id="project-prep">Project Prep</h2>
 <p>My grading criteria and student projects from last semester are posted <a href="http://blogger.ghostweather.com/2016/01/fall-student-d3js-projects.html">here</a>. The only expected change to the grading will be adding some points for good UX design.</p>
 <p>Ideally, you have a rich data set already. You have done some investigation and have a story you'd like to tell with some charts. You've done some charts already, either in class or in Excel/Tableau. You are ready to start stitching them together in one big project.</p>
-<h2 id="recent-interesting-things">Recent Interesting Things</h2>
-<ul>
-<li>Google Datasets search engine: <a href="https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m" class="uri">https://cse.google.com/cse/publicurl?cx=002720237717066476899:v2wv26idk7m</a></li>
-<li>More scrollytelling: <a href="http://poly-graph.co/timeless/" class="uri">http://poly-graph.co/timeless/</a> -- features a bunch of great interactive features. Let's discuss!</li>
-</ul>
 <h2 id="homework">Homework</h2>
 <p>Readings:</p>
 <ul>
