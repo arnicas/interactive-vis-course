@@ -26,16 +26,19 @@ body {
 </style>
 <body>
 
-  <h2>Relative Progress on Measles 2000-2013</h2>
+  <h2>Relative African Progress on Measles 2000-2013</h2>
 
-  <p>Source: WHO. Scales differ across data series, showing curve of each country's improvement.</p>
+  <p>Source: WHO. Scales differ across each example, showing the change in each over time. This might be a little confusing, though - since the year labels look like scale values.</p>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 <script>
 
+var fullwidth = 250,
+  fullheight = 69;
+
 var margin = {top: 25, right: 10, bottom: 20, left: 40},
-    width = 250 - margin.left - margin.right,
-    height = 69 - margin.top - margin.bottom;
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("Year %Y").parse;
 
@@ -83,8 +86,8 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
   var svg = d3.select("body").selectAll("svg")
       .data(countries)
     .enter().append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("width", fullwidth)
+      .attr("height", fullheight)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

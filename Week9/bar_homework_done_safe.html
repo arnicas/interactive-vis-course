@@ -83,8 +83,12 @@
 <script type="text/javascript">
 
 
-    var width = 400;
-    var height = 500;
+    var margin = {top: 5, right: 5, bottom: 5, left: 10};
+    var fullwidth = 400;
+    var fullheight = 500;
+
+    var height = fullheight - margin.top - margin.bottom;
+    var width = fullwidth - margin.right - margin.left;
 
     var format = d3.format(".1%");
 
@@ -92,13 +96,10 @@
 
         var vis = d3.select("#chart").append("svg");
         var svg = vis
-            .attr("width", width+100)
-            .attr("height", height+100); // adding some random padding
-        svg.append("rect")
-            .attr("width", "100%")
-            .attr("height", "100%")
-            .attr("fill", "none");
-
+            .attr("width", fullwidth)
+            .attr("height", fullheight)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         d3.csv("data/deaths_04yearsold_2013percent.csv", function(error, data) {
 

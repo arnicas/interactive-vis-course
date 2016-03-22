@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<body>
+
+  <h2>Look in the console.</h2>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+
+d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, data) {
+
+  if (error) {
+    console.log(error);
+}
+
+console.log(data);
+
+var illnesses = d3.keys(data[0]).filter(function (d) {
+    return d !== "Country" && d !== "Year";
+});
+
+// or  d3.keys(data[0]).slice(2, 11);
+
+console.log("keys", illnesses);
+
+  data.forEach(function(d) {
+     var sum = 0; // or d.total = 0;
+    illnesses.forEach(function(illness) {
+      sum += +d[illness];  // or d.total += +d[illness];
+      });
+    d.total = sum;
+    });
+
+console.log("totals", data);
+
+//var countryNames = //TODO: // How would you use a map to get the country names out of the original data file?
+
+var countryNames = data.map(function(d) { return d.Country;}); // these won't be unique. better to use nest and then map.
+
+countryNames.sort(d3.ascending);
+
+console.log("mapped country names", countryNames); // see below - nest first.
+
+var dateFormat = d3.time.format("Year %Y");
+var outputFormat = d3.time.format("%Y");
+
+var nestByCountry = d3.nest()
+  .key(function(d) {return d.Country;})
+  .sortKeys(d3.ascending)
+  .entries(data);  // what goes here?
+
+console.log("nest By country", nestByCountry[0]);
+console.log("countries", nestByCountry.map(function(d) {return d.key;}));
+
+var nestByYear = d3.nest()
+  .key(function(d) {
+    return outputFormat(dateFormat.parse(d.Year));})
+  .sortKeys(function(a,b) {
+    console.log(a, b);
+    return a - b;
+    // TODO: How would you sort these?  think about using your date formats, and check what a and b are.
+  })
+  .entries(data);
+
+  console.log("nest By Year", nestByYear[0]);
+
+  var years = nestByYear.map(function(d) { return d.key;});
+  // TODO: use a map function on the nestByYear to get the years as strings in an array.
+
+  console.log(years);
+
+ // var maxMeaslesFor2013 = //TODO: find the max measles in 2012 using the nestByYear results, using maps, filters, d3.max, d3.keys, d3.values, etc.  There are several ways.
+
+  var just2012 = nestByYear.filter(function (f) { return f.key == "2012"})[0].values;
+
+  var maxMeaslesFor2012 = d3.max(just2012, function(d) {return +d.Measles;});
+
+  // or I took d3.max(nestByYear[12].values.map(function(d) {return +d.Measles;}));
+
+  console.log("maxMeasles2012", maxMeaslesFor2012);
+
+  var nestByCountryYear = d3.nest()
+  .key(function (d) {return d.Country;})
+  .key(function(d) {return dateFormat.parse(d.Year);})
+  // TODO: nest by country, then by year.
+    .entries(data);
+
+  console.log("by country then year", nestByCountryYear[0]);
+
+
+  d3.csv("data/co2_emissions.csv", do_stuff);  // fill in do_stuff below:
+
+
+}); // end d3.csv on illnesses
+
+
+function do_stuff(error, data) {
+
+  //var years =  // write some code to get an array of all the years from the columns in the data set.
+
+  var years = d3.keys(data[0]).filter(function(d) {
+    return d !== "countryName" && d !== "countryCode" && d !== "indicatorCode" && d!== "indicatorName";
+  });
+
+  console.log("years", years);
+
+  var countries = // write some code to get all the country names (consider map).
+
+    // what is another way to write data[0].countryName?
+
+  console.log(data[0]["countryName"]); // fill it in here)
+
+  // how do you get the last object in the data array?
+
+  console.log(data[data.length-1]); // fill it in here)
+
+  var totals = [];
+  data.forEach(function(d) { // write a loop to calculate the total for each country across all the years.
+    // make an object that has { country: countryName, total: totals} for each country and add it to the array totals.
+    d.sum = 0;
+    years.forEach(function(y) {
+      d.sum += +d[y]; // add up all the year values for the row d
+    });
+    totals.push({
+      country: d.countryName,
+      total: d.sum
+      });
+    });
+
+  console.log("Totals", totals.length, totals[0], totals[0].country, totals[0].total);
+
+  // TODO: Write a JS function that would calculate what percentage of the total country's year emissions are -- e.g., if Algeria's 1961 value is 6065.218, what percent of the total is that?
+  // I asked this ambiguously - I meant % of Algeria's total, not all country's totals for the year. But I took the other method.
+
+
+  function percentage(country, year) {
+    var countryData = data.filter(function(d) {
+      return d.countryName == country;
+    })[0];
+    var countryTotal = totals.filter(function(d) { return d.country == country;})[0].total;
+    return countryData[year]/countryTotal;
+  }
+
+  console.log("percentage for Algeria 1961", percentage("Algeria", 1961));
+
+  // Extra credit (5): for each country's data, calculate the percent of total emissions that each year is responsible for, using your function. Save this in an object along with the original value. console.log it too.
+
+  var newcalcs = [];
+  data.forEach(function(d) {
+    var values = [];
+    years.forEach(function(y) {
+        values.push({year: y, value: +d[y], percent: percentage(d.countryName, y) });
+    });
+    newcalcs.push({country: d.countryName, myvalues: values});
+  });
+
+  console.log(newcalcs);
+
+} // end of do_stuff
+
+
+</script>
+</body>

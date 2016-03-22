@@ -83,7 +83,7 @@ var baseColors = {
     "differenceLoc": d3.scale.linear().range(["#ffffff", "#b3de69"]).interpolate(d3.interpolateLab)
 };
 
-var countryById = d3.map();
+var countryById = d3.map(); // will have id's as keys for countries; see typeAndSet()
 
 var projection = d3.geo.mercator()
     .scale(200)
@@ -290,7 +290,7 @@ function typeAndSet(d) {
     d.urban = +d.Urban;
     d.rural = +d.Rural;
     d.differenceLoc = d.Rural - d.Urban;
-    countryById.set(d.ISO, d);
+    countryById.set(d.ISO, d); // this is a d3.map, being given a key, value pair.
     return d;
 }
 

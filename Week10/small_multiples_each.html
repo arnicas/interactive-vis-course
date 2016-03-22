@@ -41,9 +41,13 @@ body {
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 <script>
 
+
+var fullheight = 100,
+  fullwidth = 250;
+
 var margin = {top: 30, right: 15, bottom: 20, left: 45},
-    width = 250 - margin.left - margin.right,
-    height = 100 - margin.top - margin.bottom;
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("Year %Y").parse;
 var outputDate = d3.time.format("%Y");
@@ -89,7 +93,7 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
 
   console.log(countries);
 
-  // sort by worst ending illness value!
+  // sort by worst ending illness value!  Illness is a variable here, remember:
   countries.sort(function(a,b) { return b.values[13][illness] - a.values[13][illness]; });
 
   // Compute the minimum and maximum date across symbols.
@@ -99,12 +103,12 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
     d3.max(countries, function(s) { return s.values[s.values.length - 1].date; })
   ]);
 
-  // Add an SVG element for each symbol, with the desired dimensions and margin.
+  // Add an SVG element for each symbol, with the desired dimensions and margin:
   var svg = d3.select("body").selectAll("svg")
-      .data(countries)
+      .data(countries) // the data for each graph
     .enter().append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("width", fullwidth)
+      .attr("height", fullheight)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       .each(multiple); // uses each to call the multiple code for each country

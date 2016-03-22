@@ -157,6 +157,9 @@ svg {
   var width = fullwidth - margin.left - margin.right;
   var height = fullheight - margin.top - margin.bottom;
 
+  var illness= "HIV_Aids";
+  //var illness = "Malaria";
+
   var data = [],
       circle = null,
       caption = null,
@@ -180,16 +183,17 @@ svg {
   var yAxis = d3.svg.axis()
     .scale(yScale)
     .orient("left")
-    .ticks(4)
+    .ticks(3)
     .outerTickSize(0)
-    .tickSubdivide(1)
-    .tickSize(-width);
+    .tickFormat(d3.format("s")); // adds the "k" for thousands
 
   var area = d3.svg.area().x(function(d) {
     return xScale(xValue(d));
       }).y0(height).y1(function(d) {
       return yScale(yValue(d));
     });
+
+  // line on top of the area plot
   var line = d3.svg.line().x(function(d) {
       return xScale(xValue(d));
     }).y(function(d) {
@@ -216,7 +220,7 @@ svg {
     format = d3.time.format("Year %Y");
     rawData.forEach(function(d) {
       d.date = format.parse(d.Year);
-      d.count = +d["HIV_Aids"];
+      d.count = +d[illness]; // variable set above, a global
     });
     var nest = d3.nest().key(function(d) {
       return d.Country;
@@ -254,7 +258,7 @@ svg {
     setupScales(data_to_plot);
 
     var charts = d3.select("#vis").selectAll(".chart").data(data_to_plot, function(d) { return d.key; });
-    var enter = charts.enter().append("div")
+    charts.enter().append("div")
       .attr("class", "chart")
       .attr("id", function(d) { return "chart-" + d.key; })
       .style("left", function(d, i) { return getLeft(i); })
@@ -365,7 +369,6 @@ svg {
 
       svg.append("g").attr("class", "y axis").call(yAxis);
 
-
     } // end of append chart
 
   d3.select("#button-wrap").selectAll("div").on("click", function() {
@@ -373,8 +376,10 @@ svg {
     id = d3.select(this).attr("id");
     d3.select("#button-wrap").selectAll("div").classed("active", false);
     d3.select("#" + id).classed("active", true);
+
+    // sort methods
     if (id == "country") {
-      data.sort(function(a, b) { return d3.ascending(a.key, b.key);});
+      data.sort(function(a, b) { return d3.ascending(a.key, b.key);}); // key is country
     }
     if (id == "count") {
       data.sort(function(a, b) {
@@ -389,10 +394,6 @@ svg {
     }
     layoutCharts(data);
   }); // end button setup
-
-  d3.select("window").on("resize", function() {
-    layoutCharts(data);
-  });
 
     function mouseover() {
     d3.selectAll("circle").attr("opacity", 1.0);

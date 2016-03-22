@@ -194,9 +194,12 @@ var explain = {
 
 var countries = [];
 
+var fullwidth = 250,
+fullheight = 100;
+
 var margin = {top: 30, right: 15, bottom: 20, left: 45},
-    width = 250 - margin.left - margin.right,
-    height = 100 - margin.top - margin.bottom;
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("Year %Y").parse;
 var outputDate = d3.time.format("%Y");
@@ -212,9 +215,9 @@ var yAxis = d3.svg.axis()
       .ticks(2)
       .outerTickSize(0)
       .innerTickSize(0)
-      .tickFormat(d3.format("s"));
+      .tickFormat(d3.format("s")); // thousands
 
-var current = "Total";
+var current = "Total";  // the illness or totals
 
 var area = d3.svg.area()
     .x(function(d) { return x(d.date); })
@@ -236,7 +239,7 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
   // Nest data by symbol.
   countries = d3.nest()
       .key(function(d) { return d.Country; })
-      .sortValues(function(a,b) {return a.date - b.date;})
+      .sortValues(function(a,b) {return a.date - b.date;}) // date is already parsed years
       .entries(data);
 
   // Compute the minimum and maximum date across symbols.
@@ -247,7 +250,7 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
   ]);
 
   y.domain([0, d3.max(countries, function(c) {
-        return d3.max(c.values, function(v) { return +v[current];});
+        return d3.max(c.values, function(v) { return +v[current];}); // current illness
       })
   ]);
   yAxis.scale(y);
@@ -256,27 +259,29 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
   var svg = d3.select("#vis").selectAll("svg")
       .data(countries)
     .enter().append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("width", fullwidth)
+      .attr("height", fullheight)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       .each(multiple); // uses each to call the multiple code for each country
 
   function multiple(country) {
 
-    var svg = d3.select(this);
+    // set up each individual chart, with country as data
+
+    var localsvg = d3.select(this);  //svg is a single chart, with country data.
 
     // Add the area path elements. Note: the y-domain is set per element.
-    svg.append("path")
+    localsvg.append("path")
         .attr("class", "area")
         .attr("d", function(d) { return area(d.values); });
 
     // Add the line path elements. Note: the y-domain is set per element.
-    svg.append("path")
+    localsvg.append("path")
         .attr("class", "line")
         .attr("d", function(d) { return line(d.values); });
 
-     svg.append("text")
+    localsvg.append("text")
       .attr("class", "axislabel")
       .attr("x", 0)
       .attr("y", height + margin.bottom/2)
@@ -285,14 +290,14 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
 
     // Add a small label for the symbol name.
 
-    svg.append("text")
+    localsvg.append("text")
       .attr("class", "label")
       .attr("x", width/2)
       .attr("y", -8)
       .style("text-anchor", "middle")
       .text(function(d) { return d.key; });
 
-    svg.append("text")
+    localsvg.append("text")
       .attr("class", "axislabel")
       .attr("x", width)
       .attr("y", height + margin.bottom/2)
@@ -300,14 +305,14 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
       .text(function(d) { return outputDate(d.values[d.values.length - 1].date);});
 
       // put a dot on last point
-      svg.append("circle")
+    localsvg.append("circle")
       .attr("class", "endpoint")
       .attr("cx", function(d) {return x(d.values[d.values.length - 1].date);})
       .attr("cy", function(d) {return y(d.values[d.values.length - 1][current]);})
       .attr("r", 2);
 
       // label the value on the last point
-    svg.append("text")
+    localsvg.append("text")
      .attr("class", "endpoint")
       .attr("x", width)
       .attr("y", function(d) {return y(d.values[d.values.length - 1][current]);})
@@ -315,7 +320,7 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
       .style("text-anchor", "end")
       .text(function(d) { return d.values[d.values.length - 1][current]; });
 
-    svg.append("g").attr("class", "y axis").call(yAxis);
+    localsvg.append("g").attr("class", "y axis").call(yAxis);
 
   } // end multiple
 
@@ -327,14 +332,12 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
       var selection = d3.select(this).attr("id");
       current = selection;
 
-      d3.select("#explain h3").text(selection);
-      d3.select("#explain p").html(explain[selection]);
-      transition(selection);
+      d3.select("#explain h3").text(current);
+      d3.select("#explain p").html(explain[current]);
+      transition(current);
   });
 
-  function transition(arg) {
-
-    current = arg;
+  function transition(current) {
 
     y.domain([0, d3.max(countries, function(c) {
         return d3.max(c.values, function(v) { return +v[current];});
@@ -343,27 +346,30 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
     yAxis.scale(y);
     console.log("in trans", y.domain());
 
+    // existing svg that created each chart - now we transition each one
+
     svg.each(function(country) {
 
-      var chart = d3.select(this).transition();
-      chart.select(".y.axis").call(yAxis);
-      chart.select("path.area")
+      var chartTrans = d3.select(this).transition();
+
+      chartTrans.select(".y.axis").call(yAxis);
+
+      chartTrans.select("path.area")
         .attr("d", function(d) { return area(d.values); });
-      chart.select("path.line")
+      chartTrans.select("path.line")
       .attr("d", function(d) { return line(d.values); });
 
-      chart.select("circle.endpoint")
+      chartTrans.select("circle.endpoint")
       .attr("cy", function(d) {return y(d.values[d.values.length - 1][current]);});
 
         // label the value on the last point
-      chart.select("text.endpoint")
+      chartTrans.select("text.endpoint")
         .attr("y", function(d) {return y(d.values[d.values.length - 1][current]);})
         .text(function(d) { return d.values[d.values.length - 1][current]; });
       }); // end each
   }
 
 });
-
 
 
 // this function is applied to all the data values on load!

@@ -152,6 +152,8 @@ svg {
       left: 40
     };
 
+  var illness = "HIV_Aids";
+
   var data = [],
       circle = null,
       caption = null,
@@ -165,6 +167,7 @@ svg {
   var xScale = d3.time.scale().range([0, width]).clamp(true);
   var yScale = d3.scale.linear().range([height, 0]).clamp(true);
 
+  // helper functions for looking up things on mouseover
   var xValue = function(d) {
     return d.date;
   };
@@ -177,8 +180,7 @@ svg {
     .orient("left")
     .ticks(4)
     .outerTickSize(0)
-    .tickSubdivide(1)
-    .tickSize(-width);
+    .tickFormat(d3.format("s")); // adds the "k" for thousands
 
   var area = d3.svg.area().x(function(d) {
     return xScale(xValue(d));
@@ -207,18 +209,18 @@ svg {
   }
 
   function transformData(rawData) {
-    var format, nest;
-    format = d3.time.format("Year %Y");
+    var format = d3.time.format("Year %Y");
     rawData.forEach(function(d) {
       d.date = format.parse(d.Year);
-      d.count = +d["HIV_Aids"];
+      d.count = +d[illness];
     });
-    nest = d3.nest().key(function(d) {
+    var nest = d3.nest().key(function(d) {
       return d.Country;
     }).sortValues(function(a, b) {
       return d3.ascending(a.date, b.date);
     }).entries(rawData);
     nest = nest.filter(function(d) {return d.values.length == 14;});
+
     return nest;
   }
 
@@ -269,38 +271,38 @@ svg {
       div.enter()
         .append("div")
         .attr("class", "chart")
-        .append("svg")
-        .append("g");
+        .append("svg");
 
       var svg = div.select("svg")
         .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom);
-
-      var g = svg.select("g")
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      g.append("rect")
+        // we attach the mouseover to the background we create, to lookup the year/value
+      svg.append("rect")
         .attr("class", "background")
         .style("pointer-events", "all")
         .attr("width", width + margin.right) // extra space for labels that appear
-        .attr("height", height).on("mouseover", mouseover)
+        .attr("height", height)
+        .on("mouseover", mouseover)
         .on("mousemove", mousemove)
         .on("mouseout", mouseout);
 
-      var lines = g.append("g");
+      var lines = svg.append("g").attr("class", "lines");
+
       lines.append("path")
         .attr("class", "area")
         .style("pointer-events", "none")
         .attr("d", function(c) {
           return area(c.values);
-      });
+        });
       lines.append("path")
         .attr("class", "line")
         .style("pointer-events", "none")
         .attr("d", function(c) {
         return line(c.values);
-      });
-
+        });
       lines.append("text")
         .attr("class", "title")
         .attr("text-anchor", "middle")
@@ -308,8 +310,7 @@ svg {
         .attr("dy", margin.bottom / 2 + 5)
         .attr("x", width / 2).text(function(c) {
           return c.key;
-      });
-
+        });
       lines.append("text")
         .attr("class", "static_year")
         .attr("text-anchor", "start")
@@ -317,14 +318,14 @@ svg {
         .attr("dy", 13).attr("y", height)
         .attr("x", 0).text(function(c) {
           return xValue(c.values[0]).getFullYear();
-      });
+        });
       lines.append("text")
-      .attr("class", "static_year")
-      .attr("text-anchor", "end")
-      .style("pointer-events", "none").attr("dy", 13)
-      .attr("y", height).attr("x", width).text(function(c) {
-        return xValue(c.values[c.values.length - 1]).getFullYear();
-      });
+        .attr("class", "static_year")
+        .attr("text-anchor", "end")
+        .style("pointer-events", "none").attr("dy", 13)
+        .attr("y", height).attr("x", width).text(function(c) {
+          return xValue(c.values[c.values.length - 1]).getFullYear();
+        });
 
       circle = lines.append("circle")
         .attr("r", 2.2)
@@ -335,7 +336,6 @@ svg {
         .attr("text-anchor", "middle")
         .style("pointer-events", "none")
         .attr("dy", -8);
-
       curYear = lines.append("text")
         .attr("class", "year")
         .attr("text-anchor", "middle")
@@ -343,23 +343,26 @@ svg {
         .attr("dy", 13)
         .attr("y", height);
 
-      g.append("g").attr("class", "y axis").call(yAxis);
+      svg.append("g").attr("class", "y axis").call(yAxis);
 
     }); // end of creating the chart for each data row
 
   function mouseover() {
+      // show the circle dots on the lines and the year label below
     circle.attr("opacity", 1.0);
     d3.selectAll(".static_year").classed("hidden", true);
     return mousemove.call(this);
   };
   function mousemove() {
-    var date, index, year;
-    year = xScale.invert(d3.mouse(this)[0]).getFullYear();
-    date = format.parse('' + year);
-    index = 0;
-    circle.attr("cx", xScale(date)).attr("cy", function(c) {
-      index = bisect(c.values, date, 0, c.values.length - 1);
-      return yScale(yValue(c.values[index]));
+    var year = xScale.invert(d3.mouse(this)[0]).getFullYear();
+    var date = format.parse('' + year);
+    var index = 0;
+    circle.attr("cx", xScale(date)) // locate the x using year date
+      .attr("cy", function(c) {
+      // find the closest value with bisect and the values for the circles y's
+      //console.log(c.values);
+      index = bisect(c.values, date, 0, c.values.length - 1); // which number is it?
+      return yScale(yValue(c.values[index])); // yValue just gets the count
     });
     caption.attr("x", xScale(date)).attr("y", function(c) {
       return yScale(yValue(c.values[index]));
