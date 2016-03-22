@@ -88,6 +88,8 @@ var n = d.getFullYear();
 
 Also have a look at [moment.js](http://momentjs.com/) if you want to do a lot with dates in Javascript.
 
+See an example of using this in a simpler graph in [stacked_area_invert.html](stacked_area_invert.html).
+
 
 ### D3's "each" Function
 

@@ -34,9 +34,9 @@
 <li><a href="#homework-review">Homework Review</a></li>
 <li><a href="#javascript-tips-you-really-need-to-know-it">Javascript Tips (You Really Need to Know It)</a><ul>
 <li><a href="#review-links">Review Links</a></li>
-<li><a href="#d3.map-vs.-js-array.map">d3.map vs. js Array.map</a></li>
-<li><a href="#javascripts-getfullyear">Javascript's getFullYear</a></li>
 <li><a href="#sorting-array-alphabetically-reminder">Sorting Array Alphabetically, Reminder</a></li>
+<li><a href="#d3.map-vs.-js-array.map">d3.map vs. js Array.map</a></li>
+<li><a href="#d3-scale-invert-to-find-a-data-value">D3 Scale Invert to find a Data Value</a></li>
 <li><a href="#d3s-each-function">D3's &quot;each&quot; Function</a></li>
 <li><a href="#mikes-process-data-on-load-function">Mike's &quot;Process Data on Load&quot; function</a></li>
 </ul></li>
@@ -72,6 +72,11 @@
 <p>Sorting and slicing arrays was in Week8: <a href="../Week8/#sort-and-slice-arrays">Sort and Slice Arrays</a> -- Right under it is Regex string replacements.</p>
 <p>We've been using forEach loops since Week2: <a href="../Week2/#a-very-simple-d3-intro-with-data">Simple Intro With Data</a>.</p>
 <p>You should already know object notation and functions in Javascript, as well as how to access elements in an array.</p>
+<h3 id="sorting-array-alphabetically-reminder">Sorting Array Alphabetically, Reminder</h3>
+<pre><code>array.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // 
+or
+array.sort() // if there are just strings in the array!</code></pre>
+<p>But <code>function(a,b) {return a - b;}</code> doesn't work for alphabetic sorts.</p>
 <h3 id="d3.map-vs.-js-array.map">d3.map vs. js Array.map</h3>
 <p>A few of you used a new construct we haven't talked about in class yet, the d3.map.</p>
 <p>Remember, a js array.map loops through an array a lot like a forEach - in this case, making a new array of the d.country values in the data array:</p>
@@ -84,15 +89,16 @@ return d.Country;
 .keys();</code></pre>
 <p>An example of it in use is in Week11's <a href="../Week11/world_comparisons.html">world_comparisons.html</a>. Normally you do a &quot;set&quot; for the key, value pairs and a &quot;get&quot; with a key to look up the values in the d3.map.</p>
 <p>There are other good d3 array functions on the <a href="https://github.com/mbostock/d3/wiki/Arrays">D3 Arrays doc page</a>.</p>
-<h3 id="javascripts-getfullyear">Javascript's getFullYear</h3>
+<h3 id="d3-scale-invert-to-find-a-data-value">D3 Scale Invert to find a Data Value</h3>
+<p>This is a useful advanced hack for getting the X axis value from a line or area when you don't have the actual data points.</p>
+<p>See the functions in <a href="linked_small_mults.html" class="uri">linked_small_mults.html</a> for the mouseovers. The year can be found by checking the x position of the current mouse location and using invert on the x date scale:</p>
+<pre><code>    var year = xScale.invert(d3.mouse(this)[0]).getFullYear();</code></pre>
+<p>Read about invert and bisect in the D3 docs.</p>
+<p><strong>getFullYear</strong> is a javascript function that returns the year from a date object:</p>
 <pre><code>var d = new Date();
 var n = d.getFullYear();</code></pre>
 <p>Also have a look at <a href="http://momentjs.com/">moment.js</a> if you want to do a lot with dates in Javascript.</p>
-<h3 id="sorting-array-alphabetically-reminder">Sorting Array Alphabetically, Reminder</h3>
-<pre><code>array.sort(function(a, b) {return d3.ascending(a.Country,b.Country);}); // 
-or
-array.sort() // if there are just strings in the array!</code></pre>
-<p>But <code>function(a,b) {return a - b;}</code> doesn't work for alphabetic sorts.</p>
+<p>See an example of using this in a simpler graph in <a href="stacked_area_invert.html" class="uri">stacked_area_invert.html</a>.</p>
 <h3 id="d3s-each-function">D3's &quot;each&quot; Function</h3>
 <p>From the d3 docs: <a href="https://github.com/mbostock/d3/wiki/Selections#each" class="uri">https://github.com/mbostock/d3/wiki/Selections#each</a></p>
 <pre><code># selection.each(function)
@@ -136,10 +142,18 @@ by using d3.select(this) within the callback function.</code></pre>
 <li>Small Multiples with Details on Demand <a href="http://vallandingham.me/small_multiples_with_details.html" class="uri">http://vallandingham.me/small_multiples_with_details.html</a></li>
 <li>Linked Small Multiples, also by Jim V: <a href="https://flowingdata.com/2014/10/15/linked-small-multiples/" class="uri">https://flowingdata.com/2014/10/15/linked-small-multiples/</a></li>
 </ul>
-<p>Jim's &quot;Linked Small Multiples&quot; article should be read. He has lots of examples that inspired it. He uses Method 2's style -- an each loop that draws each of the charts.</p>
+<p>Jim's &quot;Linked Small Multiples&quot; article should be read. He has lots of examples that inspired it. He uses Method 2's style -- an &quot;each&quot; function that draws each of the charts.</p>
 <p>He also uses the Isotope jquery library: <a href="http://isotope.metafizzy.co/" class="uri">http://isotope.metafizzy.co/</a> Which you are welcome to use in your own work. (It is okay to use for non-commercial uses.)</p>
-<p>See my version in JS: <strong><a href="linked_small_mults.html" class="uri">linked_small_mults.html</a></strong><br />
-I've also made a pure D3 version without the Isotope library, in <strong><a href="linked_small_mults_d3pure.html" class="uri">linked_small_mults_d3pure.html</a></strong>. This is based on code from a <a href="http://britains-diet.labs.theodi.org/?es_p=1359956">vis about Britain's Diet</a>.</p>
+<p>See my version in JS: <strong><a href="linked_small_mults.html" class="uri">linked_small_mults.html</a></strong> I've also made a pure D3 version without the Isotope library, in <strong><a href="linked_small_mults_d3pure.html" class="uri">linked_small_mults_d3pure.html</a></strong>. This is based on code from a <a href="http://britains-diet.labs.theodi.org/?es_p=1359956">vis about Britain's Diet</a>.</p>
+<p>The pure D3 approach uses absolute positioning CSS to position the small multiple graphs:</p>
+<pre><code>    var charts = d3.select(&quot;#vis&quot;).selectAll(&quot;.chart&quot;).data(data_to_plot, function(d) { return d.key; });
+    charts.enter().append(&quot;div&quot;)
+      .attr(&quot;class&quot;, &quot;chart&quot;)
+      .attr(&quot;id&quot;, function(d) { return &quot;chart-&quot; + d.key; })
+      .style(&quot;left&quot;, function(d, i) { return getLeft(i); }) // set left
+      .style(&quot;top&quot;, function(d, i) { return getTop(i); }) // set top
+    .each(appendChart);</code></pre>
+<p>This requires some functions to get the locations.</p>
 <h3 id="more-examples-inspired-by-nathan-yau">More examples Inspired by Nathan Yau</h3>
 <p>Using some UI from a tutorial by Nathan Yau (<a href="http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/" class="uri">http://flowingdata.com/2012/01/05/build-interactive-time-series-charts-with-filters/</a>), I also made a transition version:</p>
 <p><strong><a href="small_multiples_each_trans.html" class="uri">small_multiples_each_trans.html</a></strong></p>

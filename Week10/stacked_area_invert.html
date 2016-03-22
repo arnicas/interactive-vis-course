@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- mod of Mike Bostock's block http://bl.ocks.org/mbostock/3020685 -->
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 12px sans-serif;
+  padding: 50px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 10;
+}
+
+.tooltip p {
+  background-color: white;
+  border: gray 1px solid;
+  padding: 2px;
+  max-width: 180px;
+}
+
+</style>
+<body>
+
+  <h2>Stacked Area Chart of South African Child Deaths from Measles</h2>
+
+  <p><a href="http://apps.who.int/gho/data/node.main.ghe100-by-cause?lang=en">WHO data</a>, deaths of children 0-4 years old in selected South African countries.</p>
+
+  <p>This example shows how to use invert and bisect to get the approx values for the data at each point, for the tooltip.  It's not very exact.</p>
+
+  <div id="chart"></div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <script>
+
+var formatDate = d3.time.format("Year %Y");
+
+var fullwidth = 960,
+  fullheight = 500;
+
+var margin = {top: 20, right: 30, bottom: 30, left: 60},
+    width = fullwidth - margin.left - margin.right,
+    height = fullheight - margin.top - margin.bottom;
+
+var xScale = d3.time.scale()
+    .range([0, width]);
+
+var yScale = d3.scale.linear()
+    .range([height, 0]);
+
+var colorScale = d3.scale.category20b();
+
+var xAxis = d3.svg.axis()
+    .scale(xScale)
+    .orient("bottom")
+    .ticks(10);
+
+var yAxis = d3.svg.axis()
+    .scale(yScale)
+    .orient("left");
+
+var stack = d3.layout.stack()
+    .offset("zero") // try "silhouette" next, that's a streamgraph!
+    //.order("inside-out")  // try this and see what you think
+    .values(function(d) { return d.values; })
+    .x(function(d) { return formatDate.parse(d.Year);})
+    .y(function(d) { return +d.Measles; });
+
+// use the result of the stack to draw the shapes using area
+var area = d3.svg.area()
+    .interpolate("cardinal")
+    .x(function(d) { return xScale(formatDate.parse(d.Year)); })
+    .y0(function(d) { return yScale(d.y0); })
+    .y1(function(d) { return yScale(d.y0 + d.y); });
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", fullwidth )
+    .attr("height", fullheight)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var tooltip = d3.select("body").append("div").attr("class", "tooltip");
+
+d3.csv("data/deaths_04yearsold_excerpt.csv", function(error, data) {
+
+  if (error) { console.log(error); };
+
+  var dataset =  d3.nest()
+    .key(function(d) {
+      return d.Country;
+    })
+    .sortKeys(d3.descending)  // alphabetic order from top layer - Zambia at bottom
+    .sortValues(function (a, b) { return formatDate.parse(a.Year) - formatDate.parse(b.Year)})
+    .entries(data);
+
+  console.log(dataset);
+
+  var layers = stack(dataset);
+  console.log("layers", layers);  // it adds a y and y0 to the data values.
+
+  // reset these after doing the layer stacking.
+  xScale.domain(d3.extent(data, function(d) { return formatDate.parse(d.Year); }));
+  yScale.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]); // highest combo
+
+  var layers = svg.selectAll(".layer")
+      .data(layers);
+
+  layers.enter().append("path")
+      .attr("class", "layer")
+      .attr("d", function(d) { return area(d.values); })
+      .style("fill", function(d, i) { return colorScale(i); }); // just count off
+
+  layers.on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseout", mouseout);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+
+  function mouseover(d) {
+
+    var bisect = d3.bisector(function(d) {
+      return d.Year;
+    }).left;
+
+    d3.select(this)
+      .transition()
+      .style("stroke", "black");
+
+    var date = xScale.invert(d3.mouse(this)[0]);
+    var year = date.getFullYear(); // just use the year for the tooltip
+
+    // formatDate turns it back into the format in d.values, so it can be looked up!
+    var index = bisect(d.values, formatDate(date), 0, d.values.length - 1);
+    console.log(index);
+
+    var value = d.values[index].Measles;
+
+    tooltip
+      .style("display", null) // this removes the display none setting from it
+      .html("<p>Country: " + d.key +
+        "<br>Year: " + year +
+        "<br>Measles deaths: " + value + "</p>");
+  }
+
+  function mousemove(d) {
+    tooltip
+      .style("top", (d3.event.pageY - 10) + "px" )
+      .style("left", (d3.event.pageX + 10) + "px");
+    }
+
+  function mouseout(d) {
+    d3.select(this)
+      .transition()
+      .style("stroke", "none");
+
+    tooltip.style("display", "none");  // this sets it to invisible!
+  }
+
+
+});
+
+
+
+</script>
