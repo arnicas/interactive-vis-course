@@ -65,7 +65,7 @@ var yAxis = d3.svg.axis()
       .innerTickSize(0)
       .tickFormat(d3.format("s"));
 
-var illness = "Malaria";  // pick the one from the columns to plot
+var illness = "Measles";  // pick the one from the columns to plot
 
 d3.select("h2").text("Total Deaths Due to " + illness + " 2000-2013");
 
@@ -118,22 +118,22 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
 
     console.log("in multiple", country);
 
-    var svg = d3.select(this);
+    var localsvg = d3.select(this);
     // domain set in the function for each country's values
     y.domain([0, d3.max(country.values, function(d) { return d[illness]; })]);
 
 
     // Add the area path elements. Note: the y-domain is set per element.
-    svg.append("path")
+    localsvg.append("path")
         .attr("class", "area")
         .attr("d", function(d) { return area(d.values); });
 
     // Add the line path elements. Note: the y-domain is set per element.
-    svg.append("path")
+    localsvg.append("path")
         .attr("class", "line")
         .attr("d", function(d) { return line(d.values); });
 
-     svg.append("text")
+    localsvg.append("text")
       .attr("class", "label")
       .attr("x", 0)
       .attr("y", height + margin.bottom/2)
@@ -142,14 +142,14 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
 
     // Add a small label for the symbol name.
 
-    svg.append("text")
+    localsvg.append("text")
       .attr("class", "label")
       .attr("x", width/2)
       .attr("y", -8)
       .style("text-anchor", "middle")
       .text(function(d) { return d.key; });
 
-    svg.append("text")
+    localsvg.append("text")
       .attr("class", "label")
       .attr("x", width)
       .attr("y", height + margin.bottom/2)
@@ -157,14 +157,14 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
       .text(function(d) { return outputDate(d.values[d.values.length - 1].date);});
 
       // put a dot on last point
-      svg.append("circle")
+      localsvg.append("circle")
       .attr("class", "endpoint")
       .attr("cx", function(d) {return x(d.values[d.values.length - 1].date);})
       .attr("cy", function(d) {return y(d.values[d.values.length - 1][illness]);})
       .attr("r", 2);
 
       // label the value on the last point
-    svg.append("text")
+    localsvg.append("text")
      .attr("class", "endpoint")
       .attr("x", width)
       .attr("y", function(d) {return y(d.values[d.values.length - 1][illness]);})
@@ -174,7 +174,7 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
 
     yAxis.scale(y);
 
-    svg.append("g").attr("class", "y axis").call(yAxis);
+    localsvg.append("g").attr("class", "y axis").call(yAxis);
 
   } // end of the multiple function
 

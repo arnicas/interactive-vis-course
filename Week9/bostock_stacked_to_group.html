@@ -8,7 +8,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: auto;
   position: relative;
-  width: 960px;
+  width: 900px;
 }
 
 text {
@@ -18,14 +18,15 @@ text {
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #ccc;
+  opacity: .5;
   shape-rendering: crispEdges;
 }
 
 form {
   position: absolute;
   right: 50px;
-  top: 20px;
+  top: 50px;
 }
 
 </style>
@@ -42,8 +43,8 @@ form {
 
 var stack = d3.layout.stack();
 
-var margin = {top: 40, right: 10, bottom: 20, left: 10},
-    width = 960 - margin.left - margin.right,
+var margin = {top: 40, right: 100, bottom: 100, left: 10},
+    width = 900 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
@@ -121,11 +122,17 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .call(xAxis)
+      .selectAll("text")
+        .attr("dy", ".5em")
+        .attr("transform", "rotate(-30)")
+        .style("text-anchor", "end");  // rotating the labels on the countries a bit
 
   d3.selectAll("input").on("change", change);
 
   transitionGrouped();
+
+  drawLegend(illnessNames);
 
   function change() {
     if (this.value === "grouped") {
@@ -161,6 +168,31 @@ d3.csv("data/deaths_04yearsold_excerpt_2013.csv", function(error, data) {
       .transition()
         .attr("x", function(d) { return x(d.x); })
         .attr("width", x.rangeBand());
+  }
+
+  // Building a legend by hand, based on http://bl.ocks.org/mbostock/3886208
+  function drawLegend(illnesses) {
+
+    var adjustX = 100;
+
+    var legend = svg.selectAll(".legend")
+        .data(illnesses) // make sure your labels are in the right order -- if not, use .reverse() here.
+      .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+    legend.append("rect")
+        .attr("x", width-adjustX)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", function(d, i) {return color(i)});
+
+    legend.append("text")
+        .attr("x", width-adjustX + 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .text(function(d, i) { return illnesses[i].replace(/_/g, " "); });
   }
 
 });

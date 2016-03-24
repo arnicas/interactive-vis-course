@@ -94,12 +94,16 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
   // Add the area path elements. Note: the y-domain is set per element.
   svg.append("path")
       .attr("class", "area")
-      .attr("d", function(d) { y.domain([0, d.maxValue]); return area(d.values); });
+      .attr("d", function(d) {
+        y.domain([0, d.maxValue]); return area(d.values);
+      });
 
   // Add the line path elements. Note: the y-domain is set per element.
   svg.append("path")
       .attr("class", "line")
-      .attr("d", function(d) { y.domain([0, d.maxValue]); return line(d.values); });
+      .attr("d", function(d) {
+        y.domain([0, d.maxValue]); return line(d.values);
+      });
 
   // Add a small label for the symbol name.
 
@@ -110,37 +114,53 @@ d3.csv("data/deaths_04yearsold_excerpt.csv", typeFix, function(error, data) {
     .attr("x", 0)
     .attr("y", -8)
     .style("text-anchor", "start")
-    .text(function(d) { return outputDate(d.values[0].date); });
+    .text(function(d) {
+      return outputDate(d.values[0].date);
+    });
 
   svg.append("text")
     .attr("class", "label")
     .attr("x", width/2)
     .attr("y", -8)
     .style("text-anchor", "middle")
-    .text(function(d) { return d.key; });
+    .text(function(d) {
+      return d.key;
+    });
 
   svg.append("text")
     .attr("class", "label")
     .attr("x", width)
     .attr("y", -8)
     .style("text-anchor", "end")
-    .text(function(d) { return outputDate(d.values[d.values.length - 1].date);});
+    .text(function(d) {
+      return outputDate(d.values[d.values.length - 1].date);
+    });
 
     // put a dot on last point
     svg.append("circle")
     .attr("class", "label")
-    .attr("cx", function(d) {return x(d.values[d.values.length - 1].date);})
-    .attr("cy", function(d) { y.domain([0, d.maxValue]); return y(d.values[d.values.length - 1].Measles);})
+    .attr("cx", function(d) {
+      return x(d.values[d.values.length - 1].date);
+    })
+    .attr("cy", function(d) {
+      y.domain([0, d.maxValue]);
+      return y(d.values[d.values.length - 1].Measles);
+    })
     .attr("r", 2);
 
     // label the value on the last point
   svg.append("text")
    .attr("class", "label")
     .attr("x", width)
-    .attr("y", function(d) { y.domain([0, d.maxValue]); return y(d.values[d.values.length - 1].Measles);})
+    .attr("y", function(d) {
+      y.domain([0, d.maxValue]);
+      return y(d.values[d.values.length - 1].Measles);
+    })
     .attr("dy", -5)
     .style("text-anchor", "end")
-    .text(function(d) { return d.values[d.values.length - 1].Measles; });
+    .text(function(d) {
+      return d.values[d.values.length - 1].Measles;
+    });
 });
 
 // this function is applied to all the data values on load!
