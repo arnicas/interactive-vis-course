@@ -124,8 +124,13 @@
 * [africa_map3.html](Week11/africa_map3.html): Using a data file, choropleth it.
 * [world_map_regions.html](Week11/word_map_regions.html): Countries colored by regions - data bugs remain! Also d3.legend.
 * [carto_db_example.html](Week11/carto_db_example.html): Using Carto DB!
-* [world_comparisons.html](Week11/world_comparisons.html): Example based on a Nathan Yau tutorial.
 * [africa_map_clicker.html](Week11/africa_map_clicker.html): Click on a map to trigger stuff
+* [rats_in_NYC.html](Week11/rats_in_NYC.html): Pure d3 dots on boroughs, no undermap
+* [rats_in_NYC_leaflet.html](Week11/rats_in_NYC_leaflet.html): pure Leaflet map of recent rats
+* [coloring_us_counties.html](Week11/coloring_us_counties.html): US Counties
+* [coloring_us_counties_with_data.html](Week11/coloring_us_counties_with_data.html): Using data to color counties on click
+* [coloring_florida_with_data.html](Week11/coloring_florida_with_data.html): Using data to color Florida counties on click
+* [world_comparisons.html](Week11/world_comparisons.html): Example based on a Nathan Yau tutorial, complex tooltips too
 
 
 ## Week12: Storytelling (Scrollers and Steppers)

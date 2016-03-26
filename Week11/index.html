@@ -36,7 +36,8 @@
 <li><a href="#map-tool-demos">Map Tool Demos</a></li>
 <li><a href="#examples-showing-multiple-detail-levels">Examples Showing Multiple Detail Levels</a></li>
 <li><a href="#choropleths">Choropleths</a></li>
-<li><a href="#dotsbubbles-on-maps">Dots/Bubbles on Maps</a></li>
+<li><a href="#us-states-and-counties">US States and Counties</a></li>
+<li><a href="#dotsbubbles-on-maps-leaflet-and-d3-layers">Dots/Bubbles on Maps, Leaflet and D3 Layers</a></li>
 </ul></li>
 <li><a href="#click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</a><ul>
 <li><a href="#map-demos-i-like">Map Demos I Like</a></li>
@@ -69,8 +70,6 @@
 <p>Now let's look at <a href="africa_map.html" class="uri">africa_map.html</a> first. That's a simple map of borders using TopoJSON of the continent.</p>
 <p>Then <a href="africa_map2.html" class="uri">africa_map2.html</a> -- look how we get to the actual country features.</p>
 <p>Now let's look at coloring the world by regions in <a href="world_map_regions.html" class="uri">world_map_regions.html</a> and discuss.</p>
-<p>Also, coloring states:</p>
-<p><a href="coloring_us_counties.html" class="uri">coloring_us_counties.html</a></p>
 <h3 id="choropleths">Choropleths</h3>
 <p>Choropleths are thematic maps colored according to a data values associated with regions. This is probably what you will need for your project. We won't be focusing on how to plot points on maps in this class, but some of the tutorials I link to cover that.</p>
 <p>There ARE some ways to get such maps without much work - use CartoDB, for instance.</p>
@@ -89,12 +88,51 @@
 </ul>
 <p>And my version using our data and some changes: <strong><a href="world_comparisons.html" class="uri">world_comparisons.html</a></strong></p>
 <p>Any design suggestions? How would you improve the tooltips?</p>
-<h3 id="dotsbubbles-on-maps">Dots/Bubbles on Maps</h3>
-<p>TODO: Make some.</p>
+<h3 id="us-states-and-counties">US States and Counties</h3>
+<p>There is a US states and counties Topojson file in your data directory, thanks to Mike Bostock. You can use it for making US maps if you need to.</p>
+<p>Use of the Albers projection:<br />
+<a href="https://github.com/mbostock/d3/wiki/Geo-Projections" class="uri">https://github.com/mbostock/d3/wiki/Geo-Projections</a></p>
+<p>Also, coloring states:</p>
+<ul>
+<li><a href="coloring_us_counties.html" class="uri">coloring_us_counties.html</a></li>
+</ul>
+<p>Using a click-event to change with data:</p>
+<ul>
+<li><a href="coloring_us_counties_with_data.html" class="uri">coloring_us_counties_with_data.html</a></li>
+</ul>
+<p>See this list: <a href="https://www.census.gov/econ/cbp/download/georef02.txt" class="uri">https://www.census.gov/econ/cbp/download/georef02.txt</a></p>
+<p>The &quot;id&quot; in the us topojson file I've given you is the FIPS code for the state and county.<br />
+The State ID is the first 2 digits. How would we filter for a single state and country?</p>
+<ul>
+<li><a href="coloring_florida_with_data.html" class="uri">coloring_florida_with_data.html</a></li>
+</ul>
+<h3 id="dotsbubbles-on-maps-leaflet-and-d3-layers">Dots/Bubbles on Maps, Leaflet and D3 Layers</h3>
+<p>Often when you put points on maps, you want to preserve the underlying geography. That means you want slippy maps with zoom in and out capability. Leaflet is one of the main tools for this.</p>
+<p>Look at this writeup by Mike: <a href="https://bost.ocks.org/mike/leaflet/" class="uri">https://bost.ocks.org/mike/leaflet/</a></p>
+<p>We can use our projection([lon, lat]) to position things on a map.</p>
+<pre><code>svg.selectAll(&quot;circle&quot;)
+    .data(data)
+    .enter()
+    .append(&quot;circle&quot;)
+    .attr(&quot;cx&quot;, function(d) {
+        return projection([d.lon, d.lat])[0];
+    })
+    .attr(&quot;cy&quot;, function(d) {
+        return projection([d.lon, d.lat])[1];
+    })
+    .attr(&quot;r&quot;, 5);</code></pre>
+<ul>
+<li>Example <a href="rats_in_NYC.html" class="uri">rats_in_NYC.html</a>: All the rat data, takes a while to load.</li>
+</ul>
+<p>Or we can do it using markers in leaflet.js. Here's a nice Ratmap using leaflet and d3: <a href="http://benjmyers.com/ratmap/#/" class="uri">http://benjmyers.com/ratmap/#/</a></p>
+<p>Here's an example rat map using Leaflet and leaflet markers:</p>
+<ul>
+<li><a href="rats_in_NYC_leaflet.html" class="uri">rats_in_NYC_leaflet.html</a></li>
+</ul>
 <h2 id="click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</h2>
-<p>A lot of you want to trigger actions off charts or maps.</p>
+<p>Often you will want to trigger actions off charts or maps on click.</p>
 <p>An example is in <strong><a href="africa_map_clicker.html" class="uri">africa_map_clicker.html</a>.</strong> Of course, the div with the tooltip-like text could instead be another chart!</p>
-<p>Notice how important the moveToFront() is for the map mouseover.</p>
+<p>Notice how important the moveToFront() is for the map mouseover!</p>
 <h3 id="map-demos-i-like">Map Demos I Like</h3>
 <ul>
 <li>Scattered Well-Being (in Mexico): <a href="http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/" class="uri">http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/</a>, <a href="http://mollica.space/scattered-well-being/" class="uri">http://mollica.space/scattered-well-being/</a></li>

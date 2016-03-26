@@ -30,27 +30,6 @@ Then [africa_map2.html](africa_map2.html) -- look how we get to the actual count
 
 Now let's look at coloring the world by regions in [world_map_regions.html](world_map_regions.html) and discuss.
 
-### US States and Counties
-
-There is a US states and counties Topojson file in your data directory, thanks to Mike Bostock. You can use it for making US maps if you need to.
-
-Use of the Albers projection:
-https://github.com/mbostock/d3/wiki/Geo-Projections
-
-Also, coloring states:
-
-[coloring_us_counties.html](coloring_us_counties.html)
-[coloring_us_counties_with_data.html](coloring_us_counties_with_data.html)
-
-
-### States and Counties
-
-See this list: https://www.census.gov/econ/cbp/download/georef02.txt
-
-The "id" in the us topojson file I've given you is the FIPS code for the state and county.
-The State ID is the first 2 digits.  How would we filter for a single state and county?
-
-
 
 ### Choropleths
 
@@ -77,12 +56,37 @@ And my version using our data and some changes: **[world_comparisons.html](world
 
 Any design suggestions?  How would you improve the tooltips?
 
+
+### US States and Counties
+
+There is a US states and counties Topojson file in your data directory, thanks to Mike Bostock. You can use it for making US maps if you need to.
+
+Use of the Albers projection:
+https://github.com/mbostock/d3/wiki/Geo-Projections
+
+Also, coloring states:
+
+* [coloring_us_counties.html](coloring_us_counties.html)
+
+Using a click-event to change with data:
+
+* [coloring_us_counties_with_data.html](coloring_us_counties_with_data.html)
+
+See this list: https://www.census.gov/econ/cbp/download/georef02.txt
+
+The "id" in the us topojson file I've given you is the FIPS code for the state and county.
+The State ID is the first 2 digits.  How would we filter for a single state and country?
+
+* [coloring_florida_with_data.html](coloring_florida_with_data.html)
+
+
 ### Dots/Bubbles on Maps, Leaflet and D3 Layers
+
+Often when you put points on maps, you want to preserve the underlying geography. That means you want slippy maps with zoom in and out capability.  Leaflet is one of the main tools for this.
 
 Look at this writeup by Mike: https://bost.ocks.org/mike/leaflet/
 
-
-We use projection([lon, lat]) to position things on a map.
+We can use our projection([lon, lat]) to position things on a map.
 
 ````
 svg.selectAll("circle")
@@ -98,19 +102,23 @@ svg.selectAll("circle")
     .attr("r", 5);
 ````
 
+* Example [rats_in_NYC.html](rats_in_NYC.html): All the rat data, takes a while to load.
 
+Or we can do it using markers in leaflet.js.  Here's a nice Ratmap using leaflet and d3: http://benjmyers.com/ratmap/#/
 
-Here's a nice Ratmap using leaflet and d3: http://benjmyers.com/ratmap/#/
+Here's an example rat map using Leaflet and leaflet markers:
 
+* [rats_in_NYC_leaflet.html](rats_in_NYC_leaflet.html)
 
 
 ## Click on a Map to Trigger Stuff
 
-A lot of you want to trigger actions off charts or maps.
+Often you will want to trigger actions off charts or maps on click.
 
 An example is in **[africa_map_clicker.html](africa_map_clicker.html).**  Of course, the div with the tooltip-like text could instead be another chart!
 
-Notice how important the moveToFront() is for the map mouseover.
+Notice how important the moveToFront() is for the map mouseover!
+
 
 ### Map Demos I Like
 
