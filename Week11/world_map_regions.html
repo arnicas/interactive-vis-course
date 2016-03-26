@@ -30,7 +30,8 @@ body {
 
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
-<script src="js/d3-legend.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.9.0/d3-legend.js"></script>
+<!-- <script src="js/d3-legend.min.js"></script> -->
 <script src="https://d3js.org/topojson.v1.min.js"></script>
 
 <script>
@@ -93,6 +94,9 @@ function loaded(error, world, regions) {
 
   console.log(world);
   console.log(regions);
+
+  // there are empty region names too, filter them out. we color them gray.
+  colorScale.domain(regions.map(function(d) {return d.Region;}).filter(function(d) {if (d !== "") {return d;}}));
 
   var countries = topojson.feature(world, world.objects.units).features;
 

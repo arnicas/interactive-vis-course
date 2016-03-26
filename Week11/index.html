@@ -36,6 +36,9 @@
 <li><a href="#map-tool-demos">Map Tool Demos</a></li>
 <li><a href="#examples-showing-multiple-detail-levels">Examples Showing Multiple Detail Levels</a></li>
 <li><a href="#choropleths">Choropleths</a></li>
+<li><a href="#dotsbubbles-on-maps">Dots/Bubbles on Maps</a></li>
+</ul></li>
+<li><a href="#click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</a><ul>
 <li><a href="#map-demos-i-like">Map Demos I Like</a></li>
 <li><a href="#other-map-tutorials-to-read">Other Map Tutorials to Read</a></li>
 <li><a href="#map-tools">Map Tools</a></li>
@@ -53,7 +56,7 @@
 <h2 id="d3-maps">D3 Maps</h2>
 <p>You were supposed to read Mike's tutorial: <a href="http://bost.ocks.org/mike/map/" class="uri">http://bost.ocks.org/mike/map/</a>.</p>
 <p>He introduces TopoJSON (<a href="https://github.com/mbostock/topojson/wiki" class="uri">https://github.com/mbostock/topojson/wiki</a>). Confusingly, this is sometimes a file format, sometimes about command line software, sometimes about the js library.</p>
-<p>What is it? It's a simplification format for map data that reduces the file size of GeoJSON data. If your data is in TopoJSON format, you need to also include TopoJSON in your javascript library includes.</p>
+<p>What is it? It's a simplification format for map data that reduces the file size of GeoJSON data. <strong>If your data is in TopoJSON format, you need to also include TopoJSON in your javascript library includes.</strong></p>
 <h3 id="map-tool-demos">Map Tool Demos</h3>
 <p>Let's play with some tools:</p>
 <ul>
@@ -66,6 +69,8 @@
 <p>Now let's look at <a href="africa_map.html" class="uri">africa_map.html</a> first. That's a simple map of borders using TopoJSON of the continent.</p>
 <p>Then <a href="africa_map2.html" class="uri">africa_map2.html</a> -- look how we get to the actual country features.</p>
 <p>Now let's look at coloring the world by regions in <a href="world_map_regions.html" class="uri">world_map_regions.html</a> and discuss.</p>
+<p>Also, coloring states:</p>
+<p><a href="coloring_us_counties.html" class="uri">coloring_us_counties.html</a></p>
 <h3 id="choropleths">Choropleths</h3>
 <p>Choropleths are thematic maps colored according to a data values associated with regions. This is probably what you will need for your project. We won't be focusing on how to plot points on maps in this class, but some of the tutorials I link to cover that.</p>
 <p>There ARE some ways to get such maps without much work - use CartoDB, for instance.</p>
@@ -84,6 +89,12 @@
 </ul>
 <p>And my version using our data and some changes: <strong><a href="world_comparisons.html" class="uri">world_comparisons.html</a></strong></p>
 <p>Any design suggestions? How would you improve the tooltips?</p>
+<h3 id="dotsbubbles-on-maps">Dots/Bubbles on Maps</h3>
+<p>TODO: Make some.</p>
+<h2 id="click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</h2>
+<p>A lot of you want to trigger actions off charts or maps.</p>
+<p>An example is in <strong><a href="africa_map_clicker.html" class="uri">africa_map_clicker.html</a>.</strong> Of course, the div with the tooltip-like text could instead be another chart!</p>
+<p>Notice how important the moveToFront() is for the map mouseover.</p>
 <h3 id="map-demos-i-like">Map Demos I Like</h3>
 <ul>
 <li>Scattered Well-Being (in Mexico): <a href="http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/" class="uri">http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/</a>, <a href="http://mollica.space/scattered-well-being/" class="uri">http://mollica.space/scattered-well-being/</a></li>

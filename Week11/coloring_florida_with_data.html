@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!-- The code from Mike's block demo'ing US counties in topojson: https://bl.ocks.org/mbostock/4090848 -->
+<meta charset="utf-8">
+<style>
+
+body {
+  padding: 20px 0px 15px 20px;
+  font-family: Helvetica, sans-serif;
+  font-size: 10pt;
+}
+
+.intro {
+  width: 600px;
+  margin: 20px;
+}
+
+.county {
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+.state {
+  stroke: #fff;
+  fill: none;
+}
+
+.selected{
+  background: #ccc;
+}
+
+h3 {
+  position: absolute;
+  left: 350px;
+  top: 200px;
+}
+
+#metrics { width: 920px; margin: 20px auto 15px 0; font-family: Helvetica, sans-serif; }
+#metrics h4 { font-size: 13px; font-family: Helvetica, sans-serif; text-align: center; margin-bottom: 0; }
+#metrics ul { font-size: 12px; font-family: Helvetica, sans-serif; margin-left: 0; padding: 0; }
+#metrics ul li {
+    list-style: none;
+    padding: 2px 0;
+    display: inline-block;
+    width: 108px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid #e0e0e0;
+}
+#metrics ul li.bottom { margin-bottom: 0; }
+#metrics #demog { width: 250px; float: left; }
+#metrics .block-button { width: 80px; display: block; float:left; clear:both; }
+
+.tooltip {
+  position: absolute;
+  z-index: 10;
+}
+
+.tooltip p {
+  background-color: white;
+  border: gray 1px solid;
+  padding: 2px;
+  max-width: 180px;
+  font-size: 10px;
+  color: steelblue;
+}
+
+
+</style>
+<body>
+
+<h2>What Kind of County Do You Live In?</h2>
+
+<p class="intro">Source: <a href="http://www.ers.usda.gov/data-products/county-typology-codes.aspx">USDA's County Typology Codes</a>, updated for 2015 (although some values are as old as 2010), via Jeremy Singer-Vine's data newsletter.  All values are 0 (no) or 1 (yes).</p>
+<div id="metrics">
+  <div id="demog">
+        <h4>Show Counties With...</h4>
+        <ul class="metrics_button">
+        <li data-metric="metro_status" class="selected urban">Urban Status</li>
+        <li data-metric="low_edu" class="rural">Low Education</li>
+        <li data-metric="low_employment" class="differenceLoc">Low Employment</li>
+        <li data-metric="pop_loss" class="differenceLoc">Population Loss</li>
+        <li data-metric="retirement_dest" class="differenceLoc">Retirees</li>
+        <li data-metric="persistent_poverty" class="differenceLoc">Persistent Poverty</li>
+        <li data-metric="persistent_child_poverty" class="differenceLoc">Child Poverty</li>
+        </ul>
+    </div>
+</div>
+
+<h3 id="chartLabel">Showing Counties With Urban Status</h3>
+
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script>
+
+var current = "metro_status"; // default view
+
+var width = 600,
+    height = 450;
+
+// use a d3 map to make a lookup table for the string in the chart title
+var chartLabels = d3.map();
+  chartLabels.set("metro_status", "City Status");
+  chartLabels.set("low_edu", "Low Education");
+  chartLabels.set("low_employment", "Low Employment Rate");
+  chartLabels.set("pop_loss", "Population Declining");
+  chartLabels.set("retirement_dest", "Retired Folks (over 65)");
+  chartLabels.set("persistent_poverty", "Persistent Rate of Poverty");
+  chartLabels.set("persistent_child_poverty", "Persistent Child Poverty");
+
+// Not going to lie, there's a ton of trial and error here.
+var projection = d3.geo.conicEqualArea()
+      .parallels([31,25])
+      .rotate([81, 0])
+      .center([0, 28])
+      .translate([270,250])
+      .scale(2000);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var tooltip = d3.select("body").append("div").attr("class", "tooltip");
+
+var idLookup = d3.map();
+
+// all our data is a binary 1 or 2 for this dataset.
+var colorScale = d3.scale.ordinal().range(["#fee0d2", "#de2d26"]).domain([0, 1]);
+
+// we use queue because we have 2 data files to load.
+queue()
+  .defer(d3.json, "data/us_counties_topo.json")
+  .defer(d3.csv, "data/US_county_types.csv", typeAndSet) // process
+  .await(loaded);
+
+function loaded(error, us, data) {
+  if (error) throw error;
+
+  var states = topojson.feature(us, us.objects.states).features;
+  var florida = states.filter(function(d) { return d.id == 12;})[0];
+  var counties = topojson.feature(us, us.objects.counties).features;
+  var flcounties = counties.filter(function(d) {
+    return d.id.toString().match(/^12/); // look for counties starting with 12
+  });
+  console.log(flcounties);
+
+  svg.selectAll("path.state")
+    .data(florida)
+    .enter().append("path")
+      .attr("d", path)
+      .attr("class", "state");
+
+  svg.selectAll("path.county")
+      .data(flcounties)
+    .enter().append("path")
+      .attr("d", path)
+      .attr("class", "county")
+      .attr("fill", function(d,i) {
+        var data = idLookup.get(d.id);
+        if (data) {
+          return colorScale(+data[current]);
+        } else {
+          return "darkgray";
+        }
+      })
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseout", mouseout);
+
+  d3.selectAll("#metrics li")
+    .on("click", function() {
+        var item = d3.select(this);
+        d3.selectAll(".metrics_button li").classed("selected", false);
+        current = item.attr("data-metric");
+        var label = chartLabels.get(current);
+        item.classed("selected", true);
+        item.classed(item.attr("data-metric"), true);
+        updateFill(current);
+        d3.select("h3#chartLabel").text("Showing Counties With " + label);
+    });
+
+} // end loaded;
+
+
+  function updateFill(current) {
+
+    console.log("current", current);
+
+    svg.selectAll("path.county")
+      .transition()
+      .attr("fill", function(d) {
+        var data = idLookup.get(d.id);
+        if (data) {
+          return colorScale(+data[current]);
+        } else {
+          return "darkgray";
+        }
+      });
+  }
+
+  function typeAndSet(d) {
+    // create the lookup hash for the county id in the map (id) and data (fipstxt)
+    idLookup.set(+d.FIPStxt, d);
+    return d;
+  }
+
+  d3.selection.prototype.moveToFront = function() {
+    return this.each(function(){
+      this.parentNode.appendChild(this);
+    });
+  };
+
+function mouseover(d) {
+
+    d3.select(this)
+      .transition()
+      .style("stroke", "steelblue")
+      .style("stroke-width", "2");
+
+    d3.select(this).moveToFront();
+
+    var data = idLookup.get(d.id);
+
+    tooltip
+      .style("display", null) // this removes the display none setting from it
+      .html("<p>County: " + data.County_name + ", " + data.State +"</p>");
+
+  }
+
+  function mousemove(d) {
+    tooltip
+      .style("top", (d3.event.pageY - 10) + "px" )
+      .style("left", (d3.event.pageX + 10) + "px");
+    }
+
+
+  function mouseout(d) {
+    d3.select(this)
+      .transition()
+      .style("stroke", null)
+      .style("stroke-width", null);
+
+    tooltip.style("display", "none");  // this sets it to invisible!
+  }
+
+
+</script>

@@ -10,7 +10,7 @@ You were supposed to read Mike's tutorial: http://bost.ocks.org/mike/map/.
 
 He introduces TopoJSON (https://github.com/mbostock/topojson/wiki).  Confusingly, this is sometimes a file format, sometimes about command line software, sometimes about the js library.
 
-What is it?  It's a simplification format for map data that reduces the file size of GeoJSON data. If your data is in TopoJSON format, you need to also include TopoJSON in your javascript library includes.
+What is it?  It's a simplification format for map data that reduces the file size of GeoJSON data. **If your data is in TopoJSON format, you need to also include TopoJSON in your javascript library includes.**
 
 ### Map Tool Demos
 
@@ -29,6 +29,27 @@ Now let's look at [africa_map.html](africa_map.html) first.  That's a simple map
 Then [africa_map2.html](africa_map2.html) -- look how we get to the actual country features.
 
 Now let's look at coloring the world by regions in [world_map_regions.html](world_map_regions.html) and discuss.
+
+### US States and Counties
+
+There is a US states and counties Topojson file in your data directory, thanks to Mike Bostock. You can use it for making US maps if you need to.
+
+Use of the Albers projection:
+https://github.com/mbostock/d3/wiki/Geo-Projections
+
+Also, coloring states:
+
+[coloring_us_counties.html](coloring_us_counties.html)
+[coloring_us_counties_with_data.html](coloring_us_counties_with_data.html)
+
+
+### States and Counties
+
+See this list: https://www.census.gov/econ/cbp/download/georef02.txt
+
+The "id" in the us topojson file I've given you is the FIPS code for the state and county.
+The State ID is the first 2 digits.  How would we filter for a single state and county?
+
 
 
 ### Choropleths
@@ -55,6 +76,41 @@ http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/
 And my version using our data and some changes: **[world_comparisons.html](world_comparisons.html)**
 
 Any design suggestions?  How would you improve the tooltips?
+
+### Dots/Bubbles on Maps, Leaflet and D3 Layers
+
+Look at this writeup by Mike: https://bost.ocks.org/mike/leaflet/
+
+
+We use projection([lon, lat]) to position things on a map.
+
+````
+svg.selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d) {
+        return projection([d.lon, d.lat])[0];
+    })
+    .attr("cy", function(d) {
+        return projection([d.lon, d.lat])[1];
+    })
+    .attr("r", 5);
+````
+
+
+
+Here's a nice Ratmap using leaflet and d3: http://benjmyers.com/ratmap/#/
+
+
+
+## Click on a Map to Trigger Stuff
+
+A lot of you want to trigger actions off charts or maps.
+
+An example is in **[africa_map_clicker.html](africa_map_clicker.html).**  Of course, the div with the tooltip-like text could instead be another chart!
+
+Notice how important the moveToFront() is for the map mouseover.
 
 ### Map Demos I Like
 

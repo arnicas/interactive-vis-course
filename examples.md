@@ -125,6 +125,7 @@
 * [world_map_regions.html](Week11/word_map_regions.html): Countries colored by regions - data bugs remain! Also d3.legend.
 * [carto_db_example.html](Week11/carto_db_example.html): Using Carto DB!
 * [world_comparisons.html](Week11/world_comparisons.html): Example based on a Nathan Yau tutorial.
+* [africa_map_clicker.html](Week11/africa_map_clicker.html): Click on a map to trigger stuff
 
 
 ## Week12: Storytelling (Scrollers and Steppers)
@@ -138,7 +139,6 @@
 * [animated_lines.html](Week13/animated_lines.html): A variety of methods for animated line drawing.
 * [animated_map_path.html](Week13/animated_map_path.html): A dot travels across a map with a play/pause button.
 * [africa_map_slider.html](Week13/africa_map_slider.html): Change data on choropleth map by year, using a play button/slider
-* [africa_map_clicker.html](Week13/africa_map_clicker.html): Click on a map
 
 
 ## Week14: Reusable Charts, Map Click

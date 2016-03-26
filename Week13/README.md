@@ -106,14 +106,6 @@ More related items:
 * D3 slider control that is not year/time based: http://thematicmapping.org/playground/d3/d3.slider/
 
 
-## Click on a Map to Trigger Stuff
-
-A lot of you want to trigger actions off charts or maps.
-
-An example is in **[africa_map_clicker.html](africa_map_clicker.html).**  Of course, the div with the tooltip-like text could instead be another chart!
-
-Notice how important the moveToFront() is for the map mouseover.
-
 
 ## Recent Interesting Things
 

@@ -249,6 +249,7 @@ function make_buttons() {
 function mouseover(d){
 
   d3.select(this).classed("selected", true);
+  d3.select(this).moveToFront();
 
   tooltip.transition().duration(100)
    .style("opacity", 1);
@@ -313,6 +314,12 @@ function colorByCurrent(FIPS) {
     }
 
 }
+
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
 
 function zoomIn() {
     zoom.scale(zoom.scale()*2);

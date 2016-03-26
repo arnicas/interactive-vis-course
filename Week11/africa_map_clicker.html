@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style>
+
+
+body {
+    font-family: Helvetica, sans-serif;
+    padding: 40px;
+}
+
+.countries {
+    stroke: #fff;
+    stroke-width:2px;
+}
+
+.legendLinear text {
+    font-size: 9px;
+}
+
+#info {
+    position: absolute;
+    top: 300px;
+    left: 50px;
+    width: 150px;
+    border: 1px gray dotted;
+    margin: 15px;
+    text-align: center;
+}
+
+p.country {
+    font-size: 1.2em;
+    font-weight: bolder;
+    color: "steelblue";
+}
+p.rate {
+    font-size: 1em;
+    font-weight: bolder;
+    fcolor: "steelblue";
+}
+
+</style>
+<body>
+
+    <h2>Fertility Rates in Africa</h2>
+
+    <p>Source: World Bank (excerpted)</p>
+
+    <div id="vis"></div>
+
+    <div id="info">
+        <p class="country">Click a country!</p>
+        <p class="rate"></p>
+    </div>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="js/d3-legend.min.js"></script>
+<script src="js/chroniton-only.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+
+<script>
+
+var width = 1000,
+    height = 600;
+
+var svg = d3.select("#vis").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var dateFormat = d3.time.format("%Y");
+
+var projection = d3.geo.mercator()
+    .scale(400) // mess with this if you want
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var colorScale = d3.scale.linear().range(["#fee0d2", "#de2d26"]).interpolate(d3.interpolateLab);
+
+var countryById = d3.map();
+var data = [];
+var filterValue = "2013";
+
+
+// we use queue because we have 2 data files to load.
+queue()
+    .defer(d3.json, "data/africa.topojson")
+    .defer(d3.csv, "data/World_Development_Indicators_Metadata_Countries.csv", makeLookup)
+    .defer(d3.csv, "data/fertility_long_africa.csv", typeFertility) // process
+    .await(loaded);
+
+function typeFertility(d) {
+    d.fertility = +d.Fertility;
+    d.year = dateFormat.parse(d.Year);
+    d.country = d.Country;
+    return d;
+}
+
+function makeLookup(d) {
+    countryById.set(d.ISO3, d);
+    return d;
+}
+
+function getData(d) {
+    var dataRow = countryById.get(d.properties.adm0_a3_is); // best match
+    var dataVal = null;
+    // must be a more elegant way to do this with all the checks, but i"m tired
+    if (dataRow) {
+        dataVal = data.get(dataRow.ShortName);
+    }
+    if (dataVal) {
+        console.log("dataVal shortname", dataVal[0].Country);
+        dataVal = dataVal.filter(function (d) {
+            return d.Year == filterValue;
+        });
+    }
+    if (dataVal) {
+        dataVal = dataVal[0];
+    }
+    return dataVal;
+}
+
+function getColor(d) {
+    var dataVal = getData(d);
+    if (dataVal) {
+        return colorScale(dataVal.fertility);
+    }
+    // if we fall through, i.e., no match
+    //console.log("no dataRow", d);
+    return "#ccc";
+}
+
+function loaded(error, africa, codes, fertility) {
+
+    //console.log(africa);
+    //console.log(codes);
+    //console.log(fertility);
+
+    // this construction creates a hash lookup for the country to values
+    data = d3.nest()
+        .key(function(d) {
+            return d.Country;
+        })
+        .map(fertility, d3.map);
+
+    //console.log("map result", data.get("Afghanistan"));
+
+    colorScale.domain(d3.extent(fertility, function(d) {
+        if (d.Year == filterValue) return d.fertility;}));
+
+    var countries = topojson.feature(africa, africa.objects.collection).features;
+
+    svg.selectAll("path.countries")
+        .data(countries)
+        .enter()
+        .append("path")
+        .attr("class", "countries")
+        .attr("d", path)
+        .attr("fill", function(d,i) {
+            return getColor(d);
+        })
+        .on("click", showInfo)
+        .on("mouseover", function(d) {
+            d3.select(this).moveToFront();
+            d3.select(this).style("stroke", "black");
+        })
+        .on("mouseout", function(d) {
+            d3.select(this).style("stroke", "#fff");
+        })
+        .append("title")
+        .text("Click me!");
+
+    // The d3-legend component is called here:
+
+    var linear = colorScale;
+
+    svg.append("g")
+      .attr("class", "legendLinear")
+      .attr("transform", "translate(20,20)");
+
+    var legendLinear = d3.legend.color()
+      .shapeWidth(30)
+      .orient("horizontal")
+      .scale(linear);
+
+    svg.select(".legendLinear")
+      .call(legendLinear);
+
+}
+
+function showInfo(d) {
+    //console.log(getText(d));
+    var dataVal = getData(d);
+    if (dataVal) {
+        d3.select("#info p.country").html(dataVal.country);
+        d3.select("#info p.rate").html(dataVal.fertility);
+    } else {
+        d3.select("#info p.country").html(d.properties.name);
+        d3.select("#info p.rate").html("no data available.");
+    }
+}
+
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
+
+</script>
+</body>
+</html>
