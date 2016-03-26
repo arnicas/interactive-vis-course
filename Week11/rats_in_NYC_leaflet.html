@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- The code from Mike's block demo'ing US counties in topojson: https://bl.ocks.org/mbostock/4090848 -->
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<style>
+
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: linen;
+  padding: 20px;
+}
+
+#map {
+  height: 600px;
+  width: 600px;
+}
+
+</style>
+<body>
+
+<h2>Rat Sightings in NYC</h2>
+<p>Source: 2015-16 <a href="https://data.cityofnewyork.us/Social-Services/Rat-Sightings/3q43-55fe">NYC Open Data on 311 calls for rat sightings</a>, via Jeremy Singer-Vine's newsletter.
+
+<div id="map"></div>
+
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script>
+
+
+var dateFormat = d3.time.format("%_m/%d/%y");
+
+var map = new L.Map("map", {center: [40.74, -73.9], zoom: 11})
+    .addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"));
+
+// we use queue because we have 2 data files to load.
+queue()
+  .defer(d3.json, "data/NYCboroughs.geojson")
+  .defer(d3.csv, "data/Rat_SightingsNY_extract.csv", typeAndSet) // process
+  .await(loaded);
+
+function loaded(error, NYC, rats) {
+  if (error) throw error;
+
+  var ratMarkers = [];
+
+  rats.forEach(function(rat) {
+    var circle = L.circleMarker([+rat.Latitude, +rat.Longitude], {
+      stroke: false,
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.2,
+      className: 'rat'
+      }).setRadius(1).addTo(map);
+    circle.bindPopup(dateFormat(rat.date) + "<br>Rat at " + rat["Location Type"] + ",<br>"
+        + rat["Incident Address"] + "<br>" + rat.Borough);
+    ratMarkers.push(circle);
+    });
+
+  // leaflet maps come with a lot of useful functions:
+  map.on('zoomend', function() {
+    var currentZoom = map.getZoom();
+    var bounds = map.getBounds();
+    //console.log("current zoom", currentZoom);
+    ratMarkers.forEach(function(r) {
+      if (bounds.contains(r.getLatLng())) { // try to make it more efficient
+        if (currentZoom > 12) {
+          r.setRadius(4);
+        } else {
+          r.setRadius(1);
+        }
+      }
+    });
+  });
+
+} // end loaded;
+
+
+function typeAndSet(d) {
+  // filter out the data before 2015 -- too much otherwise
+  var dateFormat = d3.time.format("%_m/%d/%y %H:%M");
+  d.date = dateFormat.parse(d["Created Date"]);
+  d.year = d.date.getFullYear();
+  if (d.year == 2015 || d.year == 2016) {
+    return d;
+  }
+}
+
+</script>
