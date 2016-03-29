@@ -100,7 +100,7 @@ If your data is in PDF tables, try Tabula: <a href="http://tabula.technology/" c
 <p>Choropleths are thematic maps colored according to a data values associated with regions. This is probably what you will need for your project.</p>
 <p>There ARE some ways to get such maps without much work - use CartoDB, for instance.</p>
 <p>See <a href="carto_db_example.html" class="uri">carto_db_example.html</a> and demo on cartoDB. (Also others in the Tools section.)</p>
-<p>But doing it by hand is not too bad, and always full customization, as usual. Your options are to either merge the data into the geo/topo json file (see <a href="simple_us_states_data.html" class="uri">simple_us_states_data.html</a>, or use some kind of key to relate the two (like ISO code), as in <a href="world_comparisons.html" class="uri">world_comparisons.html</a>. You can also merge the data in the topojson generation process at the command line if you want to do that. We'll be doing the key lookup version for most of the examples, although you should check out <a href="simple_us_states_data.html" class="uri">simple_us_states_data.html</a>.</p>
+<p>But doing it by hand is not too bad, and always full customization, as usual. Your options are to either merge the data into the geo/topo json file (see <a href="simple_us_states_data.html" class="uri">simple_us_states_data.html</a>), or use some kind of key to relate the two (like ISO code), as in <a href="world_comparisons.html" class="uri">world_comparisons.html</a>. You can also merge the data in the topojson generation process at the command line if you want to do that. We'll be doing the key lookup version for most of the examples, although you should check out <a href="simple_us_states_data.html" class="uri">simple_us_states_data.html</a>.</p>
 <p>Example <a href="africa_map3.html" class="uri">africa_map3.html</a> introduces a bunch of new useful stuff:</p>
 <ul>
 <li>loading multiple files with queue -- <a href="https://github.com/mbostock/queue" class="uri">https://github.com/mbostock/queue</a></li>
@@ -111,8 +111,8 @@ If your data is in PDF tables, try Tabula: <a href="http://tabula.technology/" c
 <ul>
 <li>Interactive Map with Category Filters:<br />
 <a href="http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/" class="uri">http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/</a></li>
+<li>And my version using UNICEF data and some changes: <strong><a href="world_comparisons.html" class="uri">world_comparisons.html</a></strong></li>
 </ul>
-<p>And my version using our data and some changes: <strong><a href="world_comparisons.html" class="uri">world_comparisons.html</a></strong></p>
 <p>Any design suggestions? How would you improve the tooltips?</p>
 <h3 id="us-states-and-counties">US States and Counties</h3>
 <p>There is a US states and counties Topojson file in your data directory, thanks to Mike Bostock. You can use it for making US maps if you need to.</p>
@@ -124,32 +124,31 @@ If your data is in PDF tables, try Tabula: <a href="http://tabula.technology/" c
 <ul>
 <li><a href="coloring_us_counties.html" class="uri">coloring_us_counties.html</a></li>
 </ul>
-<p>Using a click-event to change with data:</p>
+<p>Using a click-event to change data shown (plus a nice tooltip):</p>
 <ul>
 <li><a href="coloring_us_counties_with_data.html" class="uri">coloring_us_counties_with_data.html</a></li>
 </ul>
-<p>See this list: <a href="https://www.census.gov/econ/cbp/download/georef02.txt" class="uri">https://www.census.gov/econ/cbp/download/georef02.txt</a></p>
-<p>The &quot;id&quot; in the us topojson file I've given you is the FIPS code for the state and county.<br />
+<p>For county and state id's, see this list: <a href="https://www.census.gov/econ/cbp/download/georef02.txt" class="uri">https://www.census.gov/econ/cbp/download/georef02.txt</a> The &quot;id&quot; in the us topojson file I've given you is the FIPS code for the state and county.<br />
 The State ID is the first 2 digits. How would we filter for a single state and country?</p>
 <ul>
 <li><a href="coloring_florida_with_data.html" class="uri">coloring_florida_with_data.html</a></li>
 </ul>
 <h3 id="dots-on-maps">Dots on Maps</h3>
-<p>We can use our projection([lon, lat]) to position things on a map.</p>
+<p>We can use our <code>projection([lon, lat])</code> to position things on a map.</p>
 <pre><code>svg.selectAll(&quot;circle&quot;)
     .data(data)
     .enter()
     .append(&quot;circle&quot;)
     .attr(&quot;cx&quot;, function(d) {
-        return projection([d.lon, d.lat])[0];
+        return projection([d.lon, d.lat])[0]; // x coordinate
     })
     .attr(&quot;cy&quot;, function(d) {
-        return projection([d.lon, d.lat])[1];
+        return projection([d.lon, d.lat])[1]; // y coordinate
     })
     .attr(&quot;r&quot;, 5);</code></pre>
 <ul>
 <li>Also, the example <a href="simple_us_states_data.html" class="uri">simple_us_states_data.html</a> shows a choropleth and dots on the map.</li>
-<li>Example <a href="rats_in_NYC.html" class="uri">rats_in_NYC.html</a>: All the rat data, takes a while to load.</li>
+<li>Example <a href="rats_in_NYC.html" class="uri">rats_in_NYC.html</a>: All the rat data, takes a while to load!</li>
 </ul>
 <h3 id="click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</h3>
 <p>Often you will want to trigger actions off charts or maps on click.</p>

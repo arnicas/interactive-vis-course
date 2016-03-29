@@ -67,7 +67,7 @@ There ARE some ways to get such maps without much work - use CartoDB, for instan
 
 See [carto_db_example.html](carto_db_example.html) and demo on cartoDB. (Also others in the Tools section.)
 
-But doing it by hand is not too bad, and always full customization, as usual.  Your options are to either merge the data into the geo/topo json file (see [simple_us_states_data.html](simple_us_states_data.html), or use some kind of key to relate the two (like ISO code), as in [world_comparisons.html](world_comparisons.html). You can also merge the data in the topojson generation process at the command line if you want to do that. We'll be doing the key lookup version for most of the examples, although you should check out [simple_us_states_data.html](simple_us_states_data.html).
+But doing it by hand is not too bad, and always full customization, as usual.  Your options are to either merge the data into the geo/topo json file (see [simple_us_states_data.html](simple_us_states_data.html)), or use some kind of key to relate the two (like ISO code), as in [world_comparisons.html](world_comparisons.html). You can also merge the data in the topojson generation process at the command line if you want to do that. We'll be doing the key lookup version for most of the examples, although you should check out [simple_us_states_data.html](simple_us_states_data.html).
 
 Example [africa_map3.html](africa_map3.html) introduces a bunch of new useful stuff:
 
@@ -79,8 +79,7 @@ Finally, here's a fully interactive map with multiple data sets and tooltips, fr
 
 * Interactive Map with Category Filters:
 http://flowingdata.com/2015/02/19/make-an-interactive-map-with-category-filters/
-
-And my version using our data and some changes: **[world_comparisons.html](world_comparisons.html)**
+* And my version using UNICEF data and some changes: **[world_comparisons.html](world_comparisons.html)**
 
 Any design suggestions?  How would you improve the tooltips?
 
@@ -96,13 +95,11 @@ Also, coloring states:
 
 * [coloring_us_counties.html](coloring_us_counties.html)
 
-Using a click-event to change with data:
+Using a click-event to change data shown (plus a nice tooltip):
 
 * [coloring_us_counties_with_data.html](coloring_us_counties_with_data.html)
 
-See this list: https://www.census.gov/econ/cbp/download/georef02.txt
-
-The "id" in the us topojson file I've given you is the FIPS code for the state and county.
+For county and state id's, see this list: https://www.census.gov/econ/cbp/download/georef02.txt The "id" in the us topojson file I've given you is the FIPS code for the state and county.
 The State ID is the first 2 digits.  How would we filter for a single state and country?
 
 * [coloring_florida_with_data.html](coloring_florida_with_data.html)
@@ -111,7 +108,7 @@ The State ID is the first 2 digits.  How would we filter for a single state and 
 ### Dots on Maps
 
 
-We can use our projection([lon, lat]) to position things on a map.
+We can use our `projection([lon, lat])` to position things on a map.
 
 ````
 svg.selectAll("circle")
@@ -119,16 +116,16 @@ svg.selectAll("circle")
     .enter()
     .append("circle")
     .attr("cx", function(d) {
-        return projection([d.lon, d.lat])[0];
+        return projection([d.lon, d.lat])[0]; // x coordinate
     })
     .attr("cy", function(d) {
-        return projection([d.lon, d.lat])[1];
+        return projection([d.lon, d.lat])[1]; // y coordinate
     })
     .attr("r", 5);
 ````
 
 * Also, the example [simple_us_states_data.html](simple_us_states_data.html) shows a choropleth and dots on the map.
-* Example [rats_in_NYC.html](rats_in_NYC.html): All the rat data, takes a while to load.
+* Example [rats_in_NYC.html](rats_in_NYC.html): All the rat data, takes a while to load!
 
 
 ### Click on a Map to Trigger Stuff
