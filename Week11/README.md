@@ -295,25 +295,26 @@ What have we done so far?
 * small multiples
 * maps
 
+
 **Skills:**
 
 * transitions and animation
-* new data, data switching
+* new data, data switching/updates
 * UI: buttons, select menus, tooltips, legends, click events
 * Next week: scrolling, other storytelling structures, animation
 
 **Tips for good vis:**
 
 * Small multiples
-* Getting top 10
+* Getting top 10 (or top N)
 * Sorting items
+* Animating things when they change
 * Annotation/labeling of interesting data points
 
 Shneiderman's mantra: "Overview first, zoom and filter, details on demand."
 
-Your project will have to have at least 4 types of graphs we've done in class in it, plus some interactive features such as tooltips, useful animation, some storytelling component.  It should be a single page project.  More criteria coming next week.
+Your project will have to have at least 4 types of graphs we've done in class in it, plus some interactive features such as tooltips, useful animation, some storytelling component.  It should be a single page project, as discussed.
 
-It's not too late to switch topics!
 
 
 ## Recent Interesting Things
