@@ -31,7 +31,7 @@ var path = d3.geo.path()
 
 var color = d3.scale.category20();
 
-d3.json('data/africa.topojson', function(error, africa) {
+d3.json('data/topojson/africa.topojson', function(error, africa) {
 
     //console.log(africa);
     var countries = topojson.feature(africa, africa.objects.collection).features;

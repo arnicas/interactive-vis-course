@@ -55,7 +55,7 @@ p.rate {
 
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
-<script src="js/d3-legend.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.9.0/d3-legend.js"></script>
 <script src="js/chroniton-only.js"></script>
 <script src="https://d3js.org/topojson.v1.min.js"></script>
 
@@ -86,7 +86,7 @@ var filterValue = "2013";
 
 // we use queue because we have 2 data files to load.
 queue()
-    .defer(d3.json, "data/africa.topojson")
+    .defer(d3.json, "data/topojson/africa.topojson")
     .defer(d3.csv, "data/World_Development_Indicators_Metadata_Countries.csv", makeLookup)
     .defer(d3.csv, "data/fertility_long_africa.csv", typeFertility) // process
     .await(loaded);

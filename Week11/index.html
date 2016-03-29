@@ -33,13 +33,17 @@
 <li><a href="#week-11-maps">Week 11: Maps</a><ul>
 <li><a href="#homework-review">Homework Review</a></li>
 <li><a href="#d3-maps">D3 Maps</a><ul>
-<li><a href="#map-tool-demos">Map Tool Demos</a></li>
+<li><a href="#topojson-vs-geojson">TopoJSON vs GEOJSON</a></li>
 <li><a href="#examples-showing-multiple-detail-levels">Examples Showing Multiple Detail Levels</a></li>
 <li><a href="#choropleths">Choropleths</a></li>
 <li><a href="#us-states-and-counties">US States and Counties</a></li>
-<li><a href="#dotsbubbles-on-maps-leaflet-and-d3-layers">Dots/Bubbles on Maps, Leaflet and D3 Layers</a></li>
+<li><a href="#dots-on-maps">Dots on Maps</a></li>
+<li><a href="#click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</a></li>
 </ul></li>
-<li><a href="#click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</a><ul>
+<li><a href="#other-map-stuff-beyond-d3">Other Map Stuff Beyond D3</a><ul>
+<li><a href="#slippy-maps-with-detail-under-your-data-e.g.-leaflet">Slippy Maps With Detail Under Your Data (e.g., Leaflet)</a></li>
+<li><a href="#combining-d3-with-tile-maps">Combining D3 with Tile Maps</a></li>
+<li><a href="#lat-lon-vs-lon-lat-beware">Lat, Lon vs Lon, Lat: BEWARE</a></li>
 <li><a href="#map-demos-i-like">Map Demos I Like</a></li>
 <li><a href="#other-map-tutorials-to-read">Other Map Tutorials to Read</a></li>
 <li><a href="#map-tools">Map Tools</a></li>
@@ -54,32 +58,54 @@
 </div>
 <h1 id="week-11-maps">Week 11: Maps</h1>
 <h2 id="homework-review">Homework Review</h2>
+<p><strong>Great small multiples</strong>:</p>
+<ul>
+<li>Sherman: <a href="https://bl.ocks.org/SHewitt95/raw/6118753c31f858accacf/" class="uri">https://bl.ocks.org/SHewitt95/raw/6118753c31f858accacf/</a></li>
+<li>Sunny's Meat: <a href="http://bl.ocks.org/sunnyuxuan/raw/851e43179a9f6b3cc079/" class="uri">http://bl.ocks.org/sunnyuxuan/raw/851e43179a9f6b3cc079/</a></li>
+<li>Eliot's drugs: <a href="https://bl.ocks.org/eliot84/raw/99ea880dcdf06162fa2b/" class="uri">https://bl.ocks.org/eliot84/raw/99ea880dcdf06162fa2b/</a></li>
+<li>Luying's Road accidents: <a href="http://bl.ocks.org/luluwuluying/raw/656a43c441b82549cd04/" class="uri">http://bl.ocks.org/luluwuluying/raw/656a43c441b82549cd04/</a></li>
+<li>Eric's cars: <a href="http://bl.ocks.org/suneric1/raw/c5432c5ecd181dc8b4fe/" class="uri">http://bl.ocks.org/suneric1/raw/c5432c5ecd181dc8b4fe/</a></li>
+<li>Hyan's Students (pure d3 sorting!): <a href="http://bl.ocks.org/hfreitas92/raw/8dc916746d1c0ca569e4/" class="uri">http://bl.ocks.org/hfreitas92/raw/8dc916746d1c0ca569e4/</a></li>
+<li>Zhou's F1: <a href="http://bl.ocks.org/captainelaine/raw/a9dafcc81ee3dcdb2416/" class="uri">http://bl.ocks.org/captainelaine/raw/a9dafcc81ee3dcdb2416/</a></li>
+<li>Han's bars: <a href="http://bl.ocks.org/jashcny/raw/f4d0bfad19c385e2525b/" class="uri">http://bl.ocks.org/jashcny/raw/f4d0bfad19c385e2525b/</a></li>
+<li>Claudia's terrorism: <a href="http://bl.ocks.org/claudialexa/raw/e388b88bf6b57e132f76/" class="uri">http://bl.ocks.org/claudialexa/raw/e388b88bf6b57e132f76/</a> (might want to use the same scale?)</li>
+<li>Josh's teams: <a href="http://bl.ocks.org/CafeConVega/raw/26ca0ade9b4647c33ed3/" class="uri">http://bl.ocks.org/CafeConVega/raw/26ca0ade9b4647c33ed3/</a> (pure d3!)</li>
+<li>Shi Li's amazing detail on demand charts: <a href="http://bl.ocks.org/shishi0906/raw/65e772aa23825104d0b0/" class="uri">http://bl.ocks.org/shishi0906/raw/65e772aa23825104d0b0/</a></li>
+</ul>
+<p><strong>Reminder</strong>:</p>
+<p>Get your data sets in shape -- download, explore, CSV-ify them, start using them.<br />
+If your data is in PDF tables, try Tabula: <a href="http://tabula.technology/" class="uri">http://tabula.technology/</a></p>
 <h2 id="d3-maps">D3 Maps</h2>
+<h3 id="topojson-vs-geojson">TopoJSON vs GEOJSON</h3>
 <p>You were supposed to read Mike's tutorial: <a href="http://bost.ocks.org/mike/map/" class="uri">http://bost.ocks.org/mike/map/</a>.</p>
 <p>He introduces TopoJSON (<a href="https://github.com/mbostock/topojson/wiki" class="uri">https://github.com/mbostock/topojson/wiki</a>). Confusingly, this is sometimes a file format, sometimes about command line software, sometimes about the js library.</p>
-<p>What is it? It's a simplification format for map data that reduces the file size of GeoJSON data. <strong>If your data is in TopoJSON format, you need to also include TopoJSON in your javascript library includes.</strong></p>
-<h3 id="map-tool-demos">Map Tool Demos</h3>
-<p>Let's play with some tools:</p>
+<p>What is it? It's a simplification format for map data that reduces the file size of GeoJSON data. <strong>If your data is in TopoJSON format, rather than plain GEOJSON, you need to also include TopoJSON in your javascript library includes. And you need to use it to access your map data.</strong></p>
+<p>There are some non-command line tools now for working with Topojson (including creating it from GEOJSON files):</p>
 <ul>
-<li>Distillery: <a href="https://shancarter.github.io/distillery/" class="uri">https://shancarter.github.io/distillery/</a></li>
-<li><a href="http://geojson.io/#map=2/82.9/142.2" class="uri">http://geojson.io/#map=2/82.9/142.2</a>.</li>
+<li>Convert GeoJSON to TopoJSON: <a href="http://shancarter.github.io/distillery/" class="uri">http://shancarter.github.io/distillery/</a></li>
+<li>TopoJSON property editor: <a href="http://bl.ocks.org/capesean/92b7d3c7cb7b5e9639ab" class="uri">http://bl.ocks.org/capesean/92b7d3c7cb7b5e9639ab</a> (only edits to the properties field, by hand, when you click on a region)</li>
+<li>Another editor/viewer: <a href="http://geojson.io/#map=2/20.0/0.0" class="uri">http://geojson.io/#map=2/20.0/0.0</a> (have used this, it's nice!)</li>
+</ul>
+<p>Let's look at this too:</p>
+<ul>
 <li><a href="http://techslides.com/demos/d3/d3-exploring-countries.html" class="uri">http://techslides.com/demos/d3/d3-exploring-countries.html</a></li>
 </ul>
 <p>There are some more tools for non-command-line work in the Map Tools section below.</p>
+<p>The data directory for Week 11 has a bunch of useful topojson files in one subdirectory, and geojson in another directory. Remember to include and use topojson.js if you use those files.</p>
 <h3 id="examples-showing-multiple-detail-levels">Examples Showing Multiple Detail Levels</h3>
 <p>Now let's look at <a href="africa_map.html" class="uri">africa_map.html</a> first. That's a simple map of borders using TopoJSON of the continent.</p>
 <p>Then <a href="africa_map2.html" class="uri">africa_map2.html</a> -- look how we get to the actual country features.</p>
 <p>Now let's look at coloring the world by regions in <a href="world_map_regions.html" class="uri">world_map_regions.html</a> and discuss.</p>
 <h3 id="choropleths">Choropleths</h3>
-<p>Choropleths are thematic maps colored according to a data values associated with regions. This is probably what you will need for your project. We won't be focusing on how to plot points on maps in this class, but some of the tutorials I link to cover that.</p>
+<p>Choropleths are thematic maps colored according to a data values associated with regions. This is probably what you will need for your project.</p>
 <p>There ARE some ways to get such maps without much work - use CartoDB, for instance.</p>
 <p>See <a href="carto_db_example.html" class="uri">carto_db_example.html</a> and demo on cartoDB. (Also others in the Tools section.)</p>
-<p>But doing it by hand is not too bad, and always full customization, as usual. Your options are to either merge the data into the geo/topo json file, or use some kind of key to relate the two (like ISO code). You can merge the data in the topojson generation process at the command line, or you can do it in Javascript (see it in <a href="http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359" class="uri">http://www.cartographicperspectives.org/index.php/journal/article/view/cp78-sack-et-al/1359</a>). We'll be doing the key lookup version.</p>
+<p>But doing it by hand is not too bad, and always full customization, as usual. Your options are to either merge the data into the geo/topo json file (see <a href="simple_us_states_data.html" class="uri">simple_us_states_data.html</a>, or use some kind of key to relate the two (like ISO code), as in <a href="world_comparisons.html" class="uri">world_comparisons.html</a>. You can also merge the data in the topojson generation process at the command line if you want to do that. We'll be doing the key lookup version for most of the examples, although you should check out <a href="simple_us_states_data.html" class="uri">simple_us_states_data.html</a>.</p>
 <p>Example <a href="africa_map3.html" class="uri">africa_map3.html</a> introduces a bunch of new useful stuff:</p>
 <ul>
 <li>loading multiple files with queue -- <a href="https://github.com/mbostock/queue" class="uri">https://github.com/mbostock/queue</a></li>
 <li>a legend plugin -- <a href="http://d3-legend.susielu.com/" class="uri">http://d3-legend.susielu.com/</a></li>
-<li>a d3.map() to lookup stuff for the choropleth -- <a href="https://github.com/mbostock/d3/wiki/Arrays#d3_map" class="uri">https://github.com/mbostock/d3/wiki/Arrays#d3_map</a></li>
+<li>a d3.map() hash table to lookup stuff for the choropleth -- <a href="https://github.com/mbostock/d3/wiki/Arrays#d3_map" class="uri">https://github.com/mbostock/d3/wiki/Arrays#d3_map</a></li>
 </ul>
 <p>Finally, here's a fully interactive map with multiple data sets and tooltips, from Flowing Data:</p>
 <ul>
@@ -90,8 +116,10 @@
 <p>Any design suggestions? How would you improve the tooltips?</p>
 <h3 id="us-states-and-counties">US States and Counties</h3>
 <p>There is a US states and counties Topojson file in your data directory, thanks to Mike Bostock. You can use it for making US maps if you need to.</p>
-<p>Use of the Albers projection:<br />
-<a href="https://github.com/mbostock/d3/wiki/Geo-Projections" class="uri">https://github.com/mbostock/d3/wiki/Geo-Projections</a></p>
+<p>Use of the Albers projection for the USA gives you Alaska and Hawaii in a nice location.</p>
+<ul>
+<li><a href="https://github.com/mbostock/d3/wiki/Geo-Projections" class="uri">https://github.com/mbostock/d3/wiki/Geo-Projections</a></li>
+</ul>
 <p>Also, coloring states:</p>
 <ul>
 <li><a href="coloring_us_counties.html" class="uri">coloring_us_counties.html</a></li>
@@ -106,9 +134,7 @@ The State ID is the first 2 digits. How would we filter for a single state and c
 <ul>
 <li><a href="coloring_florida_with_data.html" class="uri">coloring_florida_with_data.html</a></li>
 </ul>
-<h3 id="dotsbubbles-on-maps-leaflet-and-d3-layers">Dots/Bubbles on Maps, Leaflet and D3 Layers</h3>
-<p>Often when you put points on maps, you want to preserve the underlying geography. That means you want slippy maps with zoom in and out capability. Leaflet is one of the main tools for this.</p>
-<p>Look at this writeup by Mike: <a href="https://bost.ocks.org/mike/leaflet/" class="uri">https://bost.ocks.org/mike/leaflet/</a></p>
+<h3 id="dots-on-maps">Dots on Maps</h3>
 <p>We can use our projection([lon, lat]) to position things on a map.</p>
 <pre><code>svg.selectAll(&quot;circle&quot;)
     .data(data)
@@ -122,17 +148,32 @@ The State ID is the first 2 digits. How would we filter for a single state and c
     })
     .attr(&quot;r&quot;, 5);</code></pre>
 <ul>
+<li>Also, the example <a href="simple_us_states_data.html" class="uri">simple_us_states_data.html</a> shows a choropleth and dots on the map.</li>
 <li>Example <a href="rats_in_NYC.html" class="uri">rats_in_NYC.html</a>: All the rat data, takes a while to load.</li>
 </ul>
-<p>Or we can do it using markers in leaflet.js. Here's a nice Ratmap using leaflet and d3: <a href="http://benjmyers.com/ratmap/#/" class="uri">http://benjmyers.com/ratmap/#/</a></p>
-<p>Here's an example rat map using Leaflet and leaflet markers:</p>
-<ul>
-<li><a href="rats_in_NYC_leaflet.html" class="uri">rats_in_NYC_leaflet.html</a></li>
-</ul>
-<h2 id="click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</h2>
+<h3 id="click-on-a-map-to-trigger-stuff">Click on a Map to Trigger Stuff</h3>
 <p>Often you will want to trigger actions off charts or maps on click.</p>
 <p>An example is in <strong><a href="africa_map_clicker.html" class="uri">africa_map_clicker.html</a>.</strong> Of course, the div with the tooltip-like text could instead be another chart!</p>
 <p>Notice how important the moveToFront() is for the map mouseover!</p>
+<h2 id="other-map-stuff-beyond-d3">Other Map Stuff Beyond D3</h2>
+<h3 id="slippy-maps-with-detail-under-your-data-e.g.-leaflet">Slippy Maps With Detail Under Your Data (e.g., Leaflet)</h3>
+<p>Often when you put points on maps, you want to preserve the underlying geography. That means you want slippy maps with zoom in and out capability. Leaflet is one of the main tools for this.</p>
+<p>We can do it using markers in leaflet.js. Here's a nice Ratmap using leaflet and d3: <a href="http://benjmyers.com/ratmap/#/" class="uri">http://benjmyers.com/ratmap/#/</a></p>
+<p>Here's an example rat map using Leaflet and leaflet markers:</p>
+<ul>
+<li><a href="rats_in_NYC_leaflet.html" class="uri">rats_in_NYC_leaflet.html</a></li>
+<li>Here's a silly example using the flickr api and a story generator (tracery.js), with the same dataset: <a href="http://bl.ocks.org/arnicas/d210166c6d302da09397" class="uri">http://bl.ocks.org/arnicas/d210166c6d302da09397</a></li>
+</ul>
+<h3 id="combining-d3-with-tile-maps">Combining D3 with Tile Maps</h3>
+<ul>
+<li>Google Maps and D3 points: <a href="http://bl.ocks.org/mbostock/899711" class="uri">http://bl.ocks.org/mbostock/899711</a></li>
+<li>Leaflet and D3, a writeup by Mike: <a href="https://bost.ocks.org/mike/leaflet/" class="uri">https://bost.ocks.org/mike/leaflet/</a></li>
+</ul>
+<p>See the example in <a href="us_states_data_leaflet.html" class="uri">us_states_data_leaflet.html</a> -- choropleth plus dots on a leaflet underlayer.</p>
+<h3 id="lat-lon-vs-lon-lat-beware">Lat, Lon vs Lon, Lat: BEWARE</h3>
+<p>Some tools assume <code>[lon, lat]</code> and others want it the other way.</p>
+<p>D3 wants <code>[lon, lat]</code>. Leaflet wants <code>[lat, lon]</code>.</p>
+<p>Read this: <a href="http://www.macwright.org/lonlat/" class="uri">http://www.macwright.org/lonlat/</a></p>
 <h3 id="map-demos-i-like">Map Demos I Like</h3>
 <ul>
 <li>Scattered Well-Being (in Mexico): <a href="http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/" class="uri">http://wikiprogress.org/wikiprogress-data-visualization-contest-2015-scattered-well-being/</a>, <a href="http://mollica.space/scattered-well-being/" class="uri">http://mollica.space/scattered-well-being/</a></li>
@@ -182,13 +223,6 @@ The State ID is the first 2 digits. How would we filter for a single state and c
 <ul>
 <li>Example of it used: <a href="http://data.runkeeper.com/rk-usa-running-stats-by-state" class="uri">http://data.runkeeper.com/rk-usa-running-stats-by-state</a></li>
 </ul></li>
-</ul>
-<h4 id="topojson">TopoJSON</h4>
-<p>There are some non-command line tools now for working with it:</p>
-<ul>
-<li>Convert GeoJSON to TopoJSON: <a href="http://shancarter.github.io/distillery/" class="uri">http://shancarter.github.io/distillery/</a></li>
-<li>TopoJSON property editor: <a href="http://bl.ocks.org/capesean/92b7d3c7cb7b5e9639ab" class="uri">http://bl.ocks.org/capesean/92b7d3c7cb7b5e9639ab</a> (only edits to the properties field, by hand, when you click on a region)</li>
-<li><a href="http://geojson.io/#map=2/20.0/0.0" class="uri">http://geojson.io/#map=2/20.0/0.0</a> (have used this, it's nice!)</li>
 </ul>
 <h4 id="cartodb">CartoDB</h4>
 <ul>
@@ -250,6 +284,7 @@ and the video at OpenVisConf: <a href="https://www.youtube.com/watch?v=e_00WVa3G
 <li>line charts</li>
 <li>area charts</li>
 <li>streamgraphs</li>
+<li>small multiples</li>
 <li>maps</li>
 </ul>
 <p><strong>Skills:</strong></p>
@@ -257,7 +292,7 @@ and the video at OpenVisConf: <a href="https://www.youtube.com/watch?v=e_00WVa3G
 <li>transitions and animation</li>
 <li>new data, data switching</li>
 <li>UI: buttons, select menus, tooltips, legends, click events</li>
-<li>Next week: scrolling, other storytelling structures</li>
+<li>Next week: scrolling, other storytelling structures, animation</li>
 </ul>
 <p><strong>Tips for good vis:</strong></p>
 <ul>
@@ -269,15 +304,13 @@ and the video at OpenVisConf: <a href="https://www.youtube.com/watch?v=e_00WVa3G
 <p>Shneiderman's mantra: &quot;Overview first, zoom and filter, details on demand.&quot;</p>
 <p>Your project will have to have at least 4 types of graphs we've done in class in it, plus some interactive features such as tooltips, useful animation, some storytelling component. It should be a single page project. More criteria coming next week.</p>
 <p>It's not too late to switch topics!</p>
-<p>You should be doing sketches and mockups with data now. See: <a href="https://www.dropbox.com/s/z5ymp01eu932fr1/Screenshot%202015-11-03%2011.52.29.png?dl=0">https://www.dropbox.com/s/z5ymp01eu932fr1/Screenshot%202015-11-03%2011.52.29.png?dl=0</a><br />
-And <a href="http://fds.design/" class="uri">http://fds.design/</a>. One of these is due for HW 3 again.</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
-<li><a href="http://xkcd.com/1597/" class="uri">http://xkcd.com/1597/</a></li>
+<li>Small multiples in sports in Financial Times: <a href="http://blogs.ft.com/ftdata/2016/03/28/football-premier-league-decline-la-liga/" class="uri">http://blogs.ft.com/ftdata/2016/03/28/football-premier-league-decline-la-liga/</a></li>
+<li>How to Make Cartograms with Animation: <a href="http://metrocosm.com/how-to-make-cartograms-with-animation/" class="uri">http://metrocosm.com/how-to-make-cartograms-with-animation/</a></li>
 <li>Animated Refugee Map: <a href="http://www.takepart.com/article/2015/10/28/map-that-shows-how-huge-europes-refugee-crisis-really-is?cmpid=organic-share-twitter" class="uri">http://www.takepart.com/article/2015/10/28/map-that-shows-how-huge-europes-refugee-crisis-really-is?cmpid=organic-share-twitter</a></li>
 <li>Small multiple maps: <a href="http://www.nytimes.com/interactive/2015/10/31/upshot/who-still-doesnt-have-health-insurance-obamacare.html?src=twr&amp;_r=0" class="uri">http://www.nytimes.com/interactive/2015/10/31/upshot/who-still-doesnt-have-health-insurance-obamacare.html?src=twr&amp;_r=0</a></li>
 <li>What Makes a Visualization Memorable: <a href="http://www.storybench.org/understanding-what-makes-a-visualization-memorable/" class="uri">http://www.storybench.org/understanding-what-makes-a-visualization-memorable/</a></li>
-<li>Interactivity Options: <a href="http://peopleviz.gforge.inria.fr/trunk/SI_cues/" class="uri">http://peopleviz.gforge.inria.fr/trunk/SI_cues/</a> (I don't totally understand this yet, but it's interesting)</li>
 <li>Five Design Sheet process: <a href="http://fds.design/" class="uri">http://fds.design/</a></li>
 </ul>
 <h2 id="homework">Homework</h2>
@@ -288,8 +321,7 @@ And <a href="http://fds.design/" class="uri">http://fds.design/</a>. One of thes
 <li>Map coloring scales in d3: <a href="http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/" class="uri">http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/</a></li>
 <li>Don't use rainbow schemes or your data vis license will be revoked: <a href="https://eagereyes.org/basics/rainbow-color-map" class="uri">https://eagereyes.org/basics/rainbow-color-map</a></li>
 </ul>
-<p><strong>HW 1 (20pts) Region Colors</strong>: Make a region color-coded map of the world like I showed. You can start from <a href="africa_map2.html" class="uri">africa_map2.html</a> and <a href="africa_map3.html" class="uri">africa_map3.html</a> for the data loading. Use the region data in <a href="World_Development_Indicators_Metadata_Countries.csv" class="uri">World_Development_Indicators_Metadata_Countries.csv</a>. You may have to use the ISO3 column!</p>
-<p><strong>HW 2 (15pts) Choropleth Map</strong>: Make a choropleth map for your project data, using a continent or region or world of your choice, similar to what I did in africa_map3.html. It should have a legend and tooltips.</p>
-<p><strong>HW 3 (20 pts) Design Sketch Rev2</strong>: I want an updated design sketch for your project, using some ideas from the second stages of the Five Design Sheets site. <a href="http://fds.design/" class="uri">http://fds.design/</a> You should have done some exploratory charts and graphs and have ideas about what types of charts you will include in the project now. We'll discuss these in class next week.</p>
+<p><strong>HW 1 (20pts) Map</strong>: Make a map with data for your project data (or another data set if you don't have mappable data). Make it have a legend and tooltips and explain what it's showing. You can use any approach you want - choropleth or dots on a map. There should be a file you can use in my data directory, but if you need someplace special, you might have to hunt online.</p>
+<p><strong>HW 2 (10pts) Datasets</strong>: Put your project datasets as CSV into a repo or gist and send me the link. This means getting them out of PDFs. If you already put them into a gist, remind me by resending me that link.</p>
 </body>
 </html>

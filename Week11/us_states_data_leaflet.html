@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<! A mod of Michelle Chandra's block: http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+
+@import url(//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css);
+
+/* On mouse hover, lighten state color */
+path {
+    stroke: gray;
+    stroke-width: 1;
+    fill-opacity: .7;
+}
+
+circle {
+    fill: orange;
+    fill-opacity: .8;
+}
+
+p.intro {
+    width: 500px;
+}
+
+/* Style for Custom Tooltip */
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: white;
+    border: 1px orange solid;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+.tooltip p {
+    margin: 5px;
+}
+
+/* Legend Font Style */
+body {
+    font: 11px sans-serif;
+}
+
+#map {
+  width: 960px;
+  height: 500px;
+
+/* Legend Position Style */
+.legend {
+    position:absolute;
+    left:800px;
+    top:350px;
+}
+
+</style>
+</head>
+<body>
+
+    <h2>A Leaflet Map Showing States Michelle Visited and Cities She Lived In</h2>
+
+    <p class="intro">A modified version of the <a href="http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922">block by Michelle Chandra</a> (data mod'd too).
+        This example shows joining data to a geojson file from external files, using queue and d3.legend. Also plots on top of Leaflet, based on <a href="https://bost.ocks.org/mike/leaflet/">example from Mike B.</a></p>
+
+    <div id="map"></div>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js"></script>
+<script>
+
+var map = new L.Map("map", {center: [37.8, -96.9], zoom: 4})
+    .addLayer(new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"));
+
+var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+    g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+// Define linear scale for output
+var stateColor = d3.scale.linear()
+              .range(["white", "pink"]);
+
+
+// Append Div for tooltip to SVG
+var div = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("display", "none");
+
+queue()
+    .defer(d3.json, "data/geojson/us-states.json")
+    .defer(d3.csv, "data/states-visited.csv")
+    .defer(d3.csv, "data/cities-lived.csv")
+    .await(ready);
+
+
+function ready(error, json, states, cities) {
+
+    var transform = d3.geo.transform({point: projectPoint});
+    var path = d3.geo.path().projection(transform);
+
+    stateColor.domain(d3.extent(states,function(s) { return s.visits;})); // setting the range of the input data
+
+    // Loop through each state data value in the .csv file
+    states.forEach(function(state) {
+        // Grab State Name
+        var dataState = state.statename; // name
+        // Grab data value
+        var dataValue = +state.visits; // number
+
+        // Find the corresponding state inside the GeoJSON
+        json.features.forEach(function(j) {
+            var jsonState = j.properties.name;
+            if (dataState == jsonState) { // assumes the names will match...
+                // Copy the data value into the JSON
+                j.properties.visited = dataValue;
+            // Stop looking through the JSON
+            }
+        });
+    }); // ends data merge
+
+
+    // Bind the data to the SVG and create one path per GeoJSON feature
+    var feature = g.selectAll("path")
+        .data(json.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .style("fill", function(d) {
+            // Get data value for visited
+            var value = d.properties.visited;
+            return stateColor(value);
+        });
+
+
+    var circles = g.selectAll("circle")
+        .data(cities)
+        .enter()
+        .append("circle")
+        .attr("cx", function(d) {
+            return getPoint(d.lon, d.lat).x;
+        })
+        .attr("cy", function(d) {
+            return getPoint(d.lon, +d.lat).y;
+        })
+        .attr("r", function(d) {
+            return Math.sqrt(d.years) * 4;
+        })
+        .on("mouseover", function(d) {
+            div.transition()
+               .duration(200)
+               .style("display", null);
+            div.html("<p>Lived in " + d.name + " for " + d.years + " year(s).</p>")
+               .style("left", (d3.event.pageX + 10) + "px")
+               .style("top", (d3.event.pageY - 28) + "px");
+        })
+        // fade out tooltip on mouse out
+        .on("mouseout", function(d) {
+            div.transition()
+               .duration(500)
+               .style("display", "none");
+        });
+
+    map.on("viewreset", reset);
+    reset();
+
+  // Reposition the SVG to cover the features.
+  function reset() {
+    var bounds = path.bounds(json),
+        topLeft = bounds[0],
+        bottomRight = bounds[1];
+
+    svg.attr("width", bottomRight[0] - topLeft[0])
+        .attr("height", bottomRight[1] - topLeft[1])
+        .style("left", topLeft[0] + "px")
+        .style("top", topLeft[1] + "px");
+
+    g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+
+    feature.attr("d", path);
+    circles.transition()
+        .attr("cx", function(d) {
+            return getPoint(d.lon, d.lat).x;
+        })
+        .attr("cy", function(d) {
+            return getPoint(d.lon, +d.lat).y;
+        });
+  }
+
+  function getPoint(x, y) {
+    // d3 uses lon, lat, leafleft uses lat,lon.
+    //console.log(map.latLngToLayerPoint(new L.LatLng(y,x)));
+    // this returns an object with .x and .y attributes
+    return map.latLngToLayerPoint(new L.LatLng(y,x));
+  }
+
+  // Use Leaflet to implement a D3 geometric transformation.
+  function projectPoint(x, y) {
+    var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+    this.stream.point(point.x, point.y);
+  }
+
+
+
+} // end ready function
+
+</script>
+</body>
+</html>

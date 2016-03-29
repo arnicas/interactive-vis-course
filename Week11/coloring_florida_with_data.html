@@ -134,7 +134,7 @@ var colorScale = d3.scale.ordinal().range(["#fee0d2", "#de2d26"]).domain([0, 1])
 
 // we use queue because we have 2 data files to load.
 queue()
-  .defer(d3.json, "data/us_counties_topo.json")
+  .defer(d3.json, "data/topojson/us_counties_topo.json")
   .defer(d3.csv, "data/US_county_types.csv", typeAndSet) // process
   .await(loaded);
 

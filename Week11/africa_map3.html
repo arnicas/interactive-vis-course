@@ -30,7 +30,7 @@ body {
 
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
-<script src="js/d3-legend.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.9.0/d3-legend.js"></script>
 <script src="https://d3js.org/topojson.v1.min.js"></script>
 
 <script>
@@ -55,7 +55,7 @@ var countryById = d3.map();
 
 // we use queue because we have 2 data files to load.
 queue()
-    .defer(d3.json, "data/africa.topojson")
+    .defer(d3.json, "data/topojson/africa.topojson")
     .defer(d3.csv, "data/Malaria_most_recent_totals.csv", typeAndSet) // process
     .await(loaded);
 

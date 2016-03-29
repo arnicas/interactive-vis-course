@@ -47,11 +47,10 @@ var map = new L.Map("map", {center: [40.74, -73.9], zoom: 11})
 
 // we use queue because we have 2 data files to load.
 queue()
-  .defer(d3.json, "data/NYCboroughs.geojson")
   .defer(d3.csv, "data/Rat_SightingsNY_extract.csv", filterData) // process
   .await(loaded);
 
-function loaded(error, NYC, rats) {
+function loaded(error, rats) {
   if (error) throw error;
 
   var ratMarkers = [];

@@ -117,7 +117,7 @@
 * [africa_map.html](Week10/africa_map.html): Map starter code.
 
 
-## Week11: Maps
+## Week11: Maps (D3, Leaflet, CartoDB)
 
 * [africa_map.html](Week11/africa_map.html): Map of borders only.
 * [africa_map2.html](Week11/africa_map2.html): Using country features now.
@@ -130,6 +130,8 @@
 * [coloring_us_counties.html](Week11/coloring_us_counties.html): US Counties
 * [coloring_us_counties_with_data.html](Week11/coloring_us_counties_with_data.html): Using data to color counties on click
 * [coloring_florida_with_data.html](Week11/coloring_florida_with_data.html): Using data to color Florida counties on click
+* [us_states_data.html](Week11/us_states_data.html): Simple US choropleth plus markers
+* [us_states_data_leaflet.html](Week11/us_states_data_leaflet.html): Same as above but svg layers on top of a Leaflet base map.
 * [world_comparisons.html](Week11/world_comparisons.html): Example based on a Nathan Yau tutorial, complex tooltips too
 
 

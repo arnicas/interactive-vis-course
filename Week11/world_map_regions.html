@@ -57,7 +57,7 @@ var countryById = d3.map();
 
 // we use queue because we have 2 data files to load.
 queue()
-  .defer(d3.json, "data/countries.json")
+  .defer(d3.json, "data/topojson/countries.json")
   .defer(d3.csv, "data/World_Development_Indicators_Metadata_Countries.csv", typeAndSet) // process
   .await(loaded);
 

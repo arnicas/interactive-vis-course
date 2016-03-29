@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<! A mod of Michelle Chandra's block: http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+
+/* On mouse hover, lighten state color */
+path {
+    stroke: gray;
+    stroke-width: 1;
+}
+
+circle {
+    fill: orange;
+    fill-opacity: .8;
+}
+
+p.intro {
+    width: 500px;
+}
+
+/* Style for Custom Tooltip */
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: white;
+    border: 1px orange solid;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+.tooltip p {
+    margin: 5px;
+}
+
+/* Legend Font Style */
+body {
+    font: 11px sans-serif;
+}
+
+/* Legend Position Style */
+.legend {
+    position:absolute;
+    left:800px;
+    top:350px;
+}
+
+</style>
+</head>
+<body>
+
+    <h2>A Map Showing States Michelle Visited and Cities She Lived In</h2>
+
+    <p class="intro">A modified version of the <a href="http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922">block by Michelle Chandra</a> (data mod'd too).
+        This example shows joining data to a geojson file from external files, using queue and d3.legend.</p>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.9.0/d3-legend.js"></script>
+<script type="text/javascript">
+
+
+//Width and height of map
+var width = 960;
+var height = 500;
+
+// D3 Projection
+var projection = d3.geo.albersUsa()
+                   .translate([width/2, height/2])    // translate to center of screen
+                   .scale([1000]);          // scale things down so see entire US
+
+// Define path generator
+var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
+             .projection(projection);  // tell path generator to use albersUsa projection
+
+
+// Define linear scale for output
+var stateColor = d3.scale.linear()
+              .range(["white", "pink"]);
+
+
+//Create SVG element and append map to the SVG
+var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+// Append Div for tooltip to SVG
+var div = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("display", "none");
+
+queue()
+    .defer(d3.json, "data/geojson/us-states.json")
+    .defer(d3.csv, "data/states-visited.csv")
+    .defer(d3.csv, "data/cities-lived.csv")
+    .await(ready);
+
+function ready(error, json, states, cities) {
+
+    stateColor.domain(d3.extent(states,function(s) { return s.visits;})); // setting the range of the input data
+
+    // Loop through each state data value in the .csv file
+    states.forEach(function(state) {
+        // Grab State Name
+        var dataState = state.statename; // name
+        // Grab data value
+        var dataValue = +state.visits; // number
+
+        // Find the corresponding state inside the GeoJSON
+        json.features.forEach(function(j) {
+            var jsonState = j.properties.name;
+            if (dataState == jsonState) { // assumes the names will match...
+                // Copy the data value into the JSON
+                j.properties.visited = dataValue;
+            // Stop looking through the JSON
+            }
+        });
+    }); // ends data merge
+
+
+    // Bind the data to the SVG and create one path per GeoJSON feature
+    svg.selectAll("path")
+        .data(json.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .style("fill", function(d) {
+            // Get data value for visited
+            var value = d.properties.visited;
+            return stateColor(value);
+        });
+
+
+    svg.selectAll("circle")
+        .data(cities)
+        .enter()
+        .append("circle")
+        .attr("cx", function(d) {
+            return projection([d.lon, d.lat])[0];
+        })
+        .attr("cy", function(d) {
+            return projection([d.lon, d.lat])[1];
+        })
+        .attr("r", function(d) {
+            return Math.sqrt(d.years) * 4;
+        })
+        .on("mouseover", function(d) {
+            div.transition()
+               .duration(200)
+               .style("display", null);
+            div.html("<p>Lived in " + d.name + " for " + d.years + " year(s).</p>")
+               .style("left", (d3.event.pageX + 10) + "px")
+               .style("top", (d3.event.pageY - 28) + "px");
+        })
+        // fade out tooltip on mouse out
+        .on("mouseout", function(d) {
+            div.transition()
+               .duration(500)
+               .style("display", "none");
+        });
+
+    svg.append("g")
+    .attr("class", "legendColors")
+        .attr("transform", "translate(800, 300)"); // where we put it on the page!
+
+    var legendColors = d3.legend.color()
+    .shapeWidth(20)
+    .title("State Visits")
+    .labelFormat(d3.format("1f"))
+    .scale(stateColor); // our existing color scale
+
+    svg.select(".legendColors")
+    .call(legendColors);
+
+
+} // end ready function
+
+</script>
+</body>
+</html>

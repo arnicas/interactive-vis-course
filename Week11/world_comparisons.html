@@ -127,7 +127,7 @@ var tooltip = d3.select("#tooltip")
 var CURR_SELECT = "richest";
 
 queue()
-    .defer(d3.json, "data/countries.json")
+    .defer(d3.json, "data/topojson/countries.json")
     .defer(d3.csv, "data/stunting_by_wealth.csv", typeAndSet)
     .await(ready);
 
