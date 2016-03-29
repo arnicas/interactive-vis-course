@@ -65,6 +65,16 @@ h3 {
   color: steelblue;
 }
 
+span#pos {
+  color: red;
+  margin-top: 3px;
+}
+
+#map {
+  position: absolute;
+  top: 250px;
+  left: 100px;
+}
 
 </style>
 <body>
@@ -89,6 +99,8 @@ h3 {
 
 <h3 id="chartLabel">Showing Counties With Urban Status</h3>
 
+<div id="map"></div>
+
 
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script src="//d3js.org/topojson.v1.min.js"></script>
@@ -106,7 +118,7 @@ var chartLabels = d3.map();
   chartLabels.set("low_edu", "Low Education");
   chartLabels.set("low_employment", "Low Employment Rate");
   chartLabels.set("pop_loss", "Population Declining");
-  chartLabels.set("retirement_dest", "Retirement Destination");
+  chartLabels.set("retirement_dest", "Retirees");
   chartLabels.set("persistent_poverty", "Persistent Rate of Poverty");
   chartLabels.set("persistent_child_poverty", "Persistent Child Poverty");
 
@@ -117,7 +129,7 @@ var projection = d3.geo.albersUsa()
 var path = d3.geo.path()
     .projection(projection);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -216,9 +228,13 @@ function mouseover(d) {
 
     var data = idLookup.get(d.id);
 
+    // check for other data attributes to make the tooltip more interesting
+    var positives = positiveStrings(data);
+
+    // ideally this would report more about the county
     tooltip
       .style("display", null) // this removes the display none setting from it
-      .html("<p>County: " + data.County_name + ", " + data.State +"</p>");
+      .html("<p>County: " + data.County_name + ", " + data.State + positives + "</p>");
 
   }
 
@@ -238,5 +254,21 @@ function mouseover(d) {
     tooltip.style("display", "none");  // this sets it to invisible!
   }
 
+  function positiveStrings(data) {
+    var datakeys = ["metro_status", "low_edu", "low_employment", "pop_loss", "retirement_dest", "persistent_poverty", "persistent_child_poverty"];
+
+    var positives = [];
+
+    datakeys.forEach(function(key) {
+      if (+data[key]) {
+        positives.push(chartLabels.get(key));
+      }
+    });
+
+    if (positives.length > 0) {
+      return '<br><span id="pos">County has: ' + positives.join(', ') + "</span>";
+    }
+    return '';
+  }
 
 </script>
