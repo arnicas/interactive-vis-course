@@ -39,13 +39,11 @@ var color = d3.scale.category20c();
 // we use queue because we have 2 data files to load.
 queue()
   .defer(d3.json, "data/topojson/us_counties_topo.json")
-  .defer(d3.csv, "data/US_county_types.csv", typeAndSet) // process
   .await(loaded);
 
 function loaded(error, us) {
   if (error) throw error;
 
-  var states = topojson.feature(us, us.objects.states);
 
   svg.selectAll("path.state")
     .data(topojson.feature(us, us.objects.states).features)

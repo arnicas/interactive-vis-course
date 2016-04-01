@@ -45,7 +45,6 @@ var map = new L.Map("map", {center: [40.74, -73.9], zoom: 11})
       {attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
       ));
 
-// we use queue because we have 2 data files to load.
 queue()
   .defer(d3.csv, "data/Rat_SightingsNY_extract.csv", filterData) // process
   .await(loaded);
@@ -72,7 +71,7 @@ function loaded(error, rats) {
   map.on('zoomend', function() {
     var currentZoom = map.getZoom();
     var bounds = map.getBounds();
-    //console.log("current zoom", currentZoom);
+    console.log("current zoom", currentZoom);
     ratMarkers.forEach(function(r) {
       if (bounds.contains(r.getLatLng())) { // try to make it more efficient
         if (currentZoom > 12) {

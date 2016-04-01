@@ -106,7 +106,8 @@ function ready(error, json, states, cities) {
 
     stateColor.domain(d3.extent(states,function(s) { return s.visits;})); // setting the range of the input data
 
-    // Loop through each state data value in the .csv file
+    // Loop through each state data value in the .csv file - 
+    // add the visits data to the geojson data.
     states.forEach(function(state) {
         // Grab State Name
         var dataState = state.statename; // name

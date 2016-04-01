@@ -149,8 +149,6 @@ queue()
 function loaded(error, us, data) {
   if (error) throw error;
 
-  var states = topojson.feature(us, us.objects.states);
-
   svg.selectAll("path.state")
     .data(topojson.feature(us, us.objects.states).features)
     .enter().append("path")
