@@ -4,6 +4,10 @@
 
 ## Homework Review
 
+
+Recent good taxi map: https://www.michaelfogleman.com/static/yellow/
+
+
 ## Javascript Tips
 
 ### More Than One Chart Per Page
@@ -18,9 +22,7 @@ In this example, there is a nice function for drawing each data set, which means
 
 Ideally, you are using functions to protect your variable scope and encapsulate operations.  This will make debugging easier.
 
-### Using Functions Wisely
-
-TODO: Fill in some stuff here.
+TODO: An example of our own.
 
 
 ## Animation in D3
@@ -77,6 +79,8 @@ The animation delay happens via the interpolation function.
 
 TODO: Fix up the global vars in the animated lines example, add a sync'd animation. Make the animation work right on the segment.
 
+TODO: Sync'd animation
+
 
 ### Animated Paths on Maps
 
@@ -105,6 +109,10 @@ More related items:
 * Brush as time slider: http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58
 * D3 slider control that is not year/time based: http://thematicmapping.org/playground/d3/d3.slider/
 
+
+### Chart in a Tooltip
+
+TODO: make it.
 
 
 ## Recent Interesting Things
