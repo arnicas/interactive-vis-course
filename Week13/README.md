@@ -4,25 +4,42 @@
 
 ## Homework Review
 
+* Eric's D3 map with tooltip graphs: http://bl.ocks.org/suneric1/4c974350b1eb2f20a080cf2d08084d5a
+* Cibonay's Students: http://bl.ocks.org/cibonaydames/raw/8733a202dbaa59d3dfdb080cffc5401d/
+* Hyan's students: http://bl.ocks.org/hfreitas92/raw/b8a755c0d7b5c8d6cdddc603329a3480/
+* Josh's great Florida illnesses: http://bl.ocks.org/CafeConVega/raw/65d4fb217d2127e30e37093c3a138610/
+* Sherman's tuition: https://bl.ocks.org/SHewitt95/baa4b2681e433cbc57b1eec0a3787c0f
+* Sunny's tourism: http://bl.ocks.org/sunnyuxuan/09f5a2af3c49459715592935d7e52953
+* Sevika's leaflet map: http://bl.ocks.org/shevy92/raw/96e90646bf25f852db719af07b90a4dc/
 
-Recent good taxi map: https://www.michaelfogleman.com/static/yellow/
 
 
-## Javascript Tips
+### Design Tips
 
-### More Than One Chart Per Page
+* In your tooltip on a choropleth, always report the actual value of the region you are coloring.  People will want to know the numbers, not just interpret the shade of color.  
+* Also, don't report a different number than the one used to color the region. If you add numbers, that's fine, but make sure it's clear which one is driving the color.
+* Don't use a two-color scale unless you are contrasting 2 things (like above or below a threshold, or differences positive and negative). Your options are sequential (single color shades), diverging (around a middle neutral color), and qualitative (non-numeric categories). The resources I gave you last week on design should help (read them!) and also this: https://www.mapbox.com/tilemill/docs/guides/tips-for-color/
+* Don't combine leaflet and D3 unless you have a need to do it: you don't need to show an infinitely zoomable and movable map with geography and roads etc if you are only showing a colored choropleth at the country/state level.
 
-One way is to use multiple div tags, with different id's.
+Leaflet and the countries.json:
 
-* http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html
+Note: Mike B says Leaflet can't display map files cut at the antimeridian:
+* https://bl.ocks.org/mbostock/3788999
+* https://bl.ocks.org/mbostock/5735770
 
-In this example, there is a nice function for drawing each data set, which means the variables for each graph are in the function scope, not global:
+That's why this map is messed up: https://github.com/mbostock/topojson/blob/master/examples/world-50m.json
 
-* http://jsfiddle.net/1cqb3uw8/
 
-Ideally, you are using functions to protect your variable scope and encapsulate operations.  This will make debugging easier.
+### Taxi Data Maps
 
-TODO: An example of our own.
+* A recent good taxi map: https://www.michaelfogleman.com/static/yellow/
+* A long post about exploring that data in various ways: http://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/
+
+
+## Responsive Maps
+
+* Tips here: http://eyeseast.github.io/visible-data/2013/08/26/responsive-d3/
+* See version of it implemented in [africa_map3_responsive.html](africa_map3_responsive.html).
 
 
 ## Animation in D3
@@ -45,7 +62,7 @@ Note that again, we set up the page, then load the data, and call a "replay" fun
 
 The draw function sets the domains based on current data set, transitions the axes, and does the data binding, exiting, entering, and updating, with transitions.
 
-Timer:
+Timer example:
 
 ````
 setInterval(function() {
@@ -53,33 +70,14 @@ setInterval(function() {
 }, 1500);  // this is the seconds delay before executing.
 ````
 
-Redraw function:
 
-````
-function redraw() {
-  // Update…
-  chart.selectAll("rect")
-      .data(data)
-    .transition()
-      .duration(1000)
-      .attr("y", function(d) { return h - y(d.value) - .5; })
-      .attr("height", function(d) { return y(d.value); });
-}
-````
-
-### Animated Line Charts
+### Animated Line Charts (and Section Highlights)
 
 The unrolling effect!  This is all over in real news stories.  So you need to know how to do it.
 
-**Unrolling line charts: http://big-elephants.com/2014-06/unrolling-line-charts-d3js/**
+See the examples in **[animated_lines.html](animated_lines.html)**.  You could use this in your own scrolly stories if you wanted to.
 
-See the examples in **[animated_lines.html](animated_lines.html)**.  You could use this in your own scrolly stories if you wanted to.  Use the second version, for a smoother effect.
-
-The animation delay happens via the interpolation function.
-
-TODO: Fix up the global vars in the animated lines example, add a sync'd animation. Make the animation work right on the segment.
-
-TODO: Sync'd animation
+These examples illustrate how to "unroll" a line, how to highlight a segment of a line, and how to animate the highlight of a segment of a line.
 
 
 ### Animated Paths on Maps
@@ -93,10 +91,10 @@ Reference:
 * Another good tutorial: http://geoexamples.blogspot.com/2014/01/d3-map-styling-tutorial-iii-drawing.html
 * Also see this tool from Ben Schmidt to make trails, including animated ones: https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
   * And demo: http://benschmidt.org/D3-trail/minard.html
+* Airplanes animated on a world map: http://www.tnoda.com/blog/2014-04-02
 
 
-
-### UI Sliders for Timelines
+## UI Sliders for Timelines
 
 Tom MacWright's control that I recommend: http://www.macwright.org/chroniton/example/.
 
@@ -110,18 +108,51 @@ More related items:
 * D3 slider control that is not year/time based: http://thematicmapping.org/playground/d3/d3.slider/
 
 
-### Chart in a Tooltip
+## Chart in a Tooltip
 
-TODO: make it.
+Because the D3 tooltip is HTML, you can attach and svg and update a chart in it, if you want.
+
+See Eric's example: http://bl.ocks.org/suneric1/4c974350b1eb2f20a080cf2d08084d5a
+
+Also my more complex example in [africa_map_tooltips_graph.html](africa_map_tooltips_graph.html).
+
+The key point is to call an update function that transitions your data in the tooltip chart, on mouseover.
+
+
+## Icons, Images, etc in SVG
+
+* Embed image data in SVG: http://bl.ocks.org/emeeks/707681f1f5b4a2063d6e (uses canvas)
+* Airplanes animated on a world map: http://www.tnoda.com/blog/2014-04-02
+
+
+## More Than One D3 Chart Per Page
+
+One way is to use multiple div tags, with different id's.
+
+* http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html
+
+In this example, there is a nice function for drawing each data set, which means the variables for each graph are in the function scope, not global:
+
+* http://jsfiddle.net/1cqb3uw8/
+
+Ideally, you are using functions to protect your variable scope and encapsulate operations.  This will make debugging easier.
+
+Take a look at the code in the [animated_lines.html](animated_lines.html) file for some organization of different chart code into functions.
+
+Overall, tips:
+
+* Try to have as few global variables as you can -- these are variables that need to be visible to all the functions.  Examples are scales, and maybe a data set.
+* You can define functions inside of functions -- the inner functions have access to all the variables of the outer function, as well as the global variables.
+* Use queue to load multiple files and then some kind of await() that calls a function that handles your data variables and passes them to the appropriate function to draw the graphs.
 
 
 ## Recent Interesting Things
 
+* http://datausa.io/: US Data portal site
 * Animated ScrollyTelling Annotated Click Line Chart: http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0
 * Mercator Map Projection Puzzle: http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
 * Animated Map on CartoDB for The Martian: https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map
 * Animated grid squares by M Bostock (using a timer): http://bl.ocks.org/mbostock/1009139
-* Information is Beautiful Shortlist for Awards: http://www.informationisbeautifulawards.com/showcase?award=2015&pcategory=short-list&type=awards 
 
 
 ## Set Up Your Project Pages (Github.io)
@@ -159,12 +190,11 @@ If you screw yourself up, this guide might help:
 
 **Homework 1 (10pt) Create your project site.**
 
-Send me the link to the repo. Make sure it has an index page.  I will be pulling from your projects to debug and review from now on.  Send me your link.
+Send me the link to the repo. Make sure it has an index page. Put the CSVs for your data in the repo in a data directory. I will be pulling from your projects to debug and review from now on.  Send me your link as "Repo link".
 
-**Homework 2 (20pt) Project Progress!**
+**Homework 2 (25pt) Two Graphs on a Page!**
 
-I'd like to see more development in your project.  Show me where you are and what's blocking you now, if anything.  You can combine this with the one above if you want, but make sure you tell me what progress you made since this week.
-
+Make two charts for your project, on the same page.  Use functions to structure this, so the variables don't stomp on each other.  I won't be judging the content of the vis yet, just structure and making sure they "work" on the same page.
 
 
 

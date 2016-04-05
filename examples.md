@@ -146,6 +146,8 @@
 * [animated_lines.html](Week13/animated_lines.html): A variety of methods for animated line drawing.
 * [animated_map_path.html](Week13/animated_map_path.html): A dot travels across a map with a play/pause button.
 * [africa_map_slider.html](Week13/africa_map_slider.html): Change data on choropleth map by year, using a play button/slider
+* [africa_map3_responsive.html](Week13/africa_map3_responsive.html): A responsive map example.
+* [africa_map_tooltips_graph.html](Week13/africa_map_tooltips_graph.html): Tooltips have a line chart in them.
 
 
 ## Week14: Reusable Charts, Map Click

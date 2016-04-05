@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    font-family: Helvetica, sans-serif;
+    padding: 40px;
+}
+
+.countries {
+    stroke: #fff;
+    stroke-width:2px;
+}
+
+.legendLinear text {
+    font-size: 9px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+</style>
+<body>
+
+    <h2>Current Malaria Rates in Africa</h2>
+
+    <p>Source: <a href="http://data.unicef.org/child-health/malaria.html">UNICEF</a>. Data shown is most recent data for countries with data available. This version is responsive, it will resize the map on resize of the window. Based on advice in <a href="http://eyeseast.github.io/visible-data/2013/08/26/responsive-d3/">this post.</a></p>
+
+    <div id="map"></div>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.9.0/d3-legend.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+
+<script>
+
+
+var margin = {top: 10, left: 10, bottom: 10, right: 10}
+  , width = parseInt(d3.select('#map').style('width'))
+  , width = width - margin.left - margin.right
+  , mapRatio = .5
+  , height = width * mapRatio;
+
+var map = d3.select('#map').append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+var projection = d3.geo.mercator()
+    .scale(width/3) // mess with this if you want
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var colorScale = d3.scale.linear().range(["#fee0d2", "#de2d26"]).interpolate(d3.interpolateLab);
+
+var countryById = d3.map();
+
+// we use queue because we have 2 data files to load.
+queue()
+    .defer(d3.json, "data/africa.topojson")
+    .defer(d3.csv, "data/Malaria_most_recent_totals.csv", typeAndSet) // process
+    .await(loaded);
+
+function typeAndSet(d) {
+    d.Total = +d.Total;
+    countryById.set(d.ISO, d);
+    return d;
+}
+
+function getColor(d) {
+    var dataRow = countryById.get(d.properties.iso_a3);
+    if (dataRow) {
+        console.log(dataRow);
+        return colorScale(dataRow.Total);
+    } else {
+        console.log("no dataRow", d);
+        return "#ccc";
+    }
+}
+
+function getText(d) {
+ var dataRow = countryById.get(d.properties.iso_a3);
+    if (dataRow) {
+        console.log(dataRow);
+        return dataRow.Country + ":" + dataRow.Total;
+    } else {
+        console.log("no dataRow", d);
+        return d.properties.name + ": No data.";
+    }
+}
+
+function loaded(error, africa, malaria) {
+
+    console.log(africa);
+    console.log(malaria);
+
+    colorScale.domain(d3.extent(malaria, function(d) {return d.Total;}));
+
+    var countries = topojson.feature(africa, africa.objects.collection).features;
+
+    map.selectAll('path.countries')
+        .data(countries)
+        .enter()
+        .append('path')
+        .attr('class', 'countries')
+        .attr('d', path)
+        .attr('fill', function(d,i) {
+            console.log(d.properties.name);
+            return getColor(d);
+        })
+        .append("title")
+        .text(function(d) {
+            return getText(d);
+        });
+
+
+    // The d3-legend component is called here:
+
+    var linear = colorScale;
+
+    map.append("g")
+      .attr("class", "legendLinear")
+      .attr("transform", "translate(20,20)");
+
+    var legendLinear = d3.legend.color()
+      .shapeWidth(30)
+      .orient("horizontal")
+      .scale(linear);
+
+    map.select(".legendLinear")
+      .call(legendLinear);
+
+    d3.select(window).on('resize', resize);
+}
+
+function resize() {
+
+    // adjust things when the window size changes
+    width = parseInt(d3.select('#map').style('width'));
+    width = width - margin.left - margin.right;
+    height = width * mapRatio;
+
+    // update projection
+    projection
+        .translate([width / 2, height / 2])
+        .scale(width/3);
+
+    // resize the map container
+    map
+        .style('width', width + 'px')
+        .style('height', height + 'px');
+
+    // resize the map
+    map.selectAll('.countries').attr('d', path);
+}
+
+</script>
+</body>
+</html>

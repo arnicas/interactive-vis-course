@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Animated Lines</title>
+    <title>Animated Lines and Line Sections</title>
 
 <style>
 
@@ -21,121 +21,57 @@
 </head>
 <body>
 
-<h2>An animated line chart</h2>
+<h2>Animating Lines and Line Sections</h2>
 
-<p> There are two interpolation functions demoed here. The examples came from <a href="http://big-elephants.com/2014-06/unrolling-line-charts-d3js/">this post</a>.</p>
+<p>Data shown are Algerian fertility rates over time (1960-2013), from UNICEF/World Bank. Note: I suggest making any highlight or animated segment have a thicker stroke-width than the base line.</p>
 
-<button id="button1">Click for a jerky animation.</button>
-<div class="chart" id="chart1"></div>
+<br>
+
 <button id="button2">Click for a smooth animation.</button>
 <div class="chart" id="chart2"></div>
-<button id="button3">Click for a partial section animation.</button>
+<button id="button3">Click to highlight a section.</button>
 <div class="chart" id="chart3"></div>
+<button id="button4">Click to animate a hightlighted section.</button>
+<div class="chart" id="chart4"></div>
 
-<!--
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script> -->
-<script src="../js/d3.v3.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
 
 <script>
 
 
-var segment = [{"year" : "1900", "amount": null}, {"year" : "1901", "amount": null},{"year" : "1902", "amount": null},{"year" : "1903", "amount": null},{"year" : "1904", "amount": "61"},{"year" : "1905", "amount": "62"},{"year" : "1906", "amount": "60"},{"year" : "1907", "amount": "58"},{"year" : "1908", "amount": "55"},{"year" : "1909", "amount": "50"},{"year" : "1910", "amount": "40"},{"year" : "1911", "amount": null},{"year" : "1912", "amount": null},{"year" : "1913", "amount": null},{"year" : "1914", "amount": null},{"year" : "1915", "amount": null}];
+var width = 700,
+  height = 200;
 
+var dateFormat = d3.time.format("%Y").parse;
+
+var x_scale, y_scale;  // making these global so they can be seen in ex3 after def in ex2; could have just set the domain there.
+
+// this is shared by both, so make it global
+var lineFunction = d3.svg.line()
+    .x(function(d) {return x_scale(dateFormat(d.Year));})
+    .y(function(d) {return y_scale(+d.Fertility); });
 
 d3.csv("data/fertility_algeria.csv", doLines);
 
 function doLines(error, data) {
-  ex1(data);
   ex2(data);
   ex3(data);
+  ex4(data);
 }
 
-var example1 = d3.select("#chart1")
-    .append("svg")
-    .attr("width", 700)
-    .attr("height", 200)
-    .attr("id", "exampleOne");
-
-var example2 = d3.select("#chart2")
-    .append("svg")
-    .attr("width", 700)
-    .attr("height", 200)
-    .attr("id", "exampleTwo");
-
-var example3 = d3.select("#chart3")
-  .append("svg")
-  .attr("width", 700)
-  .attr("height", 200)
-  .attr("id", "exampleThree");
-
-var lineFunction, lineFunction3;
-
-
-function getInterpolation(data) {
-
-  var interpolate = d3.scale.quantile()
-      .domain([0,1])
-      .range(d3.range(1, data.length + 1));
-
-  return function(t) {
-      var interpolatedLine = data.slice(0, interpolate(t));
-      return lineFunction(interpolatedLine);
-  }
-}
-
-
-var dateFormat = d3.time.format("%Y").parse;
-
-function ex1(data) {
-
-    x_scale = d3.scale.linear().range([0,700]).domain(d3.extent(data, function(d) {return dateFormat(d.Year)}));
-    y_scale = d3.scale.linear().range([180,0]).domain(d3.extent(data, function(d) {return +d.Fertility;}));
-
-    lineFunction = d3.svg.line()
-    .x(function(d) { return x_scale(d.x) })
-    .y(function(d) { return y_scale(d.y) });
-
-  data.forEach(function(d) {
-      d.x = x_scale(dateFormat(d.Year));
-      d.y = y_scale(+d.Fertility);
-  });
-
-
-  example1
-    .append("path")
-    .attr("id", "Series1")
-    .attr("fill", "none")
-    .attr("stroke", "black")
-    .attr("stroke-width", 2);
-
-  d3.select("#button1")
-    .on("click", function() {
-        d3.select("#exampleOne #Series1")
-        .transition()
-        .duration(3000)
-        .attrTween("d", function() {
-          return getInterpolation(data);
-        });
-    });
-}
-
-
-
+// the full animation one
 function ex2(data) {
 
-  x_scale = d3.scale.linear().range([0,700]).domain(d3.extent(data, function(d) {return dateFormat(d.Year)}));
-  y_scale = d3.scale.linear().range([180,0]).domain(d3.extent(data, function(d) {return +d.Fertility;}));
+  x_scale = d3.scale.linear().range([0,width]).domain(d3.extent(data, function(d) {return dateFormat(d.Year)}));
+  // just adding a little manual padding here
+  y_scale = d3.scale.linear().range([height-5,10]).domain(d3.extent(data, function(d) {return +d.Fertility;}));
 
-  // for this method to work, you have to use a scaled x and y in your data:
-    data.forEach(function(d) {
-      d.x = x_scale(dateFormat(d.Year));
-      d.y = y_scale(+d.Fertility);
-  });
-
-  lineFunction = d3.svg.line()
-    .x(function(d) {return d.x;})
-    .y(function(d) {return d.y;});
-
+  var example2 = d3.select("#chart2")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("id", "exampleTwo");
 
   var path = example2
     .append("path")
@@ -146,7 +82,19 @@ function ex2(data) {
     .attr("d", lineFunction(data))
     .style("display", "none");
 
+    // you need a path to be created before you can get the length.
   var totalLength = path.node().getTotalLength();
+
+  path
+    .attr("stroke-dasharray", totalLength + " " + totalLength)
+    .attr("stroke-dashoffset", totalLength)
+    .style("display", null) // now we can display it
+    .transition()
+      .duration(2000)
+      .ease("linear")
+      .attr("stroke-dashoffset", 0);  // we animate the offset down to 0.
+
+    // this is repetitive with the above, but it shows how you would repeat the drawing...
 
   d3.select("#button2").on("click", function() {
       path
@@ -161,71 +109,79 @@ function ex2(data) {
 
 }
 
-
-// real data example:
-
+// the animated section
 function ex3(data) {
 
-  var realData = [{"year" : "1900", "amount": "50"}, {"year" : "1901", "amount": "55"},{"year" : "1902", "amount": "58"},{"year" : "1903", "amount": "60"},{"year" : "1904", "amount": "61"},{"year" : "1905", "amount": "62"},{"year" : "1906", "amount": "60"},{"year" : "1907", "amount": "58"},{"year" : "1908", "amount": "55"},{"year" : "1909", "amount": "50"},{"year" : "1910", "amount": "40"},{"year" : "1911", "amount": "30"},{"year" : "1912", "amount": "20"},{"year" : "1913", "amount": "30"},{"year" : "1914", "amount": "40"},{"year" : "1915", "amount": "45"}];
-
-    var x_scale3 = d3.scale.linear().range([0, 700]).domain(d3.extent(realData, function(d) {
-      return dateFormat(d.year);}));
-    var y_scale3 = d3.scale.linear().range([190,10]).domain(d3.extent(realData, function(d) {
-      return +d.amount;}));
-
-    lineFunction3 = d3.svg.line()
-    .x(function(d) { return x_scale3(dateFormat(d.year)); })
-    .y(function(d) { return y_scale3(+d.amount); });
+  var example3 = d3.select("#chart3")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("id", "exampleThree");
 
     example3
-      .datum(realData)
+      .datum(data)
       .append("path")
       .attr("id", "Series3")
-      .attr("d", lineFunction3)
+      .attr("d", lineFunction)
       .attr("fill", "none")
       .attr("stroke", "black")
       .attr("stroke-width", 2);
 
-  //TODO: Figure out how to make this animate too.
-
     d3.select("#button3")
       .on("click", function() {
-        example3.datum(realData.slice(3,7))
+        example3.datum(data.slice(20,44))
         .append("path")
-        .attr("d", lineFunction3)
+        .attr("d", lineFunction)
         .attr("fill", "none")
         .attr("stroke", "orange")
-        .attr("stroke-width", 2);
+        .attr("stroke-width", 3); // make it thicker so it totally covers the base line
       });
 }
 
+function ex4(data) {
 
-function getSmoothInterpolation(data) {
-  // requires you are working with an x and a y in your data objects
+  var example4 = d3.select("#chart4")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("id", "exampleFour");
 
-  var interpolate = d3.scale.linear()
-        .domain([0,1])
-        .range([1, data.length + 1]);
+    example4
+      .datum(data)
+      .append("path")
+      .attr("id", "Series3")
+      .attr("d", lineFunction)
+      .attr("fill", "none")
+      .attr("stroke", "black")
+      .attr("stroke-width", 2);
 
-  return function(t) {
-    var flooredX = Math.floor(interpolate(t));
-    var interpolatedLine = data.slice(0, flooredX);
+    d3.select("#button4")
+      .on("click", function() {
 
-    if (flooredX > 0 && flooredX < data.length) {
-        var weight = interpolate(t) - flooredX;
-        console.log(weight, t, flooredX);
-        var weightedLineAverage = data[flooredX].y * weight + data[flooredX-1].y * (1-weight);
-        // we fill in the calculated x and y here
-        console.log("created", {"x":interpolate(t)-1, "y":weightedLineAverage} );
-        interpolatedLine.push({ "x": data[flooredX].x, "y":weightedLineAverage});
-    }
+        var pathoverlay = example4
+            .append("path")
+            .attr("id", "Series4")
+            .attr("fill", "none")
+            .attr("stroke", "black")
+            .attr("stroke-width", 2)
+            .attr("d", lineFunction(data.slice(20,44)))
+            .style("display", "none");
 
-    console.log(interpolatedLine);
-    return lineFunction(interpolatedLine);
-  };
+        // you need a path to be created before you can get the length.
+      var totalLength = pathoverlay.node().getTotalLength();
+
+      pathoverlay
+        .attr("stroke-dasharray", totalLength + " " + totalLength)
+        .attr("stroke-dashoffset", totalLength)
+        .style("display", null) // now we can display it
+        .attr("stroke", "orange")
+        .transition()
+          .duration(1000)
+          .ease("linear")
+          .attr("stroke-dashoffset", 0) // we animate the offset down to 0
+          .attr("stroke-width", 3); // make it thicker so it totally covers the base line
+      });
 }
-
-
 
 </script>
 </body>
