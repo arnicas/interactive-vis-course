@@ -3,7 +3,6 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <style>
 
-
 body {
     font-family: Helvetica, sans-serif;
     padding: 40px;
@@ -143,9 +142,9 @@ circle.dot {
 var width = 1000,
     height = 600;
 
-var svg = d3.select('#vis').append('svg')
-    .attr('width', width)
-    .attr('height', height);
+var svg = d3.select("#vis").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
 var dateFormat = d3.time.format("%Y");
 
@@ -160,8 +159,8 @@ var colorScale = d3.scale.linear().range(["#fee0d2", "#de2d26"]).interpolate(d3.
 
 var countryById = d3.map();
 var data = [];
-var dataset = [];
-var filterValue = "1960";
+var filterValue = "1960"; // starting year
+var xScale, yScale, tooltipsvg, line, xAxis, yAxis;
 
 var tooltip = d3.select("body").append("div").attr("class", "tooltip").style("display", "none");
 
@@ -177,16 +176,6 @@ var slider = chroniton()
           filterValue = dateFormat(d3.time.year(d));
           redraw();
       });
-
-d3.select("#slider")
-  .call(slider);
-
-// we use queue because we have 2 data files to load.
-queue()
-    .defer(d3.json, "data/africa.topojson")
-    .defer(d3.csv, "data/World_Development_Indicators_Metadata_Countries.csv", makeLookup)
-    .defer(d3.csv, "data/fertility_long_africa.csv", typeFertility) // process
-    .await(loaded);
 
 function typeFertility(d) {
     d.fertility = +d.Fertility;
@@ -249,21 +238,11 @@ function getText(d) {
 
 function loaded(error, africa, codes, fertility) {
 
-    //console.log(africa);
-    //console.log(codes);
-    //console.log(fertility);
-
-    dataset = d3.nest()
-        .key(function(d) {
-            return d.Country;
-        })
-        .entries(fertility);
-
     data  = d3.nest()
       .key(function(d) {
         return d.Country;
       })
-    .map(fertility, d3.map);
+    .map(fertility, d3.map); // this makes a map from the data for looking up data rows
 
     colorScale.domain(d3.extent(fertility, function(d) { return +d.fertility;}));
 
@@ -296,7 +275,7 @@ function loaded(error, africa, codes, fertility) {
     svg.select(".legendLinear")
       .call(legendLinear);
 
-    setupTooltipChart(dataset[0].values); // set up with any data - it will transition on mouseover to the correct data values.
+    setupTooltipChart();
 
 }
 
@@ -321,24 +300,18 @@ function mouseout(d) {
     d3.selectAll("path.countries").attr("id", null);
 }
 
-var xScale, yScale, tooltipsvg, line, xAxis, yAxis;
-
-function setupTooltipChart(data) {
+function setupTooltipChart() {
 
       var fullwidth = 150;
       var fullheight = 100;
       var margin = {top: 10, right: 5, bottom: 20, left: 30};
-
       var width = fullwidth - margin.left - margin.right;
       var height = fullheight - margin.top - margin.bottom;
-
-      //Set up date formatting and years
-      var dateFormat = d3.time.format("Year %Y");
       var outputFormat = d3.time.format("'%y");
 
       // My shortcut for the scale is to list the first and last only - will set the extents.
       // Also, I set the earlier year to 1999 to get a little spacing on the X axis.
-      var years = [dateFormat.parse("Year 1960"), dateFormat.parse("Year 2013")];
+      var years = [dateFormat.parse("1960"), dateFormat.parse("2013")];
 
       //Set up scales - I already know the start and end years, not using data for it.
       xScale = d3.time.scale()
@@ -368,7 +341,6 @@ function setupTooltipChart(data) {
               .outerTickSize([0]);
 
       //Configure line generator
-      // each line dataset must have an x and y for this to work.
       line = d3.svg.line()
         .x(function(d) {
           return xScale(d.year);
@@ -377,9 +349,9 @@ function setupTooltipChart(data) {
           return yScale(+d.fertility);
         });
 
-      tooltip.append("p");
+      tooltip.append("p"); // we'll put some text in it
 
-       //Create the empty SVG in the tooltip
+       //Create the empty SVG in the tooltip under the p
       tooltipsvg = tooltip
             .append("svg")
             .attr("width", fullwidth)
@@ -454,6 +426,17 @@ d3.selection.prototype.moveToFront = function() {
     this.parentNode.appendChild(this);
   });
 };
+
+
+d3.select("#slider")
+  .call(slider);
+
+// we use queue because we have 2 data files to load.
+queue()
+    .defer(d3.json, "data/africa.topojson")
+    .defer(d3.csv, "data/World_Development_Indicators_Metadata_Countries.csv", makeLookup)
+    .defer(d3.csv, "data/fertility_long_africa.csv", typeFertility) // process
+    .await(loaded);
 
 
 </script>
