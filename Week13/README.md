@@ -146,15 +146,6 @@ Overall, tips:
 * Use queue to load multiple files and then some kind of await() that calls a function that handles your data variables and passes them to the appropriate function to draw the graphs.
 
 
-## Recent Interesting Things
-
-* http://datausa.io/: US Data portal site
-* Animated ScrollyTelling Annotated Click Line Chart: http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0
-* Mercator Map Projection Puzzle: http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
-* Animated Map on CartoDB for The Martian: https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map
-* Animated grid squares by M Bostock (using a timer): http://bl.ocks.org/mbostock/1009139
-
-
 ## Set Up Your Project Pages (Github.io)
 
 Let's do this:
@@ -184,6 +175,14 @@ You can work in a github GUI or some other way if you want.  Just make sure you 
 If you screw yourself up, this guide might help:
 
  * http://sethrobertson.github.io/GitFixUm/fixup.html
+
+## Recent Interesting Things
+
+* http://datausa.io/: US Data portal site
+* Animated ScrollyTelling Annotated Click Line Chart: http://www.nytimes.com/interactive/2015/11/17/health/wiredwell-food-diary-super-tracker.html?_r=0
+* Mercator Map Projection Puzzle: http://gmaps-samples.googlecode.com/svn/trunk/poly/puzzledrag.html
+* Animated Map on CartoDB for The Martian: https://whereonmars.cartodb.com/viz/cd68c630-8be7-11e5-81ea-0ecfd53eb7d3/public_map
+* Animated grid squares by M Bostock (using a timer): http://bl.ocks.org/mbostock/1009139
 
 
 ## Homework
