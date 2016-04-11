@@ -23,9 +23,11 @@ function focus_country(country) {
   console.log("in focus", country);
   // unfocus all, then focus one if given a name.
     d3.selectAll("path.line").classed("focused", false);
+    d3.selectAll("path.line").classed("dimmed", true);
     if (country) {
         var country = country.replace(/\s/g, '_');
         var line = d3.select("g.lines#" + country + " path.line");
+        line.classed("dimmed", false);
         line.classed("focused", true);
         var lineGroup = d3.select("g.lines#" + country);
         lineGroup.moveToFront();
@@ -70,8 +72,8 @@ var update = function(value) {
     default:
       country = null;
       show_vis = true;
-      focus_country(country);
       draw_lines(localdata);
+      focus_country(country);
       break;
   }
   console.log("show viz", show_vis);
@@ -107,7 +109,7 @@ function display(error, mydata) {
     scroll.update(update);
 
     // This code hides the vis when you get past it.
-    // You need to check what scroll value is a good cutoff.
+    // You need to check what scroll value is a good cutoff. This is annoying.
 
     var oldScroll = 0;
     $(window).scroll(function (event) {

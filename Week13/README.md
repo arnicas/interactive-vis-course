@@ -96,7 +96,8 @@ Reference:
 
 ## UI Sliders for Timelines
 
-Tom MacWright's control that I recommend: http://www.macwright.org/chroniton/example/.
+Tom MacWright's control that I recommend (it has changed maintenance/ownership):
+http://xaranke.github.io/chroniton/example/index.html.
 
 See my example use of it in **[africa_map_slider.html](africa_map_slider.html).** It has options for configuring it to restart playing, etc.
 
@@ -165,6 +166,14 @@ You will now be working only in the branch that is public for the website, gh-pa
 >git add [filename] -- for each file you want to add to the repo if it's not there yet
 >git commit -am 'My note about what I did'  [this commits everything you have added or edited and uses that note to say what you did]
 >git push [push the changes to the repo so i can pull them :)]
+````
+
+If you need to delete a file from the repo, delete it from your local folder using the command line:
+
+```
+>git rm [filename]
+>git commit -am "deleted file [filename]"
+>git push
 ````
 
 On the repo project page, reload/refresh the page. You should see all the files you added and edited there.  If you have the index.html page showing your d3 work, it will update with the latest work when you look at

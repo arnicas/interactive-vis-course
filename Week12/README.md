@@ -46,14 +46,21 @@ Truth: I spent a lot of time trying to adapt 2 graphs to these techniques in bot
 
 The example for the homework is much simpler, a combo using Mike Freeman's modified version of Jim's scroller:
 
-* A first simple pass: [scroller_template.html](scroller_template.html)
+* A first simple pass: [scroller_template_lines2.html](scroller_template_lines2.html)
   * requires js/line_chart.js
   * js/scroller_settings.js
   * js/mfreeman_scroller.js
   * line.css
-* But it's not good enough.  Here's some improved work: [scroller_template_lines2.html](scroller_template_lines2.html) -- with more page context around it.
 
 TODO: Try to fix up lib used to handle backing up from different ending points; clarify step 0 and when to trigger it at start.  Generally document the start/end position issues.
+
+
+## Some Simpler Layout Demos
+
+Even if you don't do charts in it, this is a useful toy/demo:
+
+* http://tympanus.net/codrops/2013/05/02/fixed-background-scrolling-layout/
+
 
 
 ### Examples of Scrollytelling
@@ -156,7 +163,7 @@ However, notice that a lot of Javascript developers argue against switch stateme
 * http://encosia.com/first-class-functions-as-an-alternative-to-javascripts-switch-statement/
 
 
-### String Character Replacements
+### String Character Replacements Reminder
 
 A useful string replace function -- replace spaces in a country name with underscore:
 
@@ -166,6 +173,10 @@ var country = country.replace(/\s/g, '_');
 
 This comes in useful for creating id's on SVG elements for later reference in code.
 
+
+## Recent Interesting Things 
+
+* http://polygraph.cool/films/ - scrollytelling vis
 
 ##Homework
 

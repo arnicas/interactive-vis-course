@@ -1,4 +1,6 @@
 
+var fullwidth = 600;
+var fullheight = 500;
 
 var margin = {
 top: 50,
@@ -7,18 +9,18 @@ bottom: 70,
 left: 70
 };
 
-var width = 600;
-var height = 500;
+var width = fullwidth - margin.left - margin.right;
+var height = fullheight - margin.top - margin.bottom;
 
 //Set up date formatting and years
 var dateFormat = d3.time.format("%Y");
 
 //Set up scales
 var xScale = d3.time.scale()
-.range([margin.left, width - margin.right - margin.left]);
+.range([0, width]);
 
 var yScale = d3.scale.sqrt()
-.range([margin.top, height - margin.bottom]);
+.range([height, 0]);
 
 //Configure axis generators
 var xAxis = d3.svg.axis()
@@ -49,17 +51,19 @@ var line = d3.svg.line()
 //Create the empty SVG image
 var svg = d3.select("#vis")
 .append("svg")
-.attr("width", width)
-.attr("height", height);
+.attr("width", fullwidth)
+.attr("height", fullheight)
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Add axes
 
 svg.append("g")
     .attr("class", "x axis")
-    .attr("transform", "translate(0," + (height - margin.bottom) + ")")
+    .attr("transform", "translate(0," + height + ")")
     .call(xAxis)
     .append("text")
-    .attr("x", width - margin.left - margin.right)
+    .attr("x", width)
     .attr("y", margin.bottom / 3)
     .attr("dy", "1em")
     .style("text-anchor", "end")
@@ -68,7 +72,6 @@ svg.append("g")
 
 svg.append("g")
     .attr("class", "y axis")
-    .attr("transform", "translate(" + margin.left + ",0)")
     .call(yAxis)
     .append("text")
     .attr("transform", "rotate(-90)")
@@ -127,13 +130,12 @@ function draw_lines(dataset) {
         }));
 
     // max of rates to 0 (reversed, remember)
-    yScale.domain([
+    yScale.domain([0,
         d3.max(dataset, function (d) {
             return d3.max(d.rates, function (d) {
                 return +d.rate;
             });
-        }),
-        0
+        })
     ]);
 
     //Make a group for each country

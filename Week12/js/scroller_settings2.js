@@ -23,6 +23,8 @@ function focus_country(country) {
   console.log("in focus", country);
   // unfocus all, then focus one if given a name.
     d3.selectAll("path.line").classed("focused", false);
+    d3.selectAll("path.line").classed("isolated", false);
+    d3.selectAll("path.line").classed("normal", true);
     if (country) {
         var country = country.replace(/\s/g, '_');
         var line = d3.select("g.lines#" + country + " path.line");
@@ -32,10 +34,16 @@ function focus_country(country) {
     }
 }
 
+function darken_lines() {
+  d3.selectAll("path.line").classed("normal", false);
+  d3.selectAll("path.line").classed("isolated", true);
+}
+
 var update = function(value) {
   var country = null;
   var localdata = data;
   var show_vis = true;
+  var isolated = false;
   switch(value) {
     case 0:
       console.log("in case", value);
@@ -54,24 +62,27 @@ var update = function(value) {
       console.log("in case", value);
       //yScale = d3.scale.sqrt().range([margin.top, height - margin.bottom]);
       localdata = data;
+      isolated = false;
       country = "Bosnia and Herzegovina";
       break;
     case 4:
       console.log("in case", value);
       country = null;
       localdata = data.filter(function(d) {return d.country == "Haiti" || d.country == "Rwanda";});
+      isolated = true;
       break;
     case 5:
       console.log("in case", value);
       show_vis = false;
+      isolated = false;
       localdata = data.filter(function(d) {return d.country == "Haiti" || d.country == "Rwanda";});
-      country = null;
       break;
     default:
       country = null;
       show_vis = true;
-      focus_country(country);
+      isolated = false;
       draw_lines(localdata);
+      focus_country(country);
       break;
   }
   console.log("show viz", show_vis);
@@ -80,9 +91,13 @@ var update = function(value) {
   } else {
     vis.style("display", "none");
   }
+
   draw_lines(localdata); // we can update the data if we want in the cases. Draw before focus!
   focus_country(country); // this applies a highlight on a country.
-};
+  if (isolated) {
+    darken_lines();
+  }
+}
 // setup scroll functionality
 
 function display(error, mydata) {
@@ -122,6 +137,7 @@ function display(error, mydata) {
     });
 
   }
+
 } // end display
 
 queue()

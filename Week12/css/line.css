@@ -8,19 +8,20 @@
 path.line {
   fill: none;
   stroke-width: 1px;
-  stroke-opacity: 80%;
 }
 
 .line.normal {
   stroke: gray;
-}
-
-.line.unfocused{
-  stroke-opacity: 40%;
+  stroke-opacity: .3;
 }
 
 .line.focused {
   stroke-width: 2px;
-  stroke-opacity: 100%;
+  stroke-opacity: 1;
   stroke: orange;
+}
+
+.line.isolated {
+  stroke: gray;
+  stroke-opacity: 1;
 }

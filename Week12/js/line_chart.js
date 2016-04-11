@@ -133,7 +133,7 @@ function draw_lines(data) {
         .attr("class", "line")
         .attr("d", line)
         .classed("normal", true)
-        .classed("focused", false); // gives gray color
+        .classed("focused", false);
 
 
     /*======================================================================
