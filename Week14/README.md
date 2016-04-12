@@ -10,19 +10,20 @@ Project is 40% of the course grade total (base points, not the extra credit poin
 
 Here is the breakdown:
 
-* 20% for using 4 chart types we covered in class (can include small multiples as one)
-* 20% for good interactivity: Transitions, highlights, tooltips, filter/sort, animation...
-* 15% on text: Connective text holding the story together, intro and conclusion, annotations on graphs, good explanations, good writing (good English style)
-* 10% on storytelling: You create a useful, interesting data story flow using a mix of text, steppers/buttons, highlights, scrollytelling. (You don't have to use all of them.)
+* 20% for using 4+ chart types we covered in class (can include small multiples as one)
+* 20% for good interactivity: Transitions, highlights, tooltips everywhere needed, filter/sort, animation, update data...
+* 10% on text: Connective text holding the story together, intro and conclusion, annotations on graphs, good explanations, good writing (good English style)
+* 10% on storytelling: You create a useful, interesting data story flow using a mix of text, progression of graphs, steppers/buttons, highlights, scrollytelling. (You don't have to use all of them.)
 * 10% on graph/chart elements: Good labeling of values/axes, tooltips, readability of chart contents and labels
-* 10% on visual style overall: Color scheme, attractiveness, clarity in graphs, use of UNICEF style somewhere in page
+* 10% on visual style overall: Color scheme, attractiveness, clarity in graphs
 * 10% for good data analysis: Interesting findings/results, nice use of top 10s, relating data sets to each other intelligently
 * 5% for page layout/design: Good visual and functional CSS, useful external links, resume/CV link, header/footer with info about the project and data as needed.
+* 5% for good UX: Can your reader figure out what to click on etc?
 
 Extra-extra credit options will include:
 
 * Using interesting/new interactions or graph types we didn't cover in class (including layouts below)
-* Anything else that makes it stand out as a great project (my perogative, and class feedback during demos)
+* Anything else that makes it stand out as a great project (my perogative)
 
 
 ## Helpful Stuff (I Hope)

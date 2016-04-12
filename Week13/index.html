@@ -40,6 +40,7 @@
 <li><a href="#animated-bar-charts">Animated Bar Charts</a></li>
 <li><a href="#animated-line-charts-and-section-highlights">Animated Line Charts (and Section Highlights)</a></li>
 <li><a href="#animated-paths-on-maps">Animated Paths on Maps</a></li>
+<li><a href="#chained-transitions">Chained Transitions</a></li>
 </ul></li>
 <li><a href="#ui-sliders-for-timelines">UI Sliders for Timelines</a></li>
 <li><a href="#chart-in-a-tooltip">Chart in a Tooltip</a></li>
@@ -64,8 +65,7 @@
 </ul>
 <h3 id="design-tips">Design Tips</h3>
 <ul>
-<li>In your tooltip on a choropleth, always report the actual value of the region you are coloring. People will want to know the numbers, not just interpret the shade of color.<br />
-</li>
+<li>In your tooltip on a choropleth, always report the actual value of the region you are coloring. People will want to know the numbers, not just interpret the shade of color.</li>
 <li>Also, don't report a different number than the one used to color the region. If you add numbers, that's fine, but make sure it's clear which one is driving the color.</li>
 <li>Don't use a two-color scale unless you are contrasting 2 things (like above or below a threshold, or differences positive and negative). Your options are sequential (single color shades), diverging (around a middle neutral color), and qualitative (non-numeric categories). The resources I gave you last week on design should help (read them!) and also this: <a href="https://www.mapbox.com/tilemill/docs/guides/tips-for-color/" class="uri">https://www.mapbox.com/tilemill/docs/guides/tips-for-color/</a></li>
 <li>Don't combine leaflet and D3 unless you have a need to do it: you don't need to show an infinitely zoomable and movable map with geography and roads etc if you are only showing a colored choropleth at the country/state level.</li>
@@ -116,8 +116,11 @@
 <li>And demo: <a href="http://benschmidt.org/D3-trail/minard.html" class="uri">http://benschmidt.org/D3-trail/minard.html</a></li>
 <li>Airplanes animated on a world map: <a href="http://www.tnoda.com/blog/2014-04-02" class="uri">http://www.tnoda.com/blog/2014-04-02</a></li>
 </ul>
+<h3 id="chained-transitions">Chained Transitions</h3>
+<p>See <a href="animation_end.html" class="uri">animation_end.html</a> for an example of chained transitions, where one starts after another, on the same &quot;object&quot;.</p>
 <h2 id="ui-sliders-for-timelines">UI Sliders for Timelines</h2>
-<p>Tom MacWright's control that I recommend: <a href="http://www.macwright.org/chroniton/example/" class="uri">http://www.macwright.org/chroniton/example/</a>.</p>
+<p>Tom MacWright's control that I recommend (it has changed maintenance/ownership):<br />
+<a href="http://xaranke.github.io/chroniton/example/index.html" class="uri">http://xaranke.github.io/chroniton/example/index.html</a>.</p>
 <p>See my example use of it in <strong><a href="africa_map_slider.html" class="uri">africa_map_slider.html</a>.</strong> It has options for configuring it to restart playing, etc.</p>
 <p>More related items:</p>
 <ul>
@@ -164,6 +167,10 @@
 &gt;git add [filename] -- for each file you want to add to the repo if it&#39;s not there yet
 &gt;git commit -am &#39;My note about what I did&#39;  [this commits everything you have added or edited and uses that note to say what you did]
 &gt;git push [push the changes to the repo so i can pull them :)]</code></pre>
+<p>If you need to delete a file from the repo, delete it from your local folder using the command line:</p>
+<pre><code>&gt;git rm [filename]
+&gt;git commit -am &quot;deleted file [filename]&quot;
+&gt;git push</code></pre>
 <p>On the repo project page, reload/refresh the page. You should see all the files you added and edited there. If you have the index.html page showing your d3 work, it will update with the latest work when you look at<br />
 your <code>your-username.github.io/project-name</code> page.</p>
 <p>You can work in a github GUI or some other way if you want. Just make sure you check your work is visible in the url view.</p>

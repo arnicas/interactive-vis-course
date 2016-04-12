@@ -31,10 +31,17 @@
 <div id="TOC">
 <ul>
 <li><a href="#week-12-storytelling-tools-scrolling-steppers">Week 12: Storytelling Tools: Scrolling, Steppers</a><ul>
-<li><a href="#homework-review">Homework Review</a></li>
-<li><a href="#storytelling-intro">Storytelling Intro</a></li>
+<li><a href="#homework-review">Homework Review</a><ul>
+<li><a href="#chroniton.js-slider-moved">Chroniton.js Slider Moved</a></li>
+<li><a href="#reminders-about-bugs">Reminders about Bugs</a></li>
+<li><a href="#reminders-about-git-workflow">Reminders about Git Workflow</a></li>
+<li><a href="#reminder-about-good-code-structure">Reminder about Good Code Structure</a></li>
+</ul></li>
+<li><a href="#storytelling-structure-techniques">Storytelling Structure Techniques</a><ul>
+<li><a href="#a-good-paper-to-read">A Good Paper to Read</a></li>
 <li><a href="#steppers-slideshow">Steppers (&quot;Slideshow&quot;)</a></li>
-<li><a href="#scroll-triggered-scrollytelling">Scroll-Triggered: &quot;Scrollytelling&quot;</a><ul>
+<li><a href="#scroll-triggered-scrollytelling">Scroll-Triggered: &quot;Scrollytelling&quot;</a></li>
+<li><a href="#some-simpler-layout-demos">Some Simpler Layout Demos</a></li>
 <li><a href="#examples-of-scrollytelling">Examples of Scrollytelling</a></li>
 <li><a href="#zoomytelling-a-subgenre">Zoomytelling, a subgenre?</a></li>
 <li><a href="#design-tip-avoid-scolljacking">Design Tip: Avoid Scolljacking</a></li>
@@ -42,32 +49,122 @@
 </ul></li>
 <li><a href="#javascript-tips">Javascript Tips</a><ul>
 <li><a href="#switch-statement-and-a-functional-alternative">Switch Statement (and a Functional Alternative)</a></li>
-<li><a href="#string-character-replacements">String Character Replacements</a></li>
+<li><a href="#string-character-replacements-reminder">String Character Replacements Reminder</a></li>
 </ul></li>
+<li><a href="#recent-interesting-things">Recent Interesting Things</a></li>
+<li><a href="#schedule-notes-and-grading">Schedule Notes and Grading</a></li>
 <li><a href="#homework">Homework</a></li>
 </ul></li>
 </ul>
 </div>
 <h1 id="week-12-storytelling-tools-scrolling-steppers">Week 12: Storytelling Tools: Scrolling, Steppers</h1>
 <h2 id="homework-review">Homework Review</h2>
-<h2 id="storytelling-intro">Storytelling Intro</h2>
-<p>For next week, read this smart paper:</p>
+<h3 id="chroniton.js-slider-moved">Chroniton.js Slider Moved</h3>
+<p>FYI: New home for the chroniton.js play/pause d3 slider control is here:</p>
+<ul>
+<li><a href="http://xaranke.github.io/chroniton/example/index.html" class="uri">http://xaranke.github.io/chroniton/example/index.html</a></li>
+</ul>
+<h3 id="reminders-about-bugs">Reminders about Bugs</h3>
+<p>Things to check for:</p>
+<ul>
+<li>Are your data values numeric. (Did you use + to change them).</li>
+<li>In the console, if you see paths with NaNs in them, you have a scale wrong, probably, or your data is wrong.</li>
+<li>Does your data have commas in it -- get rid of them. Numbers must have no commas.</li>
+<li>Is your d3 selection valid or not? Check at the console window to see if you are actually selecting something if your data isn't showing up.</li>
+<li>Don't select too &quot;generically&quot; -- make sure you use a class, like <code>d3.selectAll(&quot;path.line&quot;)</code> and then create paths with classes to match this.</li>
+<li>Use console.log.</li>
+<li>Use breakpoints to see what your data looks like.</li>
+</ul>
+<h3 id="reminders-about-git-workflow">Reminders about Git Workflow</h3>
+<p>You should be working from your local files, using your local server, and committing and pushing to the repo. DO NOT EDIT FILES ON THE GITHUB SITE. You will be out of sync then. See week13 for reminders about commands to use when pushing your code.</p>
+<h3 id="reminder-about-good-code-structure">Reminder about Good Code Structure</h3>
+<p>Please avoid having a page structure that mixes html for the body with script elements -- We don't want this sequence of sections:</p>
+<pre><code>&lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;
+&lt;p&gt;Text here&lt;/p&gt;
+
+&lt;script&gt;
+...js Code for chart 1...
+&lt;/script&gt;
+
+&lt;div id=&quot;chart2&quot;&gt;&lt;/div&gt;
+&lt;p&gt;More text here&lt;/p&gt;
+
+&lt;script&gt;
+.... more js decode
+&lt;/script&gt;</code></pre>
+<p>Just don't do that, it's bad form to mix the html markup and script this way</p>
+<p>Make your HTML and CSS to reflect the full project -- a single page app. Your html should have placeholder elements for the charts in divs, for example: <code>&lt;div id=&quot;chart1&quot;&gt;&lt;/div&gt;</code>. Then you will use d3 to select that element and append the svg for the chart.</p>
+<p>Load all your data in queue, and then use a function to call the functions to draw your charts.</p>
+<pre><code>// we use queue because we have 2 data files to load.
+queue()
+    .defer(d3.json, &quot;data/file1.json&quot;)
+    .defer(d3.csv, &quot;data/file2.csv&quot;)
+    .await(loadedData);
+
+function loadedData(error, file1data, file2data) {
+  // after the data is all in, we can draw the charts with it.
+
+  // you might have another function or series of steps that manipulate data here.
+  // then, call the code to draw the charts.
+
+  drawChart1(file1data);
+  drawChart2(file2data);
+
+}
+
+function drawChart1(data) {
+  // nicely encapsulated code that takes the first data set to draw...
+
+  var fullwidth = 600;
+  etc.
+
+  var svg = d3.select(&quot;#chart1&quot;).append(&quot;svg&quot;)...
+
+}
+
+function drawChart2(data) {
+  // using the second data set for the next chart...
+
+  var fullwidth = 300;
+  etc.
+
+  var svg = d3.select(&quot;#chart2&quot;).append(&quot;svg&quot;)...
+}</code></pre>
+<p>You will probably want to have multiple files for your javascript code.<br />
+Remember, a file is not a function -- all the variables and code in one <code>file.js</code> will be in your global namespace after you load it.</p>
+<p>One way to do this is to have a structure like:</p>
+<ul>
+<li>main.js: contains the data loading, maybe data processing functions. Calls functions that are in the other js files to draw charts.</li>
+<li>linechart.js (for example): contains a function that does a line chart</li>
+<li>scatterplot.js (for example): contains a function that does a scatterplot</li>
+</ul>
+<h2 id="storytelling-structure-techniques">Storytelling Structure Techniques</h2>
+<h3 id="a-good-paper-to-read">A Good Paper to Read</h3>
+<p>This is a smart paper on story telling in journalistic data vis. Journalists should read it.</p>
 <ul>
 <li><a href="http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf">Telling Stories with Data</a></li>
 </ul>
-<h2 id="steppers-slideshow">Steppers (&quot;Slideshow&quot;)</h2>
-<p>Reference:</p>
+<h3 id="steppers-slideshow">Steppers (&quot;Slideshow&quot;)</h3>
+<p>These are button-based stories, where the button changes the data view and the text, usually.</p>
+<p>Reference Examples:</p>
 <ul>
 <li><a href="http://www.nytimes.com/interactive/2013/05/07/education/college-admissions-gap.html" class="uri">http://www.nytimes.com/interactive/2013/05/07/education/college-admissions-gap.html</a></li>
 <li>Budget Forecast Compared to Reality: <a href="http://www.nytimes.com/interactive/2010/02/02/us/politics/20100201-budget-porcupine-graphic.html" class="uri">http://www.nytimes.com/interactive/2010/02/02/us/politics/20100201-budget-porcupine-graphic.html</a></li>
 </ul>
-<p>Tutorial:</p>
+<p>A Tutorial:</p>
 <ul>
 <li><a href="http://vallandingham.me/stepper_steps.html" class="uri">http://vallandingham.me/stepper_steps.html</a> (includes a jquery version and a pure D3 version)</li>
 </ul>
-<p>TODO: Make a simple button stepper example.</p>
-<h2 id="scroll-triggered-scrollytelling">Scroll-Triggered: &quot;Scrollytelling&quot;</h2>
-<p>The canonical example:</p>
+<p>Btw, useful CSS Designs for Buttons:</p>
+<ul>
+<li><a href="https://css-tricks.com/examples/ButtonMaker/#" class="uri">https://css-tricks.com/examples/ButtonMaker/#</a></li>
+</ul>
+<p>There's an example you could modify in:</p>
+<ul>
+<li>Example: <a href="stepper_buttons.html" class="uri">stepper_buttons.html</a>.</li>
+</ul>
+<h3 id="scroll-triggered-scrollytelling">Scroll-Triggered: &quot;Scrollytelling&quot;</h3>
+<p>The example that influenced a lot of folks when it came out:</p>
 <ul>
 <li>Snow Fall: <a href="http://www.nytimes.com/projects/2012/snow-fall/#/?part=tunnel-creek" class="uri">http://www.nytimes.com/projects/2012/snow-fall/#/?part=tunnel-creek</a></li>
 </ul>
@@ -85,14 +182,18 @@
 <p>Truth: I spent a lot of time trying to adapt 2 graphs to these techniques in both the Bloomberg framework in graph-tools.io and Jim's.</p>
 <p>The example for the homework is much simpler, a combo using Mike Freeman's modified version of Jim's scroller:</p>
 <ul>
-<li>A first simple pass: <a href="scroller_template.html" class="uri">scroller_template.html</a></li>
-<li>requires js/line_chart.js</li>
-<li>js/scroller_settings.js</li>
+<li><a href="scroller_template_lines2.html" class="uri">scroller_template_lines2.html</a></li>
+<li>requires js/line_chart_refactor.js</li>
+<li>js/scroller_settings2.js</li>
 <li>js/mfreeman_scroller.js</li>
 <li>line.css</li>
-<li>But it's not good enough. Here's some improved work: <a href="scroller_template_lines2.html" class="uri">scroller_template_lines2.html</a> -- with more page context around it.</li>
 </ul>
-<p>TODO: Try to fix up lib used to handle backing up from different ending points; clarify step 0 and when to trigger it at start. Generally document the start/end position issues.</p>
+<p>Some issues that came up in &quot;real examples&quot;: going backwards has to be handled too. This causes a lot more complexity than one would hope. Also, the beginning and end states are annoyingly placeholdery.</p>
+<h3 id="some-simpler-layout-demos">Some Simpler Layout Demos</h3>
+<p>Even if you don't do charts in it, this is a useful toy/demo:</p>
+<ul>
+<li><a href="http://tympanus.net/codrops/2013/05/02/fixed-background-scrolling-layout/" class="uri">http://tympanus.net/codrops/2013/05/02/fixed-background-scrolling-layout/</a></li>
+</ul>
 <h3 id="examples-of-scrollytelling">Examples of Scrollytelling</h3>
 <p><strong>Jim's list</strong>:</p>
 <ul>
@@ -113,6 +214,8 @@
 </ul>
 <p><strong>Yet more scrolly goodness</strong>:</p>
 <ul>
+<li>Dark Side of Comments: <a href="https://www.theguardian.com/technology/2016/apr/12/the-dark-side-of-guardian-comments" class="uri">https://www.theguardian.com/technology/2016/apr/12/the-dark-side-of-guardian-comments</a></li>
+<li>A Visual Intro to Machine Learning: <a href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/" class="uri">http://www.r2d3.us/visual-intro-to-machine-learning-part-1/</a></li>
 <li>Let's Free Congress: <a href="http://letsfreecongress.org/" class="uri">http://letsfreecongress.org/</a>,</li>
 <li>And a post about the transitions: <a href="http://blog.tonyhschu.ca/post/49488608263/technical-write-up-scroll-linked-animations" class="uri">http://blog.tonyhschu.ca/post/49488608263/technical-write-up-scroll-linked-animations</a></li>
 <li>Battle of the Berrics, linked text too: <a href="http://www.georgelmurphy.com/berrics/" class="uri">http://www.georgelmurphy.com/berrics/</a></li>
@@ -132,9 +235,13 @@
 with the pencil examination in <a href="http://www.fiftythree.com/pencil" class="uri">http://www.fiftythree.com/pencil</a>.</p>
 <p>In the latter, and in most of the good scrollytelling examples, the user can speed up and reverse to control their movement. Motion is dependent on the mouse, they aren't hijacked and forced into someone else's pace.</p>
 <h3 id="other-related-scrolly-tools">Other Related Scrolly Tools</h3>
-<p>graph-scroll.js from Bloomberg/Adam R Pearce:</p>
+<p>graph-scroll.js from Bloomberg/Adam R Pearce (even he says he has to read his source to use it :( ):</p>
 <ul>
 <li><a href="http://1wheel.github.io/graph-scroll/" class="uri">http://1wheel.github.io/graph-scroll/</a></li>
+</ul>
+<p>Scrollmagic (I couldn't get it to work well with a simple chart case. It's aimed at animating things on scroll, but not d3):</p>
+<ul>
+<li><a href="http://scrollmagic.io/" class="uri">http://scrollmagic.io/</a></li>
 </ul>
 <p>Mobile Touch Slider</p>
 <ul>
@@ -174,21 +281,38 @@ with the pencil examination in <a href="http://www.fiftythree.com/pencil" class=
 <li><a href="https://javascriptweblog.wordpress.com/2010/03/08/caseagainstswitch/" class="uri">https://javascriptweblog.wordpress.com/2010/03/08/caseagainstswitch/</a></li>
 <li><a href="http://encosia.com/first-class-functions-as-an-alternative-to-javascripts-switch-statement/" class="uri">http://encosia.com/first-class-functions-as-an-alternative-to-javascripts-switch-statement/</a></li>
 </ul>
-<h3 id="string-character-replacements">String Character Replacements</h3>
+<h3 id="string-character-replacements-reminder">String Character Replacements Reminder</h3>
 <p>A useful string replace function -- replace spaces in a country name with underscore:</p>
 <pre><code>var country = country.replace(/\s/g, &#39;_&#39;);</code></pre>
 <p>This comes in useful for creating id's on SVG elements for later reference in code.</p>
+<h2 id="recent-interesting-things">Recent Interesting Things</h2>
+<ul>
+<li><a href="http://polygraph.cool/films/" class="uri">http://polygraph.cool/films/</a> - scrollytelling vis</li>
+<li><a href="https://www.theguardian.com/technology/2016/apr/12/the-dark-side-of-guardian-comments" class="uri">https://www.theguardian.com/technology/2016/apr/12/the-dark-side-of-guardian-comments</a></li>
+</ul>
+<h2 id="schedule-notes-and-grading">Schedule Notes and Grading</h2>
+<p>I'm busy this Thursday and Friday with visitors, but can be available Wed 11-1.30.</p>
+<p>I'm away the last Mon-Tues of classes, April 25-26.</p>
+<p>If you want your project to get review comments before I grade it, I'd like it by April 29. Projects are due on Thursday May 5.</p>
+<p>Project reminders:</p>
+<ul>
+<li>What We've Done: <a href="http://arnicas.github.io/interactive-vis-course/Week11/#recap-so-far-project-ahead" class="uri">http://arnicas.github.io/interactive-vis-course/Week11/#recap-so-far-project-ahead</a></li>
+<li>Grading plan: <a href="http://arnicas.github.io/interactive-vis-course/Week14/#project-grading" class="uri">http://arnicas.github.io/interactive-vis-course/Week14/#project-grading</a></li>
+</ul>
 <h2 id="homework">Homework</h2>
 <p>Readings:</p>
 <ul>
 <li><a href="http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf">Telling Stories with Data</a></li>
 <li>Mike's piece: <a href="http://bost.ocks.org/mike/scroll/" class="uri">http://bost.ocks.org/mike/scroll/</a></li>
-<li>Read/skim in this order: <a href="http://vallandingham.me/think_you_can_scroll.html" class="uri">http://vallandingham.me/think_you_can_scroll.html</a>, <a href="http://mfviz.com/scrollytelling/#/" class="uri">http://mfviz.com/scrollytelling/#/</a></li>
+<li>Read/skim in this order if you plan to use scrollytelling: <a href="http://vallandingham.me/think_you_can_scroll.html" class="uri">http://vallandingham.me/think_you_can_scroll.html</a>, <a href="http://mfviz.com/scrollytelling/#/" class="uri">http://mfviz.com/scrollytelling/#/</a></li>
 </ul>
-<p><strong>Homework 1 (25pt), Scrollytelling</strong>: Use the template in <a href="scroller_template_lines2.html" class="uri">scroller_template_lines2.html</a> and associated files to tell a short story about that line graph. You can write your own functions to highlight, label, color, etc, anything you want. If you prefer to try to put your own data and chart into it, if it will help with your project, go for it. There should be at least 4 steps to it. Send as &quot;Scrolling.&quot;</p>
-<p>Note: If you prefer to use a stepper, you can construct a new page with buttons (like we did in the first few weeks) with highlights triggered by the buttons. Again, do that only if you want to use it in your final project.</p>
-<p><strong>Homeworkd 2 (35pt), 3 Charts</strong>:</p>
-<p>Make 3 D3 charts of different kinds that you would like to include in your final project, all on the same page. You can use multiple data files (using queue). They do not have to be interactive yet (you can avoid tooltips etc until later). It will definitely save you time if you can reuse this code in your project, so make sure you are building towards your final design. We will discuss the next level of interaction next week. Send as &quot;3 Charts.&quot;</p>
-<p>TODO: Code structuring for this earlier in semester.</p>
+<p><strong>Homework 1 (15pt): Make Progress</strong></p>
+<p>Send me the link to your updated repo, with:</p>
+<ul>
+<li>at least 3 charts on a page,</li>
+<li>code in functions and different js files as we discussed today,</li>
+<li>and some text/layout that outlines the story you will tell in your project.</li>
+<li>In other words, show me progress.</li>
+</ul>
 </body>
 </html>

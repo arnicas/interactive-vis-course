@@ -137,7 +137,7 @@
 
 ## Week12: Storytelling (Scrollers and Steppers)
 
-* [scroller_template.html](Week12/scroller_template.html): An inadequate first pass at a scrollying vis.
+* [stepper_buttons.html](Week12/stepper_buttons.html): Some sketchy logic for next/prev buttons and code for state handling.
 * [scroller_template_lines2.html](Week12/scroller_template_lines2.html): Improved, with more page context and moveToFront() in action.
 
 
@@ -148,6 +148,7 @@
 * [africa_map_slider.html](Week13/africa_map_slider.html): Change data on choropleth map by year, using a play button/slider
 * [africa_map3_responsive.html](Week13/africa_map3_responsive.html): A responsive map example.
 * [africa_map_tooltips_graph.html](Week13/africa_map_tooltips_graph.html): Tooltips have a line chart in them.
+* [animation_end.html](Week13/animation_end.html): Chained sequence of simple animations.
 
 
 ## Week14: Reusable Charts, Map Click

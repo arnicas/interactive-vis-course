@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<style>
+
+circle {
+  fill: blue;
+}
+
+svg {
+  background-color: parchment;
+}
+
+</style>
+
+<body>
+
+<div id="vis"></div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+<script>
+
+var points = [{start: 10, mid: 30, end: 50, id: "A"}];
+
+var width = 500;
+var height = 200;
+
+var svg = d3.select("#vis").append("svg").attr("width", width).attr("height",height);
+
+// make a scale for the min start and max end as your domain
+var locScale = d3.scale.linear().range([10, width-10]).domain([20,50]);
+
+  var circles = svg.selectAll("circle")
+  .data(points, function(d) {return d.id;});
+
+  circles
+  .enter()
+  .append("circle")
+  .attr("cx", function(d) {
+    return locScale(d.start);
+  })
+  .attr("cy", height/2)
+  .attr("r", 10);
+
+  circles.transition()
+  .duration(1000)
+  .attr("cx", function(d) {
+    return locScale(d.mid);
+    })
+  .transition()
+  .duration(200)
+  .attr("r", 30)
+  .transition()
+  .duration(200)
+  .attr("r", 10)
+  .transition()
+  .duration(1000)
+  .attr("cx", function(d) {
+    return locScale(d.end);
+  });
+
+  circles.exit().remove();
+
+
+</script>
+</body>

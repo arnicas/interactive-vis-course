@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!-- A modified example from Scott Murray's Knight d3 course. -->
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Steppers</title>
+
+<style>
+
+body {
+  padding: 20px;
+  font-family: Arial;
+}
+
+.buttongroup {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+
+.button {
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+
+.button.disabled {
+  border-top-color: gray;
+  background: gray;
+  color: black;
+}
+
+.selected {
+  background-color: #eee;
+}
+
+#chart {
+  margin: 20px;
+  float: left;
+}
+
+.content {
+    width: 600px;
+    margin: 0 auto;
+    background-color: #66ffff;
+}
+
+svg {
+  background-color: pink;
+}
+
+circle {
+  fill: blue;
+}
+
+#text {
+  float: left;
+}
+
+.fullwidth {
+  max-width: 500px;
+}
+
+.besidechart {
+  max-width: 200px;
+}
+
+#text p{
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: steelblue;
+}
+
+p.hidden {
+  display: none;
+}
+
+.clearfix{
+    clear:both
+}
+
+
+</style>
+</head>
+<body>
+
+<h2>Placeholder Title</h2>
+
+<div class="buttongroup">
+<a class="button disabled" id="prev">Previous</a>
+<a class="button" id="next">Next</a>
+</div>
+
+<div class="content">
+  <div id="text">
+    <p id="stage0" class="fullwidth">Starting text here, stage 0. Something interesting.</p>
+    <p class="hidden besidechart" id="stage1">Showing stage one text now, with a chart. </p>
+    <p class="hidden besidechart" id="stage2">Showing stage two, where there's now a cool circle.</p>
+    <p class="hidden fullwidth" id="stage3">Showing stage three text now, no chart.</p>
+  </div>
+  <div id="chart"></div>
+</div>
+<div class="clearfix"></div>
+
+<script type="text/javascript" src="../js/d3.v3.js"></script>
+<script type="text/javascript">
+
+var totalStages = 3;
+var stage = 0;
+
+function changeState() {
+
+  console.log("clicked", stage);
+
+  var clicked = d3.select(this).attr("id");
+  var buttonClicked = this;
+
+  if (clicked == "prev") {
+    handlePrev(buttonClicked);
+  }
+
+  if (clicked == "next") {
+    handleNext(buttonClicked);
+  }
+
+  updateButtonLook(stage, totalStages);
+  showText(stage);
+  handleChart(stage);
+
+  console.log(stage);
+
+} // end changeState
+
+
+function updateButtonLook(stage, totalStages) {
+  if (stage == totalStages) {
+    d3.select("a#next").classed("disabled", true);
+    d3.select("a#prev").classed("disabled", null);
+    return;
+  }
+  if (stage == 0) {
+    d3.select("a#prev").classed("disabled", true);
+    d3.select("a#next").classed("disabled", null);
+    return;
+  }
+  // otherwise, enable both:
+  d3.selectAll("a.button").classed("disabled", null);
+}
+
+function handlePrev(button) {
+  if (stage !== 0) {
+    stage -= 1;
+  }
+}
+
+function handleNext(button) {
+  if (stage !== totalStages) {
+    stage += 1;
+  }
+}
+
+d3.selectAll(".button").on("click", changeState);
+
+function showText(stage) {
+  d3.selectAll("#text p").classed("hidden", true);
+  d3.select("p#stage" + stage).classed("hidden", null);
+}
+
+var chart;
+
+function handleChart(stage) {
+
+  // the chart is on stage 1 and 2.
+  // this turns into a mess pretty fast, in order to handle backwards presses.
+  // it's better to call functions, and maybe do a switch statement.
+  // this could definitely be better.
+
+  if (stage == 0 || stage == 3) {
+    d3.select("svg").remove(); // if it doesn't exist, no problem.
+    chart = null; // reset to null
+  }
+  if (!chart && stage == 1) {
+    // make the chart; no circle yet.
+    chart = d3.select("#chart").append("svg").attr("width", 300).attr("height",300);
+  }
+  if (chart && stage == 1) {
+    chart.select("circle").remove(); // if it's not there, no problem.
+  }
+  if (chart && stage == 2) {
+    chart.append("circle").attr("cx", 20).attr("cy", 50).attr("r", 20);
+  }
+  if (!chart && stage == 2) {
+    // no chart, must be going in reverse, have to make it first.
+    chart = d3.select("#chart").append("svg").attr("width", 300).attr("height",300);
+    chart.append("circle").attr("cx", 20).attr("cy", 50).attr("r", 20);
+  }
+
+}
+
+</script>
+</body>
+</html>

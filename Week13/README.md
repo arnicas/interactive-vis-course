@@ -16,7 +16,7 @@
 
 ### Design Tips
 
-* In your tooltip on a choropleth, always report the actual value of the region you are coloring.  People will want to know the numbers, not just interpret the shade of color.  
+* In your tooltip on a choropleth, always report the actual value of the region you are coloring.  People will want to know the numbers, not just interpret the shade of color.
 * Also, don't report a different number than the one used to color the region. If you add numbers, that's fine, but make sure it's clear which one is driving the color.
 * Don't use a two-color scale unless you are contrasting 2 things (like above or below a threshold, or differences positive and negative). Your options are sequential (single color shades), diverging (around a middle neutral color), and qualitative (non-numeric categories). The resources I gave you last week on design should help (read them!) and also this: https://www.mapbox.com/tilemill/docs/guides/tips-for-color/
 * Don't combine leaflet and D3 unless you have a need to do it: you don't need to show an infinitely zoomable and movable map with geography and roads etc if you are only showing a colored choropleth at the country/state level.
@@ -92,6 +92,10 @@ Reference:
 * Also see this tool from Ben Schmidt to make trails, including animated ones: https://github.com/bmschmidt/D3-trail?utm_content=bufferf9497&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
   * And demo: http://benschmidt.org/D3-trail/minard.html
 * Airplanes animated on a world map: http://www.tnoda.com/blog/2014-04-02
+
+### Chained Transitions
+
+See [animation_end.html](animation_end.html) for an example of chained transitions, where one starts after another, on the same "object".
 
 
 ## UI Sliders for Timelines
