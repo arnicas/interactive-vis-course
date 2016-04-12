@@ -296,6 +296,8 @@ This comes in useful for creating id's on SVG elements for later reference in co
 
 ## Recent Interesting Things
 
+* Threshold Choropleth: https://bl.ocks.org/mbostock/3306362
+* Ranking tool example: http://bl.ocks.org/sivartravis/b8b543661cade63c8548
 * http://polygraph.cool/films/ - scrollytelling vis
 * https://www.theguardian.com/technology/2016/apr/12/the-dark-side-of-guardian-comments
 
