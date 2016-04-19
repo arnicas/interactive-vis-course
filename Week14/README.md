@@ -3,10 +3,33 @@
 
 ## Homework Review
 
+Still a little bit of work on the chart functions.
+
+Reminder that functions can go inside functions!
+
+````
+function drawLineChart(data) {
+
+    var width...
+    var height...
+    var xAxis...
+    var yAxis..
+    var svg = ... // draw your svg here
+
+    function drawme(data) {
+
+        // you can access and use variables from the outer function here:
+        xAxis.domain(...)
+        yAxis.domain(...)
+
+        svg.append...  // you can access svg here, from outer scope!
+    }
+}
+````
 
 ## Project Grading
 
-Project is 40% of the course grade total (base points, not the extra credit points).
+Project is 40% of the course grade total (base points, not the extra credit points). Base points were 502 this semester.
 
 Here is the breakdown:
 
@@ -22,6 +45,7 @@ Here is the breakdown:
 
 Extra-extra credit options will include:
 
+* Responsive design
 * Using interesting/new interactions or graph types we didn't cover in class (including layouts below)
 * Anything else that makes it stand out as a great project (my perogative)
 
@@ -34,9 +58,6 @@ https://support.office.com/en-us/article/VLOOKUP-function-0bbc8083-26fe-4963-8ab
 See the worksheets in scatter_data_plus_codes.xlsx and in deaths_04yearsold_codes.xlsx.
 
 Click on map to update line chart: **[lines_transition_map.html](lines_transition_map.html)**  This takes a while to load, and the spinner isn't working right.
-
-TODO: Fix the loading gif.
-
 
 
 ## A Useful Thing for Pre-Debugging and Interviewing: Linting
@@ -67,6 +88,7 @@ Note: This is the style Jim Vallandingham uses in his tutorial code.
 
 **See example using it in [using_reusable_barchart.html](using_reusable_barchart.html).**
 
+Another recent example: http://bl.ocks.org/rcmoore38/9f2908455355c0589619
 
 ## Other D3 Layouts
 
@@ -91,6 +113,8 @@ Ones that might work in your project: pie (for small number of wedges), treemap 
 
 ##Recent Interesting Things
 
+* Maps with tooltips, education per child: http://www.npr.org/2016/04/18/474256366/why-americas-schools-have-a-money-problem
+
 * Y Axis critique: http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&utm_content=chorus&utm_medium=social&utm_source=twitter
 * Interactive Strip Plots: http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/
 * Data Vis catalogue: http://www.datavizcatalogue.com/
@@ -102,8 +126,9 @@ Ones that might work in your project: pie (for small number of wedges), treemap 
 
 ##Homework
 
-More progress!  Nothing due, but send me your bugs/hangups.
 
-Project is due on December 15.  Make sure your github.io link works, that you have committed and pushed it all.
+Make an appointment to see me if you are stuck.  Drafts due April 28 if you want comments, final project due May 5.
+
+I'll email you about a party-demo-session on May 3.
 
 

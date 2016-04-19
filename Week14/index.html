@@ -44,8 +44,27 @@
 </div>
 <h1 id="week-14-reusable-charts-more-layouts-project-help">Week 14: Reusable Charts, More Layouts, Project Help</h1>
 <h2 id="homework-review">Homework Review</h2>
+<p>Still a little bit of work on the chart functions.</p>
+<p>Reminder that functions can go inside functions!</p>
+<pre><code>function drawLineChart(data) {
+
+    var width...
+    var height...
+    var xAxis...
+    var yAxis..
+    var svg = ... // draw your svg here
+
+    function drawme(data) {
+
+        // you can access and use variables from the outer function here:
+        xAxis.domain(...)
+        yAxis.domain(...)
+
+        svg.append...  // you can access svg here, from outer scope!
+    }
+}</code></pre>
 <h2 id="project-grading">Project Grading</h2>
-<p>Project is 40% of the course grade total (base points, not the extra credit points).</p>
+<p>Project is 40% of the course grade total (base points, not the extra credit points). Base points were 502 this semester.</p>
 <p>Here is the breakdown:</p>
 <ul>
 <li>20% for using 4+ chart types we covered in class (can include small multiples as one)</li>
@@ -60,6 +79,7 @@
 </ul>
 <p>Extra-extra credit options will include:</p>
 <ul>
+<li>Responsive design</li>
 <li>Using interesting/new interactions or graph types we didn't cover in class (including layouts below)</li>
 <li>Anything else that makes it stand out as a great project (my perogative)</li>
 </ul>
@@ -68,7 +88,6 @@
 <a href="https://support.office.com/en-us/article/VLOOKUP-function-0bbc8083-26fe-4963-8ab8-93a18ad188a1" class="uri">https://support.office.com/en-us/article/VLOOKUP-function-0bbc8083-26fe-4963-8ab8-93a18ad188a1</a></p>
 <p>See the worksheets in scatter_data_plus_codes.xlsx and in deaths_04yearsold_codes.xlsx.</p>
 <p>Click on map to update line chart: <strong><a href="lines_transition_map.html" class="uri">lines_transition_map.html</a></strong> This takes a while to load, and the spinner isn't working right.</p>
-<p>TODO: Fix the loading gif.</p>
 <h2 id="a-useful-thing-for-pre-debugging-and-interviewing-linting">A Useful Thing for Pre-Debugging and Interviewing: Linting</h2>
 <p>Linting is running an app over your code to check for style and obvious errors, like variable conflicts or unused variables. Linters will often help you avoid bugs and save time.</p>
 <ul>
@@ -88,6 +107,7 @@
 </ul>
 <p>Note: This is the style Jim Vallandingham uses in his tutorial code.</p>
 <p><strong>See example using it in <a href="using_reusable_barchart.html" class="uri">using_reusable_barchart.html</a>.</strong></p>
+<p>Another recent example: <a href="http://bl.ocks.org/rcmoore38/9f2908455355c0589619" class="uri">http://bl.ocks.org/rcmoore38/9f2908455355c0589619</a></p>
 <h2 id="other-d3-layouts">Other D3 Layouts</h2>
 <p>Other layouts we haven't covered are listed in Chapter 11: <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch11.html" class="uri">http://chimera.labs.oreilly.com/books/1230000000345/ch11.html</a>.</p>
 <p>Also see the D3 docs: <a href="https://github.com/mbostock/d3/wiki/Layouts" class="uri">https://github.com/mbostock/d3/wiki/Layouts</a></p>
@@ -102,16 +122,17 @@
 <p>Ones that might work in your project: pie (for small number of wedges), treemap (to drill into causes of illness), histogram (to see distribution of death causes and rates, etc).</p>
 <h2 id="recent-interesting-things">Recent Interesting Things</h2>
 <ul>
+<li><p>Maps with tooltips, education per child: <a href="http://www.npr.org/2016/04/18/474256366/why-americas-schools-have-a-money-problem" class="uri">http://www.npr.org/2016/04/18/474256366/why-americas-schools-have-a-money-problem</a></p></li>
 <li>Y Axis critique: <a href="http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&amp;utm_content=chorus&amp;utm_medium=social&amp;utm_source=twitter" class="uri">http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&amp;utm_content=chorus&amp;utm_medium=social&amp;utm_source=twitter</a></li>
 <li>Interactive Strip Plots: <a href="http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/" class="uri">http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/</a></li>
 <li>Data Vis catalogue: <a href="http://www.datavizcatalogue.com/" class="uri">http://www.datavizcatalogue.com/</a></li>
 <li>Gender Ratio in the World - relevant to UNICEF data: <a href="http://qz.com/335183/heres-why-men-on-earth-outnumber-women-by-60-million/" class="uri">http://qz.com/335183/heres-why-men-on-earth-outnumber-women-by-60-million/</a></li>
 <li>Climate Change: <a href="https://www.washingtonpost.com/graphics/national/gauging-climate-change/" class="uri">https://www.washingtonpost.com/graphics/national/gauging-climate-change/</a></li>
 <li>Bret Victor's page on climate change: <a href="http://worrydream.com/ClimateChange/" class="uri">http://worrydream.com/ClimateChange/</a></li>
-<li>Sign up for the DashingD3 newsletter if you haven't: <a href="https://www.dashingd3js.com/" class="uri">https://www.dashingd3js.com/</a></li>
+<li><p>Sign up for the DashingD3 newsletter if you haven't: <a href="https://www.dashingd3js.com/" class="uri">https://www.dashingd3js.com/</a></p></li>
 </ul>
 <h2 id="homework">Homework</h2>
-<p>More progress! Nothing due, but send me your bugs/hangups.</p>
-<p>Project is due on December 15. Make sure your github.io link works, that you have committed and pushed it all.</p>
+<p>Make an appointment to see me if you are stuck. Drafts due April 28 if you want comments, final project due May 5.</p>
+<p>I'll email you about a party-demo-session on May 3.</p>
 </body>
 </html>
