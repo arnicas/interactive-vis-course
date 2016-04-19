@@ -113,7 +113,11 @@ Ones that might work in your project: pie (for small number of wedges), treemap 
 
 ##Recent Interesting Things
 
+* Scrolly tool from WSJ just released (I haven't tried it): https://github.com/WSJ/scroll-watcher
+
 * Maps with tooltips, education per child: http://www.npr.org/2016/04/18/474256366/why-americas-schools-have-a-money-problem
+
+* Animated Bubble Maps tutorial: http://vallandingham.me/bubble_charts_in_js.html
 
 * Y Axis critique: http://www.vox.com/2015/11/19/9758062/y-axis-zero-chart?utm_campaign=vox&utm_content=chorus&utm_medium=social&utm_source=twitter
 * Interactive Strip Plots: http://www.maartenlambrechts.be/interactive-strip-plots-for-visualizing-demographics/
