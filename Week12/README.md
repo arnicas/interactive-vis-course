@@ -9,7 +9,7 @@
 
 FYI: New home for the chroniton.js play/pause d3 slider control is here:
 
-* http://xaranke.github.io/chroniton/example/index.html
+* https://arankek.github.io/chroniton/example/index.html
 
 
 ### Reminders about Bugs
@@ -332,5 +332,3 @@ Send me the link to your updated repo, with:
  * code in functions and different js files as we discussed today,
  * and some text/layout that outlines the story you will tell in your project.
  * In other words, show me progress.
-
-

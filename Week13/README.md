@@ -101,7 +101,7 @@ See [animation_end.html](animation_end.html) for an example of chained transitio
 ## UI Sliders for Timelines
 
 Tom MacWright's control that I recommend (it has changed maintenance/ownership):
-http://xaranke.github.io/chroniton/example/index.html.
+https://arankek.github.io/chroniton/example/index.html.
 
 See my example use of it in **[africa_map_slider.html](africa_map_slider.html).** It has options for configuring it to restart playing, etc.
 
@@ -207,6 +207,3 @@ Send me the link to the repo. Make sure it has an index page. Put the CSVs for y
 **Homework 2 (25pt) Two Graphs on a Page!**
 
 Make two charts for your project, on the same page.  Use functions to structure this, so the variables don't stomp on each other.  I won't be judging the content of the vis yet, just structure and making sure they "work" on the same page.
-
-
-
